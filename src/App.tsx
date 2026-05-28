@@ -133,7 +133,7 @@ export default function App() {
     experience: "5 ~ 6 年品牌商業整合設計實戰經驗",
     desireTitle: "視覺設計師 / 平面設計師",
     email: "capelee0715@gmail.com",
-    portfolioUrl: "https://capelee0715.wixsite.com/portfolio", 
+    portfolioUrl: "https://www.canva.com/design/DAHKqEmTsAE/Hh-n-aaOq58oCuXtZu5c4w/edit", 
     intro: "擁有 6 年以上品牌商業整合設計實戰經驗，經手超過百個品牌、逾千件商品視覺製作，熟悉電商、醫療、文創等多元產業。具備視覺設計、商業攝影、品牌識別、影音製作與生成式 AI 工作流整合之全方位能力，作品涵蓋月銷破萬電商視覺、客家電視台邀約插畫、個人原創 IP 角色開發及企業 CIS 規劃，致力於將品牌價值轉化為最精準、最具張力的視覺語言。",
     education: [
       { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業" },
@@ -335,7 +335,7 @@ export default function App() {
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black transition-all shadow-lg shadow-amber-500/25 active:scale-98 text-center uppercase tracking-wide font-sans"
                   >
-                    <span>最新 2026 官方作品集 (WIX) ↗</span>
+                    <span>最新 2026 官方作品集 (Canva) ↗</span>
                   </a>
                 </div>
               </div>
