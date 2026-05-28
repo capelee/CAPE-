@@ -1,0 +1,6 @@
+{
+  "name": "極簡作品集工作室 (Creative Portfolio Studio)",
+  "description": "強大且優雅的個人作品卡片生成器。支援角色IP、電商Banner、展演與 App 原型等全方位視覺設計文案分析，實時生成與微調 RWD HTML/Tailwind 原始碼，極速備份您的設計維度。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

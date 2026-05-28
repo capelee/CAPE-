@@ -1,0 +1,12 @@
+export interface PortfolioItem {
+  id: string;
+  category: string;
+  title: string;
+  titleEn: string;
+  philosophy: string;
+  tools: string[];
+  imageUrl: string;
+  placeholderId: string;
+  colorTheme: string; // Tailored color accent for hovering effects
+  images?: string[]; // Multiple images for project portfolio gallery
+}
