@@ -2,72 +2,6 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
-    id: "1",
-    category: "角色IP設計",
-    title: "時空旅人：啵啵 (BOBO)",
-    titleEn: "Chronos Voyager: BOBO",
-    philosophy: "BOBO 是一個來自未來星系的像素風外星生命，頭戴具有時間折射功能的復古風圓耳太空盔，象徵著童真與對宇宙的好奇。整體配色採用柔和的高級灰粉與未來感電光藍，形成撞色對比。圓滾身軀與略帶憂鬱的豆豆眼設計，能瞬間建立情感連結。其簡潔輪廓與高辨識度外觀，具備極佳的潮流盲盒玩具開發及品牌延伸潛力。",
-    tools: ["Illustrator", "Photoshop", "Cinema 4D", "Midjourney"],
-    imageUrl: "https://images.unsplash.com/photo-1608889174637-3c44f6326f1a?auto=format&fit=crop&q=80&w=600&h=450",
-    placeholderId: "IMAGE_1",
-    colorTheme: "from-pink-500 to-blue-500"
-  },
-  {
-    id: "2",
-    category: "電商Banner設計",
-    title: "未來震盪：Cyber-Boost 聯名企劃",
-    titleEn: "Future Shock: Cyber-Boost Campaign",
-    philosophy: "針對新世代 Z 世代消費者設計的科技球鞋宣傳 Banner。畫面採用強烈的透視構圖，主角鞋款以 45 度角斜切畫面，營造迎面襲來的速度感。色彩上運用深邃的石墨黑作為底色，並以螢光綠與霓虹紫的流線光學粒子軌跡環繞，突顯鞋底「能量回彈」與「超跑避震」的科技屬性。簡約大膽的無襯線字體與幾何網格背景，將電商轉換與極致美學完美融合。",
-    tools: ["Photoshop", "Blender", "Vizcom AI", "Figma"],
-    imageUrl: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=600&h=450",
-    placeholderId: "IMAGE_2",
-    colorTheme: "from-emerald-400 to-violet-600"
-  },
-  {
-    id: "3",
-    category: "展演活動主視覺",
-    title: "2026 數位潮汐藝術節：共生",
-    titleEn: "2026 Digital Tide Art Festival: Symbiosis",
-    philosophy: "以「數位媒介如潮汐般浸潤生命體」為核心概念。視覺主體是由無數流暢的 3D 三維流體曲線與半透明漸變質地交織而成的生命漩渦。配色使用深邃的海洋藍與高明度的極光綠相互暈染，局部加入珍珠霓虹光澤，呈現出迷幻的液態金屬感。構圖採用不對稱的螺旋式向心力佈局，文字排版則遵循瑞士平面學派的嚴格網格，在高度流動的視覺與極簡秩序間達到完美共生。",
-    tools: ["Illustrator", "Blender", "Cinema 4D", "Photoshop"],
-    imageUrl: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600&h=450",
-    placeholderId: "IMAGE_3",
-    colorTheme: "from-blue-600 to-emerald-400"
-  },
-  {
-    id: "4",
-    category: "App UI/UX 原型",
-    title: "AeroFlow: 智感低碳生活平台",
-    titleEn: "AeroFlow: Eco-Smart Mobility Hub",
-    philosophy: "旨在解決都市人群低碳出行痛點的移動端 App。UI 介面遵循極簡黑白美學與超流線圓弧設計。卡片佈局採用非對稱的 Bento Grid（便當盒佈局），將每日碳足跡減免量、出行路線推薦與空氣品質指數進行清晰的視覺層級區隔。大膽使用具微光效果的漸變藍色圓形環狀圖，提供直觀、無感、且優雅的數據視覺化回饋，極大地提升了低碳出行的日常互動趣味與用戶黏著度。",
-    tools: ["Figma", "Principle", "After Effects"],
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=450",
-    placeholderId: "IMAGE_4",
-    colorTheme: "from-cyan-500 to-teal-400"
-  },
-  {
-    id: "5",
-    category: "品牌視覺識別",
-    title: "極光冷萃：Aurora Brew 品牌識別系統",
-    titleEn: "Aurora Coffee Brew Brand Identity",
-    philosophy: "為高端冷萃咖啡設計的品牌識別與奢華包裝。標誌採用抽象的雙重幾何線條，巧妙勾勒出極光波紋與咖啡滴落的姿態。包裝瓶選用低飽和度的深琥珀色玻璃，標籤設計極致精簡，僅以無襯線黑體輔以細小的金色壓箔，在深色包裝上散發出低調神祕的奢華感，使產品在貨架上具備高度的視覺辨識力與精品儀式感。",
-    tools: ["Illustrator", "Dimension", "Figma", "Midjourney"],
-    imageUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600&h=450",
-    placeholderId: "IMAGE_5",
-    colorTheme: "from-amber-600 to-orange-400"
-  },
-  {
-    id: "6",
-    category: "展覽主視覺與海報",
-    title: "失重維度：未來重力重構展",
-    titleEn: "Zero Gravity: Reconstructing Dimensions",
-    philosophy: "以「物理法則失效、空間重組」為發想的前衛視覺設計展海報。海報中央呈現一個被撕裂與錯位的漂浮 3D 幾何立方體，周圍環繞著極具未來主義氛圍的重力拉扯射線。色彩排版大膽拋棄繁贅雜色，僅使用經典極簡的純白、科技灰與一抹冷冽高飽和度的克萊因藍（Klein Blue），製造純粹而神秘的視覺張力，成功引發觀看者對未來維度的哲學性思考。",
-    tools: ["Illustrator", "Photoshop", "Cinema 4D"],
-    imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600&h=450",
-    placeholderId: "IMAGE_6",
-    colorTheme: "from-blue-600 to-slate-900"
-  },
-  {
     id: "7",
     category: "商品商業攝影",
     title: "茂生食品：極品燕窩月餅禮盒",
@@ -405,6 +339,192 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1bE5O6UX3KuVNyZhXgFlSpKqiUtaltgPv",
       "https://lh3.googleusercontent.com/d/1ui8JKOv5A8kXWYDO2oM3YZv1lkkpTIWo",
       "https://lh3.googleusercontent.com/d/1y5AMAb3AD1u_9XTPr31PWr-VXv_r4XmB"
+    ]
+  },
+  {
+    id: "26",
+    category: "商品與周邊設計",
+    title: "工信工程淡江大橋 官方開工大吉紀念金鏟子禮盒組",
+    titleEn: "Kung Sing Engineering Danjiang Bridge Official Groundbreaking Commemorative Golden Shovel Gift Set",
+    philosophy: "專為國家級重大交通建設——由「工信工程」承建、國際知名建築大師扎哈·哈蒂（Zaha Hadid）事務所設計的「淡江大橋」工程所精心企劃與設計開發的「官方開工大吉紀念金鏟子禮盒組」。本設計將宏偉的現代橋梁工程美學、頂級金工禮品工藝、以及台灣傳統「金鏟子」（諧音「緊產子」，象徵動土大吉、招財興旺與世代傳承）的深厚民間祝福完美融為一體：\n\n1. 扎哈·哈蒂流線橋塔與金工的極致交融：設計巧妙提取淡江大橋極具代表性的「單塔不對稱斜張橋」流線型橋塔與鋼纜線條，並融入「工信工程」專屬穩健品牌識別。流暢、充滿動能的天際弧線與優美的金鏟結構相映生輝，既具備前瞻科技感，又保有厚重的人文溫度。\n\n2. 頂級高純度電鍍與精密拋光防蝕工藝：主體金鏟採用高強度精鋼鍛造，歷經十餘道精密工藝手工打磨拋光，表面塗覆高規格純金電鍍層（Gold Plating）。色澤純粹飽和、耀眼尊貴，並加上奈米級抗指紋真空封釉處理，確保鏟身防潮、抗氧化且不褪色。\n\n3. 尊榮禮盒包裝與精雕紅花梨實木底托：全套禮組搭配由進口紅花梨實木精雕而成的專屬展示底座，實木底托鑲嵌高純度拉絲黃銅雷雕銘牌，精準鐫刻淡江大橋主橋開工紀念語與重要工程數據。外包裝採高剛性深藍特種紙燙金禮盒與專屬提袋，為政要、貴賓與收藏家獻上極致高貴尊榮的開箱儀式感。",
+    tools: ["公共工程文創企劃", "高規格鍍金防蝕工藝", "紅花梨實木高精銑削", "拉絲黃銅雷雕銘牌", "扎哈·哈蒂橋塔曲率美學"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1lBKTHUW3qRda2cLel9fBpgL15AfuVQzH",
+    placeholderId: "IMAGE_26",
+    colorTheme: "from-amber-950 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1lBKTHUW3qRda2cLel9fBpgL15AfuVQzH",
+      "https://lh3.googleusercontent.com/d/16O8R8KycjpOSRN9JRX-5-MWQJonowl30",
+      "https://lh3.googleusercontent.com/d/1cuNtv8_nXzZ5h_0nYy2pTajJzuh71O4B"
+    ]
+  },
+  {
+    id: "27",
+    category: "商品與周邊設計",
+    title: "台北華山扶輪社 台灣奶茶主題國際親善交流紀念徽章",
+    titleEn: "Taipei Huashan Rotary Club Taiwan Bubble Milk Tea Theme International Exchange Commemorative Badge",
+    philosophy: "專為「台北華山扶輪社」精心企劃、美學研製之「台灣奶茶主題國際親善交流紀念徽章」。本款設計結合台灣享譽全球的「珍珠奶茶（Bubble Milk Tea）」飲食文化符碼與國際扶輪社親善互助之卓越宗旨，精心淬鍊出富含濃厚島嶼熱情與現代時尚張力的紀念徽標：\n\n1. 台灣庶民茶飲魅力與親善地標相嵌：設計巧妙提取高度寫實、Q萌可愛的珍珠奶茶杯身曲線，杯頂點綴誘人、柔滑細密的手調奶蓋層。中央精密印製國際扶輪社齒輪（Rotary Wheel）核心標章與「Taipei Huashan」專屬字樣，彰顯台灣在地風情與國際同濟社友的跨界友愛交流。\n\n2. 頂級黃銅壓鑄與剔透晶瓷琺瑯：本體取材高品質環保黃銅重力壓鑄，經拉絲拋光、金屬倒角。正面各色塊區域皆注入多重專利晶瓷琺瑯漆，透過精確的高溫固化工藝呈現飽滿、微凸、如鋼琴烤漆般清透潤光的高奢質感。底部沉澱的珍珠粒粒圓潤、色澤溫軟黑亮，完美還原最具代表性的「波霸珍珠」誘人光彩。\n\n3. 專屬防磨蝴蝶扣與高質感展示吸塑卡貼：背部搭載雙針精密定位防旋轉蝴蝶扣，配戴穩固、平整貼合。每枚徽章均襯有專屬精緻燙金典藏吸塑厚紙卡，無論是國際交換、外交出訪餽贈友社，皆能深刻傳遞寶島台灣的甘醇溫厚、多元親善魅力與頂尖文創美學。",
+    tools: ["跨國親善品牌策劃", "黃銅精密模具重壓鑄", "多色晶瓷琺瑯手工點漆", "金屬邊際真空鍍金打磨", "台灣茶飲文化跨界轉譯"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1ksnPCle4trzSUThCjte3DtDkx_YiMjrX",
+    placeholderId: "IMAGE_27",
+    colorTheme: "from-amber-900 to-amber-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1ksnPCle4trzSUThCjte3DtDkx_YiMjrX",
+      "https://lh3.googleusercontent.com/d/13w79eXp6F39d3hNNvsWyl32aHSke7akN",
+      "https://lh3.googleusercontent.com/d/1UJyxcHkvIzNdKDUOC_-LfsD4pm4OVqOG",
+      "https://lh3.googleusercontent.com/d/1LZGpYnkUS1iN4t1DeXsPocld3u2VIDpa"
+    ]
+  },
+  {
+    id: "28",
+    category: "商品與周邊設計",
+    title: "雲林家扶中心 75周年 溫馨守護防潮野餐墊",
+    titleEn: "Yunlin Family Helper Center 75th Anniversary Commemorative Moisture-Proof Picnic Mat",
+    philosophy: "專為「雲林家扶中心」成立75周年所特別企劃、暖心定製開發的「75周年溫馨守護防潮野餐墊」。本商品承載著家扶中心七十五載以來，深耕雲林在地、溫柔拔植、陪伴無數弱勢兒少與家庭成長的溫馨歲月，並注入現代戶外休閒美學與實用綠色科技：\n\n1. 溫馨守護與希望幼苗美學融合：設計特別融入雲林農業大縣的在地自然元素（如金黃稻浪、飛翔候鳥與暖陽），與代表家扶扶幼精神的「手護幼苗」愛心圖騰完美輝映。色彩搭配選擇陽光溫暖的薑黃與安定的大地棕、草綠，營造在綠意草地上享受天倫、溫馨幸福的親情氛圍。\n\n2. 頂級防潮高彈三層結構工藝：面料首選精細親膚、抗起球的桃皮絨高密織物，觸感極致溫潤細膩。中層高壓複合高回彈優質中空棉，厚度達 3mm，在鬆軟草地或礫石地上皆能提供絕佳的緩衝感。底層採用先進的「網格環保防水超耐磨PEVA膜」，100%隔絕草地濕氣、泥沙與汗水，防潮耐髒，輕抹即淨。\n\n3. 專屬摺疊手提一體化與高規格織帶扣環：採用極簡俐落的魔鬼氈一體化摺疊式結構設計，僅需簡單三步即可快速收納為時尚小提包（Folded Carry Bag）。搭配堅固尼龍編織手提帶與復古裝飾皮革扣件，攜帶極其輕巧優雅，不論是草地野餐、沙灘度假或露營休閒，皆能隨行點亮溫情滿載的野餐時光。",
+    tools: ["社會公益與永續文創企劃", "三層超高頻熱壓複合工藝", "光學級數位高彩耐曬直噴", "環保防潮PEVA底層織物工藝", "一體式輕便收納與提袋設計"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1E5nphIawW2SO10AFtNnULRBP8xwlEQul",
+    placeholderId: "IMAGE_28",
+    colorTheme: "from-amber-950 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1E5nphIawW2SO10AFtNnULRBP8xwlEQul",
+      "https://lh3.googleusercontent.com/d/1rSegvMhI6QosJSVbIzqU4YvAQ4Z-vln0",
+      "https://lh3.googleusercontent.com/d/1G5Utgapypo59GUy-ZwmeAOIdDQVNsvOD"
+    ]
+  },
+  {
+    id: "29",
+    category: "商品與周邊設計",
+    title: "新竹市體育會西洋棋委員會 典藏工藝級防滑矽膠吸水杯墊",
+    titleEn: "Hsinchu City Sports Association Chess Committee Official Commemorative Chess Art Silicone Coaster Set",
+    philosophy: "專為「新竹市體育會西洋棋委員會」特別策劃、美學研製之「典藏工藝級吸水杯墊」。本款設計結合西洋棋（Chess）古老、深邃的智力博弈之美，與新竹市現代科技活力的城市風貌，將棋盤、棋子等經典幾何美學巧妙轉譯，為棋藝愛好者、大師與參賽選手量身打造：\n\n1. 皇家棋王與戰術幾何的視覺交融：設計核心取材自西洋棋經典的「國王（King）」與「騎士（Knight）」立體造型。以高精度極簡微縮線條雕刻，並將黑白交錯的經典格線、戰術運算網點圖騰巧妙結合。背景襯托「HSINCHU CHESS」英式古典品牌標準字與齒輪般的科技刻度，象徵智慧、博弈與科技之城的完美交織。\n\n2. 頂級食品級防滑矽膠與高效集水結構：本體嚴選高品質環保無毒、耐高溫達230℃之食品級防滑矽膠（Silicone）。表面採用精密的立體凸起凹槽（3D Raised Grid）設計，能高效承接並引流冷飲或熱飲傾瀉的凝結水珠，防止水分溢流至桌面。極佳的阻尼防滑性能，確保不論在木質、玻璃或大理石桌面上皆能穩固安放，帶來無與倫比的安全感與實用性。\n\n3. 環保水洗耐磨與精緻專屬紙卡封裝：具備絕佳的防水、防油、抗污特性，一沖即淨，歷久不變形。每款杯墊都搭配專屬雙面高磅數霧面燙金紙卡夾裝包裝，無論作為西洋棋錦標賽、講堂、俱樂部之尊榮紀念伴手禮，亦或是日常辦公桌上的雅緻擺設，皆展現棋與生活完美契合的知性品味與工藝美學。",
+    tools: ["棋藝運動CIS品牌規劃", "3D精細模具雕刻", "食品級安全矽膠雙色成型", "立體阻水防撞波紋工藝", "雙面高磅數燙金紙卡包裝"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1Nx7DXhK0ZCOUFQzegZZHrR5pKHHNIvdP",
+    placeholderId: "IMAGE_29",
+    colorTheme: "from-stone-900 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1Nx7DXhK0ZCOUFQzegZZHrR5pKHHNIvdP",
+      "https://lh3.googleusercontent.com/d/1a5tIdW_w-N9EiMgQHuyy9qhW0bjJxkoC",
+      "https://lh3.googleusercontent.com/d/1RfqiQTBlA2yDFcjGMQqxGj0dAFBIqrmh"
+    ]
+  },
+  {
+    id: "30",
+    category: "書籍與裝幀設計",
+    title: "新竹科學菁英學校 畢業紀念冊 典藏裝幀外裝本",
+    titleEn: "Hsinchu Science Elite School Graduation Yearbook Commemorative Album Cover & Case",
+    philosophy: "專為「新竹科學菁英學校」精心企劃與設計開發的「畢業紀念冊 典藏裝幀外裝本與收納盒套組」。本設計以「科學探索」、「菁英啟航」與「時間膠囊」為核心概念，完美融合尖端科技的理性感、學子求學的溫暖回憶，與頂級裝幀工藝，為畢業學子留下永恆的尊榮紀念：\n\n1. 科技光軌與學術徽章的幾何美學：設計封面巧妙結合代表理性與邏輯的網格光軌（Optic Grids）與星系運行的公轉軌道，象徵科學探索無止境。中心位置鑲嵌精密金屬電鑄銘牌，閃耀著學校專屬的菁英徽章徽標。流暢而精準的外裝圖騰，呈現前瞻未來感，又具有極致莊重的學術儀式感。\n\n2. 頂級布紋特種紙與防指紋雷射燙銀工藝：外封本體精選高強度、耐磨雙色交織精細布紋特種紙（Finest Bookcloth Textured Paper），手感溫潤且富層次感。封面主標題與科技流線圖騰採用最先進工藝的「幻彩雷射防刮燙銀（Holofoil Silver Stamping）」，隨著視角與光線徐徐變换，投射出如同光纖折射般的斑斕色彩，代表莘莘學子前程似錦的無限可能。\n\n3. 一體成型磁吸防潮硬書盒與典藏內襯：全套外本搭配極高剛性的防潮高密度紙板一體成形精裝盒殼。盒側置入強效隱形磁吸扣卡，開合清脆俐落，有效避免書籍受潮、泛黃並抵抗歲月磨損。內收納格則採用高級香檳金絲絨特種紙模切卡緊，穩固承載著裝進滿滿情誼的厚重紀念冊與師長祝福卡片。",
+    tools: ["校園CIS與畢業文創企劃", "幻彩雷射防刮燙銀工藝", "雙色交織精細布紋紙裝幀", "高剛性磁吸防潮書殼成型", "幾何科技美學符碼轉譯"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1j3vY9HAh8Aogdae_yNhjfrMcRLJxuxZS",
+    placeholderId: "IMAGE_30",
+    colorTheme: "from-indigo-950 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1j3vY9HAh8Aogdae_yNhjfrMcRLJxuxZS",
+      "https://lh3.googleusercontent.com/d/1pKY40XSQmsdJrdIBvlequ0hyaS4zkr1h",
+      "https://lh3.googleusercontent.com/d/1NAJpGr20KaHwTfqIRJpS4FJveGaEZAgg"
+    ]
+  },
+  {
+    id: "31",
+    category: "商品與周邊設計",
+    title: "豐森大境建案 官方開工大吉紀念金鏟子禮盒組",
+    titleEn: "Feng Sen Da Jing Real Estate Project Official Groundbreaking Commemorative Golden Shovel Gift Set",
+    philosophy: "專為「豐森大境」精品住宅建案所特別企劃、高奢定製開發的「官方開工大吉紀念金鏟子禮盒組」。本產品完美融合精工建築美學、台灣傳統動土吉祥寓意（諧音「緊產子」，象徵興旺、招財與世代興盛），與頂級金工奢華禮品製作工藝：\n\n1. 現代建築幾何與流線金工的完美交織：設計巧妙提取「豐森大境」建案極具現代感的流線建築線條與森林盎然生機，與高貴典雅的金鏟結構渾然一體。鏟身比例端莊，刻線流暢，金鏟頂部點綴品牌核心識別徽標，既保留了傳統風水民俗的底蘊，又注入當代極簡奢華風采。\n\n2. 頂級高純度電鍍金與防指紋真空封釉工藝：主體金鏟精選高規格鋼金屬鍛造，表面歷經十餘道精密鏡面打磨拋光，並覆蓋航太級高純度純金電鍍層（Pure Gold Plating）。鏟面色澤純粹而飽滿，搭配奈米阻氧化真空封釉處理，能有效抗指紋、防潮防褪色，使尊貴金光歷久彌新。\n\n3. 奢華紅花梨木展示底座與專屬皮質手提箱：禮組標配由整塊進口紅花梨實木精銑而成的展示托架，正面嵌有拉絲黃銅雷雕紀念銘牌，鐫刻「豐森大境 開工大吉」與專屬奠基紀念文字。外包裝採用高剛性皮質壓紋禮盒與金屬鎖扣，給予藏家極致尊榮、極具儀式感的尊貴收藏與餽贈體驗。",
+    tools: ["高端地產文創企劃", "高規格鏡面拋光鍍金", "紅花梨木底座CNC銑削", "拉絲黃銅拉絲雷雕", "建築流線空間符碼轉譯"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1CtntqV1k0wyIgCcqalGDdizW-POttWfK",
+    placeholderId: "IMAGE_31",
+    colorTheme: "from-amber-950 to-stone-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1CtntqV1k0wyIgCcqalGDdizW-POttWfK",
+      "https://lh3.googleusercontent.com/d/1gfwwH1Sf3M3NJpCChzHVdSvfaK9nBKJK",
+      "https://lh3.googleusercontent.com/d/1quMkTKsvgdXInky0Uvc0stYi0qdskshm",
+      "https://lh3.googleusercontent.com/d/1XxKE5MisUvxvMqBm8AxnHnV55Re9rZV9"
+    ]
+  },
+  {
+    id: "32",
+    category: "商品與周邊設計",
+    title: "花蓮地震震災重建義賣 鏟子超人雷雕紀念吊飾組",
+    titleEn: "Hualien Earthquake Disaster Relief Charity Sale Shovel Superhero Laser-Engraved Commemorative Keychain Charm",
+    philosophy: "專為「花蓮地震震災重建義賣公眾活動」所特別企劃、設計開發之「鏟子超人雷刻紀念吊飾組」。本款文創周邊將具備堅韌信念、開路先鋒意象的「鏟子」化身為守護大地的「超人」英雄，象徵在震重艱難的時刻中，無畏挺身、默默付出的無名英雄與重建希望，並結合精準雷雕極客工藝與頂級雙層夾板材料技術，傳遞永不妥協的溫暖力量：\n\n1. 鏟子超人原創IP與大地重建希望：設計巧妙地將鏟子剛硬的幾何輪廓，與披上紅色斗篷、昂首微笑的「超人（Superhero）」原創角色完美融合。背景點綴代表在震裂大地中仍能萌芽生長、象徵花蓮野性生命力的朱槿花圖騰，以及昂首振翅重飛的浴火白鴿，將震災悲情轉化為一幅充滿重生動能與無盡感動的守護畫卷。\n\n2. 高精密雷導雙向深度蝕刻工藝：主體材質嚴選抗摔、高透亮之雙層複合防刮有機高分子板材。底層塗布拉絲銀金屬感質地，面層經高速高頻二氧化碳雷射高精雕刻（Precision Laser Engraving）深度蝕刻，勾勒出極具力量感的線材與超人堅毅的光影線條。邊緣採極緻圓潤的水晶拋光全倒角，觸感順滑、剔透閃亮。\n\n3. 七芯防搜編織傘繩扣與典藏紀念紙卡：搭設兼具戶外搜救力量、高剛性的軍工級七芯編織傘繩結與經典拉絲古銅質感防磨旋轉要是鑰匙掛圈（Swivel Ring）。每枚義賣扣飾均精緻裝貼在燙金手寫編號的「天祐花蓮 攜手前進」典藏厚紙底卡上，將全台凝聚的善念與祝福溫情封裝，隨行閃耀。",
+    tools: ["震災重建義賣文創企劃", "高精密多維雷射微雕", "雙層高分子板材複合工藝", "軍規七芯傘繩手工結繩工藝", "愛心IP角色視覺標誌系統設計"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1IHNMICS3Jrmupw6YpTHCiKEO6x1Ig10L",
+    placeholderId: "IMAGE_32",
+    colorTheme: "from-red-950 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1IHNMICS3Jrmupw6YpTHCiKEO6x1Ig10L",
+      "https://lh3.googleusercontent.com/d/1u60Pkaii-AkGyK58ngZAumnEKEEgNBsA",
+      "https://lh3.googleusercontent.com/d/1yDL6e55KKssEdhQLsEzsOrKMTYNXfL6Z",
+      "https://lh3.googleusercontent.com/d/1GglqgexeXjyw3gJmCrRx8Xv6VkhNuqa3"
+    ]
+  },
+  {
+    id: "33",
+    category: "商品與周邊設計",
+    title: "墾丁國家公園 鸚哥魚主題海洋保育陶瓷紀念杯",
+    titleEn: "Kenting National Park Parrotfish Ocean Conservation Commemorative Ceramic Cup",
+    philosophy: "專為「墾丁國家公園」精心企劃、美學研製之「鸚哥魚主題海洋保育陶瓷紀念杯」。本款設計結合墾丁珊瑚礁生態中不可或缺的明星魚種——「鸚哥魚（Parrotfish）」，將其繽紛斑斕的體色、圓潤憨厚的形態與海洋生態永續保育之重要使命完美交融，精心淬鍊出極具海島生命張力與厚重人文溫度的文創禮器：\n\n1. 珊瑚礁守護者與漸層海洋美學的完美交織：設計巧妙提取鸚哥魚極具辨識度的鸚鵡嘴狀鮮明口喙，以及亮麗奇幻的靛藍、霓虹綠與橙黃漸層斑斕魚鱗色澤。杯身視覺宛如波光粼粼的墾丁海底世界，魚兒穿梭於繁茂的擬真珊瑚與搖曳海草之間，畫面充滿自然生機與夢幻和諧感。\n\n2. 頂級高溫白瓷胎質與精緻釉下五彩工藝：杯體選用高嶺土經1300℃高溫還原燒製而成的優質白瓷，質地堅密剔透，敲擊聲如磬般清脆。表面圖案採用高難度的精細「釉下高彩噴繪（Underglaze Painting）」與手繪勾邊技術，將鸚哥魚的夢幻彩鱗斑紋活靈現呈，外罩一層清澈白透的食品級環保透明釉，觸感溫潤如玉，耐磨耐酸鹼，永不褪色。\n\n3. 舒適圓弧寬柄與優雅波浪防塵木蓋禮盒：杯柄採人體工學加大寬手柄設計，握持省力、平衡感極佳。每個杯子都搭配一只由天然相思木精心車噴、頂部雕刻細膩海洋波紋的立體防塵木蓋。高剛性精裝海洋藍色燙銀典藏禮盒，承載著陽光海岸的甘甜美味、極致海島文創美學與對海洋生態地景的無限深情。",
+    tools: ["海洋生態地景文創企劃", "高溫白瓷釉下五彩手工描繪", "人體工學寬手柄精密開模", "天然木器精密雕刻工藝", "珊瑚礁生態符碼視覺包裝設計"],
+    imageUrl: "https://lh3.googleusercontent.com/d/18Q1AMvM0tzx0ihr9qYX4pTKIWzJrMyin",
+    placeholderId: "IMAGE_33",
+    colorTheme: "from-cyan-950 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/18Q1AMvM0tzx0ihr9qYX4pTKIWzJrMyin",
+      "https://lh3.googleusercontent.com/d/1tHNkU25ssw5_b87aLGWAlToUsjzM-5UG",
+      "https://lh3.googleusercontent.com/d/1ggLxP9DBUUDhZlye93BsTsgqcqVxvi7r"
+    ]
+  },
+  {
+    id: "34",
+    category: "商品與周邊設計",
+    title: "臺北市立建國高級中學 第41屆畢業40週年 榮耀重聚紀念徽章",
+    titleEn: "Taipei Municipal Chien-Kuo High School 41st Class 40th Graduation Anniversary Commemorative Badge",
+    philosophy: "專為台灣頂尖名校「建國中學」第41屆校友畢業40週年返校重聚盛典（40th Reunion）精心企劃與美學研製之「榮耀重聚紀念徽章」。本設計完美融合建中無可替代的「紅樓」古典風華、象徵菁英學子的「駝客」堅毅精神，以及國際同窗跨越四十載的深厚情誼，精心淬鍊出極具人文歷史底蘊與重聚尊榮感的紀念校徽：\n\n1. 古典紅樓遺產與現代光芒線條：設計核心取材自建中精神地標「紅樓」的古典拱門與紅磚砌築意象，融入象徵四十載流金歲月的「40」幾何環繞星軌，與代表真理探索的經典徽章齒輪相映生輝。沉穩而流暢的線條象徵著建中駝客人格在時光洗禮後更顯圓融與璀璨。\n\n2. 頂級黃銅壓鑄與高透晶瓷琺瑯工藝：主體精選高純度黃銅以千噸重力重擊壓鑄而成，邊框線條經繁複手工拉絲拋光與真空鍍鉻防蝕處理。正面配色遵循經典「建中綠（校服色）」與皇室寶藍相間，色彩均採耐磨不褪色的進口琺瑯油料點漆高溫固化，色澤飽滿澄澈、明亮如鏡，閃耀著不滅的駝客榮耀。\n\n3. 專屬防滑雙定位扣與極簡燙金典藏吸塑紙卡：配備高規防轉向蝴蝶扣蓋，配戴服貼穩固。每枚紀念徽章均附有專屬「紅樓重聚、駝客歸來」精裝霧面大氣燙金典藏紙卡，為各界菁英餽贈好友、同窗珍藏或重聚佩戴，呈獻最為至高無上的尊榮儀式感。",
+    tools: ["校園文創與品牌視覺策劃", "黃銅立體模具千噸壓鑄", "多色真琺瑯手工點漆工藝", "金屬邊際真空鍍鉻拋光", "紅樓歷史地標空間符碼轉譯"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1Kalv_LXV4d8zb9193SPf3QylJx6lb3bx",
+    placeholderId: "IMAGE_34",
+    colorTheme: "from-emerald-950 to-neutral-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1Kalv_LXV4d8zb9193SPf3QylJx6lb3bx",
+      "https://lh3.googleusercontent.com/d/16DHvdtxJx2L51nOX0x14-Ptwk2X6Bt_R",
+      "https://lh3.googleusercontent.com/d/1EyTeAigh7_Btz9II9dDg8qAMI9Wfv5mV"
+    ]
+  },
+  {
+    id: "35",
+    category: "平面與印刷設計",
+    title: "陸軍第六軍團21砲指部 新營區外牆巨幅海報設計與印刷",
+    titleEn: "ROCA 6th Army Corps 21st Artillery Command New Barracks Large Format Outdoor Wall Poster Design & Printing",
+    philosophy: "專為「陸軍第六軍團21砲指部」新營區外牆特別規劃、設計與高規格直噴印刷之「巨幅戶外宣傳海報系列」。本案結合二十一砲指部（金鷹部隊）威武、迅捷、科學之建軍精神與營地強而有力的堡壘形象，將長效防曬、耐候防水之巨型印刷工藝，與氣勢磅礴的鋼鐵勁旅英姿完美呈現：\n\n1. 軍事力學與現代科技感視覺美學：設計結合代表「砲兵精準、科技」之光學瞄準刻度線、閃電光軌（Tideline Of Power）與21砲指部專屬「金鷹」隊徽。色調採用穩重幹練的軍綠、科技石墨灰與高彩度警示黃色交織，凸顯軍隊保家衛國之高昂士氣與現代化戰力。\n\n2. 高耐候防UV戶外專用巨幅PVC與長效直噴工藝：材料選用防颱風拉力、高密度耐撕裂之高克重網格/純白防光PVC。使用工業級抗紫外線、防褪色戶外專用環保墨水進行高彩直噴印刷，並進行表面防刮啞光UV覆膜 protective coating，即使在烈日暴曬與強風豪雨侵蝕下，依舊能維持銳利飽滿色澤與卓越對比度。\n\n3. 工業拉力不鏽鋼扣眼與外牆無縫抗風抗拉安裝：全幅周邊採用高週波熱熔壓邊技術（Hemming Process），內嵌不鏽鋼拉力金屬扣眼（Grommets）。搭配高強度軍用抗老化尼龍拉繩與不鏽鋼膨脹螺絲拉力索緊結構，使巨幅海報與營區外牆、側邊斜牆表面完美貼合，平整如鏡、抗風性能極佳，成功型塑出莊嚴宏偉的新一代現代化營區視覺新地標。",
+    tools: ["國軍單位CIS與形象策劃", "戶外耐候防UV巨幅直噴印刷", "高拉力高週波熱熔包邊", "不鏽鋼扣眼與無縫拉卡安裝系統", "現代軍事美學符碼轉譯"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1rpX2PTZegOUStkM9ff1zl_XlbG-2bqD0",
+    placeholderId: "IMAGE_35",
+    colorTheme: "from-stone-900 to-emerald-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1rpX2PTZegOUStkM9ff1zl_XlbG-2bqD0",
+      "https://lh3.googleusercontent.com/d/15uk98BPWlqmeiDkxJHlUXr7Rgf89o3Ix",
+      "https://lh3.googleusercontent.com/d/1iFd5yY19jNg1qRRPhH0vqHdurmi9yyBu"
+    ]
+  },
+  {
+    id: "36",
+    category: "商品與周邊設計",
+    title: "中華民國國軍 保衛的信念 戰術情境文創桌遊禮盒",
+    titleEn: "ROCA 'Belief of Protection' Tactical Scenario Commemorative Board Game Gift Set",
+    philosophy: "專為「中華民國國軍」精品文創特別策劃、美學研製之《保衛的信念》戰術情境模擬桌遊禮盒。本款桌遊完美融合現代軍事科學、戰術博弈美學與保家衛國的堅毅信念，將國防教育、沙盤推演與團隊協作精神巧妙轉譯，專為國防愛好者、幹部訓練與文創收藏量身打造：\n\n1. 軍事沙盤與戰術卡牌的現代幾何美學：設計核心結合「國防地圖沙盤」與「軍事符號代碼」。卡牌與地圖主體採用高飽和度軍綠、迷彩灰、深海藍與戰術螢光橘，呈現極具現代感的科幻與理性刻度。精緻的向量插圖生動勾勒出各軍種與主力裝裝備的英姿，展現雄渾大氣的鋼鐵美學。\n\n2. 高規格環保厚卡與防指紋光油啞光工藝：所有卡牌與沙盤版圖均選用進口雙面高密度荷蘭白卡紙壓製，手感紮實、耐折度佳。表面覆蓋食品級防指紋油性霧膜，兼具防水防污功能。棋子與配件則採用高剛性鋅合金微縮鑄造、以及高透光壓克力雷切雕刻，使每次移動與落子皆具備極高的實體質感。\n\n3. 抽屜式雙層防潮精裝盒與精細燙銀配件封裝：包裝外盒採用頂級磁吸抽屜雙層盒型結構，側邊印飾代表保衛信念之經緯雷達刻度與榮譽戰術編號。盒內配備訂製高密度極細聚氨酯（EVA）海綿分格內襯，穩固收納各類微縮合金模型、精裝說明書與戰力卡牌，散發出卓越的極致軍工產物質感。",
+    tools: ["軍事IP文創與IP包裝企劃", "高密度荷蘭卡紙精密油墨印刷", "合金微縮模型壓鑄工藝", "防刮壓克力精細雷射切割", "現代軍工美學符碼轉譯"],
+    imageUrl: "https://lh3.googleusercontent.com/d/1NqVoCgWCG97oQirofppfwymb2f1-u_T0",
+    placeholderId: "IMAGE_36",
+    colorTheme: "from-emerald-950 to-stone-950",
+    images: [
+      "https://lh3.googleusercontent.com/d/1NqVoCgWCG97oQirofppfwymb2f1-u_T0",
+      "https://lh3.googleusercontent.com/d/1EQA1rlkwI3sD76D7UgRD9K2mI9Wnx_Np",
+      "https://lh3.googleusercontent.com/d/1nEuUCo44LXThFeSTp7EOfblv2p3BYRl4",
+      "https://lh3.googleusercontent.com/d/1JNZKhGpcrTOrgJGp_D8lkecWqEAWinRU",
+      "https://lh3.googleusercontent.com/d/1hntTFt9S03lf7CjZj3nbDs3i237XbGNp",
+      "https://lh3.googleusercontent.com/d/1R1OtsHOXcLmDVqS_13KhH-_lJFoJu9Fi",
+      "https://lh3.googleusercontent.com/d/1jLvmk_MoLR4IJv1fi8HU7FKIHScs73al",
+      "https://lh3.googleusercontent.com/d/1K8tzFKOW39zCsBzTtf7UW0iiZsJcV4AR",
+      "https://lh3.googleusercontent.com/d/1ak4DdVE9t1zRJBtNm1vmjk5c_DUEBqJ2",
+      "https://lh3.googleusercontent.com/d/1wcyAmfdipsUsJmNOgxibSaQgqcauJIVm"
     ]
   }
 ];
