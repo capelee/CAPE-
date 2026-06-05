@@ -3,7 +3,7 @@ import { PortfolioItem } from "./types";
 export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "7",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "茂生百味：究極之月尊榮燕窩月餅禮盒包裝設計",
     "titleEn": "Mornsun Premium: Ultimate Moon Premium Bird's Nest Mooncake Gift Box Packaging Design",
     "philosophy": "本設計為「茂生百味：究極之月」尊榮禮盒，視覺以高雅深邃的皇家藍為基調，結合細緻金色線條勾勒的雙兔奔月與祥雲花卉圖騰。包裝選用頂級絲絨感藝術紙，輔以精準的燙金與打凸工藝，搭配定制金屬鎖扣，呈現極致奢華。內部配置涵蓋輕美燕窩與手工月餅，輔以黃銅托盤、大理石茶墊與黃金比例餐具，完美融合現代美學與東方宮廷尊貴感，打造兼具視覺與味覺的佳節儀式感。",
@@ -35,7 +35,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "8",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "紅龍食品「紅龍燒烤：翅小腿與二節翅」電商視覺海報設計",
     "titleEn": "Red Dragon Food 'BBQ Chicken Wings' E-Commerce Visual Poster Design",
     "philosophy": "本設計以「紅龍食品」經典燒烤雞翅為主角，採用高飽和度的紅、藍、白經典配色，藉此激發消費者的食慾並強化品牌識別度。畫面中央展示鮮嫩多汁、裹滿特調醬汁的烤雞翅實體，與右下角的實體包裝相呼應。上方紅色色塊搭配俐落的無襯線黑體，確保在行動端電商介面中具有極佳的快速閱讀性。背景巧妙融入自然綠意，為高彩度的食品主體增添層次與新鮮感。整體視覺著重於美味感與商品規格的直觀呈現，專為高轉換率的數位零售通路量身打造。",
@@ -234,7 +234,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商品與周邊設計",
     "title": "捷克參議院議長訪問臺灣立法院 官方典藏紀念徽章組",
     "titleEn": "Czech Senate President's Historic Visit to Taiwan Legislative Yuan Commemorative Badge Set",
-    "philosophy": "為捷克參議院議長率團訪問臺灣立法院而特別企劃與設計的級別迎賓紀念別針徽章及展示。徽章組完美融合兩國的國家圖騰、民主聯盟情誼及頂級金屬工藝：\n\n1. 兩國國旗與民主同盟語彙：設計將捷克共和國與中華民國（臺灣）的情誼具象化，融匯雙方國花、經典配色（藍、白、紅）及民主自由盟約設計，展現攜手共創價值的崇高願景。\n\n2. 高精密鋅合金壓鑄與亮拋光：採用鋅合金高壓鑄造（Die-Casting），基底表面進行極致高光金色與鎳色（鍍銀）電鍍。文字輪廓與金屬分色線精準清晰，散發莊嚴典雅的尊榮質感。\n\n3. 彩色仿琺瑯手工填漆（Color Fill）：融合大會主視覺高彩度色塊，以手工逐一填入琺瑯漆料。色彩鮮明平整、分界精準，經高溫固化後抗刮耐磨、歷久不褪色，完美重現高貴藝術。 \n\n4. 微縮大會堂浮雕：下方生動立體微雕出立法院議事廳的巴洛克紅磚圓頂大樓，光影交錯、線條緊緻，呈現厚重的憲政歷史厚度與民主合作象徵。",
+    "philosophy": "為捷克參議院議長率團訪問臺灣立法院而特別企劃與設計的級別迎賓紀念別針徽章及展示。徽章組完美融合兩國的國家圖騰、民主聯盟情誼及頂級金屬工藝：\n\n1. 兩國國旗與民主同盟語彙：設計將捷克共和國與中華民國（臺灣）的情誼具象化，融匯雙方國花、經典配色（藍、白、紅）及民主自由盟約設計，展現攜手共創價值的崇高願景。\n\n2. 高精密鋅合金壓鑄與亮拋光：採用鋅合金高壓鑄造（Die-Casting），基底表面進行極致高光金色與鎳色（鍍銀）電鍍。文字輪廓與金屬分色線精準清晰，散發莊嚴典雅的尊榮質感。\n\n3. 彩色仿琺瑯手工填漆（Color Fill）：融合大會主視覺高彩度色塊，以手工逐一填入琺瑯漆料。色彩鮮明平整、分界精準，經高溫固化後抗刮耐磨、歷久不褪色，完美重現高貴藝術。\n\n4. 微縮大會堂浮雕：下方生動立體微雕出立法院議事廳的巴洛克紅磚圓頂大樓，光影交錯、線條緊緻，呈現厚重的憲政歷史厚度與民主合作象徵。",
     "tools": [
       "國旗與民主別針規劃",
       "鋅合金壓鑄電鍍",
@@ -431,41 +431,39 @@ export const initialPortfolioData: PortfolioItem[] = [
     ],
     "imageUrl": "https://lh3.googleusercontent.com/d/1qkeYDElnY0UG-WwpKtAH3jpMACO1CiLK",
     "placeholderId": "IMAGE_24",
-    "colorTheme": "from-amber-700 to-stone-900",
+    "colorTheme": "from-amber-600 to-amber-950",
     "images": [
       "https://lh3.googleusercontent.com/d/1qkeYDElnY0UG-WwpKtAH3jpMACO1CiLK",
-      "https://lh3.googleusercontent.com/d/1bt6GtmA1xSlXM_too_rnkzL1mLvVwyjK",
-      "https://lh3.googleusercontent.com/d/1L-EgequPshLXmeoKp3xNrCPXzhDFed_J"
+      "https://lh3.googleusercontent.com/d/16DHvdtxJx2L51nOX0x14-Ptwk2X6Bt_R",
+      "https://lh3.googleusercontent.com/d/1EyTeAigh7_Btz9II9dDg8qAMI9Wfv5mV"
     ]
   },
   {
     "id": "25",
     "category": "商品與周邊設計",
     "title": "國立新竹科學園區實驗高級中等學校 官方雙層圓邊高透光壓克力吊飾",
-    "titleEn": "National Experimental High School at Hsinchu Science Park Official Premium Acrylic Charm Keychain",
-    "philosophy": "專為「國立新竹科學園區實驗高級中等學校」（NEHS，竹科實中）特別企劃與美學定製的「官方雙層圓邊高透光壓克力吊飾」。本周邊商品凝聚了竹科實中兼具科學理性引領與人文藝術素養的卓越教學願景，並將獨特的多元學系、校徽意象巧妙轉譯：\n\n1. 竹科實中尊榮校徽與科系交融：正面精準立體呈現實驗中學引以為傲的經典校徽。以高解析度數位噴繪、飽滿色調及精確光學網點定位技術，使校名徽記與金屬掛環完美相襯，完美向外展示實中學子的非凡榮譽。\n\n2. 頂級高透光雙層夾層工藝：本體嚴選抗黃化、極佳耐衝擊之進口光學級 PMMA 壓克力，厚度達4mm。採用先進的「雙面夾層高溫熱合技術」，將精美彩色噴繪完全封裝於兩層高透壓克力板正中央，徹底杜絕表面圖層因摩擦、掛刮或汗水侵蝕而造成脫落或磨損，使校徽圖樣長久晶瑩如新。\n\n3. 3D鑽石級雷射精密拋光與安全導角：吊飾周邊經過領先的毫米級 CO₂ 雷射精密切割與 3D 圓導角拋光（Beveling），外圍無尖銳稜角，手感極致細膩圓實。頂部高強度不銹鋼D字扣環貼合度高且開合流暢，可便捷、安全固定於各式書包、鑰匙環或多功能背包上，為校園師生增添無與倫比的時尚美學質感。",
+    "titleEn": "National Hsinchu Science Park Experimental High School Official Premium Double-Layer Clear Acrylic Keyring Charm Design",
+    "philosophy": "「國立新竹科學園區實驗高級中等學校」官方雙層圓邊高透光壓克力吊飾，巧妙地將校園精神融入日常隨身物品。此設計以精緻插畫風格呈現學校代表性建築群，包含莊嚴的中央紀念碑、典雅的教學大樓以及周圍綠意盎然的樹木。畫面中，數隻飛翔的鳥兒為校園景緻增添了生動與自由的氛圍，象徵學生們展翅高飛的無限潛能。本吊飾採用雙層高透明度壓克力板製作，透過精準雷射切割技術，呈現出流暢圓潤的邊緣，觸感溫和。圖案運用環保UV印刷技術，色彩鮮明且耐用，並疊加一層防刮保護，確保圖案清晰持久。整體設計風格簡潔清新，線條流暢，將校園的自然美與建築特色完美融合，展現學校創新與活力的一面。搭配堅固耐用的鋅合金金屬鑰匙圈，經典電鍍處理，不僅提供穩固的固定功能，更提升了吊飾的整體質感。此款吊飾不僅是實用的隨身配件，更是承載著校園記憶與榮耀的珍貴紀念品，適合師生校友珍藏，每日佩戴，時時感受校園的溫馨與啟發。",
     "tools": [
-      "校園CIS與品牌企劃",
-      "光學級PMMA高透熱壓",
-      "高彩無痕耐磨夾層噴繪",
-      "雷射全導角拋光工藝",
-      "高強度不銹鋼抗磨掛扣"
+      "Adobe Illustrator",
+      "UV印刷技術",
+      "雷射切割",
+      "產品設計",
+      "商品視覺化"
     ],
     "imageUrl": "https://lh3.googleusercontent.com/d/1bE5O6UX3KuVNyZhXgFlSpKqiUtaltgPv",
     "placeholderId": "IMAGE_25",
-    "colorTheme": "from-cyan-950 to-neutral-950",
+    "colorTheme": "from-amber-700 via-green-600 to-blue-200",
     "images": [
-      "https://lh3.googleusercontent.com/d/1bE5O6UX3KuVNyZhXgFlSpKqiUtaltgPv",
-      "https://lh3.googleusercontent.com/d/1ui8JKOv5A8kXWYDO2oM3YZv1lkkpTIWo",
-      "https://lh3.googleusercontent.com/d/1y5AMAb3AD1u_9XTPr31PWr-VXv_r4XmB"
+      "https://lh3.googleusercontent.com/d/1bE5O6UX3KuVNyZhXgFlSpKqiUtaltgPv"
     ]
   },
   {
     "id": "26",
     "category": "商品與周邊設計",
     "title": "工信工程淡江大橋 官方開工大吉紀念金鏟子禮盒組",
-    "titleEn": "Kung Sing Engineering Danjiang Bridge Official Groundbreaking Commemorative Golden Shovel Gift Set",
-    "philosophy": "專為國家級重大交通建設——由「工信工程」承建、國際知名建築大師扎哈·哈蒂（Zaha Hadid）事務所設計的「淡江大橋」工程所精心企劃與設計開發的「官方開工大吉紀念金鏟子禮盒組」。本設計將宏偉的現代橋梁工程美學、頂級金工禮品工藝、以及台灣傳統「金鏟子」（諧音「緊產子」，象徵動土大吉、招財興旺與世代傳承）的深厚民間祝福完美融為一體：\n\n1. 扎哈·哈蒂流線橋塔與金工的極致交融：設計巧妙提取淡江大橋極具代表性的「單塔不對稱斜張橋」流線型橋塔與鋼纜線條，並融入「工信工程」專屬穩健品牌識別。流暢、充滿動能的天際弧線與優美的金鏟結構相映生輝，既具備前瞻科技感，又保有厚重的人文溫度。\n\n2. 頂級高純度電鍍與精密拋光防蝕工藝：主體金鏟採用高強度精鋼鍛造，歷經十餘道精密工藝手工打磨拋光，表面塗覆高規格純金電鍍層（Gold Plating）。色澤純粹飽和、耀眼尊貴，並加上奈米級抗指紋真空封釉處理，確保鏟身防潮、抗氧化且不褪色。\n\n3. 尊榮禮盒包裝與精雕紅花梨實木底托：全套禮組搭配由進口紅花梨實木精雕而成的專屬展示底座，實木底托鑲嵌高純度拉絲黃銅雷雕銘牌，精準鐫刻淡江大橋主橋開工紀念語與重要工程數據。外包裝採高剛性深藍特種紙燙金禮盒與專屬提袋，為政要、貴賓與收藏家獻上極致高貴尊榮的開箱儀式感。",
+    "titleEn": "Industrial Engineering Tamkang Bridge Official Groundbreaking Commemorative Golden Shovel Gift Set",
+    "philosophy": "本案為專為「工信工程」隆重規劃之淡江大橋主橋段工程動土開工奠基、典藏文創「開工大吉紀念金鏟子禮盒組」。整體視覺與產品規劃如下：\n\n1. 扎哈·哈蒂建築美學跨界轉譯：紀念金鏟子手柄造型巧妙重塑淡江大橋主旋翼流線曲率與宏偉的單塔斜張橋塔地標幾何。鏟面精雕細琢大會核心標章與祥雲圖騰，刻畫出浩繁工程開疆闢土的壯麗美感。\n\n2. 高規格多重真空電鍍塗層：金屬部分選用高剛性質感黃銅精鑄，經拋光打磨後進行三層真空電鍍24K亮金；色澤明度飽和、耀眼尊貴，並加上奈米級抗指紋真空封釉處理，確保鏟身防潮、抗氧化且不褪色。\n\n3. 尊榮禮盒包裝與精雕紅花梨實木底托：全套禮組搭配由進口紅花梨實木精雕而成的專屬展示底座，實木底托鑲嵌高純度拉絲黃銅雷雕銘牌，精準鐫刻淡江大橋主橋開工紀念語與重要工程數據。外包裝採高剛性深藍特種紙燙金禮盒與專屬提袋，為政要、貴賓與收藏家獻上極致高貴尊榮的開箱儀式感。",
     "tools": [
       "公共工程文創企劃",
       "高規格鍍金防蝕工藝",
@@ -551,7 +549,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "30",
-    "category": "書籍與裝幀設計",
+    "category": "商務印刷品設計",
     "title": "新竹科學菁英學校 畢業紀念冊 典藏裝幀外裝本",
     "titleEn": "Hsinchu Science Elite School Graduation Yearbook Commemorative Album Cover & Case",
     "philosophy": "專為「新竹科學菁英學校」精心企劃與設計開發的「畢業紀念冊 典藏裝幀外裝本與收納盒套組」。本設計以「科學探索」、「菁英啟航」與「時間膠囊」為核心概念，完美融合尖端科技的理性感、學子求學的溫暖回憶，與頂級裝幀工藝，為畢業學子留下永恆的尊榮紀念：\n\n1. 科技光軌與學術徽章的幾何美學：設計封面巧妙結合代表理性與邏輯的網格光軌（Optic Grids）與星系運行的公轉軌道，象徵科學探索無止境。中心位置鑲嵌精密金屬電鑄銘牌，閃耀著學校專屬的菁英徽章徽標。流暢而精準的外裝圖騰，呈現前瞻未來感，又具有極致莊重的學術儀式感。\n\n2. 頂級布紋特種紙與防指紋雷射燙銀工藝：外封本體精選高強度、耐磨雙色交織精細布紋特種紙（Finest Bookcloth Textured Paper），手感溫潤且富層次感。封面主標題與科技流線圖騰採用最先進工藝的「幻彩雷射防刮燙銀（Holofoil Silver Stamping）」，隨著視角與光線徐徐變换，投射出如同光纖折射般的斑斕色彩，代表莘莘學子前程似錦的無限可能。\n\n3. 一體成型磁吸防潮硬書盒與典藏內襯：全套外本搭配極高剛性的防潮高密度紙板一體成形精裝盒殼。盒側置入強效隱形磁吸扣卡，開合清脆俐落，有效避免書籍受潮、泛黃並抵抗歲月磨損。內收納格則採用高級香檳金絲絨特種紙模切卡緊，穩固承載著裝進滿滿情誼的厚重紀念冊與師長祝福卡片。",
@@ -576,7 +574,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商品與周邊設計",
     "title": "豐森大境建案 官方開工大吉紀念金鏟子禮盒組",
     "titleEn": "Feng Sen Da Jing Real Estate Project Official Groundbreaking Commemorative Golden Shovel Gift Set",
-    "philosophy": "專為「豐森大境」精品住宅建案所特別企劃、高奢定製開發的「官方開工大吉紀念金鏟子禮盒組」。本產品完美融合精工建築美學、台灣傳統動土吉祥寓意（諧音「緊產子」，象徵興旺、招財與世代興盛），與頂級金工奢華禮品製作工藝：\n\n1. 現代建築幾何與流線金工的完美交織：設計巧妙提取「豐森大境」建案極具現代感的流線建築線條與森林盎然生機，與高貴典雅的金鏟結構渾然一體。鏟身比例端莊，刻線流暢，金鏟頂部點綴品牌核心識別徽標，既保留了傳統風水民俗的底蘊，又注入當代極簡奢華風采。\n\n2. 頂級高純度電鍍金與防指紋真空封釉工藝：主體金鏟精選高規格鋼金屬鍛造，表面歷經十餘道精密鏡面打磨拋光，並覆蓋航太級高純度純金電鍍層（Pure Gold Plating）。鏟面色澤純粹而飽滿，搭配奈米阻氧化真空封釉處理，能有效抗指紋、防潮防褪色，使尊貴金光歷久彌新。\n\n3. 奢華紅花梨木展示底座與專屬皮質手提箱：禮組標配由整塊進口紅花梨實木精銑而成的展示托架，正面嵌有拉絲黃銅雷雕紀念銘牌，鐫刻「豐森大境 開工大吉」與專屬奠基紀念文字。外包裝採用高剛性皮質壓紋禮盒與金屬鎖扣，給予藏家極致尊榮、極具儀式感的尊貴收藏與餽贈體驗。",
+    "philosophy": "專為「豐森大境」精品住宅建案所特別企劃、高奢定製開發的「官方開工大吉紀念金鏟子禮盒組」。本產品完美融合精工建築美學、台灣傳統動土吉祥寓意（諧音「緊產子」，象徵興旺、招財與世代興盛），與頂級金工奢華禮品製作工藝：\n\n1. 現代建築幾何與流線金工的完美交織：設計巧妙提取「豐森大境」建案極具現代感的流線建築線條與森林盎然生機，與高貴典雅的金鏟結構渾然一體。鏟身比例端莊，刻線流暢，金鏟頂部點綴品牌核心識別徽標，既保留了傳統風水民俗的底蘊，又注入當代極簡奢華風采。\n\n2. 頂級高純度電鍍金與防指紋真空封釉工藝：主體金鏟精選高規格鋼金屬鍛造，表面歷經十餘道精密鏡面打磨拋光，並覆蓋航太級高純度純金電鍍層（Pure Gold Plating）。鏟面色澤純粹而飽滿，搭配奈米阻氧化真空封釉處理，能有效抗指紋、防潮防褪色，使尊貴金光歷久彌新。\n\n3. 奢華紅花梨木展示底座與專屬皮質手提箱：禮組標配由整塊進口紅花梨實木精銑而成的展示托架，正面嵌有拉絲黃銅雷雕紀念銘牌，鐫刻「豐森大境 開工大吉」與專屬奠紀念文字。外包裝採用高剛性皮質壓紋禮盒與金屬鎖扣，給予藏家極致尊榮、極具儀式感的尊貴收藏與齽贈體驗。",
     "tools": [
       "高端地產文創企劃",
       "高規格鏡面拋光鍍金",
@@ -659,6 +657,102 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1Kalv_LXV4d8zb9193SPf3QylJx6lb3bx",
       "https://lh3.googleusercontent.com/d/16DHvdtxJx2L51nOX0x14-Ptwk2X6Bt_R",
       "https://lh3.googleusercontent.com/d/1EyTeAigh7_Btz9II9dDg8qAMI9Wfv5mV"
+    ]
+  },
+  {
+    "id": "56",
+    "category": "電商視覺設計",
+    "title": "Segway-Ninebot 台灣總代理羅宋堂 × 法雅客「城市24小時攝影馬拉松」跨界聯名打卡活動視覺設計",
+    "titleEn": "Segway-Ninebot × Fnac 'City 24H Photo Marathon' Co-Branded Social Campaign Layout",
+    "philosophy": "本案為「Segway-Ninebot 台灣總代理 羅宋堂」與文化生活百貨指標「法雅客 (Fnac)」跨界聯名合作之《城市24小時攝影馬拉松》打卡活動精心設計的整合推廣海報與打卡視覺：\n\n1. 雙品牌色彩核心與極限運動美學：視覺完美揉合了 Segway-Ninebot 的冒險探境精神與法雅客的精緻生活美學。畫面以高飽和、高動態的電動滑板車騎行實拍與賽車探險安全帽為視覺重心，搭配黑色沙粒霧面質感背景，巧妙融入法雅客標誌性的亮橘色（Fnac Orange）與高飽和螢光綠（Cyber Lime Green），營造震撼、前衛、極具張力的街頭探索氛圍。\n\n2. 左右雙欄網格與流暢資訊引導：採用俐落的「左右非對稱分割」排版。上部以大氣的形式並置雙品牌聯名 Logo 標章；下半部分則將北部場（信義新光 A9 春水堂廣場）與南部場（高雄草衙 SKM Park）的地點、日期時間資訊置於高明度的彩帶底色中，在簡短的一秒內瞬間鎖定熱愛生活與攝影的潮流玩家，創造絕佳的活動宣傳深度與引流成效。\n\n3. 印前色彩高保真與多端尺寸響應：針對線下大型戶外帆布海報印刷、拍立得造型實體打卡板、以及社群數位看板（16:9 與 1:1 格式），進行高精度的色彩管理與防溢邊界設定。確保無論在紙張印刷或數位高能螢幕的背光呈現上，皆能展現最極致深邃的黑灰調，與超強色比的螢光綠、暖橘色漫折射。",
+    "tools": [
+      "跨界聯名品牌企劃",
+      "戶外大型海報排版設計",
+      "亮色特殊色印刷設定",
+      "生活美學社群導流文案",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1bd-hO9y-sfdMWekbspwc5o_zF-dTBY9m",
+    "placeholderId": "IMAGE_54",
+    "colorTheme": "from-zinc-950 via-neutral-900 to-amber-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1bd-hO9y-sfdMWekbspwc5o_zF-dTBY9m",
+      "https://lh3.googleusercontent.com/d/1hQ7FhCk7UZrHw0tl2ECYEl5nohoL7IkC",
+      "https://lh3.googleusercontent.com/d/1dfBPZ9cSygpx8zSVi_Uvzkpjkswi-pL4",
+      "https://lh3.googleusercontent.com/d/1nEaVA2I4auvWBztCmGaX7FcVTPGu9yoj",
+      "https://lh3.googleusercontent.com/d/1JQX0o2t4o3rD5V5pJJbndZ15WxfiijsX",
+      "https://lh3.googleusercontent.com/d/1U2it_6QxDlaa6Go4LpqwR7RaeqfcqoUy"
+    ]
+  },
+  {
+    "id": "57",
+    "category": "電商視覺設計",
+    "title": "Airwheel 台灣總代理羅宋堂：SE3S 智慧騎行登機箱「招商加盟與代步革命」全渠道廣告圖文視覺設計",
+    "titleEn": "Airwheel SE3S Smart Ridable Suitcase B2B Franchise Recruitment & Co-Branding Digital Ad Layout",
+    "philosophy": "本系列為專為智慧移動先驅品牌「Airwheel」熱銷型號 SE3S 智慧電動騎行登機箱，量身打造之台灣區招商加盟、全渠道代理招募與消費者推廣的整合廣告圖文企劃與視覺設計：\n\n1. 航空奢華情境與高感度生活風格融合：畫面左側精選專業空服員攜帶粉嫩馬卡龍色系 SE3S 騎行箱優雅漫步之生活感實拍，將智慧科技與高端差旅、空降隨行、無痕代步等高尚意象及商旅氛圍完美扣合，深化消費者與經銷商對於產品精緻工藝與頂級便利性的感官信賴。\n\n2. 高磁性招商版面與嚴謹網格排版：右側資訊配置採用經典的高對比黑紅色調品牌視覺，將 100Wh 可合法登機、BSMI（標檢局認證）、售後 7 大直營門市聯保、街區獨家防止惡性競爭之代理加盟條款以高可讀性層次的幾何方框和亮黃、翠綠重點標註，結構條理明暢，展現 B2B 商業合作的強大磁吸力與高信任感。\n\n3. 多端多介質傳播色保度優化：針對 LINE 社群導流（QR Code 接洽）、電商詳情頁、招商海報以及實體零售看板配置高保真色彩曲線設定。確保高飽和度的正紅主色調、高反差白字與粉嫩箱體無論在印刷抑或手持背光屏端皆能完美還原最佳清晰度與高級視覺張力。",
+    "tools": [
+      "商業招商宣傳企劃",
+      "高轉換社群排版設計",
+      "品牌色彩與規範整合",
+      "電商全渠道廣告文案",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1aU-uR4Z38KEEfR5OiTzJmCZuRgqK4lbH",
+    "placeholderId": "IMAGE_55",
+    "colorTheme": "from-red-950 via-zinc-900 to-neutral-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1aU-uR4Z38KEEfR5OiTzJmCZuRgqK4lbH",
+      "https://lh3.googleusercontent.com/d/1Akv7dvu02IukHb4hyIDmn1S1g-qc1O7s",
+      "https://lh3.googleusercontent.com/d/1VL4ZdeY_nC2Qvs2wYYih4ioUwEU9xl5I",
+      "https://lh3.googleusercontent.com/d/1jQ_RCuY35_8JFfeZol2ZcRTVJBHsw4WK",
+      "https://lh3.googleusercontent.com/d/1J6poGvrzgWOmS9oLMfFJM3CWJep9pyqB",
+      "https://lh3.googleusercontent.com/d/1De33cl-5-guaRwSl_1bS__DzG7OrMyI9"
+    ]
+  },
+  {
+    "id": "54",
+    "category": "商務印刷品設計",
+    "title": "心泰 PRO 原創泰國料理「尊榮聯名餐券」：1000元餐券商品攝影與精緻美學文案整合設計",
+    "titleEn": "Thai Heart Pro: $1000 Premium Dining Voucher Creative Product Photography & Copywriting Integration",
+    "philosophy": "本案為專屬高端餐飲品牌「心泰 PRO 原創泰國料理」量身設計的面額1000元頂級實體聯名餐券。項目聚焦於高規格的商品情境攝影，隨後透過專業暗房數位調色與色彩漸層渲染，最後進行極具磁性高轉化的行銷導流文案撰寫與全案企劃：\n\n1. 高端情境攝影與專業數位精修處理：前期以高解析度的餐券實物與實體金屬、南洋禪意石質造景進行細緻棚拍。隨後運用精細的影像修圖與數位專業暗房管理系統，精雕細琢紙張防偽底紋紋理、1000元亮金色塊的奢華漫反射光，以及店名標章和經典文字壓印。精細重塑光線並去除了多餘環境雜光，使得餐飲貴賓券透出尊貴柔滑的暖金色澤與豐盈的立體質感。\n\n2. 泰式皇家美學與現代網格系統：餐券設計將泰國經典的金色浮雕幾何宮殿框線、精飾蓮花底紋，與當代西方俐落的平衡網格及高對比度的無襯線數字造型完美交織。整體以「典雅藏青色或宮廷深紅底色搭配燙金飾線，突顯品牌精緻與尊崇。在版面邊界設定微米級孔洞斷點，確保禮券撕口平整俐落。\n\n3. 高防偽印刷工藝與安全防護：特別規劃 220g 頂級超細滑麗綺紋紙，極具厚實觸感與紙張肌理，不易吸潮變形。防偽工藝上使用專屬局部UV亮膜油墨，與無色螢光雙色防偽線，極致保障高面額有價證券之流通安全性。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "Commercial Food Photography",
+      "Hot Gold Stamping",
+      "Security Printing Layout"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1sj7J3455sg5j0QaK_suz7UiltTgcoW9C",
+    "placeholderId": "IMAGE_54",
+    "colorTheme": "from-[#1e3f20] to-[#040e0c]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1sj7J3455sg5j0QaK_suz7UiltTgcoW9C",
+      "https://lh3.googleusercontent.com/d/16RsgtnpqMFiwfFpiw8gGP8ukh_SrRbkd",
+      "https://lh3.googleusercontent.com/d/1sywlm2xKOXUnNBvWUDyG-X-Wt28rCRwY"
+    ]
+  },
+  {
+    "id": "55",
+    "category": "平面與印刷設計",
+    "title": "2025 TREND @ Intervention 介入治療聯合研討會 官方學術大會主視覺與整合宣傳設計",
+    "titleEn": "2025 TREND @ Intervention Interventional Therapy Joint Conference Academic Key Visual & Promotional Design",
+    "philosophy": "本案為「2025 TREND @ Intervention 介入治療聯合研討會」精心規劃之大會主視覺與一系列整合宣傳設計。整體視覺巧妙融合醫學科技與未來感的幾何網格，展現精準醫療與前沿學術研究的交匯：\n\n1. 醫療科技美學與概念化幾何：視覺核心大膽採用深邃的科技藍與星系紫漸層為背景，象徵介入治療科技的無限可能與醫學前瞻性。畫面上部分流暢排布多主辦機構與學會之聯名標章（Logo），下半部則整齊對齊研討會的核心學術研討範疇，運用線條與方框建立極高辨識度的階層關係。\n\n2. 網格系統與多維度資訊編排：針對大會繁複的多主辦方、協辦方、會議時間及地點等高密度資訊，進行了高度嚴謹的模組化排版。主標題採用高清晰度無襯線體，搭配發光亮白色與對比明黃色，在大型會場、戶外數位看板上皆具備強烈的遠距離瞬間聚焦力。\n\n3. 高保真印前輸出與數位全通路響應：全套視覺方案完美適應各類型實體場地需求（包含高解析大圖輸出、講堂 X 展架、會場迎賓立牌），以及學會官方網站、社群平台的電子宣傳格式（16:9 網頁橫幅與 EDM）。精算色彩管理（CMYK 與 RGB 色域精準轉換），保證會場輸出無偏色，展現高質感的學術盛會格調。",
+    "tools": [
+      "學術大會視覺企劃",
+      "醫療科技圖形與排版",
+      "高對比多資料排版",
+      "多主辦品牌識別整合",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/15cug1U37vkdRUBi9CSJfAU3wVBPTw_Y2",
+    "placeholderId": "IMAGE_55",
+    "colorTheme": "from-blue-950 via-slate-900 to-indigo-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/15cug1U37vkdRUBi9CSJfAU3wVBPTw_Y2",
+      "https://lh3.googleusercontent.com/d/1-6gVmMb9LfTFhLukC4eakjJkUSQOVkss"
     ]
   },
   {
@@ -816,10 +910,10 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "42",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "野人舒食「全系列機能舒肥餐點與熱成牛排」：棚內商業美食攝影與AI協作修圖美學",
     "titleEn": "Tupiens Food 'SavageSusu Full Sous-Vide Series': Commercial Studio Food Photography & AI-Collaborative Retouching",
-    "philosophy": "本系列皆為高階棚內專業商業美食攝影作品（須標示有AI協作修圖），專為台灣知名健康舒食品牌「野人舒食」傾心打造。作品多元展示了多款主力健康舒肥餐點、低溫熟成牛排、鮮嫩雞胸肉與精美的手感健康食譜食藝計畫。\n\n視覺採取經典的俯視（Flat Lay）上帝視角構圖為主軸，將切片柔嫩微粉紅的舒肥牛排置於粗獷的煙燻不規則木紋餐板置中，上方點綴新鮮芝麻葉與蒜片。環繞主餐放射狀盛裝多彩鮮活的健康食蔬：鮮紅的小番茄、金黃玉米筍、清甜綠花椰與亮黃櫛瓜，勾勒出輕食美學的自然交響。本系列亦延伸至黑玄武岩板上的嫩雞胸與烤肉佐以整顆大蒜、海鹽、巴薩米克醋等嚴選香料之特寫，展現豐富的產品生命力。攝影運用高解析度人造暖系側向光源，襯托食材極致水潤的立體質感。\n\n後期製作深度結合「AI協作修圖」技術，不僅細緻消除真空密封膠膜上的偏色與刺眼反光，更微調了景深與光學散景（Bokeh）效果，使熟成肉質與鮮活蔬菜在色彩溫潤度、保濕蒸汽感皆達到媲美雜貨大片級的頂級商業廣告張力，完美詮釋「輕飲食、重生活」的舒活美學。",
+    "philosophy": "本系列皆為高階棚內專業商業美食攝影作品，專為台灣知名健康舒食品牌「野人舒食」傾心打造。作品多元展示了多款主力健康舒肥餐點、低溫熟成牛排、鮮嫩雞胸肉與精美的手感健康食譜食藝計畫。\n\n視覺採取經典的俯視（Flat Lay）上帝視角構圖為主軸，將切片柔嫩微粉紅的舒肥牛排置於粗獷的煙燻不規則木紋餐板置中，上方點綴新鮮芝麻葉與蒜片。環繞主餐放射狀盛裝多彩鮮活的健康食蔬：鮮紅的小番茄、金黃玉米筍、清甜綠花椰與亮黃櫛瓜，勾勒出輕食美學的自然交響。本系列亦延伸至黑玄武岩板上的嫩雞胸與烤肉佐以整顆大蒜、海鹽、巴薩米克醋等嚴選香料之特寫，展現豐富的產品生命力。攝影運用高解析度人造暖系側向光源，襯托食材極致水潤的立體質感。\n\n後期製作深度結合「AI協作修圖」技術，不僅細緻消除真空密封膠膜上的偏色與刺眼反光，更微調了景深與光學散景（Bokeh）效果，使熟成肉質與鮮活蔬菜在色彩溫潤度、保濕蒸汽感皆達到媲美雜貨大片級的頂級商業廣告張力，完美詮釋「輕飲食、重生活」的舒活美學。",
     "tools": [
       "AI協作修圖",
       "單眼數位相機攝影",
@@ -855,7 +949,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "43",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "紅龍食品「嚴選香滷牛腱心」精緻即食料理：商業美食攝影與AI協作修圖美學",
     "titleEn": "Red Dragon Foods \"Premium Braised Beef Shank\" Ready-to-Serve Meal: Commercial Food Photography and AI-Collaborative Retouching Aesthetics",
     "philosophy": "本作品為紅龍食品「嚴選香滷牛腱心」精心打造的商業美食攝影。視覺構圖以質樸的深色溫潤木質桌面為基底，將切片完美的牛腱心優雅呈現在淡青釉陶瓷深盤中，輔以鮮綠的青江菜、薑絲、香菜與紅辣椒點綴，並在四周精心配置了八角、花椒、乾辣椒等辛香原料，營造出極具層次感的餐桌氛圍。在攝影語彙上，採用側向柔和光源，精準勾勒出牛肉飽滿的肌理線條與濃郁滷汁的晶瑩光澤。本作品特別導入「AI協作修圖」技術進行後期精修，透過AI輔助的超高解析度紋理重建與局部曝光調節，完美優化了肉質纖維的油亮感與蔬菜的鮮綠度，並細緻消除了背景微小雜訊，使畫面在保有手作溫度的真實感之餘，更提升至頂級商業廣告的精緻美學標準。",
@@ -879,7 +973,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "44",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "紅龍食品「經典椒麻雞丁」即食料理：AI協作修圖與現代商業美食攝影美學",
     "titleEn": "Red Dragon Foods Spicy Sichuan Chicken: AI-Collaborative Retouching and Commercial Food Photography",
     "philosophy": "本作品以紅龍食品經典「椒麻雞丁」為視覺焦點。採用俯瞰視角，將飽滿的雞丁、香脆腰果、深紅乾辣椒與翠綠香菜盛裝於斑駁陶碗中，與溫潤木托盤、亞麻餐巾、木質筷子及周邊辛香原料形成和諧的構圖。光影上利用暖色調側光突顯醬汁與食材的立體層次。後期製程導入「AI協作修圖」技術，精準優化肉質的油亮光澤與背景雜訊，讓即食料理呈現頂級餐飲的工藝美感。",
@@ -902,7 +996,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "45",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "紅龍食品「泰式咖哩雞」異國風情即食料理：AI協作修圖與商業美食攝影美學",
     "titleEn": "Red Dragon Foods \"Thai Curry Chicken\" Ready-to-Serve Meal: AI-Collaborative Retouching and Commercial Food Photography Aesthetics",
     "philosophy": "本攝影作品展現紅龍食品「泰式咖哩雞」的南洋風味。畫面以熱騰騰的咖哩雞飯與溫潤陶碗咖哩醬為視覺核心，巧妙配置綠豆蔻、檸檬葉、紅椒碎等天然香料，並搭配精緻的玫瑰金餐具與草綠色餐巾，營造優雅自然的異國餐桌氛圍。影像採用明亮溫暖的自然側光，展現醬汁的細緻質地。後期導入「AI協作修圖」技術，針對咖哩色澤與白飯晶瑩感進行飽和度與對比度微調，並平滑陰影線條、剔除背景雜質，完美揉合實體商業攝影與數位修圖，達到令人垂涎的極致商業視覺標準。",
@@ -926,7 +1020,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "46",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "紅龍食品「極品紅燒牛肉湯」即食料理包：商業美食攝影與AI協作修圖之美",
     "titleEn": "Red Dragon Foods 'Premium Braised Beef Soup' Ready-to-Serve Package: Commercial Food Photography and AI-Assisted Retouching",
     "philosophy": "本作呈現紅龍食品「牛肉湯」的極致質感。視覺上以手作陶碗為核心，搭配日系木質餐具與溫潤的粗麻布，點綴八角、乾辣椒及新鮮香菜以強化草本風味意象。攝影採用暖色調低調側光，勾勒出牛肉纖維與湯頭的波光瀲灝。後製階段深度結合「AI協作修圖」技術，細緻校正湯頭倒影、強化肉質油花層次、消除邊緣雜訊，並優化整體景深，使傳統即食料理完美蛻變為令人垂涎的頂級商業視覺。",
@@ -949,10 +1043,10 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "47",
-    "category": "商品商業攝影",
+    "category": "商業視覺攝影",
     "title": "紅龍食品「美味牛肉丸」包裝與即食料理：商業美食攝影與AI協作修圖之美",
     "titleEn": "K&K Foods Beef Meatballs: Commercial Food Photography and AI-Collaborative Retouching",
-    "philosophy": "本系列皆為高端專業商業攝影作品（須標示有AI協作修圖）。視覺設計以溫潤木紋、雅致青瓷盤與金色餐具為基底，完美襯托紅龍食品的品牌包裝與鮮美肉丸。本創作將單眼相機的高清實拍與AI協作修圖深度結合，在後製中細緻消除包裝塑料反光、優化光影漸層，並大幅強化肉質的濕潤光澤與蒸汽感。搭配百里香、橙皮絲及香料細節，打造兼具商業賣點與精緻生活美學的頂級視覺層次。",
+    "philosophy": "本系列皆為高端專業商業攝影作品。視覺設計以溫潤木紋、雅致青瓷盤與金色餐具為基底，完美襯托紅龍食品的品牌包裝與鮮美肉丸。本創作將單眼相機的高清實拍與AI協作修圖深度結合，在後製中細緻消除包裝塑料反光、優化光影漸層，並大幅強化肉質的濕潤光澤與蒸汽感。搭配百里香、橙皮絲及香料細節，打造兼具商業賣點與精緻生活美學的頂級視覺層次。",
     "tools": [
       "AI協作修圖",
       "單眼數位相機攝影",
@@ -968,5 +1062,469 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1GG99EZR_HhKoD1UqFnmAk9aNzmL9jbzy",
       "https://lh3.googleusercontent.com/d/1qUSr9IHsetWSNDMgqM7g9qDKKekeFhbs"
     ]
+  },
+  {
+    "id": "48",
+    "category": "商品與周邊設計",
+    "title": "竹北消防隊「春節創意紅包袋」：角色IP插畫與防火防災宣導之美",
+    "titleEn": "Zhubei Fire Department 'Creative New Year Red Envelopes': Mascot IP Illustration & Fire Safety Campaign Design",
+    "philosophy": "本系列皆為高階創意插畫與商品周邊設計作品，專為「新竹縣政府消防局竹北分隊」傾心打造。企劃旨在將傳統春節紅包袋轉化為兼具防災宣導與日常祝福的溫度媒介。\n\n視覺設計以生動活潑、極具親和力的消防英雄吉祥物與Q版搜救犬為主角，將原本生硬的滅火器、消防栓、水帶等救災裝備置換點綴於喜慶祥雲、燈籠與新春爆竹背景旁，打破消防宣導嚴肅的既定印象。色彩美學選用富有奢華質感的深緋紅底色，搭配金屬高光的燙金勾邊以及「竹北消防」書法落款，不僅傳遞濃厚的佳節喜氣，更在年歲交替、家家戶戶圍爐之際，將防火、防災的安全觀念與溫暖祝福和諧傳遞。\n\n後期製作深度結合「AI協作修圖」數位影像增強技術，完美優化了紅包袋金箔反光的光影漸層、消除了紙質高飽和底色在高對比底板下的多維折射，並微調背景中招財金元寶與松枝裝飾的景深，使各個角度的宣導設計皆能展現高端精品印製風貌，成功演繹了傳統民俗與公共推廣教育完美結合的創意工藝。",
+    "tools": [
+      "IP角色插畫設計",
+      "創意包裝結構設計",
+      "AI協作修圖",
+      "Adobe Illustrator",
+      "Adobe Photoshop",
+      "春節視覺傳達設計"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1BTzZdEMXwOx98JS-xwm1MwwutUeV0V4s",
+    "placeholderId": "IMAGE_48",
+    "colorTheme": "from-red-800 via-rose-950 to-neutral-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1BTzZdEMXwOx98JS-xwm1MwwutUeV0V4s",
+      "https://lh3.googleusercontent.com/d/1yhVEZEHpwS272jrhgODPvQbSmbJxjiXi",
+      "https://lh3.googleusercontent.com/d/1z8Q9cejJjIN-nSX31AuE9VfVXWCnTCWb"
+    ]
+  },
+  {
+    "id": "49",
+    "category": "電商視覺設計",
+    "title": "野人舒食「品牌電商上架與社群營銷」：電商介紹圖與AI協作修圖設計",
+    "titleEn": "Tupiens Food 'SavageSusu E-commerce Presentation & Digital Marketing' Campaign",
+    "philosophy": "本系列為專門為台灣知名健康舒食品牌「野人舒食」量身打造的電商官網商品上架與社群推廣介紹圖。整體視覺設計追求「極簡、極淨、新鮮」之核心生活倡議。\n\n排版上以明亮清新、帶有朝氣晨光的「空氣感」風格為定位，精心編排多款舒肥嫩雞胸、熟成牛排與輕食料理的高清食材實拍。畫面點綴鮮採香草、海鹽、鮮切檸檬片等天然調味原料，並將優雅的中英雙語商標、細緻插線與極簡文字落款精準布局於幾何色塊上，突顯「零負擔健康享食」的新美學。\n\n後期後製處理同樣深度整合「AI協作修圖」技術，精細消除了熟食真空塑料包裝在高亮度逆光下所產生的偏色與突兀眩光，並柔化背景中廚房器皿的折射，最大程度地烘托出舒肥肉質切片的濕潤感、飽滿多汁度與蔬菜的翠綠生機，完美平衡了商業行銷賣點與高端生活的視覺美感。",
+    "tools": [
+      "AI協作修圖",
+      "電商上架視覺設計",
+      "商業美食攝影",
+      "網頁視覺傳達設計",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1YfR-Sn3AvOuGeQ6F1XTpJONubRu0G_mh",
+    "placeholderId": "IMAGE_49",
+    "colorTheme": "from-emerald-950 via-stone-900 to-teal-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1YfR-Sn3AvOuGeQ6F1XTpJONubRu0G_mh",
+      "https://lh3.googleusercontent.com/d/1OhM8oQde2nXfqWuVtfa-3t3oyffU1g58",
+      "https://lh3.googleusercontent.com/d/1OyJk2o-61hbalL0WQ1Iz5AhXT27v21BB",
+      "https://lh3.googleusercontent.com/d/1oyFnHU4rNCIoTh-RNObEJaOUtWCVz7JD",
+      "https://lh3.googleusercontent.com/d/1xXArHN3MSQcJGAKxbGkdV2nb154pew8-",
+      "https://lh3.googleusercontent.com/d/1fedgw1ZU__7tVtMet8dSubyrmlm7XlfF",
+      "https://lh3.googleusercontent.com/d/1W7nbsL5rHXBsjSmCcD7Z3Fqk9Yg-nnka",
+      "https://lh3.googleusercontent.com/d/1f6346_auA3E4VRYZjXRhqKR_nh_fiDjT",
+      "https://lh3.googleusercontent.com/d/1trkzlhZceq6Gerk3MavA8iguCcU2fffT",
+      "https://lh3.googleusercontent.com/d/18MDJHM1KtmVMM3yfMVOtr6X_ft9N3vby"
+    ]
+  },
+  {
+    "id": "50",
+    "category": "商業視覺攝影",
+    "title": "二十五點創意製作「火柴邦 MATCHBOND」：衣物人像與百貨專櫃時尚攝影與後製美學",
+    "titleEn": "25 Point Creative 'MATCHBOND': Apparel & Department Store Fashion Photography & Post-Processing",
+    "philosophy": "本系列為二十五點創意為精品服飾與生活穿搭品牌「火柴邦 MATCHBOND」傾力創作的衣物人像與百貨商場專櫃時尚攝影系列。視覺美學完美展現日常穿著中率真、自信與優雅的人文特質，結合精細的攝影構圖與高規後期色彩管理：\n\n1. 百貨專櫃時尚與光影幾何美學：作品巧妙融合俐落的現代都市光影、簡約幾何空間，並將火柴邦 MATCHBOND 經典的衣物款式和細緻刺繡印花置於視覺核心。攝影捕捉了自然日光與專櫃氛圍光源的絕妙平衡，呈現衣物本真質感，勾勒出都會新人類的時髦與自信張力。\n\n2. 頂級後期調色與光潔度管理：後期製作聚焦於布料本色高保真還原以及人像五官的精緻雕琢。透過專業的數位暗房色彩微調，優化了布料折射、光影漸層與陰影對比度，並去除了衣物表面的細微毛縐與逆光反射的偏色雜訊，使每幅畫面皆散發出高級時尚雜誌封面般的純淨度與敘事張力。\n\n3. 電商與實體專櫃全通路視覺企劃：本案成果廣泛應用於品牌電商官網上架照片、社群高質感行銷，以及線下百貨專櫃大尺寸商業形象燈箱。成功型塑「穿出故事、秀出精神」之品牌定位，賦予生活服飾具藝術高度的高端美學質感。",
+    "tools": [
+      "商業時尚攝影",
+      "影像暗房後期調色",
+      "人像與布料精細修圖",
+      "百貨專櫃視覺企劃",
+      "Adobe Photoshop",
+      "Adobe Lightroom"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1WYEJx9r1CEzWQToW7hyXsG5uf2ya_j2k",
+    "placeholderId": "IMAGE_50",
+    "colorTheme": "from-indigo-950 via-slate-900 to-neutral-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1WYEJx9r1CEzWQToW7hyXsG5uf2ya_j2k",
+      "https://lh3.googleusercontent.com/d/1HTIO6XxEhW0zKtO5pep9HBbwdBP2pDld",
+      "https://lh3.googleusercontent.com/d/1CMYS67m9cp8c7LmecYreCtxy9yKrcDDe"
+    ]
+  },
+  {
+    "id": "51",
+    "category": "電商視覺設計",
+    "title": "二十五點創意製作「火柴邦 MATCHBOND」：週年慶商品形象與電商 Banner 橫幅視覺設計",
+    "titleEn": "25 Point Creative 'MATCHBOND': Anniversary Campaign & E-Commerce Banner Design",
+    "philosophy": "本系列為二十五點創意為精品服飾與生活穿搭品牌「火柴邦 MATCHBOND」週年活動量身打造的電商官網 Banner 與網頁橫幅廣告視覺設計。企劃以經典服飾的「高對比、強視覺、極致質感」為定位，展現品牌在休閒服飾與潮流穿搭上的獨特品味：\n\n1. 商品色彩美學與斜角構圖：畫面核心焦點置入多款經典 POLO 衫，採用動感的對角線排列，營造出活潑且極具運動感的視覺律動。細節處特別彰顯領口與袖口拼接的精飾織工，傳遞出服飾在休閒中蘊含的細品質細節。\n\n2. 俐落字體排版與資訊層次：在版面設計上，上方配置醒目的活動標題，選用剛勁有力的特黑體，搭配強烈對比的亮眼配色，讓促銷優惠資訊瞬間抓住消費者視線。右側則搭配簡練的「LIMITED SALE」與燙金感「限量版」外框標籤，創造兼具實用導向與高端感的活動氛圍。\n\n3. 全通路數位社群行銷整合：整體設計完美整合了品牌電商首頁輪播、社群平台高質感行銷（Facebook 粉絲團推廣，搭配按讚與互動引導），到廣告聯播網的多元格式。在配色上，以乾淨底色襯托高彩度商品，精準提升商品點擊率與全通路導購轉換率。",
+    "tools": [
+      "電商 Banner 視覺企劃",
+      "網格系統設計",
+      "商業品牌整合設計",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1X5uu5KJFQKiAu3-vCnTJ3K7rjB7y7gsj",
+    "placeholderId": "IMAGE_51",
+    "colorTheme": "from-zinc-900 via-amber-950 to-neutral-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1X5uu5KJFQKiAu3-vCnTJ3K7rjB7y7gsj",
+      "https://lh3.googleusercontent.com/d/1OX8Ypskp_dE_2eLUSra6i894x1hzI4_m",
+      "https://lh3.googleusercontent.com/d/1lTJdJXTS4iJqWmNjyTn07TyA5kYsEziV"
+    ]
+  },
+  {
+    "id": "52",
+    "category": "電商視覺設計",
+    "title": "心泰 PRO 原創泰國料理：節慶主題與精緻異國美食社群貼文視覺設計",
+    "titleEn": "Thai Heart Pro: Exquisite Festive Campaigns & Authentic Thai Cuisine Social Media Design",
+    "philosophy": "本系列為專為高端泰式餐飲品牌「心泰 PRO 原創泰國料理」特別企劃與設計的節慶主題（如2/14西洋情人節「心泰❤️你 - PRO不及待」促銷、特色精緻料理、品牌盛宴等）社群推廣與網頁貼文視覺設計。整體美學將傳統泰式熱情元素、現代輕奢生活品味與高轉換社群互動排版完美融合，設計與後期亮點解析如下：\n\n1. 異國美食風情與浪漫節慶氛圍營造：情人節貼文巧妙以深紅至粉紅的漸層絢麗光暈、心形散焦（Bokeh）與避繁就簡的亮金色星粉為背景，右側置入頂級 Pinot Noir Rosé 粉紅葡萄酒與高腳香檳杯實拍，在冷暖色調的極佳對比中勾勒出「極致浪漫、輕奢優雅」的餐飲氛圍，誘發消費者的儀式感與社交渴望。\n\n2. 高轉換率社群排版與視覺資訊層次：在有限的社群正方形（1:1）構圖中，將核心促銷 slogans（如「限量贈送」與「打卡贈兩杯」）以立體質感的彩亮圓帶或圓角標籤框起，字體選用發光的歐式優雅草書與現代無襯線黑體，資訊層次清晰。底部整齊落款精簡俐落的白色「心泰 PRO 原創泰國料理」雙語商標，完美達成品牌曝光與高轉化點擊的目的。\n\n3. 像素級影像處理與頂級調色管理：後期製作專注於剔透水晶玻璃、流暢瓶身、淡粉酒液折射的光感優化，細緻消除隨手拍攝可能產生的雜光與漫反射雜訊，並在不破壞食材與酒水真實感的前提下，增強色彩飽和度、潤飾調校與對比度，打造具備極高畫質與時尚海報級別的視覺深度。",
+    "tools": [
+      "社群媒體視覺企劃",
+      "平面與字體排版設計",
+      "影像色彩與光影修飾",
+      "異國餐飲品牌定位",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1RY1vPNaTNWpsoNU8mgoHn7Nqh4uDWhur",
+    "placeholderId": "IMAGE_52",
+    "colorTheme": "from-rose-950 via-neutral-900 to-amber-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1RY1vPNaTNWpsoNU8mgoHn7Nqh4uDWhur",
+      "https://lh3.googleusercontent.com/d/10H373hV6HpZt7rVHEYn7D-XVEOTKygE-",
+      "https://lh3.googleusercontent.com/d/1aGmvZPW7KQHe6BSNVDEkirFpsOy6jOj8",
+      "https://lh3.googleusercontent.com/d/1FMnw19cpFmzolWcAug9KEGoNLdBZH1HG",
+      "https://lh3.googleusercontent.com/d/19_CTNCmEIG6jjNptmXYTcIfoJG8UBwis",
+      "https://lh3.googleusercontent.com/d/15lFlgXyO34zSDS5yv2IUOMU_O99dJrxc",
+      "https://lh3.googleusercontent.com/d/1bHPtTQZ4hxac_vjkoiTC5LCXcw2rBrF2",
+      "https://lh3.googleusercontent.com/d/1A255L9IlWDmruhCAwEqgUqzKPv1oq_an",
+      "https://lh3.googleusercontent.com/d/14uxIpBpUEq9eixgmLuL_IerMedbmZKCw"
+    ]
+  },
+  {
+    "id": "53",
+    "category": "電商視覺設計",
+    "title": "心泰 PRO 原創泰國料理「昕境廣場百貨」：母親節平日滿額禮視覺整合與實體商品後期美學設計",
+    "titleEn": "Thai Heart Pro @ Shine Square Mall: Mother's Day Gift-With-Purchase Campaign Layout & Product Digital Art Direction",
+    "philosophy": "本案為專為頂級泰式餐飲品牌『心泰 PRO 原創泰國料理』與林口百貨地標『昕境廣場』攜手設計之母親節卡友平日滿額贈（GWP）活動宣傳視覺與精選禮品影像處理。針對百貨現場大型看板、社群多格式傳播及會員行銷，將實品情境拍攝、數位智能美學融合與行銷文字編排無縫串接：\n\n1. 實體商品專業拍攝與數位智能後期：滿額禮主打產品「安妮兔隨身擦拭拖」與「RHINOCEROS 廚房生活五件組」經現場高品質實拍，並深度配合數位光影融合技術。數位後期修圖大幅度優化了硬質塑料、金屬拋光與矽膠材質的高亮漫折射，修飾並重整了柔和的午後斜方投影，令畫面中的生活物件散發飽滿、溫潤且居家的精緻質感。\n\n2. 經典幾何圖騰與節慶視覺階層：版面背景大膽融合泰式廟宇與現代幾何的草綠網格，展現兼具東南亞風情與現代百貨明快作風的底韻。核心以耀眼亮金色的 3D 浮雕氣球字體「2000」破題，並將兩大實用好禮置入拍立得白框相紙，點綴亮粉紅「櫻桃粉」限定標籤，透過俐落的色調層次引導消費者的目光流動。\n\n3. 全通路行銷文案整合：編撰引發廣大回響的「溫馨媽咪，平日消費滿額限定」故事主軸，將實用廚房小物與極簡清潔神器，包裝為尊榮且富儀式感的贈禮；佐以「限量限量、稀缺感」的文字細節，顯著提振昕境廣場門市平日線下引流與轉化率。",
+    "tools": [
+      "整合行銷宣傳企劃",
+      "平面與網格版面設計",
+      "商品攝影與智能後期融合",
+      "社群與線下行銷文案",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1_JblECXxtAcJ2fr1fzVEIzlbBnvfNMXR",
+    "placeholderId": "IMAGE_53",
+    "colorTheme": "from-teal-950 via-neutral-900 to-rose-950",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1_JblECXxtAcJ2fr1fzVEIzlbBnvfNMXR",
+      "https://lh3.googleusercontent.com/d/1ynVGGUHQfA32vbwV4v3hzI6hUYnCjqfJ",
+      "https://lh3.googleusercontent.com/d/1Pw_NfgD9ow--HX9AO918Ahpr24HcUai3"
+    ]
+  },
+  {
+    "id": "58",
+    "category": "電商視覺設計",
+    "title": "Segway-Ninebot 漫遊未來：E2 Pro 智能電動滑板車官方多語系瀑布頁與高質感圖文編排設計",
+    "titleEn": "Segway-Ninebot E2 Pro Smart KickScooter: Global Multilingual Waterfall Landing Page & Visual Layout Engineering",
+    "philosophy": "本案為引領全球智能出行美學之 Segway-Ninebot 熱銷車款「E2 Pro」量身編排的官方多語系電商一頁式瀑布 Landing Page 視覺設計與排版企劃。本項目突破傳統商品單純展示的侷限，融匯資訊科學、雙語本地化翻譯編譯，與高感官幾何視覺，將 10 款核心技術場景完美串聯：\n\n1. 科技黑極限視覺與網格資訊結構：全案採用品牌經典的高對比「科技深灰至極緻霧黑」為背景核心，呼應智能出行「安全、穩健、未來感」的產品定位。藉由主視覺高明度螢光綠（Cyber Lime Green）、動感深邃藍與潔淨亮白文字，在昏暗的大型廣告網頁或行動端高能背光屏幕端上形成強烈聚焦力，引導消費者的視流線與資訊讀取層次。\n\n2. 雙語本地化（Localization）極致編排：針對「全方位燈光系統（包含 13.5m 照射距離 LED 大燈、256色 RGB 氛圍燈、前後獨立轉向燈）」與「RideyLONG 專利續航增能技術（275Wh 大容量電池、ECO 模式下高達 40km 續航表現）」等核心賣點，進行繁體中文與專業英文之雙語資訊網格化對齊與美學文案編撰。並針對高精密技術規格（如 TCS 防滑控制系統、BMS 智能電池管理、全車身 IPX4 與電池 IPX6 雙重防水、10吋防漏氣真空胎及前鼓後電磁雙煞車系統），以俐落的卡片式 Grid 排版和點墨感資訊圖表引導，一秒解鎖消費者的理性信賴與感性購買慾望。\n\n3. 多端多介質高保真光影渲染優化：精算全案瀑布流頁面之影像拼接縫合與切片動態，保證無論在桌機寬屏、手機垂直單手操作、還是零售端線下大型展示立牌印刷中，高飽和度的主色調以及光影漫反射皆能完美協同，呈現極具工業美感與動態張力的頂級品牌格調。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "Multilingual Maps Integration",
+      "E-Commerce Layout Strategy",
+      "Technical Infographic Design"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1j3fzXV5NU_IwPf_JhkRGDzArXmw_Cmsj",
+    "placeholderId": "IMAGE_58",
+    "colorTheme": "from-[#041208] via-[#091f11] to-[#040e09]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1j3fzXV5NU_IwPf_JhkRGDzArXmw_Cmsj",
+      "https://lh3.googleusercontent.com/d/1vVAD4nKa-hybWZ6QzauAKW8gIREXA3EN",
+      "https://lh3.googleusercontent.com/d/1Oekd-jMe3DxNdi49hKKKIbbWYbO6O8iX",
+      "https://lh3.googleusercontent.com/d/12pF-Ev5wyPdf-MfCFjp7VZyP1h4VjJB7",
+      "https://lh3.googleusercontent.com/d/1URtkiPcCpTApLxwgSABUaP9sc1iaiMjA",
+      "https://lh3.googleusercontent.com/d/1WFrUtXvAOyN892XhPTksCcufy1sv_WNT",
+      "https://lh3.googleusercontent.com/d/1zHnaN7xk4amIPCNtzPchuqa7PSrdF9lB",
+      "https://lh3.googleusercontent.com/d/1fmYd17cQXqVDGzCtajvaMIuGXkXMRi42",
+      "https://lh3.googleusercontent.com/d/1tdcajil0Fu_JfcWdsTEmAsikk-HD8JYx",
+      "https://lh3.googleusercontent.com/d/1JrcDxD0nHmnCU96Wdz1f93G5rsLjbwa2"
+    ]
+  },
+  {
+    "id": "59",
+    "category": "電商視覺設計",
+    "title": "小米旗艦生活美學：Xiaomi Pro 2 智能電動滑板車官方多語系瀑布頁翻譯與圖文排版重構",
+    "titleEn": "Xiaomi Electric Scooter Pro 2: Premium Global Multilingual E-Commerce Waterfall Design & Localization Engineering",
+    "philosophy": "本案為「小米 Mi 旗艦生活美學」經典熱銷車款「Xiaomi Electric Scooter Pro 2」量身編排之官方多語系電商一頁式瀑布 Landing Page 翻譯編譯與版面二次創作設計。全案針對產品國際化推廣需求，將 13 款核心技術場景、高感官幾何視覺、以及跨語言本地化文案進行完美重組：\n\n1. 經典極致深灰與經典紅線美學：以小米標誌性的「科技極簡深灰到石墨黑」為背景核心，並巧妙呼應其前叉與後煞車拉線的經典「警示亮紅」色彩調性，將硬體工業設計之魂延展至網頁視覺中。搭配多層次動感灰、亮白技術文字與半透明玻璃擬態（Glassmorphism）卡片，在移動端和高精細電商背光屏幕上實現完美的資訊聚焦與立體感呈現。\n\n2. 跨國高保真本地化（Localization）編排：聚焦於 Pro 2 五大極限賣點——「45km 超長真續航（446Wh 力學儲能）」、「600W 峰值功率（快速面對 20% 斜坡爬坡）」、「進階三檔速度模式開關」、「全新第五代 BMS 智能電池管理優化（六大行車防護機制）」、與「安全升級的前 E-ABS 後雙碟導通煞車系統」，進行繁體中文與法語/英文等多語系文案之精確語境互譯與排版網格設計。透過俐落的左右二分法、點描式機械爆炸、功能折疊圖示等電商版面策略，在最短的時間內建立信任感與感性購買力。\n\n3. 印前防溢與全端解析網格化響應：針對線下戶外帆布展示大圖、店面觸控展示立牌以及桌機、行動端 HTML5 瀑布一頁式響應系統，進行高保真色彩曲線、邊界溢流防剪與垂直像素對縫微調。無論在實體重墨印刷或高動態光顯像素中，均展現最頂級的高感官品牌氣度與一致的高規視覺張力。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Multilingual Translation",
+      "E-Commerce User Path Optimization",
+      "Localizing Graphic Assets",
+      "Technical Layout Engineering"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/14rxurtgzrtAGgjZp4HiMFt4aDeOgKfoR",
+    "placeholderId": "IMAGE_59",
+    "colorTheme": "from-[#0c0c0e] via-[#1a1212] to-[#0c0c0e]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/14rxurtgzrtAGgjZp4HiMFt4aDeOgKfoR",
+      "https://lh3.googleusercontent.com/d/1W7nqpKeoBlYDlOA5AMJuYQtkTtDzLZRR",
+      "https://lh3.googleusercontent.com/d/1h3hM7uGXfyBCuwIvLm8dfyXlnESi0a3l",
+      "https://lh3.googleusercontent.com/d/16tVXdB8MhsN1acvHeeJbIPVXXn-W_1je",
+      "https://lh3.googleusercontent.com/d/1N13eOHm8LaltglRABWKsyCRLh6NjZoSL",
+      "https://lh3.googleusercontent.com/d/1Rg4lYNbCe1UP45TjTrfqFfM4YfsWpff3",
+      "https://lh3.googleusercontent.com/d/1UhOHr3mSCggNRUVoqAaDRjdeYJCsxsWi",
+      "https://lh3.googleusercontent.com/d/1oOhb4K6PuLaB9QwA52FCgsnBJmWaqPDt",
+      "https://lh3.googleusercontent.com/d/1192voSF6y-eE7eJEaUBo__BhoVKCADb2",
+      "https://lh3.googleusercontent.com/d/1w92U2Ts1aqya0LzodMyZk1L97a_5EXHP",
+      "https://lh3.googleusercontent.com/d/1HXxkE3aW-8VPGM0QK6G59vyEQmPkrEm1",
+      "https://lh3.googleusercontent.com/d/1c_fV2eDbl1vc32sQnHh0xeDUD52XFgx5",
+      "https://lh3.googleusercontent.com/d/1wbVDlQmyPAi6mWq8X_Ek99Es1lEnTBrC"
+    ]
+  },
+  {
+    "id": "60",
+    "category": "電商視覺設計",
+    "title": "越野先鋒智能巡航：Segway-Ninebot ZT3 Pro 跨界全路況電動滑板車官方多語系瀑布頁翻譯編譯與高感板式設計",
+    "titleEn": "Segway-Ninebot ZT3 Pro All-Terrain Smart KickScooter: Global Multilingual Waterfall Landing Page & Visual Layout Engineering",
+    "philosophy": "本案為九號出行（Segway-Ninebot）全新旗艦「ZT3 Pro 智能全路況電動滑板車」量身打造的官方多語系電商一頁式瀑布 Landing Page 視覺編排與本地化翻譯企劃。ZT3 Pro 作為定位高階、具備越野與山海探索基因的重磅車款，其視覺與文案創設高度融合了戶外探險美學與前沿智能科技：\n\n1. 越野探境美學與高對比幾何：全案延續 ZT3 Pro 極具肌肉感的鋼骨車身工藝，視覺以「曠野荒漠深灰」與九號標誌性的「冒險螢光綠（Cyber Lime）」為雙色系底蘊。搭配俐落的寬體多欄網格結構、3D 避震透視剖析，以及高對比的白色功能特徵標引，在行動端或線下零售展示屏上呈現極具戶外張力與極度硬派的視覺衝擊力。\n\n2. 智能領航技術的多語本地化（Localization）：圍繞 ZT3 Pro 的多項越野與智能黑科技進行雙語深度編譯，包括「Segride™ 賽道級智控系統（TCS 防滑與主動穩定控制）」、「1600W 超高規峰值動力（輕鬆跨越25%極限陡坡）」、「RideyLONG™ 全速真續航科技（高達 70km 節能續航與 40km 全速巡航）」、「雙重前懸掛雙拉簧後避震」以及「Find My Apple 智慧尋車與 3 吋高對比 LCD 儀表顯示」。將繁雜的技術規格與控制指標重組為易讀、直觀的玻璃擬態卡片與視覺引導帶，在極短時間內打動崇尚極限運動與都市探索的玩車客群。\n\n3. 全端跨媒介高保真像素縫合：針對線下全尺寸大型布幔吊牌印刷、App 內嵌滑動瀑布流以及 Web 響應式排版，進行高精度的色彩管理與無縫切片校對。確保任何屏幕背光渲染或紙張印墨呈現上，其高擬真的暗部金屬質感與高飽和度的探險螢光綠，皆能展現最極致且一致的全球頂級品牌格調。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Multilingual Translation",
+      "All-Terrain Visual Strategy",
+      "Technical Layout Engineering",
+      "E-Commerce Graphic Systems"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1aAksY1wBWtqzDLa2A8cHgKCORmGo-Q-S",
+    "placeholderId": "IMAGE_60",
+    "colorTheme": "from-[#080d0a] via-[#121c15] to-[#080d0a]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1aAksY1wBWtqzDLa2A8cHgKCORmGo-Q-S",
+      "https://lh3.googleusercontent.com/d/1A8sG7zXz871HetA4pRO5AyYT_btvexYl",
+      "https://lh3.googleusercontent.com/d/1A_X5HFtFeRUnfSp4ZZzSpDbuu84fxdi9",
+      "https://lh3.googleusercontent.com/d/1AI7z7jddQm6e_sbpe9OHOJP0A4k_OFsZ",
+      "https://lh3.googleusercontent.com/d/1XblBZ5WB4PFLlKxyOMD7HCwJYDq9G1o1",
+      "https://lh3.googleusercontent.com/d/1LTq_1YzPKKcenMqQZJtMKc_W3QcttQE3",
+      "https://lh3.googleusercontent.com/d/1G2su8BcoGK4qpmF7zzQ3Hzas3N8FNYek",
+      "https://lh3.googleusercontent.com/d/1M-tzEh-6Q3uis7oAJq_LKijXtHKYkLEF",
+      "https://lh3.googleusercontent.com/d/1lgD9q_DNSR6alL98qe_G50hvpJslPqCt",
+      "https://lh3.googleusercontent.com/d/12o0PICjkho9-6d_0NkLYN2lJ4Mc5n7NQ",
+      "https://lh3.googleusercontent.com/d/17uhByDI2crcMITFS_OSBeQWF-LQkCe85",
+      "https://lh3.googleusercontent.com/d/1SSN8DtXvfkSvSWFF-MmCRVHXIyXZBuDJ",
+      "https://lh3.googleusercontent.com/d/1zBhG8LhTMnqhf5Y1oqT_WE7Ox8hJAlKN",
+      "https://lh3.googleusercontent.com/d/1192voSF6y-eE7eJEaUBo__BhoVKCADb2",
+      "https://lh3.googleusercontent.com/d/18yCr1Rjm38FQ6-PeaW32-M9DTuJkkGpD"
+    ]
+  },
+  {
+    "id": "61",
+    "category": "電商視覺設計",
+    "title": "行車保障與合規對比：Segway-Ninebot ZT3 Pro 總代理官方公司貨 VS 水貨(平行輸入)消費者權益差異圖文資訊設計暨防偽防坑宣導",
+    "titleEn": "Standardizing Consumer Security: Segway-Ninebot ZT3 Pro Official Local Authorized Version vs. Parallel Import (Grey Market) Visual Comparison System",
+    "philosophy": "本案為 Segway-Ninebot 總代理（羅宋堂公司貨）為全新旗艦越野滑板車 ZT3 Pro 精心設計的「總代理公司貨 VS 平行輸入水貨」權益對比圖文資訊設計與防偽防坑宣傳企劃。本項目旨在透過高感官的可視化表格與結構化排版，直觀解答消費者在選購旗艦越野行車時的痛點，以最理性的科學分析拉升公司貨的品牌信賴度與合規優勢：\n\n1. 雙色警示美學與結構化網格：視覺以代表國家安全標準、權益保障的「警示鮮紅與九號探險螢光綠」作為核心對比色彩，將複查的多欄條目網格化。藉由高對比度的排版，將公司貨（綠色/打勾/安全）與平行輸入水貨（紅色/打叉/高風險）之保障對比刻畫得一目了然，使消費者在滑動瀑布流時迅速掌握核心信息。\n\n2. 六大核心權益深度翻譯與編譯：文案深層剖析並編譯了消費者關心的本土化痛點：包括「NCC 國家傳播通信安全認證、BSM 台灣合規充電器（110V NEMA 台灣規格、不燒毀不爆炸）」、「繁體中文 Segway App 綁定、全球區域鎖定解碼（公司貨擁有穩定雲端與韌體升級，水貨在大陸電話認證或GPS偏移後會遭遇鎖車鎖速）」、「台灣總代理 1 年官方原廠保固與全省售後維修站點保障（水貨無零件無保修，淪為孤兒）」與「全車系投保公共責任安全險」。高精度的翻譯對其各項指標進行本土化潤色，將生硬條款轉化為實用的安心購買指南。\n\n3. 電商引流優化與線下印刷自適應：版面針對電商直通車推薦圖、詳情頁活動浮動 Banner、以及線下展廳大型立牌與隨車說明吊牌進行了高保真色彩曲線、防溢界邊校正。無論是在千元級螢幕的數碼背光渲染，還是專用紙張印刷中，皆能展現高端且層次分明的權威氣度與視覺衝擊力。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "E-Commerce Conversion Optimization",
+      "Consumer Advocacy Coding",
+      "Localized Compliance Graphics"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1_B1C7Vinuf6-Mr3wxqeTmVATWcMnY_Sd",
+    "placeholderId": "IMAGE_61",
+    "colorTheme": "from-[#140808] via-[#101410] to-[#0a0a0c]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1_B1C7Vinuf6-Mr3wxqeTmVATWcMnY_Sd",
+      "https://lh3.googleusercontent.com/d/1b1hFmiG-nimbCkoUnB6ejAIm05E19_XF",
+      "https://lh3.googleusercontent.com/d/1nkawH88Ervz-6voqlzM7HMaD87wjf1OX",
+      "https://lh3.googleusercontent.com/d/1IaXloU25wZXDkyYSnip9jjESA6i97BMC",
+      "https://lh3.googleusercontent.com/d/1rD67w7irl-y--L9GOg7q19ix4T_ClF9G",
+      "https://lh3.googleusercontent.com/d/1RVgFpWVVezSDyNE3kh6yzaNvblPvtOFX"
+    ]
+  },
+  {
+    "id": "62",
+    "category": "電商視覺設計",
+    "title": "羅宋堂總代理官方售後：Segway-Ninebot 智能滑板車尊榮延長保固計劃圖文詳情與登錄系統界面設計",
+    "titleEn": "Segway-Ninebot Authorised Local VIP Extended Warranty: Premium Post-Purchase Insurance Campaign & Verification Interface Design",
+    "philosophy": "本案為九號出行（Segway-Ninebot）台灣官方總代理羅宋堂（Luosongtown）為其全系列智能電動滑板車精心策劃的『尊榮售後延長保固計劃』專屬電商圖文宣傳與保固登錄引導頁面設計。本案核心在於建構流暢、專業且令人信賴的售後加值形象，並細緻轉化保固條款：\n\n1. 羅宋黃經典標識與高感光石墨深灰：全案視覺以代表專業尊榮的『極致石墨黑』為背景色基調，點綴羅宋堂官方品牌高識別度的『典雅暖橘黃』與科技白文字。完美呼應 Segway-Ninebot 全車系液晶控制儀表與車尾亮色反光的色調質感，使加購延保資訊宛如原廠豪華隨車手冊般洗鍊高雅。\n\n2. 尊榮延保三部曲與售後防偽本地化（Localization）：重組保固政策文案，以人性化口吻提煉『原廠全機1年主保固』加上『VIP登錄尊享6個月至1年核心部件專屬延保（包含馬達、車架、高能鋰離子電池包等核心大件）』的特權服務。詳述包括『線上登錄防偽查詢』、『專屬車輛綁定App即時激活』與『全省48小時預約收送免運檢修』等尊榮權益。將原本冗長繁複的售後法規合約轉化為高可讀性、具備視覺指引的圖形卡片網格與手感擬真電子保單。\n\n3. 高轉化率導流網格與跨媒介高保真輸出：版面佈局專專為電商App尾部欄、社群登錄裂變海報以及實體保證卡大圖輸出設計。色彩與邊界像素完美拉伸，在視網膜背光屏或精密銅版紙印件上，其明暗光影漸層均表現出原廠級的洗練，最大化拉升用戶的滿意度與二次複購意願。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "E-Commerce User Path Optimization",
+      "VIP Service Strategy",
+      "Technical Layout Engineering"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4",
+    "placeholderId": "IMAGE_62",
+    "colorTheme": "from-[#0b0c10] via-[#1a1510] to-[#0c0d12]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4",
+      "https://lh3.googleusercontent.com/d/1UBoU7SwFpmprbepIkzKgmxIx_ABs6bkX"
+    ]
+  },
+  {
+    "id": "63",
+    "category": "電商視覺設計",
+    "title": "九號聖誕禮讚嘉年華：Segway-Ninebot 智能電動滑板車年終感恩祭優惠圖文詳情與節日視覺行銷設計",
+    "titleEn": "Segway-Ninebot Christmas & Year-End Grand Jubilee: Premium Holiday Sales Campaign, Accessory Giveaway & Decorative E-Commerce Graphics",
+    "philosophy": "本案為九號出行（Segway-Ninebot）官方總代理精心策劃之「九號聖誕禮讚、歲末感謝祭」特別企劃電商海報與行銷視覺設計。全案圍繞冬日溫馨、喜慶聖誕與高端智能車款之結合，開創性地將工業科技感與節日奢華禮遇完美融合，強力帶動年終消費轉化：\n\n1. 聖誕鎏金與奢華墨綠節日美學：不同於常規的紅綠大色塊喧賓奪主，本案視覺方案大膽選用極其洗鍊的「北歐暗樅綠（Forest Green）與深曜石黑」為背景基底，點綴以閃耀璀璨的「經典香檳鎏金（Champagne Gold）」與雪花純白點描。不僅呈現了溫馨的節日氣氛，更契合了 Segway-Ninebot 旗艦車系本身極富科幻感的暗黑鋼骨結構工藝，將節日感與科技美進行高維度的「精品化」折衷，在無數聖誕大促廣告中脫穎而出。\n\n2. 驚喜禮包疊加與高轉化率「聖誕禮讚三部曲」：文案與視覺佈局深度提煉用戶心智購買路徑：包括「聖誕特配暖心折扣（直降千元驚喜）」、「年終狂歡專屬大禮包（免費贈送高規原廠安全防護頭盔、訂製便攜收納掛包、安全隨車密碼鎖）」與「官方安心保固升級」。將促銷與送禮機制簡化為可視化的禮物盒開箱圖示、半透明浮霧網格與引人注目的香檳金倒數計時框，在營造節慶儀式感的同時，實行極為流暢的情感說服與行動催化。\n\n3. 多通道高保真像素輸出與跨媒介渲染：針對 Mobile 詳情首圖、社群聖誕賀卡海報、App 開屏廣告與直營門市聖誕櫥窗超寬高清背光海報，進行極致的色彩溢出保護與高對比曲線微調。確保在任何強光或暗弱背光下，鎏金色帶的精細光影、雪夜霓虹的柔霧光暈，皆能呈現殿堂級的高端節日視效。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "E-Commerce Holiday Marketing",
+      "Decorative Graphic Systems",
+      "Conversion Path Optimization",
+      "Aesthetic Fluid Engineering"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1dcU52xfGNSb-LnwKXGTdnM6JwsWEvWlI",
+    "placeholderId": "IMAGE_63",
+    "colorTheme": "from-[#080d09] via-[#0f2115] to-[#0c0d12]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1dcU52xfGNSb-LnwKXGTdnM6JwsWEvWlI",
+      "https://lh3.googleusercontent.com/d/1BkiKorecBNyV-wcnEBw0aOLDhafbPZ70",
+      "https://lh3.googleusercontent.com/d/1JJ3JurU-ObYXqlFfos8mwvG7Jz0Gco-2",
+      "https://lh3.googleusercontent.com/d/10W9ktFBaPqUhRQ5oeXKCpRqcOtViJNlw",
+      "https://lh3.googleusercontent.com/d/1KspJErV_Pet9og2MJii2dXu4vfcH_QIZ",
+      "https://lh3.googleusercontent.com/d/1I_40t6X1A5wPJgVghGPh4MBNwkFbqiOu",
+      "https://lh3.googleusercontent.com/d/1sNqeiFj_hN2gWyyaWgpK_Yu1s5SZ1BYx",
+      "https://lh3.googleusercontent.com/d/1ath3ROEeoME8A-ReImQ2o5xYG2kDUBfR"
+    ]
+  },
+  {
+    "id": "64",
+    "category": "電商視覺設計",
+    "title": "九號狂歡雙11購物節：Segway-Ninebot 智能滑板車全台瘋搶特惠與年度最佛超值大促圖文編排設計",
+    "titleEn": "Segway-Ninebot Double 11 Shopping Extravaganza: Annual High-Conversion Sales Campaign, Bundle Giveaways & Dynamic E-Commerce Display Graphics",
+    "philosophy": "本案為九號出行（Segway-Ninebot）總代理羅宋堂（Luosongtown）精心策劃之「狂歡雙11購物節、年度最吸睛特惠」電商詳情頁與全通路行銷視覺編排。全案聚焦於「11.11 年度最低、狂歡瘋搶、超值買贈」的核心促銷語境，將高硬核的科技越野基因與極具煽動性的大促節日氛圍深度綑綁，打造電商轉換之巔：\n\n1. 霓虹極速橙與黑金科技風暴：為了打破常見雙11促銷的廉價紅藍視覺，視覺設計大膽引入了富有極速動能的「霓虹脈衝橙（Pulse Orange）」與「科技暗曜黑」為色彩主調，襯托九號車系的金屬科技感與硬核骨架，使消費者在滑動瀑布流時迅速被熱烈、專業且高層次的「限時瘋搶」色彩張力所俘虜。\n\n2. 高轉換促銷漏斗與超強大禮包編譯（Localization）：在文案編譯上，重塑雙11優惠路徑，以「直降千元券限時限量瘋搶」、「年度超強多重贈禮（送原廠密碼鎖、防護安全頭盔、定製車前收納包、極速反光貼紙）」、「全台免運快速配（台灣現貨24小時疾速發車）」等三大王牌利益點為視覺線索，利用爆燃字體、半透明擬物卡片、動態發光禮盒和高反差百分比圖飾，大幅降低決策難度，激發極限購買欲。\n\n3. 全端高保真像素極限輸出：針對雙11極端大客流下的行動端詳情頁、社交平台瘋狂轉發海報、App開屏廣告及實體總代理門市櫥櫃立牌，進行了極致的色彩溢出優化、防溢流校正與垂直對縫裁切。確保在任何高動態、不同流派的數碼螢幕或紙張印件上，其耀眼的霓虹橙漸變均能帶出極致和諧的全球級大廠風範與爆發力。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "E-Commerce Conversion Optimization",
+      "High-Impact Publicity Systems",
+      "Technical Layout Engineering",
+      "Dynamic Advertising Strategy"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1z62jYxNd5YAt1SQHl_6K728nLBChR3Or",
+    "placeholderId": "IMAGE_64",
+    "colorTheme": "from-[#0c0a08] via-[#1f160e] to-[#0d0a09]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1z62jYxNd5YAt1SQHl_6K728nLBChR3Or",
+      "https://lh3.googleusercontent.com/d/1KZUeSLy24iscQ4UUDjvBza8S6uzw_DNv",
+      "https://lh3.googleusercontent.com/d/1oT8mcdJQbXK-XZz-hnh5tIOm6WRSpngP",
+      "https://lh3.googleusercontent.com/d/1HpxA-d7Mjp9mJQS-GjjMbtaUgqNcoJHD",
+      "https://lh3.googleusercontent.com/d/1GssHqzFquhwCxeBoSqcaFRMZ7DZKEWet",
+      "https://lh3.googleusercontent.com/d/1vas277IWca8yuw3gz1ZtHhCNvkWXKgq_",
+      "https://lh3.googleusercontent.com/d/1CxdbK05fGI7XXiaPGcgw593hEk4dFuMd",
+      "https://lh3.googleusercontent.com/d/1oBbRCSYqr8T4QWiWtMSdeNjrwPAeE_Ir"
+    ]
+  },
+  {
+    "id": "65",
+    "category": "電商視覺設計",
+    "title": "九號迎新放膽騎：Segway-Ninebot 智能電動滑板車 9月開學祭限時特惠與潮流校園行銷圖文詳情設計",
+    "titleEn": "Segway-Ninebot Back-to-School Season: Premium Holiday Campus Campaign, Student Special Rebates & Academic E-Commerce Graphic Systems",
+    "philosophy": "本案為九號出行（Segway-Ninebot）官方總代理羅宋堂（Luosongtown）精心打造之「9 月開學季、新學期放膽騎」系列電動滑板車校園迎新季與青少年探索特別行銷企劃。設計團隊打破傳統生硬促銷結構，將「校園朝氣、綠色出行、無限自由」融入了板式工藝：\n\n1. 青春躍動天青藍與科技微光美學：視覺方案圍繞「校園晴空藍、晨光微煦綠與科技純白」為色彩基調，象徵新學期的朝氣蓬勃、青春無畏與都市綠色出行的自由節奏。半透明磨砂玻璃卡片搭配精心策劃的幾何裝飾網格與流動型賽道指引，完美契合 Ninebot 各大熱銷輕快車款的高感度外觀，精準打動大專院校師生與年輕潮玩群體。\n\n2. 校園無憂出行「三部曲」極速宣導與繁簡本地化（Localization）：在文案編譯上，重塑三大核心推廣利益點：包括「開學季專屬學生補助（直降特惠、無負擔分期補貼）」、「升級版行車安心伴侶贈禮（買即送九號聯名潮流安全防護頭盔、定製便攜車把收納掛包、安全防拔隨車密碼鎖）」與「羅宋堂全台全省 48 小時免費收送檢修保修售後守護」。運用輕快直白、富於動感與熱情的校園用語進行多語系高感度字體編排，大幅降低信任與決策成本。\n\n3. 多渠道響應網格切片與高保真像素管理：全方位針對行動版詳情頁、電商APP頂部活動廣告、九號實體門店迎新專屬立體展板等宣傳口開展對齊。不論是流暢漸變的天晴藍天空，還是車輪與馬達的精密點描剖析，在各式高階背光螢幕或精品銅版紙印件下皆能釋放出驚人的立體深度感與品牌大廠質感。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "E-Commerce Holiday Marketing",
+      "Localized Campus Promotion",
+      "Technical Layout Engineering",
+      "Dynamic Advertising Strategy"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/12IW5ULmm6lhAG9KPivw3ePHRbcoJAfoe",
+    "placeholderId": "IMAGE_65",
+    "colorTheme": "from-[#080d0d] via-[#101b1e] to-[#0a0c0e]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/12IW5ULmm6lhAG9KPivw3ePHRbcoJAfoe",
+      "https://lh3.googleusercontent.com/d/1uAkjHpkFpkfBbAU_AVk5UkIig8wnf0vE",
+      "https://lh3.googleusercontent.com/d/1Zl7JegybLkLEv9F9t7ijSQek8GThkmgA",
+      "https://lh3.googleusercontent.com/d/1MwcuFjHfdYX8FnucQYTaCWa55ytU_v9Q",
+      "https://lh3.googleusercontent.com/d/1CR_Xs9HNq7P14JLPvNpYCniTuEj3Y5qi",
+      "https://lh3.googleusercontent.com/d/1zNIXpCHbYv6A5OIIzH4ymui07quBTTBk",
+      "https://lh3.googleusercontent.com/d/1-ReIQ-g49JptaoF_sSX73y-EHFrwNbmM",
+      "https://lh3.googleusercontent.com/d/1-ITEbLMB1QY22DsWjpwsFGKQGCJDOmkF"
+    ]
+  },
+  {
+    "id": "66",
+    "category": "實體店面與展覽",
+    "title": "Segway-Ninebot 法雅客 信義A9 直營概念店 店面廣告牆",
+    "titleEn": "Segway-Ninebot Fnac Xinyi A9 Flagship Concept Store: Premium Retail Brand Wall Ad & Interactive Physical Space Design",
+    "philosophy": "本案為九號出行（Segway-Ninebot）台灣官方總代理羅宋堂（Luosongtown）精心規劃之「法雅客信義A9直營概念店」實體店面廣告牆大型視覺陳列與品牌空間廣告設計。座落於台北信義商圈頂級百貨地標，設計團隊將高端科技、都會奢華與沉浸式線下零售空間設計深度語境捆綁：\n\n1. 極致奢華與科技微光之融合美學：整體視覺方案沿襲九號品牌的「極致科技黑」底蘊，輔以象徵活力與高端售後識別之「羅宋暖陽橘與香檳金光陰」作點睛漸變，大篇幅實體背光燈箱完美凸顯全系列智能滑板車、越野平衡車與卡丁車的黑科技車體力學構造。使整面直營概念店牆面不僅是廣告，更是信義商圈內耀眼奪目的科技藝術裝置。\n\n2. 沉浸式商業空間與線下手感交互導引：空間佈局聚焦於「極速體驗、綠色出行、智慧物聯」三大品牌向度，細緻轉換線下導購邏輯。以精準、高可讀性的發光立體字組、直觀的精品車型剪影與手感圓潤的立體防偽標牌，展示全省直營店尊榮保修服務及專屬App智能車聯。將單向的實體背光印刷升級為富含儀式感的極速探索體驗。\n\n3. 超大畫幅高精度印刷與動態色彩校正：針對巨幅百貨背光廣告牆的極端環境，大膽採用高密彩色噴繪疊加防散射柔光塗層，對高反光金屬漆、極窄車輪圈與精緻線條光影進行了全域色彩通道校正。確保概念店無論在商場高亮度暖光投射下，抑或夜間柔霧氛圍中，皆能展現殿堂級的原廠旗艦氣勢與像素級精準美學。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Physical Space Brand Design",
+      "Large Format Printing Optimization",
+      "Offline Retail Path Optimization"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1BxW2Fxr85uQkcTEI3ZQv-cOUwRnihJgG",
+    "placeholderId": "IMAGE_66",
+    "colorTheme": "from-[#080808] via-[#1a0e05] to-[#0d0a08]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1BxW2Fxr85uQkcTEI3ZQv-cOUwRnihJgG",
+      "https://lh3.googleusercontent.com/d/1zz7y7MSpG5_-I6dyK_ezKiO51lLqJGgt"
+    ]
+  },
+  {
+    "id": "67",
+    "category": "影音與多媒體設計",
+    "title": "興家安速 - 免水洗冷氣清潔劑 動態開箱與功能性多媒體廣告企劃 (DA量販店合作案)",
+    "titleEn": "Earth Chem Air Conditioner Cleaner: Multi-Media Unboxing Campaign & Interactive Video Strategy",
+    "philosophy": "本案為日本知名家居品牌「興家安速（Earth Chemical）」與「DA量販店」聯名合作的免水洗高壓冷氣清潔噴霧之多媒體行銷與YouTube影音推廣企劃。本項目旨在透過高感官的動態開箱、實機深度實測，直觀呈現商品「30秒免水洗、強效去霉、深層抗菌」的核心技術特色：\n\n1. 高機能動態敘事與分鏡剪輯：結合家用冷氣散熱翅片的實體透視剖析，在影片中引入高動態的清洗前後（Before & After）顯著對比畫面。搭配洗鍊的字體動態標引、重點功能局部放大，以極具生活感卻不失科學嚴謹度的美學基調，迅速抓住居家清潔痛點與高效率生活型態者的目光。\n\n2. 多層次行銷轉化機制：文案與影音節奏深度融合「功能講解、安全警告、環保無氣味、防鏽潤滑」等四大特點。藉由極具親和力的旁白解說，將原本繁瑣的冷氣保養程序轉化為「人人不求人、輕鬆DIY」的情感宣導。影片說明欄、片尾動態與電商直通卡片緊密對齊，大幅優化銷售轉換路徑。\n\n3. 高保真影音渲染與平台自適應：針對 YouTube 1080P 高清背光特規、社交平台直屏短影音 Reels、以及實體智慧展示屏幕進行了高密音頻平衡與高對比色彩分通道校正。確保散熱片被泡沫潔淨的動態微觀特寫與香檳色罐身包裝，在任何播放設備與背光環境下皆能展現頂級品牌之質感張力與精湛氣度。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Audio Mastering",
+      "E-Commerce Video Marketing"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/fM-MF_Qp7Wk/maxresdefault.jpg",
+    "placeholderId": "VIDEO_67",
+    "colorTheme": "from-[#0a121d] via-[#12281a] to-[#0a1410]",
+    "images": [
+      "https://img.youtube.com/vi/fM-MF_Qp7Wk/maxresdefault.jpg",
+      "https://img.youtube.com/vi/fM-MF_Qp7Wk/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=fM-MF_Qp7Wk"
+  },
+  {
+    "id": "68",
+    "category": "影音與多媒體設計",
+    "title": "DA量販店特選：太空人星空投影燈 沉浸式睡眠氛圍多媒體開箱與視覺行銷企劃",
+    "titleEn": "Astronaut Starry Sky Projector: Healing Ambient Multi-Media Campaign & Interactive Video Strategy",
+    "philosophy": "本案為 DA 量販店超人氣家居單品「太空人星空投影燈」之多媒體推廣與 YouTube 氛圍開箱影片行銷企劃。重點呈獻該產品「擬真星雲、雷射星空、睡眠定時、多維磁吸旋轉」等四大核心功能特色，透過星潮光影交織的療癒氛圍催化高轉換率：\n\n1. 夢幻光影美學與多維度轉場：精湛利用影音之低光源高感度環境，拍攝太空人頭部磁吸旋轉投射出的高清動態星雲與斑斕極光。結合療癒系輕音樂（Lofi Ambient Music），將靜謐臥室轉化為浩瀚宇宙，在短影片與詳情鏡頭中交替展現「睡前仪式感」，為都市高壓人群提供一場高規格視覺感官盛宴。\n\n2. 深入客群與情感共鳴轉換：文案以「睡前放鬆、育兒星空伴侶、節日送禮、浪漫派對氣氛」四大生活化場景深度切入，在多視角海報與影音宣傳中設計了半透明磨砂玻璃卡片。將純粹的功能參數，昇華為「為家點亮一萬光年」的情感召喚，大幅拉近與消費者的心理距離，極速爆發大流量轉換。\n\n3. 跨端播放與色彩通道校準：針對 YouTube 1080P 高清、短影音 IG Reels 的極速瀏覽以及連鎖實體門市智慧展示牆，進行了極致的多通道音軌調整與色差防溢校準。確保在極暗背景下的高對比彩色雷射星雲依然層次分明、邊框柔滑、絢麗不刺眼，向大眾傳達極具溫度的國際級大廠設計風範。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Ambient Sound Design",
+      "Dynamic Advertising Strategy"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/ZMcOqJhnrdE/maxresdefault.jpg",
+    "placeholderId": "VIDEO_68",
+    "colorTheme": "from-[#08070f] via-[#0e0a24] to-[#04040a]",
+    "images": [
+      "https://img.youtube.com/vi/ZMcOqJhnrdE/maxresdefault.jpg",
+      "https://img.youtube.com/vi/ZMcOqJhnrdE/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ZMcOqJhnrdE"
+  },
+  {
+    "id": "69",
+    "category": "影音與多媒體設計",
+    "title": "DA量販店特選：秒貼無塵艙貼膜神器 鋼化膜自動排氣極速定位 3C高難度配件開箱與多媒體宣導企劃",
+    "titleEn": "Zero-Dust Automatic Screen Protector Applicator: High-Conversion E-Commerce Unboxing Campaign & Interactive Video Strategy",
+    "philosophy": "本案為 DA 量販店強力推薦的熱銷 3C 規格神物「秒貼防塵艙鋼化膜/貼膜神器」之 YouTube 數位開箱影片與多媒體促銷行銷企劃。本作品旨在攻克消費者「貼膜難度高、易氣泡、卡微塵顆粒」的百年痛點，極致詮釋其「一秒定位、防塵拉帶自動除塵、一刮自動排氣、滿版無白邊」的高機能交互特色：\n\n1. 高機能與高對比開箱分鏡：結合實機高清演示，影片細緻記錄「蓋上無塵艙、抽出防塵拉條、一指輕劃自動排氣」的魔性且極度療癒（ASMR/Satisfying）的連續物理反應。以極致細膩的畫質與聲音捕捉、字體動畫、重點手勢標引，將硬核的 3C 貼膜流程化為輕而易舉的潮流體驗。\n\n2. 痛點說服與高效轉換：在影片節奏及文案設計上，深度聚焦「手殘救星、貼壞包賠、極致防爆、指紋解鎖不擋光」等高階利益點，並巧妙襯托半透明擬物圓角卡貼。打通「好玩-好懂-好貼」的情感共鳴鏈，輔以平台自適應切片，急劇縮短購買決策時間、推升驚人轉化率。\n\n3. 多端適配色彩、聲譜精細管理：針對 YouTube 高清播放、Mobile 短影音 TikTok/Reels 的極速瀏覽等通路，進行細膩的降噪人聲增益、物理排氣音效微調及全域亮度防溢色偏校正。令產品之綠白色時尚包裝細節與貼合極速瞬間的光影反射，在各類視網膜屏上，皆能迸發出震撼逼真、洗練卓越的大廠商業氣度。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Audio Post-Production",
+      "Interactive Multi-Media Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/krsRgP0mZZE/maxresdefault.jpg",
+    "placeholderId": "VIDEO_69",
+    "colorTheme": "from-[#0a0712] via-[#091b1d] to-[#04090c]",
+    "images": [
+      "https://img.youtube.com/vi/krsRgP0mZZE/maxresdefault.jpg",
+      "https://img.youtube.com/vi/krsRgP0mZZE/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=krsRgP0mZZE"
   }
 ];

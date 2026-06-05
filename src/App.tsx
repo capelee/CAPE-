@@ -105,11 +105,23 @@ function ImageWithFallback({
   );
 }
 
+// Extract YouTube ID from robust URLs
+function getYouTubeEmbedUrl(url?: string): string | null {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  if (match && match[2].length === 11) {
+    return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
+  }
+  return null;
+}
+
 export default function App() {
   const [items] = useState<PortfolioItem[]>(initialPortfolioData);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
+  const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
   
   // Custom states for interactive highlights
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
@@ -117,8 +129,10 @@ export default function App() {
   React.useEffect(() => {
     if (activeModalItem) {
       setActiveImageUrl(activeModalItem.imageUrl);
+      setIsVideoActive(!!activeModalItem.videoUrl);
     } else {
       setActiveImageUrl(null);
+      setIsVideoActive(false);
     }
   }, [activeModalItem]);
 
@@ -657,18 +671,45 @@ export default function App() {
                 {/* 左側大圖 */}
                 <div className="md:col-span-7 bg-zinc-950 aspect-[4/3] md:aspect-auto md:h-[500px] relative overflow-hidden flex flex-col justify-between border border-white/5">
                   <div className="relative w-full flex-grow overflow-hidden flex items-center justify-center bg-black/40 min-h-[280px]">
-                    <ImageWithFallback 
-                      src={activeImageUrl || activeModalItem.imageUrl}
-                      alt={activeModalItem.title}
-                      referrerPolicy="no-referrer"
-                      fallbackTheme={activeModalItem.colorTheme}
-                      titleText={activeModalItem.title}
-                      className="w-full h-full object-contain transition-all duration-300"
-                    />
+                    {isVideoActive && getYouTubeEmbedUrl(activeModalItem.videoUrl) ? (
+                      <div className="absolute inset-0 z-10 w-full h-full bg-[#050505] flex items-center justify-center">
+                        <iframe
+                          src={getYouTubeEmbedUrl(activeModalItem.videoUrl)!}
+                          title={activeModalItem.title}
+                          className="w-full h-full border-0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    ) : (
+                      <>
+                        <ImageWithFallback 
+                          src={activeImageUrl || activeModalItem.imageUrl}
+                          alt={activeModalItem.title}
+                          referrerPolicy="no-referrer"
+                          fallbackTheme={activeModalItem.colorTheme}
+                          titleText={activeModalItem.title}
+                          className="w-full h-full object-contain transition-all duration-300"
+                        />
+                        {activeModalItem.videoUrl && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30 bg-opacity-40">
+                            <button
+                              type="button"
+                              onClick={() => setIsVideoActive(true)}
+                              className="p-5 rounded-full bg-amber-500 hover:bg-amber-400 text-black hover:scale-110 active:scale-95 transition-all shadow-xl shadow-amber-500/20 cursor-pointer flex items-center justify-center gap-2 group"
+                              title="播放產品宣傳影片"
+                            >
+                              <Video className="h-6 w-6 fill-black/10 text-black" />
+                              <span className="text-xs font-semibold uppercase tracking-wider pr-1">播放宣傳影片</span>
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent pointer-events-none"></div>
 
                     {/* 左右切換細節照片 */}
-                    {activeModalItem.images && activeModalItem.images.length > 1 && (
+                    {!isVideoActive && activeModalItem.images && activeModalItem.images.length > 1 && (
                       <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-20">
                         <button
                           type="button"
@@ -710,20 +751,46 @@ export default function App() {
                   </div>
 
                   {/* Thumbnail gallery selector */}
-                  {activeModalItem.images && activeModalItem.images.length > 0 && (
+                  {((activeModalItem.images && activeModalItem.images.length > 0) || activeModalItem.videoUrl) && (
                     <div className="relative z-10 w-full bg-[#0E0E0E] px-4 py-3 border-t border-white/10 shrink-0">
                       <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-1.5 flex items-center justify-between">
-                        <span>專案作品集照片 ({activeModalItem.images.length})</span>
-                        <span className="text-amber-400/80">點擊小圖切換作品照</span>
+                        <span>專案多媒體選單 ({activeModalItem.videoUrl ? 1 : 0} 影片, {activeModalItem.images?.length || 0} 照片)</span>
+                        <span className="text-amber-400/80">點擊切換影片或作品照</span>
                       </div>
                       <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                        {activeModalItem.images.map((imgUrl, idx) => (
+                        
+                        {/* 影片專屬切換小圖 */}
+                        {activeModalItem.videoUrl && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsVideoActive(true);
+                            }}
+                            className={`relative h-12 w-12 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer flex flex-col items-center justify-center bg-[#07090c] border-dashed ${
+                              isVideoActive
+                                ? "border-amber-400 scale-[1.05] shadow-md shadow-amber-500/10"
+                                : "border-zinc-800 hover:border-zinc-500 opacity-60 hover:opacity-100"
+                            }`}
+                            title="播放影片"
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-red-500/5 flex flex-col items-center justify-center">
+                              <Video className="h-5 w-5 text-amber-400" />
+                              <span className="text-[7px] text-zinc-400 mt-0.5 tracking-wider font-mono font-bold">PLAY</span>
+                            </div>
+                            <span className="absolute bottom-0 inset-x-0 bg-amber-500 text-black text-[7px] font-bold text-center py-0.5 uppercase">影片</span>
+                          </button>
+                        )}
+
+                        {activeModalItem.images && activeModalItem.images.map((imgUrl, idx) => (
                           <button
                             key={idx}
                             type="button"
-                            onClick={() => setActiveImageUrl(imgUrl)}
+                            onClick={() => {
+                              setIsVideoActive(false);
+                              setActiveImageUrl(imgUrl);
+                            }}
                             className={`relative h-12 w-12 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                              (activeImageUrl || activeModalItem.imageUrl) === imgUrl
+                              (!isVideoActive && (activeImageUrl || activeModalItem.imageUrl) === imgUrl)
                                 ? "border-amber-400 scale-[1.05] shadow-md shadow-amber-500/10"
                                 : "border-transparent hover:border-zinc-500 opacity-60 hover:opacity-100"
                             }`}

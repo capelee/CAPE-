@@ -9,4 +9,5 @@ export interface PortfolioItem {
   placeholderId: string;
   colorTheme: string; // Tailored color accent for hovering effects
   images?: string[]; // Multiple images for project portfolio gallery
+  videoUrl?: string; // Optional embedded video link (e.g. YouTube video URL)
 }
