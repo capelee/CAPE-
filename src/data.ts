@@ -67,7 +67,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "9",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "軍備局第209廠「雲豹八輪甲車」紀念鈦金屬戶外折疊杯",
     "titleEn": "The 209th Arsenal 'Clouded Leopard' Tactical Armored Vehicle Commemorative Titanium Folding Mug",
     "philosophy": "本設計專為軍備局第209廠打造，以「雲豹八輪甲車」為核心語彙。杯體選用輕量化高強度鈦金屬，表面經噴砂霧面處理，展現低調沉穩的軍事美學。視覺佈局結合剛勁的手寫書法「雲豹」與細緻的裝甲車線稿插圖，配以「THE 209th ARSENAL」軍徽標誌。運用高精度雷射雕刻工藝，將強悍的野性獵豹與現代化國防裝備完美融合。整體色調以鈦金屬原色搭配碳黑雕刻，呈現極致的硬派戶外機能風與紀念價值。",
@@ -90,7 +90,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "10",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "PGA TOUR「581」美巡賽專屬紀念金屬高爾夫球標設計",
     "titleEn": "PGA TOUR \"581\" Commemorative Metallic Golf Ball Marker Design",
     "philosophy": "本設計為 PGA TOUR 專屬打造的「581」紀念金屬球標。視覺核心為流暢的揮桿剪影，展現動態力量美學。色彩以高飽和度深藍色烤漆搭配鋅合金鍍鎳，營造經典雋永的對比。金屬面採用細緻的放射狀髮絲紋處理，在不同光線下閃爍精緻層次。字體結合現代無襯線體與流線型裝飾字，完美平衡運動活力與高端收藏質感。",
@@ -112,7 +112,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "11",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "PGA TOUR（美國職業高爾夫巡迴賽）581紀念金屬徽章別針",
     "titleEn": "PGA TOUR Official 581 Memorial Metal Pin Badge",
     "philosophy": "為PGA TOUR（美國職業高爾夫巡迴賽）傾心設計的581紀念金屬徽章別針（Metal Badge Pin）。視覺與工藝設計全方位展現極致匠心：\n\n1. 烤漆與金屬線條（烤漆/琺瑯工藝）：徽章主體採用高規格鋅合金金色電鍍，外圍與數字輪廓勾勒出流暢且立體的金色金屬線條，經由凹凸模具設計實施仿琺瑯（Synthetic Enamel）與軟烤漆（Soft Enamel）高精密填色，展現富麗端莊的浮雕質感。\n\n2. 特殊紋理填料（珍珠底/閃粉效果）：數字「581」內部非單調平面烤漆，而是特別融入帶有晶亮微粒感的珍珠漆（Pearl paint）與閃粉（Glitter）配方。在光線流轉下折射出內斂深邃的星芒光澤，大幅增強了紀念徽章的精緻度與藝術高級感。\n\n3. 拋光與邊緣防護：金屬邊緣皆作精細手工去毛刺與高光圓潤拋光，表面平整晶瑩，搭配圓帽背釦構造，不僅確保絕佳觸感與佩戴牢固度，更傳遞高爾夫榮耀殿堂的璀璨光芒。",
@@ -135,7 +135,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "12",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "台北國際音樂邀請賽 2026 鋅合金壓鑄電鍍獎牌設計",
     "titleEn": "Taipei International Music Competition 2026 Die-Cast Zinc Alloy Medal Design",
     "philosophy": "為2026年「台北國際音樂邀請賽」精心研發設計的官方頂級壓鑄紀念金屬獎牌。本獎牌旨在將無形的音樂藝術成就凝聚於實體榮譽中，設計與材質工藝深度解析如下：\n\n1. 多層次立體浮雕：採用專業級高經緯度3D建模與精密金屬雕刻模具，在堅韌的壓鑄表面勾勒出律動的五線譜、高音記號及賽事核心徽標，呈現出層次豐富、光影變化強烈的立體浮雕視覺效果。\n\n2. 霧面噴砂底紋：金屬線條的凹槽底部經由霧砂質感咬花（Sandblast / Matte Texture）精細處理，與表面高精度拋光的金色鏡面金屬突出線條，形成反差強烈的雙重質感，使整體視覺顯得格外沉穩與高級。\n\n3. 彩色琺瑯填色：使用環保耐磨的仿琺瑯高溫液態烤漆，於特定區域手工填灌賽事代表色。顏色飽和度極高、且與金屬邊界完美切齊無溢色，經烘烤後質地堅硬、色澤歷久彌新。\n\n4. 賽事專屬緹花織帶：針對本次競賽特別開發的寬版高密度聚酯纖維編織帶，結合雙邊防皺包邊與客製化耐磨網版印刷，織帶圖騰、色系與獎牌主體高度呼應，為獲獎音樂家獻上最尊貴且不凡的藝術榮耀。",
@@ -158,7 +158,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "13",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "DePaul University 帝博大學 皇家藍紅流蘇黃銅鏤空紀念書籤尺",
     "titleEn": "DePaul University Brass Filigree Commemorative Bookmark Ruler with Royal Blue & Red Tassel",
     "philosophy": "本設計專為美國帝博大學（DePaul University）打造，融合實用刻度尺與典雅書籤。主體採用優質黃銅，經精密化學蝕刻與雷射雕刻，細緻呈現校徽與古典 Serif 襯線字體。書籤右側融入精緻的四葉草幾何鏤空花窗，展現穿透的光影美感。尾端搭配象徵校色之皇家藍與深紅手工編織流蘇，為冰冷的金屬物件注入濃郁的學院人文溫度。",
@@ -182,7 +182,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "14",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "2025 TISDC 臺灣國際學生創意設計大賽 官方名牌識別徽章",
     "titleEn": "2025 TISDC Taiwan International Student Design Competition Official ID Badge Pins",
     "philosophy": "為2025臺灣國際學生創意設計大賽（TISDC，Taiwan International Student Design Competition）傾心規劃與設計的官方專屬名牌識別徽章。本系列徽章涵蓋「工作人員 Staff」、「獲獎者 Winners」、「主持人 Moderators」及「評審 Jurors」等，將賽事的主視覺美學與金屬工藝完美熔煉：\n\n1. 身分識別與幾何色塊語彙：依據不同大會定位與功能角色，規劃出高飽和度的色彩與立體切割幾何圖騰。將繁複的大賽視覺圖形精煉於隨身佩戴的名牌上，於大型國際典禮中達到極佳的瞬間視覺辨識度與社交穿透力。\n\n2. 壓鑄電鍍與多層次拋光：採用鋅合金模具高壓鑄造（Die-Casting），基底表面進行極致高光金色/銀色電鍍。每一枚別針邊界及英文字母輪廓金屬高光流亮、線條流暢，突顯國際級專業競賽的高貴尊榮風範。\n\n3. 琺瑯填漆工藝（Color Filling）：採用仿琺瑯烤漆（Synthetic Enamel）手工填附色塊，顏色鮮明、均勻平整且緊扣幾何線條邊界，經高溫烘烤固化後抗刮耐磨、不褪色，完美還原 2025 TISDC 大會主視覺強烈的活力與現代藝術氣息。",
@@ -205,7 +205,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "15",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "2025 曼波新城國際疊石藝術節 手作立體浮雕創意磁鐵",
     "titleEn": "2025 Mambo-Xincheng International Festival of Rock Balancing and Arts Handmade 3D Embossed Creative Magnets",
     "philosophy": "此系列設計作品為「2025 曼波新城國際疊石藝術節」所推出的四款手作立體浮雕創意磁鐵或杯墊。每件作品皆以精緻的浮雕工藝，呈現曼波新城海岸線的不同風貌，將疊石藝術與自然景觀完美融合。設計師巧妙地捕捉了四種獨特的海岸場景：一處擁有翠綠山脈與湛藍海灣的日間景色、一幅夕陽西下時橙紅餘暉映照海面的壯麗剪影、一片波光粼粼且疊石林立的靜謐沙灘，以及一段擁有峭壁、碧綠海水與疊石塔的崎嶇海岸線。每件作品的頂部都清晰地標示著「2025 曼波新城國際疊石藝術節」的中英文名稱。\n\n設計師在色彩運用上展現了高超的技巧，每款作品皆採用了獨特的調色板，從日間場景的鮮明藍綠色系，到夕陽景觀的溫暖橙色與深靛色，再到寧靜海灘的冷調藍灰色，精準地捕捉了不同時間與氛圍下的海岸風情。這些色彩不僅豐富了視覺層次，也深化了各場景的情感表達。版面配置上，節慶的品牌資訊位於頂部，簡潔而明確，下方則留給細膩的海岸風景插畫，突顯其藝術性。字體選擇方面，英文採用現代簡潔的無襯線字體，確保清晰可讀性；中文標題則選用富有藝術感的字體，與疊石藝術的文化意涵相得益彰。四種不同的造型——流線型長方、圓形以及兩款仿自然石塊的不規則形狀——更增添了收藏價值與獨特性，呼應自然之美。\n\n在製作工藝上，這些磁鐵或杯墊採用多層次的軟性 PVC 或橡膠材料製成，透過精密的注塑成型或分層印刷技術，實現了觸感豐富的 3D 立體浮雕效果。材料的選擇確保了產品的耐用性與觸感的舒適度。色彩飽和度高且表面呈現均勻的霧面質感，完美呈現了設計的細節與層次。這種製作方式不僅將平面插畫轉化為具備雕塑感的實體作品，也體現了卓越的工業設計水平，為參與者提供了高質量的節慶紀念品。",
@@ -231,7 +231,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "16",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "捷克參議院議長訪問臺灣立法院 官方典藏紀念徽章組",
     "titleEn": "Czech Senate President's Historic Visit to Taiwan Legislative Yuan Commemorative Badge Set",
     "philosophy": "為捷克參議院議長率團訪問臺灣立法院而特別企劃與設計的級別迎賓紀念別針徽章及展示。徽章組完美融合兩國的國家圖騰、民主聯盟情誼及頂級金屬工藝：\n\n1. 兩國國旗與民主同盟語彙：設計將捷克共和國與中華民國（臺灣）的情誼具象化，融匯雙方國花、經典配色（藍、白、紅）及民主自由盟約設計，展現攜手共創價值的崇高願景。\n\n2. 高精密鋅合金壓鑄與亮拋光：採用鋅合金高壓鑄造（Die-Casting），基底表面進行極致高光金色與鎳色（鍍銀）電鍍。文字輪廓與金屬分色線精準清晰，散發莊嚴典雅的尊榮質感。\n\n3. 彩色仿琺瑯手工填漆（Color Fill）：融合大會主視覺高彩度色塊，以手工逐一填入琺瑯漆料。色彩鮮明平整、分界精準，經高溫固化後抗刮耐磨、歷久不褪色，完美重現高貴藝術。\n\n4. 微縮大會堂浮雕：下方生動立體微雕出立法院議事廳的巴洛克紅磚圓頂大樓，光影交錯、線條緊緻，呈現厚重的憲政歷史厚度與民主合作象徵。",
@@ -255,7 +255,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "17",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "台灣大和化成股份有限公司 官方高質感企業識別徽章",
     "titleEn": "Taiwan Yamato Chemicals Official Premium High-End Corporate Emblem Pin",
     "philosophy": "為「台灣大和化成股份有限公司」（Taiwan Yamato Chemicals Co., Ltd.）精心設計與製作的官方高質感企業識別別針徽章。本件別針徽章的開發完美融合品牌形象與現代高端金屬工藝，設計及工藝特色深度解析如下：\n\n1. 幾何科技感企業Logo轉化：徽章主體設計精準還原大和化成的標誌符號，採用流暢動感的幾何線條展示專業與持續創新的品牌特質。在微縮的胸針規格中，線條切割精準，具有極高辨識度及精緻美感。\n\n2. 鋅合金精密鑄造與極致金屬電鍍：選用高純度鋅合金材料，透過200噸高壓熔鑄模具（Die-Casting）進行微米級細節刻劃。金屬框線經過高密度精細拋光後進行亮鎳或亮鉻電鍍處理，邊緣及字體高光如鏡、線條挺拔滑順。\n\n3. 專屬防偽仿琺瑯填漆（Color Fill）：對接品牌標準色，手工將高飽和度的蔚藍與晶瑩白雙色完美充填，分色精準。經由大於180度高溫固化與精緻研磨拋光，使漆面與金屬表面達到無落差的極致平整度，保證耐刮、耐酸鹼且常亮如新，呼應化工大廠對卓越化學物理特性的追求。\n\n4. 尊尊榮精細包裝：每枚徽章均配備高級抗氧化卡紙、背貼加固蝴蝶帽扣，在公司商務交流、週年典禮及重大展會中，最能極致流露專業風貌與團隊榮耀。",
@@ -277,7 +277,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "18",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "中華民國空軍「天龍操演」團體總錦標紀念天龍銀盤",
     "titleEn": "ROC Air Force 'Sky Dragon Exercise' Overall Championship Commemorative Silver Platter",
     "philosophy": "專為中華民國空軍年度最頂尖之戰術演訓「天龍操演」（戰術專精班常態性競賽）團體總錦標榮譽所特別企劃、研發與鍛造的官方巨獻「紀念天龍銀盤」。本作品將空軍卓越空優戰力形象與頂級貴重金屬鍛造刻劃技術工藝完美凝結：\n\n1. 雷雕銘刻天龍翔空軍旗語彙：銀盤盤面精準雷射高深多層次銘刻，將空軍代表性的「天龍」圖騰威武刻劃。巨龍展翼、氣勢磅礴，與空軍軍徽及「團體總錦標」得獎榮譽文字交織，突顯精準空戰與無上團隊榮譽之精神表徵。\n\n2. 貴重金屬精細鍛造與亮面拋光：底座採用高純度黃銅極限冷鍛成形，全表面進行多重超高亮度鏡面亮銀電鍍處理。鍍銀層經抗氧化極致處理，在不同投射光源下高光流亮、邊緣晶瑩亮徹，賦予國軍最高榮譽至高無上的尊榮金屬高貴質感。\n\n3. 盤緣細膩網線與立體波折：銀盤外圈邊界經過精細壓痕工藝呈現均勻規整的波浪網線與複刻花邊，凹凸光影極具雕塑厚重感。每尊均附高級大氣紅木底座及高質感專屬壓花盒，呈現出無可替代的典雅憲政與國防榮譽高度。",
@@ -299,7 +299,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "19",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "王品集團第一屆王品嚴選年菜競賽 官方琥珀藝術獎盃",
     "titleEn": "1st Wangpin Select New Year Dishes Competition Official Amber Glass Art Trophy",
     "philosophy": "為王品集團（Wowprime Group）耀眼舉辦的第一屆「王品嚴選年菜競賽」官方特別企劃、研發與工藝定製的「琥珀色典藏大師級獎盃」。本作品專注於頂級餐飲榮譽，將賽事對經典佳餚的極致苛求，以高貴的琥珀琉璃美學與冷熱加工技術完美凝固：\n\n1. 奢華溫潤琥珀流光：整體採用高純度、高抗黃變的透光樹脂與脫蠟琉璃（Lost-Wax Casting）混合配方，調製出從明黃、橙金過渡至深褐的奢華漸層琥珀色調。在自然光源及射燈的透射下，散發如美酒琥珀般的晶瑩底蘊與頂級人文質感。\n\n2. 職人級真空消泡與高拋光：經由24小時真空脫氣和恆溫定形，確保獎盃本體零氣泡、無斷紋，晶瑩透亮。由工藝職人經由極細目砂紙及高密絨布進行多道鏡面拋光，杯體觸感滑如油脂、反光瑩潤。\n\n3. 多重異材質精密組裝與微波銘刻：底座搭配深沉貴重的黑曜石/黑水晶底托，上層安裝經精密多層電鍍的高光金色或古銅拉絲金屬文字飾版，細緻雷射深雕大賽主視覺與榮譽大獎等印記。兩者嚴絲合縫、沈穩厚重，呈現極高的殿堂級頒獎現場穿透力與典藏風範。",
@@ -322,7 +322,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "20",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "花蓮縣光華國民小學 官方永續吸水文創玻璃砂與珪藻土杯墊",
     "titleEn": "Hualien Guanghua Elementary School Official Eco-Friendly Absorbent Glass Sand Coasters",
     "philosophy": "專為花蓮縣吉安鄉光華國民小學精心企劃與研發客製的「官方永續吸水文創玻璃砂與珪藻土杯墊」。本周邊商品凝聚了光華國小親水、生態度假與藝術美學的教育願景，將光華獨特的人文與自然紋理巧妙轉化：\n\n1. 永續環保生態材質複合：主體採用良好吸水性珪藻土與回收再利用的海洋玻璃砂，透過精密熱壓融合加工而成。不僅具備超強吸水、乾爽防霉的優異物理特點，更寓意著綠色永續與守護蔚藍海洋的深刻生態教育精神。\n\n2. 絢麗在地特殊美景手繪：杯墊表面由專業設計師精心彩繪光華國小獨特優美大自然與校園大榕樹波折，色彩溫暖柔和、漸層豐富。將朝氣蓬勃的校園氛圍與花蓮美麗大自然融入日常器皿，散發濃厚的人文溫度。\n\n3. 精密壓紋與防滑安全：外圍邊角經過細緻洗磨與倒角拋光，觸感圓潤安全。背面特別貼合天然木栓（Cork）隔熱且極致止滑，避免劃傷精密案几，將微縮文創設計與極致實用性完美契合。",
@@ -346,7 +346,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "21",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "宏泰人壽官方高質感企業員工識別名牌與徽章",
     "titleEn": "Hontai Life Insurance Official Premium Corporate Employee Name Identification Badge",
     "philosophy": "專為「宏泰人壽」（Hontai Life Insurance）精心設計與精雕定製的「官方高質感企業員工識別名牌與徽章」。本件作品結合尊榮保險品牌形象及現代高端金屬切削、電鍍與填漆工藝，設計細節如下：\n\n1. 企業經典Logo與幾何流線相容：完美再現宏泰人壽極具辨識度的品牌Logo。流暢的幾何金屬外輪廓結合流線設計，賦予佩戴者無與倫比的專業、信賴與尊貴感。\n\n2. 鏡面拋光亮金電鍍工藝：徽章底座採用高規黃銅極限冷鍛成形，表面經由手工精細拋光達極高鏡面光澤，再電鍍極致尊貴的24K亮金塗層。亮金色澤飽和溫潤，邊緣線條流暢，突顯保險業「一生的承諾，堅實的守護」之尊榮理念。\n\n3. 精密手工防琺瑯大會色充填：對接宏泰人壽標準CIS色系，手工逐層填注蔚藍色與純白琺瑯漆。經過高溫固化、多道研磨及鏡面拋光，使金屬線與色塊表面平滑如一、無階差，呈現無與倫比的晶瑩珠寶質感與極佳耐磨、防褪色性能。\n\n4. 實用配戴與防護設計：背面配備強力磁吸背扣，具有超高吸附力且安全不傷筆挺的西服與套裝面料，為全體同仁提供最體面的企業門面形象與事業榮譽感。",
@@ -369,7 +369,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "22",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "花蓮縣玉里鎮公所 官方YULI觀光與節慶文創禮品組",
     "titleEn": "Hualien Yuli Township Office Official YULI Tourism and Festival Commemorative Gifts",
     "philosophy": "專為花蓮縣玉里鎮公所特別策劃與設計開發的「官方YULI觀光與節慶文創禮品組」。玉里鎮以純淨大自然、秀麗金針花海景觀及溫馨多元族群人文聞名，本件禮品套組完美融合地方靈魂形象與細膩實用工藝：\n\n1. 玉里在地自然人文意象轉化：設計圍繞「YULI字形」與「玉里特色」展開，融入充滿生命力的在地吉祥物與山水風光，將玉里的熱情、樸實與純真極致呈現，在視覺上傳遞熱烈的節慶與觀光氛圍。\n\n2. 高規環保複合與細緻彩繪噴塗：本體及周邊配件選用精良、安全耐磨的綠色永續基材製作，表面結合領先的高精密熱轉印與抗褪色釉點彩繪工藝，圖案分色清晰、過渡溫潤。每個禮品細節皆經過職人修邊打磨，觸感圓潤溫實。\n\n3. 觀光推廣與在地伴手禮企劃：專為公所外賓參訪、在地重大文化節慶（例如金針花季）量身定製，兼顧生活美學實用性與玉里大自然的綠能精神。是一份盛載鄉土厚重情懷與現代創意美感的國際級文旅伴手禮。",
@@ -392,7 +392,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "23",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "國立金門大學企業管理學系 官方文創形象徽章與周邊設計組",
     "titleEn": "National Quemoy University Department of Business Administration Official Brand Souvenirs",
     "philosophy": "專為「國立金門大學企業管理學系」精心企劃與研發開發的「官方文創形象徽章與周邊設計組」。本系列設計將金門地區深厚的閩南古典文化底蘊（如傳統大厝飛揚的燕尾脊脊線）與現代企業管理商務實務的多維視野（全球化戰略、變革領導力與永續創業精神）完美交織，打造成為兼具校園品牌認同與極致生活美學之大成之作：\n\n1. 閩南燕尾天際線與現代商務徽標共融：設計巧妙提取金門最具代表性的屋頂「燕尾脊」優美弧線，並將品牌「BA」（Business Administration）英文字體進行現代幾何轉化，兩者完美融合。這既蘊含了深邃的中華古典人文底蘊，也突顯了企管人才勇往直前的戰略前瞻性。\n\n2. 高級感霧面高質感工藝與雙重質地：全套周邊均選用頂級與極致手感的工藝。精工馬克杯杯身塗覆手感極佳的細緻啞光黑不銹鋼保護層，並以毫米級精密雷雕呈現亮金色系徽；精緻胸針徽章採用高純度鋅合金壓鑄成形，表面塗布莫蘭迪莫蘭迪藍填漆與手工鏡面拋光，光暈流轉、無瑕剔透。\n\n3. 全方位學術品牌凝聚與典藏禮包設計：產品涵蓋不銹鋼磨砂杯、帆布背袋、精切烤漆襟章等，以頂級禮品包裝工藝與深邃品牌視覺配色，提供給全球畢業系友、全體在校同仁，激發極致深遠的系所歸屬感與形象推廣實用價值。",
@@ -417,7 +417,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "24",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "松冠基督徒大會中心 AGAPE TRES DIAS 第五屆紀念金屬書籤",
     "titleEn": "Agape Tres Dias 5th Christian Conference Commemorative Metal Bookmark Design",
     "philosophy": "本設計為「AGAPE TRES DIAS 5」基督徒大會精心打造的尊榮紀念金屬書籤。外觀採流線型圓弧銘牌造型，邊緣點綴極簡雙軌邊框。視覺焦點融合象徵聖靈與和平的圓形飛鴿徽章，並結合古典襯線體與俐落黑體，呈現經典而莊重的宗教美學。書籤背面精緻雷雕聖經金句「我們愛，因為神先愛我們。約翰一書4:19」及大會日期。材質規劃採用高質感拉絲黃銅與霧面陽極氧化鋁，搭配化學蝕刻與高精密雷射打標工藝，呈現內斂沉穩的歲月留痕與工藝質感。",
@@ -440,7 +440,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "25",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "國立新竹科學園區實驗高級中等學校 官方雙層圓邊高透光壓克力吊飾",
     "titleEn": "National Hsinchu Science Park Experimental High School Official Premium Double-Layer Clear Acrylic Keyring Charm Design",
     "philosophy": "「國立新竹科學園區實驗高級中等學校」官方雙層圓邊高透光壓克力吊飾，巧妙地將校園精神融入日常隨身物品。此設計以精緻插畫風格呈現學校代表性建築群，包含莊嚴的中央紀念碑、典雅的教學大樓以及周圍綠意盎然的樹木。畫面中，數隻飛翔的鳥兒為校園景緻增添了生動與自由的氛圍，象徵學生們展翅高飛的無限潛能。本吊飾採用雙層高透明度壓克力板製作，透過精準雷射切割技術，呈現出流暢圓潤的邊緣，觸感溫和。圖案運用環保UV印刷技術，色彩鮮明且耐用，並疊加一層防刮保護，確保圖案清晰持久。整體設計風格簡潔清新，線條流暢，將校園的自然美與建築特色完美融合，展現學校創新與活力的一面。搭配堅固耐用的鋅合金金屬鑰匙圈，經典電鍍處理，不僅提供穩固的固定功能，更提升了吊飾的整體質感。此款吊飾不僅是實用的隨身配件，更是承載著校園記憶與榮耀的珍貴紀念品，適合師生校友珍藏，每日佩戴，時時感受校園的溫馨與啟發。",
@@ -455,12 +455,14 @@ export const initialPortfolioData: PortfolioItem[] = [
     "placeholderId": "IMAGE_25",
     "colorTheme": "from-amber-700 via-green-600 to-blue-200",
     "images": [
-      "https://lh3.googleusercontent.com/d/1bE5O6UX3KuVNyZhXgFlSpKqiUtaltgPv"
+      "https://lh3.googleusercontent.com/d/1bE5O6UX3KuVNyZhXgFlSpKqiUtaltgPv",
+      "https://lh3.googleusercontent.com/d/1ui8JKOv5A8kXWYDO2oM3YZv1lkkpTIWo",
+      "https://lh3.googleusercontent.com/d/1y5AMAb3AD1u_9XTPr31PWr-VXv_r4XmB"
     ]
   },
   {
     "id": "26",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "工信工程淡江大橋 官方開工大吉紀念金鏟子禮盒組",
     "titleEn": "Industrial Engineering Tamkang Bridge Official Groundbreaking Commemorative Golden Shovel Gift Set",
     "philosophy": "本案為專為「工信工程」隆重規劃之淡江大橋主橋段工程動土開工奠基、典藏文創「開工大吉紀念金鏟子禮盒組」。整體視覺與產品規劃如下：\n\n1. 扎哈·哈蒂建築美學跨界轉譯：紀念金鏟子手柄造型巧妙重塑淡江大橋主旋翼流線曲率與宏偉的單塔斜張橋塔地標幾何。鏟面精雕細琢大會核心標章與祥雲圖騰，刻畫出浩繁工程開疆闢土的壯麗美感。\n\n2. 高規格多重真空電鍍塗層：金屬部分選用高剛性質感黃銅精鑄，經拋光打磨後進行三層真空電鍍24K亮金；色澤明度飽和、耀眼尊貴，並加上奈米級抗指紋真空封釉處理，確保鏟身防潮、抗氧化且不褪色。\n\n3. 尊榮禮盒包裝與精雕紅花梨實木底托：全套禮組搭配由進口紅花梨實木精雕而成的專屬展示底座，實木底托鑲嵌高純度拉絲黃銅雷雕銘牌，精準鐫刻淡江大橋主橋開工紀念語與重要工程數據。外包裝採高剛性深藍特種紙燙金禮盒與專屬提袋，為政要、貴賓與收藏家獻上極致高貴尊榮的開箱儀式感。",
@@ -482,7 +484,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "27",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "台北華山扶輪社 台灣奶茶主題國際親善交流紀念徽章",
     "titleEn": "Taipei Huashan Rotary Club Taiwan Bubble Milk Tea Theme International Exchange Commemorative Badge",
     "philosophy": "專為「台北華山扶輪社」精心企劃、美學研製之「台灣奶茶主題國際親善交流紀念徽章」。本款設計結合台灣享譽全球的「珍珠奶茶（Bubble Milk Tea）」飲食文化符碼與國際扶輪社親善互助之卓越宗旨，精心淬鍊出富含濃厚島嶼熱情與現代時尚張力的紀念徽標：\n\n1. 台灣庶民茶飲魅力與親善地標相嵌：設計巧妙提取高度寫實、Q萌可愛的珍珠奶茶杯身曲線，杯頂點綴誘人、柔滑細密的手調奶蓋層。中央精密印製國際扶輪社齒輪（Rotary Wheel）核心標章與「Taipei Huashan」專屬字樣，彰顯台灣在地風情與國際同濟社友的跨界友愛交流。\n\n2. 頂級黃銅壓鑄與剔透晶瓷琺瑯：本體取材高品質環保黃銅重力壓鑄，經拉絲拋光、金屬倒角。正面各色塊區域皆注入多重專利晶瓷琺瑯漆，透過精確的高溫固化工藝呈現飽滿、微凸、如鋼琴烤漆般清透潤光的高奢質感。底部沉澱的珍珠粒粒圓潤、色澤溫軟黑亮，完美還原最具代表性的「波霸珍珠」誘人光彩。\n\n3. 專屬防磨蝴蝶扣與高質感展示吸塑卡貼：背部搭載雙針精密定位防旋轉蝴蝶扣，配戴穩固、平整貼合。每枚徽章均襯有專屬精緻燙金典藏吸塑厚紙卡，無論是國際交換、外交出訪餽贈友社，皆能深刻傳遞寶島台灣的甘醇溫厚、多元親善魅力與頂尖文創美學。",
@@ -505,7 +507,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "28",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "雲林家扶中心 75周年 溫馨守護防潮野餐墊",
     "titleEn": "Yunlin Family Helper Center 75th Anniversary Commemorative Moisture-Proof Picnic Mat",
     "philosophy": "專為「雲林家扶中心」成立75周年所特別企劃、暖心定製開發的「75周年溫馨守護防潮野餐墊」。本商品承載著家扶中心七十五載以來，深耕雲林在地、溫柔拔植、陪伴無數弱勢兒少與家庭成長的溫馨歲月，並注入現代戶外休閒美學與實用綠色科技：\n\n1. 溫馨守護與希望幼苗美學融合：設計特別融入雲林農業大縣的在地自然元素（如金黃稻浪、飛翔候鳥與暖陽），與代表家扶扶幼精神的「手護幼苗」愛心圖騰完美輝映。色彩搭配選擇陽光溫暖的薑黃與安定的大地棕、草綠，營造在綠意草地上享受天倫、溫馨幸福的親情氛圍。\n\n2. 頂級防潮高彈三層結構工藝：面料首選精細親膚、抗起球的桃皮絨高密織物，觸感極致溫潤細膩。中層高壓複合高回彈優質中空棉，厚度達 3mm，在鬆軟草地或礫石地上皆能提供絕佳的緩衝感。底層採用先進的「網格環保防水超耐磨PEVA膜」，100%隔絕草地濕氣、泥沙與汗水，防潮耐髒，輕抹即淨。\n\n3. 專屬摺疊手提一體化與高規格織帶扣環：採用極簡俐落的魔鬼氈一體化摺疊式結構設計，僅需簡單三步即可快速收納為時尚小提包（Folded Carry Bag）。搭配堅固尼龍編織手提帶與復古裝飾皮革扣件，攜帶極其輕巧優雅，不論是草地野餐、沙灘度假或露營休閒，皆能隨行點亮溫情滿載的野餐時光。",
@@ -527,7 +529,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "29",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "新竹市體育會西洋棋委員會 典藏工藝級防滑矽膠吸水杯墊",
     "titleEn": "Hsinchu City Sports Association Chess Committee Official Commemorative Chess Art Silicone Coaster Set",
     "philosophy": "專為「新竹市體育會西洋棋委員會」特別策劃、美學研製之「典藏工藝級吸水杯墊」。本款設計結合西洋棋（Chess）古老、深邃的智力博弈之美，與新竹市現代科技活力的城市風貌，將棋盤、棋子等經典幾何美學巧妙轉譯，為棋藝愛好者、大師與參賽選手量身打造：\n\n1. 皇家棋王與戰術幾何的視覺交融：設計核心取材自西洋棋經典的「國王（King）」與「騎士（Knight）」立體造型。以高精度極簡微縮線條雕刻，並將黑白交錯的經典格線、戰術運算網點圖騰巧妙結合。背景襯托「HSINCHU CHESS」英式古典品牌標準字與齒輪般的科技刻度，象徵智慧、博弈與科技之城的完美交織。\n\n2. 頂級食品級防滑矽膠與高效集水結構：本體嚴選高品質環保無毒、耐高溫達230℃之食品級防滑矽膠（Silicone）。表面採用精密的立體凸起凹槽（3D Raised Grid）設計，能高效承接並引流冷飲或熱飲傾瀉的凝結水珠，防止水分溢流至桌面。極佳的阻尼防滑性能，確保不論在木質、玻璃或大理石桌面上皆能穩固安放，帶來無與倫比的安全感與實用性。\n\n3. 環保水洗耐磨與精緻專屬紙卡封裝：具備絕佳的防水、防油、抗污特性，一沖即淨，歷久不變形。每款杯墊都搭配專屬雙面高磅數霧面燙金紙卡夾裝包裝，無論作為西洋棋錦標賽、講堂、俱樂部之尊榮紀念伴手禮，亦或是日常辦公桌上的雅緻擺設，皆展現棋與生活完美契合的知性品味與工藝美學。",
@@ -569,77 +571,77 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1NAJpGr20KaHwTfqIRJpS4FJveGaEZAgg"
     ]
   },
-  {
-    "id": "31",
-    "category": "商品與周邊設計",
-    "title": "豐森大境建案 官方開工大吉紀念金鏟子禮盒組",
-    "titleEn": "Feng Sen Da Jing Real Estate Project Official Groundbreaking Commemorative Golden Shovel Gift Set",
-    "philosophy": "專為「豐森大境」精品住宅建案所特別企劃、高奢定製開發的「官方開工大吉紀念金鏟子禮盒組」。本產品完美融合精工建築美學、台灣傳統動土吉祥寓意（諧音「緊產子」，象徵興旺、招財與世代興盛），與頂級金工奢華禮品製作工藝：\n\n1. 現代建築幾何與流線金工的完美交織：設計巧妙提取「豐森大境」建案極具現代感的流線建築線條與森林盎然生機，與高貴典雅的金鏟結構渾然一體。鏟身比例端莊，刻線流暢，金鏟頂部點綴品牌核心識別徽標，既保留了傳統風水民俗的底蘊，又注入當代極簡奢華風采。\n\n2. 頂級高純度電鍍金與防指紋真空封釉工藝：主體金鏟精選高規格鋼金屬鍛造，表面歷經十餘道精密鏡面打磨拋光，並覆蓋航太級高純度純金電鍍層（Pure Gold Plating）。鏟面色澤純粹而飽滿，搭配奈米阻氧化真空封釉處理，能有效抗指紋、防潮防褪色，使尊貴金光歷久彌新。\n\n3. 奢華紅花梨木展示底座與專屬皮質手提箱：禮組標配由整塊進口紅花梨實木精銑而成的展示托架，正面嵌有拉絲黃銅雷雕紀念銘牌，鐫刻「豐森大境 開工大吉」與專屬奠紀念文字。外包裝採用高剛性皮質壓紋禮盒與金屬鎖扣，給予藏家極致尊榮、極具儀式感的尊貴收藏與齽贈體驗。",
-    "tools": [
-      "高端地產文創企劃",
-      "高規格鏡面拋光鍍金",
-      "紅花梨木底座CNC銑削",
-      "拉絲黃銅拉絲雷雕",
-      "建築流線空間符碼轉譯"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1CtntqV1k0wyIgCcqalGDdizW-POttWfK",
-    "placeholderId": "IMAGE_31",
-    "colorTheme": "from-amber-950 to-stone-950",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1CtntqV1k0wyIgCcqalGDdizW-POttWfK",
-      "https://lh3.googleusercontent.com/d/1gfwwH1Sf3M3NJpCChzHVdSvfaK9nBKJK",
-      "https://lh3.googleusercontent.com/d/1quMkTKsvgdXInky0Uvc0stYi0qdskshm",
-      "https://lh3.googleusercontent.com/d/1XxKE5MisUvxvMqBm8AxnHnV55Re9rZV9"
-    ]
-  },
-  {
-    "id": "32",
-    "category": "商品與周邊設計",
-    "title": "花蓮地震震災重建義賣 鏟子超人雷雕紀念吊飾組",
-    "titleEn": "Hualien Earthquake Disaster Relief Charity Sale Shovel Superhero Laser-Engraved Commemorative Keychain Charm",
-    "philosophy": "專為「花蓮地震震災重建義賣公眾活動」所特別企劃、設計開發之「鏟子超人雷刻紀念吊飾組」。本款文創周邊將具備堅韌信念、開路先鋒意象的「鏟子」化身為守護大地的「超人」英雄，象徵在震重艱難的時刻中，無畏挺身、默默付出的無名英雄與重建希望，並結合精準雷雕極客工藝與頂級雙層夾板材料技術，傳遞永不妥協的溫暖力量：\n\n1. 鏟子超人原創IP與大地重建希望：設計巧妙地將鏟子剛硬的幾何輪廓，與披上紅色斗篷、昂首微笑的「超人（Superhero）」原創角色完美融合。背景點綴代表在震裂大地中仍能萌芽生長、象徵花蓮野性生命力的朱槿花圖騰，以及昂首振翅重飛的浴火白鴿，將震災悲情轉化為一幅充滿重生動能與無盡感動的守護畫卷。\n\n2. 高精密雷導雙向深度蝕刻工藝：主體材質嚴選抗摔、高透亮之雙層複合防刮有機高分子板材。底層塗布拉絲銀金屬感質地，面層經高速高頻二氧化碳雷射高精雕刻（Precision Laser Engraving）深度蝕刻，勾勒出極具力量感的線材與超人堅毅的光影線條。邊緣採極緻圓潤的水晶拋光全倒角，觸感順滑、剔透閃亮。\n\n3. 七芯防搜編織傘繩扣與典藏紀念紙卡：搭設兼具戶外搜救力量、高剛性的軍工級七芯編織傘繩結與經典拉絲古銅質感防磨旋轉要是鑰匙掛圈（Swivel Ring）。每枚義賣扣飾均精緻裝貼在燙金手寫編號的「天祐花蓮 攜手前進」典藏厚紙底卡上，將全台凝聚的善念與祝福溫情封裝，隨行閃耀。",
-    "tools": [
-      "震災重建義賣文創企劃",
-      "高精密多維雷射微雕",
-      "雙層高分子板材複合工藝",
-      "軍規七芯傘繩手工結繩工藝",
-      "愛心IP角色視覺標誌系統設計"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1IHNMICS3Jrmupw6YpTHCiKEO6x1Ig10L",
-    "placeholderId": "IMAGE_32",
-    "colorTheme": "from-red-950 to-neutral-950",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1IHNMICS3Jrmupw6YpTHCiKEO6x1Ig10L",
-      "https://lh3.googleusercontent.com/d/1u60Pkaii-AkGyK58ngZAumnEKEEgNBsA",
-      "https://lh3.googleusercontent.com/d/1yDL6e55KKssEdhQLsEzsOrKMTYNXfL6Z",
-      "https://lh3.googleusercontent.com/d/1GglqgexeXjyw3gJmCrRx8Xv6VkhNuqa3"
-    ]
-  },
-  {
-    "id": "33",
-    "category": "商品與周邊設計",
-    "title": "墾丁國家公園 鸚哥魚主題海洋保育陶瓷紀念杯",
-    "titleEn": "Kenting National Park Parrotfish Ocean Conservation Commemorative Ceramic Cup",
-    "philosophy": "專為「墾丁國家公園」精心企劃、美學研製之「鸚哥魚主題海洋保育陶瓷紀念杯」。本款設計結合墾丁珊瑚礁生態中不可或缺的明星魚種——「鸚哥魚（Parrotfish）」，將其繽紛斑斕的體色、圓潤憨厚的形態與海洋生態永續保育之重要使命完美交融，精心淬鍊出極具海島生命張力與厚重人文溫度的文創禮器：\n\n1. 珊瑚礁守護者與漸層海洋美學的完美交織：設計巧妙提取鸚哥魚極具辨識度的鸚鵡嘴狀鮮明口喙，以及亮麗奇幻的靛藍、霓虹綠與橙黃漸層斑斕魚鱗色澤。杯身視覺宛如波光粼粼的墾丁海底世界，魚兒穿梭於繁茂的擬真珊瑚與搖曳海草之間，畫面充滿自然生機與夢幻和諧感。\n\n2. 頂級高溫白瓷胎質與精緻釉下五彩工藝：杯體選用高嶺土經1300℃高溫還原燒製而成的優質白瓷，質地堅密剔透，敲擊聲如磬般清脆。表面圖案採用高難度的精細「釉下高彩噴繪（Underglaze Painting）」與手繪勾邊技術，將鸚哥魚的夢幻彩鱗斑紋活靈現呈，外罩一層清澈白透的食品級環保透明釉，觸感溫潤如玉，耐磨耐酸鹼，永不褪色。\n\n3. 舒適圓弧寬柄與優雅波浪防塵木蓋禮盒：杯柄採人體工學加大寬手柄設計，握持省力、平衡感極佳。每個杯子都搭配一只由天然相思木精心車噴、頂部雕刻細膩海洋波紋的立體防塵木蓋。高剛性精裝海洋藍色燙銀典藏禮盒，承載著陽光海岸的甘甜美味、極致海島文創美學與對海洋生態地景的無限深情。",
-    "tools": [
-      "海洋生態地景文創企劃",
-      "高溫白瓷釉下五彩手工描繪",
-      "人體工學寬手柄精密開模",
-      "天然木器精密雕刻工藝",
-      "珊瑚礁生態符碼視覺包裝設計"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/18Q1AMvM0tzx0ihr9qYX4pTKIWzJrMyin",
-    "placeholderId": "IMAGE_33",
-    "colorTheme": "from-cyan-950 to-neutral-950",
-    "images": [
-      "https://lh3.googleusercontent.com/d/18Q1AMvM0tzx0ihr9qYX4pTKIWzJrMyin",
-      "https://lh3.googleusercontent.com/d/1tHNkU25ssw5_b87aLGWAlToUsjzM-5UG",
-      "https://lh3.googleusercontent.com/d/1ggLxP9DBUUDhZlye93BsTsgqcqVxvi7r"
-    ]
-  },
+{
+  "id": "31",
+  "category": "商品周邊企業禮贈品",
+  "title": "豐森大境建案 官方開工大吉紀念金鏟子禮盒組",
+  "titleEn": "Feng Sen Da Jing Real Estate Project Official Groundbreaking Commemorative Golden Shovel Gift Set",
+  "philosophy": "專為「豐森大境」精品住宅建案所特別企劃、高奢定製開發的「官方開工大吉紀念金鏟子禮盒組」。本產品完美融合精工建築美學、台灣傳統動土吉祥寓意（諧音「緊產子」，象徵興旺、招財與世代興盛），與頂級金工奢華禮品製作工藝：\n\n1. 現代建築幾何與流線金工的完美交織：設計巧妙提取「豐森大境」建案極具現代感的流線建築線條與森林盎然生機，與高貴典雅的金鏟結構渾然一體。鏟身比例端莊，刻線流暢，金鏟頂部點綴品牌核心識別徽標，既保留了傳統風水民俗的底蘊，又注入當代極簡奢華風采。\n\n2. 頂級高純度電鍍金與防指紋真空封釉工藝：主體金鏟精選高規格鋼金屬鍛造，表面歷經十餘道精密鏡面打磨拋光，並覆蓋航太級高純度純金電鍍層（Pure Gold Plating）。鏟面色澤純粹而飽滿，搭配奈米阻氧化真空封釉處理，能有效抗指紋、防潮防褪色，使尊貴金光歷久彌新。\n\n3. 奢華紅花梨木展示底座與專屬皮質手提箱：禮組標配由整塊進口紅花梨實木精銑而成的展示托架，正面嵌有拉絲黃銅雷雕紀念銘牌，鐫刻「豐森大境 開工大吉」與專屬奠紀念文字。外包裝採用高剛性皮質壓紋禮盒與金屬鎖扣，給予藏家極致尊榮、極具儀式感的尊貴收藏與齽贈體驗。",
+  "tools": [
+    "高端地產文創企劃",
+    "高規格鏡面拋光鍍金",
+    "紅花梨木底座CNC銑削",
+    "拉絲黃銅拉絲雷雕",
+    "建築流線空間符碼轉譯"
+  ],
+  "imageUrl": "https://lh3.googleusercontent.com/d/1CtntqV1k0wyIgCcqalGDdizW-POttWfK",
+  "placeholderId": "IMAGE_31",
+  "colorTheme": "from-amber-950 to-stone-950",
+  "images": [
+    "https://lh3.googleusercontent.com/d/1CtntqV1k0wyIgCcqalGDdizW-POttWfK",
+    "https://lh3.googleusercontent.com/d/1gfwwH1Sf3M3NJpCChzHVdSvfaK9nBKJK",
+    "https://lh3.googleusercontent.com/d/1quMkTKsvgdXInky0Uvc0stYi0qdskshm",
+    "https://lh3.googleusercontent.com/d/1XxKE5MisUvxvMqBm8AxnHnV55Re9rZV9"
+  ]
+},
+{
+  "id": "32",
+  "category": "商品周邊企業禮贈品",
+  "title": "花蓮地震震災重建義賣 鏟子超人雷雕紀念吊飾組",
+  "titleEn": "Hualien Earthquake Disaster Relief Charity Sale Shovel Superhero Laser-Engraved Commemorative Keychain Charm",
+  "philosophy": "專為「花蓮地震震災重建義賣公眾活動」所特別企劃、設計開發之「鏟子超人雷刻紀念吊飾組」。本款文創周邊將具備堅韌信念、開路先鋒意象的「鏟子」化身為守護大地的「超人」英雄，象徵在震重艱難的時刻中，無畏挺身、默默付出的無名英雄與重建希望，並結合精準雷雕極客工藝與頂級雙層夾板材料技術，傳遞永不妥協的溫暖力量：\n\n1. 鏟子超人原創IP與大地重建希望：設計巧妙地將鏟子剛硬的幾何輪廓，與披上紅色斗篷、昂首微笑的「超人（Superhero）」原創角色完美融合。背景點綴代表在震裂大地中仍能萌芽生長、象徵花蓮野性生命力的朱槿花圖騰，以及昂首振翅重飛的浴火白鴿，將震災悲情轉化為一幅充滿重生動能與無盡感動的守護畫卷。\n\n2. 高精密雷導雙向深度蝕刻工藝：主體材質嚴選抗摔、高透亮之雙層複合防刮有機高分子板材。底層塗布拉絲銀金屬感質地，面層經高速高頻二氧化碳雷射高精雕刻（Precision Laser Engraving）深度蝕刻，勾勒出極具力量感的線材與超人堅毅的光影線條。邊緣採極緻圓潤的水晶拋光全倒角，觸感順滑、剔透閃亮。\n\n3. 七芯防搜編織傘繩扣與典藏紀念紙卡：搭設兼具戶外搜救力量、高剛性的軍工級七芯編織傘繩結與經典拉絲古銅質感防磨旋轉要是鑰匙掛圈（Swivel Ring）。每枚義賣扣飾均精緻裝貼在燙金手寫編號的「天祐花蓮 攜手前進」典藏厚紙底卡上，將全台凝聚的善念與祝福溫情封裝，隨行閃耀。",
+  "tools": [
+    "震災重建義賣文創企劃",
+    "高精密多維雷射微雕",
+    "雙層高分子板材複合工藝",
+    "軍規七芯傘繩手工結繩工藝",
+    "愛心IP角色視覺標誌系統設計"
+  ],
+  "imageUrl": "https://lh3.googleusercontent.com/d/1IHNMICS3Jrmupw6YpTHCiKEO6x1Ig10L",
+  "placeholderId": "IMAGE_32",
+  "colorTheme": "from-red-950 to-neutral-950",
+  "images": [
+    "https://lh3.googleusercontent.com/d/1IHNMICS3Jrmupw6YpTHCiKEO6x1Ig10L",
+    "https://lh3.googleusercontent.com/d/1u60Pkaii-AkGyK58ngZAumnEKEEgNBsA",
+    "https://lh3.googleusercontent.com/d/1yDL6e55KKssEdhQLsEzsOrKMTYNXfL6Z",
+    "https://lh3.googleusercontent.com/d/1GglqgexeXjyw3gJmCrRx8Xv6VkhNuqa3"
+  ]
+},
+{
+  "id": "33",
+  "category": "商品周邊企業禮贈品",
+  "title": "墾丁國家公園 鸚哥魚主題海洋保育陶瓷紀念杯",
+  "titleEn": "Kenting National Park Parrotfish Ocean Conservation Commemorative Ceramic Cup",
+  "philosophy": "專為「墾丁國家公園」精心企劃、美學研製之「鸚哥魚主題海洋保育陶瓷紀念杯」。本款設計結合墾丁珊瑚礁生態中不可或缺的明星魚種——「鸚哥魚（Parrotfish）」，將其繽紛斑斕的體色、圓潤憨厚的形態與海洋生態永續保育之重要使命完美交融，精心淬鍊出極具海島生命張力與厚重人文溫度的文創禮器：\n\n1. 珊瑚礁守護者與漸層海洋美學的完美交織：設計巧妙提取鸚哥魚極具辨識度的鸚鵡嘴狀鮮明口喙，以及亮麗奇幻的靛藍、霓虹綠與橙黃漸層斑斕魚鱗色澤。杯身視覺宛如波光粼粼的墾丁海底世界，魚兒穿梭於繁茂的擬真珊瑚與搖曳海草之間，畫面充滿自然生機與夢幻和諧感。\n\n2. 頂級高溫白瓷胎質與精緻釉下五彩工藝：杯體選用高嶺土經1300℃高溫還原燒製而成的優質白瓷，質地堅密剔透，敲擊聲如磬般清脆。表面圖案採用高難度的精細「釉下高彩噴繪（Underglaze Painting）」與手繪勾邊技術，將鸚哥魚的夢幻彩鱗斑紋活靈現呈，外罩一層清澈白透的食品級環保透明釉，觸感溫潤如玉，耐磨耐酸鹼，永不褪色。\n\n3. 舒適圓弧寬柄與優雅波浪防塵木蓋禮盒：杯柄採人體工學加大寬手柄設計，握持省力、平衡感極佳。每個杯子都搭配一只由天然相思木精心車噴、頂部雕刻細膩海洋波紋的立體防塵木蓋。高剛性精裝海洋藍色燙銀典藏禮盒，承載著陽光海岸的甘甜美味、極致海島文創美學與對海洋生態地景的無限深情。",
+  "tools": [
+    "海洋生態地景文創企劃",
+    "高溫白瓷釉下五彩手工描繪",
+    "人體工學寬手柄精密開模",
+    "天然木器精密雕刻工藝",
+    "珊瑚礁生態符碼視覺包裝設計"
+  ],
+  "imageUrl": "https://lh3.googleusercontent.com/d/18Q1AMvM0tzx0ihr9qYX4pTKIWzJrMyin",
+  "placeholderId": "IMAGE_33",
+  "colorTheme": "from-cyan-950 to-neutral-950",
+  "images": [
+    "https://lh3.googleusercontent.com/d/18Q1AMvM0tzx0ihr9qYX4pTKIWzJrMyin",
+    "https://lh3.googleusercontent.com/d/1tHNkU25ssw5_b87aLGWAlToUsjzM-5UG",
+    "https://lh3.googleusercontent.com/d/1ggLxP9DBUUDhZlye93BsTsgqcqVxvi7r"
+  ]
+},
   {
     "id": "34",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "臺北市立建國高級中學 第41屆畢業40週年 榮耀重聚紀念徽章",
     "titleEn": "Taipei Municipal Chien-Kuo High School 41st Class 40th Graduation Anniversary Commemorative Badge",
     "philosophy": "專為台灣頂尖名校「建國中學」第41屆校友畢業40週年返校重聚盛典（40th Reunion）精心企劃與美學研製之「榮耀重聚紀念徽章」。本設計完美融合建中無可替代的「紅樓」古典風華、象徵菁英學子的「駝客」堅毅精神，以及國際同窗跨越四十載的深厚情誼，精心淬鍊出極具人文歷史底蘊與重聚尊榮感的紀念校徽：\n\n1. 古典紅樓遺產與現代光芒線條：設計核心取材自建中精神地標「紅樓」的古典拱門與紅磚砌築意象，融入象徵四十載流金歲月的「40」幾何環繞星軌，與代表真理探索的經典徽章齒輪相映生輝。沉穩而流暢的線條象徵著建中駝客人格在時光洗禮後更顯圓融與璀璨。\n\n2. 頂級黃銅壓鑄與高透晶瓷琺瑯工藝：主體精選高純度黃銅以千噸重力重擊壓鑄而成，邊框線條經繁複手工拉絲拋光與真空鍍鉻防蝕處理。正面配色遵循經典「建中綠（校服色）」與皇室寶藍相間，色彩均採耐磨不褪色的進口琺瑯油料點漆高溫固化，色澤飽滿澄澈、明亮如鏡，閃耀著不滅的駝客榮耀。\n\n3. 專屬防滑雙定位扣與極簡燙金典藏吸塑紙卡：配備高規防轉向蝴蝶扣蓋，配戴服貼穩固。每枚紀念徽章均附有專屬「紅樓重聚、駝客歸來」精裝霧面大氣燙金典藏紙卡，為各界菁英餽贈好友、同窗珍藏或重聚佩戴，呈獻最為至高無上的尊榮儀式感。",
@@ -735,7 +737,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "55",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "2025 TREND @ Intervention 介入治療聯合研討會 官方學術大會主視覺與整合宣傳設計",
     "titleEn": "2025 TREND @ Intervention Interventional Therapy Joint Conference Academic Key Visual & Promotional Design",
     "philosophy": "本案為「2025 TREND @ Intervention 介入治療聯合研討會」精心規劃之大會主視覺與一系列整合宣傳設計。整體視覺巧妙融合醫學科技與未來感的幾何網格，展現精準醫療與前沿學術研究的交匯：\n\n1. 醫療科技美學與概念化幾何：視覺核心大膽採用深邃的科技藍與星系紫漸層為背景，象徵介入治療科技的無限可能與醫學前瞻性。畫面上部分流暢排布多主辦機構與學會之聯名標章（Logo），下半部則整齊對齊研討會的核心學術研討範疇，運用線條與方框建立極高辨識度的階層關係。\n\n2. 網格系統與多維度資訊編排：針對大會繁複的多主辦方、協辦方、會議時間及地點等高密度資訊，進行了高度嚴謹的模組化排版。主標題採用高清晰度無襯線體，搭配發光亮白色與對比明黃色，在大型會場、戶外數位看板上皆具備強烈的遠距離瞬間聚焦力。\n\n3. 高保真印前輸出與數位全通路響應：全套視覺方案完美適應各類型實體場地需求（包含高解析大圖輸出、講堂 X 展架、會場迎賓立牌），以及學會官方網站、社群平台的電子宣傳格式（16:9 網頁橫幅與 EDM）。精算色彩管理（CMYK 與 RGB 色域精準轉換），保證會場輸出無偏色，展現高質感的學術盛會格調。",
@@ -757,7 +759,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "35",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "陸軍第六軍團21砲指部「隼翼衛國・金武耀昇」新營區外牆巨幅海報設計",
     "titleEn": "Giant Outdoor Poster Design for ROC Army 6th Army Corps 21st Artillery Command",
     "philosophy": "本案為陸軍第六軍團21砲指部新營區量身打造之巨幅外牆視覺設計，以「隼翼衛國，金武耀昇」為核心精神，完美融合軍事榮譽與現代視覺美學。畫面構圖採用垂直延伸的三段式層次：上方以晴空萬里的蔚藍天際線與耀眼奪目的陽光為背景，象徵捍衛國土的希望與光明前景；中央置入經典的中華民國陸軍衝鋒戰士雕像，象徵承先啟後、勇往直前的鋼鐵意志與歷史傳承；下方則展示雄壯威武的現代數位迷彩部隊，精神抖擻地護衛國旗，展現嚴整紀律。字體選用剛勁有力的黑體與魏碑風骨之隸書結合，外加金色雙重外框，強化大範圍視覺傳達的張力與辨識度。在印製工藝上，考量營區外牆長期風吹日曬之嚴苛環境，特別選用高強度、抗拉扯的「防風抗UV戶外巨幅PVC帆布」，並搭配「耐候型高解析度雙噴/UV直噴技術」，確保色彩歷久不退。邊緣採用雙層高頻熱合包邊包繩，並於關鍵受力點打設高規格防鏽銅扣，以達到極佳的抗風壓與結構安全性，完美彰顯國軍威武之師的宏偉形象。",
@@ -779,7 +781,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "36",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "保衛的信念—保防知識桌遊包裝設計",
     "titleEn": "Belief of Defense: National Security Educational Board Game Packaging Design",
     "philosophy": "本設計為國軍保防教育桌遊《保衛的信念》。視覺以深邃的蔚藍色為背景，搭配象徵榮耀的金色麥穗與高對比的紅白字體，營造嚴肅卻不失趣味的宣導氛圍。包裝封面融合擬人化動物角色與偵探元素（如放大鏡、線索照片），直觀呈現保防破案與安全防範之主題。印刷建議採用高磅數銅西卡紙進行濕盒結構製作，並於標題與角色部分施以局部上光（Spot UV）與擊凸工藝，大幅提升整體禮盒的觸覺層次與收藏價值。",
@@ -808,7 +810,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "37",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "Black Goodie & 放客兄弟 聯合專場：公館河岸留言演出海報設計",
     "titleEn": "Black Goodie & Funky Brothers Joint Live Concert Poster Design",
     "philosophy": "本海報為「Black Goodie」與「放客兄弟」在公館河岸留言聯合演出的視覺設計。版面採左右不對稱的雙色塊分割，左側暖米色調以黑膠唱片簡約插圖搭配俐落排版，清晰呈現演出與票價資訊；右側復古湖水綠底色融入標誌性鬍子元素，並編排兩團風格強烈的宣傳照片。整體色彩融合復古與現代感，營造極具音樂律動與個性的舞台視覺。印刷推薦使用無塗佈超細細畫紙，保留沉穩墨色與溫潤手感。",
@@ -828,7 +830,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "38",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "公館河岸留言：Black Goodie × 貳行程 聯合音樂會海報設計",
     "titleEn": "Gongguan Riverside Music Cafe: Black Goodie x Er-Xing-Cheng Joint Concert Poster Design",
     "philosophy": "本設計為獨立樂團 Black Goodie 與貳行程在公館河岸留言聯合專場的宣傳海報。視覺採用左右分割版型，將兩組風格迥異的樂團宣傳照與現場演出實況並置，表現出街頭與舞台的張力對比。色調以沉穩的粗糙水泥灰為基底，搭配具有粉筆手寫質感的斑駁大字，展現粗獷、真實的 Live 現場溫度。印刷建議選用重磅微塗佈粗面紙，以細緻呈現背景的灰調層次與字體的斑駁細節，凸顯獨立音樂的純粹本質。",
@@ -849,7 +851,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "39",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "New Born 誕：裂縫說 X Control T 聯合音樂會海報設計",
     "titleEn": "New Born: Liefengshuo X Control T Joint Concert Poster Design",
     "philosophy": "本海報為「裂縫說」與「Control T」兩組樂團於公館河岸留言舉辦的「New Born 誕」聯合音樂會視覺。版面採用左右不對稱的對角分割，左方以冷調薄荷綠襯托「裂縫說」的多人編制與故事感，右方則以暖沙色調凸顯雙人組合「Control T」的溫煦氣質。整體視覺融入輕柔的水彩紋理與簡潔的現代無襯線字體，並以半透明色塊疊加，創造清新的空間呼吸感。印刷建議選用高質感未塗佈美術紙，以溫潤的紙張纖維呈現柔和色彩與文青氛圍。",
@@ -869,7 +871,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "40",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "河岸聲現：J.E.G.「這個」爵士樂團現場直播音樂會海報",
     "titleEn": "Riverside Live Session: J.E.G. Jazz Band Live Concert Poster",
     "philosophy": "本海報設計專為「河岸聲現」J.E.G.「這個」爵士樂團直播現場打造。視覺上採用嚴謹的網格排列，將六位樂手以經典黑白人像攝影呈現，並以溫暖的紅土赭石色色塊標註樂器與姓名，建立清晰的資訊層級。背景選用沉穩的復古卡其與大地色調，並融入「RIVERSIDE FUSION COLLECTIVE」半透明底紋，烘托出爵士樂融合、即興且溫潤的氛圍。字體設計融合優雅的襯線體與現代無襯線體，彰顯經典與現代融合的音樂本質。印刷建議採用無塗佈高階美術紙（如竹尾美術紙），以保留大地色澤的質樸手感，並使黑白肖像顯得更具層次與深度。",
@@ -890,7 +892,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "41",
-    "category": "平面與印刷設計",
+    "category": "平面海報設計",
     "title": "《我們都該承認自己的──》乾淨的房間 X 魏品勻 聯合公演海報",
     "titleEn": "Joint Concert Poster: 'We Should All Admit...' - Clean Room x Wei Pin-yun",
     "philosophy": "本公演海報以學校黑板為核心視覺，結合音樂人乾淨的房間與魏品勻的拍立得照片。設計採用深綠色黑板紋理搭配粉筆手寫字體，中央直排主題點出溫暖的音樂氛圍，兩側黃色便簽與底部的演出資訊營造懷舊校園感。印刷建議選用帶有手感溫度的日本美術紙，以低反光啞光墨呈現質樸深邃的文青質感。",
@@ -942,105 +944,32 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1nDC8VuOgwEupy8L0qVttsnbuFmCBGrfU",
       "https://lh3.googleusercontent.com/d/1RmDxKCvMVtSEJ5ZcDAStnCQpu9wS_8vf",
       "https://lh3.googleusercontent.com/d/17FwUP3m2t_d5MCUW_wPSCVqnuRcSCrC6",
-      "https://lh3.googleusercontent.com/d/1AY3znZYiDFGbDji93sWfGBgiWcqS-Jox",
-      "https://lh3.googleusercontent.com/d/1xYacptGwZ8wd2J8tA42ej5vMTY4HjIxG",
-      "https://lh3.googleusercontent.com/d/1xX-LMudZ6Tcgi719Hw7Ew6cHoEVeWseu"
+      "https://lh3.googleusercontent.com/d/1AY3znZYiDFGbDji93sWfGBgiWcqS-Jox"
     ]
   },
-  {
-    "id": "43",
-    "category": "商業視覺攝影",
-    "title": "紅龍食品「嚴選香滷牛腱心」精緻即食料理：商業美食攝影與AI協作修圖美學",
-    "titleEn": "Red Dragon Foods \"Premium Braised Beef Shank\" Ready-to-Serve Meal: Commercial Food Photography and AI-Collaborative Retouching Aesthetics",
-    "philosophy": "本作品為紅龍食品「嚴選香滷牛腱心」精心打造的商業美食攝影。視覺構圖以質樸的深色溫潤木質桌面為基底，將切片完美的牛腱心優雅呈現在淡青釉陶瓷深盤中，輔以鮮綠的青江菜、薑絲、香菜與紅辣椒點綴，並在四周精心配置了八角、花椒、乾辣椒等辛香原料，營造出極具層次感的餐桌氛圍。在攝影語彙上，採用側向柔和光源，精準勾勒出牛肉飽滿的肌理線條與濃郁滷汁的晶瑩光澤。本作品特別導入「AI協作修圖」技術進行後期精修，透過AI輔助的超高解析度紋理重建與局部曝光調節，完美優化了肉質纖維的油亮感與蔬菜的鮮綠度，並細緻消除了背景微小雜訊，使畫面在保有手作溫度的真實感之餘，更提升至頂級商業廣告的精緻美學標準。",
-    "tools": [
-      "AI協作修圖",
-      "專業單眼相機攝影",
-      "商業美食攝影",
-      "Adobe Photoshop",
-      "Adobe Lightroom",
-      "人造自然光控制",
-      "食物造型設計"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1Q1VI_XoB0788Wpn3Wuvnb1br25Q4ZArW",
-    "placeholderId": "IMAGE_43",
-    "colorTheme": "from-amber-900 to-neutral-900",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1Q1VI_XoB0788Wpn3Wuvnb1br25Q4ZArW",
-      "https://lh3.googleusercontent.com/d/13_-ptGNf8OYeTIiOpij4Y_WDbaLl_BRd",
-      "https://lh3.googleusercontent.com/d/1p_WVSP3ry43A5NorWqacDH5RI3PXAWeP"
-    ]
-  },
-  {
-    "id": "44",
-    "category": "商業視覺攝影",
-    "title": "紅龍食品「經典椒麻雞丁」即食料理：AI協作修圖與現代商業美食攝影美學",
-    "titleEn": "Red Dragon Foods Spicy Sichuan Chicken: AI-Collaborative Retouching and Commercial Food Photography",
-    "philosophy": "本作品以紅龍食品經典「椒麻雞丁」為視覺焦點。採用俯瞰視角，將飽滿的雞丁、香脆腰果、深紅乾辣椒與翠綠香菜盛裝於斑駁陶碗中，與溫潤木托盤、亞麻餐巾、木質筷子及周邊辛香原料形成和諧的構圖。光影上利用暖色調側光突顯醬汁與食材的立體層次。後期製程導入「AI協作修圖」技術，精準優化肉質的油亮光澤與背景雜訊，讓即食料理呈現頂級餐飲的工藝美感。",
-    "tools": [
-      "AI協作修圖",
-      "商業美食攝影",
-      "單眼數位相機攝影",
-      "專業人造光源控制",
-      "Adobe Photoshop",
-      "Adobe Lightroom"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1gYDLn6IZ6BmTtIYqK7oGZAr6NLPKtNiR",
-    "placeholderId": "IMAGE_44",
-    "colorTheme": "from-amber-800 via-stone-900 to-yellow-950",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1gYDLn6IZ6BmTtIYqK7oGZAr6NLPKtNiR",
-      "https://lh3.googleusercontent.com/d/1PhdjhyQPW6J2PpeKB3Yr0Cp6hfWfRRD-",
-      "https://lh3.googleusercontent.com/d/17ZbWSw1DYw69lkzDunEqlRfUi88yYReE"
-    ]
-  },
-  {
-    "id": "45",
-    "category": "商業視覺攝影",
-    "title": "紅龍食品「泰式咖哩雞」異國風情即食料理：AI協作修圖與商業美食攝影美學",
-    "titleEn": "Red Dragon Foods \"Thai Curry Chicken\" Ready-to-Serve Meal: AI-Collaborative Retouching and Commercial Food Photography Aesthetics",
-    "philosophy": "本攝影作品展現紅龍食品「泰式咖哩雞」的南洋風味。畫面以熱騰騰的咖哩雞飯與溫潤陶碗咖哩醬為視覺核心，巧妙配置綠豆蔻、檸檬葉、紅椒碎等天然香料，並搭配精緻的玫瑰金餐具與草綠色餐巾，營造優雅自然的異國餐桌氛圍。影像採用明亮溫暖的自然側光，展現醬汁的細緻質地。後期導入「AI協作修圖」技術，針對咖哩色澤與白飯晶瑩感進行飽和度與對比度微調，並平滑陰影線條、剔除背景雜質，完美揉合實體商業攝影與數位修圖，達到令人垂涎的極致商業視覺標準。",
-    "tools": [
-      "AI協作修圖",
-      "單眼數位相機攝影",
-      "商業美食攝影",
-      "Adobe Photoshop",
-      "Adobe Lightroom",
-      "人造自然光控制",
-      "食物造型與陳列設計"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1RYhv7vKca2PFUjjClQC7Ek7u2iDH--bh",
-    "placeholderId": "IMAGE_45",
-    "colorTheme": "from-amber-600 via-amber-900 to-stone-900",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1RYhv7vKca2PFUjjClQC7Ek7u2iDH--bh",
-      "https://lh3.googleusercontent.com/d/1ZOg4XtrWoRYTJj1PXxQVjL6OhH5l7Q4p",
-      "https://lh3.googleusercontent.com/d/1gyE7Xk0cqPYP5aet4l8vWjLINlZHPYKQ"
-    ]
-  },
-  {
-    "id": "46",
-    "category": "商業視覺攝影",
-    "title": "紅龍食品「極品紅燒牛肉湯」即食料理包：商業美食攝影與AI協作修圖之美",
-    "titleEn": "Red Dragon Foods 'Premium Braised Beef Soup' Ready-to-Serve Package: Commercial Food Photography and AI-Assisted Retouching",
-    "philosophy": "本作呈現紅龍食品「牛肉湯」的極致質感。視覺上以手作陶碗為核心，搭配日系木質餐具與溫潤的粗麻布，點綴八角、乾辣椒及新鮮香菜以強化草本風味意象。攝影採用暖色調低調側光，勾勒出牛肉纖維與湯頭的波光瀲灝。後製階段深度結合「AI協作修圖」技術，細緻校正湯頭倒影、強化肉質油花層次、消除邊緣雜訊，並優化整體景深，使傳統即食料理完美蛻變為令人垂涎的頂級商業視覺。",
-    "tools": [
-      "AI協作修圖",
-      "商業美食攝影",
-      "單眼相機拍攝",
-      "Adobe Photoshop",
-      "Adobe Lightroom",
-      "棚內人造光控制"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1mtzri7BMHzxaoVBYTid-kWr-3ME4EH39",
-    "placeholderId": "IMAGE_46",
-    "colorTheme": "from-amber-900 to-stone-900",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1mtzri7BMHzxaoVBYTid-kWr-3ME4EH39",
-      "https://lh3.googleusercontent.com/d/1QVLNUvdJrZyVbx5eY4fwGunVpqfbyW5X",
-      "https://lh3.googleusercontent.com/d/1iTBf6uuEnAIvcgRj3gbtcOdAtM2PleTH"
-    ]
-  },
+{
+  "id": "46",
+  "category": "商業視覺攝影",
+  "title": "紅龍食品「極品紅燒牛肉湯」即食料理包：商業美食攝影與AI協作修圖之美",
+  "titleEn": "Red Dragon Foods 'Premium Braised Beef Soup' Ready-to-Serve Package: Commercial Food Photography and AI-Assisted Retouching",
+  "philosophy": "本作呈現紅龍食品「牛肉湯」的極致質感。視覺上以手作陶碗為核心，搭配日系木質餐具與溫潤的粗麻布，點綴八角、乾辣椒及新鮮香菜以強化草本風味意象。攝影採用暖色調低調側光，勾勒出牛肉纖維與湯頭的波光瀲灝。後製階段深度結合「AI協作修圖」技術，細緻校正湯頭倒影、強化肉質油花層次、消除邊緣雜訊，並優化整體景深，使傳統即食料理完美蛻變為令人垂涎的頂級商業視覺。",
+  "tools": [
+    "AI協作修圖",
+    "商業美食攝影",
+    "單眼相機拍攝",
+    "Adobe Photoshop",
+    "Adobe Lightroom",
+    "棚內人造光控制"
+  ],
+  "imageUrl": "https://lh3.googleusercontent.com/d/1mtzri7BMHzxaoVBYTid-kWr-3ME4EH39",
+  "placeholderId": "IMAGE_46",
+  "colorTheme": "from-amber-900 to-stone-900",
+  "images": [
+    "https://lh3.googleusercontent.com/d/1mtzri7BMHzxaoVBYTid-kWr-3ME4EH39",
+    "https://lh3.googleusercontent.com/d/1QVLNUvdJrZyVbx5eY4fwGunVpqfbyW5X",
+    "https://lh3.googleusercontent.com/d/1iTBf6uuEnAIvcgRj3gbtcOdAtM2PleTH"
+  ]
+},
   {
     "id": "47",
     "category": "商業視覺攝影",
@@ -1065,7 +994,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "48",
-    "category": "商品與周邊設計",
+    "category": "商品周邊企業禮贈品",
     "title": "竹北消防隊「春節創意紅包袋」：角色IP插畫與防火防災宣導之美",
     "titleEn": "Zhubei Fire Department 'Creative New Year Red Envelopes': Mascot IP Illustration & Fire Safety Campaign Design",
     "philosophy": "本系列皆為高階創意插畫與商品周邊設計作品，專為「新竹縣政府消防局竹北分隊」傾心打造。企劃旨在將傳統春節紅包袋轉化為兼具防災宣導與日常祝福的溫度媒介。\n\n視覺設計以生動活潑、極具親和力的消防英雄吉祥物與Q版搜救犬為主角，將原本生硬的滅火器、消防栓、水帶等救災裝備置換點綴於喜慶祥雲、燈籠與新春爆竹背景旁，打破消防宣導嚴肅的既定印象。色彩美學選用富有奢華質感的深緋紅底色，搭配金屬高光的燙金勾邊以及「竹北消防」書法落款，不僅傳遞濃厚的佳節喜氣，更在年歲交替、家家戶戶圍爐之際，將防火、防災的安全觀念與溫暖祝福和諧傳遞。\n\n後期製作深度結合「AI協作修圖」數位影像增強技術，完美優化了紅包袋金箔反光的光影漸層、消除了紙質高飽和底色在高對比底板下的多維折射，並微調背景中招財金元寶與松枝裝飾的景深，使各個角度的宣導設計皆能展現高端精品印製風貌，成功演繹了傳統民俗與公共推廣教育完美結合的創意工藝。",
@@ -1526,5 +1455,359 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://img.youtube.com/vi/krsRgP0mZZE/0.jpg"
     ],
     "videoUrl": "https://www.youtube.com/watch?v=krsRgP0mZZE"
+  },
+  {
+    "id": "70",
+    "category": "影音與多媒體設計",
+    "title": "DA量販店特選：懶人脫水三角拖把 360°全方位免手洗 居家極致清潔影音與多媒體行銷企劃",
+    "titleEn": "DA Lazy Triangle Mop with Self-Wringing Mechanism: 360° Rotatable Cleaning Campaign & Multi-Media Video Strategy",
+    "philosophy": "本案為 DA 量販店強檔熱銷之「懶人脫水三角拖把」特別策劃之 YouTube 專業多媒體開箱影片與全域行銷推廣企劃。商品主打「免觸碰手洗、推拉輕鬆脫水、360°無死角清潔、三角尖頭底盤」等四大高機能居家清潔特色，透過流暢且極具生活實感的分鏡敘事，深刻激發消費者對輕量化、免髒手家事體驗的渴望：\n\n1. 痛點情境切入與流暢動態分鏡：影片剪輯緊扣都市人繁忙落寞的家事痛點，生動展示傳統拖把需用手擰乾、易發霉、牆角難以觸及之困境。隨後導入主角「三角尖頭拖把」在沙發空隙、牆面壁角自由穿梭的 360° 靈動姿態，配合高對比的「推拉極速脫水」連續動作特寫，營造令人極度舒適（Satisfying）的潔淨節奏。\n\n2. 高說服力多層次文案與行銷轉化：文案精控於「洗脫不髒手、強效吸水去污、收納不佔空間」三大核心利益面。輔以精緻優雅的半透明黑金色動態字幕與圓角資訊圖卡，降低資訊閱讀門檻。影片無縫穿插限時大促與DA專屬超值禮包導流，打通「觀看、認同、一鍵下單」的高水位轉換路徑。\n\n3. 多平台自適應與極致色彩聲譜管理：針對 YouTube 1080P 高清寬屏、IG Reels 與 TikTok 直式短影音以及門市多媒體大屏進行多維度渲染。音軌上進行精細的人聲降噪與物理摩擦、滴水音效（ASMR）的立體平衡；色彩通道經防溢微調，令拖把在溫馨淡米色居家背景中的流線造形、極細纖維拖布經由擠至乾燥的純淨視覺，皆能散發殿堂級大廠的生活美學氣度。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Audio Post-Production",
+      "Interactive Multi-Media Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/ZbkjJ4PYQHk/maxresdefault.jpg",
+    "placeholderId": "VIDEO_70",
+    "colorTheme": "from-[#0a151b] via-[#0d2a3a] to-[#050c12]",
+    "images": [
+      "https://img.youtube.com/vi/ZbkjJ4PYQHk/maxresdefault.jpg",
+      "https://img.youtube.com/vi/ZbkjJ4PYQHk/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ZbkjJ4PYQHk"
+  },
+  {
+    "id": "71",
+    "category": "影音與多媒體設計",
+    "title": "DA量販店特選：自動回彈健腹輪 初學健身追劇神器 多媒體行銷與影音推廣企劃",
+    "titleEn": "DA Automatic Rebound Ab Roller: Double-Wheel Core Trainer Media Campaign & Video Strategy",
+    "philosophy": "本案為 DA 量販店強檔熱銷之「自動回彈健腹輪」特別策劃之 YouTube 專業多媒體開箱影片與全域行銷推廣企劃。商品主打「自動回彈輔助、雙指撐護肘、加寬雙輪穩定安全、手機支架追劇健身兩不誤」等高階護體機能，透過流暢且極具生活實感的分鏡敘事，深刻獲取廣大健身初學者與居家鍛鍊者的好感：\n\n1. 人性化關懷與動態開箱分鏡：影片緊扣現代上班族、初學者缺乏核心力量、擔心拉傷、運動沉悶等痛點。透過流暢剪輯展示「自動回彈」的省力回助力學機制，並特寫其「超寬防滑雙輪」與「厚實肘撐泡棉」，消除初學者對運動受傷的恐懼。隨後展示手機支架功能，將「一邊高效燃脂、一邊輕鬆追劇」的極致休閒健體體驗表現得淋漓際。 \n\n2. 高渲染力文案與多場景行銷轉化：文案精控於「安全防護不傷膝、靜音不擾鄰、男女通用、高效核心鍛鍊」等核心利益點。影片巧妙穿插對比傳統健腹輪無回彈易跌倒的驚險場景，加深產品安全優勢。並加入限時特惠促銷，流暢導航客群點擊說明欄一鍵智購，大幅提振整體電商成交量。\n\n3. 多平台自適應與極致色彩聲譜管理：本項目特別針對 YouTube 1080P 高清、短影音 IG Reels 以及實體連鎖店智慧大圖透光螢幕進行多頻寬降噪調音及寬動態色域均衡。確保雙輪高速旋轉回彈的動態特寫在各類超視網膜螢幕上，皆能綻放出卓越的安全質感與殿堂級工業之美。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Audio Post-Production",
+      "Interactive Multi-Media Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/lALMgzpSAh4/maxresdefault.jpg",
+    "placeholderId": "VIDEO_71",
+    "colorTheme": "from-[#0d1612] via-[#102a1e] to-[#060e0a]",
+    "images": [
+      "https://img.youtube.com/vi/lALMgzpSAh4/maxresdefault.jpg",
+      "https://img.youtube.com/vi/lALMgzpSAh4/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=lALMgzpSAh4"
+  },
+  {
+    "id": "72",
+    "category": "影音與多媒體設計",
+    "title": "DA量販店特選：夏季必備四款神級風扇 露營、手持、三腳架、辦公全場景多媒體開箱與營銷企劃",
+    "titleEn": "DA Summer Cooling Campaign: 4-in-1 Smart Fans Showcase, Camping/Handheld/Tripod/Desk Visual Unboxing & Marketing Strategy",
+    "philosophy": "本案為 DA 量販店強檔主推「夏季必備四款神級風扇（太空人風扇、三腳架風扇、方形風扇、手持風扇）」之專業多媒體開箱影片與全渠道夏日消暑特輯行銷企劃。商品主打「多工便攜、長效續航、超強風力、掛置兩用、靜音運轉」等高溫消暑訴求，旨在攻克消費者「戶外露營悶熱、高溫外出流汗、辦公室局部不通風」的痛點，以最貼近生活情境（Lifestyle）的開箱體驗編排引爆夏日剛需：\n\n1. 多樣化情境與無縫分鏡：影片在分鏡編排上完美切合四大生活場景。從露營帳篷內懸掛的「多功能夜讀三腳架風扇」，到行進間釋放雙手的「太空人掛脖風扇」；從辦公桌面上極簡大風量的「辦公方形風扇」，到商務通勤必備的「超強風極速手持風扇」。影片流暢切換於戶外烈日與室內冷氣房，將清涼感與產品細部質感（如多檔位觸控、夜間閱讀燈明暗變化）完美交織。\n\n2. 爆品價值與情感訴求轉化：文案精控包裝於「夏日出遊神隊友、一機抵多機、超低噪睡眠安靜、Type-C極速快充」等利益點。在畫面中融合了富有朝氣且精緻的半透明蔚藍晶瓷風圖卡，與輕盈的動態微風氣流特效（Visual Wind Flow Animations），將生硬的硬體轉速和電池容量，昇華為「把極地清涼裝進背包」的情感共鳴，打造超強購買吸引力。\n\n3. 高清色彩校準與多端傳播：針對 YouTube 1080P、TikTok/Shorts 直式高頻互動短片進行多規格色域渲染。音軌上對專用風扇風噪聲進行高精度降噪，並優化風扇馬達運轉時的細微音效，呈現ASMR般治癒、清爽的聽覺享受；色彩通道經亮色校準，令四款風扇的糖果消暑色系與清新質感，在各類設備螢幕上皆能綻放頂級視覺張力。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Audio Post-Production",
+      "Interactive Multi-Media Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/19WFC8_qjv4/maxresdefault.jpg",
+    "placeholderId": "VIDEO_72",
+    "colorTheme": "from-[#041624] via-[#082a45] to-[#020b12]",
+    "images": [
+      "https://img.youtube.com/vi/19WFC8_qjv4/maxresdefault.jpg",
+      "https://img.youtube.com/vi/19WFC8_qjv4/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=19WFC8_qjv4"
+  },
+  {
+    "id": "73",
+    "category": "影音與多媒體設計",
+    "title": "DA量販店特選：夏季全方位防曬神級小物 騎車/戶外/日常五大爆品多媒體開箱與營銷企劃",
+    "titleEn": "DA Summer Sun Protection Campaign: 5-in-1 Essential Sun Accessories, UV Shield/Arm Sleeves/Face Mask/Riding Cover Unboxing & Media Marketing Strategy",
+    "philosophy": "本案為 DA 量販店強檔推出「夏季全方位必備防曬神級小物（機車防風防曬手把套、全罩式防曬裙、冰絲防曬袖套、抗UV面罩、全防護連帽漁夫帽）」之專業多媒體開箱影片與消暑防曬企劃。商品主打「UPF50+極致抗暑、冰絲降溫、全面覆蓋、機車族量身定製、輕薄透氣」等痛點訴求。旨在解決台灣夏日機車通勤族與戶外活動愛好者「強烈紫外線曬傷、熱風吹拂、悶熱流汗、手臂胸頸膚色不均」的經典痛點，透過直觀 Lifestyle 熱銷場景展示與美學排版，極大提振全系列消暑周邊的轉化率：\n\n1. 機車族與通勤族生活情境切入：開篇分鏡直擊正午烈日、柏油路氣流折射等夏日高溫考驗，流暢導入機車騎士必備的防曬守護。依序精緻展示「不沾防曬油、一秒套上防曬裙」、「車手把專用透氣防曬隔熱套」等實機組裝與實用測評。影片將真實的穿戴流程與日常實感無縫剪接，大幅消除消費者購買前的便利性疑慮。\n\n2. 多維度機能演繹與爆品包裝：文案核心深扣「夏日極速降溫、物理防禦最抗曬、高透氣排汗不悶熱、時尚配色不突兀」等利益，輔以畫面中融入的高清半透明「冰藍極光」晶透圓角字體標牌。影片生動演示冰絲袖套的物理彈力與抗拉扯度、防曬面罩的包覆服貼性，將高密防護之硬核數據，昇華為「無懼陽光、隨心前行」的夏日生活宣言，完美創造超強情緒價值與購買吸力。\n\n3. 高清音畫通道與多端渲染：針對 YouTube 高画質與 IG Reels、TikTok 直式影音等多通路，進行多重色彩均衡（尤其是高明度陽光情境下的高光防拉溢出）。音軌中細膩降噪戶外風聲，並在穿戴袖套、拉扯按扣等動作中特寫精細清透的ASMR音效，讓大眾在視網膜級別的屏幕上、即使靜音觀看亦能感受到防曬小物的透心清涼。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "YouTube Video Engineering",
+      "Audio Post-Production",
+      "Interactive Multi-Media Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/KMZEpFaV9mg/maxresdefault.jpg",
+    "placeholderId": "VIDEO_73",
+    "colorTheme": "from-[#1c1808] via-[#3d371d] to-[#0f0e06]",
+    "images": [
+      "https://img.youtube.com/vi/KMZEpFaV9mg/maxresdefault.jpg",
+      "https://img.youtube.com/vi/KMZEpFaV9mg/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=KMZEpFaV9mg"
+  },
+  {
+    "id": "74",
+    "category": "影音與多媒體設計",
+    "title": "Segway-Ninebot 台灣總代理羅宋堂：GoKart Pro / Mecha Kit 科技卡丁極限大賽車「台北全景實拍」多媒體行銷宣傳影片",
+    "titleEn": "Segway-Ninebot Taiwan LoSongTang: GoKart Pro & Mecha Kit Taipei Street Racing Campaign & Immersive Promotional Film",
+    "philosophy": "本影片為「Segway-Ninebot 台灣總代理 羅宋堂」於台北精心策劃之《GoKart Pro / Mecha Kit 科技卡丁大車隊》品牌形象大片與極限賽道台北街頭實拍宣傳企劃。本作品極致演繹了 Segway 經典卡丁車套件（GoKart Kit）與全新機甲戰車（Mecha Kit）的硬核操控、急速甩尾與極致動態美學，成功打破傳統代步印象，重塑新世代潮流運動科技地標：\n\n1. 台北街頭動態追焦與賽車美學：影片在分鏡編排上大膽採用高速航拍追焦（FPV Drone Trace）、低角度貼地跟拍與高速動態搖臂剪輯，將卡丁車在台北標誌性道路與都市霓虹中的高速奔馳、靈活甩尾過彎及機甲戰車獨家水彈射擊的逼真震顫完美捕捉。畫面將台北摩登城市天際線與高端卡丁車的極速科技光影完美揉合，營造宛如《跑跑卡丁車》與《極速快感》實景降臨的街頭探索狂熱。\n\n2. 高張力賽車電商視覺與動態包裝：文案與動態包裝核心深扣「最高時速 40km/h、四種駕駛模式切換、極致甩尾電子手煞、藍牙立體聲模擬跑車聲浪」等頂級利益點。畫面中無縫嵌入源自賽車儀表板（Racing Telemetry Elements）的高飽和半透明亮黃與碳黑底色的科技儀表資訊卡，大幅增強觀影者的操駕沉浸感，完美打通「熱血觀看-科技種草-線下預約體驗」的高效營銷轉化鏈。\n\n3. 多平台賽車聲譜與寬色域校準：針對 YouTube 1080P/4K 高清寬屏與 Mobile 熱門短影音通道，進行極致的多通道音軌合成。細膩收錄卡丁車高速起步的輪胎摩擦聲、模擬 V8 引擎排氣聲浪的低音共振，以及機甲戰車水彈連發的震撼清脆射擊音效。色彩通道經賽車級高飽和調色管理（Color Grading），令炫酷車身的極速紅、黑、石墨灰與繁華台北夜間霓虹在各類視網膜屏上，皆能綻放頂級視覺張力。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "FPV Drone Videography",
+      "Audio Soundscape Engineering",
+      "Color Grading Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/K-bnI4D4Zwg/maxresdefault.jpg",
+    "placeholderId": "VIDEO_74",
+    "colorTheme": "from-[#1a0e08] via-[#351909] to-[#0c0502]",
+    "images": [
+      "https://img.youtube.com/vi/K-bnI4D4Zwg/maxresdefault.jpg",
+      "https://img.youtube.com/vi/K-bnI4D4Zwg/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=K-bnI4D4Zwg"
+  },
+  {
+    "id": "75",
+    "category": "影音與多媒體設計",
+    "title": "Segway-Ninebot 台灣總代理羅宋堂：GoKart / Mecha Kit 科技卡丁「玩家必看三大看點」深度評測與多媒體影片行銷企劃",
+    "titleEn": "Segway-Ninebot Taiwan LoSongTang: GoKart & Mecha Kit Taipei Top 3 Features Review, Professional Ride Showcase & Media Campaign",
+    "philosophy": "本影片為「Segway-Ninebot 台灣總代理 羅宋堂」傾力策劃製作之《GoKart / Mecha Kit 科技卡丁「三大玩家必看特點」》深具帶貨與體驗說服力之多媒體開箱影片與精準營銷企劃。本片旨在透過三大硬核優勢評測的遞進式敘事，引導消費者深度理解產品的操駕精髓：\n\n1. 遞進式三大看點硬核解析：影片在節奏編排上結構層次極佳，分鏡精確切割為三大核心體驗點。首先，特寫「極速甩尾與專屬手煞車」的完美連動，點燃熱血操駕魂；其次，評測「高規雙安全氣流對位防護與強固鋼架支撐」，奠定高規格家長信賴感；最後，演繹「手機 App 智慧互聯與個性化跑車模擬聲浪實測」，拉滿前衛智慧玩具的潮流度。藉由看點式的剪輯敘事，把生硬的硬體參數昇華為購買的必然動力。\n\n2. 高轉換多層次字幕與動態視覺：在影片動態包裝設計中，採用高對比、高機能感的前衛競速風資訊板，以半透明霧面晶瓷黃與碳纖黑框底，即時標駐「高扭力冷卻馬達、App扭力與轉向靈敏度自訂、1:1賽車級操駕手感」等實測亮點。將高階玩家的評測深度轉化為更具視覺震撼的情感價值，極大縮短客群的購買猶豫期。\n\n3. 多通道專業音畫精細對位：針對 YouTube 高画質影音與主流社群多渠道，提供極致的多通道音訊調解。片中完美錄製了甩尾過彎時的尖銳輪胎抓地音效、多段位排氣模擬聲浪的震顫共鳴，並做細膩的人聲增益處理。色彩層次突出競速時極具速度感的光柵反射與炫白、深灰色車體，在各類視網膜屏上，皆能展現大廠頂階商品的頂級美學氣度與非凡質感。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "Creative Campaign Strategy",
+      "Audio Post-Production",
+      "Color Grading Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/bzAayvFMG7I/maxresdefault.jpg",
+    "placeholderId": "VIDEO_75",
+    "colorTheme": "from-[#081a17] via-[#0b2b25] to-[#030d0b]",
+    "images": [
+      "https://img.youtube.com/vi/bzAayvFMG7I/maxresdefault.jpg",
+      "https://img.youtube.com/vi/bzAayvFMG7I/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=bzAayvFMG7I"
+  },
+  {
+    "id": "76",
+    "category": "影音與多媒體設計",
+    "title": "勞動部職訓局多媒體專題製作：電腦教室的謎團 —— 實景懸疑微電影與 AI 跨界影音生成整合創作",
+    "titleEn": "Mystery of the Computer Lab: Bureau of Vocational Training Multi-Media Graduation Project, Suspense Short Film & AI-Synthesized Video Fusion",
+    "philosophy": "本案為勞動部職訓局「全媒體數位內容設計班」之高分結訓畢業專題作品《電腦教室的謎團》微電影。本作品採取前衛的「實景拍攝戲劇」與「AI 生成藝術影音」雙向跨界融合的實驗性敘事。講述了學員深夜在電腦教室中練習，卻意外觸發神祕演算法、陷入虛實重疊異次元的科幻懸疑故事。其核心企劃與剪輯編排完美展現了團隊對於現代前沿技術的融會貫通：\n\n1. 實景懸疑鋪陳與精緻調光：前半段以寫實的鏡頭語言和冷色調（Cool Palette）日光燈照明，細緻捕捉深夜無人電腦教室的壓抑感、機械點擊聲、以及主角探尋未知的緊張氛圍。在有限的實景場地內，透過靈活的主觀視角（POV）鏡頭、急速搖鏡與景深切換，營造極佳的懸念堆疊與戲劇張力。\n\n2. AI 影音重構之夢境次元：中間段「數字代碼與異次元爆發」的混亂夢境，運用了現代先進的 AI 影音生成與擴散模型技術。將現實中的主機螢幕、電線、鍵盤粒子化、數字化，衍生出流體機械融合、螢光電子線路蔓延等絢麗超現實畫面。實拍剪輯與 AI 生成的科幻片段邊界接縫高度自然流暢，極佳演繹了「高科技代碼侵蝕現實」的視覺哲學。\n\n3. 多通道懸疑調音與廣色域多端均衡：本片特別針對懸疑片特有的低頻共振（Drone Sound）、突然的機械敲擊、以及 AI 次元爆發時的故障風（Glitch Synth）電子音效，在 Premiere Pro 中進行了極致精細的聲譜混音與立體聲多軌剪輯。色彩方面則對暗部雜訊（Noise Reduction）進行徹底抑制，確保暗場對比度與 AI 霓虹色彩在各式視網膜高階顯示幕上皆能綻放最前衛的大廠藝術張力與極致質感。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "Generative AI Video",
+      "Suspense Sound Design",
+      "Cinematography & Lighting"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/3RL79fDbvMU/maxresdefault.jpg",
+    "placeholderId": "VIDEO_76",
+    "colorTheme": "from-[#031116] via-[#05232d] to-[#01080b]",
+    "images": [
+      "https://img.youtube.com/vi/3RL79fDbvMU/maxresdefault.jpg",
+      "https://img.youtube.com/vi/3RL79fDbvMU/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=3RL79fDbvMU"
+  },
+  {
+    "id": "77",
+    "category": "影音與多媒體設計",
+    "title": "Segway-Ninebot 台灣總代理羅宋堂：新光三越直營百貨多媒體電視牆形象廣告",
+    "titleEn": "Segway-Ninebot Taiwan LoSongTang: Shin Kong Mitsukoshi Department Store TV Wall Commercial",
+    "philosophy": "本案為「Segway-Ninebot 台灣總代理 羅宋堂」量身設計的年度百貨直營專櫃電視牆形象廣告影片。此影片於台北信義新光三越A9館B2、台北天母新光三越B1、以及台中中港新光三越9F等各大直營櫃位電視牆循環播放。影片設計緊扣百貨高流動、高質感之精品氛圍，以極具衝擊感的畫面吸引顧客目光：\n\n1. 百貨電視牆專屬循環（Loop）剪輯：針對精品百貨人流特性，採用無縫循環播放格式設計。開篇以高對比的 Segway 卡丁車與機甲戰車動態過彎拉開序幕，節奏緊湊且無對話負擔，確保顧客在幾秒內的駐足即可快速抓取品牌的高科技玩樂形象。\n\n2. 櫃位實體導流與產品展示：巧妙融合科技代步、趣味卡丁、極速甩尾與專利平衡車之美學細節。畫面文字強化安全規格、專櫃實車鑑賞、以及現場免費試乘等行動呼籲（Call to Action），打通百貨實體櫃位的體驗導流。\n\n3. 寬色域與視網膜級顯示調色：專為百貨內明亮璀璨的燈光環境，對影片高光（Highlights）進行色彩抗干擾校正。不論在何種環境光下，均能完美呈現電鍍金屬車架與極限賽車漆的精品光澤，在各類大尺寸展示電視牆上皆能綻放流暢、頂級的科技張力與質感。",
+    "tools": [
+      "Premiere Pro",
+      "After Effects",
+      "Commercial Advertising Design",
+      "Department Store Channel Operations",
+      "Color Grading Design"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/z6oCYdzPHyc/maxresdefault.jpg",
+    "placeholderId": "VIDEO_77",
+    "colorTheme": "from-[#1a1103] via-[#3d2705] to-[#120b01]",
+    "images": [
+      "https://img.youtube.com/vi/z6oCYdzPHyc/maxresdefault.jpg",
+      "https://img.youtube.com/vi/z6oCYdzPHyc/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=z6oCYdzPHyc"
+  },
+  {
+    "id": "78",
+    "category": "平面海報設計",
+    "title": "Segway-Ninebot 台灣總代理羅宋堂：2024信義新光三越A9店週年慶特惠宣傳 DM 與實體促銷視覺設計",
+    "titleEn": "Segway-Ninebot Taiwan LoSongTang: 2024 Xinyi Shin Kong Mitsukoshi A9 Anniversary Campaign Promotional DM & Retail Print Design",
+    "philosophy": "本案為「Segway-Ninebot 台灣總代理 羅宋堂」針對台北信義新光三越A9直營櫃位 2024 年度最強強檔「周年慶（Anniversary Campaign）」特別精心規劃的整套實體週年慶 DM 快訊中頁、A4宣傳海報及櫃位促銷視覺物料。視覺設計緊扣 Segway 全系列極致玩樂、極速科技的頂奢運動玩具定位，完美融合百貨高奢質感與週年慶熱烈熱鬧的促銷氛圍：\n\n1. 高階動感亮黃與暗黑科技的色彩美學：視覺基礎承襲 Segway 品牌標誌性的奢華亮黃（Racing Yellow）與深邃冷碳灰（Tech Charcoal），奠定前衛、狂熱、年輕朝氣的高科技格調。排版精確將週年慶重磅福利（如買大送小、獨家預購禮遇、超高額百貨滿額贈等）運用高對比冷暖色調與圓框區格分級展示，達到百貨精品級別的優雅張力與高效閱讀性。\n\n2. 高密度多商品之網格平衡排版：針對週年慶 DM 高密度的優惠組合（包含 GoKart Pro 科技卡丁、Mecha Kit 機甲戰車、頂階極限平衡車及都會滑板車系列），採用極其嚴謹的幾何卡格式卡片布局（Bento Box-style Grid Layout）。使紛繁複雜的規格、定價、折扣方案及限量情報井然有序地呈現，打通消費者「視覺駐足、細緻比對、線下指名購入」的完美轉化漏斗。\n\n3. 印前色彩管理與線下全渠道高細節：設計檔案對印前CMYK色域及特殊亮黃高彩油墨（Spot Colors）實施極致色彩防溢管理。無論是新光三越全館派發的銅版紙雙面快訊中頁，還是櫃位迎賓高光立牌（X-Stand），皆能確保亮黃色系展現最亮眼、最飽和的原廠極速魅力與大廠不凡質感。",
+    "tools": [
+      "百貨週年慶行銷視覺企劃",
+      "高密度促銷DM資訊階層編排",
+      "CMYK印前特殊高飽和色域管理",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1vqGR8hRYiR25uOsZ71cpHUVmEYsEReJn",
+    "placeholderId": "IMAGE_78",
+    "colorTheme": "from-[#1a1302] via-[#332403] to-[#0c0801]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1vqGR8hRYiR25uOsZ71cpHUVmEYsEReJn",
+      "https://lh3.googleusercontent.com/d/1QbV_BlPBH-pHGJ2MhtmXJiXkkC6eYCMq"
+    ]
+  },
+  {
+    "id": "79",
+    "category": "商品周邊企業禮贈品",
+    "title": "棋勝汽車：極致尊榮金屬車徽與精品包裝禮盒整合設計",
+    "titleEn": "Qi Sheng Motors: Premium Metallic Emblem & Luxury Gift Packaging Box Integrated Design",
+    "philosophy": "本案為「棋勝汽車 (Qi Sheng Motors)」傾力規劃設計之「極致尊榮金屬車徽與精品包裝禮盒」整合設計方案。本設計完美體現高檔汽車美學與頂奢送禮之儀式感，旨在為車主締造無比尊榮的品牌歸屬感：\n\n1. 車徽金屬工藝之致敬與傳承：車徽核心造型以極具現代幾何感與勝利象徵的盾徽線條為主軸，設計經 3D 精密切削與電鍍亮銀、亮金結合噴砂工藝。整體車徽展現出強烈的光影立體階層關係與極致的金屬反射質感，貼附於車尾或作為高端精品典藏，皆能散發極致奢華的尊崇氣度。\n\n2. 匠心幾何美學之精品包裝禮盒：外包裝禮盒大膽運用極具奢華質感的啞光暗黑（Matte Charcoal Black）為基調，搭配極高細節的局部高亮度燙金與雙向立體打凸工藝。禮盒內部採用客製高密度防震泡棉與細緻亮黑絲絨襯墊，完美吻合并穩固保護精雕車徽。搭配阻尼磁吸翻蓋設計，營造頂奢極致的開箱（Unboxing）感官儀式感。\n\n3. 高保真打樣印刷與製造供應對位：設計企劃全程進行高精密度的打樣校正與印前 CMYK、特殊金屬色油墨（Metallic Inks）油墨管理。確保包裝盒表面燙金對位極致精準（誤差控制在 0.1mm 內），不論在何種高端百貨或車展燈光下，皆能展現最耀眼、最純正的車廠豪華質感與卓越美學美譽度。",
+    "tools": [
+      "高端禮盒結構與包裝設計",
+      "3D 數位精微建模視覺化",
+      "車徽特殊金屬材質表面打樣",
+      "印前特殊燙金立體打凸對位",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1vQwcqFq1mkuIQyWZ2U_fD6aNB27nJkfM",
+    "placeholderId": "IMAGE_79",
+    "colorTheme": "from-[#0a0a0a] via-[#1c1b12] to-[#050505]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1vQwcqFq1mkuIQyWZ2U_fD6aNB27nJkfM",
+      "https://lh3.googleusercontent.com/d/1C0j5tZdtePXacL2nmN_-hL6MZnJnZ6oH"
+    ]
+  },
+  {
+    "id": "80",
+    "category": "商務印刷品設計",
+    "title": "喬昕科技：VI 企業識別專屬手提紙袋與永續包裝視覺設計",
+    "titleEn": "Qiao Xin Technology: Corporate VI Paper Shopping Bag & Sustainable Packaging Design",
+    "philosophy": "本案為「喬昕科技 (Qiao Xin Technology)」量身打造的 VI 企業識別專屬手提紙袋與精品環保包裝設計方案。本案兼顧品牌視覺傳達與綠色包裝的環保訴求，完美向日常承載與行動宣傳注入科技美學價值：\n\n1. 科技幾何線條與簡約留白編排：設計巧妙融合喬昕科技的 LOGO 幾何元素，衍生出流暢的莫比烏斯環拓撲延伸與雙色線條疊加。畫面以青山雅綠、文青米白、經典深藍為核心色調，透過大比例的高雅留白（White Space）與細緻的金屬箔黑燙印，營造前衛不失溫度的現代文創風格。\n\n2. 高承重人體工學結構與永續材質：紙袋主體精選 250g 環保無氯漂白針織牛皮紙（Kraft Paper）或進口特種白卡紙，具有極佳的抗拉與耐撕裂度。提繩則採用精緻的雙股高強度棉繩配以隱藏式金屬扣，受力更為均勻。袋底增厚加固托板，結構穩固性臻至頂峰，使提攜過程成為流暢的尊榮享受。\n\n3. 高保真網版印刷與製造精度：全案印前嚴控四色 CMYK 與 特色Pantone 色票，有效消除不同材質上的成像偏色。不論是帶有溫潤手感的「文青排版」、「青山簡約」還是高飽和的「藍底線條」款，皆呈現精緻的工藝細節，在各種自然光與室內百貨環境下，均能綻放頂級的企業質感與高階美學氣度。",
+    "tools": [
+      "企業 VI 視覺延伸企劃",
+      "環保手提袋結構包裝設計",
+      "特色點金與印前色彩補償",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1TwblszviMxFpF-CjdyV91TD0cpNsVZHy",
+    "placeholderId": "IMAGE_80",
+    "colorTheme": "from-[#081816] via-[#102e2a] to-[#040e0b]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1TwblszviMxFpF-CjdyV91TD0cpNsVZHy",
+      "https://lh3.googleusercontent.com/d/1mbnCaH4-85JEnTYcw4nPXLfHaMZpq-LB",
+      "https://lh3.googleusercontent.com/d/1_lHG9qfcWZpocCp_pyX6RGzYYUl4N_35",
+      "https://lh3.googleusercontent.com/d/1i6gTKZUMjjgf5d4Qo8MJmHpUFfCa_pDg",
+      "https://lh3.googleusercontent.com/d/15v0NQxs-aUfPTk5y8Xsoq_mc771GQApv"
+    ]
+  },
+  {
+    "id": "81",
+    "category": "影音與多媒體設計",
+    "title": "巴迪醫療：2025年度團拜+迎春抽獎春酒 精采動態回顧影片紀錄",
+    "titleEn": "Buddy Medical: 2025 Annual Spring Gathering & Lucky Draw Spring Banquet Event Highlights & Dynamic Video Production",
+    "philosophy": "本案為「巴迪醫療」精心企劃與拍攝剪輯的 2025 年度新春團拜與迎春抽獎春酒晚會精采動態回顧影片。影片旨在凝聚團隊向心力、紀錄同仁真摯溫暖刻骨的歡笑與感動瞬間，並展現企業蓬勃發展、邁向全新里程碑的生氣盎然景象：\n\n1. 人本溫度與生動紀實的活動捕捉：影片擺脫流水帳式的單調剪輯，以同仁歡愉進場、舉杯祝賀、高潮迭起的抽獎與舞台表演為核心節奏。透過多機位、靈活穩定的手持穩定器動態鏡頭，深入捕捉賓主盡歡的生動笑容與台上台下熱烈互動。運用流暢快慢鏡（Speed Ramping）轉換，烘托出溫馨與激情交織的派對張力。\n\n2. 科技感流光快剪與動感音效對位：針對精采晚會的高能量氛圍，剪輯搭配節奏明快且具激勵感、科技感的電子流行樂。音軌經過深度優化，精準將現場歡呼聲、主管致詞與音樂節奏點（Beats）完美對位。點綴適度的光暈特效（Light Leaks）與動態字卡包裝，凸顯巴迪醫療作為現代化、人性化醫療器材科技先驅的卓越形象。\n\n3. 多通道高保真調色與全端兼容輸出：全片對複雜的飯店宴會現場黃光進行精細白平衡校正與暗部抗噪降噪，調色上賦予高飽和、高溫暖的色調，傳遞滿滿的幸福感與熱情。影片規格完美契合大螢幕投影（16:9）、官方社交媒體與內部員工通訊網絡等多端播放需求，成功締造一部兼具品牌形象傳達與情感共鳴的精品級企業年度盛典實錄。",
+    "tools": [
+      "企業盛典多機位與動態微型紀錄",
+      "節奏型動態音效對位與轉場",
+      "室內複雜宴會光源精密白平衡校正",
+      "Premiere Pro",
+      "After Effects"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/K_GqnoMV_wU/maxresdefault.jpg",
+    "placeholderId": "VIDEO_81",
+    "colorTheme": "from-[#1c0808] via-[#3d1313] to-[#140505]",
+    "images": [
+      "https://img.youtube.com/vi/K_GqnoMV_wU/maxresdefault.jpg",
+      "https://img.youtube.com/vi/K_GqnoMV_wU/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=K_GqnoMV_wU"
+  },
+  {
+    "id": "82",
+    "category": "商務印刷品設計",
+    "title": "HeartCare 醫學品牌：專業級三節式易拉展示架設計",
+    "titleEn": "HeartCare Medical Brand: Professional Three-Stage Telescopic Roll-up Exhibition Banner Design",
+    "philosophy": "本案為「HeartCare」醫療健康品牌傾力規劃的「專業級三節式易拉展示架」實體陳列宣傳設計方案。設計團隊秉持人本至上的精準醫療美學，於狹長垂直的展架空間內實現兼具信任感、科技深度與人溫溫度的視覺對位：\n\n1. 醫療科技美學與極致資訊層級：主視覺採用高潔淨度的醫理白與深邃的心臟科技藍（Cardio Tech Blue）為基底，營造無與倫比的信任度。上半部以顯眼易讀的 HeartCare 標誌性 LOGO 導引大眾視線，中央搭配精心修飾的智慧醫療監測示意與人像核心插圖，下半部則有條不紊地編排產品核心優勢、精準測量指標與 QR Code 移動端聯結，打通消費者互動體驗。\n\n2. 三節式全金屬穩固結構對位：考量實體展會、診所迎賓大廳、學術研討會等高頻率的展示環境，展架主體採用一體成型的高強度特厚鋁合金底座，搭配精密阻尼彈簧捲回機構。三節式加粗支撐桿組裝靈活、拆裝僅需1分鐘，底腳設有重型加固平衡塊，即使在人來人往或有微風的室內場隙，依舊能維持屹立不搖的垂直視覺水平度。\n\n3. 高彩度相紙防捲防光輸出工藝：印前團隊採用超高解像度的 1200dpi 藝術微噴技術，輸出介質精選高克重防水防刮啞光PP相紙。搭配雙面啞光防光防UV冷裱膜，徹底消除會場強烈頂光造成的反光干擾，並攻克了傳統展架邊緣易向內捲曲的業界痛點，讓整體視覺呈現出最高雅溫潤、永不褪色的工藝美學張力。",
+    "tools": [
+      "高端實體展示陳列與結構包裝設計",
+      "高密度醫療資訊層級排版",
+      "超高解析高保真印前色彩管理",
+      "防光高平整度相紙輸出工藝",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1tmGZBj4Yc_QUL0rGCdXdZykbCR-v--9M",
+    "placeholderId": "IMAGE_82",
+    "colorTheme": "from-[#08152e] via-[#0e2247] to-[#040a17]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1tmGZBj4Yc_QUL0rGCdXdZykbCR-v--9M",
+      "https://lh3.googleusercontent.com/d/1koIGcvN9b9kXypw-gqn28aTjygXFBOiS",
+      "https://lh3.googleusercontent.com/d/1KC4Ur6n8Nw_W9lfuD0gAC172AX1piLtX",
+      "https://lh3.googleusercontent.com/d/1bQhrGKpW025-1S1lmZpFlWoLZKkMOvgq"
+    ]
+  },
+  {
+    "id": "83",
+    "category": "商務印刷品設計",
+    "title": "Meril 醫療科技：Myval 人工心臟瓣膜手術手冊與 TAVI 專屬腰封包裝整合設計",
+    "titleEn": "Meril Life Sciences: Myval Transcatheter Heart Valve Surgery Booklet & TAVI Custom Waist Band Integrated Package Design",
+    "philosophy": "本案為全球領先醫療科技先鋒「Meril Life Sciences」旗下最核心之「Myval Transcatheter Heart Valve (TAVI 經導管主動脈瓣膜植入術)」微創瓣膜系統，精心策劃、排版與裝幀設計之「手術操作手冊、解剖指引摺頁與 TAVI 專屬亮金腰封紙套」一體化印刷包裝方案。整體設計將嚴謹的生命工程學、深度的醫學指引邏輯與高貴奢華之尊榮美學融為一體：\n\n1. 繁複醫理資訊之網格直覺視覺化：針對世界級 TAVI 微創手術複雜且精密的步驟，全手冊大膽運用了極致嚴謹的多維網格排版（Multi-column Grid Layout Setup）。手冊內頁精細繪製解剖圖譜、瓣膜定位對齊、高壓球囊擴張刻度等關鍵醫學影像。透過高彩度且易與手術手套形成色彩對比的「醫理靛藍」與「心瓣耀金」雙核心色系，為醫師與臨床工程師在瞬息萬變的手術室（Hybrid OR）環境中提供秒級的極速無礙閱讀體驗。\n\n2. 奢華耀金立體燙印之 TAVI 腰封結構：手冊外側特製尊榮金色腰封紙套（Overwrap Waist Band Specification），大膽選用重磅進口絲絨特種紙為厚度本體。高細節浮雕式雙重燙金（Hot Foil Stamping）配合深度打凸工藝（De-embossing），完美勾勒並還原 Myval 瓣膜微觀的鈷鉻合金鎳鈦合金編織網格與結構肌理，賦予手冊尊貴莊嚴與無比神聖之生命質感。\n\n3. 高保真抗菌耐磨防反光特種裝幀：物理材料與印刷工藝層面，紙張特別精選具有高耐折、不反光之進口抗菌啞光紙，並上塗佈抗汙耐磨特殊油墨。印前四色 CMYK 與特調金屬色（Metallic Spot Colors）經過最精密的高解析補償調校，確保在任何高強度 LED 手術無影燈下，依舊綻放出最清晰、富層次、不易反光的頂級學美與醫療信賴氣度。",
+    "tools": [
+      "醫學解剖與精密醫療器材結構排版",
+      "大規畫多頁式手冊網格圖文裝幀設計",
+      "局部金屬箔燙印與浮雕打凸工藝",
+      "特殊微塗佈不反光醫療紙張管理",
+      "Adobe Illustrator",
+      "Adobe Photoshop",
+      "Adobe InDesign"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/10GOE00Gf7PI_yRTEtn4GbhFAbj50RGqz",
+    "placeholderId": "IMAGE_83",
+    "colorTheme": "from-[#051121] via-[#12243d] to-[#040c17]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/10GOE00Gf7PI_yRTEtn4GbhFAbj50RGqz",
+      "https://lh3.googleusercontent.com/d/1fVxaGTcX783nWf-qHWbuyN1C_Gur-z7A",
+      "https://lh3.googleusercontent.com/d/1UTQ0sNTx0-NdGFhDyxsZ6m2tJCBhoqlB",
+      "https://lh3.googleusercontent.com/d/1mIfMVjC9-xWoHcwOoVmBj8r-jrCToa-7",
+      "https://lh3.googleusercontent.com/d/1AR25gs-AkcZwrt503fzCQwWgT-uQb-pF"
+    ]
+  },
+  {
+    "id": "84",
+    "category": "角色IP&插畫與貼圖",
+    "title": "巴迪醫療：Myval 人工心臟瓣膜專屬擬人化創意貼圖設計",
+    "titleEn": "Buddy Medical: Myval Transcatheter Heart Valve Custom Character Sticker Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」特別量身定製之「Myval 人工心臟瓣膜」系列專屬 LINE 趣味與專業推廣貼圖設計。本設計巧妙將生澀嚴肅的醫療器械、人工瓣膜解剖結構與生動逗趣的擬人化 IP 形象（Mimi the Valve）完美交織，打造極具溫度的跨界溝通載體：\n\n1. 擬人化醫學 IP 與趣味情緒對位：設計團隊將複雜的金屬鎳鈦編織網格與心臟瓣膜瓣片，簡化提煉為一隻極具親和力、擁有靈動大眼、充滿朝氣與療癒感的可愛公仔（瓣膜寶寶 Mimi）。透過多款日常打招呼、感謝、加油打氣、驚訝等高感性情境編排，拉近一般民眾、基層醫護與尖端生命科技之間的距離，將生硬冰冷的微創手術概念轉化為日常隨手可及的溫暖陪伴。\n\n2. 向量扁平化插畫與高清晰度排版：在視覺呈現上，採用了飽滿溫潤的大色塊扁平插畫風格（Flat Illustration），並融入高精細的精確輪廓微調。字體搭配粗圓、黑體等易讀飽和之動態文字，不僅在行動端小螢幕（iPhones & Androids）下能呈現極致銳利、無鋸齒的卓越辨識度，更營造出青春活潑兼具大廠人文關懷的視覺氣度。\n\n3. 印前色彩管理與數位無縫適配：全案組圖貼圖嚴格遵循 LINE 官方上架規範進行透明背景（Alpha Channel PNG）裁切與邊緣抗鋸齒（Anti-aliased Borders）描邊渲染，解決在不同聊天背景底色（白、黑、主題底紋）下可能產生的白邊與毛刺問題。高飽和的主題活力色調（愛心粉、科技藍、陽光黃、健康綠）更讓每一枚貼圖皆能釋放出滿溢的生命熱情與品牌向心力。",
+    "tools": [
+      "擬人化吉祥物 IP 形象企劃",
+      "通訊軟體表情包貼圖插畫繪製",
+      "數位透明背景邊緣抗鋸齒修邊處理",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1CbX1ch_go1BNOI_j-y7BiUqfMbE3tnD_",
+    "placeholderId": "IMAGE_84",
+    "colorTheme": "from-[#1a0a24] via-[#37164d] to-[#12061a]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1CbX1ch_go1BNOI_j-y7BiUqfMbE3tnD_",
+      "https://lh3.googleusercontent.com/d/1MC-RFl3mEQnW8jW-2NqGyBF7nlJPjrpq",
+      "https://lh3.googleusercontent.com/d/1oGphoCz_H_Ib5XHT8iodqy7v--Q8iXmt",
+      "https://lh3.googleusercontent.com/d/1h5XPAsiNNxqILvUDFYH3FB8UJmgHSjvT",
+      "https://lh3.googleusercontent.com/d/1F6F9Rej9T0YLPurw7Vqb2EGWd2UYrGlX",
+      "https://lh3.googleusercontent.com/d/1_jQuu2CWjG2TzYFwswr9x0e4X3sRUmH-",
+      "https://lh3.googleusercontent.com/d/1bk1AXD4lGUyx43rwzitmuImaVOA9r8u5",
+      "https://lh3.googleusercontent.com/d/11HDsewuPP6PTXgHbsEbt0Vlf1AM38Dhp",
+      "https://lh3.googleusercontent.com/d/1PFTJEiGnzjrIJWQ-0ZNc-0zOoYCsomWz",
+      "https://lh3.googleusercontent.com/d/1yMFdmfC8p1llsktZ24MVTNEeDQcBBdlW",
+      "https://lh3.googleusercontent.com/d/1HUk-wI7fu4c7MDtKtfVE-DBVA581qyCt",
+      "https://lh3.googleusercontent.com/d/194M4AxNKQX1_OEUJproE_4YoVtf4SbvI",
+      "https://lh3.googleusercontent.com/d/1pWguoM0vPEuwX4kutZ6vuBDfdEVOSPh1",
+      "https://lh3.googleusercontent.com/d/1N62neI9OwuyW2pBtQWkLXMpj6IaXpEYq",
+      "https://lh3.googleusercontent.com/d/1xtj2YHOAGRMUTyGV-DilaCagSGVlJPht",
+      "https://lh3.googleusercontent.com/d/1urrsDvPkN1NJD3i8wmu5g0xIlHGjcUxt",
+      "https://lh3.googleusercontent.com/d/1CSxqELFnB_BpvJrlyjJjaetzMNGuDYLj",
+      "https://lh3.googleusercontent.com/d/1zJ74tK0SavBFYgC84ceuQrPhvx_XSFga",
+      "https://lh3.googleusercontent.com/d/1WOD6mhoQ055fnDbr2UGOWr2giD9rkap-",
+      "https://lh3.googleusercontent.com/d/13ZXxcyEQUO9no5dIDvXRb1FCII15VM3t"
+    ]
   }
 ];

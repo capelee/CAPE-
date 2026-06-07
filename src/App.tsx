@@ -49,14 +49,68 @@ function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [currentSrc, setCurrentSrc] = useState<string>(src);
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
   React.useEffect(() => {
     setCurrentSrc(src);
     setFallbackAttempt(0);
   }, [src]);
 
+  const handleYoutubeFallback = (img: HTMLImageElement) => {
+    const isYoutube = img.src.includes("youtube.com") || img.src.includes("img.youtube.com") || img.src.includes("ytimg.com");
+    if (isYoutube && img.naturalWidth > 0 && img.naturalWidth <= 120) {
+      if (fallbackAttempt === 0 && img.src.includes("maxresdefault.jpg")) {
+        // Fall back to hqdefault.jpg
+        const hqUrl = img.src.replace("maxresdefault.jpg", "hqdefault.jpg");
+        setCurrentSrc(hqUrl);
+        setFallbackAttempt(1);
+        return true;
+      } else {
+        // Try falling back: maxres -> hqdefault -> 0.jpg -> picsum
+        const nextUrl = img.src.includes("maxresdefault.jpg")
+          ? img.src.replace("maxresdefault.jpg", "hqdefault.jpg")
+          : img.src.includes("hqdefault.jpg")
+          ? img.src.replace("hqdefault.jpg", "0.jpg")
+          : "";
+        
+        if (nextUrl && fallbackAttempt < 2) {
+          setCurrentSrc(nextUrl);
+          setFallbackAttempt(fallbackAttempt + 1);
+          return true;
+        } else {
+          setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
+          setFallbackAttempt(3);
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    handleYoutubeFallback(img);
+  };
+
+  React.useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      handleYoutubeFallback(img);
+    }
+  }, [currentSrc, fallbackAttempt]);
+
   const handleError = () => {
     if (fallbackAttempt === 0) {
+      if (src.includes("youtube.com") || src.includes("img.youtube.com")) {
+        // Try fallback to hqdefault.jpg
+        const hqUrl = src.replace("maxresdefault.jpg", "hqdefault.jpg");
+        if (hqUrl !== src) {
+          setCurrentSrc(hqUrl);
+          setFallbackAttempt(1);
+          return;
+        }
+      }
+      
       // If the primary image fails, try a highly reliable beautiful mooncake photo URL or specific backup
       if (src.includes("photo-1627308595229-7830a5c91f9f") || alt.includes("茂生") || alt.includes("月餅")) {
         setCurrentSrc("https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450");
@@ -64,18 +118,22 @@ function ImageWithFallback({
         // Fallback to picsum for placeholders
         setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
       }
-      setFallbackAttempt(1);
+      setFallbackAttempt(2);
     } else if (fallbackAttempt === 1) {
+      // YouTube hqdefault also failed, try picsum as secondary fallback
+      setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
+      setFallbackAttempt(2);
+    } else if (fallbackAttempt === 2) {
       // Try secondary high-availability mooncake photography
       setCurrentSrc("https://images.unsplash.com/photo-1574085733277-851d9d856a3a?auto=format&fit=crop&q=80&w=600&h=450");
-      setFallbackAttempt(2);
+      setFallbackAttempt(3);
     } else {
       // Final gradient backdrop
-      setFallbackAttempt(3);
+      setFallbackAttempt(4);
     }
   };
 
-  if (fallbackAttempt >= 3) {
+  if (fallbackAttempt >= 4) {
     return (
       <div className={`w-full h-full bg-gradient-to-br ${fallbackTheme} flex flex-col items-center justify-center p-6 text-center select-none relative overflow-hidden`}>
         {/* Decorative Grid Pattern */}
@@ -96,8 +154,10 @@ function ImageWithFallback({
 
   return (
     <img
+      ref={imgRef}
       src={currentSrc}
       alt={alt}
+      onLoad={handleLoad}
       onError={handleError}
       className={className}
       referrerPolicy={referrerPolicy}
