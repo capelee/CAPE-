@@ -780,93 +780,79 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
-    "id": "36",
-    "category": "商品周邊企業禮贈品",
-    "title": "保衛的信念—保防知識桌遊包裝設計",
-    "titleEn": "Belief of Defense: National Security Educational Board Game Packaging Design",
-    "philosophy": "本設計為國軍保防教育桌遊《保衛的信念》。視覺以深邃的蔚藍色為背景，搭配象徵榮耀的金色麥穗與高對比的紅白字體，營造嚴肅卻不失趣味的宣導氛圍。包裝封面融合擬人化動物角色與偵探元素（如放大鏡、線索照片），直觀呈現保防破案與安全防範之主題。印刷建議採用高磅數銅西卡紙進行濕盒結構製作，並於標題與角色部分施以局部上光（Spot UV）與擊凸工藝，大幅提升整體禮盒的觸覺層次與收藏價值。",
+    "id": "62",
+    "category": "電商視覺設計",
+    "title": "羅宋堂總代理官方售後：Segway-Ninebot 智能滑板車尊榮延長保固計劃圖文詳情與登錄系統界面設計",
+    "titleEn": "Segway-Ninebot Authorised Local VIP Extended Warranty: Premium Post-Purchase Insurance Campaign & Verification Interface Design",
+    "philosophy": "本案為九號出行（Segway-Ninebot）台灣官方總代理羅宋堂（Luosongtown）為其全系列智能電動滑板車精心策劃的『尊榮售後延長保固計劃』專屬電商圖文宣傳與保固登錄引導頁面設計。本案核心在於建構流暢、專業且令人信賴的售後加值形象，並細緻轉化保固條款：\n\n1. 羅宋黃經典標識與高感光石墨深灰：全案視覺以代表專業尊榮的『極致石墨黑』為背景色基調，點綴羅宋堂官方品牌高識別度的『典雅暖橘黃』與科技白文字。完美呼應 Segway-Ninebot 全車系液晶控制儀表與車尾亮色反光的色調質感，使加購延保資訊宛如原廠豪華隨車手冊般洗鍊高雅。\n\n2. 尊榮延保三部曲與售後防偽本地化（Localization）：重組保固政策文案，以人性化口吻提煉『原廠全機1年主保固』加上『VIP登錄尊享6個月至1年核心部件專屬延保（包含馬達、車架、高能鋰離子電池包等核心大件）』的特權服務。詳述包括『線上登錄防偽查詢』、『專屬車輛綁定App即時激活』與『全省48小時預約收送免運檢修』等尊榮權益。將原本冗長繁複的售後法規合約轉化為高可讀性、具備視覺指引的圖形卡片網格與手感擬真電子版面系統，大幅減輕消費者的閱讀負擔，同時營造出尊榮、安心且科技感十足的官方售後守護。\n\n3. 跨端適配與高擬真印刷像素對位：全案針對品牌 App 嵌頁、官方社群平台、詳情頁活動 Banner 以及門市隨車保固卡與實體立牌進行了精細的解析度校正與色彩溢出防護。不論是在一千尼特的高亮度流動背光螢幕，還是在高檔重磅特種紙印刷品上，均能將尊榮黃與石墨灰的金屬高級質感展露無遺，塑造出無可挑剔的官方大廠氣度。",
     "tools": [
-      "Illustrator",
       "Photoshop",
-      "Packaging Design",
-      "Character Illustration",
-      "Layout Design"
+      "Illustrator",
+      "E-Commerce Post-Purchase Infographics",
+      "VIP Warranty Registration Layouts",
+      "Print and Digital Color Optimization"
     ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1NqVoCgWCG97oQirofppfwymb2f1-u_T0",
-    "placeholderId": "IMAGE_36",
-    "colorTheme": "from-sky-600 to-indigo-950",
+    "imageUrl": "https://lh3.googleusercontent.com/d/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4",
+    "placeholderId": "IMAGE_62",
+    "colorTheme": "from-[#14120f] via-[#211b13] to-[#14120f]",
     "images": [
-      "https://lh3.googleusercontent.com/d/1NqVoCgWCG97oQirofppfwymb2f1-u_T0",
-      "https://lh3.googleusercontent.com/d/1EQA1rlkwI3sD76D7UgRD9K2mI9Wnx_Np",
-      "https://lh3.googleusercontent.com/d/1nEuUCo44LXThFeSTp7EOfblv2p3BYRl4",
-      "https://lh3.googleusercontent.com/d/1JNZKhGpcrTOrgJGp_D8lkecWqEAWinRU",
-      "https://lh3.googleusercontent.com/d/1hntTFt9S03lf7CjZj3nbDs3i237XbGNp",
-      "https://lh3.googleusercontent.com/d/1R1OtsHOXcLmDVqS_13KhH-_lJFoJu9Fi",
-      "https://lh3.googleusercontent.com/d/1jLvmk_MoLR4IJv1fi8HU7FKIHScs73al",
-      "https://lh3.googleusercontent.com/d/1K8tzFKOW39zCsBzTtf7UW0iiZsJcV4AR",
-      "https://lh3.googleusercontent.com/d/1ak4DdVE9t1zRJBtNm1vmjk5c_DUEBqJ2",
-      "https://lh3.googleusercontent.com/d/1wcyAmfdipsUsJmNOgxibSaQgqcauJIVm"
+      "https://lh3.googleusercontent.com/d/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4",
+      "https://lh3.googleusercontent.com/d/1UBoU7SwFpmprbepIkzKgmxIx_ABs6bkX"
     ]
   },
   {
-    "id": "37",
-    "category": "平面海報設計",
-    "title": "Black Goodie & 放客兄弟 聯合專場：公館河岸留言演出海報設計",
-    "titleEn": "Black Goodie & Funky Brothers Joint Live Concert Poster Design",
-    "philosophy": "本海報為「Black Goodie」與「放客兄弟」在公館河岸留言聯合演出的視覺設計。版面採左右不對稱的雙色塊分割，左側暖米色調以黑膠唱片簡約插圖搭配俐落排版，清晰呈現演出與票價資訊；右側復古湖水綠底色融入標誌性鬍子元素，並編排兩團風格強烈的宣傳照片。整體色彩融合復古與現代感，營造極具音樂律動與個性的舞台視覺。印刷推薦使用無塗佈超細細畫紙，保留沉穩墨色與溫潤手感。",
+    "id": "63",
+    "category": "電商視覺設計",
+    "title": "九號聖誕禮讚嘉年華：Segway-Ninebot 智能電動滑板車年終感恩祭優惠圖文詳情與節日視覺行銷設計",
+    "titleEn": "Segway-Ninebot Christmas Carnival: Premium Holiday Deals Landing Page & Festive E-Commerce Visual Design",
+    "philosophy": "本案為九號出行（Segway-Ninebot）官方總代理羅宋堂（Luosongtown）精心策劃之「九號聖誕禮讚、歲末感謝祭」特別企劃電商海報與行銷視覺設計。全案圍繞冬日溫馨、喜慶聖誕與高端智能車款之結合，開創性地將工業科技感與節日奢華禮遇完美融合，強力帶動年終消費轉化：\n\n1. 聖誕鎏金與奢華墨綠節日美學：不同於常規的紅綠大色塊喧賓奪主，本案視覺方案大膽選用極其洗鍊的「北歐暗樅綠（Forest Green）與深曜石黑」為背景基底，點綴以閃耀璀璨的「經典香檳鎏金（Champagne Gold）」與雪花純白點描。不僅呈現了溫馨的節日氣氛，更契合了 Segway-Ninebot 旗艦車系本身極富科幻感的暗黑鋼骨結構工藝，將節日感與極客感完美交融。\n\n2. 節日限定大贈禮、多語系高感設計：重組聖誕限定優惠文案，以溫情大氣的字體編排突顯「年終大促，下單即享千元配件禮包（包含原廠密碼鎖、聯名針織毛帽、定製保溫隨身杯等節日專屬周邊）」與「全台免運送達、12期刷卡零利率」。以高對比度的排版格線引導消費者的視線流動，最大化營造出節日的「尊享感」與「限時緊迫感」。\n\n3. 多通道印刷與網格切片像素級整合：為了在雙旦（聖誕與元旦）特惠期實現多渠道爆發，設計對行動端大圖、門市電視牆廣告、以及線下展廳精美宣傳長條 DM 進行了高精度的色彩管理與裁切排對。無論是天青藍、墨綠底上細節分明的燙金線條，還是在實體紙件印刷中，皆能展現最極致、最飽含節日奢華感的高大上格調。",
     "tools": [
-      "Illustrator",
       "Photoshop",
-      "Typography",
-      "Layout Design"
+      "Illustrator",
+      "Festive Campaign Layouts",
+      "Color Grading and Retouching",
+      "Digital Marketing Visuals"
     ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1tm01m9LWape8DeGwOnh2KxMEmkhwWIJY",
-    "placeholderId": "IMAGE_37",
-    "colorTheme": "from-teal-700 to-amber-50",
+    "imageUrl": "https://lh3.googleusercontent.com/d/1dcU52xfGNSb-LnwKXGTdnM6JwsWEvWlI",
+    "placeholderId": "IMAGE_63",
+    "colorTheme": "from-[#091710] via-[#1a2d21] to-[#091710]",
     "images": [
-      "https://lh3.googleusercontent.com/d/1tm01m9LWape8DeGwOnh2KxMEmkhwWIJY",
-      "https://lh3.googleusercontent.com/d/1Lot7jAy39_vHe4tZcJBhGe_8wQ2qUmBf"
+      "https://lh3.googleusercontent.com/d/1dcU52xfGNSb-LnwKXGTdnM6JwsWEvWlI",
+      "https://lh3.googleusercontent.com/d/1BkiKorecBNyV-wcnEBw0aOLDhafbPZ70",
+      "https://lh3.googleusercontent.com/d/1JJ3JurU-ObYXqlFfos8mwvG7Jz0Gco-2",
+      "https://lh3.googleusercontent.com/d/10W9ktFBaPqUhRQ5oeXKCpRqcOtViJNlw",
+      "https://lh3.googleusercontent.com/d/1KspJErV_Pet9og2MJii2dXu4vfcH_QIZ",
+      "https://lh3.googleusercontent.com/d/1I_40t6X1A5wPJgVghGPh4MBNwkFbqiOu",
+      "https://lh3.googleusercontent.com/d/1sNqeiFj_hN2gWyyaWgpK_Yu1s5SZ1BYx",
+      "https://lh3.googleusercontent.com/d/1ath3ROEeoME8A-ReImQ2o5xYG2kDUBfR"
     ]
   },
   {
-    "id": "38",
-    "category": "平面海報設計",
-    "title": "公館河岸留言：Black Goodie × 貳行程 聯合音樂會海報設計",
-    "titleEn": "Gongguan Riverside Music Cafe: Black Goodie x Er-Xing-Cheng Joint Concert Poster Design",
-    "philosophy": "本設計為獨立樂團 Black Goodie 與貳行程在公館河岸留言聯合專場的宣傳海報。視覺採用左右分割版型，將兩組風格迥異的樂團宣傳照與現場演出實況並置，表現出街頭與舞台的張力對比。色調以沉穩的粗糙水泥灰為基底，搭配具有粉筆手寫質感的斑駁大字，展現粗獷、真實的 Live 現場溫度。印刷建議選用重磅微塗佈粗面紙，以細緻呈現背景的灰調層次與字體的斑駁細節，凸顯獨立音樂的純粹本質。",
+    "id": "64",
+    "category": "電商視覺設計",
+    "title": "九號狂歡雙11購物節：Segway-Ninebot 智能滑板車全台瘋搶特惠與年度最佛超值大促圖文編排設計",
+    "titleEn": "Segway-Ninebot Double 11 Carnival: Maximum Discount Campaign & High-Conversion E-Commerce Visual Layout",
+    "philosophy": "本案為九號出行（Segway-Ninebot）總代理羅宋堂（Luosongtown）精心策劃之「狂歡雙11購物節、年度最吸睛特惠」電商詳情頁與全通路行銷視覺編排。全案聚焦於「11.11 年度最低、狂歡瘋搶、超值買贈」的核心促銷語境，將高硬核的科技越野基因與極具煽動性的大促節日氛圍深度綑綁，打造電商轉換之巔：\n\n1. 霓虹極速橙與黑金科技風暴：為了打破常見雙11促銷的廉價紅藍視覺，視覺設計大膽引入了富有極速動能的「霓虹脈衝橙（Pulse Orange）」與「科技暗曜黑」為色彩主調，挑戰視覺疲勞，襯托九號車系的金屬科技感與硬核骨架，使消費者在滑動瀑布流時迅速被熱烈、專業且高層次的「限時瘋搶」色彩張力所俘虜。\n\n2. 限時特惠爆發力、買即贈高階大件周邊：在文案推廣上，精雕細琢各核心折扣利益點：包含「下單立享驚喜狂歡券（最高現折千元）」、「加碼免費贈送原廠高防護頭盔與專屬防盜鋼纜鎖（等值大促贈品）」以及「羅宋堂尊享本島48小時免費送件、1年安心保固」。利用具有強烈暗示與煽動性的電商衝擊字體與高亮引導線對數據進行精密本土化排版，進一步提升轉化率與買家的選購安全感。\n\n3. 多維自適應網格與高保真像素極限輸出：針對雙11極端大客流下的行動端詳情頁、社交平台瘋狂轉發海報、App開屏廣告及實體總代理門市櫥櫃立牌，進行了極致的色彩溢出優化、防溢流校正與垂直對縫裁切。確保在任何高動態、不同流派的數碼螢幕或紙張印件上，其耀眼的霓虹橙變均能帶出極致和諧的全球級大廠風範與爆發力。",
     "tools": [
       "Photoshop",
       "Illustrator",
-      "Typography",
-      "Layout Design",
-      "Image Composite"
+      "E-Commerce Conversion Optimization",
+      "High-Impact Publicity Systems",
+      "Technical Layout Engineering",
+      "Dynamic Advertising Strategy"
     ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1bk1shLq-KsqQxBaSMdJgU-k48WgEv8Rz",
-    "placeholderId": "IMAGE_38",
-    "colorTheme": "from-zinc-600 via-neutral-700 to-zinc-800",
+    "imageUrl": "https://lh3.googleusercontent.com/d/1z62jYxNd5YAt1SQHl_6K728nLBChR3Or",
+    "placeholderId": "IMAGE_64",
+    "colorTheme": "from-[#0c0a08] via-[#1f160e] to-[#0d0a09]",
     "images": [
-      "https://lh3.googleusercontent.com/d/1bk1shLq-KsqQxBaSMdJgU-k48WgEv8Rz",
-      "https://lh3.googleusercontent.com/d/1q_J6Z-v251VIspbjCq3VcrVLW6RhhQiK"
-    ]
-  },
-  {
-    "id": "39",
-    "category": "平面海報設計",
-    "title": "New Born 誕：裂縫說 X Control T 聯合音樂會海報設計",
-    "titleEn": "New Born: Liefengshuo X Control T Joint Concert Poster Design",
-    "philosophy": "本海報為「裂縫說」與「Control T」兩組樂團於公館河岸留言舉辦的「New Born 誕」聯合音樂會視覺。版面採用左右不對稱的對角分割，左方以冷調薄荷綠襯托「裂縫說」的多人編制與故事感，右方則以暖沙色調凸顯雙人組合「Control T」的溫煦氣質。整體視覺融入輕柔的水彩紋理與簡潔的現代無襯線字體，並以半透明色塊疊加，創造清新的空間呼吸感。印刷建議選用高質感未塗佈美術紙，以溫潤的紙張纖維呈現柔和色彩與文青氛圍。",
-    "tools": [
-      "Photoshop",
-      "Illustrator",
-      "Typography",
-      "Layout Design"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1Fu0agxRL2sOpiRnXinH9TnX3LJexjFCa",
-    "placeholderId": "IMAGE_39",
-    "colorTheme": "from-teal-50 to-amber-50",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1Fu0agxRL2sOpiRnXinH9TnX3LJexjFCa",
-      "https://lh3.googleusercontent.com/d/1Zr6A-FvAODvkiQdDIVhvla2O6sbUxzJK"
+      "https://lh3.googleusercontent.com/d/1z62jYxNd5YAt1SQHl_6K728nLBChR3Or",
+      "https://lh3.googleusercontent.com/d/1KZUeSLy24iscQ4UUDjvBza8S6uzw_DNv",
+      "https://lh3.googleusercontent.com/d/1oT8mcdJQbXK-XZz-hnh5tIOm6WRSpngP",
+      "https://lh3.googleusercontent.com/d/1HpxA-d7Mjp9mJQS-GjjMbtaUgqNcoJHD",
+      "https://lh3.googleusercontent.com/d/1GssHqzFquhwCxeBoSqcaFRMZ7DZKEWet",
+      "https://lh3.googleusercontent.com/d/1vas277IWca8yuw3gz1ZtHhCNvkWXKgq_",
+      "https://lh3.googleusercontent.com/d/1CxdbK05fGI7XXiaPGcgw593hEk4dFuMd",
+      "https://lh3.googleusercontent.com/d/1oBbRCSYqr8T4QWiWtMSdeNjrwPAeE_Ir"
     ]
   },
   {
@@ -1262,83 +1248,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1IaXloU25wZXDkyYSnip9jjESA6i97BMC",
       "https://lh3.googleusercontent.com/d/1rD67w7irl-y--L9GOg7q19ix4T_ClF9G",
       "https://lh3.googleusercontent.com/d/1RVgFpWVVezSDyNE3kh6yzaNvblPvtOFX"
-    ]
-  },
-  {
-    "id": "62",
-    "category": "電商視覺設計",
-    "title": "羅宋堂總代理官方售後：Segway-Ninebot 智能滑板車尊榮延長保固計劃圖文詳情與登錄系統界面設計",
-    "titleEn": "Segway-Ninebot Authorised Local VIP Extended Warranty: Premium Post-Purchase Insurance Campaign & Verification Interface Design",
-    "philosophy": "本案為九號出行（Segway-Ninebot）台灣官方總代理羅宋堂（Luosongtown）為其全系列智能電動滑板車精心策劃的『尊榮售後延長保固計劃』專屬電商圖文宣傳與保固登錄引導頁面設計。本案核心在於建構流暢、專業且令人信賴的售後加值形象，並細緻轉化保固條款：\n\n1. 羅宋黃經典標識與高感光石墨深灰：全案視覺以代表專業尊榮的『極致石墨黑』為背景色基調，點綴羅宋堂官方品牌高識別度的『典雅暖橘黃』與科技白文字。完美呼應 Segway-Ninebot 全車系液晶控制儀表與車尾亮色反光的色調質感，使加購延保資訊宛如原廠豪華隨車手冊般洗鍊高雅。\n\n2. 尊榮延保三部曲與售後防偽本地化（Localization）：重組保固政策文案，以人性化口吻提煉『原廠全機1年主保固』加上『VIP登錄尊享6個月至1年核心部件專屬延保（包含馬達、車架、高能鋰離子電池包等核心大件）』的特權服務。詳述包括『線上登錄防偽查詢』、『專屬車輛綁定App即時激活』與『全省48小時預約收送免運檢修』等尊榮權益。將原本冗長繁複的售後法規合約轉化為高可讀性、具備視覺指引的圖形卡片網格與手感擬真電子保單。\n\n3. 高轉化率導流網格與跨媒介高保真輸出：版面佈局專專為電商App尾部欄、社群登錄裂變海報以及實體保證卡大圖輸出設計。色彩與邊界像素完美拉伸，在視網膜背光屏或精密銅版紙印件上，其明暗光影漸層均表現出原廠級的洗練，最大化拉升用戶的滿意度與二次複購意願。",
-    "tools": [
-      "Photoshop",
-      "Illustrator",
-      "E-Commerce User Path Optimization",
-      "VIP Service Strategy",
-      "Technical Layout Engineering"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4",
-    "placeholderId": "IMAGE_62",
-    "colorTheme": "from-[#0b0c10] via-[#1a1510] to-[#0c0d12]",
-    "images": [
-      "https://lh3.googleusercontent.com/d/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4",
-      "https://lh3.googleusercontent.com/d/1UBoU7SwFpmprbepIkzKgmxIx_ABs6bkX"
-    ]
-  },
-  {
-    "id": "63",
-    "category": "電商視覺設計",
-    "title": "九號聖誕禮讚嘉年華：Segway-Ninebot 智能電動滑板車年終感恩祭優惠圖文詳情與節日視覺行銷設計",
-    "titleEn": "Segway-Ninebot Christmas & Year-End Grand Jubilee: Premium Holiday Sales Campaign, Accessory Giveaway & Decorative E-Commerce Graphics",
-    "philosophy": "本案為九號出行（Segway-Ninebot）官方總代理精心策劃之「九號聖誕禮讚、歲末感謝祭」特別企劃電商海報與行銷視覺設計。全案圍繞冬日溫馨、喜慶聖誕與高端智能車款之結合，開創性地將工業科技感與節日奢華禮遇完美融合，強力帶動年終消費轉化：\n\n1. 聖誕鎏金與奢華墨綠節日美學：不同於常規的紅綠大色塊喧賓奪主，本案視覺方案大膽選用極其洗鍊的「北歐暗樅綠（Forest Green）與深曜石黑」為背景基底，點綴以閃耀璀璨的「經典香檳鎏金（Champagne Gold）」與雪花純白點描。不僅呈現了溫馨的節日氣氛，更契合了 Segway-Ninebot 旗艦車系本身極富科幻感的暗黑鋼骨結構工藝，將節日感與科技美進行高維度的「精品化」折衷，在無數聖誕大促廣告中脫穎而出。\n\n2. 驚喜禮包疊加與高轉化率「聖誕禮讚三部曲」：文案與視覺佈局深度提煉用戶心智購買路徑：包括「聖誕特配暖心折扣（直降千元驚喜）」、「年終狂歡專屬大禮包（免費贈送高規原廠安全防護頭盔、訂製便攜收納掛包、安全隨車密碼鎖）」與「官方安心保固升級」。將促銷與送禮機制簡化為可視化的禮物盒開箱圖示、半透明浮霧網格與引人注目的香檳金倒數計時框，在營造節慶儀式感的同時，實行極為流暢的情感說服與行動催化。\n\n3. 多通道高保真像素輸出與跨媒介渲染：針對 Mobile 詳情首圖、社群聖誕賀卡海報、App 開屏廣告與直營門市聖誕櫥窗超寬高清背光海報，進行極致的色彩溢出保護與高對比曲線微調。確保在任何強光或暗弱背光下，鎏金色帶的精細光影、雪夜霓虹的柔霧光暈，皆能呈現殿堂級的高端節日視效。",
-    "tools": [
-      "Photoshop",
-      "Illustrator",
-      "E-Commerce Holiday Marketing",
-      "Decorative Graphic Systems",
-      "Conversion Path Optimization",
-      "Aesthetic Fluid Engineering"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1dcU52xfGNSb-LnwKXGTdnM6JwsWEvWlI",
-    "placeholderId": "IMAGE_63",
-    "colorTheme": "from-[#080d09] via-[#0f2115] to-[#0c0d12]",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1dcU52xfGNSb-LnwKXGTdnM6JwsWEvWlI",
-      "https://lh3.googleusercontent.com/d/1BkiKorecBNyV-wcnEBw0aOLDhafbPZ70",
-      "https://lh3.googleusercontent.com/d/1JJ3JurU-ObYXqlFfos8mwvG7Jz0Gco-2",
-      "https://lh3.googleusercontent.com/d/10W9ktFBaPqUhRQ5oeXKCpRqcOtViJNlw",
-      "https://lh3.googleusercontent.com/d/1KspJErV_Pet9og2MJii2dXu4vfcH_QIZ",
-      "https://lh3.googleusercontent.com/d/1I_40t6X1A5wPJgVghGPh4MBNwkFbqiOu",
-      "https://lh3.googleusercontent.com/d/1sNqeiFj_hN2gWyyaWgpK_Yu1s5SZ1BYx",
-      "https://lh3.googleusercontent.com/d/1ath3ROEeoME8A-ReImQ2o5xYG2kDUBfR"
-    ]
-  },
-  {
-    "id": "64",
-    "category": "電商視覺設計",
-    "title": "九號狂歡雙11購物節：Segway-Ninebot 智能滑板車全台瘋搶特惠與年度最佛超值大促圖文編排設計",
-    "titleEn": "Segway-Ninebot Double 11 Shopping Extravaganza: Annual High-Conversion Sales Campaign, Bundle Giveaways & Dynamic E-Commerce Display Graphics",
-    "philosophy": "本案為九號出行（Segway-Ninebot）總代理羅宋堂（Luosongtown）精心策劃之「狂歡雙11購物節、年度最吸睛特惠」電商詳情頁與全通路行銷視覺編排。全案聚焦於「11.11 年度最低、狂歡瘋搶、超值買贈」的核心促銷語境，將高硬核的科技越野基因與極具煽動性的大促節日氛圍深度綑綁，打造電商轉換之巔：\n\n1. 霓虹極速橙與黑金科技風暴：為了打破常見雙11促銷的廉價紅藍視覺，視覺設計大膽引入了富有極速動能的「霓虹脈衝橙（Pulse Orange）」與「科技暗曜黑」為色彩主調，襯托九號車系的金屬科技感與硬核骨架，使消費者在滑動瀑布流時迅速被熱烈、專業且高層次的「限時瘋搶」色彩張力所俘虜。\n\n2. 高轉換促銷漏斗與超強大禮包編譯（Localization）：在文案編譯上，重塑雙11優惠路徑，以「直降千元券限時限量瘋搶」、「年度超強多重贈禮（送原廠密碼鎖、防護安全頭盔、定製車前收納包、極速反光貼紙）」、「全台免運快速配（台灣現貨24小時疾速發車）」等三大王牌利益點為視覺線索，利用爆燃字體、半透明擬物卡片、動態發光禮盒和高反差百分比圖飾，大幅降低決策難度，激發極限購買欲。\n\n3. 全端高保真像素極限輸出：針對雙11極端大客流下的行動端詳情頁、社交平台瘋狂轉發海報、App開屏廣告及實體總代理門市櫥櫃立牌，進行了極致的色彩溢出優化、防溢流校正與垂直對縫裁切。確保在任何高動態、不同流派的數碼螢幕或紙張印件上，其耀眼的霓虹橙漸變均能帶出極致和諧的全球級大廠風範與爆發力。",
-    "tools": [
-      "Photoshop",
-      "Illustrator",
-      "E-Commerce Conversion Optimization",
-      "High-Impact Publicity Systems",
-      "Technical Layout Engineering",
-      "Dynamic Advertising Strategy"
-    ],
-    "imageUrl": "https://lh3.googleusercontent.com/d/1z62jYxNd5YAt1SQHl_6K728nLBChR3Or",
-    "placeholderId": "IMAGE_64",
-    "colorTheme": "from-[#0c0a08] via-[#1f160e] to-[#0d0a09]",
-    "images": [
-      "https://lh3.googleusercontent.com/d/1z62jYxNd5YAt1SQHl_6K728nLBChR3Or",
-      "https://lh3.googleusercontent.com/d/1KZUeSLy24iscQ4UUDjvBza8S6uzw_DNv",
-      "https://lh3.googleusercontent.com/d/1oT8mcdJQbXK-XZz-hnh5tIOm6WRSpngP",
-      "https://lh3.googleusercontent.com/d/1HpxA-d7Mjp9mJQS-GjjMbtaUgqNcoJHD",
-      "https://lh3.googleusercontent.com/d/1GssHqzFquhwCxeBoSqcaFRMZ7DZKEWet",
-      "https://lh3.googleusercontent.com/d/1vas277IWca8yuw3gz1ZtHhCNvkWXKgq_",
-      "https://lh3.googleusercontent.com/d/1CxdbK05fGI7XXiaPGcgw593hEk4dFuMd",
-      "https://lh3.googleusercontent.com/d/1oBbRCSYqr8T4QWiWtMSdeNjrwPAeE_Ir"
     ]
   },
   {
@@ -1808,6 +1717,420 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://lh3.googleusercontent.com/d/1zJ74tK0SavBFYgC84ceuQrPhvx_XSFga",
       "https://lh3.googleusercontent.com/d/1WOD6mhoQ055fnDbr2UGOWr2giD9rkap-",
       "https://lh3.googleusercontent.com/d/13ZXxcyEQUO9no5dIDvXRb1FCII15VM3t"
+    ]
+  },
+  {
+    "id": "85",
+    "category": "企業LOGO與CIS設計",
+    "title": "Young Guns Club+ LOGO與CIS品牌系統設計",
+    "titleEn": "Young Guns Club+: Logo & Corporate Identity System (CIS) Brand Book Design",
+    "philosophy": "本案為「Young Guns Club+（YGC+）」量身定製的完整 LOGO 與企業識別系統（CIS 品牌規範手冊）設計。本案藉由科學化的品牌定位、深度品牌理念提煉，建構出兼具未來感、動感與高辨識度的一體化品牌視覺：\n\n1. 品牌理念與定位的精緻對位：品牌旨在凝聚具有開創精神、突破自我的新世代（Young Guns）。設計上將熱血、精準與極致執行的運動生活哲學提煉為一，確立「熱血無畏、超越常規」的視覺基調（Brand Purpose & Positioning Matrix）。\n\n2. 幾何符號美學之 LOGO 核心：LOGO 巧妙融合尖銳的指向性箭頭、剛勁的核心幾何網格以及代表無限超越的「+」符號，象徵著團隊持續擴張、向上躍升與強悍突破的無限可能。主標誌字體經過高度純手工幾何化編排微調，在任何大範圍展會或縮小至移動端 APP 圖標上，皆能保有極佳的視覺對比度與瞬間聚焦力。\n\n3. 系統化 CIS 規範與完整場景落地：品牌手冊嚴格規範了 LOGO 安全空間、錯誤示範、字體排版系統（Typography Hierarchy）及高活力的品牌色彩美學（耀動紅、極地黑、星光白）。此外更向外延伸出包括高級運動水壺、品牌專屬包裝盒、貼紙、社群媒體動態貼文（IG & FB Stories）等豐富的 CIS 週邊應用模組，展現極高細節的全端品牌一致性。",
+    "tools": [
+      "企業識別系統 CIS 品牌規劃",
+      "手工客製化 LOGO 字體幾何微調",
+      "品牌週邊包裝與社群媒體規範應用",
+      "Adobe Illustrator",
+      "Adobe Photoshop",
+      "Adobe InDesign"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1dVeJomPS1DycRWgjJO4HI5KBi2456T3y",
+    "placeholderId": "IMAGE_85",
+    "colorTheme": "from-[#330c0c] via-[#140404] to-[#0a0202]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1dVeJomPS1DycRWgjJO4HI5KBi2456T3y",
+      "https://lh3.googleusercontent.com/d/14serlsOTYOnU8PjZIFA8H3DySAZW2PmQ",
+      "https://lh3.googleusercontent.com/d/1TLIMsunyydr4FoSd2i7j8TC8rg-oYyFE",
+      "https://lh3.googleusercontent.com/d/1ZiiRD0x_cm25E2VviXZCCH4ymkgAl_Ye",
+      "https://lh3.googleusercontent.com/d/1qtUA-pS-d4fqMIBrCgRKKmqDMj3oPZFy",
+      "https://lh3.googleusercontent.com/d/1SRpDzouwWScEF0cvFniTtEr2PxO6h2KE",
+      "https://lh3.googleusercontent.com/d/1yy792bjxeeUmcjSO5XMNY5WNb3YS9Qrj",
+      "https://lh3.googleusercontent.com/d/1PS6jf-ejWwbgt3-2I3wGgTgoTqyCEPCz",
+      "https://lh3.googleusercontent.com/d/1dBjd-5dW3GiCnaq8P9WOHccEV258ia_H",
+      "https://lh3.googleusercontent.com/d/1FARFL7iqyYQavssos7ruU4f6mLRNzIBu",
+      "https://lh3.googleusercontent.com/d/1HKp9TvueXF41gRARQuukSS6QQWEoN-74",
+      "https://lh3.googleusercontent.com/d/1nB6TfaWWf-_1T1xt9CyX4BQc5SnLkuD2",
+      "https://lh3.googleusercontent.com/d/17S7k19ttdWVQe3xr57VHDM0rSCLwtQNO",
+      "https://lh3.googleusercontent.com/d/1GvxWikpV8njBWjVwhrLZp66-sjiDNPeE",
+      "https://lh3.googleusercontent.com/d/1M42MIxm7XFRX2d5IdO7myIO5TgpKVu5H"
+    ]
+  },
+  {
+    "id": "86",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療：卓越品牌多功能折疊收納手推車設計與人體工學精工",
+    "titleEn": "Buddy Medical: Smart Collapsible Utility Trolley & Ergonomic Rolling Cart Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」精心打造之「品牌專屬多功能折疊收納手推車（Smart Collapsible Utility Trolley）」實體結構與工業設計方案。本款手推車完美融合日常收納與便攜移動功能，具備極佳的空間適應性及人體工學操作體驗，專為醫護人員在診所、病房以及辦公區域內進行物件傳遞、資料整理與醫療資材運送而設計：\n\n1. 高強度折疊收納與輕量耐磨材質：推車本體精選高強度、耐摔抗刮之環保工程塑料與抑菌防刮防腐蝕材料。箱體表面採用易於清潔消毒的細緻磨砂處理，並具備一鍵式快速折疊或展開結構，折疊後厚度極薄，可輕鬆收納於病房角落、推車空隙、後車廂或櫃側窄道，極大化提升醫院及辦公空間的使用效率。\n\n2. 醫理配色對位與標誌性視覺語彙：箱體正面大膽搭配專屬之「醫理晴空藍（Buddy Sky Blue）」前置大卡扣蓋板，並印有高解析之官方「BUDDY MEDICAL」與「巴迪醫療」中英文品牌 LOGO，展現極高層次的品牌一致性與臨床信任感。側面配備安全鎖扣系統，防範資材運送途中箱體鬆脫，融合實用機能與現代簡鍊的醫療美學視覺。\n\n3. 人體工學三段式鋁合金拉手與高承重滾輪：上方拉把選用加厚航空級輕量鋁合金拉桿，配合三段式無段升降按鈕，適應不同身高醫護與文書人員的站姿或行進姿態。底部配置一體化耐磨消音雙軸承橡膠萬向輪，提供極佳的靜音滑動效果，即便在醫院需要低噪音的安靜走廊、接縫大理石或抗靜電地面，亦能平穩、順暢、無聲無息地穿梭推拉，承載重物安穩無虞。",
+    "tools": [
+      "多功能便攜折疊結構規劃",
+      "輕量航太級鋁合金拉桿工程",
+      "高強度抑菌材料工藝選型",
+      "3D Product Rendering",
+      "SolidWorks",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1ZkI4DBi5cv4B9lOAu1CjE7nNcq4lF2RO",
+    "placeholderId": "IMAGE_86",
+    "colorTheme": "from-[#082233] via-[#0b334d] to-[#04131c]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1ZkI4DBi5cv4B9lOAu1CjE7nNcq4lF2RO",
+      "https://lh3.googleusercontent.com/d/19I2lhJqeG3KDam5B9U6dfk1t1IJrfky-",
+      "https://lh3.googleusercontent.com/d/1Kxfpg3W0g1-rzAQwPl43BjrREp0L2RDo"
+    ]
+  },
+  {
+    "id": "87",
+    "category": "商務印刷品設計",
+    "title": "巴迪醫療：品牌專屬手提袋與臨床手提紙袋組合包裝工藝設計",
+    "titleEn": "Buddy Medical: Elite Corporate Brand Custom Bags & Medical Packaging Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」精心打造之「品牌專屬手提袋與臨床包裝工藝」全套視覺包裝方案。設計團隊力求將生命科學的頂級嚴謹感、人文關懷的溫潤度，透過日常實體手提袋介質精緻傳遞，樹立世界級醫療器材品牌之專業風範：\n\n1. 視覺張力與暖心色彩系列對位：手提袋規劃「經典白（Classic White）」、「活力紅（Vibrant Red）」與「晴空藍（Sky Blue）」三色對位組合。袋身主導設計融入了極富生命躍動感的「心電圖/心律波（ECG Rhythm Wave）」與象徵療癒和諧的紅色愛心圓環圖案，完美對應「BUDDY MEDICAL / 巴迪醫療」之商標。打破傳統醫療包裝的冰冷感，為患者與臨床工作者帶來康復能量注入。\n\n2. 頂級特種紙與高承重耐拉提結構：考量手提包裝需多次進出診所、研討會或病房等高流動性環境，本體絕不採用普通薄紙，而是精選 250g 重磅進口環保白卡特種紙（White Kraft Paper）。搭配專利啞光防潑水覆膜工藝，兼具超凡防刮、抗刮抗汗、抗指紋沾污性能。提手處則選用手感豐盈、防拉傷之灰色編織扁繩拉帶，確保高承重下依舊維持完美的垂直箱體物理線條與舒適提握手感。\n\n3. 高精度全自動彩色印前工藝：提袋正中央之 Buddy Medical 與巴迪醫療品牌標誌以及動態律動線條，均採用高精細四色專色版面印刷技術，色彩純粹均勻。在不同的展會、醫院陽光或高頻螢光燈下皆能反射出溫和、高質感且不刺眼的細膩色差，無聲勝有聲地述說著巴迪醫療守護生命健康的卓越承諾與工藝美學高度。",
+    "tools": [
+      "高端實體紙塑結構與包裝工程",
+      "特殊印前色彩管理 CMYK+專色對位",
+      "特級重磅白卡特種紙加工工藝",
+      "Adobe Illustrator",
+      "Adobe Photoshop",
+      "Adobe InDesign"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1dwxdEiMBpD7Haj2Rn_W3NB3hETbxAAzt",
+    "placeholderId": "IMAGE_87",
+    "colorTheme": "from-[#08172c] via-[#102d53] to-[#050f1d]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1dwxdEiMBpD7Haj2Rn_W3NB3hETbxAAzt",
+      "https://lh3.googleusercontent.com/d/1yyNKuGDCTO03opQ749ULZiuyB_A81pYk",
+      "https://lh3.googleusercontent.com/d/1R2EXyF7rzvw86Tf6KCn9FQbD20PYYM4a",
+      "https://lh3.googleusercontent.com/d/1Oggx8WOF1tI8olV6HvHT_Ddu3PGGw9Vc",
+      "https://lh3.googleusercontent.com/d/18FgOjgP6aUq3Fx-2ZdHGvRJRwqMtIcp8"
+    ]
+  },
+  {
+    "id": "88",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療：官方尊榮「最佳醫師」水晶獎牌與多功能皮革圓弧筆筒陳列座禮盒",
+    "titleEn": "Buddy Medical: 'Best Doctor' Crystal Award & Leather Desk Organizer Trophy Executive Set",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」精心淬鍊、為全球卓越策略夥伴、最美醫師與學術大會特別打造的官方尊榮「最美醫師（Best Doctor）」水晶獎牌與高規多功能辦公圓弧筆筒陳列座一體化頂奢陳列禮盒設計方案。整體設計融合精湛工藝美學與高端臨床極硬美學：\n\n1. 精選「最佳醫師」紅心K水晶主標：獎牌核心精選高純度進口 K9 光學水晶（K9 Optical Crystal Plaque），經過精細切面、打磨與拋光。水晶面內置高訂全彩色卡片，以西方經典撲克牌「紅心K（King of Hearts）」為代表，完美象徵最美醫師的卓越醫學造詣與悲天憫人之溫暖情懷。卡片細緻印刷「恭喜 劉思慕醫師 榮獲最佳醫師」的專屬燙金祝賀詞，在自然光與室室頂光折射下，演繹出澄澈、靈動且生生不息之生命力量美感。\n\n2. 奢華精緻黑皮革多功能圓弧筆筒基座：獎牌基座與圓弧筆筒部分採用高密度抗壓核心底座，外層包覆防滑耐髒的重磅極黑人造荔枝紋皮革（Elite Black Leather Wrap），外緣施以精湛的白色粗棉線雙對縫紉針腳。筆筒外側壓印官方專屬臨床品牌 HeartCare 標章（「COMPLETE SOLUTION FOR STROKE」及心電圖愛心標誌），可穩固收納高端簽字筆與行政辦公文具，實現藝術觀賞與頂級行政辦公的多維完美結合。\n\n3. 霧黑高規精裝天地蓋緩衝防撞禮盒：包裝層面依循國賓級禮遇標準規劃，精選 2mm 進口特厚抗壓纖維板為骨架，外裱帶有細緻霧砂手感的尊貴純黑色皮革漆特種紙。盒面壓印高細節亮金標誌。盒內採用超高密度防撞珍珠棉（High-density Pearl Cotton）配合高訂黑色天鵝絨內襯（Velvet Cushion Lining），為精細的水晶獎牌與皮革實體底座，在跨國物流海陸空運輸中提供最極致無憂的物理緩衝守護。",
+    "tools": [
+      "高純度進口 K9 水晶工藝規劃",
+      "高密度仿真皮革高週波壓印技術",
+      "高密度多功能行政辦公用具設計",
+      "全客製化專項插畫與印前版面編排",
+      "SolidWorks",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1mPbWecynQC_TEGuNXxFeJLDUoGvViyCW",
+    "placeholderId": "IMAGE_88",
+    "colorTheme": "from-[#1a120b] via-[#3d2c1d] to-[#120c08]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1mPbWecynQC_TEGuNXxFeJLDUoGvViyCW",
+      "https://lh3.googleusercontent.com/d/1vS6FJdkdrTHXWCkOLPlSxW7Un4kmN7XY",
+      "https://lh3.googleusercontent.com/d/1ZBDIlwlh3nUV3zV4pXAAvshpwWkSr0jG"
+    ]
+  },
+  {
+    "id": "89",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療：官方尊榮「最美醫師」金色燙金撲克牌勳章與高端特種紙賀卡禮盒",
+    "titleEn": "Buddy Medical: Premium Hot-Stamping 'Best Doctor' Playing Cards Custom Gift Set",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」精心打造之官方高端商務感謝與榮譽餽贈禮物「尊榮黑色燙金『最美醫師』撲克牌勳章與高端特種紙賀卡」頂級禮盒設計。整體設計將醫理的嚴謹條理、尊顯貴賓之極致奢華感，巧妙融合於日常休閒玩物與個人成就卡牌之中：\n\n1. 立體雙面亮金燙金與極黑磨砂特種紙：卡片本體特別選用德國進口 310g 黑芯特種撲克牌紙（Black-core Professional Playing Card Paper）。正面與牌背運用極細緻雙面雙色冷燙（Hot Foil Stamping）與局部擊凸（Embossing）技術，以精緻絢爛的黃金線條勾勒出「紅心K（King of Hearts）」圖騰、醫理脈絡分布線條以及「恭喜 劉思慕醫師 榮獲最佳醫師」的專屬高亮金箔表彰詞章。表面覆以防潮防磨微塗層，具備驚人的手感與絲滑阻尼感。\n\n2. 撲克藝術與醫學榮譽的跨界融合：本款撲克牌卡片之設計突破傳統卡牌規格，大膽將醫學重大成就與「King（國王）」之尊榮形象作隱喻疊加，象徵在心腦血管、臨床醫學領域中最頂尖的前行者。黑底金線的強烈視覺張力，使得本款卡牌在任何社交場合、研討會典禮或案頭擺設中，皆自帶耀眼的光環與崇高的紀念意義。\n\n3. 高奢硬質天地蓋精裝盒：外包裝套組採用尊貴的硬殼天地蓋結構。外層裱以進口天然手感磨砂黑色特種紙，極具奢華美學。正面以超高溫亮金箔大面積燙印 Buddy Medical 與 HeartCare 商標，內襯使用開模挖空之高彈珍珠棉與柔軟黑色麂皮，確保重磅紙卡與金箔邊緣在任何跨國運輸與日常把玩中皆維持最完璧的珍藏狀態。",
+    "tools": [
+      "高端企業禮贈週邊美學工程",
+      "黑芯特種撲克牌抗刮印刷工藝",
+      "全客製化醫學藝術金卡插畫編排",
+      "雙面冷燙箔與立體局部擊凸",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/19VHy3oEYjtK7QXnVuidJt-3JOT-ldHbU",
+    "placeholderId": "IMAGE_89",
+    "colorTheme": "from-[#14110d] via-[#2d251a] to-[#0a0806]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/19VHy3oEYjtK7QXnVuidJt-3JOT-ldHbU",
+      "https://lh3.googleusercontent.com/d/1JjJZgg8LJxIjUCtwAyxwPHX46NHLFfgl",
+      "https://lh3.googleusercontent.com/d/1v0-kSqhs8eANrDdUXbQTCDY5Gorpb0iB"
+    ]
+  },
+  {
+    "id": "90",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療：2025乙巳蛇年「蛇轉乾坤」尊榮限量燙金工藝紅包袋設計",
+    "titleEn": "Buddy Medical: 2025 Year of the Snake Sovereign Gold-Foil Red Envelopes & Lunar New Year Gift Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」專為2025乙巳蛇年（Year of the Snake）傾力研製之「『蛇轉乾坤』尊榮限量新春金屬燙金工藝紅包袋」高定禮贈方案。整體設計將生命醫學的精密嚴謹，與中國傳統農曆新年的瑞氣祥和相融合，打造出極具國際品味與文化厚度的佳節尊榮獻禮：\n\n1. 「2025」蛇形圖騰與醫理線條之金屬冷燙：紅包袋核心視覺為一枚原創之「2025乙巳蛇年」黃金律動圖騰。設計巧妙將阿拉伯數字「2025」與靈蛇身軀融為一體，前方的「2」部分勾勒出高仰且靈動的蛇首，而「025」則流暢絞結成迴旋的蛇身，極富張力。蛇形線條在視覺上亦令人聯想到守護健康的醫學雙蛇杖（Staff of Asclepius）螺旋符號，展現將醫療品牌精神與生肖藝術深度對位的設計美感。\n\n2. 浮雕波紋紅卡與精細雙色黃金箔壓印：紅包袋本體採用 250g 重磅進口大紅特種紙（Ruby Red Textured Card），紙面壓印有精細如絲的「龍行蛇舞、祥雲瑞芝」同色系微凸自帶肌理。袋面上方左側燙印金色「Buddy」品牌標章與「2025 HAPPY」字樣，右側則精緻呼應「MEDICAL」與「NEW YEAR」。全案摒棄繁贅的傳統字體，以現代簡約之英式無襯線/襯線字型與黃金比例版面編排，彰顯出頂級品牌的國際視野。\n\n3. 國賓級雅致沉浸式商務禮贈場景：設計展示完美融入精裝典雅的中式院落意境、暖色燈籠映襯、黑金漆雕底座（並鐫刻 2025 Buddy Medical 專用標識）與絲滑緹花金線織錦，並佐以翠綠如脂的緬甸翡翠石與金工細鍛梅花飾件，無一不襯托出巴迪醫療在新春來臨之際最為誠摯也最高雅的生命健康祝福。",
+    "tools": [
+      "大紅特種紋理紙壓模工藝",
+      "雙色精密冷燙與金屬三維加工",
+      "生肖吉祥品牌圖騰原創繪製",
+      "全套印前工藝管理與實物美學打樣",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1D0cX3fq-oYZpL880uWGDD06Ply50tv5c",
+    "placeholderId": "IMAGE_90",
+    "colorTheme": "from-[#3e0509] via-[#8a111b] to-[#1a0104]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1D0cX3fq-oYZpL880uWGDD06Ply50tv5c",
+      "https://lh3.googleusercontent.com/d/1hK6wCq3ngg7g_U8Navcl9_6UsM3LtA7V"
+    ]
+  },
+  {
+    "id": "91",
+    "category": "實體店面與展覽",
+    "title": "巴迪醫療：2025 中華民國心臟學會 (TSOC) 年會頂級心血管醫療展覽攤位與空間廣告設計",
+    "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiology (TSOC) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」專為 2025 年中華民國心臟學會（TSOC）年度盛會量身定制之頂級心血管醫療展覽攤位。空間設計完美融合前沿生命醫學科技、國際簡約極靜美學與沈浸式臨床學術氛圍。透過模組化結構與精品陳列美學，旨在向全球心臟病學專家展現巴迪醫療於心血管與人工瓣膜治療領域的卓越成就與品牌深度：\n\n1. 極致睿智醫療藍與懸浮微光之美學精工：整體攤位主視覺沿用巴迪醫療官方心血管「HeartCare 經典醫學深藍」與「光潔皓雪白」，輔以流暢的線性光帶（Linear LED Illumination）與暖心琥珀金，調和醫療的精密嚴謹與學術人文溫度。懸浮發光吊盒（Suspended Lightbox）矗立於展位正上方，品牌標誌與「BUDDY MEDICAL」字樣交相輝映，讓展位在宏大的大會展廳內，自帶地標般的耀眼氣場與科技辨識度。\n\n2. Myval 明星人工心臟瓣膜與 HeartCare 臨床全解陳列區：展位精準配置弧形水晶玻璃展櫃。內置特製高純度心臟解剖 3D 教學模型與 Myval（Transcatheter Heart Valve）人工自主心臟瓣膜、微創介入傳遞系統。搭配高度客製化、字型排版極為現代簡約的英式無襯線雙層導覽看板（Dual-layer Branding Panels），為參展的專業心臟內外科專家提供流暢、專業、且深具沉浸感的學術導覽與產品交互動線。\n\n3. 人本商務會晤區與多維社群媒體互動：本案空間精心打造隱秘而寬敞的名醫學術會談 lounge。周邊牆面運用高精度大寬幅無縫油畫布印刷，展現巴迪醫療團隊對生命健康的卓越關懷與社會責任。同時結合多功能多媒體液晶電視屏幕、臨床互動展示面板，以及實地與專家醫師開展深度合作之溫暖、高專業度之洽談場景，無聲勝有聲地演繹出巴迪醫療專注心血管健康的品牌頂奢工藝傳承與學術風範。",
+    "tools": [
+      "實體空間 brand 識別設計",
+      "大型大寬幅無縫展會印刷優化",
+      "微光線性 LED 燈光工程規劃",
+      "3D 展位動線與空間渲染技術",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/18uKDTF1Nhr5rfOfQFPObn_M56UH07D9s",
+    "placeholderId": "IMAGE_91",
+    "colorTheme": "from-[#0b132b] via-[#1c2541] to-[#0b132b]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/18uKDTF1Nhr5rfOfQFPObn_M56UH07D9s",
+      "https://lh3.googleusercontent.com/d/1MFgP1Aipo95fju5WDUOqkTvgufOgALrw",
+      "https://lh3.googleusercontent.com/d/1Qs32VDKek-vM-Hg_yq6_MwP5XMmPhJvd",
+      "https://lh3.googleusercontent.com/d/1W69vLvkc0H_3Xo7tQjlZRMJFaxMSbJVE",
+      "https://lh3.googleusercontent.com/d/1IykTrygeI0z3qqyoPUD5uvCo-y8lFKyr",
+      "https://lh3.googleusercontent.com/d/1V335NS_eduh0mpnsZ1O6q9h3TLtiEr9U",
+      "https://lh3.googleusercontent.com/d/1WqbiD61-Me7P7dwtdGqJSeWoeAFpWNFM",
+      "https://lh3.googleusercontent.com/d/1uYkDJU6Pizahf56SjVS1liztzoTv3rhr",
+      "https://lh3.googleusercontent.com/d/1Q1aBHsIwG9PXcf9ip3asKKxrWAfZZ8jx",
+      "https://lh3.googleusercontent.com/d/1eN_NHKGlcjaALUe5XsHor7XXfFzQnBLk",
+      "https://lh3.googleusercontent.com/d/1fnsCSkigWnZwTngzUJIXq4oIpexcRJf5"
+    ]
+  },
+  {
+    "id": "92",
+    "category": "實體店面與展覽",
+    "title": "巴迪醫療：2025 中華民國心臟血管介入專科醫學會 (TSCI) 年會頂級心血管醫療展覽攤位與空間廣告設計",
+    "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiovascular Interventions (TSCI) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」專為 2025 年中華民國心臟血管介入專科醫學會（TSCI）年度盛會量身定制之頂級心血管及微創介入醫療展覽攤位。空間設計完美融合前沿介入心臟病學科技、國際頂奢簡約美學與沉浸式學術交互動線。透過高度工藝化、明亮俐落的開放式展位結構與高規樣品陳列，旨在向全球心腔微創介入治療、主動脈瓣膜置換與導管治療領域的頂尖專家學界，傳遞巴迪醫療的品牌高度：\n\n1. 極致科技皓白與智慧湛藍之品牌美學對位：攤位主色彩架構採用極富前沿未來感的「皓雪白」與「智慧藍」為主調，巧妙嵌入高精度線性嵌入式流光 LED 燈帶，打破傳統展會呆板的牆面包覆。展位上方矗立精密的發光懸浮立方吊箱與無縫透光燈箱吊頂，高亮呈現「Buddy Medical」商標，創造令人矚目的視覺聚合力，並在人流密集的大會展廳內脫穎而出。\n\n2. 瓣膜與心血管微創介入 3D 臨床陳列系統：展位內建微弧式鋼化安全玻璃精品展示櫃，完美收納自主研製的 Myval 大動脈心臟瓣膜實體與其精密輸送導管系統、高解析度心血管 3D 病理解剖模型。周邊搭配經由抗指紋霧面紙精細大寬幅印製之全幅學術背景板，與高對比專色排版，將頂級臨床科技之嚴謹性與產品功能美學作最直觀的空間視覺呈現。\n\n3. 多元學術研討會晤與社群多媒體互動區：專為名醫專家規畫的商務交流會談空間，配有定制沙發椅及深木色工學茶几，呈現舒適與尊貴兼備的款待層級。結合展區內配置的 4K 護眼液晶多媒體螢幕與實時心血管微創介入三維影像、學術 TTT 活動歷史實錄（TTT Activity On-site），並融合高度客製化的學術互動模組與展場背板陳列，無聲宣告巴迪醫療對於關懷人類心臟血管健康與臨床創新的百年傳承理念。",
+    "tools": [
+      "3D 空間動線規劃與展位陳列美學",
+      "大型大寬幅無縫展會印刷優化",
+      "嵌入式線性流光 LED 燈帶工程設計",
+      "Myval 瓣膜微創產品導覽背板印刷",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/13om-MS8AQVHg8pVOAeIvnVa6K0I5voF3",
+    "placeholderId": "IMAGE_92",
+    "colorTheme": "from-[#0f172a] via-[#1e3a8a] to-[#0f172a]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/13om-MS8AQVHg8pVOAeIvnVa6K0I5voF3",
+      "https://lh3.googleusercontent.com/d/1mCfcZkDCqkwwLUsQrnpwEZ1L7kU2E1pb",
+      "https://lh3.googleusercontent.com/d/11Smzxt8uJBxz1EcnkdCoHVYCJjuJv97o",
+      "https://lh3.googleusercontent.com/d/18yJicSc31X4dEigTOp1W2nyqPCD8f6av",
+      "https://lh3.googleusercontent.com/d/1ZpL20RJVvl4qYsal-ht1CuhbthVSNXrQ",
+      "https://lh3.googleusercontent.com/d/1O4vGhj3r8T_GYjbU4S_877IQY4TnQwBI",
+      "https://lh3.googleusercontent.com/d/1HpOcrw9Bxd7rAkwDjsTlLD6XLjga7oOY"
+    ]
+  },
+  {
+    "id": "93",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療：2025 TSCI 年會 TTT 心血管臨床研討會尊榮專屬展覽教練外套設計",
+    "titleEn": "Buddy Medical: 2025 TSCI Annual Meeting TTT Clinical Workshop Premium Custom Exhibition Coach Jacket Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」專為 2025 中華民國心臟血管介入專科醫學會（TSCI）「TTT 心血管臨床研討會（TTT Clinical Workshop）」特別量身打造之「尊榮專屬展覽教練外套（Exhibition Coach Jacket）」高階周邊與臨床專業著裝工程。設計旨在將前沿心血管介入學術之精密感，與日常商務活動、技術支持工作的高難度移動度相契和，樹立行走的品牌美學豐碑：\n\n1. 經典極硬醫學黑與科技反光灰剪裁對位：外套整體選用極具深度與臨床專業感之「極黑耐磨碳素面料（Elite Carbon Black）」為主體，並在肩線、袖圍處點綴「智慧高亮3M反光灰（3M Reflective Tech-Gray）」邊際線。在昏暗或強背光交織的大會演講廳與展台現場，亦能折射出極高辨識度、專業氣場與當代介入醫學界特有的極簡時尚科技感。\n\n2. 航太級高係數防水防皺防塵多功能面料：考量臨床工程師、研討會籌備代表與合辦醫師在展會現場需高頻率穿梭於各大講堂與操作台，服飾本體採用重磅航太多層塗層抗指紋、抗皺且防水防塵（Water-repellent & Anti-fouling）尼龍複合工藝面料。既具備立體挺拔的剪裁輪廓不至鬆塌，更能抵禦會場茶水傾濺，提供無微不至的物理守護感，不沾污不沾塵。\n\n3. Buddy Medical 與 HeartCare 電繡與矽膠微印雙雕印花：在左胸口與背部、袖臂上方，以高倍細微針跡精密電繡了「Buddy Medical / HeartCare」專屬圖徽（印有心電圖動態心律軌跡與愛心），並在細節處疊加了「TTT CLINICAL WORKSHOP 2025」之英文字體，為高規格心臟介入領域學術同儕打造最核心的榮耀象徵，兼具高尚設計與高階實穿度。",
+    "tools": [
+      "人體工學服飾版型與材質工藝選型",
+      "高解析度矽膠微印與精密電繡技術",
+      "3M高亮防偽反光印刷線條規劃",
+      "醫學專屬標章(HeartCare)視覺精微重塑",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1tJU-4A-o9mUReJui6-7TRlhDldEDMKiv",
+    "placeholderId": "IMAGE_93",
+    "colorTheme": "from-[#0a0a0a] via-[#171717] to-[#0a0a0a]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1tJU-4A-o9mUReJui6-7TRlhDldEDMKiv",
+      "https://lh3.googleusercontent.com/d/1LbDDLI5eKXOeLYag6THAJDFTKi9SnooI",
+      "https://lh3.googleusercontent.com/d/16Qu5Z4-RID6LvwAOLWx2UaCbyPtKVdvw"
+    ]
+  },
+  {
+    "id": "94",
+    "category": "平面海報設計",
+    "title": "巴迪醫療：中華民國胸腔及心臟血管外科學會 (TATCS) 展覽 Meril Life Sciences Dafodil 心包生物瓣膜產品海報設計",
+    "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」專為 2025 年中華民國胸腔及心臟血管外科學會（TATCS）年度盛會量身定制之全球領先醫療科技先鋒「Meril Life Sciences」旗下最核心之「Dafodil™ 心包生物瓣膜（Pericardial Bioprosthesis）」產品學術展覽海報與多維結構指引設計：\n\n1. 「極靜醫學藍與純淨皓雪白」之黃金分割與視覺流動：海報主色彩傳承巴迪醫療與 Meril 生命科學的高度信賴感，大膽採用高密度的「醫學極致湛藍」與不妥協的「無塵皓雪白」進行黃金分割與對角編排。版面左側、右側及中央資訊在宏觀的網格系統中流暢導引，建立起醫師與患者對於領先生物科技的絕對仰望與信任感。\n\n2. Dafodil™ 三葉心包生物瓣膜高精度解剖學微觀圖解：設計核心以宏大的 3D 視覺結構與嚴謹線條，微觀剖析了 Dafodil™ 生物瓣膜（Tri-leaflet stented bioprosthesis）的三大革命性工藝：特選牛心包組織葉片（Bovine Pericardial Tissue）、經由航太級 Elgiloy 鈷鉻合金細密編織之 Triad 耐用框架（Elgiloy Alloy Triad Frame）及超氟化抗鈣化處理技術（Anti-calcification treatment）。以細緻的引線標註與中英文雙語對照，流暢解鎖無與倫比的工程學結構美。\n\n3. 專為大會學術壁報（Scientific Poster）與全幅燈箱優化之印前工藝：針對 TATCS 醫學年會的高規格學術交流背景，海報設計在色彩管理上進行了最高精度的特調。CMYK 醫療湛藍經由印前色彩高飽和防溢流處理與四色黑中和調校，搭配高規格不反光霧面無塗佈高階美術紙（如竹尾美術紙），保證在展會現場強光照射下，視覺高對比與無眩光的雙重優雅，彰顯世界級大廠的極致風範與學術高度。",
+    "tools": [
+      "醫學解剖與精密醫療器材結構排版",
+      "大會學術海報 (Scientific Poster) 網格排版",
+      "高精細向量標示系統設計",
+      "特調特專色印刷印前色彩管理",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1Ttr__JYQOHWri9vLXYNrh8annLOelDCU",
+    "placeholderId": "IMAGE_94",
+    "colorTheme": "from-[#040d21] via-[#102a54] to-[#040d21]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1Ttr__JYQOHWri9vLXYNrh8annLOelDCU",
+      "https://lh3.googleusercontent.com/d/1ziJC94xKkbtczHTniEAOjrJIpD_dVuS_",
+      "https://lh3.googleusercontent.com/d/1Yy13d8taKdHH6-IFAMK3CRYstH8x9FFd"
+    ]
+  },
+  {
+    "id": "95",
+    "category": "平面海報設計",
+    "title": "巴迪醫療：官方尊榮雙語名片與特種多維印刷工藝設計",
+    "titleEn": "Buddy Medical: Official Premium Bilingual Business Card with Special Print Processes Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」精心打造之「官方尊榮雙語名片與特種多維印刷工藝」全套視覺包裝設計方案。設計團隊將生命科學的頂尖嚴謹感與極致奢華商務氣度完美結合，傳遞出世界級醫療器材品牌的高度信任感：\n\n1. 極致洗鍊的版面編排與精確雙語資訊層級：名片正面採用洗鍊精準的排版美學，選用頂級無壓迫感的「心瓣皓雪白」為底色。精確對齊並微調「細緻活力橙」與「醫理深藍（Buddy Deep Navy）」的雙色品牌識別 logo，中央細緻編排高質感中文繁體、英文雙語之職官、姓名與專業醫療聯絡資訊。背面則以大氣不妥協的滿版「醫理深藍」為背景，輔以高潔晶面無眩光白色 logo，營造純粹、穩重且令人信賴的頂奢商務氣場。\n\n2. 物理手感與特種印刷工藝的奢華跨界：為體現巴迪醫療卓越不凡的品牌地位，在載體與印刷工藝上進行了極致的材質規劃：建議選用進口 420g 超重磅頂級「純棉特種棉卡」或高質感「竹尾美術紙」，表面具備質樸且溫潤的紙面長纖維觸感。工藝搭配局部高週波細緻深壓紋（Debossing）或立體浮雕（Embossing）工藝凸顯品牌 logo 輪廓，搭配極細緻尊榮「雙面冷燙亮銀」或「微分子霧金」技術，令文字與線條在不同光線折射下均顯出精湛層次，堪稱醫療科技領域的頂級美學典範。\n\n3. 動態視覺流線與黃金比例氣口：版面四周預留極為奢華的手持留白氣口（Negative Space），整體長寬比例緊扣 90mm x 54mm 經典黃金物理名片比例，精確倒圓角處理（R:1.5mm），徹底洗去直角硬幣的銳利感，使每一次遞交都轉化為溫潤、自信且充滿儀式感的專業商務對話。",
+    "tools": [
+      "官方雙語多維商務資訊層級規劃",
+      "特種超重磅純棉棉卡工藝規劃",
+      "局部高精密深壓紋(Debossing)與微分子冷燙金細部對位",
+      "經典黃金比例留白氣口與極細緻圓角美學控制",
+      "Adobe Illustrator",
+      "Adobe Photoshop"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/16IqhKhTAwjsdb7MWJ4-NgK-mhvuZmmIr",
+    "placeholderId": "IMAGE_95",
+    "colorTheme": "from-[#0a1931] via-[#153462] to-[#0a1931]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/16IqhKhTAwjsdb7MWJ4-NgK-mhvuZmmIr",
+      "https://lh3.googleusercontent.com/d/1-_spXpNF-_hWAaGMKqJCPfzpb6Lm3LdP",
+      "https://lh3.googleusercontent.com/d/1DdCHaXnDqNFhp4AAXfW5HSfE3B_3NF8_",
+      "https://lh3.googleusercontent.com/d/142x0rWwr3GfF34u9ImHgJzDHXR0WxVTs"
+    ]
+  },
+  {
+    "id": "96",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮金屬紀念合金硬幣與包裝工藝設計",
+    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Metallic Commemorative Alloy Coin & Packaging Craft Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」攜手全球領先醫療科技先鋒「Meril Life Sciences」，專為最核心之「Myval™ Transcatheter Heart Valve (TAVI 經導管主動脈瓣膜)」高尖端微創心臟瓣膜系統，精心設計、開模壓鑄、重磅拋光之「尊榮金屬紀念合金硬幣與高奢收藏包裝」一體化頂奢禮贈方案：\n\n1. 3D 立體浮雕大會紀念硬幣與流體心臟網格：硬幣主體採用高品質重金屬鋅合金材料，表面塗覆微分子防氧化電鍍耀金（Polished Gold）與古風亮銀（Antique Silver）雙色極致對位。正、反面均採用一千噸液壓冷鍛機進行高精密 3D 浮雕壓印（High-relief Minting），微觀勾勒出 Myval 瓣膜的精緻鎳鈦合金主體框架、網狀支架擴張軌跡，以及心臟電生理脈絡。幣緣鑲嵌高精度齒狀咬合，手感沉甸、邊緣無毛刺，展現生命工程的極致細膩度。\n\n2. 皓月拉絲金屬標牌與包裝之美：為能優雅承載這份象徵生命奇蹟與醫療研發高度的尊貴硬幣，配套包裝特別採用進口 1200g 特重工業灰底紙板壓製，外層貼合皇家典雅「醫理深藍（Buddy Deep Navy）」超細纖維磨砂天鵝絨特種紙。硬幣嵌於高密度不反光 EVA 孔圈中，周身配有微納米高週波燙金「More to life」與「Buddy Medical」雙色印記。上蓋內部嵌入一塊經由物理拋光拉絲處理的鋁合金皓月亮金銘牌，雷射雕刻心臟二尖瓣及主動脈解剖線條，彰顯專屬於心血管介入頂尖專家與院士收藏的至高榮譽。\n\n3. 手工精密雷射雕刻調校：本案設計特別融入了高階「手工雷射雕刻」工藝。設計師親自操作高精度微調雷射雕刻機，在金屬標牌與紀念幣特製包裝表面，以微米級的專屬雕刻參數、精準的焦距及功率控制，完美鏤刻出心臟脈絡與品牌文字。極致的微雕工法與微痕拉絲質感，賦予每一款紀念硬幣套組獨一無二的手工溫度與匠人靈魂。\n\n4. 醫學圖騰與黃金比例開口：硬幣本體直徑精密控制在 40mm 的收藏級黃金尺寸，厚度為 3.2mm。盒蓋採用側拉抽屜式或天地蓋阻尼吸氣式開合，每一次開啟，盒內的重金屬紀念硬幣在燈光下因雙色電鍍工藝而呈現精美立體的漸層折射與耀眼流光，為遞交、揭幕與收藏過程注入不凡的醫學儀式感。",
+    "tools": [
+      "重金屬鋅合金 3D 立體精密逆向模具開模",
+      "高噸位雙色電鍍冷鍛拋光防氧化工藝",
+      "特製 1200g 磨砂超細天鵝絨禮盒與不反光 EVA 緩衝內襯",
+      "客製化鋁合金皓月拉絲與手工精密雷射雕刻對位",
+      "Adobe Illustrator 向量硬幣浮雕與雷雕標牌排版",
+      "Rhino 3D 金屬硬幣建模與工程學製圖"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6",
+    "placeholderId": "IMAGE_96",
+    "colorTheme": "from-[#061630] via-[#102a54] to-[#061630]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6",
+      "https://lh3.googleusercontent.com/d/1iMrPCF8hTPTWyw-3jaPA0qHOqW7cOw1g",
+      "https://lh3.googleusercontent.com/d/1xVM_v_1hyI2breBV64IBHIDWHuaGk7og",
+      "https://lh3.googleusercontent.com/d/1jBx3cwg7tfkDwM8r5idTJTSnk3q2CgsU",
+      "https://lh3.googleusercontent.com/d/1dBZ6PdKQuPoZy2tACpRzxmoF_214ZgA-",
+      "https://lh3.googleusercontent.com/d/1-zXevp1HIX99fBfHZv7Xk2XbNw40vJUk",
+      "https://lh3.googleusercontent.com/d/1HW4vcczWpcWiOsacgSxyQMOvMoyiAg5N",
+      "https://lh3.googleusercontent.com/d/1ykSJxCmHrSC5GQ1xdEk2zKjOxgbxko6F"
+    ]
+  },
+  {
+    "id": "97",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮核桃木框紀念硬幣雙面磁吸高透展示框設計",
+    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Wood Magnetic Double-Sided High-Transparency Display Frame Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」攜手全球領先醫療科技先鋒「Meril Life Sciences」，專為「Myval™ Transcatheter Heart Valve (TAVI 經導管主動脈瓣膜)」高尖端微創心臟瓣膜之限量冷鍛紀念金屬硬幣，量身定做與高端企劃之「尊榮琥珀核桃木雙面磁吸高透式紀念硬幣展示框」一體化學術陳設與永恆典藏方案：\n\n1. 頂級北美黑核桃木手工拋光與榫卯結構：展示框外框特選頂級「AAA 級北美黑核桃木（North American Black Walnut）」，由深諳木性的資深工匠經過十四道手工物理高階打磨與三道天然護木蠟保養，完美留存天然深邃、如絲綢般流麗的黑金木紋與極致微潤手感。結構緊扣中式經典榫卯工藝，天衣無縫，細節不著痕跡。\n\n2. 醫學不銹鋼拉絲雷射標牌與無眩光高透視窗：展示框內部中央精準開鑿硬幣定位卡槽，周身採用高精度「304 髮絲紋不銹鋼金屬片」護衛，表面精細雷射雷雕（Laser Engraving）有「More to life」品牌信念標語、解剖學結構線條與產品介紹。雙面防護配置 99% 高透光率、防眩光且抗紫外線（Anti-UV）的頂級高分子玻璃（壓克力），保護紀念幣不受直射強光與氧氣侵蝕，展現絕佳立體視覺。\n\n3. 釹鐵硼隱形磁吸與實境典雅陳置：前後框接縫處隱密嵌有釹鐵硼強磁閉合機制，前後蓋對合時釋放出沉穩厚重、咬合緊密的經典磁簧物理咬合聲響，極具物理儀式感。展示框架不僅能穩固立於臨床科室主任的辦公室案頭或大會簽到台，亦配有隱形壁掛孔，提供多維度的學術陳置體驗，成就跨界醫療與極致工藝的卓越讚歌。",
+    "tools": [
+      "頂級 AAA 級進口北美黑核桃木手工物理打磨",
+      "微分子防潮抗氧化天然木蠟油塗裝與保養",
+      "釹鐵硼強力隱形電鍍磁鐵閉合結構調校",
+      "高透光有機玻璃 99% 精精密無痕雷射切割",
+      "304 髮絲紋不銹鋼金屬標牌雷射雷雕對位",
+      "SolidWorks 與美學結構 3D 建模製圖"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-",
+    "placeholderId": "IMAGE_97",
+    "colorTheme": "from-[#0d0a08] via-[#2a1e17] to-[#0d0a08]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-",
+      "https://lh3.googleusercontent.com/d/1g3zSHWSIcstUzETumBQ9jFnHmiBgDnGi",
+      "https://lh3.googleusercontent.com/d/1EqZNMtNyI-9OitqDBdGcreHt9Cn6y-mC",
+      "https://lh3.googleusercontent.com/d/1VnqKXAD65a_1eN_WdBK7BAJXm7fmI2OR"
+    ]
+  },
+  {
+    "id": "98",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮梣木心臟解剖雷雕紀念硬幣收藏木盒工藝設計",
+    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Ashwood Heart Anatomy Engraved Commemorative Coin Wood Box Craft Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」攜手全球領先醫療科技先鋒「Meril Life Sciences」，專為「Myval™ Transcatheter Heart Valve (TAVI 經導管主動脈瓣膜)」高尖端微創心臟瓣膜之限量限量冷鍛紀念金屬硬幣，企劃之「尊榮老梣木金屬硬幣雷雕收藏木盒」一體化頂奢禮贈與多媒體藝術展示方案：\n\n1. 高畫質職人工藝與雙色金屬實境演繹：本案特別採用流性光影宣傳短片，全鏡頭記錄由資深工藝木匠細緻物理打磨、手工推上德制環保木蠟油之全部工法。多角度高反差寫真將梣木（Ashwood）天然大氣的粗獷山形木紋與高奢金色、古銀色紀念幣表面完美互襯，傳遞非同凡響的醫理生命力與工藝底蘊。\n\n2. 蓋面心臟瓣膜精密手工雷射雕刻：收藏木盒上蓋特別採用手工雷雕。工藝師以微米級對位焦距，將複雜的心臟解剖圖譜、主動脈弓、Myval 瓣膜網格擴張路徑與 Buddy Medical 品牌印記完整浮刻於原木蓋板，雷雕邊緣帶有微焦的高雅碳化陰影，宛如博物館典藏的科學教具與藝術臻品。\n\n3. 釹鐵硼隱形磁吸閉合與奢華天鵝絨防護：盒體與蓋板開合採用強力釹鐵硼電鍍隱形磁鐵，具備如同頂級名車車門閉合時的高雅阻尼與吸氣咬合聲響。盒內嵌有高密度不反光黑色天鵝絨緩衝 EVA 孔圈，完美固定金屬大會硬幣，無論是雙邊陳列、側方手持還是案頭收藏，皆綻放出醫學工程與手工匠藝雙向灌注的最高禮遇感。",
+    "tools": [
+      "手工藝流程高畫質多媒體動態影像企劃",
+      "進口 AAA 級質樸老梣木手工工藝打磨",
+      "德製天然環保木蠟油潤色與防潮護理",
+      "高精密手工雷射雕刻焦距焦炭感極致控制",
+      "釹鐵硼強磁閉合隱形嵌入式結構設計",
+      "高密度不反光天鵝絨 EVA 精密沖壓開孔技術"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=oVAIPxzXT2k",
+    "imageUrl": "https://lh3.googleusercontent.com/d/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq",
+    "placeholderId": "IMAGE_98",
+    "colorTheme": "from-[#110e0a] via-[#35251a] to-[#110e0a]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq",
+      "https://lh3.googleusercontent.com/d/1VbEmK6g_HvG08nE67aoezPlqhvWt64Gu",
+      "https://lh3.googleusercontent.com/d/1ntu1G2iUTQ9IANbNlzH09fKvh-QMVhNb",
+      "https://img.youtube.com/vi/oVAIPxzXT2k/maxresdefault.jpg",
+      "https://img.youtube.com/vi/oVAIPxzXT2k/0.jpg"
+    ]
+  },
+  {
+    "id": "99",
+    "category": "企業LOGO與CIS設計",
+    "title": "巴迪醫療：卓越品牌標誌與現代企業識別系統（CIS）改造設計方案",
+    "titleEn": "Buddy Medical: Premium Logo Rebranding & Modern Corporate Identity System (CIS) Redesign",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」全新品牌識別系統（Rebranding & Corporate Identity System, CIS）的升級改造設計方案。以『科技預防、暖心醫護、生命脈動』為核心設計理念，深入顛覆傳統醫療冰冷僵硬的印象，重塑現代、專業且富有溫度的醫療科技新視覺：\n\n1. 品牌標誌（LOGO）幾何美學與語意再造：標誌主體巧妙結合了「細胞分裂、無窮大（Infinity ♾️）、律動心跳與緊密握手」的多重語意，形成一個流暢圓潤的核心符號。代表著生命科技的生生不息、無限潛能、暖心醫護的關懷叮嚀以及極致誠信的合作夥伴關係。英文字體設計（Logotype）採用量身定製的俐落無襯線體，在拐角處流露溫潤的圓弧，使嚴謹的醫療科技中散發出人文溫情。\n\n2. 醫理深藍（Buddy Navy）與暖心珊瑚橘（Cardio Orange）雙核心色系：色彩規範上確立了雙核心色彩系統。「醫理深藍」象徵權威性、學術嚴謹、智能科技與安全感；「暖心珊瑚橘」則注入了熱情、朝氣、生命脈動與親和力，雙色調和出高對比、極具國際化審美的現代醫學視覺張力。\n\n3. 系統化 CIS 應用與全維度商務、辦公、禮贈延展：建立高標準規格的品牌視覺識別規範（Brand Guideline）。從基礎字體排版、安全範圍、色彩比例，延伸至全套企業商務環境應用。包含高奢特壓紋特種紙雷雕名片、亮金鋼筆、信封信紙、簡報模板、品牌專屬手提袋、工作識別證、周邊紙質不織布封套等，以最高端的工藝細節將「巴迪醫療」卓越與溫潤細緻的品牌靈魂徹底實體化。",
+    "tools": [
+      "Adobe Illustrator 品牌向量標誌幾何美學網格規範設計",
+      "Brand Guideline 企業識別系統（CIS）字規排版與色彩定製",
+      "Adobe Photoshop 高階商務辦公周邊實景 Mockup 視覺渲染",
+      "高奢壓紋特種紙與無痕雷射雕刻、壓印對位排版工藝",
+      "企業標準簡報 PPT 模板與 CIS 品牌數位載體應用設計"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/184PcyGZ70yOAuCeC1VkXVZVEhrUZJlsx",
+    "placeholderId": "IMAGE_99",
+    "colorTheme": "from-[#08121e] via-[#0e243c] to-[#08121e]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/184PcyGZ70yOAuCeC1VkXVZVEhrUZJlsx",
+      "https://lh3.googleusercontent.com/d/1qaitHYdkLISPHq27MQCR4QgFhvBDBqN2",
+      "https://lh3.googleusercontent.com/d/1pC1355TWA7qxNY4kCnksIJeWc0dvQtg7",
+      "https://lh3.googleusercontent.com/d/1wNicBswa_YiiJi5scUAm7Mz682dCZy9J",
+      "https://lh3.googleusercontent.com/d/1HAm3IoJdDEt0riMteeIbyzy79s7F5IKq",
+      "https://lh3.googleusercontent.com/d/1_DNI6E3uqPE1rEj-y2PQxFal6k_BvygD",
+      "https://lh3.googleusercontent.com/d/1-TQXkorWNWve7Tex9CiucE-GsjCNseYW",
+      "https://lh3.googleusercontent.com/d/1_0wU1Gspbi0KoT2ZB2cHc_A4D1OmzstL",
+      "https://lh3.googleusercontent.com/d/1PkOYislNCXMTzAKYTsU6uo_6Y-QdppaQ",
+      "https://lh3.googleusercontent.com/d/17_dQXPY_Y52-X-QcrPQFkoq7Xm1HC7IB",
+      "https://lh3.googleusercontent.com/d/1uAYWUmbpcGbDchkOGruTziIV3HF01egA",
+      "https://lh3.googleusercontent.com/d/1Xm5r-LavEPgNKnOz8OaZ-_esd4Sr4RFQ",
+      "https://lh3.googleusercontent.com/d/1KOJNdha6MyXKf2plMDiver7EyV7-R7pY",
+      "https://lh3.googleusercontent.com/d/1E31Wa0DqAYfsU2N-0e4eM6ZNXg-05fkW",
+      "https://lh3.googleusercontent.com/d/1wIvtXohpaSducIGtDkUQV1vIxCL9daX-"
+    ]
+  },
+  {
+    "id": "100",
+    "category": "平面海報設計",
+    "title": "巴迪醫療：雙十國慶盛典祝賀之品牌社群宣傳與大型實體展示易拉展設計",
+    "titleEn": "Buddy Medical: Double Tenth National Day Celebration Branding Campaign & Giant Pull-Up Banner Design",
+    "philosophy": "本案為「巴迪醫療（Buddy Medical）」專為「雙十國慶盛典」策劃打造之頂級品牌社群推廣與大會實體大型易拉展立牌視覺傳播系統設計方案。以「守護生命脈動、攜手共創無限未來」為核心心聲，將中華民國國慶節慶元素與巴迪醫學科技美學進行跨界、宏大的深度融合：\n\n1. 雙十節慶徽記與細胞脈動之美學解構：主視覺畫面中，巧妙利用精密的 3D 黃金透視線與極具張力的幾何圖層，將經典的雙十「十十」符號與醫療核心「DNA 雙螺旋鏈、心率信號波、晶格防護網、健康細胞分裂」融為一體。放射狀的光芒粒子和多向度漸變幾何板塊，代表科技之光與旺盛生機，徹底打破傳統公部門節慶宣傳的死板。國慶專屬「經典國旗紅」與「大會金、鋼鐵海藍」交織碰撞，配合特細緻亮金微粒顆粒渲染，彰顯威嚴莊重與未來主義科技感。\n\n2. 全端社群祝賀視覺系統與完美排版層級：針對 Facebook、Instagram、LINE 等社群媒體開發了方形（1:1）數位圖卡祝賀版面。標題文字「國慶雙十、守護無限、巴迪醫療與您攜手同行」採用精心設計的粗黑大氣毛筆勁道，或量身設計的鋼骨幾何無襯線毛字。全版面資訊層級經過像素級微調對位，空靈的負空間（Negative Space）搭配柔和的星光耀斑，展現出世界級品牌大氣溫婉、追求完美的頂尖身姿。\n\n3. 醫學大會特大實體高解析度易拉展立牌：本案設計除了數位社群端外，特別完整輸出並輸出規格極高（200cm x 85cm）的醫學大會展覽專用「拉網展示立牌（易拉展）」。極高解析度的向量圖形與無顆粒微噴彩噴塗層，將瓣膜支架的精微結構和金屬質感毫無瑕疵地呈現在各省、大會現場，為臨床大會、學術研討會簽到處與巴迪展位提供深具尊榮、大氣挺拔的節慶社交和專業品牌展示亮點。",
+    "tools": [
+      "Adobe Illustrator 2D 向量國慶視覺對稱美學幾何編排",
+      "3D PBR 動態炫光渲染與高解析粒子效果合成",
+      "社群媒體（FB/IG/LINE）多元比例安全範圍對位排版",
+      "大尺寸實體展架（200x85cm）200DPI 完美抗拉伸印刷規範",
+      "Adobe Photoshop 重度色調調和與醫理深藍完美融合"
+    ],
+    "imageUrl": "https://lh3.googleusercontent.com/d/1FILSOyKzY-PFfRkX4h29BMczyYVDJJzP",
+    "placeholderId": "IMAGE_100",
+    "colorTheme": "from-[#1d0e0f] via-[#2d1b1c] to-[#0d1421]",
+    "images": [
+      "https://lh3.googleusercontent.com/d/1FILSOyKzY-PFfRkX4h29BMczyYVDJJzP",
+      "https://lh3.googleusercontent.com/d/1ZBzD8S9vGosxIS7kkAxak4vBEYaDx4TI",
+      "https://lh3.googleusercontent.com/d/1qMpaiyDyynq9LLFiLtoxkeYHo0et0bpS"
     ]
   }
 ];
