@@ -27,6 +27,59 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import { initialPortfolioData } from "./data";
 import { PortfolioItem } from "./types";
+import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
+
+function extractDriveId(url: string): string | null {
+  if (!url) return null;
+  if (url.startsWith("/images/optimized/")) {
+    const filename = url.replace("/images/optimized/", "");
+    return filename.replace(".webp", "").split("?")[0];
+  }
+  if (url.includes("lh3.googleusercontent.com/d/")) {
+    const parts = url.split("lh3.googleusercontent.com/d/");
+    if (parts.length > 1) {
+      return parts[1].split("=")[0].split("?")[0];
+    }
+  }
+  if (url.includes("id=")) {
+    const match = url.match(/[?&]id=([^&#?]+)/);
+    if (match) return match[1];
+  }
+  const match = url.match(/\/file\/d\/([^/\?]+)/);
+  if (match) return match[1];
+  return null;
+}
+
+function getOptimizedGoogleUrl(url: string, size?: number): string {
+  if (!url) return "";
+  const id = extractDriveId(url);
+  if (id) {
+    const s = size ? size : 600;
+    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}`;
+  }
+  if (url.includes("lh3.googleusercontent.com")) {
+    const cleanUrl = url.split("=")[0];
+    if (size) {
+      return `${cleanUrl}=w${size}-rw`;
+    }
+    return cleanUrl;
+  }
+  return url;
+}
+
+function resolveImageUrl(url: string, size?: number): string {
+  if (!url) return "";
+  const id = extractDriveId(url);
+  if (id) {
+    if (url.startsWith("/images/optimized/") && EXISTING_OPTIMIZED_IMAGES.has(id)) {
+      return url;
+    }
+    const s = size ? size : 600;
+    // Use high-availability Drive thumbnail API to completely bypass CORS 403 and referrer limits
+    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}`;
+  }
+  return getOptimizedGoogleUrl(url, size);
+}
 
 interface ImageWithFallbackProps {
   src: string;
@@ -36,6 +89,7 @@ interface ImageWithFallbackProps {
   categoryName?: string;
   titleText?: string;
   referrerPolicy?: React.HTMLAttributeReferrerPolicy;
+  optimizeSize?: number;
 }
 
 function ImageWithFallback({ 
@@ -45,28 +99,27 @@ function ImageWithFallback({
   fallbackTheme = "from-amber-600 to-blue-900",
   categoryName,
   titleText,
-  referrerPolicy
+  referrerPolicy,
+  optimizeSize
 }: ImageWithFallbackProps) {
-  const [currentSrc, setCurrentSrc] = useState<string>(src);
+  const [currentSrc, setCurrentSrc] = useState<string>(() => resolveImageUrl(src, optimizeSize));
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   React.useEffect(() => {
-    setCurrentSrc(src);
+    setCurrentSrc(resolveImageUrl(src, optimizeSize));
     setFallbackAttempt(0);
-  }, [src]);
+  }, [src, optimizeSize]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
     const isYoutube = img.src.includes("youtube.com") || img.src.includes("img.youtube.com") || img.src.includes("ytimg.com");
     if (isYoutube && img.naturalWidth > 0 && img.naturalWidth <= 120) {
       if (fallbackAttempt === 0 && img.src.includes("maxresdefault.jpg")) {
-        // Fall back to hqdefault.jpg
         const hqUrl = img.src.replace("maxresdefault.jpg", "hqdefault.jpg");
         setCurrentSrc(hqUrl);
         setFallbackAttempt(1);
         return true;
       } else {
-        // Try falling back: maxres -> hqdefault -> 0.jpg -> picsum
         const nextUrl = img.src.includes("maxresdefault.jpg")
           ? img.src.replace("maxresdefault.jpg", "hqdefault.jpg")
           : img.src.includes("hqdefault.jpg")
@@ -100,36 +153,52 @@ function ImageWithFallback({
   }, [currentSrc, fallbackAttempt]);
 
   const handleError = () => {
-    if (fallbackAttempt === 0) {
-      if (src.includes("youtube.com") || src.includes("img.youtube.com")) {
-        // Try fallback to hqdefault.jpg
-        const hqUrl = src.replace("maxresdefault.jpg", "hqdefault.jpg");
-        if (hqUrl !== src) {
-          setCurrentSrc(hqUrl);
-          setFallbackAttempt(1);
-          return;
-        }
+    // If it's a youtube image that failed to load (e.g. 404 instead of 120x90 fallback image)
+    if (src.includes("youtube.com") || src.includes("ytimg.com") || currentSrc.includes("youtube.com") || currentSrc.includes("ytimg.com")) {
+      const isYoutubeUrl = true;
+      if (fallbackAttempt === 0 && currentSrc.includes("maxresdefault.jpg")) {
+        setCurrentSrc(currentSrc.replace("maxresdefault.jpg", "hqdefault.jpg"));
+        setFallbackAttempt(1);
+        return;
+      } else if (fallbackAttempt === 1 && currentSrc.includes("hqdefault.jpg")) {
+        setCurrentSrc(currentSrc.replace("hqdefault.jpg", "0.jpg"));
+        setFallbackAttempt(2);
+        return;
       }
-      
-      // If the primary image fails, try a highly reliable beautiful mooncake photo URL or specific backup
-      if (src.includes("photo-1627308595229-7830a5c91f9f") || alt.includes("茂生") || alt.includes("月餅")) {
-        setCurrentSrc("https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450");
+    }
+
+    const id = extractDriveId(src);
+    const nextAttempt = fallbackAttempt + 1;
+    setFallbackAttempt(nextAttempt);
+
+    if (nextAttempt === 1) {
+      if (id) {
+        // 1st fallback: Use direct Google Drive export view URL
+        setCurrentSrc(`https://drive.google.com/uc?export=view&id=${id}`);
       } else {
-        // Fallback to picsum for placeholders
-        setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
+        setPlaceholderFallback();
       }
-      setFallbackAttempt(2);
-    } else if (fallbackAttempt === 1) {
-      // YouTube hqdefault also failed, try picsum as secondary fallback
-      setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
-      setFallbackAttempt(2);
-    } else if (fallbackAttempt === 2) {
-      // Try secondary high-availability mooncake photography
-      setCurrentSrc("https://images.unsplash.com/photo-1574085733277-851d9d856a3a?auto=format&fit=crop&q=80&w=600&h=450");
-      setFallbackAttempt(3);
+    } else if (nextAttempt === 2) {
+      if (id) {
+        // 2nd fallback: LH3 direct view format
+        setCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || 600}`);
+      } else {
+        setPlaceholderFallback();
+      }
+    } else if (nextAttempt === 3) {
+      // 3rd fallback: Premium custom aesthetic Unsplash placeholders
+      setPlaceholderFallback();
     } else {
-      // Final gradient backdrop
+      // 4th fallback: Elegant concept card gradients
       setFallbackAttempt(4);
+    }
+  };
+
+  const setPlaceholderFallback = () => {
+    if (src.includes("photo-1627308595229-7830a5c91f9f") || alt.includes("茂生") || alt.includes("月餅")) {
+      setCurrentSrc("https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450");
+    } else {
+      setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
     }
   };
 
@@ -178,6 +247,34 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 
 export default function App() {
   const [items] = useState<PortfolioItem[]>(initialPortfolioData);
+  
+  // Preload ALL images (including detail slider images) in the background with their optimized WebP sizes on mount to avoid loading lag
+  React.useEffect(() => {
+    const allUrls = new Set<string>();
+    items.forEach(item => {
+      if (item.imageUrl) {
+        allUrls.add(item.imageUrl);
+      }
+      if (item.images) {
+        item.images.forEach(img => {
+          if (img) allUrls.add(img);
+        });
+      }
+    });
+
+    allUrls.forEach(url => {
+      if (url) {
+        // Preload size variants to ensure instant swap-in:
+        [600, 1200, 120].forEach(size => {
+          const optimizedUrl = resolveImageUrl(url, size);
+          const img = new Image();
+          img.referrerPolicy = "no-referrer";
+          img.src = optimizedUrl;
+        });
+      }
+    });
+  }, [items]);
+
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
@@ -188,7 +285,7 @@ export default function App() {
 
   React.useEffect(() => {
     if (activeModalItem) {
-      setActiveImageUrl(activeModalItem.imageUrl);
+      setActiveImageUrl(activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined));
       setIsVideoActive(!!activeModalItem.videoUrl);
     } else {
       setActiveImageUrl(null);
@@ -585,11 +682,12 @@ export default function App() {
                   {/* 卡片封面圖 */}
                   <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden">
                     <ImageWithFallback
-                      src={item.imageUrl}
+                      src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
                       alt={item.title}
                       referrerPolicy="no-referrer"
                       fallbackTheme={item.colorTheme}
                       titleText={item.title}
+                      optimizeSize={600}
                       className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     
@@ -744,11 +842,12 @@ export default function App() {
                     ) : (
                       <>
                         <ImageWithFallback 
-                          src={activeImageUrl || activeModalItem.imageUrl}
+                          src={activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : '')}
                           alt={activeModalItem.title}
                           referrerPolicy="no-referrer"
                           fallbackTheme={activeModalItem.colorTheme}
                           titleText={activeModalItem.title}
+                          optimizeSize={1200}
                           className="w-full h-full object-contain transition-all duration-300"
                         />
                         {activeModalItem.videoUrl && (
@@ -775,8 +874,8 @@ export default function App() {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const current = activeImageUrl || activeModalItem.imageUrl;
-                            const idx = activeModalItem.images.indexOf(current);
+                            const current = activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined);
+                            const idx = activeModalItem.images.indexOf(current!);
                             const prevIdx = idx <= 0 ? activeModalItem.images.length - 1 : idx - 1;
                             setActiveImageUrl(activeModalItem.images[prevIdx]);
                           }}
@@ -789,8 +888,8 @@ export default function App() {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const current = activeImageUrl || activeModalItem.imageUrl;
-                            const idx = activeModalItem.images.indexOf(current);
+                            const current = activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined);
+                            const idx = activeModalItem.images.indexOf(current!);
                             const nextIdx = idx === -1 || idx === activeModalItem.images.length - 1 ? 0 : idx + 1;
                             setActiveImageUrl(activeModalItem.images[nextIdx]);
                           }}
@@ -811,7 +910,7 @@ export default function App() {
                   </div>
 
                   {/* Thumbnail gallery selector */}
-                  {((activeModalItem.images && activeModalItem.images.length > 0) || activeModalItem.videoUrl) && (
+                  {((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) && (
                     <div className="relative z-10 w-full bg-[#0E0E0E] px-4 py-3 border-t border-white/10 shrink-0">
                       <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-1.5 flex items-center justify-between">
                         <span>專案多媒體選單 ({activeModalItem.videoUrl ? 1 : 0} 影片, {activeModalItem.images?.length || 0} 照片)</span>
@@ -855,11 +954,12 @@ export default function App() {
                                 : "border-transparent hover:border-zinc-500 opacity-60 hover:opacity-100"
                             }`}
                           >
-                            <img
+                            <ImageWithFallback
                               src={imgUrl}
                               alt={`${activeModalItem.title} - ${idx + 1}`}
                               className="w-full h-full object-cover"
                               referrerPolicy="no-referrer"
+                              optimizeSize={120}
                             />
                           </button>
                         ))}

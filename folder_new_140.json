@@ -1,0 +1,21 @@
+{
+  "title": "Regal Power PD65W 閃電快充充電器組合：Lightning 傳輸線 1.5M 尼龍強韌編織線設計，為您的數位生活提供極致效能與耐用性",
+  "titleEn": "Regal Power PD65W Lightning Fast Charger Combo: Lightning to USB C Cable 1.5M with Nylon Braided Design, Offering Ultimate Performance and Durability for Your Digital Life",
+  "philosophy": "本設計以「簡潔高效」為核心理念，採用嚴謹的瑞士網格系統進行佈局，確保視覺元素的精準對齊與空間的有效劃分。主色調選用沉穩的藍色漸層，營造出科技感與專業感，並輔以點綴的金色圓標，提升產品的精緻度與價值感。構圖上，將核心產品（充電器與線材）置於視覺中心，利用產品本身的立體感與精緻的線條，搭配柔和的光影效果，突顯產品的質感與功能性。輔助資訊的呈現，如功率標示（PD65W）與線材規格，則以清晰易讀的字體，在網格系統內進行規劃，確保資訊傳遞的準確性與效率。整體視覺呈現出一種高端、可靠且注重細節的品牌形象，旨在傳達產品在效能、耐用性及使用者體驗上的卓越表現。 自古以來，優秀的設計皆建立於嚴謹的網格架構與理性的色彩計畫之上。此案在設計過程中，特別注重各個視覺元素的排列密度，從最核心的品牌商標、產品包裝，到周邊輔助的說明圖示、功能圓標，皆透過精確的幾何對齊與比例微調，以求在複雜的電商網頁資訊解構中，仍能維持一貫而優雅的視覺秩序。光影在特定角度的巧妙折射，不僅為產品瓶身注入了流動立體感，更進一步增強了整體的科技感與奢華本質，從而為消費者締造了無可挑剔的感官體驗。",
+  "tools": [
+    "Adobe Photoshop: High-fidelity rendering of product textures and material properties, emphasizing the matte finish of the charger and the braided texture of the cable.",
+    "Blender/Maya: 3D modeling and rendering of the charger and cable to achieve realistic lighting and shadow effects, showcasing product form and detail.",
+    "Figma/Sketch: Implementation of a strict Swiss-style layout grid for precise alignment of text, images, and graphical elements, ensuring visual harmony and scannability.",
+    "Copywriting: Strategic placement of key benefit-driven text, highlighting 'PD65W', 'Lightning TO USB C', and 'Nylon Braided Cable' to communicate core product value propositions.",
+    "Color Theory: Application of a cool-toned blue gradient background to evoke technology and reliability, contrasted with warm metallic accents on the connectors and a golden seal for premium appeal."
+  ],
+  "colorTheme": "from-[#0f2c65] via-[#4281a4] to-[#a0d0e0]",
+  "id": "140",
+  "category": "電商視覺設計",
+  "imageUrl": "/images/optimized/1Jp0nb9Lm5r5oTsYt7krF2EnZMDzs8Uwu.webp",
+  "placeholderId": "IMAGE_140",
+  "images": [
+    "/images/optimized/1Jp0nb9Lm5r5oTsYt7krF2EnZMDzs8Uwu.webp",
+    "/images/optimized/1i4z14QymY8KfodZ_RGAlYRcTuq_85VXZ.webp"
+  ]
+}
