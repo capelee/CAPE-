@@ -26,7 +26,9 @@ import {
   ZoomIn,
   ZoomOut,
   Sun,
-  Moon
+  Moon,
+  ArrowUp,
+  Shuffle
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { initialPortfolioData } from "./data";
@@ -428,88 +430,99 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 15, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -10, scale: 0.98 }}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
-      id={`portfolio_item_card_${item.id}`}
-      onClick={onClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transformStyle: "preserve-3d",
-        transform: `perspective(1000px) rotateX(${coords.rotateX}deg) rotateY(${coords.rotateY}deg) scale3d(${coords.isHovered ? 1.0185 : 1}, ${coords.isHovered ? 1.0185 : 1}, 1)`,
-        transition: coords.isHovered ? "transform 0.08s ease-out, border-color 0.30s ease, box-shadow 0.30s ease" : "transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.30s ease, box-shadow 0.30s ease",
-        boxShadow: coords.isHovered 
-          ? "0 25px 50px -12px rgba(0,0,0,0.8), 0 0 25px 3px rgba(245, 158, 11, 0.12)" 
-          : "0 10px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(245, 158, 11, 0)",
+      initial={{ opacity: 0, scale: 0.9, y: 15 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9, y: -15 }}
+      transition={{ 
+        opacity: { duration: 0.35 },
+        scale: { duration: 0.35 },
+        y: { duration: 0.35 },
+        layout: { type: "spring", stiffness: 350, damping: 30 }
       }}
-      className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/35 cursor-pointer h-full transition-colors"
+      className="h-full"
     >
-      {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
-      <div 
-        className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+      <div
+        id={`portfolio_item_card_${item.id}`}
+        onClick={onClick}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         style={{
-          opacity: coords.isHovered ? 1 : 0,
-          background: `radial-gradient(circle 160px at ${coords.glareX}% ${coords.glareY}%, rgba(245, 158, 11, 0.12) 0%, transparent 100%)`,
-          border: "1px solid rgba(245, 158, 11, 0.18)",
-          mixBlendMode: "screen",
-          zIndex: 10,
+          transformStyle: "preserve-3d",
+          transform: `perspective(1000px) rotateX(${coords.rotateX}deg) rotateY(${coords.rotateY}deg) scale3d(${coords.isHovered ? 1.025 : 1}, ${coords.isHovered ? 1.025 : 1}, 1)`,
+          transition: coords.isHovered 
+            ? "transform 0.12s ease-out, border-color 0.30s ease, box-shadow 0.30s ease" 
+            : "transform 0.75s cubic-bezier(0.34, 1.65, 0.64, 1), border-color 0.50s ease, box-shadow 0.50s ease",
+          boxShadow: coords.isHovered 
+            ? "0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(245, 158, 11, 0.15)" 
+            : "0 10px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(245, 158, 11, 0)",
         }}
-      />
-
-      {/* 卡片封面圖 */}
-      <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden" style={{ transform: "translateZ(8px)" }}>
-        <ImageWithFallback
-          src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
-          alt={item.title}
-          referrerPolicy="no-referrer"
-          fallbackTheme={item.colorTheme}
-          titleText={item.title}
-          optimizeSize={600}
-          className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-          lazy={true}
+        className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/35 cursor-pointer h-full transition-colors"
+      >
+        {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
+        <div 
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+          style={{
+            opacity: coords.isHovered ? 1 : 0,
+            background: `radial-gradient(circle 160px at ${coords.glareX}% ${coords.glareY}%, rgba(245, 158, 11, 0.12) 0%, transparent 100%)`,
+            border: "1px solid rgba(245, 158, 11, 0.18)",
+            mixBlendMode: "screen",
+            zIndex: 10,
+          }}
         />
-        
-        {/* 背景霓虹光澤 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
 
-        {/* 卡片類別浮章 */}
-        <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
-          <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/75 backdrop-blur-md border border-white/10 rounded-full shadow-md">
-            {item.category}
-          </span>
-        </div>
+        {/* 卡片封面圖 */}
+        <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden" style={{ transform: "translateZ(8px)" }}>
+          <ImageWithFallback
+            src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
+            alt={item.title}
+            referrerPolicy="no-referrer"
+            fallbackTheme={item.colorTheme}
+            titleText={item.title}
+            optimizeSize={600}
+            className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+            lazy={true}
+          />
+          
+          {/* 背景霓虹光澤 */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
 
-        {/* hover 視覺遮罩提示 */}
-        <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5" style={{ transform: "translateZ(15px)" }}>
-            <span>觀看精彩設計細節</span>
-            <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
-          </span>
-        </div>
-      </div>
-
-      {/* 內容描述區 */}
-      <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4" style={{ transform: "translateZ(4px)" }}>
-        <div className="space-y-1">
-          <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
-          <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
-            {item.title}
-          </h3>
-        </div>
-
-        <p className="text-zinc-400 text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3">
-          {item.philosophy}
-        </p>
-
-        {/* 工具 Tags */}
-        <div className="pt-3.5 border-t border-white/5 flex flex-wrap gap-1.5">
-          {item.tools.map((tech) => (
-            <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-white/5 text-zinc-300 border border-white/5">
-              {tech}
+          {/* 卡片類別浮章 */}
+          <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
+            <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/75 backdrop-blur-md border border-white/10 rounded-full shadow-md">
+              {item.category}
             </span>
-          ))}
+          </div>
+
+          {/* hover 視覺遮罩提示 */}
+          <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5" style={{ transform: "translateZ(15px)" }}>
+              <span>觀看精彩設計細節</span>
+              <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
+            </span>
+          </div>
+        </div>
+
+        {/* 內容描述區 */}
+        <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4" style={{ transform: "translateZ(4px)" }}>
+          <div className="space-y-1">
+            <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
+            <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
+              {item.title}
+            </h3>
+          </div>
+
+          <p className="text-zinc-400 text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3">
+            {item.philosophy}
+          </p>
+
+          {/* 工具 Tags */}
+          <div className="pt-3.5 border-t border-white/5 flex flex-wrap gap-1.5">
+            {item.tools.map((tech) => (
+              <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-white/5 text-zinc-300 border border-white/5">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -528,7 +541,25 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 }
 
 export default function App() {
-  const [items] = useState<PortfolioItem[]>(initialPortfolioData);
+  const [items, setItems] = useState<PortfolioItem[]>(initialPortfolioData);
+  const [isRandomMode, setIsRandomMode] = useState<boolean>(false);
+
+  const handleShuffle = () => {
+    const shuffled = [...items];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = temp;
+    }
+    setItems(shuffled);
+    setIsRandomMode(true);
+  };
+
+  const handleResetOrder = () => {
+    setItems(initialPortfolioData);
+    setIsRandomMode(false);
+  };
 
   // Theme state: "dark" or "light" (stores user preference in localStorage)
   const [theme, setTheme] = useState<"dark" | "light">(() => {
@@ -551,12 +582,57 @@ export default function App() {
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [loadingProgress, setLoadingProgress] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    setLoadingProgress(15);
+    
+    // Set up sequential timers to simulate a super crisp loading bar
+    const t1 = setTimeout(() => setLoadingProgress(45), 80);
+    const t2 = setTimeout(() => setLoadingProgress(75), 180);
+    const t3 = setTimeout(() => {
+      setLoadingProgress(100);
+      const t4 = setTimeout(() => {
+        setIsLoading(false);
+      }, 200);
+    }, 300);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [selectedCategory, items]);
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
   const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
   
   // Custom states for interactive highlights
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
+
+  // Scroll to top state and hooks
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
   React.useEffect(() => {
     if (activeModalItem) {
@@ -732,6 +808,25 @@ export default function App() {
         ? "light-theme text-[#1F2937] selection:bg-amber-500/20 selection:text-amber-800" 
         : "bg-[#070707] text-[#E5E7EB] selection:bg-amber-500/20 selection:text-amber-300"
     }`}>
+      
+      {/* 全域 Loading Bar */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-amber-500 via-amber-400 to-indigo-600 z-50 pointer-events-none"
+          >
+            <motion.div 
+              className="h-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]"
+              initial={{ width: "0%" }}
+              animate={{ width: `${loadingProgress}%` }}
+              transition={{ ease: "easeOut", duration: 0.25 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       {/* 頂部裝飾背景微光 */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[550px] pointer-events-none overflow-hidden z-0">
@@ -1043,6 +1138,59 @@ export default function App() {
             ))}
           </div>
 
+          {/* 隨機瀏覽玩法/洗牌控制項 */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1 pb-3">
+            <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-[10px] uppercase tracking-widest">
+              <Shuffle className={`h-3.5 w-3.5 text-amber-500/80 ${isRandomMode ? "animate-pulse" : ""}`} />
+              <span>Browse Mode / 瀏覽模式：</span>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <div className="inline-flex rounded-full p-0.5 bg-white/[0.02] border border-white/5 shadow-inner">
+                <button
+                  type="button"
+                  id="btn_mode_normal"
+                  onClick={handleResetOrder}
+                  className={`px-3.5 py-1 text-xs font-sans rounded-full transition-all duration-300 cursor-pointer ${
+                    !isRandomMode
+                      ? "bg-amber-500 text-black font-semibold shadow-md"
+                      : "text-zinc-400 hover:text-zinc-200"
+                  }`}
+                >
+                  預設排序
+                </button>
+                
+                <button
+                  type="button"
+                  id="btn_mode_shuffle"
+                  onClick={handleShuffle}
+                  className={`px-3.5 py-1 text-xs font-sans rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
+                    isRandomMode
+                      ? "bg-amber-500 text-black font-semibold shadow-md"
+                      : "text-zinc-400 hover:text-zinc-200"
+                  }`}
+                >
+                  <span>隨機洗牌瀏覽</span>
+                </button>
+              </div>
+
+              {isRandomMode && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  type="button"
+                  id="btn_reshuffle"
+                  onClick={handleShuffle}
+                  className="px-3 py-1 text-xs bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20 hover:border-amber-500/40 rounded-full cursor-pointer transition-all duration-300 flex items-center gap-1 font-sans active:scale-95"
+                  title="重新洗牌一次"
+                >
+                  <span>再洗一次 🎲</span>
+                </motion.button>
+              )}
+            </div>
+          </div>
+
           {/* 作品卡片 RWD 呈現 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[300px]">
             <AnimatePresence mode="popLayout">
@@ -1070,6 +1218,24 @@ export default function App() {
             </div>
           )}
         </section>
+
+        {/* 回到最上方按鈕 */}
+        <div id="section_scroll_to_top_bottom" className="flex justify-center pt-12">
+          <button
+            type="button"
+            id="btn_scroll_to_top_bottom"
+            onClick={scrollToTop}
+            className={`group px-6 py-3 rounded-full font-semibold text-xs transition-all duration-300 border flex items-center gap-2 shadow-lg cursor-pointer active:scale-95 ${
+              theme === "light"
+                ? "bg-white hover:bg-amber-500 text-zinc-600 hover:text-white border-zinc-200 hover:border-amber-400 shadow-sm hover:shadow-amber-500/10"
+                : "bg-[#0E0E0E] hover:bg-amber-500 text-zinc-400 hover:text-black border-white/5 hover:border-amber-400 shadow-black/50 hover:shadow-amber-500/10"
+            }`}
+            title="回到最上方"
+          >
+            <ArrowUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+            <span>回到頁面頂端</span>
+          </button>
+        </div>
 
       </main>
 
@@ -1231,7 +1397,7 @@ export default function App() {
 
                   {/* Thumbnail gallery selector */}
                   {((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) && (
-                    <div className="relative z-10 w-full bg-[#0E0E0E] px-4 py-3 border-t border-white/10 shrink-0">
+                    <div id="modal-multimedia-menu" className="relative z-10 w-full bg-[#0E0E0E] px-4 py-3 border-t border-white/10 shrink-0">
                       <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-1.5 flex items-center justify-between">
                         <span>專案多媒體選單 ({activeModalItem.videoUrl ? 1 : 0} 影片, {activeModalItem.images?.length || 0} 照片)</span>
                         <span className="text-amber-400/80">點擊切換影片或作品照</span>
@@ -1363,6 +1529,28 @@ export default function App() {
 
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 懸浮回到最上方按鈕 */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            onClick={scrollToTop}
+            type="button"
+            id="btn_scroll_to_top_floating"
+            className={`fixed bottom-6 right-6 z-40 p-3 rounded-full transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer border group active:scale-90 ${
+              theme === "light"
+                ? "bg-white hover:bg-amber-500 text-zinc-650 hover:text-white border-zinc-200 hover:border-amber-400 shadow-md hover:shadow-amber-500/15"
+                : "bg-[#0E0E0E] hover:bg-amber-500 text-zinc-300 hover:text-black border-white/5 hover:border-amber-400 shadow-black/85 hover:shadow-amber-500/25"
+            }`}
+            title="回到最上方"
+          >
+            <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" />
+          </motion.button>
         )}
       </AnimatePresence>
 

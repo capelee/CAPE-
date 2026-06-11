@@ -2,6 +2,82 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "196",
+    "category": "角色IP&插畫與貼圖",
+    "title": "BLAST SCOOP 品牌吉祥物與主題動態貼圖企劃設計",
+    "titleEn": "BLAST SCOOP: Official Brand Mascot & Animated Stickers Creative Project",
+    "philosophy": "本專案專為 BLAST SCOOP 品牌量身打造專屬 IP 吉祥物與主題創意貼圖系列。品牌吉祥物以圓潤飽滿、極具生命彈性的有機形態，融入簡潔的鋼性結構框架。色彩指標延續品牌高對比的螢光亮綠、極致深邃黑與純淨白，塑造出極致辨識度、既街頭潮流又具備高度親和力的代言形象。企劃全案包含吉祥物的標準三視圖、精規的肢體骨架規範、各式情境輔助繪製，以及一系列極具情緒張力與網絡迷因調性的貼圖設計。將獨樹一格的當代原創潮流美學深植於數位日常交互語彙之中，不僅立體化了 BLAST SCOOP 的品牌玩味探索性格，更為社群行銷提供了極致吸睛、富含對話張力的情感共鳴媒介。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "Procreate",
+      "Spine"
+    ],
+    "imageUrl": "/images/optimized/17FIpnpnSPcZ9XdoE5otks7MMskn9BsJM.webp",
+    "placeholderId": "IMAGE_MASCOT_BLAST_SCOOP",
+    "colorTheme": "from-[#081C13] via-[#0E2C1E] to-[#040806]",
+    "images": [
+      "/images/optimized/17FIpnpnSPcZ9XdoE5otks7MMskn9BsJM.webp",
+      "/images/optimized/1_JBrKk2xiTtlPCb5L81hgIyjjzyWmBpZ.webp",
+      "/images/optimized/1q11pThoF_KfNYek6aH2mnFdvmZvoNXiu.webp",
+      "/images/optimized/1f3hIu3i7_LSb1nZs8P18STU8plL8yIA7.webp",
+      "/images/optimized/1Zews_NMnuUQxnJzuDq3UIAGglqZZHQ8F.webp",
+      "/images/optimized/1l3aMJ2qL6w2NcHyV1EQ2-RhD5w30ko4z.webp",
+      "/images/optimized/1wQ6lMWmcq0KUI8PvNH0w27izDn1MAg8r.webp",
+      "/images/optimized/13RARp4S30MIkazPgl_r36AqpCdeGUtqP.webp",
+      "/images/optimized/1V-cWuapskTyXqhtcPAVBiDNVLMRPwHQg.webp",
+      "/images/optimized/160C0IGwRRdifvb6fyNBICGDO1NBdaxPC.webp",
+      "/images/optimized/1JXo2ryjWuGF5N9gcMejeq_jTd3KTtvSw.webp",
+      "/images/optimized/1j9l8rRvjVcJY25GJQa5DFkpGZ2s92YJB.webp",
+      "/images/optimized/1drXeNcDHaN_iGTT1miBzJSoWFi6sMdOx.webp",
+      "/images/optimized/1nUfCyQ60xnsPnocQRANJTdhG5fIInS5b.webp",
+      "/images/optimized/19eu7qPCl1VOd27y8-8OEJYE5Wurivz4_",
+      "/images/optimized/1r2JCFvY2OSBEUlBLjhz2AGjoaJoz_Z0N.webp",
+      "/images/optimized/1jfvbTesH4mNkEBFeIXrhY_K1Y-IzIjFU.webp",
+      "/images/optimized/1Hw12hZbzRu5ptwM-DGyu4r5ar-8GNijg.webp",
+      "/images/optimized/1smJqtEoP3LPhVoB3Yw37LxCOJBaXIUD4.webp",
+      "/images/optimized/1YhiUCL_KB5TM5S2g0-3Aa01cYx_Hz7fW.webp",
+      "/images/optimized/18nPTntDCdW4o3bvjghhrMstYZgekdvA3.webp"
+    ]
+  },
+  {
+    "id": "195",
+    "category": "企業LOGO與CIS設計",
+    "title": "BLAST SCOOP 品牌創立與全套 CIS 視覺識別系統設計",
+    "titleEn": "BLAST SCOOP: Comprehensive Brand Identity & CIS Design System",
+    "philosophy": "本案為 BLAST SCOOP 品牌量身打造全案 CIS 視覺識別系統其核心在於將前衛的視覺符號與日常感官體驗完美結合。標誌設計以動態流暢的飽和色體與鋼性幾何框架組構，展現品牌的生機與探索精神。色彩指標選用前衛的高對比螢光綠、邃黑與冷灰，完美烘托品牌的探索玩味調性。整套規範涵蓋品牌標誌特寫、標準字與輔助繪形、基礎標準色規範、事務用品、名片、提袋及數位載體之全方位應用，展現極致精規的當代視覺工藝美學與完善的設計延展。系統中特別制定了輔助圖案與排版規範，為後續不同維度的行銷活動及數位媒體包裝提供最具延伸性的美學基礎。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "InDesign",
+      "Cinema 4D"
+    ],
+    "imageUrl": "/images/optimized/1X7YCxtmglVS_TvLrCdQJHFQ0641nuVBJ.webp",
+    "placeholderId": "IMAGE_CIS_BLAST_SCOOP",
+    "colorTheme": "from-[#081812] via-[#10241B] to-[#040605]",
+    "images": [
+      "/images/optimized/1X7YCxtmglVS_TvLrCdQJHFQ0641nuVBJ.webp",
+      "/images/optimized/1JNstZOzE75WKaHwnGgGXbMNQQe-vSsN_.webp",
+      "/images/optimized/1kpETmA5v5VUlcL2n9qGYagjbUMMQAhlZ.webp",
+      "/images/optimized/1WxMEfBwVGvFshZKHvsfunbL9huJqkK3I.webp",
+      "/images/optimized/1OLIJ9sAyb6QXWfrL4q5Z76DbnYTz6hIK.webp",
+      "/images/optimized/10eqNBN7ycLXPEWCEbeQoIWZgEvPaepBH.webp",
+      "/images/optimized/1Zf0j1f3vz6aXv-YHLz843v1gB8kKXBHf.webp",
+      "/images/optimized/1bT15UFMv8scZHAUIyloacJ7VkLGmesi6.webp",
+      "/images/optimized/1494m_Q5_AnKLL3sUWR8p2lIPlq64QhjS.webp",
+      "/images/optimized/1uyVsDmGOqbv3utuelv_VD9U_NNydh8Jp.webp",
+      "/images/optimized/1TyKHEouOG6s2fMNPu3gvddQYvQZCO8fk.webp",
+      "/images/optimized/1l2NUJrNcqw9ef7DPBu8phkwCCZgkGq0j.webp",
+      "/images/optimized/1PmpwuMgMUSMOUTEgbNo3MJH_eaknGfty.webp",
+      "/images/optimized/19Ujvz3glCUfLSOKs9CgN5YZMwE2tG8GU.webp",
+      "/images/optimized/1aGT3GPn0irU9fvOv1uDO8K8TkjlawC_g.webp",
+      "/images/optimized/1Hyk6MRl_PpxzbSyNZetHUCVDPt4EVKU6.webp",
+      "/images/optimized/1u2pbRUIwCLI9LZZL2y04wgHmIXa-5NcC.webp",
+      "/images/optimized/1uuid9v-_rGfXxADvQaRZLiQ3l_QgaSKV.webp",
+      "/images/optimized/1qI_ATwdm7dJQfszAtp_b8OkS9i4NfegR.webp"
+    ]
+  },
+  {
     "id": "168",
     "category": "電商產品銷售圖",
     "title": "居家收納系列：簡約生活秩序美學電商詳情長頁設計",

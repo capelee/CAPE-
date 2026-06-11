@@ -346,6 +346,57 @@ body {
   scrollbar-color: rgba(0, 0, 0, 0.15) transparent !important;
 }
 
+/* Lightbox Multimedia Menu Light Theme Styles */
+.light-theme #modal-multimedia-menu {
+  background-color: #FAFAFA !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-theme #modal-multimedia-menu .text-zinc-500 {
+  color: #4B5563 !important;
+}
+
+.light-theme #modal-multimedia-menu .text-amber-400\/80 {
+  color: #B45309 !important;
+  font-weight: 500;
+}
+
+.light-theme #modal-multimedia-menu .bg-\[\#07090c\] {
+  background-color: #F4F4F5 !important;
+}
+
+.light-theme #modal-multimedia-menu button.border-zinc-800 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.light-theme #modal-multimedia-menu button.border-zinc-800:hover {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
+}
+
+.light-theme #modal-multimedia-menu button.border-transparent {
+  border-color: transparent !important;
+}
+
+.light-theme #modal-multimedia-menu button.border-transparent:hover {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  opacity: 1 !important;
+}
+
+.light-theme #modal-multimedia-menu button.border-amber-400 {
+  border-color: #D97706 !important;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15) !important;
+  opacity: 1 !important;
+}
+
+.light-theme #modal-multimedia-menu .text-amber-400 {
+  color: #D97706 !important;
+}
+
+.light-theme #modal-multimedia-menu .text-zinc-400 {
+  color: #374151 !important;
+}
+
 /* Footer Section */
 .light-theme footer {
   background-color: #F4F4F5 !important;
