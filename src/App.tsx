@@ -332,6 +332,10 @@ export default function App() {
   // Categories extraction
   const categories = useMemo(() => {
     const list = new Set(items.map(item => item.category));
+    // Always ensure "賣場Banner橫幅廣告" is included in the available filters
+    if (!list.has("賣場Banner橫幅廣告")) {
+      list.add("賣場Banner橫幅廣告");
+    }
     return ["All", ...Array.from(list)];
   }, [items]);
 

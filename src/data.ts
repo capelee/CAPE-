@@ -1,67 +1,842 @@
 import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
-{
-  "id": "158",
-  "category": "角色IP&插畫與貼圖",
-  "title": "DH.Fruit 品牌吉祥物 Fruit Boy：清新自然與活力滿點的萌感鮮果使者 IP 角色設計",
-  "titleEn": "DH.Fruit Mascot 'Fruit Boy': A Fusion of Freshness, Vitality, and Natural Playfulness IP Character Design",
-  "philosophy": "DH.Fruit 品牌水果大使 Fruit Boy 採用溫潤討喜的三頭身 Q 版比例，透過圓潤飽和的線條勾勒出孩童般的純真與無邪。微翹的嘴角與明亮有神的雙眸交織出溫馨的微笑曲線，賦予角色高度的親和力與治癒感。角色造型最核心的亮點在於頭戴擬真的黃澄澄檸檬帽，頂部延伸出一片帶有露水般生命力的綠葉，將水果的鮮活特徵與角色完美融合。身穿象徵大自然的飽和綠色吊帶褲，胸前印有品牌標誌，手中握著一杯裝滿切片檸檬的透明手搖飲，精準向消費者傳遞『自然、新鮮、健康』的品牌理念。色彩學上，以明快奪目的檸檬黃呼應陽光與豐收，並與深具草木生機的森林綠形成和諧的互補對比，在視覺上達到既搶眼又舒適的平衡。此設計不但在 3D 公仔立體化上擁有極佳的物理表現力，其多變的肢體語彙與豐富的表情變化，也為未來的貼圖延展與周邊授權奠定了無窮的應用潛力。",
-  "tools": [
-    "Blender 3D 角色雕刻與骨架流暢度定規設計",
-    "Substance 3D Painter 擬真檸檬皮與布料材質紋理鋪設",
-    "Adobe Illustrator 向量品牌商標與包裝輔助圖案規劃",
-    "Photoshop 後期光影調校與自然環境光感融合疊加",
-    "KeyShot 精緻全局光照明與半透明果汁杯渲染優化"
-  ],
-  "imageUrl": "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp",
-  "placeholderId": "IMAGE_FRUIT_16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI",
-  "colorTheme": "from-[#FAD02C] via-[#90C83C] to-[#2B6330]",
-  "images": [
-    "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp",
-    "/images/optimized/1Tk13XjiweBkySnOXOia4stesmCA_0IEl.webp",
-    "/images/optimized/1hjNGrc1b9DiWgCD_K8GdFuY387g03_kp.webp",
-    "/images/optimized/167x7nFFI6A2Zk_lw_sKpoD3ZxchHSz42.webp",
-    "/images/optimized/1OGSCS5YiPAdLxplHLW8bWfrM0mh8i72L.webp",
-    "/images/optimized/1ZJG5THKH7Tx-lzZz2wXyKjvxSOmOb90M.webp",
-    "/images/optimized/1AV_Uxh3cgEToxEVbGmsFOAt93bjaacBX.webp",
-    "/images/optimized/1zWnUadMCsUny15KR5EUGTYnl9LUbyERV.webp",
-    "/images/optimized/1maunTu-QGbXs2Cszdu5ZIQiT8Mw8Zdpk.webp",
-    "/images/optimized/1c3SyoGlrDacIwm0p_COpl1NulTUQ9LJE.webp",
-    "/images/optimized/1XyfDdWw5Ee_4y8aJXX0sreZQBiaxxYtg.webp",
-    "/images/optimized/1zuHunfmIwEhNAgRV0IpNWOU-Oc5ppepd.webp",
-    "/images/optimized/18eyGKH64zJeqWqjDygFaMWhOV7__q8kA.webp",
-    "/images/optimized/1eFkq4MAY7DUz3uI1eHkZf2llqGdJ6iCl.webp",
-    "/images/optimized/1MvDjyNPBfQ861GeCWvKwRutUHVMyKh2R.webp",
-    "/images/optimized/1wieYFCXnWSMKkXE6gCRmx9d6CUzKjTlx.webp",
-    "/images/optimized/1rUp-rmPmwCpd_js9VKM3WIyFoIhAfoJT.webp",
-    "/images/optimized/11-28gdDu5uuqGTqgRyzAGnO_UVRKIwsA.webp",
-    "/images/optimized/1lWCSq2xWORTnD6qJIs809659qTN1yPa2.webp",
-    "/images/optimized/18y0jdJIyTGssAvnWnkIkWJc2zVHY4ctC.webp"
-  ]
-},
-
-{
-  "id": "159",
-  "category": "角色IP&插畫與貼圖",
-  "title": "DH.Fruit 品牌吉祥物「檸檬小男孩」：清新療癒的自然系生活感 IP 角色設計",
-  "titleEn": "DH.Fruit Mascot 'Lemon Boy': A Fresh and Healing Nature-Inspired IP Character Design",
-  "philosophy": "本設計案為「DH.Fruit」品牌量身打造吉祥物「檸檬小男孩」，旨在將「自然、新鮮、健康」的品牌核心理念，轉化為具備高度親和力的視覺載體。角色比例採用約三頭身的 Q 版黃金比例，既保有兒童般的天真爛漫，又具備溫暖療癒的生命力。在細節雕琢上，圓潤流暢的輪廓線條搭配精緻的微 3D 擬真渲染，使角色富含立體維度與親切感。其標誌性的檸檬果實帽搭配翠綠嫩葉，直接呼應品牌的核心產品；身穿的鮮綠吊帶褲則隱意大自然的辛勤耕耘與純粹生機。色彩美學上，巧妙運用高飽和度的亮麗檸檬黃與朝氣盎然的草木綠相互襯托，明快溫暖的黃色調傳遞陽光般的朝氣，而沉穩清新的綠色則深化了安全健康的信賴感。此角色設計不僅具備高辨識度的符號性，更在貼圖的延展應用中展現豐富的肢體語言與細膩的微笑曲線，完美融入大眾的日常溝通情境，成功建立起溫暖、生活化的品牌情感連結。",
-  "tools": [
-    "Illustrator 向量骨架定規與標準三視圖繪製",
-    "Photoshop 擬真光影渲染與精緻細節厚塗",
-    "3D 角色模型建模與細緻材質貼圖調校",
-    "KeyShot 擬真質地鋪陳與自然光環境模擬",
-    "Wacom 數位繪圖板手繪精細表情與動態姿態修容"
-  ],
-  "imageUrl": "/images/optimized/1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD.webp",
-  "placeholderId": "IMAGE_FRUIT_1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD",
-  "colorTheme": "from-[#FCD116] via-[#8CC63F] to-[#009245]",
-  "images": [
-    "/images/optimized/1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD.webp",
-    "/images/optimized/1TMvphL7b-ba5SmdKnPZVcS60O3CWaDHy.webp"
-  ]
-},
+  {
+    "id": "168",
+    "category": "電商產品銷售圖",
+    "title": "居家收納系列：簡約生活秩序美學電商詳情長頁設計",
+    "titleEn": "Home Storage Series: Minimalist Life Order Aesthetics E-Commerce Detail Design",
+    "philosophy": "本視覺設計引入極簡生活秩序美學，利用暖白與原木色系柔和交融。在資訊層級上突出結構收納的空間利用率，以溫馨自然的光感與留白襯托器物之美，精確觸達現代都市人群對於純淨與整潔居家的嚮往。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/180g1ytlxUAdpigeN99R_Fv8mgWcob7R_.webp",
+    "placeholderId": "IMAGE_CAT_168",
+    "colorTheme": "from-[#fdfbf7] via-[#f5efe6] to-[#e4dccf]",
+    "images": [
+      "/images/optimized/180g1ytlxUAdpigeN99R_Fv8mgWcob7R_.webp",
+      "/images/optimized/1Up1Go_LTLwddTna8BodUQNL7vETF7mrN.webp",
+      "/images/optimized/1llCZfG5JACKuxz5WztcNOMcMboyBG5Sd.webp",
+      "/images/optimized/1VXbBlb4AAEoorgO4Pzfn_1laV4mGglqU.webp",
+      "/images/optimized/1Qtfs177BXiiF1ZtncIUZFWCHAv6a1MLA.webp",
+      "/images/optimized/1UPmLJYRLIgR42R7XHlELx58wPZ_JWf9P.webp",
+      "/images/optimized/1V6GCeuRFyPbtcraeEP-tJ-poq4Mw3E_g.webp",
+      "/images/optimized/1adTH-juPJ3bFPx3KH-UdD9cfySNmDZ7U.webp",
+      "/images/optimized/1nx0oKiYan0sC-kVTpsCxNe-gtAb60HIJ.webp",
+      "/images/optimized/1hfXm7pMppIjuu3-i43oYuKWm4HJU5bHt.webp",
+      "/images/optimized/1YYyDt8v58cJx0MbT7JWhnY5dfK0K9EVq.webp",
+      "/images/optimized/1kbTja89aehZmbIZV3xMhxFW29kH63B5l.webp"
+    ]
+  },
+  {
+    "id": "169",
+    "category": "電商產品銷售圖",
+    "title": "居家燈飾系列：流光溢彩與夜間情境光感行銷視覺設計",
+    "titleEn": "Home Lighting Series: Flowing Light & Nocturnal Ambience Marketing Design",
+    "philosophy": "以深邃低飽和的室內環境為襯托，著重刻畫暖光與點光源的漫散細節。高對比明暗排版精確傳遞光源色溫，配合高雅襯線體字型，渲染溫馨柔和的深夜情境，營造令人沉浸的幸福居家儀式感。",
+    "tools": [
+      "Photoshop",
+      "Lightroom"
+    ],
+    "imageUrl": "/images/optimized/1qlh2ZhZBChgkhjORPBAX7zwm19zuhxrd.webp",
+    "placeholderId": "IMAGE_CAT_169",
+    "colorTheme": "from-[#0f172a] via-[#1e293b] to-[#334155]",
+    "images": [
+      "/images/optimized/1qlh2ZhZBChgkhjORPBAX7zwm19zuhxrd.webp",
+      "/images/optimized/1RJUrmDiCmunBWJVUNyWOL0jZBLOr6Fcd.webp",
+      "/images/optimized/1gGS_e3T1k4xus7CpVGYLHoxxkky0wdAu.webp",
+      "/images/optimized/1lBIa-3IFyo3T6fPYa-SiF4jMpzwQ-hfq.webp",
+      "/images/optimized/1keCmkIKePbyymaUdEjr3Sl2AusvRauLn.webp",
+      "/images/optimized/11mh16nR4n2cg8LgFqL-iY9cPA-StNbkC.webp",
+      "/images/optimized/1D8kr9ktxWWlLKU4gtnUateC5PmGcCUMn.webp",
+      "/images/optimized/1Sj9FPHNPpviF0W_svWWSCn04pWk3ub4I.webp",
+      "/images/optimized/1BUXhGJ2YDZhWN_vSttrzuvYKAaCnoM1q.webp",
+      "/images/optimized/1f6hBzDOEUUgWtXMICIgRzQgBNe5FIsrX.webp"
+    ]
+  },
+  {
+    "id": "170",
+    "category": "電商產品銷售圖",
+    "title": "工業級工具耗材：硬核工藝硬派機能電商詳情設計",
+    "titleEn": "Industrial Tools: Hardcore Craftsmanship & Tactical Functional Detail Design",
+    "philosophy": "本設計專注展現高機能工藝魅力，以高反差的金屬防滑紋理與冷冽鋼灰色調打底。配合鮮明搶眼的亮橙色導引焦點，排版極具工程結構之嚴謹感，硬朗剛毅中凸顯工具的強悍性能與耐用度品質。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1rGTKoWFsQSxCKx1BQSsNIXsIqa1H3c3q.webp",
+    "placeholderId": "IMAGE_CAT_170",
+    "colorTheme": "from-[#111827] via-[#374151] to-[#1f2937]",
+    "images": [
+      "/images/optimized/1rGTKoWFsQSxCKx1BQSsNIXsIqa1H3c3q.webp",
+      "/images/optimized/1MIWPaj7Np1IeTb7FkTwA9NlO7EYcnVwJ.webp",
+      "/images/optimized/1AaZTmxAOvDEtiJW-wceqeok6mmXnxHYG.webp",
+      "/images/optimized/1aUR78ic7Kc1JOQdZo_h7h986xJn5UtiQ.webp",
+      "/images/optimized/1k8m88WrwkkkuPLfdeGjnE6pk2gLnYMfh.webp",
+      "/images/optimized/1ngaetIOtE5bL-Hqzs6A0dbjOXLWT9hLq.webp",
+      "/images/optimized/1qNuKLEy5QXpQLULKD_WXD4EchjVeYi21.webp",
+      "/images/optimized/1wsgdQwHNrclhzImXq-3CudEI_tRbEtgc.webp",
+      "/images/optimized/1cBSvmRJKuVK8PcQExmfbr5P74z9PEoir.webp",
+      "/images/optimized/16CSYiHh_Y2HWb1HYaKuqJLB_gg6clvXm.webp",
+      "/images/optimized/11ASEgUbgrFphBDKsN8Xny7yKkiTMJ7PX.webp",
+      "/images/optimized/1VQ_KjXZtECKqJZmOeMKFy1MkB2od0DlF.webp"
+    ]
+  },
+  {
+    "id": "171",
+    "category": "電商產品銷售圖",
+    "title": "極簡生活系列：不鏽鋼空間收納機能美學",
+    "titleEn": "Minimalist Living: Stainless Steel Functional Organization Series",
+    "philosophy": "設計團隊透過精準的冷冽工業感攝影視角，強調SUS304不鏽鋼的細膩金屬紋理與堅韌品質。整體布局採用極致的留白與對稱排列，完美對比黑銀冷色系，藉由強烈的明暗光影層次，突顯產品在潮濕環境下的穩定機能。文字層級運用銳利的排版將功能標籤與產品實體緊密連結，營造出高級家居收納產品的視覺秩序感與精密度，從而在極簡的構圖中，將日常工具昇華為提升空間質感的高級工業設計精品。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Lightroom"
+    ],
+    "imageUrl": "/images/optimized/1CGM6jtCCCjVE0l0VOtrjZGhfkQgWdXwl.webp",
+    "placeholderId": "IMAGE_CAT_171",
+    "colorTheme": "from-[#1a1a1a] via-[#404040] to-[#e0e0e0]",
+    "images": [
+      "/images/optimized/1CGM6jtCCCjVE0l0VOtrjZGhfkQgWdXwl.webp",
+      "/images/optimized/1pqJZfGvVCeqn2JTlcJBv9jtbifie8kzO.webp",
+      "/images/optimized/1QotkF1Iq_1aq8ExyI8ZeH6pFyWmvHNTO.webp",
+      "/images/optimized/1HSrvhlDZMibGy2USYRJQ0u_3aiKfgAAz.webp",
+      "/images/optimized/1Hc73Ivzvd9dMphULrR3RK0DyJZBDIcDd.webp",
+      "/images/optimized/1036Ko-9VaKR0pH2W8LOmuclhEHR-v9oR.webp",
+      "/images/optimized/1pANG_8SiCC1QKKmFkyz_L8a6ZCP6lPW7.webp",
+      "/images/optimized/1b1gCBJH9DlFgUnEcaX0iU-gvXyHW_lh3.webp",
+      "/images/optimized/1evdRcXkOs-g3PdDn-ffIfEW5mIJcp2ez.webp",
+      "/images/optimized/1h7eTxBp4ByLJDQ-lrR2tTTsH35ytzlYA.webp",
+      "/images/optimized/1DPK7kLb61yynw0nFn8sI8NJjcuAQMiNh.webp",
+      "/images/optimized/1uyFgxyeDJXlOOcGTRCexLgf9l9VkQ2S7.webp"
+    ]
+  },
+  {
+    "id": "172",
+    "category": "電商產品銷售圖",
+    "title": "臻選廚衛系統：靈動構造與高效空間美學",
+    "titleEn": "Kitchen Utility Series: Dynamic Engineering & Space Optimization",
+    "philosophy": "設計師透過純淨的冷色調背景與高光金屬質感對比，精準捕捉機械臂水龍頭的靈動多軸結構，強調工業設計的流暢感。同時，瀝水架的影像配置聚焦於結構化排版，運用留白與聚焦式特寫，不僅展現了不鏽鋼材質的抗腐蝕耐用度，更將功能性轉化為視覺上的極簡敘事。排版結構遵循黃金比例， Typography 與產品細節相互輝映，旨在透過專業的燈光調度呈現出精緻且高效率的生活美學，成功提升廚房用品在消費端的感知價值與尊榮質感。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/14PPwYTuYeucsAx0sF5UGzCvGg-xmUksS.webp",
+    "placeholderId": "IMAGE_CAT_172",
+    "colorTheme": "from-[#e2e8f0] via-[#cbd5e1] to-[#94a3b8]",
+    "images": [
+      "/images/optimized/14PPwYTuYeucsAx0sF5UGzCvGg-xmUksS.webp",
+      "/images/optimized/1GEt5atyGf1EfIJU59pIQ0DEgXBWQBRfn.webp",
+      "/images/optimized/1Nca3PnB63HgbxQRX1S_-fiXT_ZDGHaea.webp",
+      "/images/optimized/1oBSEkxasuGIV6q7OyvCjYhgkbao7K_IO.webp",
+      "/images/optimized/1JlueLdayjKRA6ydAG_SGBf2Q9qhANjnJ.webp",
+      "/images/optimized/1tzA53TvpJnI4TeQFCRUu5cI4KPb4q2TG.webp",
+      "/images/optimized/19q76sEfcvqvKkIeWKuKKbtqrTMLIQkF6.webp",
+      "/images/optimized/10ZBwZaQ1wkSwjg7ZO2Lu6GKAox1TgPls.webp",
+      "/images/optimized/1a6mW0jvtrmaGoJIjSiOsmMMGtISR5EjG.webp",
+      "/images/optimized/1XNAU1jyA0miP9VT-618P53ehoFDNz5nn.webp"
+    ]
+  },
+  {
+    "id": "173",
+    "category": "電商產品銷售圖",
+    "title": "Urban Move系列：夏日出行與機能生活美學選品",
+    "titleEn": "Urban Move Series: Summer Mobility & Functional Lifestyle Curations",
+    "philosophy": "本系列視覺以極致的留白與清晰的資訊層級，建構出高端選品的簡約質感。我們運用柔和的自然光澤凸顯產品材質的細緻度，透過高對比度的排版設計，精準傳達掛頸風扇的靜音涼爽感與漁夫帽的靈活機能性。整體配色融合大地色系與都會莫蘭迪色，展現低調奢華的戶外美學，並利用圖層堆疊與陰影處理創造視覺立體感，讓每一個細節都成為生活品質的精緻演繹，在極簡框架下完美契合當代對於移動式便攜精品的高度追求。",
+    "tools": [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/1F09Twh4WBQcqswe9RPUeGZITPDlvpWpD.webp",
+    "placeholderId": "IMAGE_CAT_173",
+    "colorTheme": "from-[#DCC1A8] via-[#B8C0AC] to-[#4A5D4E]",
+    "images": [
+      "/images/optimized/1F09Twh4WBQcqswe9RPUeGZITPDlvpWpD.webp",
+      "/images/optimized/14WJm6gYq5saqmJ9XjV-miIlBc_mIOGpW.webp",
+      "/images/optimized/1IrCPwKUMp2Qk2TcyhJLIt0Y9Iobl1hJ0.webp",
+      "/images/optimized/102F2giGH2Kt7ZSWKtVtaGd-ddXIOOMtm.webp",
+      "/images/optimized/1WtYzVZ6i66InftOEAO8n1druixf1uP2N.webp",
+      "/images/optimized/198UwmDoTl7p7tvhQ3pIUsufrL4ypc5tP.webp",
+      "/images/optimized/1byMNtEB_ymnfoMepkiF-qikV7D8ctdMV.webp",
+      "/images/optimized/1mgLbwN2-VFryuCfPKUKCebKFBVasQTJZ.webp",
+      "/images/optimized/17QLJbcIXKsv-V62Elw1gHDuotc4Buzm-.webp",
+      "/images/optimized/1hYcK4oQkDv_aWiiCZ40ztrGIEZzgrSGR.webp",
+      "/images/optimized/1pgOeZkoiZ33v0Uhg_j_kb9coBHf6Rirx.webp",
+      "/images/optimized/1owEDY_O7O_UdbXyFduTISTF42F5JI_9L.webp"
+    ]
+  },
+  {
+    "id": "174",
+    "category": "電商產品銷售圖",
+    "title": "光影極致：現代戶外多功能智能照明系列",
+    "titleEn": "Luminous Precision: Modern Outdoor Multi-functional Smart Lighting Collection",
+    "philosophy": "設計核心在於將冰冷的工業硬體轉化為極簡的視覺符號，透過大面積留白與高對比的結構編排，精準傳達產品的功能數據。我們強調光影的透視感與結構美學，以洗練的排版呼應產品的高效能特性。藉由冷冽的金屬色調與暖性光源的完美交織，營造出既安全且充滿科技感的戶外場景，讓每一處照明細節都彰顯出高品質的工藝價值，將實用主義提升至極致的精品美學層次，確保消費者在閱讀資訊時能獲得極致的直觀感受。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "After Effects"
+    ],
+    "imageUrl": "/images/optimized/1qn6rk2FcaeZTyFjTuypy8l5mEeoH8pXW.webp",
+    "placeholderId": "IMAGE_CAT_174",
+    "colorTheme": "from-[#0a192f] via-[#1e2a3a] to-[#d4af37]",
+    "images": [
+      "/images/optimized/1qn6rk2FcaeZTyFjTuypy8l5mEeoH8pXW.webp",
+      "/images/optimized/1phVuoSVsANyWDGI__GOfVqpIBVAhDB4_.webp",
+      "/images/optimized/1_ZYRPngkejVCIBBDHjp5tXMLwPbnjuVF.webp",
+      "/images/optimized/1NpKQslNTeSo2sEl5Dj1PqAjHuIxx58VC.webp",
+      "/images/optimized/1PDHZWwsq6o5YIukTGpy55vFy3w9omN0e.webp",
+      "/images/optimized/1nmMAVfT397_euRaqQXpQKxbTUOwdH9XI.webp",
+      "/images/optimized/1v2dh3tIzF8QY-QtXS91UtSJDKqcNzbAs.webp",
+      "/images/optimized/1Bp-qge4XF8P6HCjBSrOkdh-rE191_hSI.webp",
+      "/images/optimized/1tCW566P36buzrIYJiX0I2TpxXSTN4Uil.webp",
+      "/images/optimized/1ZIP93ZHScX4Iomwdgs8nUczyIjlRSivf.webp",
+      "/images/optimized/1Y7OQmPSFjiQ9kCGWRvVkhrP8SeCzqKpp.webp",
+      "/images/optimized/1bdTxYy6HYJZ-l_nbt8ILo1glsPLo1VFM.webp"
+    ]
+  },
+  {
+    "id": "175",
+    "category": "電商產品銷售圖",
+    "title": "WILDEX極速充電系列：MFi認證與鋅合金傳輸工藝",
+    "titleEn": "WILDEX Rapid Charging Series: MFi Certified & Zinc Alloy Engineering",
+    "philosophy": "設計團隊運用極簡主義排版手法，將複雜的充電技術規格轉化為直觀的視覺語言。透過冷調科技白與高質感金屬漸層色彩的交錯運用，強調產品的工業強度與精緻觸感。我們精確分配留白空間，使MFi認證標識與功能優勢成為視覺焦點，在展現極致充電效能的同時，透過光影反射與金屬材質的細膩質感，完美詮釋出現代數位配件的奢華工藝美學，提升消費者對每一條傳輸線穩定性與耐用度的深度信賴感。",
+    "tools": [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/1kD6akwHpWJXtUQzQbPWGGRGqClN8g9IU.webp",
+    "placeholderId": "IMAGE_CAT_175",
+    "colorTheme": "from-[#ffffff] via-[#e5e7eb] to-[#f97316]",
+    "images": [
+      "/images/optimized/1kD6akwHpWJXtUQzQbPWGGRGqClN8g9IU.webp",
+      "/images/optimized/18IEsma_6TUxSVR0bITd-LKBTTS01FeuO.webp",
+      "/images/optimized/1NJfI22gxgxTdHRLPHrdZQAMEZG1pZqhh.webp",
+      "/images/optimized/1MQ8ZP9wV9ywtNA90vnuIvFcp9hJD_RgC.webp",
+      "/images/optimized/1ClyRDuzgGhs6OOIw_luPrr9B2XgXlH-x.webp",
+      "/images/optimized/1OVCSj6aSZmx7X_fyIa1UkT38etNWB2vV.webp",
+      "/images/optimized/1vPDlzlrGzsbDRl9uvc9oruymDCLONrm7.webp",
+      "/images/optimized/1OX_E7fFm4vvT1UItul8tkVpS3PsPsfCe.webp",
+      "/images/optimized/1teWRjsZlMjtbFcbY903PTCJD2oXAWK8M.webp",
+      "/images/optimized/1ava4b1wXNPf-QLjIf1a5W8K-F06EdoC_.webp",
+      "/images/optimized/1e-OVYcR14N1FS-MouF0lPeH30MvrfuBS.webp",
+      "/images/optimized/1TfiAF_KMs-AvrQ-liEIvtJQeVpQBd3zd.webp"
+    ]
+  },
+  {
+    "id": "176",
+    "category": "電商產品銷售圖",
+    "title": "極簡梳洗用具：溫潤乳白洗漱套組電商行銷詳情設計",
+    "titleEn": "Minimalist Grooming: Warm Cream Bathroomware E-Commerce Design",
+    "philosophy": "運用純淨溫潤的亞麻白與石板灰，構建簡約而自帶微風的晨光景觀。細膩的光影漸變捕捉刷毛與陶瓷的立體細節，資訊層級有序而柔和，打造如晨曦初現般清新無負擔的洗漱美學。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1YFf95hQFcvGW00tnvUx93qkSEVvfBYWI.webp",
+    "placeholderId": "IMAGE_CAT_176",
+    "colorTheme": "from-[#fafafa] via-[#f0f0f0] to-[#dcdcdc]",
+    "images": [
+      "/images/optimized/1YFf95hQFcvGW00tnvUx93qkSEVvfBYWI.webp",
+      "/images/optimized/1ii2KrMrIJk-H70vd9YUlJp3-d0w8djHT.webp",
+      "/images/optimized/1EpxY4tMHzDyA4oelpuHx2PwyXIEI8VEh.webp",
+      "/images/optimized/1vTHofRgvyT6YoUTiyH-EpsUiNAbIekpO.webp",
+      "/images/optimized/1H7cKEt1Av95agHZD4zfv-9XbHHBQOliR.webp",
+      "/images/optimized/1A_dGQEu443OamA581PRcyd8bBYrVkmgM.webp",
+      "/images/optimized/1PWlyRLi-5RI9UKvg0rICh6X6plpi5NoG.webp",
+      "/images/optimized/1D0kTXbhZ4g9FDU1MeTqyjce1aQrL21ql.webp"
+    ]
+  },
+  {
+    "id": "177",
+    "category": "電商產品銷售圖",
+    "title": "旅途隨行：智能車用防護與遮陽精品系列",
+    "titleEn": "Voyage Shield: Premium Automotive Sunshade & Tailgate Protection Series",
+    "philosophy": "設計哲學立足於『極簡實用與感官舒適』。透過冷色調的光線軌跡勾勒產品輪廓，強化車內遮陽與通風的機能性語彙。排版布局遵循黃金比例，將強烈的科技藍光與黑白灰基調融合，不僅提升了車用防護產品的質感，更以精準的字體襯線與留白藝術，將平凡的配件轉化為優雅的生活態度，展現出低調且極致的實用主義美學，讓車主在每一次啟程中皆能感受到科技與自然和諧共存的質感體驗。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Lightroom"
+    ],
+    "imageUrl": "/images/optimized/1ks_-WysYculp-NmvMIVZ5i47eotO3Cpp.webp",
+    "placeholderId": "IMAGE_CAT_177",
+    "colorTheme": "from-[#0f172a] via-[#1e293b] to-[#f8fafc]",
+    "images": [
+      "/images/optimized/1ks_-WysYculp-NmvMIVZ5i47eotO3Cpp.webp",
+      "/images/optimized/1guDnxSlSPf2FsEa71k8L16lZWDkYqaOB.webp",
+      "/images/optimized/1BvgRHSsPKR93CUpQ9zlkyEwakEdNMF23.webp",
+      "/images/optimized/1GNo2ADQ5RY21GogPkqD7Gy1QmD8ITb0U.webp",
+      "/images/optimized/1K47PxmBemgbfqvKlWJcOLQjERlyE0OiG.webp",
+      "/images/optimized/1BeW1wYsXozpH0yybb0p9Ni8GdhTrNxt7.webp"
+    ]
+  },
+  {
+    "id": "178",
+    "category": "電商產品銷售圖",
+    "title": "家務美學：高效晾曬與精緻織物護理系列",
+    "titleEn": "Domestic Aesthetics: Efficient Drying & Fabric Care Essentials",
+    "philosophy": "本設計採用極簡主義的視覺架構，透過高亮度的清爽調性強調材質的純淨與功能性。螺旋衣架以留白空間凸顯其力學結構之美，洗衣袋則透過排列堆疊展現秩序感，字體設計精準且具有極高的易讀性，將枯燥的家務用品轉化為提升居家質感的高級單品，旨在透過色彩與構圖的黃金比例，重新定義洗滌場景中的儀式感，讓每位使用者在繁瑣的日常中感受設計賦予生活的細膩呵護，體驗從機能到美感的全面昇華。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/1dlIVvR97egp1Or8UpzWA-Z3F2ZtBqvsw.webp",
+    "placeholderId": "IMAGE_CAT_178",
+    "colorTheme": "from-[#fdfcf0] via-[#ffffff] to-[#e0e7ff]",
+    "images": [
+      "/images/optimized/1dlIVvR97egp1Or8UpzWA-Z3F2ZtBqvsw.webp",
+      "/images/optimized/15FcQmtXs6DUJd1adLPNdz8_dajkbzteu.webp",
+      "/images/optimized/1FM75jgHqO8J3JrCIMQhZ8olYqAnl7bsi.webp",
+      "/images/optimized/1HUqxXrpq-LzXMsJQZCS7kkd8wolihXLa.webp",
+      "/images/optimized/1WAmkUllg8pYMJxiq5hIPtaFEIEZ3ae2k.webp",
+      "/images/optimized/1w2nqa45CRVJlIohR-QM0BdEMiJ93a9dh.webp"
+    ]
+  },
+  {
+    "id": "179",
+    "category": "電商產品銷售圖",
+    "title": "舒沐系列：現代衛浴機能與空間美學組版",
+    "titleEn": "Shumu Series: Modern Bath Functionality & Spatial Aesthetic Design",
+    "philosophy": "本組視覺設計強調衛浴空間的秩序感，透過高對比的冷色調背景突顯金屬與塑料材質的極致工藝。版面結構採用黃金分割比例，將六種噴霧模式與功能配件條理分明地羅列，不僅精確呈現產品的技術細節，更透過清爽的留白處理，傳遞出都市生活中不可或缺的簡約與高效洗浴體驗，完美體現了從日常用品到精緻生活美學的過渡，提升了平價家電的整體質感與市場價值，為居家環境注入一股冷靜而洗練的視覺秩序感。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1CI5zv9CsOe_54Z8PkJ0b50pRy-h1HfRx.webp",
+    "placeholderId": "IMAGE_CAT_179",
+    "colorTheme": "from-[#2A5954] via-[#F4F4F4] to-[#FFFFFF]",
+    "images": [
+      "/images/optimized/1CI5zv9CsOe_54Z8PkJ0b50pRy-h1HfRx.webp",
+      "/images/optimized/17nTWBuADpVbYW2uXy6AmbSXvRqSa37yS.webp",
+      "/images/optimized/1sm3Dgoan5znj1teMkuBdQt-2zopgVuHZ.webp",
+      "/images/optimized/1afzoGUA8mIUghuiDc4iuXQjTOK3AG1B3.webp",
+      "/images/optimized/1AABWvoxSDqwI6qMZOKupnJHQtiBN-Vhv.webp",
+      "/images/optimized/1awyk-o02E8p-V2pGqfgS8Dhq7dn28sok.webp",
+      "/images/optimized/18YUL-XTTpggGsRJXbOVkSJew6cROUN07.webp",
+      "/images/optimized/1Ul_jY5CFHvVlgnqY3CtOIWKsq6GSGOGA.webp",
+      "/images/optimized/1XiwCBpiBOfDE1DJLM3614bz-ZDvZseLQ.webp",
+      "/images/optimized/14xY4As0g1SlY8IwnD3LQPiS3bRBRfKU0.webp",
+      "/images/optimized/1vxMj300rKMoNTVJJm73wd79QxmjE85tP.webp",
+      "/images/optimized/1Gxunp04BlXaGZPoOAgENSOqQR6quucNS.webp"
+    ]
+  },
+  {
+    "id": "180",
+    "category": "電商產品銷售圖",
+    "title": "家務美學：高效能磁吸窗刷與折疊海綿拖把系列",
+    "titleEn": "Domestic Aesthetics: High-Efficiency Magnetic Window Cleaners & Foldable Sponge Mops",
+    "philosophy": "設計團隊透過極簡的構圖邏輯與乾淨的留白處理，將原本平凡的居家清潔工具轉化為現代生活的質感單品。圖像運用柔和的漫射光源以突顯材質的細緻度，色彩上以純淨的冷色調與極簡結構呼應，透過精準的標註排版與視覺引導，在維持資訊清晰度的同時，極大化提升了產品的工業設計感與專業使用效能，完美詮釋了極致功能主義與當代居家審美的高度融合。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1RmulSxtpQHKC3Y98H1nz8XXYQF23pDqA.webp",
+    "placeholderId": "IMAGE_CAT_180",
+    "colorTheme": "from-[#f8f9fa] via-[#e9ecef] to-[#dee2e6]",
+    "images": [
+      "/images/optimized/1RmulSxtpQHKC3Y98H1nz8XXYQF23pDqA.webp",
+      "/images/optimized/1D5Ld3F4R6ADXNUzhzoriQXDDs5_cfKpP.webp",
+      "/images/optimized/1bqigT7t2RyjkL1fBrHLuMYYLWfb_ILSQ.webp",
+      "/images/optimized/1a8hOolX2uOifrV2UMNeTSy6IfHqQhsRz.webp",
+      "/images/optimized/1-xYX-wDNvjkyl19avlGSvgyG1V9jjBC4.webp",
+      "/images/optimized/12-THzDZSG-EoMVe7EsVmMAudirYXk4zg.webp",
+      "/images/optimized/1Gymy6bqaUIqcNfp1CV-92UTCr2qtGlLO.webp",
+      "/images/optimized/1OM_5EUz0tnyvGpb9M-tJ11GbAjtQyZHD.webp",
+      "/images/optimized/1O_lEx7XJvy-d3emQ_CQiwqUgOLidSeku.webp",
+      "/images/optimized/1piTgzEqwqU0Lp5Eoc-_j__3I3NHAkbof.webp"
+    ]
+  },
+  {
+    "id": "181",
+    "category": "電商產品銷售圖",
+    "title": "精工修繕與文案整理：高效實用生活美學系列",
+    "titleEn": "Precision Crafting & Document Organization Series",
+    "philosophy": "本系列視覺設計透過極簡構圖與清晰的階層排版，將工業金屬的冷冽質感與透明文具的明亮色彩形成對比。光影運用精確勾勒出打孔鉗的堅硬金屬切面，傳達高效與耐用的工藝品質；同時利用留白與色彩層次，強化邊角夾的輕盈與組織美學。整體設計不僅提升產品的專業辨識度，更透過理性的結構秩序，將平凡的辦公工具昇華為現代生活中不可或缺的精緻物件，體現了實用主義與細節品味的完美平衡。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/114WIJssndLXvGL4X-dfKqmH3ey3rt30l.webp",
+    "placeholderId": "IMAGE_CAT_181",
+    "colorTheme": "from-[#e2e8f0] via-[#ffffff] to-[#cbd5e1]",
+    "images": [
+      "/images/optimized/114WIJssndLXvGL4X-dfKqmH3ey3rt30l.webp",
+      "/images/optimized/1BIqyzMWwsiBtoGfXjg6C8rxs9aezxKfQ.webp",
+      "/images/optimized/1Mcscu1v6cUKHVmeEilaNkvyRe1A8skK-.webp",
+      "/images/optimized/1-mdXWTxywL8W1aU0HJ_XBk38dC8yN1tK.webp",
+      "/images/optimized/1Tx1akkVy1rTRtcRD3Lb4Zs_FTIlrqRyy.webp",
+      "/images/optimized/17zSdKozAGzXxTf4Pv__U5Ilqr1fcaY8p.webp",
+      "/images/optimized/1XSpfMRgRwHPzyrK3YR2u9qNHo8p9RSxz.webp",
+      "/images/optimized/1RKpANMPLOS9t75bQpWLXVp7e8iK-6dHA.webp",
+      "/images/optimized/16Osck0FlPYhZizdaKejRmO6b1w1NVRFu.webp",
+      "/images/optimized/1JbvlIzdIrcqcJ7yH043BBbX3H2fk5C22.webp",
+      "/images/optimized/17W9VO_tUDAO_xwuf9T-ReBvM_4B1RJu_.webp",
+      "/images/optimized/1pUWG4mazNF4M5nnPdaR-LfTjVbMDngPf.webp"
+    ]
+  },
+  {
+    "id": "182",
+    "category": "電商產品銷售圖",
+    "title": "輕簡出行系列：都會通勤手提筆電包與皮革收納袋",
+    "titleEn": "LightCommute Series: Sleek Laptop Sleeves and Minimalist Leather Storage",
+    "philosophy": "本系列視覺規劃採取極簡主義美學，透過高明度、低彩度的中性色調背景，突顯產品本身細膩的紡織紋理與皮革質感。版面配置強調負空間的平衡，將文字資訊與實物巧妙融合，利用簡約的幾何色塊標註規格，達到視覺上的極致清晰與俐落。光影處理柔和且均勻，精準還原產品的原色，確保在簡潔的排版下依然傳遞出高品質的生活細節，將日常實用工具昇華為具有儀式感的現代審美精品。",
+    "tools": [
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ],
+    "imageUrl": "/images/optimized/123E7oEW4SNn6WcFJ0kRxb9eCwXA11OGC.webp",
+    "placeholderId": "IMAGE_CAT_182",
+    "colorTheme": "from-[#e5e7eb] via-[#d1d5db] to-[#9ca3af]",
+    "images": [
+      "/images/optimized/123E7oEW4SNn6WcFJ0kRxb9eCwXA11OGC.webp",
+      "/images/optimized/15GjIGRfPheQV7XMUznJP2IGEt0rm6v1K.webp",
+      "/images/optimized/1VdrNN2edcQc_vPo-2e5HI8R0u1Dut13v.webp",
+      "/images/optimized/16JXwV0x3nxneRigcy2-xW4qSr9gJyYuo.webp",
+      "/images/optimized/1t4K0FyC5HKwXV0v1Oogex7eYjR25p2uD.webp",
+      "/images/optimized/1sZINB5W-IC3tXF5L-UEt6kVg6gkbp9ws.webp",
+      "/images/optimized/1qVPmmfYtVsYo7f6AXFKoj1tqjth10Cen.webp",
+      "/images/optimized/1m9AW6AATw57WHFyR6uiqwFtZuQhabMlc.webp"
+    ]
+  },
+  {
+    "id": "183",
+    "category": "電商產品銷售圖",
+    "title": "極簡生活系列：經典黑白棉襪與精緻修眉美學",
+    "titleEn": "Minimalist Lifestyle: Classic Cotton Essentials & Precision Beauty Tools",
+    "philosophy": "設計旨在透過極致簡約的構圖突顯產品的純粹本質。針對黑白棉襪系列，採用高對比度的單色背景與清透光影，強調材質的親膚紋理與極簡時尚感；修眉剪影像則透過明亮的粉色基調與產品拆解視圖，展現細緻入微的功能美學。整體佈局運用黃金分割法則，配合精準排版，將日常必需品昇華為具有儀式感的精品，不僅在視覺上維持了品牌的高級潔淨度，更透過色彩心理學精確傳遞了舒適、耐用與專業的價值訴求。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Lightroom"
+    ],
+    "imageUrl": "/images/optimized/17SL_sA3pCyyao9TQrzow8O-U7Tb4oCz9.webp",
+    "placeholderId": "IMAGE_CAT_183",
+    "colorTheme": "from-[#F5F5F5] via-[#E0E0E0] to-[#212121]",
+    "images": [
+      "/images/optimized/17SL_sA3pCyyao9TQrzow8O-U7Tb4oCz9.webp",
+      "/images/optimized/1teTHUn0v_HNPvLFSBGOjXd8rbw8k6RnT.webp",
+      "/images/optimized/1pO05_Ph3s9cA5CG2h50v6jXzMD7D4Hzg.webp",
+      "/images/optimized/1xfXbejokQkbJ16ppiICrmdpZte8sHRWo.webp",
+      "/images/optimized/1aV8fOGm4SgVVOO-EKK-R9HiYdIm8DiCK.webp",
+      "/images/optimized/1L9O8djS3RftCcOyl95RE2gFonr6MmPam.webp",
+      "/images/optimized/1qdAmmKnb4FZ-T3pQejKS-bVwJGIt0-JI.webp",
+      "/images/optimized/1i3rfZj1goxVAlCNU1SFyrML_fHyNkpFT.webp",
+      "/images/optimized/1QhS9W2CG-wmspH_PpwI1BIxBS1EqHSSD.webp",
+      "/images/optimized/1UtUqRVfKYpi2gVZfrlPsNh6nR7OxRhoY.webp",
+      "/images/optimized/10xSCiQbyopx9OfXia0KaUelB_WH_WBXG.webp",
+      "/images/optimized/11aD2MF3Z6WzkBn6qCQ7C-MmRP-nAbHRy.webp"
+    ]
+  },
+  {
+    "id": "184",
+    "category": "電商產品銷售圖",
+    "title": "PRO-DETAIL系列：專業汽車美容清潔與養護工具組",
+    "titleEn": "Pro-Detail Series: Premium Automotive Maintenance & Detailing Toolset",
+    "philosophy": "本系列設計以極簡主義為核心，透過高對比度的色彩配置凸顯珊瑚絨纖維的吸水質感與細節刷的精工構造。排版上運用大面積留白與動態字體排版，將專業清潔工具轉化為視覺焦點，強調產品在細節處的耐用性與機能美學。光影運用模擬自然光感，勾勒出刷具細部的銳利輪廓與擦車布的柔軟肌理，構築出一種既具專業硬核感又不失精緻美感的電商視覺體系，藉由嚴謹的構圖與清晰的階層設計，精準傳遞出產品作為頂級養護配件的卓越品質，讓消費者在直觀互動中感受到品牌對於車用生活細節的極致追求。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Lightroom"
+    ],
+    "imageUrl": "/images/optimized/1tpYfWEZibMFUrnSysAqHxb_IhjbCu0W4.webp",
+    "placeholderId": "IMAGE_CAT_184",
+    "colorTheme": "from-[#2D2D2D] via-[#FFD700] to-[#E5E5E5]",
+    "images": [
+      "/images/optimized/1tpYfWEZibMFUrnSysAqHxb_IhjbCu0W4.webp",
+      "/images/optimized/1pvjDxzq9xs4kyDPXXo5w70ellpCqhaJr.webp",
+      "/images/optimized/16WatLnWFZLJDaS9VYso1uvbHiDLuu2Rq.webp",
+      "/images/optimized/1hnDbpSvppt4pk_UjSYkFgDnlyOWp10aa.webp",
+      "/images/optimized/1CpgJmozwrIMDfQ_3ih5beo6zjFwTy19T.webp",
+      "/images/optimized/16YtiHiG5UOJBDLhy2RsJ6r8mpumLYAAs.webp"
+    ]
+  },
+  {
+    "id": "185",
+    "category": "電商產品銷售圖",
+    "title": "都會出行配件系列：嬰兒車杯架與防水安全帽收納袋",
+    "titleEn": "Urban Mobility Series: Stroller Cup Holders and Protective Gear Storage",
+    "philosophy": "設計哲學植根於極致的功能主義美學，透過精準的去背景化影像處理，強調產品的實用結構與材質細節。影像排版嚴謹考究，利用對稱構圖與明晰的圖標化說明，將繁雜的安裝技術與場景應用轉化為直觀的視覺體驗。色彩配置以深邃黑為主調，輔以柔和的對比色系，不僅提升了工業設計的質感，更透過留白空間的精密規劃，賦予日常生活用品一種專屬於現代精緻生活的優雅與秩序感，完美詮釋了高效能與極簡風格的完美平衡。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1N7csb_vLcvGMPU1TBqxp32cv8e6t9mJi.webp",
+    "placeholderId": "IMAGE_CAT_185",
+    "colorTheme": "from-[#1a1a1a] via-[#333333] to-[#f4f4f4]",
+    "images": [
+      "/images/optimized/1N7csb_vLcvGMPU1TBqxp32cv8e6t9mJi.webp",
+      "/images/optimized/1VC8ZKMKlEvrzPP_rCc7tUVCHRkZtZA7C.webp",
+      "/images/optimized/1VeBkUXvBLERurRnryQVuwirLrxAIg0qi.webp",
+      "/images/optimized/1kiWQ5uUoIirpnn-bwcu0v-WzqxUNgrq-.webp",
+      "/images/optimized/1lyZJhu484BElFXvTqmQtoTLnpJzGHfEe.webp",
+      "/images/optimized/1Tq_dRQKc7eebmw3EO8JJ2uoxVLrKC9pC.webp",
+      "/images/optimized/1IS9XJv_Qc_uPO_lGpBQChNKqen8YJseP.webp",
+      "/images/optimized/1V57YLHETCg-coGoABA-sdPW3SJEYEV3J.webp",
+      "/images/optimized/1os3Vilh4js92JWdOzm4A-IYYAkfcTmn3.webp",
+      "/images/optimized/1djTagB0UUkRJ7MSi7rcHX9e_9pOB6Bpc.webp",
+      "/images/optimized/18LgOjE73zf38sGVH0FG4vIWiFkfc9igX.webp",
+      "/images/optimized/1nUCYY5Yv7GqLNRGq0R73qJYj4d9rOPFc.webp"
+    ]
+  },
+  {
+    "id": "186",
+    "category": "電商產品銷售圖",
+    "title": "極致動能系列：居家核心強化與滑行訓練方案",
+    "titleEn": "Ultimate Kinetic Series: Home Core Strengthening and Gliding Training Solutions",
+    "philosophy": "本系列視覺規劃旨在精準捕捉動態力量與居家簡約美學的平衡點。透過高對比度的橙灰色調鋪陳，強化產品的科技感與安全屬性。畫面構圖採用開放式留白與動態捕捉，將器材的物理功能（自動回彈、平滑滑行）與現代生活場景無縫接軌。排版上選用剛毅的粗體字型，強調產品細節工藝，確保在快速瀏覽的電商環境中，能精準傳遞出極致訓練效率與安全穩定性，從而提升消費者對居家高端健身工具的心理預期與購買信心。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Lightroom"
+    ],
+    "imageUrl": "/images/optimized/1emUOPPSnSc_f13g6qAoDdOh92QFS0DPz.webp",
+    "placeholderId": "IMAGE_CAT_186",
+    "colorTheme": "from-[#f97316] via-[#f59e0b] to-[#374151]",
+    "images": [
+      "/images/optimized/1emUOPPSnSc_f13g6qAoDdOh92QFS0DPz.webp",
+      "/images/optimized/1Ex6P1eAjBO5QfTc_XjL1R0G7yUbg2C4o.webp",
+      "/images/optimized/1i_L5W1pkxmznBxnwNkf3f7k8_zrqoeSD.webp",
+      "/images/optimized/1ckfApy9YcvRLZ5H2kwWxHcaTe5vczUW6.webp",
+      "/images/optimized/16Y1tjYn7qAjAXdJmDFvKvnX2oDya4xFc.webp",
+      "/images/optimized/1fV33nF_cBiWR2s6EKMBZebyWHz53Fh1x.webp"
+    ]
+  },
+  {
+    "id": "187",
+    "category": "電商產品銷售圖",
+    "title": "臻品生活提案：壓克力展示美學與節慶紅包禮儀系列",
+    "titleEn": "Premium Lifestyle Aesthetics: Acrylic Display & Festive Red Envelopes Collection",
+    "philosophy": "設計團隊運用極致的留白藝術與高飽和度視覺對比，將工業透明美學與傳統節慶紅包完美結合。壓克力產品部分透過高透光質感與微距攝影捕捉細節，傳遞出純粹與現代的簡約感；而紅包系列則運用燙金文字與立體排版，賦予紙本工藝強烈的感官價值。全系列布局講求視覺平衡，透過精準的色彩抽色與明確的功能標註，在感性與理性之間建立精緻的消費體驗，讓每一件生活小物皆能展現出非凡的精品格調。",
+    "tools": [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/141D1CHOZKlvCLYFlCbzaHntkSvwnGRfN.webp",
+    "placeholderId": "IMAGE_CAT_187",
+    "colorTheme": "from-[#fefefe] via-[#f7f7f7] to-[#e63946]",
+    "images": [
+      "/images/optimized/141D1CHOZKlvCLYFlCbzaHntkSvwnGRfN.webp",
+      "/images/optimized/1aKrYCFOysQOK7HIQ77UdDd9r2CGgwtt6.webp",
+      "/images/optimized/18aJaU426YX-Vy7sDnjZklaF8g1P8e4mS.webp",
+      "/images/optimized/1zkE83JjGdCehXiZXtrtkmEWG0NOT7BrD.webp",
+      "/images/optimized/1BUq7xvOKQ8w1NirBm9IvTvSyWeBPiF8V.webp",
+      "/images/optimized/16mv7_pQeNZ4zNtE2KUJSBezBEGNw6Ch5.webp"
+    ]
+  },
+  {
+    "id": "188",
+    "category": "電商產品銷售圖",
+    "title": "INDUSTRIAL精密連接：工業級高效能電路接頭組件",
+    "titleEn": "INDUSTRIAL Connectivity: High-Efficiency Electrical Connector Series",
+    "philosophy": "本設計系列採用極簡化視覺結構，將工業級接頭以精準模組化陳列呈現。背景選用清透色彩與高對比留白，凸顯電線端子之金屬質感與塑料色標差異。 typography編排刻意強化規格指標，透過嚴謹的格線系統，傳達接線作業的專業與安全感。色彩運用上，透過明亮飽和的標示色區分功能屬性，不僅提升資訊閱讀效率，更將單純的工業五金提升至精密工程美學層次，展現現代電氣裝配中兼具理性與實用主義的極致工藝。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1X4_uX-ndQ4RvKcsHSEoe_3XS3G5DkrMu.webp",
+    "placeholderId": "IMAGE_CAT_188",
+    "colorTheme": "from-[#FDE047] via-[#FFFFFF] to-[#38BDF8]",
+    "images": [
+      "/images/optimized/1X4_uX-ndQ4RvKcsHSEoe_3XS3G5DkrMu.webp",
+      "/images/optimized/13m95BbwmynrGveSJQ1VTWR-Pu5EcYbfj.webp",
+      "/images/optimized/1xRXBm3oN_W2gG8nMzDCVXu05-6wePDRD.webp",
+      "/images/optimized/1nQaufLs53W-17-5c3w4jhKhNpm4URSR1.webp",
+      "/images/optimized/1P37cKqYY9HMvv3vsd2WA2ug9RyNzq_NT.webp",
+      "/images/optimized/1A32kYp8Uza7OZNAnYMPAx8-vWCA1KjTj.webp",
+      "/images/optimized/1uirzx9vvl3F_vBVRpwgeEtLYAv88sPTL.webp",
+      "/images/optimized/1Q8b04blIkq5i1aa-oyGUk1PEF6kfa_ke.webp",
+      "/images/optimized/1r_Ca6ub9lD6FNnJoDqdlCP4X0g_8zab5.webp",
+      "/images/optimized/1bPIE2ZeN4hkb1CpWi71l9BMSk5X6Okpj.webp",
+      "/images/optimized/1jcJmEZJnyYXwIg2fxHcI0G33SRAJCatP.webp",
+      "/images/optimized/1bLjEMsJAmWb15FhhTLyOYZpex8vrG-je.webp"
+    ]
+  },
+  {
+    "id": "189",
+    "category": "電商產品銷售圖",
+    "title": "極簡生活：鞋履居家收納與氣味淨化系列",
+    "titleEn": "Minimalist Living: Premium Shoe Storage and Odor Neutralizing Solutions",
+    "philosophy": "設計核心秉持空間美學與感官體驗的極致平衡。在視覺構圖上，採用冷色調背景與透視層次，精準對應透明收納盒的物理簡約感，並透過細膩的產品切片與色彩標籤，為除臭盒賦予了居家精品的屬性。版面運用大量的留白呼吸感，將凌亂的鞋履轉化為陳列藝術，不僅強調產品的機能性，更透過對比光影提升了日常居家用品的視覺質感，讓有序的收納與純淨的氣味環境成為高品質生活方式的直觀表徵。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/133nnIW9l1eobMFaJZbIRh3IhbTC0-8BI.webp",
+    "placeholderId": "IMAGE_CAT_189",
+    "colorTheme": "from-[#e5e7eb] via-[#f3f4f6] to-[#d1d5db]",
+    "images": [
+      "/images/optimized/133nnIW9l1eobMFaJZbIRh3IhbTC0-8BI.webp",
+      "/images/optimized/1z_jhdCsF82QzeTeHbK35ikZNUicVVIzr.webp",
+      "/images/optimized/1CPdDxstqFdOIB0ZaQtJRzFA9-7MSw7EF.webp",
+      "/images/optimized/1S6L80jRQH_lwHBrRsQ92A1JuofGUl8kI.webp",
+      "/images/optimized/1SEgdSP-n0eNyRPZyXzLonWvC2rn60szf.webp",
+      "/images/optimized/1qL2AM-YnMIgclTGjH_Lne5JdawW6dobz.webp",
+      "/images/optimized/1BBeOTZ63DwFXSnXTFjP2tx2LiUm37wZ6.webp",
+      "/images/optimized/1RPFtVYvM8yosw8rXubQx7vLWbAsBvJtD.webp"
+    ]
+  },
+  {
+    "id": "190",
+    "category": "電商產品銷售圖",
+    "title": "家居生活美學系列：極簡實用主義廚房收納組",
+    "titleEn": "Home Aesthetic Essentials: Minimalist Kitchen Utility Series",
+    "philosophy": "本系列設計理念在於將日常廚房工具提升至生活美學層次。影像透過沈穩的深色基調與極簡結構佈局，強化產品的工業設計感與專業精準度。燈光設計聚焦於切刀的機械結構與泡麵碗的立體紋理，利用高對比光影提升材質質感。排版上採取大留白與明確層級，不僅展示了商品的結構便利性，更將實用功能轉化為一種現代簡約的感官體驗，透過色彩與光線的細膩平衡，精確傳遞產品的高效能與可靠品質。",
+    "tools": [
+      "Photoshop",
+      "Illustrator",
+      "Figma"
+    ],
+    "imageUrl": "/images/optimized/1agua3sX1RdnYdkqL9tQ1SyI7l5CYzAdB.webp",
+    "placeholderId": "IMAGE_CAT_190",
+    "colorTheme": "from-[#0a192f] via-[#7b899a] to-[#d6dbe1]",
+    "images": [
+      "/images/optimized/1agua3sX1RdnYdkqL9tQ1SyI7l5CYzAdB.webp",
+      "/images/optimized/1fO88GrMB_WAtghzPnvWh2cVLGS0g6dbb.webp",
+      "/images/optimized/1bfSG-NK5vyH_FPIMP6vhHWCVjaDuk-92.webp",
+      "/images/optimized/1NnpLvHV3DLb4xfYu5y7Ct8RsxoV-HwTh.webp",
+      "/images/optimized/1v9S_uhbinmyUGqixC6Bio8FkzGVN-a48.webp",
+      "/images/optimized/1-ceosscmdZB6d9echckPUvU9ubCBsK0H.webp",
+      "/images/optimized/1849epJ_Ghz-Zl2pqw_rguy2nGLr7TnTc.webp",
+      "/images/optimized/1agidn6DnBWnw8fn-BqM3YE7aJu6yd07Y.webp",
+      "/images/optimized/1oUx5X39zQImFhFeYjlAeGsOPzzQ8zL8u.webp",
+      "/images/optimized/1su4HA0v2ihsU3JgDDBTx9RcM4XtzKK5X.webp",
+      "/images/optimized/1jVWobmCpEE5nwsPaucp6grjfV6S5O7hy.webp",
+      "/images/optimized/1TlBl85yiDQqvGnkyMPlRKk_oD-LBfA9_.webp"
+    ]
+  },
+  {
+    "id": "167",
+    "category": "商品周邊企業禮贈品",
+    "title": "國軍保衛的信念桌遊：軍事戰術與核心價值演繹之文創桌遊",
+    "titleEn": "Faith of Defense: National Armed Forces Tactical Board Game Design",
+    "philosophy": "設計整合軍事紀實美學與現代圖標視覺。封面運用深邃藍底色調強化軍威感，以高對比度的無襯線字體傳遞核心防衛精神。動物化軍官插畫輔以戰術文件濾鏡，營造嚴謹而具備親和力的遊戲敘事。佈局採取動態構圖引導視線，結合金黃色桂冠邊飾，強化軍事榮譽感與遊戲策略深度，精準傳達戰術規劃與集體堅守之設計精髓。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "Cinema 4D",
+      "Indesign"
+    ],
+    "imageUrl": "/images/optimized/1NqVoCgWCG97oQirofppfwymb2f1-u_T0.webp",
+    "placeholderId": "IMAGE_BOARD_GAME_167",
+    "colorTheme": "from-[#0a1a36] via-[#1e3a6a] to-[#2b4c80]",
+    "images": [
+      "/images/optimized/1NqVoCgWCG97oQirofppfwymb2f1-u_T0.webp",
+      "/images/optimized/1EQA1rlkwI3sD76D7UgRD9K2mI9Wnx_Np.webp",
+      "/images/optimized/1nEuUCo44LXThFeSTp7EOfblv2p3BYRl4.webp",
+      "/images/optimized/1JNZKhGpcrTOrgJGp_D8lkecWqEAWinRU.webp",
+      "/images/optimized/1hntTFt9S03lf7CjZj3nbDs3i237XbGNp.webp",
+      "/images/optimized/1R1OtsHOXcLmDVqS_13KhH-_lJFoJu9Fi.webp",
+      "/images/optimized/1jLvmk_MoLR4IJv1fi8HU7FKIHScs73al.webp",
+      "/images/optimized/1K8tzFKOW39zCsBzTtf7UW0iiZsJcV4AR.webp",
+      "/images/optimized/1ak4DdVE9t1zRJBtNm1vmjk5c_DUEBqJ2.webp",
+      "/images/optimized/1wcyAmfdipsUsJmNOgxibSaQgqcauJIVm.webp"
+    ]
+  },
+  {
+    "id": "164",
+    "category": "平面海報設計",
+    "title": "0330 Black Goodie _ 放客兄弟演出海報設計",
+    "titleEn": "0330 Black Goodie & Funk Brothers Concert Poster",
+    "philosophy": "採取極簡塊狀分割佈局，利用暖棕與湖水綠對比色彩，搭配俐落無襯線字體與樂團實景嵌入，營造平衡且具復古感的視覺結構，精確傳達現場音樂氛圍，呈現極具識別性的獨立展演海報美學。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1Lot7jAy39_vHe4tZcJBhGe_8wQ2qUmBf.webp",
+    "placeholderId": "IMAGE_POSTER_164",
+    "colorTheme": "from-[#dccdb8] via-[#3d8c89] to-[#252525]",
+    "images": [
+      "/images/optimized/1Lot7jAy39_vHe4tZcJBhGe_8wQ2qUmBf.webp",
+      "/images/optimized/1tm01m9LWape8DeGwOnh2KxMEmkhwWIJY.webp"
+    ]
+  },
+  {
+    "id": "165",
+    "category": "平面海報設計",
+    "title": "0503 Black Goodie × 貳行程演出海報設計",
+    "titleEn": "0503 Black Goodie × Second Journey Concert Poster",
+    "philosophy": "採取極簡粗獷主義設計，精確以灰階底色平衡左右不對稱版面。標題文字採用襯線字體，完美融匯人文氣息與冷峻色調，捨棄多餘裝飾，透過高反差影像質感，精準呈現獨立音樂純粹的現場張力。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1bk1shLq-KsqQxBaSMdJgU-k48WgEv8Rz.webp",
+    "placeholderId": "IMAGE_POSTER_165",
+    "colorTheme": "from-[#333333] via-[#4a4a4a] to-[#262626]",
+    "images": [
+      "/images/optimized/1bk1shLq-KsqQxBaSMdJgU-k48WgEv8Rz.webp",
+      "/images/optimized/1q_J6Z-v251VIspbjCq3VcrVLW6RhhQiK.webp"
+    ]
+  },
+  {
+    "id": "166",
+    "category": "平面海報設計",
+    "title": "0514 New Born 誕 _ 裂縫說 x Control T 聯合演出海報",
+    "titleEn": "New Born Live: A Collaborative Resonance",
+    "philosophy": "採用上下對等構圖，巧妙以靜謐青碧色調流動佈局兩組樂團。搭配極簡無襯線字體，透過柔和的光影層次與知性留白，引導視線自然瀏覽，精準傳遞演出時空，體現純淨精緻的音樂節日美學。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1Zr6A-FvAODvkiQdDIVhvla2O6sbUxzJK.webp",
+    "placeholderId": "IMAGE_POSTER_166",
+    "colorTheme": "from-[#1a3a3a] via-[#7ab8b8] to-[#e0f7f7]",
+    "images": [
+      "/images/optimized/1Zr6A-FvAODvkiQdDIVhvla2O6sbUxzJK.webp",
+      "/images/optimized/1Fu0agxRL2sOpiRnXinH9TnX3LJexjFCa.webp"
+    ]
+  },
+  {
+    "id": "163",
+    "category": "電商產品銷售圖",
+    "title": "羅技電競系列產品電商視覺設計",
+    "titleEn": "Logitech G Series Gaming Gear E-Commerce Visual Design",
+    "philosophy": "本設計汲取羅技G系列硬核科技底蘊，以深邃黑曜色底襯托流光溢彩的亮青品牌識別。透過資訊層級分明的特徵功能卡，將核心感應器與燈效科技轉化為視覺動能，融合剛毅幾何與電競美學，高對比排版精準捕捉極限操控的熱血渴望。",
+    "tools": [
+      "Photoshop",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1d9_fOxmFcbXjFdMgjKQ2_s9qPGxQ7BaR.webp",
+    "placeholderId": "IMAGE_LOGITECH_163",
+    "colorTheme": "from-[#0c0f16] via-[#10243a] to-[#040810]",
+    "images": [
+      "/images/optimized/1d9_fOxmFcbXjFdMgjKQ2_s9qPGxQ7BaR.webp",
+      "/images/optimized/1LbtzK2qTN3bl_2kUiXlGZYEowcGMwSTt.webp",
+      "/images/optimized/1Sfu-k8mDlM6fRJwRrjABdX8if40zeKdN.webp",
+      "/images/optimized/1n5Wo-dJs1zZiJwdspz4VA9BOsDh5jtMF.webp",
+      "/images/optimized/1FzViSGpepOFNbJHg1nhZThML3UsNpoE1.webp",
+      "/images/optimized/1Gp30tS1RIn3GZZia1-7Mt-bjSWQxyJCW.webp",
+      "/images/optimized/1zerYh-BdOaqHUjJwTKdi-rTIFydgw15h.webp",
+      "/images/optimized/11HCdehk4flAODGASms7ml12aGhn-e4jK.webp",
+      "/images/optimized/1kidKGXGfGQufpEyaj5tTyVJldMP7PSys.webp"
+    ]
+  },
+  {
+    "id": "160",
+    "category": "商業視覺攝影",
+    "title": "紅龍泰式咖哩雞：異國美學風味視覺",
+    "titleEn": "KK Foods Thai Curry Chicken Visual Identity",
+    "philosophy": "以溫潤泥土與自然木質為基底，透過斜對角構圖展現泰式咖哩的多重層次。立體側向暖光突顯食材的鮮嫩質地與精緻金屬光澤，為紅龍泰式咖哩雞營造極具食慾感的精緻餐飲電商視覺美學。",
+    "tools": [
+      "Photoshop",
+      "Lightroom",
+      "Capture One"
+    ],
+    "imageUrl": "/images/optimized/1RYhv7vKca2PFUjjClQC7Ek7u2iDH--bh.webp",
+    "placeholderId": "IMAGE_160",
+    "colorTheme": "from-[#1a0c02] via-[#2c1404] to-[#0d0501]",
+    "images": [
+      "/images/optimized/1RYhv7vKca2PFUjjClQC7Ek7u2iDH--bh.webp",
+      "/images/optimized/1ZOg4XtrWoRYTJj1PXxQVjL6OhH5l7Q4p.webp",
+      "/images/optimized/1gyE7Xk0cqPYP5aet4l8vWjLINlZHPYKQ.webp"
+    ]
+  },
+  {
+    "id": "161",
+    "category": "商業視覺攝影",
+    "title": "紅龍椒麻雞丁：東方椒香美學視覺提案",
+    "titleEn": "KK Foods Spicy & Numbing Chicken Dices Identity",
+    "philosophy": "採用經典俯視構圖搭配低飽和暗調背景，結合側向柔和暖光，聚焦紅龍椒麻雞丁的油亮光澤與豐富層次，搭配厚實大地色陶器餐具，在電商視覺中完美呈現新中式餐飲的高級煙火氣與食材美學。",
+    "tools": [
+      "Photoshop",
+      "Lightroom",
+      "Capture One"
+    ],
+    "imageUrl": "/images/optimized/1gYDLn6IZ6BmTtIYqK7oGZAr6NLPKtNiR.webp",
+    "placeholderId": "IMAGE_161",
+    "colorTheme": "from-[#1c0f0a] via-[#2d1b10] to-[#1c0f0a]",
+    "images": [
+      "/images/optimized/1gYDLn6IZ6BmTtIYqK7oGZAr6NLPKtNiR.webp",
+      "/images/optimized/1PhdjhyQPW6J2PpeKB3Yr0Cp6hfWfRRD-.webp",
+      "/images/optimized/17ZbWSw1DYw69lkzDunEqlRfUi88yYReE.webp"
+    ]
+  },
+  {
+    "id": "162",
+    "category": "商業視覺攝影",
+    "title": "紅龍嚴選香滷牛腱心：東方膳食美學視覺",
+    "titleEn": "KK Foods Premium Braised Beef Shank Art Direction",
+    "philosophy": "融合溫潤木質與古樸器皿色調，利用高反差暖陽側光，雕琢紅龍香滷牛腱心的自然肉質肌理與晶瑩筋花。結合傳統對角平衡構圖與細緻辛香料散落細節，向大眾傳遞頂級膳食深厚的人文溫度。",
+    "tools": [
+      "Photoshop",
+      "Lightroom",
+      "Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1Q1VI_XoB0788Wpn3Wuvnb1br25Q4ZArW.webp",
+    "placeholderId": "IMAGE_162",
+    "colorTheme": "from-[#170f0d] via-[#2c1a16] to-[#140b09]",
+    "images": [
+      "/images/optimized/1Q1VI_XoB0788Wpn3Wuvnb1br25Q4ZArW.webp",
+      "/images/optimized/13_-ptGNf8OYeTIiOpij4Y_WDbaLl_BRd.webp",
+      "/images/optimized/1p_WVSP3ry43A5NorWqacDH5RI3PXAWeP.webp"
+    ]
+  },
+  {
+    "id": "158",
+    "category": "角色IP&插畫與貼圖",
+    "title": "DH.Fruit 品牌吉祥物 Fruit Boy：清新自然與活力滿點的萌感鮮果使者 IP 角色設計",
+    "titleEn": "DH.Fruit Mascot 'Fruit Boy': A Fusion of Freshness, Vitality, and Natural Playfulness IP Character Design",
+    "philosophy": "以三頭身比例與圓潤線條呈現溫暖親和力。頭戴黃澄澄檸檬帽融合產品特色，身穿草木綠吊帶褲，胸前品牌標誌印記。色彩以奪目檸檬黃呼應陽光朝氣，並與深沉森林綠形成和諧互補對比，傳遞自然新活力的品牌理念。",
+    "tools": [
+      "Blender",
+      "Substance 3D Painter",
+      "Illustrator",
+      "Photoshop",
+      "KeyShot"
+    ],
+    "imageUrl": "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp",
+    "placeholderId": "IMAGE_FRUIT_16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI",
+    "colorTheme": "from-[#FAD02C] via-[#90C83C] to-[#2B6330]",
+    "images": [
+      "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp",
+      "/images/optimized/1Tk13XjiweBkySnOXOia4stesmCA_0IEl.webp",
+      "/images/optimized/1hjNGrc1b9DiWgCD_K8GdFuY387g03_kp.webp",
+      "/images/optimized/167x7nFFI6A2Zk_lw_sKpoD3ZxchHSz42.webp",
+      "/images/optimized/1OGSCS5YiPAdLxplHLW8bWfrM0mh8i72L.webp",
+      "/images/optimized/1ZJG5THKH7Tx-lzZz2wXyKjvxSOmOb90M.webp",
+      "/images/optimized/1AV_Uxh3cgEToxEVbGmsFOAt93bjaacBX.webp",
+      "/images/optimized/1zWnUadMCsUny15KR5EUGTYnl9LUbyERV.webp",
+      "/images/optimized/1maunTu-QGbXs2Cszdu5ZIQiT8Mw8Zdpk.webp",
+      "/images/optimized/1c3SyoGlrDacIwm0p_COpl1NulTUQ9LJE.webp",
+      "/images/optimized/1XyfDdWw5Ee_4y8aJXX0sreZQBiaxxYtg.webp",
+      "/images/optimized/1zuHunfmIwEhNAgRV0IpNWOU-Oc5ppepd.webp",
+      "/images/optimized/18eyGKH64zJeqWqjDygFaMWhOV7__q8kA.webp",
+      "/images/optimized/1eFkq4MAY7DUz3uI1eHkZf2llqGdJ6iCl.webp",
+      "/images/optimized/1MvDjyNPBfQ861GeCWvKwRutUHVMyKh2R.webp",
+      "/images/optimized/1wieYFCXnWSMKkXE6gCRmx9d6CUzKjTlx.webp",
+      "/images/optimized/1rUp-rmPmwCpd_js9VKM3WIyFoIhAfoJT.webp",
+      "/images/optimized/11-28gdDu5uuqGTqgRyzAGnO_UVRKIwsA.webp",
+      "/images/optimized/1lWCSq2xWORTnD6qJIs809659qTN1yPa2.webp",
+      "/images/optimized/18y0jdJIyTGssAvnWnkIkWJc2zVHY4ctC.webp"
+    ]
+  },
+  {
+    "id": "159",
+    "category": "角色IP&插畫與貼圖",
+    "title": "DH.Fruit 品牌吉祥物「檸檬小男孩」：清新療癒的自然系生活感 IP 角色設計",
+    "titleEn": "DH.Fruit Mascot 'Lemon Boy': A Fresh and Healing Nature-Inspired IP Character Design",
+    "philosophy": "為「DH.Fruit」品牌打造吉祥物「檸檬小男孩」，以三頭身比例與微 3D 渲染展現親切療癒。檸檬帽與翠綠嫩葉呼應產品，鮮綠吊帶褲襯托大自然生機。高亮檸檬黃搭配草木綠，在貼圖延展中建立溫慢品牌情感。",
+    "tools": [
+      "Illustrator",
+      "Photoshop",
+      "3D Rendering",
+      "KeyShot",
+      "Wacom"
+    ],
+    "imageUrl": "/images/optimized/1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD.webp",
+    "placeholderId": "IMAGE_FRUIT_1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD",
+    "colorTheme": "from-[#FCD116] via-[#8CC63F] to-[#009245]",
+    "images": [
+      "/images/optimized/1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD.webp",
+      "/images/optimized/1TMvphL7b-ba5SmdKnPZVcS60O3CWaDHy.webp"
+    ]
+  },
   {
     "id": "7",
     "category": "商業視覺攝影",
@@ -863,7 +1638,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "63",
-    "category": "網站產品瀑布頁",
+    "category": "社群行銷小編圖文",
     "title": "九號聖誕禮讚嘉年華：Segway-Ninebot 智能電動滑板車年終感恩祭優惠圖文詳情與節日視覺行銷設計",
     "titleEn": "Segway-Ninebot Christmas Carnival: Premium Holiday Deals Landing Page & Festive E-Commerce Visual Design",
     "philosophy": "北歐暗樅綠與曜石黑基底點綴經典香檳鎏金與雪花描邊，契合黑科技車體鋼骨結構，優惠細節以高對比格線引導，最大化營造聖誕尊享感與緊迫感。",
@@ -1117,7 +1892,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "51",
-    "category": "社群行銷小編圖文",
+    "category": "賣場Banner橫幅廣告",
     "title": "二十五點創意製作「火柴邦 MATCHBOND」：週年慶商品形象與電商 Banner 橫幅視覺設計",
     "titleEn": "25 Point Creative 'MATCHBOND': Anniversary Campaign & E-Commerce Banner Design",
     "philosophy": "POLO衫對角線構圖營造動態律動感，細緻呈現領口袖口拼接織工，特黑體醒目標題對齊亮眼配色，搭配限定標籤標記，乾淨背景對齊高彩度商品。",
@@ -1603,7 +2378,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "78",
-    "category": "平面海報設計",
+    "category": "社群行銷小編圖文",
     "title": "Segway-Ninebot 台灣總代理羅宋堂：2024信義新光三越A9店週年慶特惠宣傳 DM 與實體促銷視覺設計",
     "titleEn": "Segway-Ninebot Taiwan LoSongTang: 2024 Xinyi Shin Kong Mitsukoshi A9 Anniversary Campaign Promotional DM & Retail Print Design",
     "philosophy": "品牌標誌性奢華亮黃與深碳灰配色奠定極速格調，嚴謹便當盒網格佈局清晰呈現促銷優惠組，印前CMYK與特殊專色油墨防溢管理。",
@@ -2147,7 +2922,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "100",
-    "category": "平面海報設計",
+    "category": "社群行銷小編圖文",
     "title": "巴迪醫療：雙十國慶盛典祝賀之品牌社群宣傳與大型實體展示易拉展設計",
     "titleEn": "Buddy Medical: Double Tenth National Day Celebration Branding Campaign & Giant Pull-Up Banner Design",
     "philosophy": "3D黃金透視線融匯國旗紅，大會金與深藍，立體呈現雙十符號，DNA雙螺旋與心率信號，社群1:1排版精算負空間與星光耀斑。",
