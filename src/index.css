@@ -29,3 +29,333 @@ body {
   background: #3f3f46;
 }
 
+/* Pristine Elegant Light Mode Styles */
+.light-theme {
+  background-color: #FAFAFA !important;
+  color: #1F2937 !important;
+}
+
+.light-theme ::selection {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #92400E !important;
+}
+
+/* Scrollbars in Light Theme */
+.light-theme ::-webkit-scrollbar-track {
+  background: #FAFAFA !important;
+}
+.light-theme ::-webkit-scrollbar-thumb {
+  background: #E4E4E7 !important;
+}
+.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: #D4D4D8 !important;
+}
+
+/* Background Glowing Overlays */
+.light-theme .bg-amber-500\/5 {
+  background-color: rgba(245, 158, 11, 0.035) !important;
+}
+.light-theme .bg-indigo-500\/5 {
+  background-color: rgba(99, 102, 241, 0.035) !important;
+}
+
+/* Top Sticky Navigation Bar */
+.light-theme header {
+  background-color: rgba(250, 250, 250, 0.85) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.02), 0 2px 8px -1px rgba(0, 0, 0, 0.02) !important;
+}
+.light-theme header .text-white {
+  color: #111827 !important;
+}
+.light-theme header .text-zinc-500 {
+  color: #6B7280 !important;
+}
+.light-theme header .text-zinc-400 {
+  color: #4B5563 !important;
+}
+.light-theme header .text-zinc-700 {
+  color: #E5E7EB !important;
+}
+
+/* Designer Profile Bento Card */
+.light-theme #designer-bento > div {
+  background-image: linear-gradient(to bottom, #FFFFFF, #F9FAFB) !important;
+  border-color: rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.02), 0 10px 10px -5px rgba(0, 0, 0, 0.02) !important;
+}
+.light-theme #designer-bento .text-white {
+  color: #111827 !important;
+}
+.light-theme #designer-bento .text-zinc-350 {
+  color: #4BB563 !important;
+}
+.light-theme #designer-bento .text-zinc-300 {
+  color: #374151 !important;
+}
+.light-theme #designer-bento .text-zinc-400 {
+  color: #4B5563 !important;
+}
+.light-theme #designer-bento .text-zinc-500 {
+  color: #6B7280 !important;
+}
+.light-theme #designer-bento .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme #designer-bento .border-l-2.border-amber-500\/20 {
+  border-left-color: rgba(245, 158, 11, 0.45) !important;
+}
+.light-theme #designer-bento .bg-white\/\[0\.01\] {
+  background-color: #F9FAFB !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme #designer-bento .bg-white\/5 {
+  background-color: #E4E4E7 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: #4B5563 !important;
+}
+
+/* Capabilities & Grid Boxes */
+.light-theme .bg-white\/\[0\.015\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02) !important;
+}
+.light-theme .bg-white\/\[0\.015\].group:hover {
+  background-color: rgba(245, 158, 11, 0.01) !important;
+}
+.light-theme .bg-white\/5 {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: #4B5563 !important;
+}
+
+/* Timelines and Lists */
+.light-theme .before\:bg-white\/10::before {
+  background-color: #E4E4E7 !important;
+}
+.light-theme .bg-\[\#0a0a0a\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Showcase Filter Buttons */
+.light-theme #portfolio-grid .text-white {
+  color: #111827 !important;
+}
+.light-theme #portfolio-grid .text-zinc-400 {
+  color: #4B5563 !important;
+}
+.light-theme #portfolio-grid .bg-white\/\[0\.02\] {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: #4B5563 !important;
+}
+.light-theme #portfolio-grid .bg-white\/\[0\.02\]:hover {
+  background-color: #E4E4E7 !important;
+  color: #111827 !important;
+}
+
+/* Portfolio Cards */
+.light-theme .group.relative.flex.flex-col {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme .bg-\[\#0E0E0E\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+.light-theme .group.relative.flex.flex-col .absolute.top-4.left-4 span {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #1F2937 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05) !important;
+}
+.light-theme .group.relative.flex.flex-col .bg-gradient-to-t {
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.02) 40%, transparent 100%) !important;
+}
+.light-theme .bg-\[\#0E0E0E\] h3.text-white {
+  color: #111827 !important;
+  transition: color 0.2s ease-in-out;
+}
+.light-theme .group:hover .bg-\[\#0E0E0E\] h3.text-white {
+  color: #B45309 !important;
+}
+.light-theme .text-\[\#F59E0B\]\/80 {
+  color: #B45309 !important;
+  font-weight: 500;
+}
+.light-theme .bg-\[\#0E0E0E\] .text-zinc-300 {
+  color: #374151 !important;
+}
+.light-theme .bg-\[\#0E0E0E\] .text-zinc-400 {
+  color: #4B5563 !important;
+}
+.light-theme .bg-\[\#0E0E0E\] .bg-white\/5 {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: #4B5563 !important;
+}
+.light-theme .bg-zinc-950 {
+  background-color: #F4F4F5 !important;
+}
+
+/* Lightbox Modal with Elegant Dark Overlay for proper contrast */
+.light-theme .fixed.z-50 {
+  background-color: rgba(244, 244, 245, 0.96) !important;
+}
+.light-theme .fixed.z-50 .bg-\[\#0E0E0E\] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05) !important;
+}
+.light-theme .fixed.z-50 .text-white {
+  color: #111827 !important;
+}
+.light-theme .fixed.z-50 .text-zinc-300 {
+  color: #374151 !important;
+}
+.light-theme .fixed.z-50 .text-zinc-500 {
+  color: #6B7280 !important;
+}
+.light-theme .fixed.z-50 .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme .fixed.z-50 .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+.light-theme .fixed.z-50 .border-l {
+  border-left-color: rgba(0, 0, 0, 0.08) !important;
+}
+.light-theme .fixed.z-50 .bg-white\/5 {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: #4B5563 !important;
+}
+.light-theme .fixed.z-50 #btn_modal_close {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #4B5563 !important;
+}
+.light-theme .fixed.z-50 #btn_modal_close:hover {
+  background-color: #F4F4F5 !important;
+  color: #111827 !important;
+}
+.light-theme .fixed.z-50 .bg-zinc-950 {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme .fixed.z-50 .bg-zinc-950 iframe {
+  background-color: #000000 !important;
+}
+
+/* Empty section layout */
+.light-theme .bg-\[\#0E0E0E\]\/40 {
+  background-color: #F4F4F5 !important;
+}
+
+/* Lightbox Modal Theme Enhancements for Light Theme */
+.light-theme .fixed.z-50 .bg-gradient-to-t.from-\[\#0E0E0E\] {
+  background-image: linear-gradient(to top, #FFFFFF, transparent) !important;
+}
+
+.light-theme .fixed.z-50 .bg-black\/40 {
+  background-color: transparent !important;
+}
+
+.light-theme .fixed.z-50 .bg-black\/80 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #4B5563 !important;
+}
+.light-theme .fixed.z-50 .bg-black\/80:hover {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+}
+
+.light-theme .fixed.z-50 .bg-black\/70 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #4B5563 !important;
+}
+.light-theme .fixed.z-50 .bg-black\/70:hover {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+}
+
+.light-theme .fixed.z-50 .bg-black\/85 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #374151 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-theme .fixed.z-50 button:hover,
+.light-theme .fixed.z-50 .hover\:text-white:hover {
+  color: #111827 !important;
+}
+
+.light-theme .fixed.z-50 .hover\:bg-white\/10:hover {
+  background-color: #E4E4E7 !important;
+}
+
+.light-theme .fixed.z-50 .hover\:bg-black\/90:hover,
+.light-theme .fixed.z-50 .hover\:bg-black\/95:hover,
+.light-theme .fixed.z-50 .hover\:bg-black:hover {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #111827 !important;
+}
+
+.light-theme .fixed.z-50 .text-zinc-400 {
+  color: #4B5563 !important;
+}
+
+.light-theme .bg-\[\#0A0A0A\],
+.light-theme .bg-\[\#0B0B0B\],
+.light-theme .bg-\[\#07090c\] {
+  background-color: #F4F4F5 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-theme .bg-\[\#0a0a0a\] {
+  background-color: #FAFAFA !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-theme .bg-\[\#111\] {
+  background-color: #F4F4F5 !important;
+  color: #374151 !important;
+}
+
+.light-theme .hover\:bg-\[\#161616\]:hover {
+  background-color: #E4E4E7 !important;
+  color: #111827 !important;
+}
+
+.light-theme .text-neutral-600 {
+  color: #6B7280 !important;
+}
+
+.light-theme .scrollbar-thumb-white\/10 {
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent !important;
+}
+
+/* Footer Section */
+.light-theme footer {
+  background-color: #F4F4F5 !important;
+  border-top-color: rgba(0, 0, 0, 0.06) !important;
+}
+.light-theme footer .text-zinc-400 {
+  color: #4B5563 !important;
+}
+.light-theme footer .text-zinc-600 {
+  color: #9CA3AF !important;
+}
+
+

@@ -22,7 +22,11 @@ import {
   CheckCircle2,
   Sparkles,
   ArrowUpRight,
-  ShieldAlert
+  ShieldAlert,
+  ZoomIn,
+  ZoomOut,
+  Sun,
+  Moon
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { initialPortfolioData } from "./data";
@@ -90,6 +94,8 @@ interface ImageWithFallbackProps {
   titleText?: string;
   referrerPolicy?: React.HTMLAttributeReferrerPolicy;
   optimizeSize?: number;
+  lazy?: boolean;
+  zoomable?: boolean;
 }
 
 function ImageWithFallback({ 
@@ -100,18 +106,89 @@ function ImageWithFallback({
   categoryName,
   titleText,
   referrerPolicy,
-  optimizeSize
+  optimizeSize,
+  lazy = false,
+  zoomable = false
 }: ImageWithFallbackProps) {
-  const [currentSrc, setCurrentSrc] = useState<string>(() => resolveImageUrl(src, optimizeSize));
+  const [isInView, setIsInView] = useState<boolean>(!lazy);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [currentSrc, setCurrentSrc] = useState<string>("");
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
+  const [isZoomed, setIsZoomed] = useState<boolean>(false);
+  const [zoomPosition, setZoomPosition] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
+
   React.useEffect(() => {
-    setCurrentSrc(resolveImageUrl(src, optimizeSize));
-    setFallbackAttempt(0);
-    setIsLoaded(false);
-  }, [src, optimizeSize]);
+    setIsZoomed(false);
+    setZoomPosition({ x: 50, y: 50 });
+  }, [src]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!zoomable || !isZoomed) return;
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomPosition({ x, y });
+  };
+
+  const handleZoomClick = (e: React.MouseEvent) => {
+    if (!zoomable) return;
+    e.stopPropagation();
+    if (isZoomed) {
+      setIsZoomed(false);
+    } else {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      setZoomPosition({ x, y });
+      setIsZoomed(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (zoomable && isZoomed) {
+      setIsZoomed(false);
+    }
+  };
+
+  React.useEffect(() => {
+    if (!lazy) {
+      setIsInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: "250px", // Preload slightly before element enters viewport for a smoother aesthetic
+        threshold: 0.01,
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [lazy, src]);
+
+  React.useEffect(() => {
+    if (isInView) {
+      setCurrentSrc(resolveImageUrl(src, optimizeSize));
+      setFallbackAttempt(0);
+      setIsLoaded(false);
+    }
+  }, [src, optimizeSize, isInView]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
     const isYoutube = img.src.includes("youtube.com") || img.src.includes("img.youtube.com") || img.src.includes("ytimg.com");
@@ -150,11 +227,11 @@ function ImageWithFallback({
 
   React.useEffect(() => {
     const img = imgRef.current;
-    if (img && img.complete) {
+    if (isInView && img && img.complete) {
       handleYoutubeFallback(img);
       setIsLoaded(true);
     }
-  }, [currentSrc, fallbackAttempt]);
+  }, [currentSrc, fallbackAttempt, isInView]);
 
   const handleError = () => {
     // If it's a youtube image that failed to load (e.g. 404 instead of 120x90 fallback image)
@@ -206,9 +283,28 @@ function ImageWithFallback({
     }
   };
 
+  if (lazy && !isInView) {
+    return (
+      <div 
+        ref={containerRef}
+        className="relative w-full h-full aspect-[4/3] flex flex-col items-center justify-center overflow-hidden bg-[#0A0A0A] select-none border border-white/5"
+      >
+        <div className="absolute inset-0 bg-[#0B0B0B] flex flex-col items-center justify-center p-4 text-center">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-8 h-8 rounded-full bg-amber-500/5 blur-sm" />
+            <div className="w-5 h-5 rounded-full border border-neutral-800" />
+          </div>
+          <span className="text-[9px] font-mono tracking-[0.25em] text-neutral-700 uppercase mt-4">
+            PREPARING
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   if (fallbackAttempt >= 4) {
     return (
-      <div className={`w-full h-full bg-gradient-to-br ${fallbackTheme} flex flex-col items-center justify-center p-6 text-center select-none relative overflow-hidden`}>
+      <div ref={containerRef} className={`w-full h-full bg-gradient-to-br ${fallbackTheme} flex flex-col items-center justify-center p-6 text-center select-none relative overflow-hidden`}>
         {/* Decorative Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:14px_24px]" />
         
@@ -226,7 +322,15 @@ function ImageWithFallback({
   }
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-neutral-950/20">
+    <div 
+      ref={containerRef} 
+      onMouseMove={handleMouseMove}
+      onClick={handleZoomClick}
+      onMouseLeave={handleMouseLeave}
+      className={`relative w-full h-full flex items-center justify-center overflow-hidden bg-neutral-950/20 select-none ${
+        zoomable ? "cursor-zoom-in" : ""
+      }`}
+    >
       {/* Modern thin loader that matches Capelee's ultra-premium minimal aesthetic */}
       {!isLoaded && fallbackAttempt < 4 && (
         <div className="absolute inset-0 bg-[#0B0B0B] flex flex-col items-center justify-center z-13 px-4 text-center select-none">
@@ -240,12 +344,43 @@ function ImageWithFallback({
         </div>
       )}
       
+      {zoomable && isLoaded && (
+        <div className="absolute top-4 left-4 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono tracking-wider text-zinc-300 bg-black/85 backdrop-blur-md rounded-md border border-white/10 select-none shadow-lg">
+          {isZoomed ? (
+            <>
+              <ZoomOut className="h-3.5 w-3.5 text-amber-500" />
+              <span>點擊縮小 / 移動滑鼠瀏覽細節</span>
+            </>
+          ) : (
+            <>
+              <ZoomIn className="h-3.5 w-3.5 text-amber-500" />
+              <span>點擊放大細節</span>
+            </>
+          )}
+        </div>
+      )}
+
       <img
         ref={imgRef}
-        src={currentSrc}
+        src={currentSrc || undefined}
         alt={alt}
         onLoad={handleLoad}
         onError={handleError}
+        style={
+          zoomable && isZoomed
+            ? {
+                transform: "scale(2.2)",
+                transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                cursor: "zoom-out",
+                transition: "transform 0.15s ease-out, transform-origin 0.05s ease-out",
+              }
+            : zoomable
+            ? { 
+                cursor: "zoom-in",
+                transition: "transform 0.25s ease-in-out",
+              }
+            : undefined
+        }
         className={`${className} transition-all duration-[600ms] ease-out ${
           isLoaded 
             ? "opacity-100 scale-100 blur-0" 
@@ -255,6 +390,129 @@ function ImageWithFallback({
         loading="lazy"
       />
     </div>
+  );
+}
+
+interface PortfolioCardProps {
+  item: PortfolioItem;
+  onClick: () => void;
+  key?: React.Key;
+}
+
+function PortfolioCard({ item, onClick }: PortfolioCardProps) {
+  const [coords, setCoords] = useState({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Smooth subtle tilt (-6 to 6 degrees maximum for premium look)
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    
+    const glareX = (x / rect.width) * 100;
+    const glareY = (y / rect.height) * 100;
+
+    setCoords({ rotateX, rotateY, glareX, glareY, isHovered: true });
+  };
+
+  const handleMouseLeave = () => {
+    setCoords({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 15, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -10, scale: 0.98 }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      id={`portfolio_item_card_${item.id}`}
+      onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transformStyle: "preserve-3d",
+        transform: `perspective(1000px) rotateX(${coords.rotateX}deg) rotateY(${coords.rotateY}deg) scale3d(${coords.isHovered ? 1.0185 : 1}, ${coords.isHovered ? 1.0185 : 1}, 1)`,
+        transition: coords.isHovered ? "transform 0.08s ease-out, border-color 0.30s ease, box-shadow 0.30s ease" : "transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.30s ease, box-shadow 0.30s ease",
+        boxShadow: coords.isHovered 
+          ? "0 25px 50px -12px rgba(0,0,0,0.8), 0 0 25px 3px rgba(245, 158, 11, 0.12)" 
+          : "0 10px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(245, 158, 11, 0)",
+      }}
+      className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/35 cursor-pointer h-full transition-colors"
+    >
+      {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+        style={{
+          opacity: coords.isHovered ? 1 : 0,
+          background: `radial-gradient(circle 160px at ${coords.glareX}% ${coords.glareY}%, rgba(245, 158, 11, 0.12) 0%, transparent 100%)`,
+          border: "1px solid rgba(245, 158, 11, 0.18)",
+          mixBlendMode: "screen",
+          zIndex: 10,
+        }}
+      />
+
+      {/* 卡片封面圖 */}
+      <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden" style={{ transform: "translateZ(8px)" }}>
+        <ImageWithFallback
+          src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
+          alt={item.title}
+          referrerPolicy="no-referrer"
+          fallbackTheme={item.colorTheme}
+          titleText={item.title}
+          optimizeSize={600}
+          className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+          lazy={true}
+        />
+        
+        {/* 背景霓虹光澤 */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
+
+        {/* 卡片類別浮章 */}
+        <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
+          <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/75 backdrop-blur-md border border-white/10 rounded-full shadow-md">
+            {item.category}
+          </span>
+        </div>
+
+        {/* hover 視覺遮罩提示 */}
+        <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5" style={{ transform: "translateZ(15px)" }}>
+            <span>觀看精彩設計細節</span>
+            <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
+          </span>
+        </div>
+      </div>
+
+      {/* 內容描述區 */}
+      <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4" style={{ transform: "translateZ(4px)" }}>
+        <div className="space-y-1">
+          <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
+          <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
+            {item.title}
+          </h3>
+        </div>
+
+        <p className="text-zinc-400 text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3">
+          {item.philosophy}
+        </p>
+
+        {/* 工具 Tags */}
+        <div className="pt-3.5 border-t border-white/5 flex flex-wrap gap-1.5">
+          {item.tools.map((tech) => (
+            <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-white/5 text-zinc-300 border border-white/5">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -271,6 +529,26 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 
 export default function App() {
   const [items] = useState<PortfolioItem[]>(initialPortfolioData);
+
+  // Theme state: "dark" or "light" (stores user preference in localStorage)
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    try {
+      const saved = localStorage.getItem("capelee_theme");
+      return (saved === "light" || saved === "dark") ? saved : "dark";
+    } catch {
+      return "dark";
+    }
+  });
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    try {
+      localStorage.setItem("capelee_theme", nextTheme);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
@@ -410,8 +688,50 @@ export default function App() {
     }
   };
 
+  // Keyboard navigation for Lightbox modal
+  React.useEffect(() => {
+    if (!activeModalItem) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const activeElement = document.activeElement;
+      if (
+        activeElement &&
+        (activeElement.tagName === "INPUT" ||
+          activeElement.tagName === "TEXTAREA" ||
+          (activeElement as HTMLElement).isContentEditable)
+      ) {
+        return;
+      }
+
+      if (e.key === "Escape" || e.key === "Esc") {
+        setActiveModalItem(null);
+      } else if (e.key === "ArrowLeft") {
+        if (modalItemIndex > 0) {
+          setActiveModalItem(filteredItems[modalItemIndex - 1]);
+        } else {
+          setActiveModalItem(filteredItems[filteredItems.length - 1]); // loop to end
+        }
+      } else if (e.key === "ArrowRight") {
+        if (modalItemIndex < filteredItems.length - 1) {
+          setActiveModalItem(filteredItems[modalItemIndex + 1]);
+        } else {
+          setActiveModalItem(filteredItems[0]); // loop to start
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeModalItem, filteredItems, modalItemIndex]);
+
   return (
-    <div className="min-h-screen bg-[#070707] text-[#E5E7EB] flex flex-col selection:bg-amber-500/20 selection:text-amber-300 font-sans relative overflow-x-hidden">
+    <div className={`min-h-screen flex flex-col font-sans relative overflow-x-hidden transition-colors duration-500 ${
+      theme === "light" 
+        ? "light-theme text-[#1F2937] selection:bg-amber-500/20 selection:text-amber-800" 
+        : "bg-[#070707] text-[#E5E7EB] selection:bg-amber-500/20 selection:text-amber-300"
+    }`}>
       
       {/* 頂部裝飾背景微光 */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[550px] pointer-events-none overflow-hidden z-0">
@@ -445,6 +765,21 @@ export default function App() {
             </div>
 
             <div className="flex items-center gap-2">
+              {/* 主題切換按鈕 (極簡白 vs 深邃黑) */}
+              <button
+                type="button"
+                id="btn_theme_toggle"
+                onClick={toggleTheme}
+                className="p-2 rounded-lg border-2 flex items-center justify-center transition-all duration-300 transform active:scale-95 shadow-sm text-zinc-400 hover:text-white bg-white/5 border-white/5 hover:bg-white/10 shrink-0 cursor-pointer"
+                title={theme === "dark" ? "切換至極簡白模式" : "切換至深邃黑模式"}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-4 w-4 text-amber-400 animate-pulse" />
+                ) : (
+                  <Moon className="h-4 w-4 text-[#D97706]" />
+                )}
+              </button>
+
               {/* 電子郵件點擊複製 */}
               <button
                 type="button"
@@ -711,75 +1046,13 @@ export default function App() {
           {/* 作品卡片 RWD 呈現 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[300px]">
             <AnimatePresence mode="popLayout">
-              {filteredItems.map((item) => {
-                return (
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                    key={item.id}
-                    id={`portfolio_item_card_${item.id}`}
-                    onClick={() => setActiveModalItem(item)}
-                    className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/25 transition-all duration-500 cursor-pointer h-full hover:-translate-y-1.5 shadow-lg hover:shadow-2xl hover:shadow-black/70"
-                  >
-                    {/* 卡片封面圖 */}
-                    <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden">
-                      <ImageWithFallback
-                        src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
-                        alt={item.title}
-                        referrerPolicy="no-referrer"
-                        fallbackTheme={item.colorTheme}
-                        titleText={item.title}
-                        optimizeSize={600}
-                        className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                      
-                      {/* 背景霓虹光澤 */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
-
-                      {/* 卡片類別浮章 */}
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/70 backdrop-blur-md border border-white/10 rounded-full shadow-md">
-                          {item.category}
-                        </span>
-                      </div>
-
-                      {/* hover 視覺遮罩提示 */}
-                      <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5 animate-fade-in">
-                          <span>觀看精彩設計細節</span>
-                          <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* 內容描述區 */}
-                    <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4">
-                      <div className="space-y-1">
-                        <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
-                        <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
-                          {item.title}
-                        </h3>
-                      </div>
-
-                      <p className="text-zinc-400 text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3">
-                        {item.philosophy}
-                      </p>
-
-                      {/* 工具 Tags */}
-                      <div className="pt-3.5 border-t border-white/5 flex flex-wrap gap-1.5">
-                        {item.tools.map((tech) => (
-                          <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-white/5 text-zinc-300 border border-white/5">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+              {filteredItems.map((item) => (
+                <PortfolioCard
+                  key={item.id}
+                  item={item}
+                  onClick={() => setActiveModalItem(item)}
+                />
+              ))}
             </AnimatePresence>
           </div>
 
@@ -895,6 +1168,7 @@ export default function App() {
                           titleText={activeModalItem.title}
                           optimizeSize={1200}
                           className="w-full h-full object-contain transition-all duration-300"
+                          zoomable={true}
                         />
                         {activeModalItem.videoUrl && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/30 bg-opacity-40">

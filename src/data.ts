@@ -120,8 +120,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "設計師透過純淨的冷色調背景與高光金屬質感對比，精準捕捉機械臂水龍頭的靈動多軸結構，強調工業設計的流暢感。同時，瀝水架的影像配置聚焦於結構化排版，運用留白與聚焦式特寫，不僅展現了不鏽鋼材質的抗腐蝕耐用度，更將功能性轉化為視覺上的極簡敘事。排版結構遵循黃金比例， Typography 與產品細節相互輝映，旨在透過專業的燈光調度呈現出精緻且高效率的生活美學，成功提升廚房用品在消費端的感知價值與尊榮質感。",
     "tools": [
       "Photoshop",
-      "Illustrator",
-      "Figma"
+      "Illustrator"
     ],
     "imageUrl": "/images/optimized/14PPwYTuYeucsAx0sF5UGzCvGg-xmUksS.webp",
     "placeholderId": "IMAGE_CAT_172",
@@ -147,8 +146,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "本系列視覺以極致的留白與清晰的資訊層級，建構出高端選品的簡約質感。我們運用柔和的自然光澤凸顯產品材質的細緻度，透過高對比度的排版設計，精準傳達掛頸風扇的靜音涼爽感與漁夫帽的靈活機能性。整體配色融合大地色系與都會莫蘭迪色，展現低調奢華的戶外美學，並利用圖層堆疊與陰影處理創造視覺立體感，讓每一個細節都成為生活品質的精緻演繹，在極簡框架下完美契合當代對於移動式便攜精品的高度追求。",
     "tools": [
       "Adobe Photoshop",
-      "Adobe Illustrator",
-      "Figma"
+      "Adobe Illustrator"
     ],
     "imageUrl": "/images/optimized/1F09Twh4WBQcqswe9RPUeGZITPDlvpWpD.webp",
     "placeholderId": "IMAGE_CAT_173",
@@ -205,8 +203,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "設計團隊運用極簡主義排版手法，將複雜的充電技術規格轉化為直觀的視覺語言。透過冷調科技白與高質感金屬漸層色彩的交錯運用，強調產品的工業強度與精緻觸感。我們精確分配留白空間，使MFi認證標識與功能優勢成為視覺焦點，在展現極致充電效能的同時，透過光影反射與金屬材質的細膩質感，完美詮釋出現代數位配件的奢華工藝美學，提升消費者對每一條傳輸線穩定性與耐用度的深度信賴感。",
     "tools": [
       "Adobe Photoshop",
-      "Adobe Illustrator",
-      "Figma"
+      "Adobe Illustrator"
     ],
     "imageUrl": "/images/optimized/1kD6akwHpWJXtUQzQbPWGGRGqClN8g9IU.webp",
     "placeholderId": "IMAGE_CAT_175",
@@ -281,8 +278,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "本設計採用極簡主義的視覺架構，透過高亮度的清爽調性強調材質的純淨與功能性。螺旋衣架以留白空間凸顯其力學結構之美，洗衣袋則透過排列堆疊展現秩序感，字體設計精準且具有極高的易讀性，將枯燥的家務用品轉化為提升居家質感的高級單品，旨在透過色彩與構圖的黃金比例，重新定義洗滌場景中的儀式感，讓每位使用者在繁瑣的日常中感受設計賦予生活的細膩呵護，體驗從機能到美感的全面昇華。",
     "tools": [
       "Photoshop",
-      "Illustrator",
-      "Figma"
+      "Illustrator"
     ],
     "imageUrl": "/images/optimized/1dlIVvR97egp1Or8UpzWA-Z3F2ZtBqvsw.webp",
     "placeholderId": "IMAGE_CAT_178",
@@ -513,8 +509,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "設計團隊運用極致的留白藝術與高飽和度視覺對比，將工業透明美學與傳統節慶紅包完美結合。壓克力產品部分透過高透光質感與微距攝影捕捉細節，傳遞出純粹與現代的簡約感；而紅包系列則運用燙金文字與立體排版，賦予紙本工藝強烈的感官價值。全系列布局講求視覺平衡，透過精準的色彩抽色與明確的功能標註，在感性與理性之間建立精緻的消費體驗，讓每一件生活小物皆能展現出非凡的精品格調。",
     "tools": [
       "Adobe Photoshop",
-      "Adobe Illustrator",
-      "Figma"
+      "Adobe Illustrator"
     ],
     "imageUrl": "/images/optimized/141D1CHOZKlvCLYFlCbzaHntkSvwnGRfN.webp",
     "placeholderId": "IMAGE_CAT_187",
@@ -564,8 +559,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "設計核心秉持空間美學與感官體驗的極致平衡。在視覺構圖上，採用冷色調背景與透視層次，精準對應透明收納盒的物理簡約感，並透過細膩的產品切片與色彩標籤，為除臭盒賦予了居家精品的屬性。版面運用大量的留白呼吸感，將凌亂的鞋履轉化為陳列藝術，不僅強調產品的機能性，更透過對比光影提升了日常居家用品的視覺質感，讓有序的收納與純淨的氣味環境成為高品質生活方式的直觀表徵。",
     "tools": [
       "Illustrator",
-      "Photoshop",
-      "Figma"
+      "Photoshop"
     ],
     "imageUrl": "/images/optimized/133nnIW9l1eobMFaJZbIRh3IhbTC0-8BI.webp",
     "placeholderId": "IMAGE_CAT_189",
@@ -586,11 +580,10 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "家居生活美學系列：極簡實用主義廚房收納組",
     "titleEn": "Home Aesthetic Essentials: Minimalist Kitchen Utility Series",
-    "philosophy": "本系列設計理念在於將日常廚房工具提升至生活美學層次。影像透過沈穩的深色基調與極簡結構佈局，強化產品的工業設計感與專業精準度。燈光設計聚焦於切刀的機械結構與泡麵碗的立體紋理，利用高對比光影提升材質質感。排版上採取大留白與明確層級，不僅展示了商品的結構便利性，更將實用功能轉化為一種現代簡約的感官體驗，透過色彩與光線的細膩平衡，精確傳遞產品的高效能與可靠品質。",
+    "philosophy": "本系列設計理念在於將日常廚房工具提升至生活美學層次。影像透過沈穩的深色基調與極簡結構佈局，强化產品的工業設計感與專業精準度。燈光設計聚焦於切刀的機械結構與泡麵碗的立體紋理，利用高對比光影提升材質質感。排版上採取大留白與明確層級，不僅展示了商品的結構便利性，更將實用功能轉化為一種現代簡約的感官體驗，透過色彩與光線的細膩平衡，精確傳遞產品的高效能與可靠品質。",
     "tools": [
       "Photoshop",
-      "Illustrator",
-      "Figma"
+      "Illustrator"
     ],
     "imageUrl": "/images/optimized/1agua3sX1RdnYdkqL9tQ1SyI7l5CYzAdB.webp",
     "placeholderId": "IMAGE_CAT_190",
