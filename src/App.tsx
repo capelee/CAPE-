@@ -104,11 +104,13 @@ function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [currentSrc, setCurrentSrc] = useState<string>(() => resolveImageUrl(src, optimizeSize));
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   React.useEffect(() => {
     setCurrentSrc(resolveImageUrl(src, optimizeSize));
     setFallbackAttempt(0);
+    setIsLoaded(false);
   }, [src, optimizeSize]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
@@ -143,12 +145,14 @@ function ImageWithFallback({
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     handleYoutubeFallback(img);
+    setIsLoaded(true);
   };
 
   React.useEffect(() => {
     const img = imgRef.current;
     if (img && img.complete) {
       handleYoutubeFallback(img);
+      setIsLoaded(true);
     }
   }, [currentSrc, fallbackAttempt]);
 
@@ -222,15 +226,35 @@ function ImageWithFallback({
   }
 
   return (
-    <img
-      ref={imgRef}
-      src={currentSrc}
-      alt={alt}
-      onLoad={handleLoad}
-      onError={handleError}
-      className={className}
-      referrerPolicy={referrerPolicy}
-    />
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-neutral-950/20">
+      {/* Modern thin loader that matches Capelee's ultra-premium minimal aesthetic */}
+      {!isLoaded && fallbackAttempt < 4 && (
+        <div className="absolute inset-0 bg-[#0B0B0B] flex flex-col items-center justify-center z-13 px-4 text-center select-none">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute w-8 h-8 rounded-full bg-amber-500/5 blur-sm animate-pulse" />
+            <div className="w-6 h-6 rounded-full border-t border-r border-[#D97706]/90 border-zinc-900 animate-spin" />
+          </div>
+          <span className="text-[9px] font-mono tracking-[0.25em] text-neutral-600 uppercase mt-4">
+            LOADING IMAGE
+          </span>
+        </div>
+      )}
+      
+      <img
+        ref={imgRef}
+        src={currentSrc}
+        alt={alt}
+        onLoad={handleLoad}
+        onError={handleError}
+        className={`${className} transition-all duration-[600ms] ease-out ${
+          isLoaded 
+            ? "opacity-100 scale-100 blur-0" 
+            : "opacity-0 scale-[1.025] blur-[10px]"
+        }`}
+        referrerPolicy={referrerPolicy}
+        loading="lazy"
+      />
+    </div>
   );
 }
 
@@ -247,33 +271,6 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 
 export default function App() {
   const [items] = useState<PortfolioItem[]>(initialPortfolioData);
-  
-  // Preload ALL images (including detail slider images) in the background with their optimized WebP sizes on mount to avoid loading lag
-  React.useEffect(() => {
-    const allUrls = new Set<string>();
-    items.forEach(item => {
-      if (item.imageUrl) {
-        allUrls.add(item.imageUrl);
-      }
-      if (item.images) {
-        item.images.forEach(img => {
-          if (img) allUrls.add(img);
-        });
-      }
-    });
-
-    allUrls.forEach(url => {
-      if (url) {
-        // Preload size variants to ensure instant swap-in:
-        [600, 1200, 120].forEach(size => {
-          const optimizedUrl = resolveImageUrl(url, size);
-          const img = new Image();
-          img.referrerPolicy = "no-referrer";
-          img.src = optimizedUrl;
-        });
-      }
-    });
-  }, [items]);
 
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
@@ -344,6 +341,44 @@ export default function App() {
     if (selectedCategory === "All") return items;
     return items.filter(item => item.category === selectedCategory);
   }, [items, selectedCategory]);
+
+  // Performance Optimization: Preload the cover images (600px width) of only the active category dynamically.
+  // This avoids overwhelming the browser and Google Drive API, resolving rate limits, lag, and black screen failures.
+  React.useEffect(() => {
+    if (!filteredItems || filteredItems.length === 0) return;
+    
+    // Limits preloading to max 12 items of the current category to prevent network saturation.
+    const itemsToPreload = filteredItems.slice(0, 12);
+    itemsToPreload.forEach(item => {
+      const coverUrl = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : "");
+      if (coverUrl) {
+        const optimizedUrl = resolveImageUrl(coverUrl, 600);
+        const img = new Image();
+        img.referrerPolicy = "no-referrer";
+        img.src = optimizedUrl;
+      }
+    });
+  }, [selectedCategory, filteredItems]);
+
+  // Performance Optimization: Preload the slider and detail images (1200px / 120px) only when a modal is opened.
+  React.useEffect(() => {
+    if (!activeModalItem) return;
+    
+    // Preload current item's high-res slide images in the background so sliding and thumb rendering is instant
+    if (activeModalItem.images) {
+      activeModalItem.images.slice(0, 6).forEach(imgUrl => {
+        if (imgUrl) {
+          // Preload detail view (1200 px) and thumbnail item select menu (120 px)
+          [1200, 120].forEach(size => {
+            const optimizedUrl = resolveImageUrl(imgUrl, size);
+            const img = new Image();
+            img.referrerPolicy = "no-referrer";
+            img.src = optimizedUrl;
+          });
+        }
+      });
+    }
+  }, [activeModalItem]);
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText(profile.email);
@@ -675,70 +710,77 @@ export default function App() {
 
           {/* 作品卡片 RWD 呈現 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[300px]">
-            {filteredItems.map((item) => {
-              return (
-                <div
-                  key={item.id}
-                  id={`portfolio_item_card_${item.id}`}
-                  onClick={() => setActiveModalItem(item)}
-                  className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/25 transition-all duration-500 cursor-pointer h-full hover:-translate-y-1.5 shadow-lg hover:shadow-2xl hover:shadow-black/70"
-                >
-                  {/* 卡片封面圖 */}
-                  <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden">
-                    <ImageWithFallback
-                      src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
-                      alt={item.title}
-                      referrerPolicy="no-referrer"
-                      fallbackTheme={item.colorTheme}
-                      titleText={item.title}
-                      optimizeSize={600}
-                      className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                    
-                    {/* 背景霓虹光澤 */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+            <AnimatePresence mode="popLayout">
+              {filteredItems.map((item) => {
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    key={item.id}
+                    id={`portfolio_item_card_${item.id}`}
+                    onClick={() => setActiveModalItem(item)}
+                    className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/25 transition-all duration-500 cursor-pointer h-full hover:-translate-y-1.5 shadow-lg hover:shadow-2xl hover:shadow-black/70"
+                  >
+                    {/* 卡片封面圖 */}
+                    <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden">
+                      <ImageWithFallback
+                        src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
+                        alt={item.title}
+                        referrerPolicy="no-referrer"
+                        fallbackTheme={item.colorTheme}
+                        titleText={item.title}
+                        optimizeSize={600}
+                        className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                      
+                      {/* 背景霓虹光澤 */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
 
-                    {/* 卡片類別浮章 */}
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/70 backdrop-blur-md border border-white/10 rounded-full shadow-md">
-                        {item.category}
-                      </span>
-                    </div>
-
-                    {/* hover 視覺遮罩提示 */}
-                    <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5 animate-fade-in">
-                        <span>觀看精彩設計細節</span>
-                        <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* 內容描述區 */}
-                  <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4">
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
-                      <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <p className="text-zinc-400 text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3">
-                      {item.philosophy}
-                    </p>
-
-                    {/* 工具 Tags */}
-                    <div className="pt-3.5 border-t border-white/5 flex flex-wrap gap-1.5">
-                      {item.tools.map((tech) => (
-                        <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-white/5 text-zinc-300 border border-white/5">
-                          {tech}
+                      {/* 卡片類別浮章 */}
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/70 backdrop-blur-md border border-white/10 rounded-full shadow-md">
+                          {item.category}
                         </span>
-                      ))}
+                      </div>
+
+                      {/* hover 視覺遮罩提示 */}
+                      <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5 animate-fade-in">
+                          <span>觀看精彩設計細節</span>
+                          <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+
+                    {/* 內容描述區 */}
+                    <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4">
+                      <div className="space-y-1">
+                        <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
+                        <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
+                          {item.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-zinc-400 text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3">
+                        {item.philosophy}
+                      </p>
+
+                      {/* 工具 Tags */}
+                      <div className="pt-3.5 border-t border-white/5 flex flex-wrap gap-1.5">
+                        {item.tools.map((tech) => (
+                          <span key={tech} className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-white/5 text-zinc-300 border border-white/5">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
           </div>
 
           {filteredItems.length === 0 && (
