@@ -409,4 +409,55 @@ body {
   color: #9CA3AF !important;
 }
 
+/* Card Surface & Edge Shimmer Stream/Flow Effect */
+@keyframes edge-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+  }
+}
+
+.shimmer-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0.05;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(245, 158, 11, 0) 25%,
+    rgba(255, 255, 255, 0.35) 48%,
+    rgba(255, 251, 235, 0.7) 50%,
+    rgba(255, 255, 255, 0.35) 52%,
+    rgba(245, 158, 11, 0) 75%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-25deg);
+}
+
+.group:hover .shimmer-line {
+  animation: edge-shimmer 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Light Theme overrides for refined Shimmer stream */
+.light-theme .shimmer-line {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(217, 119, 6, 0) 25%,
+    rgba(255, 255, 255, 0.45) 48%,
+    rgba(251, 191, 36, 0.75) 50%,
+    rgba(255, 255, 255, 0.45) 52%,
+    rgba(217, 119, 6, 0) 75%,
+    transparent 100%
+  );
+}
+
+
 

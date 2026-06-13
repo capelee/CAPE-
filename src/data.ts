@@ -839,7 +839,6 @@ export const initialPortfolioData: PortfolioItem[] = [
         "AI修圖",
         "電商設計",
         "美食攝影",
-        "網頁設計",
         "Illustrator",
         "Photoshop"
     ],
@@ -7852,5 +7851,232 @@ export const initialPortfolioData: PortfolioItem[] = [
         "https://img.youtube.com/vi/jJGaCSdz5wQ/0.jpg"
     ],
     "videoUrl": "https://youtube.com/shorts/jJGaCSdz5wQ"
+},
+  {
+    "id": "394",
+    "category": "影音與多媒體設計",
+    "title": "VIVIBABY-2024新款多功能嬰兒床-拆裝方式，操作介紹",
+    "titleEn": "VIVIBABY 2024 Multi-Functional Baby Crib Assembly & Step-by-Step Operations Video Guide",
+    "philosophy": "本方案以溫馨、明亮且充滿安全感的粉嫩柔亮風格為底蘊，搭配清晰穩健的分解步驟框線與精巧的特寫字卡，將多功能嬰兒床的拆裝步驟與靈活模式進行極簡而直覺的呈現。配合明快流暢的畫面剪輯與細膩節奏，瞬間消弭新手父母對於大型育兒器具組裝與操作上的疑慮焦慮，全方位凸顯高效、省時、極安全的多功能設計，極大化品牌信賴與導購轉換率。",
+    "tools": [
+        "Adobe Premiere Pro",
+        "剪輯與後期製作",
+        "多媒體行銷剪輯",
+        "產品拆裝操作與功能指引"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/vXOdnP_Z_Tg/maxresdefault.jpg",
+    "placeholderId": "VIDEO_VIVIBABY_394",
+    "colorTheme": "from-amber-950 via-stone-900 to-orange-950",
+    "images": [
+        "https://img.youtube.com/vi/vXOdnP_Z_Tg/maxresdefault.jpg",
+        "https://img.youtube.com/vi/vXOdnP_Z_Tg/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=vXOdnP_Z_Tg"
+},
+  {
+    "id": "395",
+    "category": "商業視覺攝影",
+    "title": "Capella X9 PRO 旗艦級高端多功能雙向嬰兒推車 專業棚拍與商業情境美學攝影",
+    "titleEn": "Capella X9 PRO Premium Reversible Stroller Studio Commercial Photography & Aesthetic Scene Shoot",
+    "philosophy": "本專案為 Capella X9 PRO 頂級嬰兒推車進行全套高端商業視覺與產品情境攝影。攝影棚拍特別注重無死角的三維光影塑形，完美勾勒出推車流線的法式工藝線條與香檳金高質感漸層。透過大光圈、超高解析度鏡頭，細緻捕捉了避震結構、雙向握把、一鍵秒收精密卡榫等多角度微距特寫（Macro Shots）。情境光則以溫潤高雅的暖杏色、自然光暈渲染，為精緻母嬰客群傳遞頂級、安全、奢華且極富生活溫度的視覺意象。",
+    "tools": [
+        "專業棚內打光",
+        "高階單眼相機機身",
+        "大光圈人像/微距鏡頭",
+        "商業攝影去背與精修",
+        "情境視覺建構"
+    ],
+    "imageUrl": "/images/optimized/1y60Ob9wIB-zzwA34Y1JCIZjUnRMQRJhI.webp",
+    "placeholderId": "IMAGE_CAMPAIGN_KIDS_395",
+    "colorTheme": "from-amber-950 via-stone-900 to-amber-900",
+    "images": [
+        "/images/optimized/1y60Ob9wIB-zzwA34Y1JCIZjUnRMQRJhI.webp",
+        "/images/optimized/1K4c52uFOMK1DtKW17C1wMPvTPHNBAw5r.webp",
+        "/images/optimized/1MC0AdlVboo1ydXbnKWS5MSm7hkFojaRi.webp",
+        "/images/optimized/1XV4ZxfXFnEh6O0JhpOimphlRDKXgbmaY.webp",
+        "/images/optimized/1ushuMLp71wHSJinlQbdRTewG9lLo73-g.webp"
+    ]
+},
+  {
+    "id": "396",
+    "category": "商業視覺攝影",
+    "title": "【ViVibaby】MF⁺ 全功能多功能可攜式嬰兒床 質感居家情境與專業產品棚拍設計",
+    "titleEn": "ViVibaby MF⁺ Portable All-in-One Baby Crib Studio Product Photography & Warm Home Lifestyle Shoot",
+    "philosophy": "本案為【ViVibaby】MF⁺ 便攜式床體進行大廠規格的情境與白底宣傳照商業攝影。在棚內打光上，運用全包覆式的多重柔光箱（Softboxes）打造寶寶睡眠情境的粉金棉柔氛圍，排除多餘生硬反光並保留織物質感。特寫鏡頭深焦捕捉透氣高透網眼、精緻蚊帳花邊、高剛性鋼管結構等細節，使功能性與高品味美學在鏡頭下完美交織。畫面明亮乾淨、充滿溫馨安全感，瞬間挑起新手爸媽的育兒嚮往、傳達無可妥協的信賴感。",
+    "tools": [
+        "棚內多光源控制",
+        "商業情境道具配置",
+        "超高解析度商業拍攝",
+        "高階商業精修去背",
+        "色彩調校與白平衡控制"
+    ],
+    "imageUrl": "/images/optimized/19qgppGc2G5jYvOlpEha1RN28rMaRTnI9.webp",
+    "placeholderId": "IMAGE_CAMPAIGN_KIDS_396",
+    "colorTheme": "from-orange-950 via-stone-900 to-rose-950",
+    "images": [
+        "/images/optimized/19qgppGc2G5jYvOlpEha1RN28rMaRTnI9.webp",
+        "/images/optimized/1pxW7PbL3d1fHLjhQOoKf32eNOSFH_xXZ.webp",
+        "/images/optimized/1pALIlLmL5F3eoGyKURqmGAYp35pSrfzr.webp"
+    ]
+},
+  {
+    "id": "397",
+    "category": "電商產品銷售圖",
+    "title": "【bobos】X9時尚寵物多功能手推車 經典電商正方形高點擊商品主圖與銷售圖卡設計",
+    "titleEn": "bobos X9 Elegant Pet Stroller Premium Square E-Commerce Product Sales Figures & Main Images",
+    "philosophy": "本案特別為精緻寵物品牌 bobos X9 打造全套主力電商正方形商品展示圖與功能銷售圖卡。設計緊扣母嬰級舒適與智能出行的完美平衡，運用高飽和高對比的深綠與耀石灰漸層底襯，專為電商平台主力銷售圖、規格圖與痛點圖進行最優化排版。大字體、高對比的版面結構直覺解析『一鍵閃收、頂級氣囊避震、全透氣防蚊睡艙』等核心賣點，能在商品列表頁面中瞬間脫穎而出，大幅提升商品點擊率與銷售轉化。",
+    "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "電商產品銷售圖",
+        "寵物精品銷售圖",
+        "主圖圖卡規劃"
+    ],
+    "imageUrl": "/images/optimized/1TcUHIdYj6ZO5mrLbIia0R5bnho4zX_tF.webp",
+    "placeholderId": "IMAGE_SQUARE_COMMERCE_397",
+    "colorTheme": "from-emerald-950 via-zinc-900 to-teal-950",
+    "images": [
+        "/images/optimized/1TcUHIdYj6ZO5mrLbIia0R5bnho4zX_tF.webp",
+        "/images/optimized/1K94Fn33Sf8KpSNVC8u7thp9sLfaYHEOd.webp",
+        "/images/optimized/1PxS0kPEptfg7qQXoD1HI0xbGoGmEdaDU.webp",
+        "/images/optimized/1_tw0jUQZFNOTS19W4f7qIzKTY-UeYWOr.webp",
+        "/images/optimized/1tjdzmVf7y-oJcsYFTcEBMjKANN8gtK_K.webp",
+        "/images/optimized/1xOOJyCyZuO6i7yVTxZMj7USanbwJSeda.webp",
+        "/images/optimized/1UaKWpBcs7sfa3cIvm19ZhtPmY8ADex07.webp"
+    ]
+},
+  {
+    "id": "398",
+    "category": "電商產品銷售圖",
+    "title": "【ViVibaby】MF⁺全功能可攜式嬰兒床 官方電商正方形商品銷售主圖與五張圖設計",
+    "titleEn": "ViVibaby MF⁺ Portable All-in-One Baby Crib Premium Square E-Commerce Product Sales Graphics & Main Cards",
+    "philosophy": "本專案專為【ViVibaby】MF⁺ 便攜嬰兒床進行全系列高轉換率的正方形電商商品銷售圖（電商五張圖）設計。視覺上運用高親和力的鵝黃、溫暖棉白與粉櫻色調，配合亮眼易讀的圓潤資訊字體與圖標。資訊傳播採取『痛點切入與功能印證』雙線並行，將免安裝、透氣高透防蚊、加厚床頂與極致高承重功能完美整合進 1:1 的電商主圖標準黃金比例中，點閱與詢問轉換效果極致，專為行動電商平台量身客製。",
+    "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "電商產品銷售圖",
+        "母嬰精品銷售圖",
+        "網購主圖設計"
+    ],
+    "imageUrl": "/images/optimized/1mmBfXFZXiHcjkjBtVz7wc87JQYU1OPKG.webp",
+    "placeholderId": "IMAGE_SQUARE_COMMERCE_398",
+    "colorTheme": "from-rose-950 via-neutral-900 to-amber-950",
+    "images": [
+        "/images/optimized/1mmBfXFZXiHcjkjBtVz7wc87JQYU1OPKG.webp",
+        "/images/optimized/1AV62M7OyTgYeq5RxvG1kK-D5mMjmv8bS.webp",
+        "/images/optimized/1TlAfrkuOBH7bEYYQHMSeGAaDBGBFh5N3.webp",
+        "/images/optimized/1MhYpdv0vu59sBE0-K4fCSX3cegCNN-6y.webp",
+        "/images/optimized/1JZQq5UGWpE73FTiObH26rOY3yY9FbA4a.webp",
+        "/images/optimized/1v7Hgu9YF6FEjLhjoszAFNo0gJsgRfCQC.webp",
+        "/images/optimized/1d6yZwvVLSYaNPAfVbfyrvqH6PBWU0ZHO.webp",
+        "/images/optimized/10WA1HOQboNO2F_BmBkhDOfd6kwRQJFAP.webp"
+    ]
+},
+  {
+    "id": "399",
+    "category": "網站產品瀑布頁",
+    "title": "【bobos】X9時尚寵物多功能手推車 旗艦級官方電商詳情頁設計（長圖瀑布頁）",
+    "titleEn": "bobos X9 Elegant Pet Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
+    "philosophy": "本專案針對【bobos】X9 豪華多功能寵物手推車設計完整的電商長圖瀑布頁（詳情頁）。全篇設計聚焦於『母嬰級安穩與寵物優雅隨行』，採用極具質感的墨綠與碳灰底色，運用細膩的透視排版手法，全方位剖析『一鍵秒收、高承重避震、全方位透氣防蚊艙』等核心機能點，打造沉浸式的視覺長圖體驗，完美拉長消費者頁面停留時間並引導高轉化下單。",
+    "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "電商詳情頁(瀑布頁)",
+        "寵物精品設計"
+    ],
+    "imageUrl": "/images/optimized/12Ng92RLHBWebgnCjtceS7lxFJvdaKurq.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_399",
+    "colorTheme": "from-zinc-950 via-teal-950 to-emerald-950",
+    "images": [
+        "/images/optimized/12Ng92RLHBWebgnCjtceS7lxFJvdaKurq.webp",
+        "/images/optimized/1qulw_QIH_vKeupjAwSEpJludOjgvKz9W.webp",
+        "/images/optimized/1XMJCcEnZPGOpzYGYFeoFVuflWdUOXe81.webp",
+        "/images/optimized/1kagjtlb1FSxr8otQFNYMObvE0XWW-WIt.webp",
+        "/images/optimized/1QYM1QRLY2vl-hX1rAjfhxbdXYe9neruy.webp",
+        "/images/optimized/1z2539Cw1rq-DWVe-eFA7ZLfHWhHHpiMO.webp",
+        "/images/optimized/16qCpY7aoQOG30S4H_ubvby9yrIAAp7_T.webp",
+        "/images/optimized/1yEo2iqCfJfxMBd2FvJARSsBPNjbE0D5i.webp",
+        "/images/optimized/1D4ksmWqeLPaNpKwp1pB8TbxCQbdNbkZm.webp",
+        "/images/optimized/1jBddc5zBra1-AahLhglipG8MIScwca0t.webp",
+        "/images/optimized/1BHOBYdJks9wxQja7uhq5RRgu_fnVS95S.webp",
+        "/images/optimized/1mswbEYZbkd63APXzTKdrOTj9IHN89Wm0.webp",
+        "/images/optimized/1PIfFtFSzRc9DgRqirHanyVCMrM3wfdl6.webp",
+        "/images/optimized/1ieEDX6etCtB739NDzzKkJ_xZ5ldDw7Y6.webp",
+        "/images/optimized/1-UOYu27VEG4NwKAUgwUF4kPexKj5kt-e.webp",
+        "/images/optimized/1c8Qx-IxxoJC5QGVjaacQYG_ZvIeawVxI.webp",
+        "/images/optimized/1Oqh-wh32ZEaVwT08CbcKfSJ6dVhGZUYd.webp"
+    ]
+},
+  {
+    "id": "400",
+    "category": "網站產品瀑布頁",
+    "title": "【Capella】X9 PRO 旗艦級雙向嬰兒手推車 官方電商必備詳情頁設計（長圖瀑布頁）",
+    "titleEn": "Capella X9 PRO Premium Reversible Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
+    "philosophy": "本案為【Capella】X9 PRO 旗艦款雙向嬰兒手推車規劃並設計全套官方電商詳情瀑布長圖。視覺美學延進法式優雅，採用溫潤高貴的香檳金與杏沙色漸層底襯，佐以柔和且清晰的微陰影工藝。在長圖結構上，重點演繹了『一鍵自動收折、全罩式雙向遮陽 canopy、高規極致四輪避震及奢華舒適睡艙』，以流順、引人入勝的長軸排版敘事，為高品味母嬰客群塑造尊榮、極致安心的呵護意向。",
+    "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "電商詳情頁(瀑布頁)",
+        "母嬰精品銷售圖"
+    ],
+    "imageUrl": "/images/optimized/1tmeim_HRqdgg5ihK5mufp3eRG3g-c9V5.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_400",
+    "colorTheme": "from-slate-950 via-amber-900 to-amber-950",
+    "images": [
+        "/images/optimized/1tmeim_HRqdgg5ihK5mufp3eRG3g-c9V5.webp",
+        "/images/optimized/1dEhpABLOWbkfXQtkiTYUHoKZ8s1r0aOF.webp",
+        "/images/optimized/1pXFTh7nxfyW30XQ0jQXdUkMnb9HyFlac.webp",
+        "/images/optimized/1i50_COvaxbk9ukkEUQQA5naC7y9-Ll3N.webp",
+        "/images/optimized/1U4ez65xjZAO7Zlmj11vEbHfFIQ2eXSwf.webp",
+        "/images/optimized/1u8hD_rAUb_DW-P62A_COzBwkEyvK5UMC.webp",
+        "/images/optimized/1lxIYDmjFyFdEWwzy1_WshxDYn5zv2Vc_.webp",
+        "/images/optimized/13xaZAV19hf71tU8k8fjbHAe6t4FA8_bT.webp",
+        "/images/optimized/1o6VhhqF9trE1GZak4vWBeXsjrf_oNPGe.webp",
+        "/images/optimized/1d11P3S7Bu1X4lAsiyRrOA-ZwunZTVMO4.webp",
+        "/images/optimized/1C0wz3OyNup0hLtj9e-nvkkJbrLazVUMw.webp",
+        "/images/optimized/1Grs0oyqMIWqF1iMpxzEx79gKwl-fOFNM.webp",
+        "/images/optimized/1ot9mdABe_PcezJstUt-ppJSoZL-VX5RC.webp",
+        "/images/optimized/1s7EI_elBAxGooxv0Mx3iAmjpJMPgYLit.webp",
+        "/images/optimized/1ibsGEfkKCEMztZmXdEie-2qvzRcsna4u.webp",
+        "/images/optimized/18BBgoqew6FWnLESAL-26ffkdJHTX-hcl.webp",
+        "/images/optimized/17q0DV0fzDown2psKeokOrSpOz5cQCI_r.webp",
+        "/images/optimized/1YmmjVKMMexWitt2cbqFzVTaZIBo5OZyt.webp",
+        "/images/optimized/156w9pu944zOifPScPwE3XL-yYpgb7j6N.webp",
+        "/images/optimized/14ZtATZBGWGN2qzJeItP_FJMca4rcjDCG.webp"
+    ]
+},
+  {
+    "id": "401",
+    "category": "網站產品瀑布頁",
+    "title": "【ViVibaby】MF⁺全功能可攜式嬰兒床 官方電商詳情頁銷售圖設計（長圖瀑布頁）",
+    "titleEn": "ViVibaby MF⁺ Portable All-in-One Baby Crib Official E-Commerce Detail Page Design (Waterfall Page)",
+    "philosophy": "本案為【ViVibaby】MF⁺ 多功能便攜式嬰兒床量身設計完整的長軸瀑布流官方電商詳情頁。全圖以柔美的暖陽黃、蓬鬆的棉花白與純淨鵝絨色調烘托，建構安心舒適的睡眠場域。版面佈局融入『免工具急速秒開、雙層拉鍊全罩蚊帳、加厚防護大床頂與透氣高承重網眼』等核心安全點，在長圖層層遞進的信息架構中，提供極具信服力的產品力解析與痛點擊破，助力品牌在全渠道電商平台極速變現。",
+    "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "電商詳情頁(瀑布頁)",
+        "母嬰精品銷售圖"
+    ],
+    "imageUrl": "/images/optimized/1PLivhLa7zKFRnA1QS8VD7QUBSOWcXOpr.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_401",
+    "colorTheme": "from-rose-950 via-zinc-900 to-amber-950",
+    "images": [
+        "/images/optimized/1PLivhLa7zKFRnA1QS8VD7QUBSOWcXOpr.webp",
+        "/images/optimized/1JmSTyiv7IGtthqkJmveDR7bCVJ0pxvtJ.webp",
+        "/images/optimized/1Eghdh3JOwj4hgg1zIlEJropgEAzdq3Tf.webp",
+        "/images/optimized/1apTRONtMJKWMsstl_QvailSAXbh6K0AH.webp",
+        "/images/optimized/1nFy-wwQmdtwOibZ5Qh3fhgF4n2u1b2Fw.webp",
+        "/images/optimized/1HQu21vWEGh9UqgTwBQ440jip-OYf3i5P.webp",
+        "/images/optimized/195SQGsTxaYLFVoZaGwCuWvr9AscIb_Ue.webp",
+        "/images/optimized/1rQao30G_ZTUNL3Dy3V-S1VP-_LN0WQ0u.webp",
+        "/images/optimized/12-u0j7PeDCht1mvu0sn0fB_nqeq4tSv-.webp",
+        "/images/optimized/1ZQmnGatKozGI_0IfkhQbkkdeXPwKdOFN.webp",
+        "/images/optimized/1noDOT2YeTIlsuOkijWdgTp_-d5NG1iF1.webp",
+        "/images/optimized/1dJ8NfoSAkcHQtFbzHcMd9rXpecm5E2b9.webp",
+        "/images/optimized/1WKMp7vKSKVpacBZwI8-LcQARET3qmPKP.webp",
+        "/images/optimized/1JJfp6pfkc6e2wjX_SlZzGsvz8TAK9b5h.webp",
+        "/images/optimized/1ChxEYOMLqzh9o8kDQ4b93mqsBZ11URbB.webp",
+        "/images/optimized/1QpRNmMJLZbt3mH6HJX74b-zYRF4bEcrw.webp"
+    ]
 },
 ];

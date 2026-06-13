@@ -28,7 +28,9 @@ import {
   Sun,
   Moon,
   ArrowUp,
-  Shuffle
+  Shuffle,
+  Maximize2,
+  Minimize2
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { initialPortfolioData } from "./data";
@@ -476,6 +478,9 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
           }}
         />
 
+        {/* Card Edge & Face Shimmer Sweep Effect */}
+        <div className="shimmer-line pointer-events-none absolute inset-0 z-20 rounded-2xl" />
+
         {/* 卡片封面圖 */}
         <div className="relative aspect-[4/3] bg-zinc-950 overflow-hidden" style={{ transform: "translateZ(8px)" }}>
           <ImageWithFallback
@@ -622,6 +627,8 @@ export default function App() {
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
   const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
+  const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">("stitch");
+  const [isMaximized, setIsMaximized] = useState<boolean>(false);
   
   // Custom states for interactive highlights
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
@@ -652,9 +659,16 @@ export default function App() {
     if (activeModalItem) {
       setActiveImageUrl(activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined));
       setIsVideoActive(!!activeModalItem.videoUrl);
+      setIsMaximized(false);
+      if (activeModalItem.category === "網站產品瀑布頁") {
+        setWaterfallMode("stitch");
+      } else {
+        setWaterfallMode("single");
+      }
     } else {
       setActiveImageUrl(null);
       setIsVideoActive(false);
+      setIsMaximized(false);
     }
   }, [activeModalItem]);
 
@@ -1133,23 +1147,29 @@ export default function App() {
             </p>
           </div>
 
-          {/* 各類作品過濾選項 (純展示交互，流暢快捷) */}
-          <div className="flex flex-wrap gap-2 items-center justify-center pt-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                id={`cat_filter_btn_${cat}`}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-1.5 text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer ${
-                  selectedCategory === cat
-                    ? "bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/10"
-                    : "bg-white/[0.02] text-zinc-400 border-white/5 hover:text-white hover:bg-white/5 hover:border-white/10"
-                }`}
-              >
-                {cat === "All" ? "全部精選展示" : cat}
-              </button>
-            ))}
+          {/* 各類作品過濾選項 (智慧流暢滑動列，手機版優雅整齊，網頁版完美鋪開) */}
+          <div className="relative w-full max-w-full overflow-hidden pt-2">
+            {/* 左右防切側邊漸變羽化遮罩 (僅在手機版顯示) */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black to-transparent pointer-events-none z-10 md:hidden"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent pointer-events-none z-10 md:hidden"></div>
+            
+            <div className="flex md:flex-wrap md:justify-center items-center gap-2.5 overflow-x-auto md:overflow-x-visible whitespace-nowrap px-6 md:px-0 py-2.5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  id={`cat_filter_btn_${cat}`}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`shrink-0 px-4 py-1.5 text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer ${
+                    selectedCategory === cat
+                      ? "bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/10"
+                      : "bg-white/[0.02] text-zinc-400 border-white/5 hover:text-white hover:bg-white/5 hover:border-white/10"
+                  }`}
+                >
+                  {cat === "All" ? "全部精選展示" : cat}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* 隨機瀏覽玩法/洗牌控制項 */}
@@ -1287,7 +1307,11 @@ export default function App() {
               exit={{ scale: 0.95, y: 15 }}
               transition={{ type: "spring", duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#0E0E0E] border border-white/10 rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl relative my-auto"
+              className={`bg-[#0E0E0E] border border-white/10 shadow-2xl relative my-auto transition-all duration-300 ${
+                activeModalItem && activeModalItem.category === "網站產品瀑布頁" && isMaximized
+                  ? "max-w-full md:max-w-6xl w-full h-[95vh] md:h-[92vh] flex flex-col rounded-2xl"
+                  : "max-w-4xl w-full rounded-2xl"
+              }`}
             >
               
               {/* 關閉按鈕 */}
@@ -1295,14 +1319,14 @@ export default function App() {
                 type="button"
                 id="btn_modal_close"
                 onClick={() => setActiveModalItem(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-lg bg-black/70 hover:bg-black text-zinc-400 hover:text-white transition-colors border border-white/10 cursor-pointer"
+                className="absolute top-4 right-4 z-[35] p-2 rounded-lg bg-black/70 hover:bg-black text-zinc-400 hover:text-white transition-colors border border-white/10 cursor-pointer"
                 title="關閉明細"
               >
                 <X className="h-5 w-5" />
               </button>
 
               {/* 上一張 / 下一張左右滑鎖 */}
-              {filteredItems.length > 1 && (
+              {filteredItems.length > 1 && !isMaximized && (
                 <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none hidden lg:flex">
                   <button
                     type="button"
@@ -1323,52 +1347,147 @@ export default function App() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-12">
+              <div className={`grid grid-cols-1 md:grid-cols-12 ${isMaximized && activeModalItem.category === "網站產品瀑布頁" ? "h-full flex-grow overflow-hidden" : ""}`}>
                 
                 {/* 左側大圖 */}
-                <div className="md:col-span-7 bg-zinc-950 aspect-[4/3] md:aspect-auto md:h-[500px] relative overflow-hidden flex flex-col justify-between border border-white/5">
-                  <div className="relative w-full flex-grow overflow-hidden flex items-center justify-center bg-black/40 min-h-[280px]">
-                    {isVideoActive && getYouTubeEmbedUrl(activeModalItem.videoUrl) ? (
-                      <div className="absolute inset-0 z-10 w-full h-full bg-[#050505] flex items-center justify-center">
-                        <iframe
-                          src={getYouTubeEmbedUrl(activeModalItem.videoUrl)!}
-                          title={activeModalItem.title}
-                          className="w-full h-full border-0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        ></iframe>
+                <div className={`bg-zinc-950 relative overflow-hidden flex flex-col justify-between border border-white/5 transition-all duration-300 ${
+                  activeModalItem.category === "網站產品瀑布頁" && isMaximized 
+                    ? "col-span-12 md:col-span-12 h-full flex-grow" 
+                    : "md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[500px]"
+                }`}>
+                  <div className={`relative w-full flex-grow bg-black/40 min-h-[280px] ${
+                    activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" 
+                      ? `overflow-y-auto block ${isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "h-[500px]"} scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent` 
+                      : `overflow-hidden flex items-center justify-center ${activeModalItem.category === "網站產品瀑布頁" && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
+                  }`}>
+                    {activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" ? (
+                      <div className="w-full flex flex-col select-none bg-[#050505]">
+                        {/* 頂部操作列 / 提示 */}
+                        <div className="sticky top-0 z-20 bg-black/90 backdrop-blur-md px-4 py-2.5 border-b border-white/10 flex items-center justify-between text-[11.5px] font-sans text-zinc-400">
+                          <div className="flex items-center gap-2 text-amber-400 font-medium">
+                            <span className="flex h-2 w-2 relative">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                            </span>
+                            <span className="hidden sm:inline">已無縫拼接為直式長圖 (請往下滾動閱讀)</span>
+                            <span className="sm:hidden text-[10px]">無縫長圖 (下滑閱讀)</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setIsMaximized(!isMaximized)}
+                              className="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 hover:bg-amber-400 hover:text-black transition duration-200 border border-amber-500/25 text-[10px] uppercase font-mono tracking-wider font-bold cursor-pointer"
+                              title={isMaximized ? "還原視窗" : "全寬滿版"}
+                            >
+                              {isMaximized ? "還原 🗅" : "全寬 🗖"}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setWaterfallMode("single")}
+                              className="px-2.5 py-1 rounded bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white transition duration-200 border border-white/10 text-[10px] uppercase font-mono tracking-wider font-semibold cursor-pointer"
+                            >
+                              單圖 🖼️
+                            </button>
+                          </div>
+                        </div>
+                        
+                        {/* 拼裝大圖 */}
+                        <div className="flex flex-col gap-0 w-full overflow-hidden bg-[#050505]">
+                          {activeModalItem.images && activeModalItem.images.map((imgUrl, idx) => (
+                            <div key={idx} className="w-full block bg-[#050505] p-0 m-0 border-0 leading-[0]">
+                              <ImageWithFallback 
+                                src={imgUrl}
+                                alt={`${activeModalItem.title} - 拼接第 ${idx + 1} 節`}
+                                referrerPolicy="no-referrer"
+                                fallbackTheme={activeModalItem.colorTheme}
+                                titleText={activeModalItem.title}
+                                optimizeSize={1200}
+                                className="w-full h-auto object-contain block p-0 m-0 border-0 outline-none"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <div className="py-8 text-center text-[10px] font-mono tracking-wider text-zinc-500 border-t border-white/5 bg-black/50 uppercase">
+                          • END OF WATERFALL DETAIL PAGE •
+                        </div>
                       </div>
                     ) : (
                       <>
-                        <ImageWithFallback 
-                          src={activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : '')}
-                          alt={activeModalItem.title}
-                          referrerPolicy="no-referrer"
-                          fallbackTheme={activeModalItem.colorTheme}
-                          titleText={activeModalItem.title}
-                          optimizeSize={1200}
-                          className="w-full h-full object-contain transition-all duration-300"
-                          zoomable={true}
-                        />
-                        {activeModalItem.videoUrl && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/30 bg-opacity-40">
+                        {activeModalItem.category === "網站產品瀑布頁" && (
+                          <div className="absolute top-3 left-3 z-[25] hidden md:flex items-center gap-2">
                             <button
                               type="button"
-                              onClick={() => setIsVideoActive(true)}
-                              className="p-5 rounded-full bg-amber-500 hover:bg-amber-400 text-black hover:scale-110 active:scale-95 transition-all shadow-xl shadow-amber-500/20 cursor-pointer flex items-center justify-center gap-2 group"
-                              title="播放產品宣傳影片"
+                              onClick={() => setWaterfallMode("stitch")}
+                              className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-semibold text-xs tracking-wide shadow-lg border border-amber-500/10 cursor-pointer flex items-center gap-1.5 transition active:scale-95 duration-200"
                             >
-                              <Video className="h-6 w-6 fill-black/10 text-black" />
-                              <span className="text-xs font-semibold uppercase tracking-wider pr-1">播放宣傳影片</span>
+                              <span>🗂️ 拼裝切換：一鍵查看直式無縫長圖</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setIsMaximized(!isMaximized)}
+                              className="px-3 py-1.5 rounded-lg bg-black/60 hover:bg-amber-500 hover:text-black text-amber-400 font-semibold text-xs tracking-wide shadow-lg border border-amber-500/20 cursor-pointer flex items-center gap-1.5 transition active:scale-95 duration-200 backdrop-blur-md"
+                            >
+                              {isMaximized ? (
+                                <>
+                                  <Minimize2 className="h-3.5 w-3.5" />
+                                  <span>還原視窗 🗅</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Maximize2 className="h-3.5 w-3.5" />
+                                  <span>全寬滿版 🗖</span>
+                                </>
+                              )}
                             </button>
                           </div>
                         )}
+                        {isVideoActive && getYouTubeEmbedUrl(activeModalItem.videoUrl) ? (
+                          <div className="absolute inset-0 z-10 w-full h-full bg-[#050505] flex items-center justify-center">
+                            <iframe
+                              src={getYouTubeEmbedUrl(activeModalItem.videoUrl)!}
+                              title={activeModalItem.title}
+                              className="w-full h-full border-0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        ) : (
+                          <>
+                            <ImageWithFallback 
+                              src={activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : '')}
+                              alt={activeModalItem.title}
+                              referrerPolicy="no-referrer"
+                              fallbackTheme={activeModalItem.colorTheme}
+                              titleText={activeModalItem.title}
+                              optimizeSize={1200}
+                              className="w-full h-full object-contain transition-all duration-300"
+                              zoomable={true}
+                            />
+                            {activeModalItem.videoUrl && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/30 bg-opacity-40">
+                                <button
+                                  type="button"
+                                  onClick={() => setIsVideoActive(true)}
+                                  className="p-5 rounded-full bg-amber-500 hover:bg-amber-400 text-black hover:scale-110 active:scale-95 transition-all shadow-xl shadow-amber-500/20 cursor-pointer flex items-center justify-center gap-2 group"
+                                  title="播放產品宣傳影片"
+                                >
+                                  <Video className="h-6 w-6 fill-black/10 text-black" />
+                                  <span className="text-xs font-semibold uppercase tracking-wider pr-1">播放宣傳影片</span>
+                                </button>
+                              </div>
+                            )}
+                          </>
+                        )}
                       </>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent pointer-events-none"></div>
+                    
+                    {waterfallMode !== "stitch" && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent pointer-events-none"></div>
+                    )}
 
                     {/* 左右切換細節照片 */}
-                    {!isVideoActive && activeModalItem.images && activeModalItem.images.length > 1 && (
+                    {waterfallMode !== "stitch" && !isVideoActive && activeModalItem.images && activeModalItem.images.length > 1 && (
                       <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-20">
                         <button
                           type="button"
@@ -1402,15 +1521,59 @@ export default function App() {
                     )}
                     
                     {/* 分類浮水印標籤 */}
-                    <div className="absolute bottom-4 left-4 z-10">
-                      <span className="px-3 py-1 text-xs font-semibold tracking-wide text-amber-400 bg-black/80 backdrop-blur-md rounded-md border border-amber-500/20 shadow-md">
-                        {activeModalItem.category}
-                      </span>
-                    </div>
+                    {waterfallMode !== "stitch" && (
+                      <div className="absolute bottom-4 left-4 z-10">
+                        <span className="px-3 py-1 text-xs font-semibold tracking-wide text-amber-400 bg-black/80 backdrop-blur-md rounded-md border border-amber-500/20 shadow-md">
+                          {activeModalItem.category}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Thumbnail gallery selector */}
-                  {((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) && (
+                  {activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" ? (
+                    <div className="relative z-10 w-full bg-[#090909] px-4 py-3 border-t border-white/10 shrink-0 select-none">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <div className="space-y-0.5">
+                          <p className="text-xs font-medium text-amber-400 flex items-center gap-1.5">
+                            <span>目前視圖：直式產品智慧拼接長圖</span>
+                            {isMaximized && (
+                              <span className="bg-amber-400/20 text-amber-400 text-[9px] px-1.5 py-0.5 rounded font-mono font-bold tracking-wider border border-amber-400/30">
+                                FULL SCREEN READ MODE
+                              </span>
+                            )}
+                          </p>
+                          <p className="text-[10px] text-zinc-500 font-light">已重組拼接 {activeModalItem.images?.length || 0} 節視覺切片，極致展現長圖排版之敘事美學。</p>
+                        </div>
+                        <div className="flex items-center gap-2 self-start sm:self-auto">
+                          <button
+                            type="button"
+                            onClick={() => setIsMaximized(!isMaximized)}
+                            className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black rounded-lg text-xs font-bold tracking-wide flex items-center gap-1.5 transition active:scale-95 duration-200 shadow-md cursor-pointer shrink-0"
+                          >
+                            {isMaximized ? (
+                              <>
+                                <Minimize2 className="h-3.5 w-3.5 animate-pulse" />
+                                <span>還原正常視窗</span>
+                              </>
+                            ) : (
+                              <>
+                                <Maximize2 className="h-3.5 w-3.5" />
+                                <span>全螢幕沉浸閱讀</span>
+                              </>
+                            )}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setWaterfallMode("single")}
+                            className="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-white hover:text-amber-400 rounded-lg border border-white/10 text-xs font-semibold transition cursor-pointer shrink-0"
+                          >
+                            切換單頁 🖼️
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : ((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) ? (
                     <div id="modal-multimedia-menu" className="relative z-10 w-full bg-[#0E0E0E] px-4 py-3 border-t border-white/10 shrink-0">
                       <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-1.5 flex items-center justify-between">
                         <span>專案多媒體選單 ({activeModalItem.videoUrl ? 1 : 0} 影片, {activeModalItem.images?.length || 0} 照片)</span>
@@ -1465,81 +1628,85 @@ export default function App() {
                         ))}
                       </div>
                     </div>
-                  )}
+                  ) : null}
                 </div>
 
                 {/* 右側資訊 */}
-                <div className="md:col-span-5 p-6 lg:p-8 flex flex-col justify-between md:h-[500px] border-t md:border-t-0 md:border-l border-white/5">
-                  <div className="space-y-4">
-                    
-                    {/* 標題 */}
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-mono tracking-widest text-amber-500 font-semibold uppercase">{activeModalItem.titleEn}</p>
-                      <h3 className="text-xl lg:text-2xl font-display font-medium text-white tracking-tight">
-                        {activeModalItem.title}
-                      </h3>
-                    </div>
-
-                    {/* 設計思考核心觀點 */}
-                    <div className="space-y-2">
-                      <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Design Philosophy / 設計理念</p>
-                      <p className="text-zinc-300 text-xs leading-relaxed font-light font-sans max-h-[180px] md:max-h-[220px] overflow-y-auto pr-1">
-                        {activeModalItem.philosophy}
-                      </p>
-                    </div>
-
-                    {/* 使用工具與技術疊量 */}
-                    <div className="space-y-2 pt-1">
-                      <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Technologies & Tools</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {activeModalItem.tools.map((tech) => (
-                          <span key={tech} className="px-2.5 py-1 rounded text-[11px] font-mono bg-white/5 text-zinc-300 border border-white/5">
-                            {tech}
-                          </span>
-                        ))}
+                {!(activeModalItem.category === "網站產品瀑布頁" && isMaximized) && (
+                  <div className="md:col-span-5 p-6 lg:p-8 flex flex-col justify-between md:h-[500px] border-t md:border-t-0 md:border-l border-white/5">
+                    <div className="space-y-4">
+                      
+                      {/* 標題 */}
+                      <div className="space-y-1">
+                        <p className="text-[10px] font-mono tracking-widest text-amber-500 font-semibold uppercase">{activeModalItem.titleEn}</p>
+                        <h3 className="text-xl lg:text-2xl font-display font-medium text-white tracking-tight">
+                          {activeModalItem.title}
+                        </h3>
                       </div>
+
+                      {/* 設計思考核心觀點 */}
+                      <div className="space-y-2">
+                        <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Design Philosophy / 設計理念</p>
+                        <p className="text-zinc-300 text-xs leading-relaxed font-light font-sans max-h-[180px] md:max-h-[220px] overflow-y-auto pr-1">
+                          {activeModalItem.philosophy}
+                        </p>
+                      </div>
+
+                      {/* 使用工具與技術疊量 */}
+                      <div className="space-y-2 pt-1">
+                        <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Technologies & Tools</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeModalItem.tools.map((tech) => (
+                            <span key={tech} className="px-2.5 py-1 rounded text-[11px] font-mono bg-white/5 text-zinc-300 border border-white/5">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+
+                    {/* 底部行動 */}
+                    <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                      <span className="text-[10.5px] font-mono text-zinc-500">
+                        CASE NO. 0{activeModalItem.id}
+                      </span>
+                      
+                      <button
+                        type="button"
+                        onClick={() => setActiveModalItem(null)}
+                        className="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/5 cursor-pointer"
+                      >
+                        關閉回列表
+                      </button>
                     </div>
 
                   </div>
-
-                  {/* 底部行動 */}
-                  <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-[10.5px] font-mono text-zinc-500">
-                      CASE NO. 0{activeModalItem.id}
-                    </span>
-                    
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalItem(null)}
-                      className="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/5 cursor-pointer"
-                    >
-                      關閉回列表
-                    </button>
-                  </div>
-
-                </div>
+                )}
 
               </div>
               
               {/* 手機版前後控制項 */}
-              <div className="flex justify-between items-center bg-zinc-950 p-3 lg:hidden border-t border-white/5">
-                <button
-                  type="button"
-                  onClick={handlePrevModalItem}
-                  className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-3 py-1 cursor-pointer"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                  <span>上一件</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextModalItem}
-                  className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-3 py-1 cursor-pointer"
-                >
-                  <span>下一件</span>
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
+              {!isMaximized && (
+                <div className="flex justify-between items-center bg-zinc-950 p-3 lg:hidden border-t border-white/5">
+                  <button
+                    type="button"
+                    onClick={handlePrevModalItem}
+                    className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-3 py-1 cursor-pointer"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    <span>上一件</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNextModalItem}
+                    className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-3 py-1 cursor-pointer"
+                  >
+                    <span>下一件</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              )}
 
             </motion.div>
           </motion.div>
