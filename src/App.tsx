@@ -368,25 +368,31 @@ function ImageWithFallback({
         alt={alt}
         onLoad={handleLoad}
         onError={handleError}
-        style={
-          zoomable && isZoomed
+        style={{
+          // Set zoom-related transforms and cursor
+          ...(zoomable && isZoomed
             ? {
                 transform: "scale(2.2)",
                 transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
                 cursor: "zoom-out",
-                transition: "transform 0.15s ease-out, transform-origin 0.05s ease-out",
               }
             : zoomable
             ? { 
                 cursor: "zoom-in",
-                transition: "transform 0.25s ease-in-out",
               }
-            : undefined
-        }
-        className={`${className} transition-all duration-[600ms] ease-out ${
+            : {}),
+          // Put the transitions inside inline styles to bypass Tailwind class definition collisions!
+          // This guarantees that the transition always runs with a premium duration and easing.
+          transition: zoomable && isZoomed
+            ? "transform 0.15s ease-out, transform-origin 0.05s ease-out, opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+            : zoomable
+            ? "transform 0.25s ease-in-out, opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+            : "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+        className={`${className} ${
           isLoaded 
             ? "opacity-100 scale-100 blur-0" 
-            : "opacity-0 scale-[1.025] blur-[10px]"
+            : "opacity-0 scale-[1.03] blur-xl"
         }`}
         referrerPolicy={referrerPolicy}
         loading="lazy"
@@ -532,6 +538,14 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
   if (!url) return null;
+  // Robust support for YouTube Shorts URLs
+  if (url.includes("/shorts/")) {
+    const parts = url.split("/shorts/");
+    const idPart = parts[1]?.split(/[?&#]/)[0];
+    if (idPart && idPart.length === 11) {
+      return `https://www.youtube.com/embed/${idPart}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
+    }
+  }
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   const match = url.match(regExp);
   if (match && match[2].length === 11) {
