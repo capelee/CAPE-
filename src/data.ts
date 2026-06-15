@@ -2,6 +2,28 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "new-dino-group",
+    "category": "角色IP&插畫與貼圖",
+    "title": "SHONE CITY CREW 恐龍家族：街頭潮流、音樂與生活美學的 IP 吉祥物家族與品牌貼圖設計",
+    "titleEn": "SHONE CITY CREW: Street-Chic, Music & Cozy Lifestyle Mascot Family & Sticker IP Design",
+    "philosophy": "「SHONE CITY CREW」是由五位各具鮮明街頭態度與生活美學的恐龍成員所組成的 IP 吉祥物家族。本專案將史前巨獸以現代潮流插畫風格擬人化，打破傳統粗獷生硬的框架，賦予每一位角色獨一無二的「靈魂配件」與「生活觀點」。\n\n核心團隊包含五名各司其職的靈魂人物：\n- 領袖藍色暴龍 (Shone)：象徵街頭滑板不屈、冒險的精神；\n- 知性黃色三角龍 (Triko)：手抱單眼相機捕捉細節，記錄城市與日常生活的溫度；\n- 音樂橘色食肉牛龍 (Carno)：戴上專業DJ耳機、一展混音打碟本領，充滿無限創造力的電音製作人；\n- 極客紫色無齒翼龍 (Ptera)：戴上老學派飛行護目鏡並機敏地操作無人空拍機，象徵科技、自由與冒險；\n- 療癒綠色雷龍 (Bronti)：頭戴暖橘針織毛帽、身穿丹寧工裝圍裙專注手沖香醇咖啡，象徵在忙碌都會中的心靈治癒力量。\n\n團隊精神在設計上達成了極高的互補性與整體性。色彩心理學的運用在此專案中發揮到極致：明亮飽和的黃色、朝氣蓬勃的橘色、深邃智慧的紫色、寧靜療癒的綠色以及動感的經典藍色互為補色，在貼圖集景與世界觀設定海報中，交織出極具視覺張力的色彩協奏。這組作品不僅適合作為潮流貼圖、週邊商品包裝、社群溝通媒介，更為當代 IP 設計如何精準勾勒 Z 世代次文化（滑板、硬體、街頭電音、攝影、手沖咖啡）提供了教科書級別的精緻演繹。",
+    "isHighlight": true,
+    "tools": [
+        "Adobe Illustrator 向量角色繪製",
+        "IP 核心品牌包裝與世界觀設定",
+        "PROCREATE 潮流筆觸與色彩編排",
+        "手繪原畫概念草稿與表情貼圖情境開發",
+        "Z世代次文化符號系統研發"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1g8RhvSdRVAIIMYD1wg58ML7f10zuvW21",
+    "placeholderId": "IMAGE_DINO_CREW",
+    "colorTheme": "from-[#0D1527] via-[#102B4B] to-[#0D1527]",
+    "images": [
+        "https://drive.google.com/thumbnail?sz=w1000&id=1g8RhvSdRVAIIMYD1wg58ML7f10zuvW21",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1zERUOnN5bzc36a5tx-XoAhxEOzDam_JX"
+    ]
+  },
+  {
     "id": "new-dino-01",
     "category": "角色IP&插畫與貼圖",
     "title": "藍色暴龍吉祥物 Shone：街頭滑板風格 IP 角色設計",

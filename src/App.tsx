@@ -537,11 +537,11 @@ function CategoryButton({ cat, isActive, onClick }: CategoryButtonProps) {
     >
       <span className="relative z-10 flex items-center gap-1.5">
         {isActive && (
-          <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
         )}
         {!isActive && isHovered && (
           <span 
-            className="w-1 h-1 rounded-full shrink-0 animate-ping"
+            className="w-1 h-1 rounded-full shrink-0"
             style={{ backgroundColor: `rgba(${catColor.rgbaGlow}, 1)` }}
           />
         )}
@@ -884,71 +884,10 @@ function ImageWithFallback({
         zoomable ? "cursor-zoom-in" : ""
       }`}
     >
-      {/* Premium Skeleton Screen with smooth fade out to replace simple spinner */}
-      <div 
-        className={`absolute inset-0 z-10 ${skeletonBg} transition-all duration-700 ease-in-out ${
-          isLoaded && fallbackAttempt < 4
-            ? "opacity-0 pointer-events-none scale-[0.98] blur-xl" 
-            : "opacity-100"
-        }`}
-      >
-        {/* Shimmer overlay effect with category's representative color */}
-        <div 
-          className="absolute inset-0 -translate-x-full animate-skeleton-shimmer pointer-events-none"
-          style={{
-            backgroundImage: isSepia
-              ? `linear-gradient(90deg, transparent 0%, rgba(${catColor.rgbaGlow}, 0.22) 50%, transparent 100%)`
-              : isLight
-              ? `linear-gradient(90deg, transparent 0%, rgba(${catColor.rgbaGlow}, 0.18) 50%, transparent 100%)`
-              : `linear-gradient(90deg, transparent 0%, rgba(${catColor.rgbaGlow}, 0.12) 50%, transparent 100%)`
-          }}
-        />
-        
-        {/* Decorative Grid Pattern */}
-        <div className={`absolute inset-0 ${gridLineColor} pointer-events-none`} />
-        
-        {/* Ambient Glow matching category-specific colors */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-[80px] ${ambientOpacity} pointer-events-none bg-${catColor.accent}`} />
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full blur-[40px] opacity-[0.12] pointer-events-none bg-gradient-to-br ${fallbackTheme || "from-amber-600 to-blue-900"}`} />
-
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8 pointer-events-none select-none">
-          {/* Top category row placeholder */}
-          <div className="flex items-center justify-between">
-            <div className={`h-5 px-2 rounded-md border flex items-center justify-center ${topCategoryBg} ${catColor.borderClass}`}>
-              <span className={`text-[8px] font-mono tracking-wider font-semibold ${catColor.textClass}`}>{categoryName || "PORTFOLIO"}</span>
-            </div>
-            <div className={`h-5 w-12 rounded-md border border-white/[0.02] ${wireframeSubBlockBg}`} />
-          </div>
-
-          {/* Center wireframe graphic structure */}
-          <div className="flex flex-col items-center justify-center gap-3.5 py-8">
-            <div className="relative flex items-center justify-center">
-              {/* Pulsing ring */}
-              <div className={`absolute h-16 w-16 rounded-full border ${catColor.pulseBorderClass} animate-pulse`} />
-              {/* Rotating outer ring */}
-              <div className={`absolute h-12 w-12 rounded-full border border-dashed animate-[spin_16s_linear_infinite] ${ringBorder}`} />
-              {/* Media Icon block */}
-              <div className={`h-9 w-9 rounded-full flex items-center justify-center shadow-inner ${centerCircleBg}`}>
-                <ImageIcon className={`h-4 w-4 ${catColor.textClass} animate-pulse`} />
-              </div>
-            </div>
-            <span className={`text-[8.5px] font-mono tracking-[0.25em] uppercase ${restoredTextClass}`}>
-              RESTORING HI-RES ASSET...
-            </span>
-          </div>
-
-          {/* Bottom title block placeholder with loading progress bar */}
-          <div className="space-y-3">
-            <div className="space-y-1.5">
-              <div className={`h-4 w-1/2 rounded ${topCategoryBg}`} />
-              <div className={`h-3 w-1/3 rounded ${wireframeSubBlockBg}`} />
-            </div>
-            <div className={`relative h-1 w-full rounded-full overflow-hidden ${loadingTrackBg}`}>
-              <div className={`absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r ${catColor.gradientClass} rounded-full animate-progress-loading`} />
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* 簡單、高性能的純色佔位塊，無任何複雜 DOM、漸變或動畫，徹底消除滾動卡頓 */}
+      {!isLoaded && fallbackAttempt < 4 && (
+        <div className={`absolute inset-0 z-10 ${skeletonBg}`} />
+      )}
       
       {zoomable && isLoaded && (
         <div className="absolute top-4 left-4 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono tracking-wider text-zinc-300 bg-black/85 backdrop-blur-md rounded-md border border-white/10 select-none shadow-lg">
@@ -972,6 +911,7 @@ function ImageWithFallback({
         alt={alt}
         onLoad={handleLoad}
         onError={handleError}
+        decoding="async"
         style={{
           // Set zoom-related transforms and cursor
           ...(zoomable && isZoomed
@@ -1025,11 +965,17 @@ const PortfolioCard = React.memo(function PortfolioCard({
   theme
 }: PortfolioCardProps) {
   const catColor = getCategoryColor(item.category);
-  const [coords, setCoords] = useState({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
+  const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
+  const cardInnerRef = React.useRef<HTMLDivElement>(null);
+  const glareRef = React.useRef<HTMLDivElement>(null);
 
   const isSepia = theme === "sepia";
   const isLight = theme === "light";
+
+  const defaultShadow = item.isHighlight 
+    ? (isSepia ? "0 10px 20px -8px rgba(115, 76, 34, 0.22)" : isLight ? "0 10px 20px -8px rgba(217, 119, 6, 0.15)" : catColor.highlightShadowDark)
+    : (isSepia ? catColor.normalShadowSepia : isLight ? catColor.normalShadowLight : catColor.normalShadowDark);
 
   const titleEnClassValue = isSepia
     ? item.isHighlight
@@ -1043,43 +989,43 @@ const PortfolioCard = React.memo(function PortfolioCard({
 
   const titleClassValue = isSepia
     ? item.isHighlight
-      ? "text-[#2B1B0C] font-bold group-hover:text-amber-700"
-      : "text-[#382B1D] group-hover:text-amber-800"
+      ? `text-[#2B1B0C] font-bold ${isHovered ? "text-amber-700" : ""}`
+      : `text-[#382B1D] ${isHovered ? "text-amber-800" : ""}`
     : isLight
     ? item.isHighlight
-      ? "text-[#2B1B0C] font-bold group-hover:text-amber-600"
-      : "text-zinc-900 group-hover:text-amber-600"
-    : "text-white/90 group-hover:text-white";
+      ? `text-[#2B1B0C] font-bold ${isHovered ? "text-amber-600" : ""}`
+      : `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
+    : `text-white/90 ${isHovered ? "text-white" : ""}`;
 
   const descriptionClassValue = isSepia
     ? item.isHighlight
-      ? "text-[#4F3C28] group-hover:text-[#2B1B0C]"
-      : "text-[#5C4D3C] group-hover:text-[#382B1D]"
+      ? `text-[#4F3C28] ${isHovered ? "text-[#2B1B0C]" : ""}`
+      : `text-[#5C4D3C] ${isHovered ? "text-[#382B1D]" : ""}`
     : isLight
     ? item.isHighlight
-      ? "text-[#4F3C28] group-hover:text-[#18181B]"
-      : "text-zinc-600 group-hover:text-zinc-900"
-    : "text-zinc-400 group-hover:text-zinc-200";
+      ? `text-[#4F3C28] ${isHovered ? "text-[#18181B]" : ""}`
+      : `text-zinc-600 ${isHovered ? "text-[#18181B]" : ""}`
+    : `text-zinc-400 ${isHovered ? "text-zinc-200" : ""}`;
 
   const dividerClassValue = isSepia
     ? item.isHighlight
-      ? "border-amber-500/20 group-hover:border-amber-500/35"
-      : "border-[#EADECC]/70 group-hover:border-[#EADECC]"
+      ? `border-amber-500/20 ${isHovered ? "border-amber-500/35" : ""}`
+      : `border-[#EADECC]/70 ${isHovered ? "border-[#EADECC]" : ""}`
     : isLight
     ? item.isHighlight
-      ? "border-amber-500/20 group-hover:border-amber-500/35"
-      : "border-zinc-200 group-hover:border-zinc-300"
-    : "border-white/5 group-hover:border-white/10";
+      ? `border-amber-500/20 ${isHovered ? "border-amber-500/35" : ""}`
+      : `border-zinc-200 ${isHovered ? "border-zinc-300" : ""}`
+    : `border-white/5 ${isHovered ? "border-white/10" : ""}`;
 
   const hoverOverlayClass = isSepia
     ? item.isHighlight
-      ? "group-hover:bg-amber-500/[0.02]"
-      : "group-hover:bg-[#433422]/[0.01]"
+      ? "bg-amber-500/[0.02]"
+      : "bg-[#433422]/[0.01]"
     : isLight
     ? item.isHighlight
-      ? "group-hover:bg-amber-500/[0.02]"
-      : "group-hover:bg-black/[0.01]"
-    : "group-hover:bg-white/[0.01]";
+      ? "bg-amber-500/[0.02]"
+      : "bg-black/[0.01]"
+    : "bg-white/[0.01]";
 
   const touchStartRef = React.useRef<{ x: number; y: number } | null>(null);
 
@@ -1136,124 +1082,48 @@ const PortfolioCard = React.memo(function PortfolioCard({
       inertiaFrameRef.current = null;
     }
     const touch = e.touches[0];
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-    
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
-    lastTouchRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
     setIsPressed(true);
+    setIsHovered(true);
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
-    const glareX = (x / rect.width) * 100;
-    const glareY = (y / rect.height) * 100;
-
-    currentRotationRef.current = { x: rotateX, y: rotateY };
-    velocityRef.current = { vx: 0, vy: 0 };
-
-    setCoords({ rotateX, rotateY, glareX, glareY, isHovered: true });
+    if (cardInnerRef.current) {
+      // 輕量化按壓反饋，不啟用複雜的旋轉與漸變，確保滑動極致流暢
+      cardInnerRef.current.style.transform = "scale3d(0.97, 0.97, 1)";
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (!touchStartRef.current) return;
     const touch = e.touches[0];
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
     const diffX = Math.abs(touch.clientX - touchStartRef.current.x);
     const diffY = Math.abs(touch.clientY - touchStartRef.current.y);
 
-    // If swiped more than 8px, cancel active card press scale
-    if (diffX > 8 || diffY > 8) {
+    // 當偵測到用戶正在進行頁面滾動（位移大於 6 pixel），立即釋放卡片焦點與縮小反饋，完整交回給瀏覽器原生滚动
+    if (diffX > 6 || diffY > 6) {
+      touchStartRef.current = null;
       setIsPressed(false);
+      setIsHovered(false);
+      if (cardInnerRef.current) {
+        cardInnerRef.current.style.transform = "scale3d(1, 1, 1)";
+        cardInnerRef.current.style.boxShadow = defaultShadow;
+      }
+      if (glareRef.current) {
+        glareRef.current.style.opacity = "0";
+      }
     }
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const clampedX = Math.max(0, Math.min(rect.width, x));
-    const clampedY = Math.max(0, Math.min(rect.height, y));
-
-    const rotateX = ((clampedY - centerY) / centerY) * -6;
-    const rotateY = ((clampedX - centerX) / centerX) * 6;
-    const glareX = (clampedX / rect.width) * 100;
-    const glareY = (clampedY / rect.height) * 100;
-
-    const now = Date.now();
-    if (lastTouchRef.current) {
-      const dt = Math.max(1, now - lastTouchRef.current.time);
-      const vx = (rotateX - currentRotationRef.current.x) / dt;
-      const vy = (rotateY - currentRotationRef.current.y) / dt;
-      
-      // Moving average smoothing for clean kinetic velocities
-      velocityRef.current = {
-        vx: velocityRef.current.vx * 0.35 + vx * 0.65,
-        vy: velocityRef.current.vy * 0.35 + vy * 0.65
-      };
-    }
-
-    lastTouchRef.current = { x: touch.clientX, y: touch.clientY, time: now };
-    currentRotationRef.current = { x: rotateX, y: rotateY };
-
-    setCoords({ rotateX, rotateY, glareX, glareY, isHovered: true });
   };
 
   const handleTouchEnd = () => {
     touchStartRef.current = null;
-    lastTouchRef.current = null;
     setIsPressed(false);
-
-    let { vx, vy } = velocityRef.current;
-    
-    // Kinetic multiplier boost for intuitive responsiveness
-    vx *= 7;
-    vy *= 7;
-
-    // Boundary clamp velocity
-    const maxVelocity = 0.9;
-    vx = Math.max(-maxVelocity, Math.min(maxVelocity, vx));
-    vy = Math.max(-maxVelocity, Math.min(maxVelocity, vy));
-
-    const friction = 0.94; // Deceleration rate
-    let currentX = currentRotationRef.current.x;
-    let currentY = currentRotationRef.current.y;
-
-    const animateInertia = () => {
-      vx *= friction;
-      vy *= friction;
-
-      // Gentle spring center return pull
-      const springTension = 0.016;
-      vx += -currentX * springTension;
-      vy += -currentY * springTension;
-
-      currentX += vx;
-      currentY += vy;
-
-      if (Math.abs(vx) < 0.005 && Math.abs(vy) < 0.005 && Math.abs(currentX) < 0.1 && Math.abs(currentY) < 0.1) {
-        setCoords({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
-        currentRotationRef.current = { x: 0, y: 0 };
-        velocityRef.current = { vx: 0, vy: 0 };
-        inertiaFrameRef.current = null;
-      } else {
-        currentRotationRef.current = { x: currentX, y: currentY };
-        setCoords((prev) => ({
-          ...prev,
-          rotateX: currentX,
-          rotateY: currentY,
-          glareX: 50 + (currentY / 6) * 50,
-          glareY: 50 - (currentX / 6) * 50,
-        }));
-        inertiaFrameRef.current = requestAnimationFrame(animateInertia);
-      }
-    };
-
-    inertiaFrameRef.current = requestAnimationFrame(animateInertia);
+    setIsHovered(false);
+    if (cardInnerRef.current) {
+      cardInnerRef.current.style.transform = "scale3d(1, 1, 1)";
+      cardInnerRef.current.style.boxShadow = defaultShadow;
+    }
+    if (glareRef.current) {
+      glareRef.current.style.opacity = "0";
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -1276,12 +1146,29 @@ const PortfolioCard = React.memo(function PortfolioCard({
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
 
-    setCoords({ rotateX, rotateY, glareX, glareY, isHovered: true });
+    if (cardInnerRef.current) {
+      cardInnerRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${isPressed ? 0.955 : 1.025}, ${isPressed ? 0.955 : 1.025}, 1)`;
+      cardInnerRef.current.style.boxShadow = `0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(${catColor.rgbaGlow}, 0.22)`;
+    }
+    if (glareRef.current) {
+      glareRef.current.style.opacity = "1";
+      glareRef.current.style.background = `radial-gradient(circle 160px at ${glareX}% ${glareY}%, rgba(${catColor.rgbaGlow}, 0.14) 0%, transparent 100%)`;
+    }
+    if (!isHovered) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setCoords({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
     setIsPressed(false);
+    setIsHovered(false);
+    if (cardInnerRef.current) {
+      cardInnerRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+      cardInnerRef.current.style.boxShadow = defaultShadow;
+    }
+    if (glareRef.current) {
+      glareRef.current.style.opacity = "0";
+    }
   };
 
   const staggerIndex = index - prevVisibleCount;
@@ -1292,16 +1179,13 @@ const PortfolioCard = React.memo(function PortfolioCard({
   return (
     <motion.div
       ref={cardRef}
-      layoutId={`portfolio-card-${item.id}`}
-      layout="position"
       initial={{ opacity: 0, scale: 0.88, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.88, y: -20 }}
       transition={{ 
-        opacity: { duration: 0.28, ease: "easeOut", delay },
-        scale: { duration: 0.28, ease: "easeOut", delay },
-        y: { duration: 0.28, ease: "easeOut", delay },
-        layout: { type: "spring", stiffness: 300, damping: 30, mass: 1 }
+        opacity: { duration: 0.22, ease: "easeOut", delay },
+        scale: { duration: 0.22, ease: "easeOut", delay },
+        y: { duration: 0.22, ease: "easeOut", delay }
       }}
       className="h-full snap-center scroll-mt-24"
     >
@@ -1331,29 +1215,28 @@ const PortfolioCard = React.memo(function PortfolioCard({
         </div>
       ) : (
         <div
+          ref={cardInnerRef}
           id={`portfolio_item_card_${item.id}`}
         onClick={onClick}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
+        onMouseDown={() => {
+          setIsPressed(true);
+          if (cardInnerRef.current) {
+            cardInnerRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(0.955, 0.955, 1)";
+          }
+        }}
+        onMouseUp={() => {
+          setIsPressed(false);
+        }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchEnd}
         style={{
           transformStyle: "preserve-3d",
-          transform: `perspective(1000px) rotateX(${coords.rotateX}deg) rotateY(${coords.rotateY}deg) scale3d(${isPressed ? 0.95 : (coords.isHovered ? 1.025 : 1)}, ${isPressed ? 0.95 : (coords.isHovered ? 1.025 : 1)}, 1)`,
-          transition: isPressed
-            ? "transform 0.07s cubic-bezier(0.16, 1, 0.3, 1)"
-            : (coords.isHovered 
-                ? "transform 0.12s ease-out, border-color 0.30s ease, box-shadow 0.30s ease, background 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.60s" 
-                : "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.50s ease, box-shadow 0.50s ease, background 0.40s ease"),
-          boxShadow: coords.isHovered 
-            ? `0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(${catColor.rgbaGlow}, 0.22)` 
-            : (item.isHighlight 
-                ? (isSepia ? "0 10px 20px -8px rgba(115, 76, 34, 0.22)" : isLight ? "0 10px 20px -8px rgba(217, 119, 6, 0.15)" : catColor.highlightShadowDark)
-                : (isSepia ? catColor.normalShadowSepia : isLight ? catColor.normalShadowLight : catColor.normalShadowDark)),
+          transition: "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.50s ease, box-shadow 0.50s ease, background 0.40s ease",
+          boxShadow: defaultShadow,
         }}
         className={`group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer h-full transition-all duration-300 ${
           isSepia
@@ -1369,91 +1252,15 @@ const PortfolioCard = React.memo(function PortfolioCard({
             : `${catColor.normalBgDark} ${catColor.normalBorderDark}`
         }`}
       >
-        {/* 4 Corner Pulsing Light Spots with random rhythms on hover */}
-        <AnimatePresence>
-          {coords.isHovered && (
-            <>
-              {/* Top-Left */}
-              <motion.div 
-                key="spot_tl"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: [0, 0.8, 0.3, 0.8, 0], 
-                  scale: [0.6, 1.2, 0.8, 1.2, 0.6] 
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ 
-                  duration: 2.4, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-                className={`absolute w-1.5 h-1.5 rounded-full z-40 pointer-events-none blur-[0.4px] shadow-sm bg-${catColor.accent}`}
-                style={{ top: "10px", left: "10px" }}
-              />
-              {/* Top-Right */}
-              <motion.div 
-                key="spot_tr"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: [0, 0.4, 0.9, 0.4, 0], 
-                  scale: [1.1, 0.7, 1.3, 0.7, 1.1] 
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ 
-                  duration: 3.0, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: 0.5 
-                }}
-                className={`absolute w-1.5 h-1.5 rounded-full z-40 pointer-events-none blur-[0.4px] shadow-sm bg-${catColor.accent}`}
-                style={{ top: "10px", right: "10px" }}
-              />
-              {/* Bottom-Left */}
-              <motion.div 
-                key="spot_bl"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: [0, 0.9, 0.3, 0.9, 0], 
-                  scale: [0.7, 1.3, 0.7, 1.3, 0.7] 
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ 
-                  duration: 2.0, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: 0.9 
-                }}
-                className={`absolute w-1.5 h-1.5 rounded-full z-40 pointer-events-none blur-[0.4px] shadow-sm bg-${catColor.accent}`}
-                style={{ bottom: "10px", left: "10px" }}
-              />
-              {/* Bottom-Right */}
-              <motion.div 
-                key="spot_br"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: [0, 0.6, 0.9, 0.6, 0], 
-                  scale: [1.2, 0.8, 1.2, 0.8, 1.2] 
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ 
-                  duration: 2.8, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: 0.2 
-                }}
-                className={`absolute w-1.5 h-1.5 rounded-full z-40 pointer-events-none blur-[0.4px] shadow-sm bg-${catColor.accent}`}
-                style={{ bottom: "10px", right: "10px" }}
-              />
-            </>
-          )}
-        </AnimatePresence>
+
         {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
         {!isSepia && !isLight && (
           <div 
+            ref={glareRef}
             className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
             style={{
-              opacity: coords.isHovered ? 1 : 0,
-              background: `radial-gradient(circle 160px at ${coords.glareX}% ${coords.glareY}%, rgba(${catColor.rgbaGlow}, 0.14) 0%, transparent 100%)`,
+              opacity: 0,
+              background: `radial-gradient(circle 160px at 50% 50%, rgba(${catColor.rgbaGlow}, 0.14) 0%, transparent 100%)`,
               border: `1px solid rgba(${catColor.rgbaGlow}, 0.22)`,
               mixBlendMode: "screen",
               zIndex: 10,
@@ -1474,7 +1281,9 @@ const PortfolioCard = React.memo(function PortfolioCard({
             categoryName={item.category}
             titleText={item.title}
             optimizeSize={600}
-            className="w-full h-full object-cover transform transition-all duration-700 ease-out group-hover:scale-[1.045] group-hover:animate-hover-pulse-image"
+            className={`w-full h-full object-cover transform transition-all duration-700 ease-out ${
+              isHovered ? "scale-105" : "scale-100"
+            }`}
             lazy={!priority}
             priority={priority}
             theme={theme}
@@ -1492,22 +1301,22 @@ const PortfolioCard = React.memo(function PortfolioCard({
             <motion.span 
               className={`px-2.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-[11px] font-semibold tracking-wide rounded-full shadow-md flex items-center gap-1.5 whitespace-nowrap shrink-0 border ${
                 isSepia
-                  ? "bg-[#FAF4E5]/95 backdrop-blur-md"
+                  ? "bg-[#FAF4E5] border-[#E2D2B3]"
                   : isLight
-                  ? "bg-white/95 backdrop-blur-md"
-                  : "bg-black/80 backdrop-blur-md"
+                  ? "bg-white border-zinc-150"
+                  : "bg-zinc-950/95 border-white/5"
               }`}
               animate={{
-                borderColor: coords.isHovered
+                borderColor: isHovered
                   ? `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.75' : '0.85'})`
                   : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.35' : '0.25'})`,
-                color: coords.isHovered
+                color: isHovered
                   ? `rgb(${catColor.rgbaGlow})`
                   : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.9' : '0.85'})`,
-                boxShadow: coords.isHovered
+                boxShadow: isHovered
                   ? `0 0 12px 2px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.25' : '0.45'})`
                   : `0 2px 4px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.04' : '0.08'})`,
-                textShadow: coords.isHovered
+                textShadow: isHovered
                   ? `0 0 6px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.4' : '0.6'})`
                   : "0 0 0px rgba(0, 0, 0, 0)"
               }}
@@ -1519,7 +1328,7 @@ const PortfolioCard = React.memo(function PortfolioCard({
                 boxSizing: "border-box"
               }}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${catColor.bgClass} animate-pulse group-hover:scale-125 transition-transform duration-300`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${catColor.bgClass} ${isHovered ? "scale-125" : "scale-100"} transition-transform duration-300`} />
               {item.category}
             </motion.span>
           </div>
@@ -1528,10 +1337,10 @@ const PortfolioCard = React.memo(function PortfolioCard({
           {item.isHighlight && (
             <div className="absolute top-4 right-4 z-20" style={{ transform: "translateZ(12px)" }}>
               <span className={`px-2.5 py-1 text-[10px] font-sans font-bold tracking-wider text-black bg-gradient-to-r from-amber-400 to-amber-500 rounded-full shadow-lg flex items-center gap-1 border border-amber-300/30 transition-shadow duration-300 overflow-hidden relative group/badge ${catColor.glowClass}`}>
-                {/* 動態光流遮罩 (Dynamic light sweep) */}
-                <span className="absolute inset-x-0 inset-y-0 -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent animate-skeleton-shimmer pointer-events-none scale-y-150 rotate-12" />
+                {/* 動態光流遮罩 (Dynamic light sweep) - hover 時才流動 */}
+                <span className="absolute inset-x-0 inset-y-0 -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent group-hover/badge:animate-skeleton-shimmer pointer-events-none scale-y-150 rotate-12" />
                 
-                <Sparkles className="h-3 w-3 fill-black text-black animate-bounce animate-hover-bounce-icon relative z-10" />
+                <Sparkles className="h-3 w-3 fill-black text-black animate-hover-bounce-icon relative z-10" />
                 <span 
                   className="relative z-10"
                   style={{
@@ -1548,49 +1357,61 @@ const PortfolioCard = React.memo(function PortfolioCard({
             </div>
           )}
 
-          {/* hover 視覺遮罩提示 */}
-          <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center ${
+          {/* hover 視覺遮罩提示 - 採用 react isHovered 狀態控制，免除 3D rotate 後 CSS 邊界滯留 bug */}
+          <div className={`absolute inset-0 transition-opacity duration-300 flex items-center justify-center ${
+            isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
+          } ${
             isSepia ? "bg-[#2B1B0C]/40" : "bg-black/35"
           }`}>
-            <span className={`text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-3.5 py-1.5 rounded-lg shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5`} style={{ transform: "translateZ(15px)" }}>
+            <span className={`text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-3.5 py-1.5 rounded-lg shadow-lg transform transition-all duration-300 uppercase flex items-center gap-1.5 ${
+              isHovered ? "translate-y-0" : "translate-y-2"
+            }`} style={{ transform: "translateZ(15px)" }}>
               <span>觀看精彩設計細節</span>
-              <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5] animate-hover-bounce-icon" />
+              <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
             </span>
           </div>
         </div>
 
         {/* 內容描述區 */}
         <div 
-          className={`flex-1 flex flex-col p-5 md:p-6 space-y-4 relative overflow-hidden transition-all duration-500 ease-out z-10 ${hoverOverlayClass}`} 
+          className={`flex-1 flex flex-col p-5 md:p-6 space-y-4 relative overflow-hidden transition-all duration-500 ease-out z-10 ${isHovered ? hoverOverlayClass : ""}`} 
           style={{ transform: "translateZ(4px)" }}
         >
           {/* 微焦點放大焦點背景遮罩 (含微妙發光) */}
           <div 
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
             style={{
               background: `radial-gradient(circle 120px at 50% 50%, rgba(${catColor.rgbaGlow}, 0.05) 0%, transparent 100%)`
             }}
           />
 
           {/* 內容文字微幅浮起與提亮 (提升對比度與專注力) */}
-          <div className="space-y-1 transform transition-all duration-300 ease-out group-hover:translate-y-[-2px] group-hover:scale-[1.005]">
-            <p className={`text-[10px] font-mono tracking-widest uppercase opacity-90 transition-opacity duration-300 group-hover:opacity-100 ${titleEnClassValue}`}>{item.titleEn}</p>
+          <div className={`space-y-1 transform transition-all duration-300 ease-out ${
+            isHovered ? "translate-y-[-2px] scale-[1.005]" : "translate-y-0 scale-100"
+          }`}>
+            <p className={`text-[10px] font-mono tracking-widest uppercase opacity-90 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-90"} ${titleEnClassValue}`}>{item.titleEn}</p>
             <h3 className={`text-base font-display font-semibold transition-colors duration-300 line-clamp-1 flex items-center gap-1 ${titleClassValue}`}>
               <span className="truncate">{item.title}</span>
-              <span className={`opacity-0 group-hover:opacity-100 group-hover:translate-x-1 translate-x-0 transition-all duration-300 text-sm font-semibold shrink-0`}>→</span>
+              <span className={`transition-all duration-300 text-sm font-semibold shrink-0 ${
+                isHovered ? "opacity-100 translate-x-1" : "opacity-0 translate-x-0"
+              }`}>→</span>
             </h3>
           </div>
 
-          <motion.p 
-            animate={{ y: coords.isHovered ? -3 : 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-            className={`text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3 ${descriptionClassValue}`}
+          <p 
+            className={`text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3 transition-transform duration-300 ease-out ${
+              isHovered ? "translate-y-[-3px]" : "translate-y-0"
+            } ${descriptionClassValue}`}
           >
             {item.philosophy}
-          </motion.p>
+          </p>
 
           {/* 工具 Tags */}
-          <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-300 ease-out group-hover:translate-y-[-1.2px] ${dividerClassValue}`}>
+          <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-300 ease-out ${
+            isHovered ? "translate-y-[-1.2px]" : "translate-y-0"
+          } ${dividerClassValue}`}>
             {item.tools.map((tech) => (
               <span 
                 key={tech} 
@@ -1687,8 +1508,24 @@ export default function App() {
 
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchInputVal, setSearchInputVal] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const [prevVisibleCount, setPrevVisibleCount] = useState<number>(0);
+
+  // Keep searchInputVal in sync with searchQuery if changed externally (e.g., cleared)
+  React.useEffect(() => {
+    setSearchInputVal(searchQuery);
+  }, [searchQuery]);
+
+  // Debounce the input value so filtering only updates after typing pauses
+  React.useEffect(() => {
+    const handler = setTimeout(() => {
+      if (searchInputVal !== searchQuery) {
+        setSearchQuery(searchInputVal);
+      }
+    }, 180);
+    return () => clearTimeout(handler);
+  }, [searchInputVal, searchQuery]);
 
   // Automatically reset visibleCount when category, search query, or order is changed to improve rendering load
   React.useEffect(() => {
@@ -2101,37 +1938,58 @@ export default function App() {
   // Scroll to top and navbar transition support
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [showHeader, setShowHeader] = useState<boolean>(true);
-  const [scrollY, setScrollY] = useState<number>(0);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   React.useEffect(() => {
     let lastY = window.scrollY;
+    let ticking = false;
+    document.documentElement.style.setProperty('--scroll-y', `${lastY}px`);
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Update high-performance CSS variable directly to drive parallax under 0 React re-renders
+          document.documentElement.style.setProperty('--scroll-y', `${currentScrollY}px`);
 
-      if (currentScrollY > 300) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
+          const scrolled = currentScrollY > 20;
+          setIsScrolled((prev) => {
+            if (prev !== scrolled) {
+              return scrolled;
+            }
+            return prev;
+          });
+
+          setShowScrollTop((prev) => {
+            const next = currentScrollY > 300;
+            return prev !== next ? next : prev;
+          });
+
+          // Show/Hide top navbar
+          setShowHeader((prev) => {
+            if (currentScrollY < 10) {
+              return true;
+            } else if (currentScrollY > lastY + 5) {
+              return false; // scrolling down
+            } else if (currentScrollY < lastY - 5) {
+              return true; // scrolling up
+            }
+            return prev;
+          });
+
+          lastY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      // Show/Hide top navbar
-      if (currentScrollY < 10) {
-        setShowHeader(true);
-      } else if (currentScrollY > lastY + 5) {
-        setShowHeader(false); // scrolling down
-      } else if (currentScrollY < lastY - 5) {
-        setShowHeader(true); // scrolling up
-      }
-
-      lastY = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const headerBg = React.useMemo(() => {
-    if (scrollY <= 5) {
+    if (!isScrolled) {
       if (theme === "light") {
         return "rgba(255, 255, 255, 0.8)";
       } else if (theme === "sepia") {
@@ -2140,25 +1998,21 @@ export default function App() {
         return "rgba(7, 7, 7, 0.8)";
       }
     }
-    const ratio = Math.min((scrollY - 5) / 40, 1);
-    const opacity = 0.95 + ratio * 0.03; // transitions to 0.98 opacity for complete content isolation
     if (theme === "light") {
-      return `rgba(255, 255, 255, ${opacity})`;
+      return "rgba(255, 255, 255, 0.98)";
     } else if (theme === "sepia") {
-      return `rgba(250, 244, 229, ${opacity})`;
+      return "rgba(250, 244, 229, 0.98)";
     } else {
-      return `rgba(7, 7, 7, ${opacity})`;
+      return "rgba(7, 7, 7, 0.98)";
     }
-  }, [scrollY, theme]);
+  }, [isScrolled, theme]);
 
   const headerBlur = React.useMemo(() => {
-    if (scrollY <= 5) {
+    if (!isScrolled) {
       return "blur(8px)";
     }
-    const ratio = Math.min((scrollY - 5) / 40, 1);
-    const blurPx = 16 + ratio * 8; // transitions from 16px to 24px blur
-    return `blur(${blurPx}px)`;
-  }, [scrollY]);
+    return "blur(24px)";
+  }, [isScrolled]);
 
   const brandingTextClass = theme === "sepia"
     ? "text-[#433422]"
@@ -2497,34 +2351,11 @@ export default function App() {
       
       {/* 頂部裝飾背景微光 */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[550px] pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[-250px] left-1/4 w-[45%] aspect-square rounded-full bg-amber-500/5 blur-[120px]"></div>
-        <div className="absolute top-[-200px] right-1/4 w-[40%] aspect-square rounded-full bg-indigo-500/5 blur-[110px]"></div>
+        <div className="absolute top-[-250px] left-1/4 w-[45%] aspect-square rounded-full bg-amber-500/4 blur-[80px]" style={{ willChange: "transform, opacity" }}></div>
+        <div className="absolute top-[-200px] right-1/4 w-[40%] aspect-square rounded-full bg-indigo-500/4 blur-[80px]" style={{ willChange: "transform, opacity" }}></div>
       </div>
 
-      {/* 幾何網格流動與視差背景動畫 (僅在 Dark 模式啟用) */}
-      {theme === "dark" && (
-        <div 
-          className="absolute inset-x-0 top-[-20%] bottom-[-20%] pointer-events-none overflow-hidden z-0"
-          style={{
-            // 優雅、極具科技質感的視差滾動效果
-            transform: `translateY(${scrollY * 0.15}px)`,
-            willChange: "transform",
-          }}
-        >
-          {/* 流體幾何動態網格，疊加微微的中心暖橘色暈光 */}
-          <div 
-            className="absolute inset-0 opacity-[0.45] animate-grid-flow-slow"
-            style={{
-              backgroundImage: `
-                radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.015) 0%, transparent 60%),
-                linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px)
-              `,
-              backgroundSize: "100% 100%, 64px 64px, 64px 64px",
-            }}
-          />
-        </div>
-      )}
+
 
       {/* 頂部導航列 (Branding Bar) */}
       <motion.header
@@ -2537,11 +2368,13 @@ export default function App() {
           backgroundColor: headerBg,
           backdropFilter: headerBlur,
           WebkitBackdropFilter: headerBlur,
-          borderBottomColor: theme === "light"
-            ? `rgba(0, 0, 0, ${Math.min(scrollY / 80, 1) * 0.06})`
+          borderBottomColor: !isScrolled
+            ? "transparent"
+            : theme === "light"
+            ? "rgba(0, 0, 0, 0.06)"
             : theme === "sepia"
-            ? `rgba(67, 52, 34, ${Math.min(scrollY / 80, 1) * 0.08})`
-            : `rgba(255, 255, 255, ${Math.min(scrollY / 80, 1) * 0.05})`
+            ? "rgba(67, 52, 34, 0.08)"
+            : "rgba(255, 255, 255, 0.05)"
         } as any}
         className="sticky top-0 z-40 border-b py-4 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
       >
@@ -2930,8 +2763,8 @@ export default function App() {
                 
                 <input
                   type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  value={searchInputVal}
+                  onChange={(e) => setSearchInputVal(e.target.value)}
                   placeholder="輸入名稱、工具或關鍵字進行模糊搜尋..."
                   className={`w-full pl-10 pr-24 py-2.5 rounded-xl border-2 text-xs font-sans tracking-wide transition-all duration-300 focus:outline-none focus:ring-0 ${
                     theme === "sepia"
@@ -4295,11 +4128,12 @@ export default function App() {
                   onClick={handleNextMascot}
                   className={`${
                     theme === "light"
-                      ? "bg-white border-amber-500/50 shadow-[0_4px_25px_rgba(245,158,11,0.2)]"
+                      ? "bg-white/95 border-amber-500/50 shadow-[0_4px_25px_rgba(245,158,11,0.2)]"
                       : theme === "sepia"
-                      ? "bg-[#FCF8EE] border-amber-600/40 shadow-[0_4px_25px_rgba(180,83,9,0.2)]"
+                      ? "bg-[#FCF8EE]/95 border-amber-600/40 shadow-[0_4px_25px_rgba(180,83,9,0.2)]"
                       : "bg-black/95 border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.25)]"
-                  } backdrop-blur-xl border p-3.5 pt-4 rounded-2xl mb-3 relative flex flex-col items-center justify-center pointer-events-auto max-w-[190px] md:max-w-[250px] overflow-hidden cursor-pointer transition-colors group`}
+                  } backdrop-blur-sm border p-3.5 pt-4 rounded-2xl mb-3 relative flex flex-col items-center justify-center pointer-events-auto max-w-[190px] md:max-w-[250px] overflow-hidden cursor-pointer transition-colors group`}
+                  style={{ willChange: "transform, opacity, scale" }}
                   title="點擊可以與我互動喔！🐾"
                 >
                   {/* 關閉對話框的 X 按鈕 */}
