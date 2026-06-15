@@ -22,6 +22,89 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
+    "id": "new-dino-ptera",
+    "category": "角色IP&插畫與貼圖",
+    "title": "Ptera 皮特拉吉祥物：冒險極客潮流 IP角色與貼圖設計",
+    "titleEn": "Ptera the Sky Explorer: Tech-Street Adventure IP & Sticker Design",
+    "philosophy": "「皮特拉 (Ptera)」的設計理念源自於對「探索未知的渴望」與「現代科技生活」的深度融合。做為一隻象徵天空與自由的無齒翼龍（Pteranodon），設計上打破了傳統恐龍粗獷、古老的刻板印象，將其塑造成一位充滿未來感的「天空探險家」。在色彩心理學上，主色調採用高飽和度的神祕深紫色，象徵著智慧、獨特與無限的想像空間；翅膀內側與細節則輔以亮麗的活力橘，代表著冒險的熱情、好奇心與源源不絕的動能。這組高對比的互補色搭配，不僅在視覺上帶來極強的街頭潮流感，也賦予角色鮮明的年輕生命力。配件設計是皮特拉性格的靈魂：頭戴復古風的「飛行護目鏡」，搭配皮革質感的「冒險背包」，致敬經典探索精神；而「空拍無人機」與「手持控制器」的加入，則巧妙連結了當代科技與潮流玩物，展現出「科技與冒險並存」的當代極客（Geek）精神。在品牌傳達與貼圖應用中，皮特拉不僅僅是一個可愛的吉祥物，更是一個引領生活態度的標誌，透過飛翔、操作科技設備、熱情招手等豐富動態，傳遞出『Adventure is Everywhere』的核心價值，激勵受眾在日常中保持好奇、勇敢探索未知。",
+    "tools": [
+        "Illustrator 向量角色精繪",
+        "2D 原畫概念草稿",
+        "IP 核心品牌包裝",
+        "插畫貼圖情境開發"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1WR4TI87XZbt53ySarce8wVPWkNbxJMnZ",
+    "placeholderId": "IMAGE_DINO_NEW_1",
+    "colorTheme": "from-[#1A0E2E] via-[#321A5C] to-[#1A0E2E]",
+    "images": [
+        "https://drive.google.com/thumbnail?sz=w1000&id=1WR4TI87XZbt53ySarce8wVPWkNbxJMnZ",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1pj7P1yrCsfRi6C_RxS7dSVGG-RBTzbMJ"
+    ]
+  },
+  {
+    "id": "new-dino-carno",
+    "category": "角色IP&插畫與貼圖",
+    "title": "CARNO卡諾吉祥物：美式復古街頭DJ潮流 IP角色與貼圖設計",
+    "titleEn": "CARNO: Retro Street DJ Style Mascot IP & Sticker Design",
+    "philosophy": "本IP設計以「CARNO（卡諾）」——一隻喜愛電子音樂與街頭文化的食肉牛龍（Carnotaurus）為主角。設計語彙巧妙融合了遠古恐龍的強悍輪廓與當代街頭電音文化。溫暖而明亮的活力橙色（Vibrant Orange）作為主色調，在色彩心理學中象徵著無窮的創造力、熱情與派對能量，與代表專業、沉穩卻不失潮流感的蒂芬妮綠（Mint Green）連帽衛衣形成強烈對比，形塑出極具視覺張力的色彩系統。頭部保留了食肉牛龍標誌性的黃色犄角，化尖銳為圓潤，成功將原本兇猛的史前巨獸轉化為親和力十足的潮流萌獸。配件設計更是本角色的靈魂所在，高質感的消光黑「SHONE」專業降噪耳機與精緻的DJ混音台，精確對接了Z世代與千禧世代對於個性化、次文化符號的追求。在品牌推廣與貼圖應用中，CARNO豐富且動感的肢體語言（如單手打碟、比出勝利手勢、隨著節奏搖擺等）展現了極高的延展性，能夠在社群媒體與貼圖插畫中快速引起年輕族群的共鳴，傳遞「Feel The Beat」的積極生活態度。",
+    "tools": [
+        "Illustrator 向量角色精繪",
+        "2D 原畫概念草稿",
+        "IP 核心品牌包裝",
+        "插畫貼圖情境開發",
+        "Procreate 潮流筆觸上色"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=180vjBisFIR8Sd4-mRFusIw13G4UTg5Zl",
+    "placeholderId": "IMAGE_DINO_CARNO",
+    "colorTheme": "from-[#0F172A] via-[#3C1E08] to-[#0F172A]",
+    "images": [
+        "https://drive.google.com/thumbnail?sz=w1000&id=180vjBisFIR8Sd4-mRFusIw13G4UTg5Zl",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1DP-cQLMU20sG902gNR1Btv48H7hQBO0_"
+    ]
+  },
+  {
+    "id": "new-dino-triko",
+    "category": "角色IP&插畫與貼圖",
+    "title": "Triko 翠可吉祥物：城市探索與生活紀實風格 IP角色與貼圖設計",
+    "titleEn": "Triko: City Explorer and Life Documentary IP Character Design",
+    "philosophy": "Triko 的設計核心在於「城市觀察者」這一哲學意境。我們旨在跳脫傳統恐龍 IP 粗獷或史前恐懼的符號框架，將其轉化為一個具備當代人文關懷與冒險精神的城市探索者。在視覺建構上，我們選擇了象徵明亮、親和與智慧的黃色作為主體調性，賦予 Triko 極具標誌性的三角龍頭盾造型，將其打造為一個遊走於鋼筋水泥叢林中的記錄者。Triko 不僅是一個吉祥物，更是我們對於「平凡生活中的偉大發現」的敘事載體。我們運用細膩的流線設計與豐富的職人裝備（如復古相機、隨身筆記本、探險背心），強化了角色與環境的互動張力。這種設計理念強調了「觀看」的過程：恐龍在都市空間中的存在，隱喻了歷史與現代的碰撞，傳遞出每一處角落都蘊含故事的溫暖信仰。在色彩體系上，飽和的暖色與大地綠色系交織，不僅視覺上具有高度辨識性，更營造出一種專業而又不失童趣的獨特氛圍。我們期望透過 Triko，喚起現代都市人對於周遭環境的重新審視，將攝影鏡頭轉向細節，挖掘被時間遺忘的動人瞬間。這一系列設計從角色設定到貼圖情境開發，皆經過嚴密的動態邏輯規劃，確保角色在各種應用場景中，始終保持穩定且具備敘事深度的視覺一致性，成為連結品牌與用戶情感的關鍵媒介。",
+    "tools": [
+        "Illustrator 向量角色精繪",
+        "2D 原畫概念草稿",
+        "IP 核心品牌包裝",
+        "插畫貼圖情境開發",
+        "故事敘事與性格建立"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=16lSTH72n4Em8WEIUFGMt3sUPaT1amGHm",
+    "placeholderId": "IMAGE_DINO_NEW_3",
+    "colorTheme": "from-[#1C201A] via-[#3D3524] to-[#1C201A]",
+    "images": [
+        "https://drive.google.com/thumbnail?sz=w1000&id=16lSTH72n4Em8WEIUFGMt3sUPaT1amGHm",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1pFDhRFRu7F3FsbYu7LZ_4K1DQFYgFpxl"
+    ]
+  },
+  {
+    "id": "new-dino-bronti",
+    "category": "角色IP&插畫與貼圖",
+    "title": "Bronti 朋迪吉祥物：街頭療癒與精品咖啡美學 IP角色與貼圖設計",
+    "titleEn": "Bronti: Cozy Healing & Specialty Coffee IP Character Design",
+    "philosophy": "Bronti 的設計初衷，旨在將遠古生物的厚重歷史感，轉化為現代都市生活中最溫暖的一抹色彩。作為「Shone City」咖啡店的靈魂，Bronti 的視覺語彙緊扣「療癒」與「連結」兩大核心價值。我們透過飽和度適中且具備親和力的葉脈綠為主色調，不僅呼應了恐龍原始的生態本質，更在都市叢林的冷冽中注入了一股有機、柔軟的生命氣息。角色形象設計上，特意賦予了 Bronti 溫和的圓潤輪廓，將其宏大的體型縮減為友好的陪伴者，並透過「亮橘色針織毛帽」與「丹寧質感圍裙」的穿搭細節，建立起一種極具記憶點的街頭潮流感，模糊了物種間的界線，讓受眾在潛意識中感受到他是一位隨時準備好為你遞上一杯熱咖啡、並傾聽生活煩惱的知心好友。這不僅僅是一個可愛的角色，更是一個情感載體，我們藉由多樣化的「情境貼圖」與「作業裝備」延伸設計，強化了角色在現實生活中的應用廣度。從細緻的咖啡手沖工序到悠閒閱讀的時光，Bronti 的每一個姿勢都經過精心調度，旨在創造一種「Take A Break And Shine」的生活哲學，提醒在快節奏都市中奔波的現代人，即使在忙碌的罅隙中，也能透過一杯咖啡尋找屬於自己的平靜角落。Bronti 的存在，就是為了證明，即使是最龐大的心靈，也能在微小的細節中找到與世界共鳴的溫暖方式，讓品牌不單止於視覺感官的滿足，更深度滲透至受眾的精神層面，成為一個恆久且具備陪伴力的 IP 符號。",
+    "tools": [
+        "Adobe Illustrator 向量角色繪製",
+        "擬人化IP核心品牌包裝",
+        "沉浸式場景插畫開發",
+        "動態與表情貼圖情境設計",
+        "視覺符號與心理美學編排"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1YuoDxGAVMhQeQaLf0Wq_Fc18zP0ZsWXU",
+    "placeholderId": "IMAGE_DINO_NEW_4",
+    "colorTheme": "from-[#12241F] via-[#2F4435] to-[#12241F]",
+    "images": [
+        "https://drive.google.com/thumbnail?sz=w1000&id=1YuoDxGAVMhQeQaLf0Wq_Fc18zP0ZsWXU",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1bjngfCO98_w7rmvmap7K4zGeupClB9eS"
+    ]
+  },
+  {
     "id": "96",
     "category": "商品周邊企業禮贈品",
     "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮金屬紀念合金硬幣與包裝工藝設計",

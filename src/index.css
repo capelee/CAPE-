@@ -7,6 +7,12 @@
   --font-display: "Outfit", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 90px;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: #0A0A0A;
@@ -61,7 +67,9 @@ body {
 
 /* Top Sticky Navigation Bar */
 .light-theme header {
-  background-color: rgba(250, 250, 250, 0.85) !important;
+  background-color: var(--header-bg, rgba(250, 250, 250, 0.85)) !important;
+  backdrop-filter: var(--header-blur, blur(12px)) !important;
+  -webkit-backdrop-filter: var(--header-blur, blur(12px)) !important;
   border-bottom-color: rgba(0, 0, 0, 0.06) !important;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.02), 0 2px 8px -1px rgba(0, 0, 0, 0.02) !important;
 }
@@ -262,7 +270,7 @@ body {
 
 /* Lightbox Modal Theme Enhancements for Light Theme */
 .light-theme .fixed.z-50 .bg-gradient-to-t.from-\[\#0E0E0E\] {
-  background-image: linear-gradient(to top, #FFFFFF, transparent) !important;
+  display: none !important;
 }
 
 .light-theme .fixed.z-50 .bg-black\/40 {
@@ -409,6 +417,401 @@ body {
   color: #9CA3AF !important;
 }
 
+/* Pristine Elegant Sepia (Eye-Care) Mode Styles */
+.sepia-theme {
+  background-color: #F4ECD8 !important; /* warm paper/beige/sepia base */
+  color: #433422 !important; /* soft dark brown with high legibility */
+}
+
+.sepia-theme ::selection {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  color: #78350F !important;
+}
+
+/* Scrollbars in Sepia Theme */
+.sepia-theme ::-webkit-scrollbar-track {
+  background: #F4ECD8 !important;
+}
+.sepia-theme ::-webkit-scrollbar-thumb {
+  background: #E6DABC !important;
+}
+.sepia-theme ::-webkit-scrollbar-thumb:hover {
+  background: #D4C6A0 !important;
+}
+
+/* Background Glowing Overlays */
+.sepia-theme .bg-amber-500\/5 {
+  background-color: rgba(245, 158, 11, 0.045) !important;
+}
+.sepia-theme .bg-indigo-500\/5 {
+  background-color: rgba(99, 102, 241, 0.035) !important;
+}
+
+/* Top Sticky Navigation Bar */
+.sepia-theme header {
+  background-color: var(--header-bg, rgba(244, 236, 216, 0.85)) !important;
+  backdrop-filter: var(--header-blur, blur(12px)) !important;
+  -webkit-backdrop-filter: var(--header-blur, blur(12px)) !important;
+  border-bottom-color: rgba(67, 52, 34, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(67, 52, 34, 0.03), 0 2px 8px -1px rgba(67, 52, 34, 0.03) !important;
+}
+.sepia-theme header .text-white {
+  color: #382B1D !important;
+}
+.sepia-theme header .text-zinc-500 {
+  color: #614D37 !important;
+}
+.sepia-theme header .text-zinc-400 {
+  color: #5C4B3A !important;
+}
+.sepia-theme header .text-zinc-700 {
+  color: #E2D2B3 !important;
+}
+
+/* Designer Profile Bento Card */
+.sepia-theme #designer-bento > div {
+  background-image: linear-gradient(to bottom, #FCF8EE, #F4ECD8) !important;
+  border-color: rgba(67, 52, 34, 0.09) !important;
+  box-shadow: 0 20px 25px -5px rgba(67, 52, 34, 0.03), 0 10px 10px -5px rgba(67, 52, 34, 0.03) !important;
+}
+.sepia-theme #designer-bento .text-white {
+  color: #382B1D !important;
+}
+.sepia-theme #designer-bento .text-zinc-350 {
+  color: #4B3E31 !important;
+}
+.sepia-theme #designer-bento .text-zinc-300 {
+  color: #4A3E31 !important;
+}
+.sepia-theme #designer-bento .text-zinc-400 {
+  color: #5C4B3A !important;
+}
+.sepia-theme #designer-bento .text-zinc-500 {
+  color: #6E5B49 !important;
+}
+.sepia-theme #designer-bento .border-white\/5 {
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme #designer-bento .border-l-2.border-amber-500\/20 {
+  border-left-color: rgba(245, 158, 11, 0.5) !important;
+}
+.sepia-theme #designer-bento .bg-white\/\[0\.01\] {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme #designer-bento .bg-white\/5 {
+  background-color: #E6DABC !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+  color: #5C4B3A !important;
+}
+
+/* Capabilities & Grid Boxes */
+.sepia-theme .bg-white\/\[0\.015\] {
+  background-color: #FCF8EE !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+  box-shadow: 0 1px 3px 0 rgba(67, 52, 34, 0.02) !important;
+}
+.sepia-theme .bg-white\/\[0\.015\].group:hover {
+  background-color: rgba(245, 158, 11, 0.02) !important;
+}
+.sepia-theme .bg-white\/5 {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+  color: #5C4B3A !important;
+}
+
+/* Timelines and Lists */
+.sepia-theme .before\:bg-white\/10::before {
+  background-color: #E6DABC !important;
+}
+.sepia-theme .bg-\[\#0a0a0a\] {
+  background-color: #FCF8EE !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+}
+
+/* Showcase Filter Buttons */
+.sepia-theme #portfolio-grid .text-white {
+  color: #382B1D !important;
+}
+.sepia-theme #portfolio-grid .text-zinc-400 {
+  color: #5C4B3A !important;
+}
+.sepia-theme #portfolio-grid .bg-white\/\[0\.02\] {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+  color: #5C4B3A !important;
+}
+.sepia-theme #portfolio-grid .bg-white\/\[0\.02\]:hover {
+  background-color: #E6DABC !important;
+  color: #382B1D !important;
+}
+
+/* Portfolio Cards */
+.sepia-theme .group.relative.flex.flex-col {
+  background-color: #FCF8EE !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme .bg-\[\#0E0E0E\] {
+  background-color: #FCF8EE !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme .border-white\/5 {
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme .border-white\/10 {
+  border-color: rgba(67, 52, 34, 0.1) !important;
+}
+.sepia-theme .group.relative.flex.flex-col .absolute.top-4.left-4 span {
+  background-color: rgba(252, 248, 238, 0.9) !important;
+  color: #433422 !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+  box-shadow: 0 4px 12px -2px rgba(67, 52, 34, 0.05), 0 2px 4px -1px rgba(67, 52, 34, 0.05) !important;
+}
+.sepia-theme .group.relative.flex.flex-col .bg-gradient-to-t {
+  background-image: linear-gradient(to top, rgba(67, 52, 34, 0.15) 0%, rgba(67, 52, 34, 0.02) 40%, transparent 100%) !important;
+}
+.sepia-theme .bg-\[\#0E0E0E\] h3.text-white {
+  color: #382B1D !important;
+  transition: color 0.2s ease-in-out;
+}
+.sepia-theme .group:hover .bg-\[\#0E0E0E\] h3.text-white {
+  color: #B45309 !important;
+}
+.sepia-theme .text-\[\#F59E0B\]\/80 {
+  color: #92400E !important;
+  font-weight: 500;
+}
+.sepia-theme .bg-\[\#0E0E0E\] .text-zinc-300 {
+  color: #4A3E31 !important;
+}
+.sepia-theme .bg-\[\#0E0E0E\] .text-zinc-400 {
+  color: #5C4B3A !important;
+}
+.sepia-theme .bg-\[\#0E0E0E\] .bg-white\/5 {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+  color: #5C4B3A !important;
+}
+.sepia-theme .bg-zinc-950 {
+  background-color: #FAF4E5 !important;
+}
+
+/* Lightbox Modal with Elegant Sepia Overlay for proper contrast */
+.sepia-theme .fixed.z-50 {
+  background-color: rgba(244, 236, 216, 0.96) !important;
+}
+.sepia-theme .fixed.z-50 .bg-\[\#0E0E0E\] {
+  background-color: #FCF8EE !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+  box-shadow: 0 25px 50px -12px rgba(67, 52, 34, 0.05) !important;
+}
+.sepia-theme .fixed.z-50 .text-white {
+  color: #382B1D !important;
+}
+.sepia-theme .fixed.z-50 .text-zinc-300 {
+  color: #4A3E31 !important;
+}
+.sepia-theme .fixed.z-50 .text-zinc-500 {
+  color: #6E5B49 !important;
+}
+.sepia-theme .fixed.z-50 .border-white\/5 {
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme .fixed.z-50 .border-white\/10 {
+  border-color: rgba(67, 52, 34, 0.1) !important;
+}
+.sepia-theme .fixed.z-50 .border-l {
+  border-left-color: rgba(67, 52, 34, 0.1) !important;
+}
+.sepia-theme .fixed.z-50 .bg-white\/5 {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+  color: #5C4B3A !important;
+}
+.sepia-theme .fixed.z-50 #btn_modal_close {
+  background-color: #FCF8EE !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+  color: #5C4B3A !important;
+}
+.sepia-theme .fixed.z-50 #btn_modal_close:hover {
+  background-color: #FAF4E5 !important;
+  color: #382B1D !important;
+}
+.sepia-theme .fixed.z-50 .bg-zinc-950 {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme .fixed.z-50 .bg-zinc-950 iframe {
+  background-color: #000000 !important;
+}
+
+/* Empty section layout */
+.sepia-theme .bg-\[\#0E0E0E\]\/40 {
+  background-color: #FAF4E5 !important;
+}
+
+/* Lightbox Modal Theme Enhancements for Sepia Theme */
+.sepia-theme .fixed.z-50 .bg-gradient-to-t.from-\[\#0E0E0E\] {
+  display: none !important;
+}
+
+.sepia-theme .fixed.z-50 .bg-black\/40 {
+  background-color: transparent !important;
+}
+
+.sepia-theme .fixed.z-50 .bg-black\/80 {
+  background-color: rgba(252, 248, 238, 0.9) !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+  color: #5C4B3A !important;
+}
+.sepia-theme .fixed.z-50 .bg-black\/80:hover {
+  background-color: #FCF8EE !important;
+  color: #382B1D !important;
+}
+
+.sepia-theme .fixed.z-50 .bg-black\/70 {
+  background-color: rgba(252, 248, 238, 0.9) !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+  color: #5C4B3A !important;
+}
+.sepia-theme .fixed.z-50 .bg-black\/70:hover {
+  background-color: #FCF8EE !important;
+  color: #382B1D !important;
+}
+
+.sepia-theme .fixed.z-50 .bg-black\/85 {
+  background-color: rgba(252, 248, 238, 0.9) !important;
+  color: #4A3E31 !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+}
+
+.sepia-theme .fixed.z-50 button:hover,
+.sepia-theme .fixed.z-50 .hover\:text-white:hover {
+  color: #382B1D !important;
+}
+
+.sepia-theme .fixed.z-50 .hover\:bg-white\/10:hover {
+  background-color: #E6DABC !important;
+}
+
+.sepia-theme .fixed.z-50 .hover\:bg-black\/90:hover,
+.sepia-theme .fixed.z-50 .hover\:bg-black\/95:hover,
+.sepia-theme .fixed.z-50 .hover\:bg-black:hover {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.15) !important;
+  color: #382B1D !important;
+}
+
+.sepia-theme .fixed.z-50 .text-zinc-400 {
+  color: #5C4B3A !important;
+}
+
+.sepia-theme .bg-\[\#0A0A0A\],
+.sepia-theme .bg-\[\#0B0B0B\],
+.sepia-theme .bg-\[\#07090c\] {
+  background-color: #FAF4E5 !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+}
+
+.sepia-theme .bg-\[\#0a0a0a\] {
+  background-color: #F4ECD8 !important;
+  border-color: rgba(67, 52, 34, 0.1) !important;
+}
+
+.sepia-theme .bg-\[\#111\] {
+  background-color: #FAF4E5 !important;
+  color: #4A3E31 !important;
+}
+
+.sepia-theme .hover\:bg-\[\#161616\]:hover {
+  background-color: #E6DABC !important;
+  color: #382B1D !important;
+}
+
+.sepia-theme .text-neutral-600 {
+  color: #6E5B49 !important;
+}
+
+.sepia-theme .scrollbar-thumb-white\/10 {
+  scrollbar-color: rgba(67, 52, 34, 0.15) transparent !important;
+}
+
+/* Lightbox Multimedia Menu Sepia Theme Styles */
+.sepia-theme #modal-multimedia-menu {
+  background-color: #F4ECD8 !important;
+  border-top-color: rgba(67, 52, 34, 0.1) !important;
+}
+
+.sepia-theme #modal-multimedia-menu .text-zinc-500 {
+  color: #5C4B3A !important;
+}
+
+.sepia-theme #modal-multimedia-menu .text-amber-400\/80 {
+  color: #92400E !important;
+  font-weight: 500;
+}
+
+.sepia-theme #modal-multimedia-menu .bg-\[\#07090c\] {
+  background-color: #FAF4E5 !important;
+}
+
+.sepia-theme #modal-multimedia-menu button.border-zinc-800 {
+  border-color: rgba(67, 52, 34, 0.15) !important;
+}
+
+.sepia-theme #modal-multimedia-menu button.border-zinc-800:hover {
+  border-color: rgba(67, 52, 34, 0.35) !important;
+  opacity: 1 !important;
+}
+
+.sepia-theme #modal-multimedia-menu button.border-transparent {
+  border-color: transparent !important;
+}
+
+.sepia-theme #modal-multimedia-menu button.border-transparent:hover {
+  border-color: rgba(67, 52, 34, 0.18) !important;
+  opacity: 1 !important;
+}
+
+.sepia-theme #modal-multimedia-menu button.border-amber-400 {
+  border-color: #D97706 !important;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15) !important;
+  opacity: 1 !important;
+}
+
+.sepia-theme #modal-multimedia-menu .text-amber-400 {
+  color: #D97706 !important;
+}
+
+.sepia-theme #modal-multimedia-menu .text-zinc-400 {
+  color: #4A3E31 !important;
+}
+
+/* Footer Section */
+.sepia-theme footer {
+  background-color: #FAF4E5 !important;
+  border-top-color: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme footer .text-zinc-400 {
+  color: #5C4B3A !important;
+}
+.sepia-theme footer .text-zinc-600 {
+  color: #8C7B69 !important;
+}
+
+.sepia-theme .shimmer-line {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(217, 119, 6, 0) 25%,
+    rgba(255, 255, 255, 0.45) 48%,
+    rgba(251, 191, 36, 0.75) 50%,
+    rgba(255, 255, 255, 0.45) 52%,
+    rgba(217, 119, 6, 0) 75%,
+    transparent 100%
+  );
+}
+
 /* Card Surface & Edge Shimmer Stream/Flow Effect */
 @keyframes edge-shimmer {
   0% {
@@ -545,8 +948,16 @@ a:active,
   animation: micro-breathing-scale 3.5s ease-in-out infinite;
 }
 
+@keyframes grid-flow-slow {
+  0% {
+    background-position: 0% 0%, 0px 0px, 0px 0px;
+  }
+  100% {
+    background-position: 0% 0%, 1920px 1920px, 1920px 1920px;
+  }
+}
 
-
-
-
+.animate-grid-flow-slow {
+  animation: grid-flow-slow 180s linear infinite;
+}
 

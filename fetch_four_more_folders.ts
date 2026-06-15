@@ -1,10 +1,10 @@
 import fetch from "node-fetch";
 
 const urls = [
-  "https://drive.google.com/drive/folders/1tRDj77JbvA6rER2irIQKYOjU86lxZFWp",
-  "https://drive.google.com/drive/folders/1W75WMEYLQU1i7R644zhMT21cLbGRL9Zf",
-  "https://drive.google.com/drive/folders/1Opx1PjgS3TB9LD5DfzmALcSUFyPenJ0r",
-  "https://drive.google.com/drive/folders/1gBWjribEGpEVmp5UprBrrRTpSDf5Dh6u"
+  "https://drive.google.com/drive/folders/1wZ6JLbqI-k436MiQnUFiPXv9eBCn3QRd",
+  "https://drive.google.com/drive/folders/1If06uSSXz45jTHfspN1g1o33Kt2VtrYT",
+  "https://drive.google.com/drive/folders/1oqkIA8LMvdW25VHxDeH2m7O6YMjY5Op2",
+  "https://drive.google.com/drive/folders/19rjMpFjCBmiH1Fgm7miYgyqKpBS-zmdl"
 ];
 
 async function run() {
