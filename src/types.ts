@@ -10,4 +10,5 @@ export interface PortfolioItem {
   colorTheme: string; // Tailored color accent for hovering effects
   images?: string[]; // Multiple images for project portfolio gallery
   videoUrl?: string; // Optional embedded video link (e.g. YouTube video URL)
+  isHighlight?: boolean; // Highlighted featured project cards
 }

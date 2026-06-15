@@ -2,11 +2,105 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "new-dino-01",
+    "category": "角色IP&插畫與貼圖",
+    "title": "藍色暴龍吉祥物 Shone：街頭滑板風格 IP 角色設計",
+    "titleEn": "Blue T-Rex Mascot 'Shone': Street Skateboard Style IP Character Design",
+    "philosophy": "以這隻充滿活力的藍色恐龍作為專案範例！這隻恐龍頭戴棒球帽、手比 V 字符號，坐在滑板上展現出滿滿的反差萌與街頭感。此卡片專為展示而建立。",
+    "tools": [
+        "Illustrator",
+        "Photoshop",
+        "IP角色",
+        "吉祥物設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1Rw62baTyGYK3jjDnOXZScGybtKHFxc0I",
+    "placeholderId": "IMAGE_DINO",
+    "colorTheme": "from-[#0A192F] via-[#112240] to-[#0A192F]",
+    "images": [
+        "https://drive.google.com/thumbnail?sz=w1000&id=1Rw62baTyGYK3jjDnOXZScGybtKHFxc0I",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG"
+    ]
+  },
+  {
+    "id": "96",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮金屬紀念合金硬幣與包裝工藝設計",
+    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Metallic Commemorative Alloy Coin & Packaging Craft Design",
+    "philosophy": "鋅合金硬幣耀金古銀雙色電鍍，3D浮雕壓印硬核瓣膜支架與心臟電生理，醫理深藍絨特種紙包裝盒，內置EVA孔圈與高週波燙金。",
+    "isHighlight": true,
+    "tools": [
+        "Photoshop",
+        "包裝設計",
+        "Illustrator",
+        "Adobe Illustrator"
+    ],
+    "imageUrl": "/images/optimized/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6.webp",
+    "placeholderId": "IMAGE_96",
+    "colorTheme": "from-[#061630] via-[#102a54] to-[#061630]",
+    "images": [
+        "/images/optimized/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6.webp",
+        "/images/optimized/1iMrPCF8hTPTWyw-3jaPA0qHOqW7cOw1g.webp",
+        "/images/optimized/1xVM_v_1hyI2breBV64IBHIDWHuaGk7og.webp",
+        "/images/optimized/1jBx3cwg7tfkDwM8r5idTJTSnk3q2CgsU.webp",
+        "/images/optimized/1dBZ6PdKQuPoZy2tACpRzxmoF_214ZgA-.webp",
+        "/images/optimized/1-zXevp1HIX99fBfHZv7Xk2XbNw40vJUk.webp",
+        "/images/optimized/1HW4vcczWpcWiOsacgSxyQMOvMoyiAg5N.webp",
+        "/images/optimized/1ykSJxCmHrSC5GQ1xdEk2zKjOxgbxko6F.webp"
+    ]
+  },
+  {
+    "id": "97",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮核桃木框紀念硬幣雙面磁吸高透展示框設計",
+    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Wood Magnetic Double-Sided High-Transparency Display Frame Design",
+    "philosophy": "北美黑核桃木手工打磨上蠟結合榫卯工藝，展示框內部304不銹鋼拉絲片精密雷雕，高透光抗UV壓克力視窗，強力釹鐵硼隱形磁吸咬合清脆。",
+    "isHighlight": true,
+    "tools": [
+        "Photoshop",
+        "SolidWorks",
+        "木作工藝"
+    ],
+    "imageUrl": "/images/optimized/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-.webp",
+    "placeholderId": "IMAGE_97",
+    "colorTheme": "from-[#0d0a08] via-[#2a1e17] to-[#0d0a08]",
+    "images": [
+        "/images/optimized/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-.webp",
+        "/images/optimized/1g3zSHWSIcstUzETumBQ9jFnHmiBgDnGi.webp",
+        "/images/optimized/1EqZNMtNyI-9OitqDBdGcreHt9Cn6y-mC.webp",
+        "/images/optimized/1VnqKXAD65a_1eN_WdBK7BAJXm7fmI2OR.webp"
+    ]
+  },
+  {
+    "id": "98",
+    "category": "商品周邊企業禮贈品",
+    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮梣木心臟解剖雷雕紀念硬幣收藏木盒工藝設計",
+    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Ashwood Heart Anatomy Engraved Commemorative Coin Wood Box Craft Design",
+    "philosophy": "梣木山形木紋收藏盒，上蓋微米手工雷雕精密心臟解剖圖譜與主動脈弓線稿，釹鐵硼強磁吸氣咬合開關，盒內高密度黑色天鵝絨緩衝固定大會紀念幣。",
+    "isHighlight": true,
+    "tools": [
+        "雷射雕刻",
+        "木作工藝",
+        "Photoshop"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=oVAIPxzXT2k",
+    "imageUrl": "/images/optimized/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq.webp",
+    "placeholderId": "IMAGE_98",
+    "colorTheme": "from-[#110e0a] via-[#35251a] to-[#110e0a]",
+    "images": [
+        "/images/optimized/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq.webp",
+        "/images/optimized/1VbEmK6g_HvG08nE67aoezPlqhvWt64Gu.webp",
+        "/images/optimized/1ntu1G2iUTQ9IANbNlzH09fKvh-QMVhNb.webp",
+        "https://img.youtube.com/vi/oVAIPxzXT2k/maxresdefault.jpg",
+        "https://img.youtube.com/vi/oVAIPxzXT2k/0.jpg"
+    ]
+  },
+  {
     "id": "7",
     "category": "商業視覺攝影",
     "title": "茂生百味：究極之月尊榮燕窩月餅禮盒包裝設計",
     "titleEn": "Mornsun Premium: Ultimate Moon Premium Bird's Nest Mooncake Gift Box Packaging Design",
     "philosophy": "皇家藍深邃基調與細緻金色線條交織，絲絨感藝術紙融合燙金，打凸工藝與訂製金屬鎖扣，版面平衡宮廷尊貴與現代簡約美學。",
+    "isHighlight": true,
     "tools": [
         "Illustrator",
         "Photoshop",
@@ -1656,6 +1750,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Meril 醫療科技：Myval 人工心臟瓣膜手術手冊與 TAVI 專屬腰封包裝整合設計",
     "titleEn": "Meril Life Sciences: Myval Transcatheter Heart Valve Surgery Booklet & TAVI Custom Waist Band Integrated Package Design",
     "philosophy": "嚴謹多維網格排版高彩度「醫理靛藍」與「心瓣耀金」，為手術室提供秒讀體驗，進口特種紙腰封雙重燙金打凸勾勒瓣膜網格。",
+    "isHighlight": true,
     "tools": [
         "InDesign",
         "Illustrator",
@@ -1978,76 +2073,6 @@ export const initialPortfolioData: PortfolioItem[] = [
         "/images/optimized/1-_spXpNF-_hWAaGMKqJCPfzpb6Lm3LdP.webp",
         "/images/optimized/1DdCHaXnDqNFhp4AAXfW5HSfE3B_3NF8_.webp",
         "/images/optimized/142x0rWwr3GfF34u9ImHgJzDHXR0WxVTs.webp"
-    ]
-},
-  {
-    "id": "96",
-    "category": "商品周邊企業禮贈品",
-    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮金屬紀念合金硬幣與包裝工藝設計",
-    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Metallic Commemorative Alloy Coin & Packaging Craft Design",
-    "philosophy": "鋅合金硬幣耀金古銀雙色電鍍，3D浮雕壓印硬核瓣膜支架與心臟電生理，醫理深藍絨特種紙包裝盒，內置EVA孔圈與高週波燙金。",
-    "tools": [
-        "Photoshop",
-        "包裝設計",
-        "Illustrator",
-        "Adobe Illustrator"
-    ],
-    "imageUrl": "/images/optimized/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6.webp",
-    "placeholderId": "IMAGE_96",
-    "colorTheme": "from-[#061630] via-[#102a54] to-[#061630]",
-    "images": [
-        "/images/optimized/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6.webp",
-        "/images/optimized/1iMrPCF8hTPTWyw-3jaPA0qHOqW7cOw1g.webp",
-        "/images/optimized/1xVM_v_1hyI2breBV64IBHIDWHuaGk7og.webp",
-        "/images/optimized/1jBx3cwg7tfkDwM8r5idTJTSnk3q2CgsU.webp",
-        "/images/optimized/1dBZ6PdKQuPoZy2tACpRzxmoF_214ZgA-.webp",
-        "/images/optimized/1-zXevp1HIX99fBfHZv7Xk2XbNw40vJUk.webp",
-        "/images/optimized/1HW4vcczWpcWiOsacgSxyQMOvMoyiAg5N.webp",
-        "/images/optimized/1ykSJxCmHrSC5GQ1xdEk2zKjOxgbxko6F.webp"
-    ]
-},
-  {
-    "id": "97",
-    "category": "商品周邊企業禮贈品",
-    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮核桃木框紀念硬幣雙面磁吸高透展示框設計",
-    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Wood Magnetic Double-Sided High-Transparency Display Frame Design",
-    "philosophy": "北美黑核桃木手工打磨上蠟結合榫卯工藝，展示框內部304不銹鋼拉絲片精密雷雕，高透光抗UV壓克力視窗，強力釹鐵硼隱形磁吸咬合清脆。",
-    "tools": [
-        "Photoshop",
-        "SolidWorks",
-        "木作工藝"
-    ],
-    "imageUrl": "/images/optimized/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-.webp",
-    "placeholderId": "IMAGE_97",
-    "colorTheme": "from-[#0d0a08] via-[#2a1e17] to-[#0d0a08]",
-    "images": [
-        "/images/optimized/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-.webp",
-        "/images/optimized/1g3zSHWSIcstUzETumBQ9jFnHmiBgDnGi.webp",
-        "/images/optimized/1EqZNMtNyI-9OitqDBdGcreHt9Cn6y-mC.webp",
-        "/images/optimized/1VnqKXAD65a_1eN_WdBK7BAJXm7fmI2OR.webp"
-    ]
-},
-  {
-    "id": "98",
-    "category": "商品周邊企業禮贈品",
-    "title": "巴迪醫療 & Meril Life Sciences：Myval™ THV 尊榮梣木心臟解剖雷雕紀念硬幣收藏木盒工藝設計",
-    "titleEn": "Buddy Medical & Meril Life Sciences: Myval™ THV Premium Ashwood Heart Anatomy Engraved Commemorative Coin Wood Box Craft Design",
-    "philosophy": "梣木山形木紋收藏盒，上蓋微米手工雷雕精密心臟解剖圖譜與主動脈弓線稿，釹鐵硼強磁吸氣咬合開關，盒內高密度黑色天鵝絨緩衝固定大會紀念幣。",
-    "tools": [
-        "雷射雕刻",
-        "木作工藝",
-        "Photoshop"
-    ],
-    "videoUrl": "https://www.youtube.com/watch?v=oVAIPxzXT2k",
-    "imageUrl": "/images/optimized/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq.webp",
-    "placeholderId": "IMAGE_98",
-    "colorTheme": "from-[#110e0a] via-[#35251a] to-[#110e0a]",
-    "images": [
-        "/images/optimized/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq.webp",
-        "/images/optimized/1VbEmK6g_HvG08nE67aoezPlqhvWt64Gu.webp",
-        "/images/optimized/1ntu1G2iUTQ9IANbNlzH09fKvh-QMVhNb.webp",
-        "https://img.youtube.com/vi/oVAIPxzXT2k/maxresdefault.jpg",
-        "https://img.youtube.com/vi/oVAIPxzXT2k/0.jpg"
     ]
 },
   {
@@ -2737,6 +2762,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "素顏之本 手工皂系列：凝鍊自然精萃之靜謐美學與植萃極致電商詳情長頁與電商產品圖文",
     "titleEn": "Naturals Kin Artisan Soap Collection: A Minimalist Visual Narrative of Botanical Purity and Sensory Elegance",
     "philosophy": "有機低飽和大地，薰衣草紫配色皂盒，疏密有致陳列於冷冽原始岩石，清晨霧氣微光散射，配合細緻宋體與大面積負空間。",
+    "isHighlight": true,
     "tools": [
         "Photoshop",
         "Illustrator",
@@ -5354,6 +5380,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Orion好麗友 烏龜脆片 電商詳情頁設計",
     "titleEn": "Orion好麗友 烏龜脆片 E-commerce Detail Page Design",
     "philosophy": "本專案為Orion好麗友 烏龜脆片打造的高品質電商長頁。運用大氣簡潔的網格架構與流暢資訊層級，生動展現商品亮點與美學氛圍，全面提升品牌信任感。",
+    "isHighlight": true,
     "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator"
@@ -5662,6 +5689,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "台東初鹿 保久乳 電商詳情頁設計",
     "titleEn": "台東初鹿 保久乳 E-commerce Detail Page Design",
     "philosophy": "本專案為台東初鹿 保久乳打造的高品質電商長頁。運用大氣簡潔的網格架構與流暢資訊層級，生動展現商品亮點與美學氛圍，全面提升品牌信任感。",
+    "isHighlight": true,
     "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator"
@@ -6597,6 +6625,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "浪漫香調香水精選 品牌週促銷橫幅設計",
     "titleEn": "Yahoo Mall Romantic Fragrance & Perfume Promo Banner",
     "philosophy": "選用柔和典雅的淡粉與玫瑰金漸層背板，精妙調配負空間以釋放奢華氛圍，完美呼應精緻香氛瓶身，在有限手機端中，以前景羽化與高對比排版引導點擊。",
+    "isHighlight": true,
     "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator"
@@ -6614,6 +6643,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "瓜瓜園冰烤番薯 官方網站推播廣告設計",
     "titleEn": "KuaKuaYuan Roasted Sweet Potato Web Banner Design",
     "philosophy": "以暖黃烤番薯自然色調為主軸，融入清爽冰涼漸層象徵冰烤工藝，極簡大字體搭配精緻特寫，流暢對齊黃金視線路徑，在官網推播中建立高度食慾感與點擊引導。",
+    "isHighlight": true,
     "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator"
@@ -7527,6 +7557,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "冬日進補暖心火鍋湯底 樂天美食極致禦寒行銷廣告",
     "titleEn": "Rakuten Winter Warm Hotpot Soup Bases Campaign Banner",
     "philosophy": "以滾沸火鍋升騰的溫暖蒸汽為底，高清凸顯濃郁大骨與麻辣黃金湯底，暖色極富家庭圍爐的幸福感，大字清利，瞬間點燃低溫季節的暖胃下單狂潮。",
+    "isHighlight": true,
     "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator"
@@ -7978,6 +8009,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "【bobos】X9時尚寵物多功能手推車 旗艦級官方電商詳情頁設計（長圖瀑布頁）",
     "titleEn": "bobos X9 Elegant Pet Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
     "philosophy": "本專案針對【bobos】X9 豪華多功能寵物手推車設計完整的電商長圖瀑布頁（詳情頁）。全篇設計聚焦於『母嬰級安穩與寵物優雅隨行』，採用極具質感的墨綠與碳灰底色，運用細膩的透視排版手法，全方位剖析『一鍵秒收、高承重避震、全方位透氣防蚊艙』等核心機能點，打造沉浸式的視覺長圖體驗，完美拉長消費者頁面停留時間並引導高轉化下單。",
+    "isHighlight": true,
     "tools": [
         "Adobe Photoshop",
         "Adobe Illustrator",

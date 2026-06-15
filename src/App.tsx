@@ -30,7 +30,8 @@ import {
   ArrowUp,
   Shuffle,
   Maximize2,
-  Minimize2
+  Minimize2,
+  Image as ImageIcon
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { initialPortfolioData } from "./data";
@@ -335,18 +336,61 @@ function ImageWithFallback({
         zoomable ? "cursor-zoom-in" : ""
       }`}
     >
-      {/* Modern thin loader that matches Capelee's ultra-premium minimal aesthetic */}
-      {!isLoaded && fallbackAttempt < 4 && (
-        <div className="absolute inset-0 bg-[#0B0B0B] flex flex-col items-center justify-center z-13 px-4 text-center select-none">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute w-8 h-8 rounded-full bg-amber-500/5 blur-sm animate-pulse" />
-            <div className="w-6 h-6 rounded-full border-t border-r border-[#D97706]/90 border-zinc-900 animate-spin" />
+      {/* Premium Skeleton Screen with smooth fade out to replace simple spinner */}
+      <div 
+        className={`absolute inset-0 z-10 bg-[#090909] transition-all duration-700 ease-in-out ${
+          isLoaded && fallbackAttempt < 4
+            ? "opacity-0 pointer-events-none scale-[0.98] blur-xl" 
+            : "opacity-100"
+        }`}
+      >
+        {/* Shimmer overlay effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full animate-skeleton-shimmer pointer-events-none" />
+        
+        {/* Decorative Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:24px_24px] opacity-60 pointer-events-none" />
+        
+        {/* Ambient Glow matching project-specific colors */}
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-[80px] opacity-[0.18] pointer-events-none bg-gradient-to-br ${fallbackTheme || "from-amber-600 to-blue-900"}`} />
+
+        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8 pointer-events-none select-none">
+          {/* Top category row placeholder */}
+          <div className="flex items-center justify-between">
+            <div className="h-5 w-24 bg-zinc-800/60 rounded-md border border-white/[0.04] flex items-center justify-center">
+              <span className="text-[8px] font-mono tracking-wider text-zinc-500">{categoryName || "PORTFOLIO"}</span>
+            </div>
+            <div className="h-5 w-12 bg-zinc-850/40 rounded-md border border-white/[0.02]" />
           </div>
-          <span className="text-[9px] font-mono tracking-[0.25em] text-neutral-600 uppercase mt-4">
-            LOADING IMAGE
-          </span>
+
+          {/* Center wireframe graphic structure */}
+          <div className="flex flex-col items-center justify-center gap-3.5 py-8">
+            <div className="relative flex items-center justify-center">
+              {/* Pulsing ring */}
+              <div className="absolute h-16 w-16 rounded-full border border-amber-500/10 animate-pulse" />
+              {/* Rotating outer ring */}
+              <div className="absolute h-12 w-12 rounded-full border border-dashed border-zinc-850 animate-[spin_16s_linear_infinite]" />
+              {/* Media Icon block */}
+              <div className="h-9 w-9 rounded-full bg-zinc-900 border border-white/[0.06] flex items-center justify-center shadow-inner">
+                <ImageIcon className="h-4 w-4 text-zinc-600 animate-pulse" />
+              </div>
+            </div>
+            <span className="text-[8.5px] font-mono tracking-[0.25em] text-zinc-500 uppercase">
+              RESTORING HI-RES ASSET...
+            </span>
+          </div>
+
+          {/* Bottom title block placeholder with loading progress bar */}
+          <div className="space-y-3">
+            <div className="space-y-1.5">
+              <div className="h-4 w-1/2 bg-zinc-800/60 rounded" />
+              <div className="h-3 w-1/3 bg-zinc-850/40 rounded" />
+            </div>
+            <div className="relative h-1 w-full bg-zinc-900/60 rounded-full overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-amber-500/20 via-amber-500/80 to-amber-500/20 rounded-full animate-progress-loading" />
+            </div>
+          </div>
         </div>
-      )}
+      </div>
       
       {zoomable && isLoaded && (
         <div className="absolute top-4 left-4 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono tracking-wider text-zinc-300 bg-black/85 backdrop-blur-md rounded-md border border-white/10 select-none shadow-lg">
@@ -411,6 +455,31 @@ interface PortfolioCardProps {
 
 function PortfolioCard({ item, onClick }: PortfolioCardProps) {
   const [coords, setCoords] = useState({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
+  const [isPressed, setIsPressed] = useState(false);
+  const touchStartRef = React.useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    setIsPressed(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current) return;
+    const touch = e.touches[0];
+    const diffX = Math.abs(touch.clientX - touchStartRef.current.x);
+    const diffY = Math.abs(touch.clientY - touchStartRef.current.y);
+    
+    // 如果手指滑動超過 8px，認定為滑動，立即取消按壓縮小效果
+    if (diffX > 8 || diffY > 8) {
+      setIsPressed(false);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartRef.current = null;
+    setIsPressed(false);
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
@@ -433,6 +502,7 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
 
   const handleMouseLeave = () => {
     setCoords({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, isHovered: false });
+    setIsPressed(false);
   };
 
   return (
@@ -454,17 +524,31 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
         onClick={onClick}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onMouseDown={() => setIsPressed(true)}
+        onMouseUp={() => setIsPressed(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
         style={{
           transformStyle: "preserve-3d",
-          transform: `perspective(1000px) rotateX(${coords.rotateX}deg) rotateY(${coords.rotateY}deg) scale3d(${coords.isHovered ? 1.025 : 1}, ${coords.isHovered ? 1.025 : 1}, 1)`,
-          transition: coords.isHovered 
-            ? "transform 0.12s ease-out, border-color 0.30s ease, box-shadow 0.30s ease" 
-            : "transform 0.75s cubic-bezier(0.34, 1.65, 0.64, 1), border-color 0.50s ease, box-shadow 0.50s ease",
+          transform: `perspective(1000px) rotateX(${coords.rotateX}deg) rotateY(${coords.rotateY}deg) scale3d(${isPressed ? 0.95 : (coords.isHovered ? 1.025 : 1)}, ${isPressed ? 0.95 : (coords.isHovered ? 1.025 : 1)}, 1)`,
+          transition: isPressed
+            ? "transform 0.07s cubic-bezier(0.16, 1, 0.3, 1)"
+            : (coords.isHovered 
+                ? "transform 0.12s ease-out, border-color 0.30s ease, box-shadow 0.30s ease" 
+                : "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.50s ease, box-shadow 0.50s ease"),
           boxShadow: coords.isHovered 
-            ? "0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(245, 158, 11, 0.15)" 
-            : "0 10px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(245, 158, 11, 0)",
+            ? "0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(245, 158, 11, 0.2)" 
+            : (item.isHighlight 
+                ? "0 8px 16px -6px rgba(0,0,0,0.6), 0 0 15px 1px rgba(245, 158, 11, 0.12)"
+                : "0 10px 20px -10px rgba(0,0,0,0.5), 0 0 0 0 rgba(245, 158, 11, 0)"),
         }}
-        className="group relative flex flex-col bg-[#0E0E0E] rounded-2xl overflow-hidden border border-white/5 hover:border-amber-500/35 cursor-pointer h-full transition-colors"
+        className={`group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer h-full transition-all duration-300 ${
+          item.isHighlight 
+            ? "border-[2px] border-amber-500/35 hover:border-amber-400 bg-gradient-to-b from-[#16120b] to-[#0a0a0a]" 
+            : "bg-[#0E0E0E] border border-white/5 hover:border-amber-500/35"
+        }`}
       >
         {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
         <div 
@@ -488,9 +572,10 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
             alt={item.title}
             referrerPolicy="no-referrer"
             fallbackTheme={item.colorTheme}
+            categoryName={item.category}
             titleText={item.title}
             optimizeSize={600}
-            className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+            className="w-full h-full object-cover transform transition-all duration-700 ease-out group-hover:scale-[1.045] group-hover:animate-hover-pulse-image"
             lazy={true}
           />
           
@@ -499,16 +584,27 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
 
           {/* 卡片類別浮章 */}
           <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
-            <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/75 backdrop-blur-md border border-white/10 rounded-full shadow-md">
+            <span className="px-3 py-1 text-[11px] font-medium tracking-wide text-white bg-black/75 backdrop-blur-md border border-white/10 rounded-full shadow-md flex items-center gap-1.5 transition-all duration-300 group-hover:border-amber-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse group-hover:scale-125 transition-transform duration-300" />
               {item.category}
             </span>
           </div>
+
+          {/* 亮點卡片勳章 */}
+          {item.isHighlight && (
+            <div className="absolute top-4 right-4 z-20" style={{ transform: "translateZ(12px)" }}>
+              <span className="px-2.5 py-1 text-[10px] font-sans font-bold tracking-wider text-black bg-gradient-to-r from-amber-400 to-amber-500 rounded-full shadow-lg flex items-center gap-1 border border-amber-300/30 transition-shadow duration-300 group-hover:shadow-amber-500/15">
+                <Sparkles className="h-3 w-3 fill-black text-black animate-bounce animate-hover-bounce-icon" />
+                <span>精選亮點</span>
+              </span>
+            </div>
+          )}
 
           {/* hover 視覺遮罩提示 */}
           <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="text-[11px] font-sans font-semibold tracking-wider text-black bg-amber-400 px-3.5 py-1.5 rounded-lg shadow-lg shadow-amber-500/20 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 uppercase flex items-center gap-1.5" style={{ transform: "translateZ(15px)" }}>
               <span>觀看精彩設計細節</span>
-              <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
+              <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5] animate-hover-bounce-icon" />
             </span>
           </div>
         </div>
@@ -517,8 +613,9 @@ function PortfolioCard({ item, onClick }: PortfolioCardProps) {
         <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4" style={{ transform: "translateZ(4px)" }}>
           <div className="space-y-1">
             <p className="text-[10px] font-mono tracking-widest text-[#F59E0B]/80 uppercase">{item.titleEn}</p>
-            <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
-              {item.title}
+            <h3 className="text-base font-display font-semibold text-white group-hover:text-amber-400 transition-colors duration-300 line-clamp-1 flex items-center gap-1">
+              <span className="truncate">{item.title}</span>
+              <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 translate-x-0 transition-all duration-300 text-amber-500 text-sm font-semibold shrink-0">→</span>
             </h3>
           </div>
 
@@ -601,8 +698,50 @@ export default function App() {
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  // 吉祥物圖片清單 (連結至雲端硬碟 1aniUitB-HaQF1KGwZqwscgp2FZwfraXH 內之透明去背 PNG 圖片)
+  const mascotImages = useMemo(() => [
+    "1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl", // 原始藍色暴龍
+    "1ZqwEVdSgE6ClGKJ4sZj-Cgn2q25AInK6", // 吉祥物 2 (去背 PNG)
+    "1h_kR_PViTQVM9dyh5ZhcfovaB5kGejD0"  // 吉祥物 3 (去背 PNG)
+  ], []);
+
+  // 吉祥物背景發光彩色暈圈主題色
+  const mascotGlows = useMemo(() => [
+    "from-cyan-500/25 to-blue-500/20 shadow-[0_0_50px_rgba(34,211,238,0.2)]",       // 藍色龍調 (青藍)
+    "from-amber-400/25 to-orange-500/20 shadow-[0_0_50px_rgba(245,158,11,0.2)]",     // 暖金配亮橘
+    "from-purple-500/25 to-pink-500/20 shadow-[0_0_50px_rgba(168,85,247,0.2)]"       // 幻境粉紫
+  ], []);
+
+  const [mascotIndex, setMascotIndex] = useState(0);
+
+  const handleNextMascot = () => {
+    setMascotIndex((prev) => (prev + 1) % mascotImages.length);
+  };
+
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // 全局觸覺震動回饋 (navigator.vibrate) 監聽器，針對對按鈕、連結、卡片等成功互動點擊
+  React.useEffect(() => {
+    const triggerHaptic = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+      // 搜尋最近的互動父容器（如 button, a, 具有 role='button' 或 cursor-pointer 類別的元素）
+      const interactive = target.closest("button, a, [role='button'], .cursor-pointer");
+      
+      if (interactive && typeof navigator !== "undefined" && navigator.vibrate) {
+        // 提供手持裝置極細微的實體確認回饋（12毫秒），點擊成立時才執行，避免滑動時誤觸
+        navigator.vibrate(12);
+      }
+    };
+
+    window.addEventListener("click", triggerHaptic, { passive: true });
+
+    return () => {
+      window.removeEventListener("click", triggerHaptic);
+    };
+  }, []);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -629,6 +768,17 @@ export default function App() {
   const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
   const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">("stitch");
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
+
+  // 當開啟作品細節 Lightbox Modal 時，對 Body 進行滾動鎖定，確保手持裝置體驗如 Native App 般精確穩定
+  React.useEffect(() => {
+    if (activeModalItem) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [activeModalItem]);
   
   // Custom states for interactive highlights
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
@@ -720,9 +870,20 @@ export default function App() {
 
   // Filter items
   const filteredItems = useMemo(() => {
-    if (selectedCategory === "All") return items;
-    return items.filter(item => item.category === selectedCategory);
-  }, [items, selectedCategory]);
+    const list = selectedCategory === "All" 
+      ? items 
+      : items.filter(item => item.category === selectedCategory);
+    
+    if (!isRandomMode) {
+      // Sort: isHighlight === true projects go to the front
+      return [...list].sort((a, b) => {
+        const aVal = a.isHighlight ? 1 : 0;
+        const bVal = b.isHighlight ? 1 : 0;
+        return bVal - aVal;
+      });
+    }
+    return list;
+  }, [items, selectedCategory, isRandomMode]);
 
   // Performance Optimization: Preload the cover images (600px width) of only the active category dynamically.
   // This avoids overwhelming the browser and Google Drive API, resolving rate limits, lag, and black screen failures.
@@ -1400,6 +1561,7 @@ export default function App() {
                                 alt={`${activeModalItem.title} - 拼接第 ${idx + 1} 節`}
                                 referrerPolicy="no-referrer"
                                 fallbackTheme={activeModalItem.colorTheme}
+                                categoryName={activeModalItem.category}
                                 titleText={activeModalItem.title}
                                 optimizeSize={1200}
                                 className="w-full h-auto object-contain block p-0 m-0 border-0 outline-none"
@@ -1459,6 +1621,7 @@ export default function App() {
                               alt={activeModalItem.title}
                               referrerPolicy="no-referrer"
                               fallbackTheme={activeModalItem.colorTheme}
+                              categoryName={activeModalItem.category}
                               titleText={activeModalItem.title}
                               optimizeSize={1200}
                               className="w-full h-full object-contain transition-all duration-300"
@@ -1709,6 +1872,89 @@ export default function App() {
               )}
 
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 角色插畫類別專屬：右下角生動彈出裝飾 */}
+      <AnimatePresence>
+        {selectedCategory === "角色IP&插畫與貼圖" && (
+          <motion.div
+            initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
+            animate={{ y: 0, opacity: 1, rotate: -5, scale: 1 }}
+            exit={{ y: "150%", opacity: 0, rotate: 20, scale: 0.5 }}
+            transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }}
+            className="fixed bottom-0 -right-2 md:right-12 z-50 pointer-events-none origin-bottom flex flex-col items-center drop-shadow-2xl"
+          >
+            {/* 互動對話氣泡 */}
+            <motion.div
+              initial={{ scale: 0, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, type: "spring", bounce: 0.5 }}
+              className="bg-black/90 backdrop-blur-xl border border-amber-500/40 text-white text-[11px] font-sans font-medium px-4 py-2.5 rounded-2xl mb-3 shadow-[0_0_20px_rgba(245,158,11,0.25)] relative flex flex-col items-center gap-1.5 pointer-events-auto"
+            >
+              <div 
+                onClick={handleNextMascot}
+                className="text-amber-400 font-bold tracking-wider flex items-center gap-1 cursor-pointer hover:text-amber-300 transition-colors"
+                title="點擊吉祥物換造型"
+              >
+                <Sparkles className="h-3.5 w-3.5 animate-pulse text-amber-400 fill-amber-400" />
+                <span>HI! 點我可以更換造型喔！</span>
+              </div>
+              <div className="absolute -bottom-2 right-12 md:right-20 w-4 h-4 bg-black/90 backdrop-blur-xl border-r border-b border-amber-500/40 rotate-45" />
+            </motion.div>
+            
+            {/* 
+              角色圖片 (點擊可切換同雲端之不同吉祥物，帶有怠速浮動與 hover 浮動，切換時具有平滑淡入淡出)
+            */}
+            <motion.button
+              onClick={handleNextMascot}
+              type="button"
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                y: {
+                  repeat: Infinity,
+                  duration: 3,
+                  ease: "easeInOut"
+                }
+              }}
+              className="relative w-40 md:w-56 lg:w-64 transform md:rotate-6 pointer-events-auto cursor-pointer group focus:outline-none"
+              title="點我換個造型！"
+            >
+              {/* 動態背景彩色發光暈圈 (滑鼠靠近/懸停時自動綻放，樣式顏色跟造型同步) */}
+              <div 
+                className={`absolute inset-4 -z-10 rounded-full blur-[40px] opacity-[0.06] group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 ease-out bg-gradient-to-tr ${
+                  mascotGlows[mascotIndex] || "from-cyan-500/20 to-blue-500/20"
+                } pointer-events-none`}
+              />
+              
+              <AnimatePresence mode="wait">
+                <motion.img 
+                  key={mascotIndex}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  src={`https://drive.google.com/thumbnail?sz=w800&id=${mascotImages[mascotIndex]}`} 
+                  alt="Mascot Avatar" 
+                  className="w-full h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] brightness-110 group-hover:brightness-125 transition-all duration-300"
+                  onError={(e) => {
+                    // 如果連結失效，自動替換回專案內的備用圖
+                    e.currentTarget.src = "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp";
+                  }}
+                />
+              </AnimatePresence>
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/75 border border-white/10 text-[9px] text-zinc-300 px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+                🐾 點擊換裝 ({mascotIndex + 1}/{mascotImages.length})
+              </div>
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
