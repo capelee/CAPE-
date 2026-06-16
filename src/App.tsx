@@ -975,6 +975,11 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   
+  // 雙指縮放狀態
+  const [mascotScale, setMascotScale] = useState<number>(1);
+  const initialDistanceRef = React.useRef<number | null>(null);
+  const currentScaleRef = React.useRef<number>(1);
+  
   const dragControls = useDragControls();
 
   // 當常駐代言吉祥物改變時，自動重置並介紹
@@ -1021,20 +1026,42 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
     return () => clearInterval(interval);
   }, [currentMascot, mascotDialogue]);
 
-  // 手機震動反饋與極速觸摸響應
-  const handleTouchStart = () => {
-    setIsTouched(true);
-    if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
-      try {
-        window.navigator.vibrate(15);
-      } catch (err) {
-        // Safe catch for iframe / permission constraints
+  // 手機震動反饋與極速觸摸響應 & 雙指縮放
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => {
+    if (e.touches && e.touches.length === 2) {
+      // 雙指觸控開始
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const dist = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+      initialDistanceRef.current = dist;
+      currentScaleRef.current = mascotScale;
+    } else if (e.touches && e.touches.length === 1) {
+      setIsTouched(true);
+      if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
+        try {
+          window.navigator.vibrate(15);
+        } catch (err) {
+          // Safe catch for iframe / permission constraints
+        }
       }
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => {
+    // 檢查是否有進行拖曳 (framermotion drag 會有些攔截，但如果是 2 指，則嘗試計算縮放)
+    if (e.touches && e.touches.length === 2 && initialDistanceRef.current !== null) {
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const dist = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+      const ratio = dist / initialDistanceRef.current;
+      const newScale = Math.min(Math.max(currentScaleRef.current * ratio, 0.5), 2.5); // 限制縮放範圍在 0.5 到 2.5 倍
+      setMascotScale(newScale);
     }
   };
 
   const handleTouchEnd = () => {
     setIsTouched(false);
+    initialDistanceRef.current = null;
   };
 
   return (
@@ -1042,7 +1069,7 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
       {isVisible && !activeModalItem && !isWorkflowOpen && !isContactCardOpen && (
         <motion.div
           initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
-          animate={isImageLoaded ? { y: 0, opacity: 1, rotate: -5, scale: 1 } : { y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
+          animate={isImageLoaded ? { y: 0, opacity: 1, rotate: -5, scale: mascotScale } : { y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
           exit={{ y: "150%", opacity: 0, rotate: 20, scale: 0.5 }}
           transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }}
           className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-none origin-bottom flex flex-col items-center drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[250px]"
@@ -1051,6 +1078,10 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
           dragControls={dragControls}
           dragListener={false}
           dragMomentum={false}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
         >
           {/* 自定義組件自密閉 CSS 動態效果：包含對話框微幅上下飄移 & 優雅氣泡指向動畫 */}
           <style dangerouslySetInnerHTML={{ __html: `
@@ -1151,6 +1182,7 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
           <motion.button
             onClick={handleNextMascot}
             onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
             onPointerDown={(e) => dragControls.start(e)}
