@@ -1,5 +1,28 @@
 // This file is auto-generated to keep track of local optimized images.
 export const EXISTING_OPTIMIZED_IMAGES = new Set<string>([
+  "1rPh14GG7YZF88spnpXTmtB7dnNFcd_kU",
+  "1X420youYFNEuxmAwuLkN_sZSEhWQCc9w",
+  "1vB1bLg8Hl5kHE1h1cptozgY28A8N27Ik",
+  "1Vxt1vifCHXUhrcEDRu8L1MqWMzI_W_Ds",
+  "1fKCxHxLbCLjRihCLRtj2UvICUBsNekqm",
+  "10oxD3GmmW0utYZKFNyNP-gySz0xQXRYX",
+  "1Q3yxBwOGgmn7WEQoeCm8APNdbtxGcJmq",
+  "1I1KBRonkTt9Pjl71iPdWpAPFZ-i7z8kB",
+  "1EOgxA9OkDVsXJQzzoOw0lGlA624MBmqR",
+  "1WYYNvyf4JIa3HSmTCY86gzwF9WGPxv-m",
+  "1478HzmU6AkqUxv2HgevdOaZswjjfOLoB",
+  "1tDL6IFGqNilqNQtQeZVNkuV2qBYnmwbh",
+  "1pOSyh9tkUHjLeW6EHIOZmWnJeZJMvWjP",
+  "1hrGZ9D3ll0bMUjiFfFVV7jnuaL5Bns9c",
+  "1U_OdG2UOlONfNZCAH53Wj1B3h1HMY2iZ",
+  "1HOWYatgwDUpMg0MBDOA8UUSPi5BQFnwG",
+  "1rNnx0mQvfCb1w3NnpyOCEdam7ig18RQC",
+  "1Sgv6Ri29S29rMnrfenWSKeP8EXYBaYi1",
+  "18ZznwYlW_iNy_KIdAm50tqSpip6-zKpd",
+  "1ZHC-6-Hs9_r_01TaL7ZcBn_l_szgeKiz",
+  "1UaYFJhfzch6tLQScjxK6ZoHIC5W73r8L",
+  "1kexMMRbO8V4K9cucyVNApcs3mXcyuO5g",
+  "1cQBkNWAckbc1Foa8vnUKq-wAFn-itXBh",
   "1-3NDTmBe3vxXSjbk9gtbS6vXiWtD0DQ8",
   "1-UOYu27VEG4NwKAUgwUF4kPexKj5kt-e",
   "1-lSMDEA5ACB_IJjG4PjZ302CLruiiSit",
@@ -277,5 +300,8 @@ export const EXISTING_OPTIMIZED_IMAGES = new Set<string>([
   "1z4KZexcHBQswSvyvEmi2iiiixl5HHObe",
   "1zBc-g7LR8bHZs6TWWgv_N6srrmeY4LOJ",
   "1zE8OWCdvUq2P9kQqtOgJ6kKE2ObPwpmj",
-  "1zmrjyYJf6G_AGFMNYzfa0JFD4dVSkj9Y"
+  "1zmrjyYJf6G_AGFMNYzfa0JFD4dVSkj9Y",
+  "1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq",
+  "1VbEmK6g_HvG08nE67aoezPlqhvWt64Gu",
+  "1ntu1G2iUTQ9IANbNlzH09fKvh-QMVhNb"
 ]);

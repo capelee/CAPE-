@@ -37,8 +37,7 @@ import {
   QrCode,
   Download
 } from "lucide-react";
-import { motion, AnimatePresence, useDragControls } from "motion/react";
-import { initialPortfolioData } from "./data";
+import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
 import { PortfolioItem } from "./types";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
@@ -449,6 +448,270 @@ const categoryColors: Record<string, {
     normalBgSepia: "bg-[#FAF4E5]",
     normalBorderSepia: "border border-[#EADECC]/70 hover:border-amber-600/30",
     normalShadowSepia: "0 4px 6px -1px rgba(67,52,34,0.05)"
+  },
+  "平面設計與排版": {
+    accent: "sky-500",
+    rgbaGlow: "14, 165, 233",
+    borderClass: "group-hover:border-sky-500/30",
+    glowClass: "group-hover:shadow-sky-500/15",
+    gradientClass: "from-sky-500/30 via-sky-500/90 to-sky-500/20",
+    bgClass: "bg-sky-500",
+    pulseBorderClass: "border-sky-500/10",
+    textClass: "text-sky-500",
+    highlightBorderClass: "border-[2px] border-sky-500/35 hover:border-sky-400",
+    normalBorderHoverClass: "hover:border-sky-500/40 hover:shadow-sky-500/5",
+    titleHoverTextClass: "group-hover:text-sky-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-sky-500/40",
+    darkBgClass: "bg-sky-500/20 text-sky-400 border border-sky-500/30",
+    highlightBgDark: "bg-sky-500/5 hover:bg-sky-500/10",
+    highlightBorderDark: "border-sky-500/20 hover:border-sky-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(14, 165, 233,0.2)]",
+    highlightBgLight: "bg-sky-50 hover:bg-sky-100",
+    highlightBorderLight: "border-sky-200 hover:border-sky-400",
+    highlightShadowLight: "shadow-lg shadow-sky-500/10 hover:shadow-xl hover:shadow-sky-500/20",
+    highlightBgSepia: "bg-[rgba(14, 165, 233,0.05)] hover:bg-[rgba(14, 165, 233,0.1)]",
+    highlightBorderSepia: "border-[rgba(14, 165, 233,0.2)] hover:border-[rgba(14, 165, 233,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(14, 165, 233,0.05)] hover:shadow-xl hover:shadow-[rgba(14, 165, 233,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-sky-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(14, 165, 233,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-sky-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-sky-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(14, 165, 233,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(14, 165, 233,0.1)]"
+  },
+  "網頁設計程式UIUX": {
+    accent: "fuchsia-500",
+    rgbaGlow: "217, 70, 239",
+    borderClass: "group-hover:border-fuchsia-500/30",
+    glowClass: "group-hover:shadow-fuchsia-500/15",
+    gradientClass: "from-fuchsia-500/30 via-fuchsia-500/90 to-fuchsia-500/20",
+    bgClass: "bg-fuchsia-500",
+    pulseBorderClass: "border-fuchsia-500/10",
+    textClass: "text-fuchsia-500",
+    highlightBorderClass: "border-[2px] border-fuchsia-500/35 hover:border-fuchsia-400",
+    normalBorderHoverClass: "hover:border-fuchsia-500/40 hover:shadow-fuchsia-500/5",
+    titleHoverTextClass: "group-hover:text-fuchsia-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-fuchsia-500/40",
+    darkBgClass: "bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30",
+    highlightBgDark: "bg-fuchsia-500/5 hover:bg-fuchsia-500/10",
+    highlightBorderDark: "border-fuchsia-500/20 hover:border-fuchsia-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(217, 70, 239,0.2)]",
+    highlightBgLight: "bg-fuchsia-50 hover:bg-fuchsia-100",
+    highlightBorderLight: "border-fuchsia-200 hover:border-fuchsia-400",
+    highlightShadowLight: "shadow-lg shadow-fuchsia-500/10 hover:shadow-xl hover:shadow-fuchsia-500/20",
+    highlightBgSepia: "bg-[rgba(217, 70, 239,0.05)] hover:bg-[rgba(217, 70, 239,0.1)]",
+    highlightBorderSepia: "border-[rgba(217, 70, 239,0.2)] hover:border-[rgba(217, 70, 239,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(217, 70, 239,0.05)] hover:shadow-xl hover:shadow-[rgba(217, 70, 239,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-fuchsia-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(217, 70, 239,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-fuchsia-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-fuchsia-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(217, 70, 239,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(217, 70, 239,0.1)]"
+  },
+  "商業攝影": {
+    accent: "rose-500",
+    rgbaGlow: "244, 63, 94",
+    borderClass: "group-hover:border-rose-500/30",
+    glowClass: "group-hover:shadow-rose-500/15",
+    gradientClass: "from-rose-500/30 via-rose-500/90 to-rose-500/20",
+    bgClass: "bg-rose-500",
+    pulseBorderClass: "border-rose-500/10",
+    textClass: "text-rose-500",
+    highlightBorderClass: "border-[2px] border-rose-500/35 hover:border-rose-400",
+    normalBorderHoverClass: "hover:border-rose-500/40 hover:shadow-rose-500/5",
+    titleHoverTextClass: "group-hover:text-rose-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-rose-500/40",
+    darkBgClass: "bg-rose-500/20 text-rose-400 border border-rose-500/30",
+    highlightBgDark: "bg-rose-500/5 hover:bg-rose-500/10",
+    highlightBorderDark: "border-rose-500/20 hover:border-rose-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(244, 63, 94,0.2)]",
+    highlightBgLight: "bg-rose-50 hover:bg-rose-100",
+    highlightBorderLight: "border-rose-200 hover:border-rose-400",
+    highlightShadowLight: "shadow-lg shadow-rose-500/10 hover:shadow-xl hover:shadow-rose-500/20",
+    highlightBgSepia: "bg-[rgba(244, 63, 94,0.05)] hover:bg-[rgba(244, 63, 94,0.1)]",
+    highlightBorderSepia: "border-[rgba(244, 63, 94,0.2)] hover:border-[rgba(244, 63, 94,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(244, 63, 94,0.05)] hover:shadow-xl hover:shadow-[rgba(244, 63, 94,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-rose-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(244, 63, 94,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-rose-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-rose-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(244, 63, 94,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(244, 63, 94,0.1)]"
+  },
+  "影音製作": {
+    accent: "violet-500",
+    rgbaGlow: "139, 92, 246",
+    borderClass: "group-hover:border-violet-500/30",
+    glowClass: "group-hover:shadow-violet-500/15",
+    gradientClass: "from-violet-500/30 via-violet-500/90 to-violet-500/20",
+    bgClass: "bg-violet-500",
+    pulseBorderClass: "border-violet-500/10",
+    textClass: "text-violet-500",
+    highlightBorderClass: "border-[2px] border-violet-500/35 hover:border-violet-400",
+    normalBorderHoverClass: "hover:border-violet-500/40 hover:shadow-violet-500/5",
+    titleHoverTextClass: "group-hover:text-violet-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-violet-500/40",
+    darkBgClass: "bg-violet-500/20 text-violet-400 border border-violet-500/30",
+    highlightBgDark: "bg-violet-500/5 hover:bg-violet-500/10",
+    highlightBorderDark: "border-violet-500/20 hover:border-violet-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(139, 92, 246,0.2)]",
+    highlightBgLight: "bg-violet-50 hover:bg-violet-100",
+    highlightBorderLight: "border-violet-200 hover:border-violet-400",
+    highlightShadowLight: "shadow-lg shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20",
+    highlightBgSepia: "bg-[rgba(139, 92, 246,0.05)] hover:bg-[rgba(139, 92, 246,0.1)]",
+    highlightBorderSepia: "border-[rgba(139, 92, 246,0.2)] hover:border-[rgba(139, 92, 246,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(139, 92, 246,0.05)] hover:shadow-xl hover:shadow-[rgba(139, 92, 246,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-violet-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(139, 92, 246,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-violet-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-violet-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(139, 92, 246,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(139, 92, 246,0.1)]"
+  },
+  "印刷完稿": {
+    accent: "emerald-500",
+    rgbaGlow: "16, 185, 129",
+    borderClass: "group-hover:border-emerald-500/30",
+    glowClass: "group-hover:shadow-emerald-500/15",
+    gradientClass: "from-emerald-500/30 via-emerald-500/90 to-emerald-500/20",
+    bgClass: "bg-emerald-500",
+    pulseBorderClass: "border-emerald-500/10",
+    textClass: "text-emerald-500",
+    highlightBorderClass: "border-[2px] border-emerald-500/35 hover:border-emerald-400",
+    normalBorderHoverClass: "hover:border-emerald-500/40 hover:shadow-emerald-500/5",
+    titleHoverTextClass: "group-hover:text-emerald-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-emerald-500/40",
+    darkBgClass: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
+    highlightBgDark: "bg-emerald-500/5 hover:bg-emerald-500/10",
+    highlightBorderDark: "border-emerald-500/20 hover:border-emerald-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(16, 185, 129,0.2)]",
+    highlightBgLight: "bg-emerald-50 hover:bg-emerald-100",
+    highlightBorderLight: "border-emerald-200 hover:border-emerald-400",
+    highlightShadowLight: "shadow-lg shadow-emerald-500/10 hover:shadow-xl hover:shadow-emerald-500/20",
+    highlightBgSepia: "bg-[rgba(16, 185, 129,0.05)] hover:bg-[rgba(16, 185, 129,0.1)]",
+    highlightBorderSepia: "border-[rgba(16, 185, 129,0.2)] hover:border-[rgba(16, 185, 129,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(16, 185, 129,0.05)] hover:shadow-xl hover:shadow-[rgba(16, 185, 129,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-emerald-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(16, 185, 129,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-emerald-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-emerald-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(16, 185, 129,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(16, 185, 129,0.1)]"
+  },
+  "IP 與周邊開發": {
+    accent: "blue-500",
+    rgbaGlow: "59, 130, 246",
+    borderClass: "group-hover:border-blue-500/30",
+    glowClass: "group-hover:shadow-blue-500/15",
+    gradientClass: "from-blue-500/30 via-blue-500/90 to-blue-500/20",
+    bgClass: "bg-blue-500",
+    pulseBorderClass: "border-blue-500/10",
+    textClass: "text-blue-500",
+    highlightBorderClass: "border-[2px] border-blue-500/35 hover:border-blue-400",
+    normalBorderHoverClass: "hover:border-blue-500/40 hover:shadow-blue-500/5",
+    titleHoverTextClass: "group-hover:text-blue-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-blue-500/40",
+    darkBgClass: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
+    highlightBgDark: "bg-blue-500/5 hover:bg-blue-500/10",
+    highlightBorderDark: "border-blue-500/20 hover:border-blue-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(59, 130, 246,0.2)]",
+    highlightBgLight: "bg-blue-50 hover:bg-blue-100",
+    highlightBorderLight: "border-blue-200 hover:border-blue-400",
+    highlightShadowLight: "shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/20",
+    highlightBgSepia: "bg-[rgba(59, 130, 246,0.05)] hover:bg-[rgba(59, 130, 246,0.1)]",
+    highlightBorderSepia: "border-[rgba(59, 130, 246,0.2)] hover:border-[rgba(59, 130, 246,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(59, 130, 246,0.05)] hover:shadow-xl hover:shadow-[rgba(59, 130, 246,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-blue-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(59, 130, 246,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-blue-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-blue-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(59, 130, 246,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(59, 130, 246,0.1)]"
+  },
+  "AI 輔助工作流": {
+    accent: "yellow-500",
+    rgbaGlow: "234, 179, 8",
+    borderClass: "group-hover:border-yellow-500/30",
+    glowClass: "group-hover:shadow-yellow-500/15",
+    gradientClass: "from-yellow-500/30 via-yellow-500/90 to-yellow-500/20",
+    bgClass: "bg-yellow-500",
+    pulseBorderClass: "border-yellow-500/10",
+    textClass: "text-yellow-500",
+    highlightBorderClass: "border-[2px] border-yellow-500/35 hover:border-yellow-400",
+    normalBorderHoverClass: "hover:border-yellow-500/40 hover:shadow-yellow-500/5",
+    titleHoverTextClass: "group-hover:text-yellow-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-yellow-500/40",
+    darkBgClass: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
+    highlightBgDark: "bg-yellow-500/5 hover:bg-yellow-500/10",
+    highlightBorderDark: "border-yellow-500/20 hover:border-yellow-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(234, 179, 8,0.2)]",
+    highlightBgLight: "bg-yellow-50 hover:bg-yellow-100",
+    highlightBorderLight: "border-yellow-200 hover:border-yellow-400",
+    highlightShadowLight: "shadow-lg shadow-yellow-500/10 hover:shadow-xl hover:shadow-yellow-500/20",
+    highlightBgSepia: "bg-[rgba(234, 179, 8,0.05)] hover:bg-[rgba(234, 179, 8,0.1)]",
+    highlightBorderSepia: "border-[rgba(234, 179, 8,0.2)] hover:border-[rgba(234, 179, 8,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(234, 179, 8,0.05)] hover:shadow-xl hover:shadow-[rgba(234, 179, 8,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-yellow-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(234, 179, 8,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-yellow-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-yellow-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(234, 179, 8,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(234, 179, 8,0.1)]"
+  },
+  "禮贈品專屬規劃": {
+    accent: "amber-500",
+    rgbaGlow: "245, 158, 11",
+    borderClass: "group-hover:border-amber-500/30",
+    glowClass: "group-hover:shadow-amber-500/15",
+    gradientClass: "from-amber-500/30 via-amber-500/90 to-amber-500/20",
+    bgClass: "bg-amber-500",
+    pulseBorderClass: "border-amber-500/10",
+    textClass: "text-amber-500",
+    highlightBorderClass: "border-[2px] border-amber-500/35 hover:border-amber-400",
+    normalBorderHoverClass: "hover:border-amber-500/40 hover:shadow-amber-500/5",
+    titleHoverTextClass: "group-hover:text-amber-400 gap-1.5",
+    badgeBorderHoverClass: "group-hover:border-amber-500/40",
+    darkBgClass: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
+    highlightBgDark: "bg-amber-500/5 hover:bg-amber-500/10",
+    highlightBorderDark: "border-amber-500/20 hover:border-amber-500/40",
+    highlightShadowDark: "shadow-[unset] hover:shadow-[0_8px_30px_rgba(245, 158, 11,0.2)]",
+    highlightBgLight: "bg-amber-50 hover:bg-amber-100",
+    highlightBorderLight: "border-amber-200 hover:border-amber-400",
+    highlightShadowLight: "shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20",
+    highlightBgSepia: "bg-[rgba(245, 158, 11,0.05)] hover:bg-[rgba(245, 158, 11,0.1)]",
+    highlightBorderSepia: "border-[rgba(245, 158, 11,0.2)] hover:border-[rgba(245, 158, 11,0.4)]",
+    highlightShadowSepia: "shadow-lg shadow-[rgba(245, 158, 11,0.05)] hover:shadow-xl hover:shadow-[rgba(245, 158, 11,0.15)]",
+    normalBgDark: "bg-[unset] hover:bg-zinc-800/80",
+    normalBorderDark: "border-white/5 hover:border-amber-500/30",
+    normalShadowDark: "shadow-[unset] hover:shadow-[0_4px_20px_rgba(245, 158, 11,0.1)]",
+    normalBgLight: "bg-white/60 hover:bg-white",
+    normalBorderLight: "border-zinc-200/50 hover:border-amber-300",
+    normalShadowLight: "shadow-sm hover:shadow-md hover:shadow-amber-500/10",
+    normalBgSepia: "bg-[#FDFBF7]/60 hover:bg-[#FDFBF7]",
+    normalBorderSepia: "border-[#E8DFCE]/50 hover:border-[rgba(245, 158, 11,0.3)]",
+    normalShadowSepia: "shadow-sm hover:shadow-md hover:shadow-[rgba(245, 158, 11,0.1)]"
   }
 };
 
@@ -498,11 +761,16 @@ interface CategoryButtonProps {
   isActive: boolean;
   onClick: () => void;
   key?: React.Key;
+  theme: "dark" | "light" | "sepia";
 }
 
-function CategoryButton({ cat, isActive, onClick }: CategoryButtonProps) {
+function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) {
   const [isHovered, setIsHovered] = React.useState(false);
   const catColor = getCategoryColor(cat);
+  
+  const isDark = theme === "dark";
+  const isSepia = theme === "sepia";
+  const isLight = theme === "light";
 
   return (
     <button
@@ -511,38 +779,46 @@ function CategoryButton({ cat, isActive, onClick }: CategoryButtonProps) {
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="shrink-0 px-4 py-1.5 text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden"
+      className="px-3 sm:px-4 py-2 sm:py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden flex items-center justify-center whitespace-nowrap"
       style={{
         backgroundColor: isActive 
-          ? `rgba(${catColor.rgbaGlow}, 1)` 
+          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.8 : isLight ? 0.9 : 1})` 
           : isHovered 
-            ? `rgba(${catColor.rgbaGlow}, 0.08)` 
-            : "rgba(255, 255, 255, 0.02)",
+            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.15 : isLight ? 0.12 : 0.1})` 
+            : isSepia 
+              ? "rgba(67, 52, 34, 0.04)" 
+              : isLight 
+                ? "rgba(0, 0, 0, 0.03)" 
+                : "rgba(255, 255, 255, 0.02)",
         borderColor: isActive 
-          ? `rgba(${catColor.rgbaGlow}, 0.8)` 
+          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.6 : isLight ? 0.7 : 0.8})` 
           : isHovered 
-            ? `rgba(${catColor.rgbaGlow}, 0.35)` 
-            : "rgba(255, 255, 255, 0.05)",
+            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.4 : isLight ? 0.35 : 0.35})` 
+            : isSepia 
+              ? "rgba(67, 52, 34, 0.1)" 
+              : isLight 
+                ? "rgba(0, 0, 0, 0.08)" 
+                : "rgba(255, 255, 255, 0.05)",
         color: isActive 
-          ? "#000000" 
+          ? (isSepia ? "#2B1B0C" : isLight ? "#ffffff" : "#000000") 
           : isHovered 
-            ? "#ffffff" 
-            : "#a1a1aa", // text-zinc-400
+            ? (isSepia ? "#433422" : isLight ? "#18181B" : "#ffffff") 
+            : (isSepia ? "#8C7B69" : isLight ? "#52525B" : "#a1a1aa"),
         boxShadow: isActive 
-          ? `0 10px 20px -5px rgba(${catColor.rgbaGlow}, 0.35), 0 0 15px 1px rgba(${catColor.rgbaGlow}, 0.15)` 
+          ? `0 10px 20px -5px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.25 : isLight ? 0.3 : 0.4}), 0 0 15px 1px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.1 : isLight ? 0.15 : 0.15})` 
           : isHovered 
-            ? `0 4px 12px -2px rgba(${catColor.rgbaGlow}, 0.15)` 
+            ? `0 4px 12px -2px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.1 : isLight ? 0.1 : 0.15})` 
             : "none"
       }}
     >
       <span className="relative z-10 flex items-center gap-1.5">
         {isActive && (
-          <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+          <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSepia ? "bg-[#2B1B0C]" : isLight ? "bg-white" : "bg-black"}`} />
         )}
         {!isActive && isHovered && (
           <span 
             className="w-1 h-1 rounded-full shrink-0"
-            style={{ backgroundColor: `rgba(${catColor.rgbaGlow}, 1)` }}
+            style={{ backgroundColor: `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.8 : isLight ? 0.9 : 1})` }}
           />
         )}
         {cat === "All" ? "全部精選展示" : cat}
@@ -785,7 +1061,7 @@ function ImageWithFallback({
     return (
       <div 
         ref={containerRef}
-        className="relative w-full h-full aspect-[4/3] flex flex-col items-center justify-center overflow-hidden bg-[#0A0A0A] select-none border border-white/5"
+        className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden bg-[#0A0A0A] select-none border border-white/5"
       >
         <div className="absolute inset-0 bg-[#0B0B0B] flex flex-col items-center justify-center p-4 text-center">
           <div className="relative flex items-center justify-center">
@@ -946,6 +1222,79 @@ function ImageWithFallback({
   );
 }
 
+interface MagneticButtonProps {
+  id?: string;
+  onClick?: () => void;
+  className?: string;
+  title?: string;
+  children: React.ReactNode;
+  type?: "button" | "submit" | "reset";
+  initial?: any;
+  animate?: any;
+  exit?: any;
+}
+
+const MagneticButton: React.FC<MagneticButtonProps> = ({
+  id,
+  onClick,
+  className,
+  title,
+  children,
+  type = "button",
+  initial,
+  animate,
+  exit
+}) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 180, damping: 15 });
+  const springY = useSpring(y, { stiffness: 180, damping: 15 });
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+    
+    const maxOffset = 8;
+    const distance = Math.hypot(dx, dy);
+    if (distance === 0) return;
+    
+    // 計算阻尼吸引力，當指標靠近時能有一股吸向指標的活力效應
+    const strength = 0.22;
+    const targetX = Math.max(-maxOffset, Math.min(maxOffset, dx * strength));
+    const targetY = Math.max(-maxOffset, Math.min(maxOffset, dy * strength));
+    
+    x.set(targetX);
+    y.set(targetY);
+  };
+
+  const handlePointerLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.button
+      id={id}
+      type={type}
+      onClick={onClick}
+      className={className}
+      title={title}
+      initial={initial}
+      animate={animate}
+      exit={exit}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      style={{ x: springX, y: springY, willChange: "transform" }}
+    >
+      {children}
+    </motion.button>
+  );
+};
+
 interface InteractiveMascotProps {
   currentMascot: {
     name: string;
@@ -981,6 +1330,61 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
   const currentScaleRef = React.useRef<number>(1);
   
   const dragControls = useDragControls();
+
+  // 建立滑鼠/指標跟蹤角度邏輯及其平滑彈性曲線 (Motion values)
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const rotateValue = useMotionValue(-5);
+  const smoothRotate = useSpring(rotateValue, { damping: 25, stiffness: 180 });
+
+  // 監聽全球 pointermove 計算與吉祥物的相對角度，達成靈活動態跟隨效果
+  React.useEffect(() => {
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!isImageLoaded || !containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+      const distance = Math.hypot(dx, dy);
+      const triggerDistance = 250; // 觸發距離設定為 250px
+      
+      if (distance < triggerDistance) {
+        // 指向性夾角計算
+        const angleRad = Math.atan2(dy, dx);
+        const angleDeg = angleRad * (180 / Math.PI);
+        
+        // 吉祥物頭部朝上為基準 (-90)，所以加 90 以使插畫指向指標
+        let targetRotate = angleDeg + 90;
+        
+        // 限制傾斜角度範圍在 [-15, 15] 之間，既生動又不易與對話框重疊遮擋
+        targetRotate = Math.max(-15, Math.min(15, targetRotate));
+        
+        // 基於接近程度進行平滑漸變 (從接觸邊緣 250px 的 0 到重心的 1)
+        const t = (triggerDistance - distance) / triggerDistance;
+        const interpolatedRotate = -5 + (targetRotate - (-5)) * t;
+        
+        rotateValue.set(interpolatedRotate);
+      } else {
+        // 距離超過 250px 時，平滑回復預設 -5 度偏斜
+        rotateValue.set(-5);
+      }
+    };
+
+    const handlePointerLeave = () => {
+      // 滑鼠移出視窗或離開時，平滑回復預設 -5 度偏斜
+      rotateValue.set(-5);
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerleave", handlePointerLeave);
+    
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerleave", handlePointerLeave);
+    };
+  }, [isImageLoaded, rotateValue]);
 
   // 當常駐代言吉祥物改變時，自動重置並介紹
   React.useEffect(() => {
@@ -1068,6 +1472,7 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
     <AnimatePresence>
       {isVisible && !activeModalItem && !isWorkflowOpen && !isContactCardOpen && (
         <motion.div
+          ref={containerRef}
           initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
           animate={isImageLoaded ? { y: 0, opacity: 1, rotate: -5, scale: mascotScale } : { y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
           exit={{ y: "150%", opacity: 0, rotate: 20, scale: 0.5 }}
@@ -1207,9 +1612,9 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
                 ease: "easeOut"
               }
             }}
-            className="relative w-23 md:w-28 lg:w-32 transform md:rotate-6 pointer-events-auto cursor-pointer group focus:outline-none"
+            className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
             title={`點我跟 ${currentMascot.name} 互動！(長按可拖曳)`}
-            style={{ willChange: "transform", touchAction: "none" }}
+            style={{ willChange: "transform", touchAction: "none", rotate: smoothRotate }}
           >
             {/* 動態背景彩色發光暈圈 */}
             <div 
@@ -1270,6 +1675,7 @@ interface PortfolioCardProps {
   index: number;
   prevVisibleCount: number;
   theme: "dark" | "light" | "sepia";
+  showAllDetails: boolean;
 }
 
 const PortfolioCard = React.memo(function PortfolioCard({ 
@@ -1278,7 +1684,8 @@ const PortfolioCard = React.memo(function PortfolioCard({
   priority = false,
   index,
   prevVisibleCount,
-  theme
+  theme,
+  showAllDetails
 }: PortfolioCardProps) {
   const catColor = getCategoryColor(item.category);
   const [isHovered, setIsHovered] = useState(false);
@@ -1551,10 +1958,12 @@ const PortfolioCard = React.memo(function PortfolioCard({
         onTouchCancel={handleTouchEnd}
         style={{
           transformStyle: "preserve-3d",
-          transition: "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.50s ease, box-shadow 0.50s ease, background 0.40s ease",
+          transition: isHovered || isPressed 
+            ? "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease" 
+            : "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)",
           boxShadow: defaultShadow,
         }}
-        className={`group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer h-full transition-all duration-300 ${
+        className={`group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer h-full transition-[background-color,border-color,color] duration-500 ${
           isSepia
             ? item.isHighlight
               ? "bg-[#FCF5E3] bg-gradient-to-b from-[#FCF5E3] to-[#EDE2CA] border-[2.5px] border-amber-600 hover:border-amber-700 shadow-md shadow-amber-900/10"
@@ -1588,7 +1997,7 @@ const PortfolioCard = React.memo(function PortfolioCard({
         <div className="shimmer-line pointer-events-none absolute inset-0 z-20 rounded-2xl" />
 
         {/* 卡片封面圖 */}
-        <div className={`relative aspect-[4/3] overflow-hidden ${isSepia ? "bg-[#EADECC]/45" : "bg-zinc-950"}`} style={{ transform: "translateZ(8px)" }}>
+        <div className={`relative ${showAllDetails ? "aspect-[4/3]" : "aspect-square"} overflow-hidden ${isSepia ? "bg-[#EADECC]/45" : "bg-zinc-950"}`} style={{ transform: "translateZ(8px)" }}>
           <ImageWithFallback
             src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
             alt={item.title}
@@ -1613,72 +2022,83 @@ const PortfolioCard = React.memo(function PortfolioCard({
           }`}></div>
 
           {/* 卡片類別浮章 */}
-          <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
-            <motion.span 
-              className={`px-2.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-[11px] font-semibold tracking-wide rounded-full shadow-md flex items-center gap-1.5 whitespace-nowrap shrink-0 border ${
-                isSepia
-                  ? "bg-[#FAF4E5] border-[#E2D2B3]"
-                  : isLight
-                  ? "bg-white border-zinc-150"
-                  : "bg-zinc-950/95 border-white/5"
-              }`}
-              animate={{
-                borderColor: isHovered
-                  ? `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.75' : '0.85'})`
-                  : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.35' : '0.25'})`,
-                color: isHovered
-                  ? `rgb(${catColor.rgbaGlow})`
-                  : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.9' : '0.85'})`,
-                boxShadow: isHovered
-                  ? `0 0 12px 2px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.25' : '0.45'})`
-                  : `0 2px 4px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.04' : '0.08'})`,
-                textShadow: isHovered
-                  ? `0 0 6px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.4' : '0.6'})`
-                  : "0 0 0px rgba(0, 0, 0, 0)"
-              }}
-              transition={{
-                duration: 0.4,
-                ease: "easeInOut"
-              }}
-              style={{
-                boxSizing: "border-box"
-              }}
-            >
-              <span className={`w-1.5 h-1.5 rounded-full ${catColor.bgClass} ${isHovered ? "scale-125" : "scale-100"} transition-transform duration-300`} />
-              {item.category}
-            </motion.span>
-          </div>
+          {showAllDetails && (
+            <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
+              <span 
+                className={`px-3 py-0.5 md:px-3.5 md:py-1 text-[11px] font-medium tracking-wide rounded-full shadow-md flex items-center justify-center text-center whitespace-nowrap shrink-0 border transition-all duration-400 ease-in-out ${
+                  isSepia
+                    ? "bg-[#FAF4E5] border-[#E2D2B3]"
+                    : isLight
+                    ? "bg-white border-zinc-150"
+                    : "bg-zinc-950/95 border-white/5"
+                }`}
+                style={{
+                  borderColor: isHovered
+                    ? `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.75' : '0.85'})`
+                    : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.35' : '0.25'})`,
+                  color: isHovered
+                    ? `rgb(${catColor.rgbaGlow})`
+                    : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.9' : '0.85'})`,
+                  boxShadow: isHovered
+                    ? `0 0 12px 2px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.25' : '0.45'})`
+                    : `0 2px 4px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.04' : '0.08'})`,
+                  textShadow: isHovered
+                    ? `0 0 6px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.4' : '0.6'})`
+                    : "0 0 0px rgba(0, 0, 0, 0)",
+                  boxSizing: "border-box"
+                }}
+              >
+                {item.category}
+              </span>
+            </div>
+          )}
 
           {/* 亮點卡片勳章 */}
           {item.isHighlight && (
             <div className="absolute top-4 right-4 z-20" style={{ transform: "translateZ(12px)" }}>
-              <span className={`px-2.5 py-1 text-[10px] font-sans font-bold tracking-wider text-black bg-gradient-to-r from-amber-400 to-amber-500 rounded-full shadow-lg flex items-center gap-1 border border-amber-300/30 transition-shadow duration-300 overflow-hidden relative group/badge ${catColor.glowClass}`}>
+              <span className={`py-1 text-[10px] font-sans font-bold tracking-wider text-black bg-gradient-to-r from-amber-400 to-amber-500 rounded-full shadow-lg flex items-center border border-amber-300/30 transition-shadow duration-300 overflow-hidden relative group/badge ${catColor.glowClass} ${showAllDetails ? "px-2.5 gap-1" : "px-2 justify-center"}`}>
                 {/* 動態光流遮罩 (Dynamic light sweep) - hover 時才流動 */}
                 <span className="absolute inset-x-0 inset-y-0 -translate-x-full bg-gradient-to-r from-transparent via-white/70 to-transparent group-hover/badge:animate-skeleton-shimmer pointer-events-none scale-y-150 rotate-12" />
                 
                 <Sparkles className="h-3 w-3 fill-black text-black animate-hover-bounce-icon relative z-10" />
-                <span 
-                  className="relative z-10"
-                  style={{
-                    textShadow: isSepia 
-                      ? "0px 0.75px 1.5px rgba(255, 255, 255, 0.75), 0px -0.25px 0.5px rgba(255, 255, 255, 0.4)" 
-                      : isLight 
-                      ? "0px 0.75px 1.5px rgba(255, 255, 255, 0.8), 0px -0.25px 0.5px rgba(255, 255, 255, 0.4)" 
-                      : "0px 0.5px 1px rgba(255, 255, 255, 0.35)"
-                  }}
-                >
-                  精選亮點
-                </span>
+                {showAllDetails && (
+                  <span 
+                    className="relative z-10"
+                    style={{
+                      textShadow: isSepia 
+                        ? "0px 0.75px 1.5px rgba(255, 255, 255, 0.75), 0px -0.25px 0.5px rgba(255, 255, 255, 0.4)" 
+                        : isLight 
+                        ? "0px 0.75px 1.5px rgba(255, 255, 255, 0.8), 0px -0.25px 0.5px rgba(255, 255, 255, 0.4)" 
+                        : "0px 0.5px 1px rgba(255, 255, 255, 0.35)"
+                    }}
+                  >
+                    精選亮點
+                  </span>
+                )}
               </span>
             </div>
           )}
 
           {/* hover 視覺遮罩提示 - 採用 react isHovered 狀態控制，免除 3D rotate 後 CSS 邊界滯留 bug */}
-          <div className={`absolute inset-0 transition-opacity duration-300 flex items-center justify-center ${
+          <div className={`absolute inset-0 transition-opacity duration-300 flex flex-col items-center justify-center ${
             isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
           } ${
-            isSepia ? "bg-[#2B1B0C]/40" : "bg-black/35"
+            isSepia ? "bg-[#FAF4E5]/90 backdrop-blur-[3px]" : isLight ? "bg-white/90 backdrop-blur-[3px]" : "bg-black/70 backdrop-blur-sm"
           }`}>
+            {!showAllDetails && (
+              <div className={`px-4 text-center transform transition-all duration-300 z-10 ${isHovered ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
+                <p className={`text-[10px] sm:text-xs font-mono tracking-widest mb-2 uppercase drop-shadow-sm ${
+                  isSepia ? "text-[#734C22]/90 font-bold" : isLight ? "text-amber-700 font-bold" : "text-[#FFF9DF]/80 drop-shadow-md"
+                }`}>
+                  {item.titleEn}
+                </p>
+                <h3 className={`text-xl sm:text-2xl font-display font-medium mb-4 tracking-wide ${
+                  isSepia ? "text-[#2B1B0C] drop-shadow-sm font-bold" : isLight ? "text-zinc-900 drop-shadow-sm font-bold" : "text-white drop-shadow-lg"
+                }`}>
+                  {item.title}
+                </h3>
+              </div>
+            )}
             <span className={`text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-3.5 py-1.5 rounded-lg shadow-lg transform transition-all duration-300 uppercase flex items-center gap-1.5 ${
               isHovered ? "translate-y-0" : "translate-y-2"
             }`} style={{ transform: "translateZ(15px)" }}>
@@ -1688,68 +2108,70 @@ const PortfolioCard = React.memo(function PortfolioCard({
           </div>
         </div>
 
-        {/* 內容描述區 */}
-        <div 
-          className={`flex-1 flex flex-col p-5 md:p-6 space-y-4 relative overflow-hidden transition-all duration-500 ease-out z-10 ${isHovered ? hoverOverlayClass : ""}`} 
-          style={{ transform: "translateZ(4px)" }}
-        >
-          {/* 微焦點放大焦點背景遮罩 (含微妙發光) */}
+        {/* 內容描述區 (可透過上方按鈕開關) */}
+        {showAllDetails && (
           <div 
-            className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
-            style={{
-              background: `radial-gradient(circle 120px at 50% 50%, rgba(${catColor.rgbaGlow}, 0.05) 0%, transparent 100%)`
-            }}
-          />
-
-          {/* 內容文字微幅浮起與提亮 (提升對比度與專注力) */}
-          <div className={`space-y-1 transform transition-all duration-300 ease-out ${
-            isHovered ? "translate-y-[-2px] scale-[1.005]" : "translate-y-0 scale-100"
-          }`}>
-            <p className={`text-[10px] font-mono tracking-widest uppercase opacity-90 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-90"} ${titleEnClassValue}`}>{item.titleEn}</p>
-            <h3 className={`text-base font-display font-semibold transition-colors duration-300 line-clamp-1 flex items-center gap-1 ${titleClassValue}`}>
-              <span className="truncate">{item.title}</span>
-              <span className={`transition-all duration-300 text-sm font-semibold shrink-0 ${
-                isHovered ? "opacity-100 translate-x-1" : "opacity-0 translate-x-0"
-              }`}>→</span>
-            </h3>
-          </div>
-
-          <p 
-            className={`text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3 transition-transform duration-300 ease-out ${
-              isHovered ? "translate-y-[-3px]" : "translate-y-0"
-            } ${descriptionClassValue}`}
+            className={`flex-1 flex flex-col p-5 md:p-6 space-y-4 relative overflow-hidden transition-all duration-500 ease-out z-10 ${isHovered ? hoverOverlayClass : ""}`} 
+            style={{ transform: "translateZ(4px)" }}
           >
-            {item.philosophy}
-          </p>
+            {/* 微焦點放大焦點背景遮罩 (含微妙發光) */}
+            <div 
+              className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+              style={{
+                background: `radial-gradient(circle 120px at 50% 50%, rgba(${catColor.rgbaGlow}, 0.05) 0%, transparent 100%)`
+              }}
+            />
 
-          {/* 工具 Tags */}
-          <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-300 ease-out ${
-            isHovered ? "translate-y-[-1.2px]" : "translate-y-0"
-          } ${dividerClassValue}`}>
-            {item.tools.map((tech) => (
-              <span 
-                key={tech} 
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${
-                  isSepia
-                    ? item.isHighlight
-                      ? "bg-[#F3DFBD] text-[#3E250A] border-amber-600/30 hover:border-amber-600/50"
-                      : "bg-[#EDE2CA] text-[#433422] border-amber-900/10 hover:border-amber-900/20"
-                    : isLight
-                    ? item.isHighlight
-                      ? "bg-[#FFF2D4] text-[#78350F] border-amber-500/25 hover:border-amber-500/40"
-                      : "bg-zinc-100 text-zinc-600 border-zinc-200/80 hover:bg-zinc-200 hover:border-zinc-300 hover:text-zinc-900"
-                    : `bg-white/5 text-zinc-300 hover:text-white border-white/5 group-hover:bg-white/[0.08] group-hover:border-${catColor.accent}/30`
-                }`}
-              >
-                {tech}
-              </span>
-            ))}
+            {/* 內容文字微幅浮起與提亮 (提升對比度與專注力) */}
+            <div className={`space-y-1 transform transition-all duration-300 ease-out ${
+              isHovered ? "translate-y-[-2px] scale-[1.005]" : "translate-y-0 scale-100"
+            }`}>
+              <p className={`text-[10px] font-mono tracking-widest uppercase opacity-90 transition-all duration-400 ${isHovered ? "opacity-100" : "opacity-90"} ${titleEnClassValue}`}>{item.titleEn}</p>
+              <h3 className={`text-base font-display font-semibold transition-colors duration-400 line-clamp-1 flex items-center gap-1 ${titleClassValue}`}>
+                <span className="truncate">{item.title}</span>
+                <span className={`transition-all duration-400 text-sm font-semibold shrink-0 ${
+                  isHovered ? "opacity-100 translate-x-1" : "opacity-0 translate-x-0"
+                }`}>→</span>
+              </h3>
+            </div>
+
+            <p 
+              className={`text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3 transition-all duration-400 ease-out ${
+                isHovered ? "translate-y-[-3px]" : "translate-y-0"
+              } ${descriptionClassValue}`}
+            >
+              {item.philosophy}
+            </p>
+
+            {/* 工具 Tags */}
+            <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-400 ease-out ${
+              isHovered ? "translate-y-[-1.2px]" : "translate-y-0"
+            } ${dividerClassValue}`}>
+              {item.tools.map((tech) => (
+                <span 
+                  key={tech} 
+                  className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${
+                    isSepia
+                      ? item.isHighlight
+                        ? "bg-[#F3DFBD] text-[#3E250A] border-amber-600/30 hover:border-amber-600/50"
+                        : "bg-[#EDE2CA] text-[#433422] border-amber-900/10 hover:border-amber-900/20"
+                      : isLight
+                      ? item.isHighlight
+                        ? "bg-[#FFF2D4] text-[#78350F] border-amber-500/25 hover:border-amber-500/40"
+                        : "bg-zinc-100 text-zinc-600 border-zinc-200/80 hover:bg-zinc-200 hover:border-zinc-300 hover:text-zinc-900"
+                      : `bg-white/5 text-zinc-300 hover:text-white border-white/5 group-hover:bg-white/[0.08] group-hover:border-${catColor.accent}/30`
+                  }`}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
-      )}
+    )}
     </motion.div>
   );
 }, (prevProps, nextProps) => {
@@ -1758,7 +2180,8 @@ const PortfolioCard = React.memo(function PortfolioCard({
     prevProps.priority === nextProps.priority &&
     prevProps.index === nextProps.index &&
     prevProps.prevVisibleCount === nextProps.prevVisibleCount &&
-    prevProps.theme === nextProps.theme
+    prevProps.theme === nextProps.theme &&
+    prevProps.showAllDetails === nextProps.showAllDetails
   );
 });
 
@@ -1782,8 +2205,18 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 }
 
 export default function App() {
-  const [items, setItems] = useState<PortfolioItem[]>(initialPortfolioData);
+  const [items, setItems] = useState<PortfolioItem[]>([]);
+  const initialDataRef = React.useRef<PortfolioItem[]>([]);
+  
+  React.useEffect(() => {
+    import("./data").then(module => {
+      initialDataRef.current = module.initialPortfolioData;
+      setItems(module.initialPortfolioData);
+    });
+  }, []);
+
   const [isRandomMode, setIsRandomMode] = useState<boolean>(false);
+  const [showAllDetails, setShowAllDetails] = useState<boolean>(false);
 
   const handleShuffle = () => {
     const shuffled = [...items];
@@ -1798,7 +2231,7 @@ export default function App() {
   };
 
   const handleResetOrder = () => {
-    setItems(initialPortfolioData);
+    setItems(initialDataRef.current);
     setIsRandomMode(false);
   };
 
@@ -1811,6 +2244,8 @@ export default function App() {
       return "dark";
     }
   });
+
+  const deferredTheme = React.useDeferredValue(theme);
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : theme === "light" ? "sepia" : "dark";
@@ -2220,6 +2655,24 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  
+  const categoriesRef = React.useRef<HTMLDivElement>(null);
+  const [showCategoriesLeftMask, setShowCategoriesLeftMask] = useState<boolean>(false);
+  const [showCategoriesRightMask, setShowCategoriesRightMask] = useState<boolean>(false);
+
+  const checkCategoriesScroll = React.useCallback(() => {
+    if (categoriesRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = categoriesRef.current;
+      setShowCategoriesLeftMask(scrollLeft > 0);
+      setShowCategoriesRightMask(Math.ceil(scrollLeft + clientWidth) < scrollWidth - 1);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    checkCategoriesScroll();
+    window.addEventListener('resize', checkCategoriesScroll);
+    return () => window.removeEventListener('resize', checkCategoriesScroll);
+  }, [checkCategoriesScroll]);
 
   React.useEffect(() => {
     let lastY = window.scrollY;
@@ -2406,6 +2859,10 @@ export default function App() {
     }
     return ["All", ...Array.from(list)];
   }, [items]);
+
+  React.useEffect(() => {
+    checkCategoriesScroll();
+  }, [categories, checkCategoriesScroll]);
 
   // Filter items
   const filteredItems = useMemo(() => {
@@ -2985,34 +3442,43 @@ export default function App() {
             </p>
           </div>
 
-          {/* 各類作品過濾選項 (智慧流暢滑動列，手機版優雅整齊，網頁版完美鋪開) */}
-          <div className="relative w-full max-w-full overflow-hidden pt-2">
-            {/* 左右防切側邊漸變羽化遮罩 (僅在手機版顯示) */}
-            <div className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r pointer-events-none z-10 md:hidden ${
-              theme === "light"
-                ? "from-[#FAFAFA] to-transparent"
-                : theme === "sepia"
-                ? "from-[#F4ECD8] to-transparent"
-                : "from-[#070707] to-transparent"
-            }`}></div>
-            <div className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l pointer-events-none z-10 md:hidden ${
-              theme === "light"
-                ? "from-[#FAFAFA] to-transparent"
-                : theme === "sepia"
-                ? "from-[#F4ECD8] to-transparent"
-                : "from-[#070707] to-transparent"
-            }`}></div>
-            
-            <div className="flex md:flex-wrap md:justify-center items-center gap-2.5 overflow-x-auto md:overflow-x-visible whitespace-nowrap px-6 md:px-0 py-2.5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth">
+          {/* 各類作品過濾選項 (網格佈局，行動裝置自動換行) */}
+          <div className="w-full pt-2 flex flex-col items-center gap-4">
+            <div 
+              ref={categoriesRef}
+              className="flex flex-wrap justify-center gap-1.5 md:gap-2 lg:gap-3 px-4 md:px-0 py-1"
+            >
               {categories.map((cat) => (
                 <CategoryButton
                   key={cat}
                   cat={cat}
+                  theme={theme}
                   isActive={selectedCategory === cat}
                   onClick={() => setSelectedCategory(cat)}
                 />
               ))}
             </div>
+
+            {/* 卡片詳情顯示模式切換按鈕 */}
+            <button 
+              onClick={() => setShowAllDetails(prev => !prev)}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 border ${
+                showAllDetails 
+                  ? theme === 'sepia'
+                    ? "bg-[#E2D2B3]/60 text-[#433422] border-[#C8A97A] hover:bg-[#D5B98A]"
+                    : theme === 'light'
+                    ? "bg-amber-100 text-amber-700 border-amber-300 hover:bg-amber-200"
+                    : "bg-amber-500/20 text-amber-500 border-amber-500/40 hover:bg-amber-500/30" 
+                  : theme === 'sepia'
+                    ? "bg-[#FAF4E5] text-[#8C7B69] border-[#EADECC] hover:bg-[#F3DFBD] hover:text-[#433422]"
+                    : theme === 'light'
+                    ? "bg-white text-zinc-500 border-zinc-200 hover:bg-zinc-50 hover:text-zinc-800 hover:border-zinc-300"
+                    : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-zinc-200 hover:border-white/20"
+              }`}
+            >
+              {showAllDetails ? <X className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+              {showAllDetails ? "恢復簡潔圖像預覽模式" : "展開原始卡片詳細資訊"}
+            </button>
           </div>
 
           {/* 即時文字搜尋框 (完美支援黑/白/暖沙主題) */}
@@ -3097,7 +3563,7 @@ export default function App() {
               }`}>
                 熱門關鍵字:
               </span>
-              {["Figma", "Illustrator", "Photoshop", "Midjourney", "AI", "包裝設計", "CI", "網頁"].map((tag) => {
+              {["Illustrator", "Photoshop", "AI", "CI"].map((tag) => {
                 const isSelected = searchQuery.toLowerCase() === tag.toLowerCase();
                 return (
                   <button
@@ -3134,7 +3600,7 @@ export default function App() {
             
             <div className="flex items-center gap-2">
               <div className="inline-flex rounded-full p-0.5 bg-white/[0.02] border border-white/5 shadow-inner">
-                <button
+                <MagneticButton
                   type="button"
                   id="btn_mode_normal"
                   onClick={handleResetOrder}
@@ -3145,9 +3611,9 @@ export default function App() {
                   }`}
                 >
                   預設排序
-                </button>
+                </MagneticButton>
                 
-                <button
+                <MagneticButton
                   type="button"
                   id="btn_mode_shuffle"
                   onClick={handleShuffle}
@@ -3158,11 +3624,11 @@ export default function App() {
                   }`}
                 >
                   <span>隨機洗牌瀏覽</span>
-                </button>
+                </MagneticButton>
               </div>
 
               {isRandomMode && (
-                <motion.button
+                <MagneticButton
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -3173,14 +3639,14 @@ export default function App() {
                   title="重新洗牌一次"
                 >
                   <span>再洗一次 🎲</span>
-                </motion.button>
+                </MagneticButton>
               )}
             </div>
           </div>
 
           {/* 作品卡片 RWD 呈現 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 min-h-[300px]">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence>
               {visibleItems.map((item, index) => (
                 <PortfolioCard
                   key={item.id}
@@ -3189,7 +3655,8 @@ export default function App() {
                   priority={index < 6}
                   index={index}
                   prevVisibleCount={prevVisibleCount}
-                  theme={theme}
+                  theme={deferredTheme}
+                  showAllDetails={showAllDetails}
                 />
               ))}
             </AnimatePresence>
@@ -3541,7 +4008,7 @@ export default function App() {
                               className="w-full h-full object-contain transition-all duration-300"
                               zoomable={true}
                             />
-                            {activeModalItem.videoUrl && (
+                            {activeModalItem.videoUrl && !((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) && (
                               <div className="absolute inset-0 flex items-center justify-center bg-black/30 bg-opacity-40">
                                 <button
                                   type="button"
@@ -3710,21 +4177,22 @@ export default function App() {
 
                 {/* 右側資訊 */}
                 {!(activeModalItem.category === "網站產品瀑布頁" && isMaximized) && (
-                  <div className="md:col-span-5 p-6 lg:p-8 flex flex-col justify-between md:h-[500px] border-t md:border-t-0 md:border-l border-white/5">
-                    <div className="space-y-4">
-                      
-                      {/* 標題 */}
-                      <div className="space-y-1">
-                        <p className="text-[10px] font-mono tracking-widest text-amber-500 font-semibold uppercase">{activeModalItem.titleEn}</p>
-                        <h3 className="text-xl lg:text-2xl font-display font-medium text-white tracking-tight">
-                          {activeModalItem.title}
-                        </h3>
-                      </div>
+                  <div className="md:col-span-5 p-6 lg:p-8 flex flex-col md:h-[500px] border-t md:border-t-0 md:border-l border-white/5">
+                    
+                    {/* 標題 (靜態不滾動) */}
+                    <div className="space-y-1 pb-4 shrink-0">
+                      <p className="text-[10px] font-mono tracking-widest text-amber-500 font-semibold uppercase">{activeModalItem.titleEn}</p>
+                      <h3 className="text-xl lg:text-2xl font-display font-medium text-white tracking-tight">
+                        {activeModalItem.title}
+                      </h3>
+                    </div>
 
+                    {/* 可滾動主體 (包含設計理念與工具) */}
+                    <div className="flex-1 overflow-y-auto pr-1 py-1 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent min-h-0">
                       {/* 設計思考核心觀點 */}
                       <div className="space-y-2">
                         <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Design Philosophy / 設計理念</p>
-                        <p className="text-zinc-300 text-xs leading-relaxed font-light font-sans max-h-[180px] md:max-h-[220px] overflow-y-auto pr-1">
+                        <p className="text-zinc-300 text-xs leading-relaxed font-light font-sans">
                           {activeModalItem.philosophy}
                         </p>
                       </div>
@@ -3740,11 +4208,10 @@ export default function App() {
                           ))}
                         </div>
                       </div>
-
                     </div>
 
-                    {/* 底部行動 */}
-                    <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                    {/* 底部行動 (靜態不滾動) */}
+                    <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between shrink-0">
                       <span className="text-[10.5px] font-mono text-zinc-500">
                         CASE NO. 0{activeModalItem.id}
                       </span>
@@ -3919,41 +4386,27 @@ export default function App() {
                       <h4 className={`text-sm md:text-base font-semibold ${
                         theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
                       }`}>
-                        概念探索與提示詞工程
+                        前期發想｜思維激盪與文案策略
                       </h4>
                       
                       <p className={`text-xs leading-relaxed ${
                         theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
                       }`}>
-                        使用 GPT 系列工具提煉抽象意向，並在 Midjourney 中利用細節控制與比重分配進行初始概念產出。
+                        在專案啟動初期，我將 AI 作為最強大腦，打破單一思考的局限性。輸入核心概念，引導 AI 進行多維度的受眾分析（Target Audience）與市場痛點盲測。同時，利用 AI 產出結構化的 Prompt 關鍵字策略，在極短時間內延伸出多元的視覺風格可能性。
                       </p>
 
                       <div className="space-y-1.5 pt-2">
                         <span className={`text-[9.5px] font-mono uppercase block ${
                           theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>Midjourney 範例提示詞:</span>
-                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10px] leading-normal border flex items-start gap-2 break-all ${
+                        }`}>協作工具:</span>
+                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
                           theme === "dark" 
-                            ? "bg-black/60 text-amber-400 border-white/5" 
+                            ? "bg-black/60 text-zinc-300 border-white/5" 
                             : theme === "sepia" 
-                            ? "bg-[#EDE2CA] text-amber-900 border-amber-950/5" 
-                            : "bg-zinc-100 text-amber-700 border-zinc-200/50"
+                            ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
+                            : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
                         }`}>
-                          <div className="flex-1 select-all">
-                            a futuristic holographic device, transparent glass surface, glowing amber interactive widgets, floating user interface cards, clean studio lighting, dark cinematic slate background, isometric angle, high fidelity render, --ar 4:5 --v 6.0
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => copyPromptToClipboard("a futuristic holographic device, transparent glass surface, glowing amber interactive widgets, floating user interface cards, clean studio lighting, dark cinematic slate background, isometric angle, high fidelity render, --ar 4:5 --v 6.0", "s1")}
-                            className="p-1 rounded hover:bg-black/15 shrink-0 transition cursor-pointer"
-                            title="複製提示詞"
-                          >
-                            {copiedPromptId === "s1" ? (
-                              <Check className="h-3.5 w-3.5 text-green-500" />
-                            ) : (
-                              <Copy className="h-3.5 w-3.5 opacity-60 hover:opacity-100" />
-                            )}
-                          </button>
+                          <div>• <span className="text-amber-500">Gemini</span>, <span className="text-amber-500">ChatGPT</span></div>
                         </div>
                       </div>
                     </div>
@@ -3961,8 +4414,8 @@ export default function App() {
                     <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
                       theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
                     }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 實戰技巧：</span>
-                      <span>加入 <code className="px-1 py-0.2 bg-black/10 rounded">--no text, watermark</code> 排除渲染亂碼，並善用 <code className="px-1 py-0.2 bg-black/10 rounded">--sref</code> 與 <code className="px-1 py-0.2 bg-black/10 rounded">--cref</code> 錨定特定作品集的色調與設計物件一致性。</span>
+                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
+                      <span>【多樣性躍升】 在 1 小時內精準提煉出 5 種不同維度與敘事走向的視覺提案，讓前期的創意漏斗（Funnel）更加寬廣。</span>
                     </div>
                   </div>
 
@@ -3991,41 +4444,29 @@ export default function App() {
                       <h4 className={`text-sm md:text-base font-semibold ${
                         theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
                       }`}>
-                        構圖控制與多維度風格提案
+                        中期探索｜風格原型與視覺盲測
                       </h4>
                       
                       <p className={`text-xs leading-relaxed ${
                         theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
                       }`}>
-                        錨定物體比例。利用圖生圖（Image-to-Image）或 Midjourney 的 Panning 與 Vary Region 精密擴充卡片視角，維持黃金構圖。
+                        拒絕傳統耗時的素材搜集，用最快的速度看見創意的形狀。利用前期提煉出的關鍵字，進行多版本的風格原稿生成。在這個階段，我專注於色調、構圖與氛圍（Moodboard）的快速矩陣測試，不發散、不盲目開盲盒，而是精準定調專案的視覺 DNA。
                       </p>
 
                       <div className="space-y-1.5 pt-2">
                         <span className={`text-[9.5px] font-mono uppercase block ${
                           theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>Stable Diffusion 風格提示核:</span>
-                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10px] leading-normal border flex items-start gap-2 break-all ${
+                        }`}>協作工具:</span>
+                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
                           theme === "dark" 
-                            ? "bg-black/60 text-amber-400 border-white/5" 
+                            ? "bg-black/60 text-zinc-300 border-white/5" 
                             : theme === "sepia" 
-                            ? "bg-[#EDE2CA] text-amber-900 border-amber-950/5" 
-                            : "bg-zinc-100 text-amber-700 border-zinc-200/50"
+                            ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
+                            : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
                         }`}>
-                          <div className="flex-1 select-all">
-                            isometric projection, high tech concept, die-cut vector icon, clay render, white matte background, octane render, clean edge, sharp focus, volumetric lighting
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => copyPromptToClipboard("isometric projection, high tech concept, die-cut vector icon, clay render, white matte background, octane render, clean edge, sharp focus, volumetric lighting", "s2")}
-                            className="p-1 rounded hover:bg-black/15 shrink-0 transition cursor-pointer"
-                            title="複製提示詞"
-                          >
-                            {copiedPromptId === "s2" ? (
-                              <Check className="h-3.5 w-3.5 text-green-500" />
-                            ) : (
-                              <Copy className="h-3.5 w-3.5 opacity-60 hover:opacity-100" />
-                            )}
-                          </button>
+                          <div>• <span className="text-amber-500">Adobe Firefly</span></div>
+                          <div>• <span className="text-amber-500">Leonardo AI</span></div>
+                          <div>• <span className="text-amber-500">Midjourney</span></div>
                         </div>
                       </div>
                     </div>
@@ -4033,8 +4474,8 @@ export default function App() {
                     <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
                       theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
                     }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 實戰技巧：</span>
-                      <span>善用直式比例（如 <code className="px-1 py-0.2 bg-black/10 rounded">--ar 3:4</code> 或 <code className="px-1 py-0.2 bg-black/10 rounded">--ar 4:5</code>）以契合現代網頁的卡片佈局，並配合 Zoom Out (1.5x / 2x) 提供充足的主視覺呼吸外距。</span>
+                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
+                      <span>【專注核心】大幅降低過往在圖庫中大海撈針的繁瑣時間，將工作重心 100% 回歸於設計師最核心的「美學把關」與「精緻度雕琢」。</span>
                     </div>
                   </div>
 
@@ -4063,19 +4504,19 @@ export default function App() {
                       <h4 className={`text-sm md:text-base font-semibold ${
                         theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
                       }`}>
-                        局部精细修復與神經無損放大
+                        後期完稿｜專業精修與商業落地
                       </h4>
                       
                       <p className={`text-xs leading-relaxed ${
                         theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
                       }`}>
-                        AI 渲染時難免出現文字扭曲、奇形怪狀瑕疵。此時利用 Stable Diffusion 的局部重繪（Inpaint）精修特定細節，並結合倍線算法超增幅至 HD 實用畫質。
+                        AI 產出的只是素材，唯有透過設計師的手，才能轉化為符合市場標準的商品。將 AI 生成的原型匯入專業軟體，進行局部重繪（Inpainting）、光影細修、去背與去瑕疵。利用編修軟體優化角色骨架，並透過 Illustrator 將關鍵視覺進行向量化（Vectorization）與精準排版，確保多解析度輸出的品質。
                       </p>
 
                       <div className="space-y-1.5 pt-2">
                         <span className={`text-[9.5px] font-mono uppercase block ${
                           theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>SD 常用高精倍線重繪設定:</span>
+                        }`}>協作工具:</span>
                         <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
                           theme === "dark" 
                             ? "bg-black/60 text-zinc-300 border-white/5" 
@@ -4083,9 +4524,9 @@ export default function App() {
                             ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
                             : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
                         }`}>
-                          <div>• Upscaler: <span className="text-amber-500">Ultimate SD Upscale</span></div>
-                          <div>• Scale factor: <span className="text-amber-500">2.0x (RealESRGAN_x4plus)</span></div>
-                          <div>• Inpaint Denoising Strength: <span className="text-indigo-400">0.18</span></div>
+                          <div>• <span className="text-amber-500">Adobe Photoshop</span></div>
+                          <div>• <span className="text-amber-500">Adobe Illustrator</span></div>
+                          <div>• <span className="text-amber-500">Canva</span></div>
                         </div>
                       </div>
                     </div>
@@ -4093,8 +4534,8 @@ export default function App() {
                     <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
                       theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
                     }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 實戰技巧：</span>
-                      <span>局部重繪時，重繪強度 (Denoising Strength) 如果過高會產生隨機無序體，在 <code className="px-1 py-0.2 bg-black/10 rounded">0.15~0.22</code> 能在不影響主體造型的前提下，精準地重刷不完美的手部、消除鋸齒毛邊。</span>
+                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
+                      <span>【效率轉化】成功實現「AI 輔助繪圖 20% + 人類美學完稿 80%」的黃金比例，既保有設計師獨特的筆觸與結構主導權，又兼顧了產出效率。</span>
                     </div>
                   </div>
 
@@ -4123,19 +4564,19 @@ export default function App() {
                       <h4 className={`text-sm md:text-base font-semibold ${
                         theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
                       }`}>
-                        前端切圖與極致動態編碼實踐
+                        印前模擬｜圖生圖與週邊開發
                       </h4>
                       
                       <p className={`text-xs leading-relaxed ${
                         theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
                       }`}>
-                        匯出高品質 WebP 遮罩圖資，在 Figma 規劃視圖層組。使用 Vite + Tailwind 進行高效靜態打包，並搭配 Framer Motion 注入動態靈魂。
+                        在正式進入印刷與市集量產前，用技術降低實體製作的容錯率。運用「圖生圖」與結構參考功能，將設計好的 2D 視覺或角色 IP，快速投射至模擬場景（Mockup）中。無論是市集宣傳海報的街頭貼圖，還是壓克力立牌、週邊商品的實體光影模擬，都能在打樣前得到最直觀的視覺驗證。
                       </p>
 
                       <div className="space-y-1.5 pt-2">
                         <span className={`text-[9.5px] font-mono uppercase block ${
                           theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>React 重繪與快取控制項:</span>
+                        }`}>協作工具:</span>
                         <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
                           theme === "dark" 
                             ? "bg-black/60 text-zinc-300 border-white/5" 
@@ -4143,9 +4584,7 @@ export default function App() {
                             ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
                             : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
                         }`}>
-                          <div>• Layout Motion: <span className="text-amber-500">layout="position"</span></div>
-                          <div>• Component Cache: <span className="text-amber-500">React.memo custom comparator</span></div>
-                          <div>• Virtualization: <span className="text-indigo-400">IntersectionObserver pre-fetching</span></div>
+                          <div>• <span className="text-amber-500">Image-to-Image (圖生圖控制技術)</span></div>
                         </div>
                       </div>
                     </div>
@@ -4153,8 +4592,8 @@ export default function App() {
                     <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
                       theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
                     }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 實戰技巧：</span>
-                      <span>卡片切疊時利用 Framer Motion 的 <code className="px-1 py-0.2 bg-black/10 rounded">layout="position"</code> 做過渡效果，搭配 IntersectionObserver 進程預讀，即使有極高密度的豐富作品卡，也能保持絲滑的 60 FPS 面面俱到。</span>
+                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
+                      <span>【決策加速】透過高擬真的印前視覺模擬，讓概念發想與風格定調時間縮短 60%，大幅降低與印刷廠商、合作夥伴之間的溝通成本。</span>
                     </div>
                   </div>
 
@@ -4391,7 +4830,7 @@ export default function App() {
       {/* 角色插畫類別配置：右下角生動彈出裝飾（極高解析度 GPU 隔離渲染） */}
       <InteractiveMascot 
         currentMascot={currentMascot}
-        theme={theme}
+        theme={deferredTheme}
         activeModalItem={activeModalItem}
         isWorkflowOpen={isWorkflowOpen}
         isContactCardOpen={isContactCardOpen}

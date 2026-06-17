@@ -2,6 +2,199 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "buddy-red-envelope",
+    "category": "商務印刷品設計",
+    "title": "「巴迪醫療 好年紅包袋」：東方美學極致燙金工藝與有溫度的節慶祝福商務印刷設計",
+    "titleEn": "Buddy Medical Lucky Red Envelope - New Year High-End Hot Stamping Gift Design",
+    "philosophy": "本專案為專業醫療器材代理商巴迪醫療（Buddy Medical）量身定制「好年紅包袋」年節商務贈禮設計。視覺美學以東方經典喜慶朱紅色（Chinatown Red）特種紙為厚實畫布，主標題經由名家行草書寫的雄渾「好年」二字，經亮金高飽和燙金工藝（Hot Gold Foil Stamping）立體壓印躍然於紅包核心。排版設計採用嚴謹對稱網格，下方雙語編排融入富有人格關懷的對聯「巴迪醫療好年帆，千帆競，迪運貴人步步來」，以及紅包背面封口處巴迪醫療金色幾何祥雲圖騰，無縫整合了傳統節慶瑞氣與大器沉穩的品牌精神。整體極致輕奢、細膩精妙的燙金光澤、以及厚重高雅的特種紙手感完美交融，成功為頂尖心血管臨床大師及醫界權威貴賓們，呈遞了一份兼具豐厚溫度、誠摯祝福與頂級尊榮感的高端商務賀歲禮讚。",
+    "isHighlight": false,
+    "tools": [
+        "亮金高壓立體燙金工藝 (Hot Gold Foil Stamping)",
+        "「好年」名家行草書法體整合設計",
+        "特種紅紙雙向垂直對稱網格字體編排 (Brochure Typographic Grid)",
+        "幾何古典祥雲圖騰 (Golden Auspicious Cloud Totem) 向量繪製"
+    ],
+    "imageUrl": "/images/optimized/1rPh14GG7YZF88spnpXTmtB7dnNFcd_kU.webp",
+    "placeholderId": "buddy-red-envelope-01",
+    "colorTheme": "from-[#7B1113] via-[#9E1A1C] to-[#5C0A0C]",
+    "images": [
+        "/images/optimized/1rPh14GG7YZF88spnpXTmtB7dnNFcd_kU.webp",
+        "/images/optimized/1X420youYFNEuxmAwuLkN_sZSEhWQCc9w.webp"
+    ]
+  },
+  {
+    "id": "buddy-ttt-badge",
+    "category": "商務印刷品設計",
+    "title": "「2025 TTT 年會巴迪醫療與會人員識別證贊助廣告」：心血管前沿代理品牌形象與 AVANTGARDE BMS 支架尖端科技視覺傳達設計",
+    "titleEn": "2025 TTT Buddy Medical Sponsor Badge AD - Bare Metal Stent (AVANTGARDE BMS) Creative & Venue Identity",
+    "philosophy": "本專案為巴迪醫療（Buddy Medical）量身打造，專供其在 2025 台灣介入性心臟血管醫學會（TTT, Taiwan Transcatheter Therapeutics）年度學術盛會之會場核心焦點「與會人員識別證」廣告贊助。設計將硬核的醫療技術與浩瀚宇宙的科幻美學進行浪漫且理性的跨界融合。視覺核心以高解析、精緻高對比的金屬立體3D寫實抗氧裸金屬血管支架（AVANTGARDE BMS）為主體，架構於以星空、深邃星軌及壯麗星雲光學渲染為背景的世界網格之中，大氣宣告其引領全球心血管創新、頂天立地的研發實力與全球化大戰略視野。版面採用極致嚴謹的雙語版面網格與高易讀性的現代無襯線大字重排版，將核心產品名「AVANTGARDE」與震撼靈魂的標語「A BMS THAT NEVER STOPS.」精準對比，並自然整合與會通行不可或缺的條碼與雙語代理商資訊。本設計大幅突破了傳統醫材廣告枯燥陳舊的窠臼，令這方僅寸大的識別證贊助位不僅成為高效導視，更如同一張極富收藏價值的袖珍藝術DM，成功在近千位心血管臨床專家大師前塑造極具未來感、高度信賴且極緻精妙的品牌主權形象。",
+    "isHighlight": false,
+    "tools": [
+        "宇宙科技星軌星雲背景融合與多重光學渲染",
+        "AVANTGARDE BMS 血管支架立體 3D 模型精細質感重塑",
+        "識別證精巧物理尺寸下雙語排版網格設計 (Badge Grid Typography)",
+        "大會識別系統與高辨識度數位互動 (QR Code & Dynamic Barcode)"
+    ],
+    "imageUrl": "/images/optimized/1Vxt1vifCHXUhrcEDRu8L1MqWMzI_W_Ds.webp",
+    "placeholderId": "buddy-ttt-badge-01",
+    "colorTheme": "from-[#050D1E] via-[#0E1F3D] to-[#050D1E]",
+    "images": [
+        "/images/optimized/1Vxt1vifCHXUhrcEDRu8L1MqWMzI_W_Ds.webp",
+        "/images/optimized/10oxD3GmmW0utYZKFNyNP-gySz0xQXRYX.webp"
+    ]
+  },
+  {
+    "id": "chengmei-tavi-flyer",
+    "category": "商務印刷品設計",
+    "title": "「成美論壇 ── TAVI 案例研討會」：彰化成美學術峰會高雅水墨視覺與精美商務宣傳傳單設計",
+    "titleEn": "Chengmei Forum 2025 - TAVI Academic Symposium Promotional Flyer & Editorial Brochure",
+    "philosophy": "本專案為 2025 年隆重盛開之「成美論壇 ── TAVI 案例研討會」客製之高規格宣傳推廣傳單與商務印刷品設計。研討會聚焦於高難度「Valve in Valve（瓣中瓣）」經導管主動脈瓣膜置換技術，邀集全台數十位心腦血管領域權威專家學者赴彰化永靖成美文化園交流論述。傳單平面美學以極具東方禪意、靜謐雅緻的蔚藍水墨煙雲為主調，大氣磅礡的書法行書「成美論壇」躍然紙上，與西式現代無襯線雙語字體精密咬合。雙語非對稱網格將繁複的學術議程與大師陣容梳理得極富層次且高易讀性。側邊落日暖陽與江水划槳之手繪意象更為前沿醫學注入飽滿的人文溫度與永續关怀，其絕佳的紙感質地與高級感，將學術與藝術完美平衡，成為引領醫學界審美風潮的高端商務代表之作。",
+    "isHighlight": false,
+    "tools": [
+        "中式東方水墨畫卷與雄渾書法字體重塑",
+        "雙語臨床流程時間表印刷網格規範 (Brochure Grid Typography)",
+        "活動宣傳折頁紙張手感與精緻表面光影材質規劃",
+        "古典人文插畫意境美學與現代尖端科技跨界咬合"
+    ],
+    "imageUrl": "/images/optimized/1Q3yxBwOGgmn7WEQoeCm8APNdbtxGcJmq.webp",
+    "placeholderId": "chengmei-tavi-flyer-01",
+    "colorTheme": "from-[#0F2236] via-[#1E3F5F] to-[#0D1A2A]",
+    "images": [
+        "/images/optimized/1Q3yxBwOGgmn7WEQoeCm8APNdbtxGcJmq.webp",
+        "/images/optimized/1I1KBRonkTt9Pjl71iPdWpAPFZ-i7z8kB.webp"
+      ]
+  },
+  {
+    "id": "wugu-ai-media-gugugu",
+    "category": "平面海報設計",
+    "title": "「2025 五股職訓局 AI 媒體應用 02 期 古菇顧班級海報」：永續生態與前沿 AI 智能的藝術交匯，古菇顧品牌角色與科幻綠洲班級平面海報設計",
+    "titleEn": "2025 Wugu Vocational Training AI Media Applications Class 02 - GuGuGu Class Poster - Sustainable Ecology & Advanced AI Generative Vision Poster Design",
+    "philosophy": "本專案為 2025 年五股職訓局「AI 媒體應用 02 期」量身打造的班級代表視覺海報設計。視覺核心圍繞著富有生命溫度與奇幻森林色彩的班級象徵角色「古菇顧」，並深度釋放生成式 AI 媒體技術的視覺創造力。設計手法將永續自然生態（Eco-Sustainability）與賽博龐克式的未來智能綠洲完美熔於一爐。畫面上，細緻溫潤的巨型奇幻發光蕈菇、隱匿於孢子微光中的智能生物，與充滿未來主義冷峻幾何線條之數字化代碼交織融合，大氣書寫「AI 媒體應用 02 期」之磅礡主題。整體排版秉持極致嚴謹的非對稱現代網格系統（Asymmetric Typographic Grid），在生機盎然的深野青與螢光苔綠色系中建立起清晰的層級結構，既展現了 AI 數位工具在視覺影像合成上的極高精準度，更富有人性的天馬行空、溫暖童趣，為職業訓練成果開創了兼具科技前沿實力與永續美學思維的全新次元海報典範。",
+    "isHighlight": false,
+    "tools": [
+        "Generative AI 創意圖像流合成與高階螢光色調渲染",
+        "Asymmetric Grid 不對稱排版網格系統與現代字體整合",
+        "「古菇顧」原創品牌角色奇幻森林生態插畫設計",
+        "班級向心力設計與大寬幅海報精細印刷比例控制"
+    ],
+    "imageUrl": "/images/optimized/1fKCxHxLbCLjRihCLRtj2UvICUBsNekqm.webp",
+    "placeholderId": "wugu-ai-media-gugugu-01",
+    "colorTheme": "from-[#021F17] via-[#0D382A] to-[#021F17]",
+    "images": [
+        "/images/optimized/1fKCxHxLbCLjRihCLRtj2UvICUBsNekqm.webp"
+    ]
+  },
+  {
+    "id": "chengmei-tavi-symposium",
+    "category": "平面海報設計",
+    "title": "「成美論壇 ── TAVI 案例研討會」：彰化成美學術峰會高雅水墨視覺與高階醫療發表會海報設計",
+    "titleEn": "Chengmei Forum 2025 - TAVI Academic Valve in Valve Symposium & Lecture Poster Design",
+    "philosophy": "本專案為 2025 年於彰化永靖歷史名園「成美文化園」宴會廳 2 樓盛大舉行的「成美論壇 ── TAVI 案例研討會（Valve in Valve）」量身打造。活動聚焦於高端心導管微創手術（經導管主動脈瓣膜置換術 TAVI/TAVR）旗下極具挑戰之「瓣中瓣」醫學臨床突破，邀請 TSVS 台灣心臟外科學會、台灣胸腔及心臟血管外科學會，與喬昕、巴迪、楨達等多方頂級醫材大廠聯合敬邀中彰投地區醫學中心教授座談。平面視覺美學突破西式學術教條：背景以極具人文厚度、靜謐雅緻的淡水藍水墨暈染作為畫布，將傳統書法題寫的雄渾「成美論壇」與理性冷峻的現代中文、西式無襯線雙語字體精密咬合。大膽設計不對稱之學術網格系統，左側井然有序堆疊一字排開的臨床 Case sharing 進程時間，右側襯以溫潤和煦的落日暖暉與泛舟划槳水波，將台灣醫學大師卓越的科研思辨、彰化本土頂級庭園精緻、人文情懷與瓣膜高階醫材的澄淨美學完美熔於一爐，營造大氣、專業且極有細緻底蘊之學術人文盛宴。",
+    "isHighlight": false,
+    "tools": [
+        "中式淡雅水墨畫卷與雄渾書法字體重塑",
+        "心臟人工瓣膜簡約插圖與日落光學渲染",
+        "雙語臨床流程時間表不對稱網格規範",
+        "醫學會現場實體木製畫架展出比例規劃"
+    ],
+    "imageUrl": "/images/optimized/1EOgxA9OkDVsXJQzzoOw0lGlA624MBmqR.webp",
+    "placeholderId": "chengmei-tavi-symposium-01",
+    "colorTheme": "from-[#0F2236] via-[#1E3F5F] to-[#0D1A2A]",
+    "images": [
+        "/images/optimized/1EOgxA9OkDVsXJQzzoOw0lGlA624MBmqR.webp",
+        "/images/optimized/1WYYNvyf4JIa3HSmTCY86gzwF9WGPxv-m.webp"
+    ]
+  },
+  {
+    "id": "myval-in-valve-symposium",
+    "category": "平面海報設計",
+    "title": "「Myval IN VALVE 中區瓣中瓣發表會與學術研討會」：顛覆傳統的心臟介入學術美學視覺海報與現場導引設計",
+    "titleEn": "Myval IN VALVE Launch Symposium In Taichung - Transcatheter Heart Valve Academic Poster Design",
+    "philosophy": "本專案為 2024 年在台中日月千禧酒店 5F 盛大舉辦的「MYVAL IN VALVE LAUNCH SYMPOSIUM IN TAICHUNG」醫學發表研討會客製化設計。研討會深入研討心臟介入治療領域中，針對 Myval 經導管主動脈瓣膜技術在「Valve-in-Valve（瓣中瓣）」臨床應用領域的高階發表。視覺設計上，筆者打破了傳統學術海報的死板沉悶，將最具生命象徵、澎湃翻騰的心形水流紅橙圖騰與極具幾何理性之經導管主動脈瓣膜（Transcatheter Aortic Valve）巧妙咬合。版面採用大膽創新的非對稱雙語網格系統，左側精準且具高易讀性地陳列發表會流程、共同主辦單位巴迪醫療器材（Buddy Medical）與喬昕科技（CHELSEA TECH. LTD）的合作資訊，右側以高質感寫實 3D 瓣膜與鮮活心臟水流交融作為視覺焦點。背景細膩襯有大器灑脫的「Central 中區」半透明設計字樣，展現本土情感、高雅醫術與國際前沿接軌之魄力。展現現場所規畫之透明精緻導引展架，搭配深邃科研深藍、活力紅橙微光及透亮壓克力材質，相得益彰，共同譜寫出一場高尚、專業且極具細緻質感的學術盛宴氛圍。",
+    "isHighlight": false,
+    "tools": [
+        "經導管瓣中瓣(Valve-in-Valve) 3D解剖渲染與水流特效融合",
+        "巴迪醫療與喬昕科技 (Buddy & Chelsea) 雙語排版網格設計",
+        "台中日月千禧現場壓克力透明導視系統與高對比色彩美學",
+        "地域字體圖騰(Central 中區)襯底與高水準視覺架構規劃"
+    ],
+    "imageUrl": "/images/optimized/1478HzmU6AkqUxv2HgevdOaZswjjfOLoB.webp",
+    "placeholderId": "myval-in-valve-symposium-01",
+    "colorTheme": "from-[#081226] via-[#102B54] to-[#0A162B]",
+    "images": [
+        "/images/optimized/1478HzmU6AkqUxv2HgevdOaZswjjfOLoB.webp",
+        "/images/optimized/1tDL6IFGqNilqNQtQeZVNkuV2qBYnmwbh.webp"
+    ]
+  },
+  {
+    "id": "myval-symposium",
+    "category": "平面海報設計",
+    "title": "「Myval SYMPOSIUM 南區心臟介入治療研討會」：頂尖心血管醫材品牌視覺與卓越學術交流海報設計",
+    "titleEn": "Myval SYMPOSIUM 2024 - South Taiwan Structural Heart TAVR/TAVI Academic Poster Design",
+    "philosophy": "本專案為 2024 年盛大舉辦的「Myval SYMPOSIUM 南區心臟介入治療研討會」量身規劃。本專案聚焦於心血管尖端微創手術中極具革命性的「經導管主動脈瓣膜置換手術（TAVI/TAVR）」，並邀集來自高醫、新光、雙和、馬偕、北醫等多家國內一線醫學中心之頂尖心臟科大師進行探討與 Case sharing。視覺設計捨棄傳統沉悶而繁瑣的陳列，以清爽、理性的前衛藍白色系為基底，將精密經導管心臟瓣膜與網狀動脈支架之 3D 模型渲染，置於黃金分割網格的視覺中心。整體版面運用幾何漸層光弧、柔和的光點粒子與流體流線來意象化模擬血液微循環之流暢運轉。搭配極具張力的大字重非對稱中文「南運」與英文首字，兼顧卓越的雙語字體排版編排（Bilingual Grid Typography）與地域性，將主辦單位巴迪醫療器材、喬昕科技、楨達有限公司等專業科技形象、高雄 H2O 水京棧國際酒店 3F 柏廳的頂級展現氛圍，以及極具前瞻性的醫學科技美學完美地融合展現。",
+    "isHighlight": false,
+    "tools": [
+        "經導管主動脈瓣膜(TAVR/TAVI) 精密3D渲染與去背",
+        "雙語信息網格資訊階層規劃 (Bilingual Information Hierarchy)",
+        "藍白高端學術漸層光弧粒子特效繪製",
+        "醫學研討會大型展示板與接待空間導覽視覺規劃"
+    ],
+    "imageUrl": "/images/optimized/1pOSyh9tkUHjLeW6EHIOZmWnJeZJMvWjP.webp",
+    "placeholderId": "myval-symposium-01",
+    "colorTheme": "from-[#0B1E3F] via-[#153460] to-[#0A162B]",
+    "images": [
+        "/images/optimized/1pOSyh9tkUHjLeW6EHIOZmWnJeZJMvWjP.webp",
+        "/images/optimized/1hrGZ9D3ll0bMUjiFfFVV7jnuaL5Bns9c.webp"
+    ]
+  },
+  {
+    "id": "ni-neuro-symposium",
+    "category": "平面海報設計",
+    "title": "「NI是我的神 中區研討會」：神經介入醫學領域之頂尖大師雙語視覺海報與現場背板設計",
+    "titleEn": "Neuro Intervention Launch Symposium In Taichung (NI IS MY GOD) - Medical Poster & Venue Identity",
+    "philosophy": "本專案以「NI是我的神 中區研討會」（Neuro Intervention Launch Symposium In Taichung）為核心，為神經介入醫學領域的高階專業學術交流量身打造。視覺語彙大膽結合了富含在地情感與趣味精神的中文口語「NI是我的神」（NI象徵神經介入 Neuro Intervention），與極具理性學術思辨的西式前衛科技排版。設計面大膽挑戰了醫療研討會傳統死板的印象：採用不對稱的嚴謹雙語網格系統，左側井然有序地梳理研討會時間、專家陣容與 Case sharing 主題流程，右側則透過細緻而富有現代感的神經微導管解剖路徑、腦部斷層流線插圖、寫實微創醫療器械相互堆疊，結合大氣瀟灑的「神」字書法體，將藝術感、本土溫度、人本關懷與頂尖醫學之縝密完美契合。展現現場亦規畫了大型背板及引路燈箱，搭配沉穩而富有未来感的藍白科研色調與清澈柔亮的光學渲染，為現場近百位專家學者營造出高層次、飽滿且極致細緻的深度探討交流殿堂。",
+    "isHighlight": false,
+    "tools": [
+        "研討會主視覺大型會牆與導覽牌配置",
+        "雙語非對稱網格字體編排 (Bilingual Grid Typography)",
+        "高對比度精準醫療器械解剖向量圖繪製",
+        "現代學術研討會品牌感建立與色彩美學"
+    ],
+    "imageUrl": "/images/optimized/1U_OdG2UOlONfNZCAH53Wj1B3h1HMY2iZ.webp",
+    "placeholderId": "ni-neuro-symposium-01",
+    "colorTheme": "from-[#0F2038] via-[#1F3D68] to-[#0F2038]",
+    "images": [
+        "/images/optimized/1U_OdG2UOlONfNZCAH53Wj1B3h1HMY2iZ.webp",
+        "/images/optimized/1HOWYatgwDUpMg0MBDOA8UUSPi5BQFnwG.webp"
+    ]
+  },
+  {
+    "id": "match-bond-elk",
+    "category": "實體店面與展覽",
+    "title": "2012 勤美誠品聖誕村「麋鹿迷路了」：火柴邦（MATCH BOND）聯名公共藝術彩繪麋鹿創作",
+    "titleEn": "2012 CMP Block Museum Christmas Village 'Elk Got Lost' - MATCH BOND Collaborative Public Art",
+    "philosophy": "本作品為筆者在「25點設計」任職期間，參與 2012 勤美誠品聖誕村「麋鹿迷路了」企劃之公共藝術彩繪創作。創作概念巧妙融入台灣原創潮流品牌「火柴邦（MATCH BOND）」世界觀：大膽讓聖誕引路麋鹿戴上極具街頭感的幾何酷帥墨鏡，並將品牌最具代表性的經典核心角色——鮮黃配色與超大嘴巴造型的「他奶奶的熊（Damn It Bear）」，以及身穿經典拳擊手套的「西瓜口水兔（Watermelon Bunny）」彩繪於大面積黃紅漸層鹿身。整體視覺以熾熱飽滿的鮮黃和火紅烈焰圖騰交織呈現，展現狂野且具秩序的街頭活力。最畫龍點睛的創意在於將大鹿角轉化為實體聚攏成束的「火柴棒」集結意象，象徵點燃無限創意的火花、發揮微小力量聚集成炬的精神，為台中草悟道與勤美綠地空間注入了強烈、活力四射的街頭潮流溫度。",
+    "isHighlight": true,
+    "tools": [
+        "FRP 雕塑實體彩繪上漆",
+        "火柴邦 (MATCH BOND) 次文化聯名世界觀",
+        "戶外街頭特殊材質處理",
+        "3D 展示包裝與夜間照明規畫"
+    ],
+    "imageUrl": "/images/optimized/1rNnx0mQvfCb1w3NnpyOCEdam7ig18RQC.webp",
+    "placeholderId": "match-bond-elk-01",
+    "colorTheme": "from-[#F3B329] via-[#D83A20] to-[#E95B16]",
+    "images": [
+        "/images/optimized/1rNnx0mQvfCb1w3NnpyOCEdam7ig18RQC.webp",
+        "/images/optimized/1Sgv6Ri29S29rMnrfenWSKeP8EXYBaYi1.webp",
+        "/images/optimized/18ZznwYlW_iNy_KIdAm50tqSpip6-zKpd.webp",
+        "/images/optimized/1ZHC-6-Hs9_r_01TaL7ZcBn_l_szgeKiz.webp",
+        "/images/optimized/1UaYFJhfzch6tLQScjxK6ZoHIC5W73r8L.webp",
+        "/images/optimized/1kexMMRbO8V4K9cucyVNApcs3mXcyuO5g.webp",
+        "/images/optimized/1cQBkNWAckbc1Foa8vnUKq-wAFn-itXBh.webp"
+    ]
+  },
+  {
     "id": "new-dino-group",
     "category": "角色IP&插畫與貼圖",
     "title": "SHONE CITY CREW 恐龍家族：街頭潮流、音樂與生活美學的 IP 吉祥物家族與品牌貼圖設計",
@@ -213,12 +406,12 @@ export const initialPortfolioData: PortfolioItem[] = [
         "視覺識別",
         "燙金"
     ],
-    "imageUrl": "/images/optimized/1udB6cVB2XyCPgUwpkYMvlvyjiJlzaH41.webp",
+    "imageUrl": "/images/optimized/1GU6AvSwQzrAhFO04nacOTHOdMSIyElLg.webp",
     "placeholderId": "IMAGE_7",
     "colorTheme": "from-blue-950 to-indigo-950",
     "images": [
-        "/images/optimized/1udB6cVB2XyCPgUwpkYMvlvyjiJlzaH41.webp",
         "/images/optimized/1GU6AvSwQzrAhFO04nacOTHOdMSIyElLg.webp",
+        "/images/optimized/1udB6cVB2XyCPgUwpkYMvlvyjiJlzaH41.webp",
         "/images/optimized/1xlPHUpIYagYymTsDC2jotn-NCErmTWcZ.webp",
         "/images/optimized/17wKjs0RY_Lb7fGJw0eu1fKNRVntOuMD6.webp",
         "/images/optimized/1ormkUavOimjMEe7fTyNjiTBiyAUSwTZl.webp",
@@ -1105,6 +1298,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "52",
     "category": "社群行銷小編圖文",
+    "isHighlight": true,
     "title": "心泰 PRO 原創泰國料理：節慶主題與精緻異國美食社群貼文視覺設計",
     "titleEn": "Thai Heart Pro: Exquisite Festive Campaigns & Authentic Thai Cuisine Social Media Design",
     "philosophy": "深紅至粉紅漸層光暈結合心形散焦背景，襯托香檳與粉紅酒實拍，社群1:1排版運用亮色彩帶框標核心促銷，歐式優雅草書與無襯線黑體交織。",
@@ -1375,6 +1569,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "62",
     "category": "社群行銷小編圖文",
+    "isHighlight": true,
     "title": "羅宋堂總代理官方售後：Segway-Ninebot 智能滑板車尊榮延長保固計劃圖文詳情與登錄系統界面設計",
     "titleEn": "Segway-Ninebot Authorised Local VIP Extended Warranty: Premium Post-Purchase Insurance Campaign & Verification Interface Design",
     "philosophy": "極致石墨黑背景點綴經典暖橘黃，呼應液晶儀表質感，將保固合約條款轉化為高可讀性圖形卡片網格與擬真電子版面，精細校正不同載端色彩。",
@@ -2138,6 +2333,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "94",
     "category": "平面海報設計",
+    "isHighlight": true,
     "title": "巴迪醫療：中華民國胸腔及心臟血管外科學會 (TATCS) 展覽 Meril Life Sciences Dafodil 心包生物瓣膜產品海報設計",
     "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
     "philosophy": "醫學深藍與無塵皓雪白採黃金分割網格，3D視覺圖解三葉心包生物瓣膜與鈷鉻框架，雙語對照標註，印前湛藍防溢流並四色黑。",
@@ -2238,6 +2434,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "101",
     "category": "企業LOGO與CIS設計",
+    "isHighlight": true,
     "title": "歡喜媛媛：卓越溫潤品牌標誌與全方位企業識別系統（CIS）創意設計定稿",
     "titleEn": "Joy Yuan Co.: Premium Logo Branding & Corporate Identity System (CIS) Creative Showcase",
     "philosophy": "幾何圓弧標誌融入無限與喜悅笑臉，無襯線字體配以溫潤倒角展現人文美感，悅活元氣粉橘對比典雅尊爵墨炭灰，24頁CIS手冊詳細定稿名片。",
@@ -3739,6 +3936,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "157",
     "category": "影音與多媒體設計",
+    "isHighlight": true,
     "title": "DH Fruit 動態廣告",
     "titleEn": "DH Fruit Dynamic Advertisement",
     "philosophy": "運用簡潔大氣的網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
