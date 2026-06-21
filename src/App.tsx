@@ -1023,27 +1023,12 @@ function ImageWithFallback({
     }
   };
 
+  // Robust, race-condition-free cache and completion observer.
+  // We do NOT use any "else { setIsLoaded(false) }" branch here, as that can lead to stuck load states during re-renders.
   React.useEffect(() => {
-    if (!isInView || !currentSrc) {
-      setIsLoaded(false);
-      return;
-    }
+    if (!isInView || !currentSrc) return;
     const img = imgRef.current;
-    if (img) {
-      if (img.complete && img.naturalWidth > 0) {
-        const fellBack = handleYoutubeFallback(img);
-        if (!fellBack) {
-          setIsLoaded(true);
-        }
-      } else {
-        setIsLoaded(false);
-      }
-    }
-  }, [currentSrc, isInView]);
-
-  React.useEffect(() => {
-    const img = imgRef.current;
-    if (isInView && img && img.complete && img.naturalWidth > 0) {
+    if (img && img.complete && img.naturalWidth > 0) {
       const fellBack = handleYoutubeFallback(img);
       if (!fellBack) {
         setIsLoaded(true);
@@ -1051,17 +1036,60 @@ function ImageWithFallback({
     }
   }, [currentSrc, fallbackAttempt, isInView]);
 
+  const safeSetCurrentSrc = (newUrl: string, nextAttempt: number) => {
+    let finalUrl = newUrl;
+    if (finalUrl === currentSrc) {
+      const separator = finalUrl.includes("?") ? "&" : "?";
+      finalUrl = `${finalUrl}${separator}fb_retry=${nextAttempt}`;
+    }
+    setCurrentSrc(finalUrl);
+  };
+
+  const setPlaceholderFallback = (attemptNo?: number) => {
+    const attemptNum = attemptNo || 1;
+    // Elegant fallback Unsplash placeholders or beautiful representation matching the category
+    if (src.includes("photo-1627308595229-7830a5c91f9f") || alt.includes("茂生") || alt.includes("月餅")) {
+      safeSetCurrentSrc(`https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450&sig=${attemptNum}`, attemptNum);
+    } else if (categoryName && (categoryName.includes("LOGO") || categoryName.includes("CIS"))) {
+      const urls = [
+        "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634",
+        "https://images.unsplash.com/photo-1626785774573-4b799315345d",
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
+      ];
+      const selectedUrl = urls[(attemptNum - 1) % urls.length];
+      safeSetCurrentSrc(`${selectedUrl}?auto=format&fit=crop&q=80&w=600&h=450`, attemptNum);
+    } else if (categoryName && (categoryName.includes("實體") || categoryName.includes("展覽") || categoryName.includes("空間"))) {
+      const urls = [
+        "https://images.unsplash.com/photo-1497366216548-37526070297c",
+        "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8"
+      ];
+      const selectedUrl = urls[(attemptNum - 1) % urls.length];
+      safeSetCurrentSrc(`${selectedUrl}?auto=format&fit=crop&q=80&w=600&h=450`, attemptNum);
+    } else if (categoryName && (categoryName.includes("插畫") || categoryName.includes("繪圖"))) {
+      const urls = [
+        "https://images.unsplash.com/photo-1513364776144-60967b0f800f",
+        "https://images.unsplash.com/photo-1501183007986-d0d080b147f9",
+        "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5"
+      ];
+      const selectedUrl = urls[(attemptNum - 1) % urls.length];
+      safeSetCurrentSrc(`${selectedUrl}?auto=format&fit=crop&q=80&w=600&h=450`, attemptNum);
+    } else {
+      safeSetCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt + `_fb_${attemptNum}`) + "/600/450", attemptNum);
+    }
+  };
+
   const handleError = () => {
     setIsLoaded(false);
     
     // 1. YouTube specific fallback logic to try lower quality thumbnails gracefully
     if (src.includes("youtube.com") || src.includes("ytimg.com") || currentSrc.includes("youtube.com") || currentSrc.includes("ytimg.com")) {
       if (fallbackAttempt === 0 && currentSrc.includes("maxresdefault.jpg")) {
-        setCurrentSrc(currentSrc.replace("maxresdefault.jpg", "hqdefault.jpg"));
+        safeSetCurrentSrc(currentSrc.replace("maxresdefault.jpg", "hqdefault.jpg"), 1);
         setFallbackAttempt(1);
         return;
       } else if (fallbackAttempt === 1 && currentSrc.includes("hqdefault.jpg")) {
-        setCurrentSrc(currentSrc.replace("hqdefault.jpg", "0.jpg"));
+        safeSetCurrentSrc(currentSrc.replace("hqdefault.jpg", "0.jpg"), 2);
         setFallbackAttempt(2);
         return;
       }
@@ -1069,82 +1097,97 @@ function ImageWithFallback({
 
     const id = extractDriveId(src);
     const nextAttempt = fallbackAttempt + 1;
-    setFallbackAttempt(nextAttempt);
 
     // Check if the source is a local asset (local portfolio images)
     const isLocal = src.startsWith("/") && (src.includes("/images/") || src.startsWith("/images/")) && !src.startsWith("/images/optimized/");
 
     if (isLocal) {
       // Robust multi-tier recovery mechanism specifically for local images to handle subdirectories & routing issues
-      if (nextAttempt === 1) {
-        // Try absolute root path directly (bypassing any custom base prefixes)
-        setCurrentSrc(src);
-      } else if (nextAttempt === 2) {
-        // Try relative path (removing leading slash) - extremely effective for subdirectories / iframe wrappers
-        const relativePath = src.startsWith("/") ? src.slice(1) : src;
-        setCurrentSrc(relativePath);
-      } else if (nextAttempt === 3) {
-        // Try explicit dot-relative path
-        const relativePath = src.startsWith("/") ? src.slice(1) : src;
-        setCurrentSrc(`./${relativePath}`);
-      } else if (nextAttempt === 4) {
-        // Typo / extension mismatch recovery: try to swap file extension (e.g. .jpg <-> .webp)
-        if (src.endsWith(".webp")) {
-          setCurrentSrc(src.replace(/\.webp$/, ".jpg"));
-        } else if (src.endsWith(".jpg")) {
-          setCurrentSrc(src.replace(/\.jpg$/, ".webp"));
+      // Auto-skip attempts where the target URL would be structurally identical to the already-failed currentSrc
+      let nextSrc = src;
+      let attempt = nextAttempt;
+
+      if (attempt === 1) {
+        if (currentSrc === src) {
+          attempt = 2; // skip absolute, try relative
         } else {
-          setPlaceholderFallback();
+          nextSrc = src;
         }
+      }
+
+      if (attempt === 2) {
+        const relativePath = src.startsWith("/") ? src.slice(1) : src;
+        if (currentSrc === relativePath) {
+          attempt = 3; // skip relative, try dot-relative
+        } else {
+          nextSrc = relativePath;
+        }
+      }
+
+      if (attempt === 3) {
+        const relativePath = src.startsWith("/") ? src.slice(1) : src;
+        const dotRelative = `./${relativePath}`;
+        if (currentSrc === dotRelative) {
+          attempt = 4; // skip dot-relative, try extension swap
+        } else {
+          nextSrc = dotRelative;
+        }
+      }
+
+      if (attempt === 4) {
+        // Swap file extension to recover from mismatches (e.g. JPG vs WebP)
+        let switched = "";
+        if (src.endsWith(".webp")) {
+          switched = src.replace(/\.webp$/, ".jpg");
+        } else if (src.endsWith(".jpg")) {
+          switched = src.replace(/\.jpg$/, ".webp");
+        } else if (src.endsWith(".png")) {
+          switched = src.replace(/\.png$/, ".webp");
+        }
+
+        if (switched && currentSrc !== switched) {
+          nextSrc = switched;
+        } else {
+          attempt = 5; // skip to Premium Concept Card
+        }
+      }
+
+      setFallbackAttempt(attempt);
+
+      if (attempt < 5) {
+        safeSetCurrentSrc(nextSrc, attempt);
       } else {
-        // All local attempts failed. Instead of a generic landscape, display a stunning gradient-based Premium Concept Card with the correct project details!
+        // Handover to stunning representation fallback
         setFallbackAttempt(5);
       }
     } else {
+      setFallbackAttempt(nextAttempt);
       // Standard image fallback (Drive / External)
       if (nextAttempt === 1) {
         if (id) {
           // 1st fallback for Drive: direct view URL
-          setCurrentSrc(`https://drive.google.com/uc?export=view&id=${id}`);
+          safeSetCurrentSrc(`https://drive.google.com/uc?export=view&id=${id}`, nextAttempt);
         } else {
-          setPlaceholderFallback();
+          setPlaceholderFallback(nextAttempt);
         }
       } else if (nextAttempt === 2) {
         if (id) {
           // 2nd fallback for Drive: LH3 direct view format
-          setCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || 600}`);
+          safeSetCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || 600}`, nextAttempt);
         } else {
-          setPlaceholderFallback();
+          setPlaceholderFallback(nextAttempt);
         }
       } else if (nextAttempt === 3) {
         // Try high-availability thumbnail URL
         if (id) {
-          setCurrentSrc(`https://drive.google.com/thumbnail?sz=w${optimizeSize || 600}&id=${id}`);
+          safeSetCurrentSrc(`https://drive.google.com/thumbnail?sz=w${optimizeSize || 600}&id=${id}`, nextAttempt);
         } else {
-          setPlaceholderFallback();
+          setPlaceholderFallback(nextAttempt);
         }
       } else {
         // Display beautiful gradient-based Premium Concept Card with correct project details
         setFallbackAttempt(4);
       }
-    }
-  };
-
-  const setPlaceholderFallback = () => {
-    // Elegant fallback Unsplash placeholders or beautiful representation matching the category
-    if (src.includes("photo-1627308595229-7830a5c91f9f") || alt.includes("茂生") || alt.includes("月餅")) {
-      setCurrentSrc("https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450");
-    } else if (categoryName && (categoryName.includes("LOGO") || categoryName.includes("CIS"))) {
-      // Minimalist brand/identity design topic photo
-      setCurrentSrc("https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=80&w=600&h=450");
-    } else if (categoryName && (categoryName.includes("實體") || categoryName.includes("展覽") || categoryName.includes("空間"))) {
-      // Architectural and exhibition design topic photo
-      setCurrentSrc("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600&h=450");
-    } else if (categoryName && (categoryName.includes("插畫") || categoryName.includes("繪圖"))) {
-      // Craft art and painting workspace photo
-      setCurrentSrc("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600&h=450");
-    } else {
-      setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
     }
   };
 
