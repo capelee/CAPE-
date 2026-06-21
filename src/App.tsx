@@ -96,17 +96,32 @@ function getOptimizedGoogleUrl(url: string, size?: number): string {
 
 function resolveImageUrl(url: string, size?: number): string {
   if (!url) return "";
-  const id = extractDriveId(url);
+  
+  // Support subdirectory hosting (e.g. GitHub Pages) by resolving local domain-relative paths relative to Vite base URL
+  let targetUrl = url;
+  if (url.startsWith("/") && !url.startsWith("/images/optimized/") && !url.startsWith("//")) {
+    const baseUrl = (import.meta as any).env.BASE_URL || "/";
+    const formattedBase = baseUrl.startsWith("/") 
+      ? (baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`) 
+      : `/${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`;
+    const relativePath = url.slice(1);
+    
+    if (!url.startsWith(formattedBase)) {
+      targetUrl = `${formattedBase}${relativePath}`;
+    }
+  }
+
+  const id = extractDriveId(targetUrl);
   
   let extraParams = "";
-  if (url.includes("?")) {
-    const query = url.split("?")[1];
+  if (targetUrl.includes("?")) {
+    const query = targetUrl.split("?")[1];
     const params = query.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
     if (params.length > 0) {
       extraParams = "&" + params.join("&");
     }
-  } else if (url.includes("&")) {
-    const params = url.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
+  } else if (targetUrl.includes("&")) {
+    const params = targetUrl.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
     if (params.length > 0) {
       extraParams = "&" + params.join("&");
     }
@@ -117,7 +132,7 @@ function resolveImageUrl(url: string, size?: number): string {
     // Use high-availability Drive thumbnail API to completely bypass CORS 403 and referrer limits
     return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${extraParams}`;
   }
-  return getOptimizedGoogleUrl(url, size);
+  return getOptimizedGoogleUrl(targetUrl, size);
 }
 
 const categoryColors: Record<string, {
@@ -885,7 +900,9 @@ function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [isInView, setIsInView] = useState<boolean>(priority || !lazy);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [currentSrc, setCurrentSrc] = useState<string>("");
+  const [currentSrc, setCurrentSrc] = useState<string>(() => {
+    return (priority || !lazy) ? resolveImageUrl(src, optimizeSize) : "";
+  });
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const imgRef = React.useRef<HTMLImageElement>(null);
@@ -1208,43 +1225,45 @@ function ImageWithFallback({
         </div>
       )}
 
-      <img
-        ref={imgRef}
-        src={currentSrc || undefined}
-        alt={alt}
-        onLoad={handleLoad}
-        onError={handleError}
-        decoding="async"
-        style={{
-          // Set zoom-related transforms and cursor
-          ...(zoomable && isZoomed
-            ? {
-                transform: "scale(2.2)",
-                transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
-                cursor: "zoom-out",
-              }
-            : zoomable
-            ? { 
-                cursor: "zoom-in",
-              }
-            : {}),
-          // Put the transitions inside inline styles to bypass Tailwind class definition collisions!
-          // This guarantees that the transition always runs with a premium duration and easing.
-          transition: zoomable && isZoomed
-            ? "transform 0.15s ease-out, transform-origin 0.05s ease-out, opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
-            : zoomable
-            ? "transform 0.25s ease-in-out, opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
-            : "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-        className={`${className} ${
-          isLoaded 
-            ? "opacity-100 scale-100 blur-0" 
-            : "opacity-0 scale-[1.03] blur-xl"
-        }`}
-        referrerPolicy={referrerPolicy}
-        loading={priority ? "eager" : "lazy"}
-        {...(priority ? { fetchPriority: "high" } : {})}
-      />
+      {currentSrc && (
+        <img
+          ref={imgRef}
+          src={currentSrc}
+          alt={alt}
+          onLoad={handleLoad}
+          onError={handleError}
+          decoding="async"
+          style={{
+            // Set zoom-related transforms and cursor
+            ...(zoomable && isZoomed
+              ? {
+                  transform: "scale(2.2)",
+                  transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                  cursor: "zoom-out",
+                }
+              : zoomable
+              ? { 
+                  cursor: "zoom-in",
+                }
+              : {}),
+            // Put the transitions inside inline styles to bypass Tailwind class definition collisions!
+            // This guarantees that the transition always runs with a premium duration and easing.
+            transition: zoomable && isZoomed
+              ? "transform 0.15s ease-out, transform-origin 0.05s ease-out, opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+              : zoomable
+              ? "transform 0.25s ease-in-out, opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+              : "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+          className={`${className} ${
+            isLoaded 
+              ? "opacity-100 scale-100 blur-0" 
+              : "opacity-0 scale-[1.03] blur-xl"
+          }`}
+          referrerPolicy={referrerPolicy}
+          loading={priority ? "eager" : "lazy"}
+          {...(priority ? { fetchPriority: "high" } : {})}
+        />
+      )}
     </div>
   );
 }
