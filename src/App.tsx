@@ -65,9 +65,24 @@ function extractDriveId(url: string): string | null {
 function getOptimizedGoogleUrl(url: string, size?: number): string {
   if (!url) return "";
   const id = extractDriveId(url);
+  
+  let extraParams = "";
+  if (url.includes("?")) {
+    const query = url.split("?")[1];
+    const params = query.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
+    if (params.length > 0) {
+      extraParams = "&" + params.join("&");
+    }
+  } else if (url.includes("&")) {
+    const params = url.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
+    if (params.length > 0) {
+      extraParams = "&" + params.join("&");
+    }
+  }
+
   if (id) {
     const s = size ? size : 600;
-    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}`;
+    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${extraParams}`;
   }
   if (url.includes("lh3.googleusercontent.com")) {
     const cleanUrl = url.split("=")[0];
@@ -82,13 +97,25 @@ function getOptimizedGoogleUrl(url: string, size?: number): string {
 function resolveImageUrl(url: string, size?: number): string {
   if (!url) return "";
   const id = extractDriveId(url);
-  if (id) {
-    if (url.startsWith("/images/optimized/") && EXISTING_OPTIMIZED_IMAGES.has(id)) {
-      return url;
+  
+  let extraParams = "";
+  if (url.includes("?")) {
+    const query = url.split("?")[1];
+    const params = query.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
+    if (params.length > 0) {
+      extraParams = "&" + params.join("&");
     }
-    const s = size ? size : 600;
+  } else if (url.includes("&")) {
+    const params = url.split("&").filter(p => !p.startsWith("id=") && !p.startsWith("sz="));
+    if (params.length > 0) {
+      extraParams = "&" + params.join("&");
+    }
+  }
+
+  if (id) {
+    const s = size ? size : 1000;
     // Use high-availability Drive thumbnail API to completely bypass CORS 403 and referrer limits
-    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}`;
+    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${extraParams}`;
   }
   return getOptimizedGoogleUrl(url, size);
 }
@@ -779,7 +806,7 @@ function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) 
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="px-3 sm:px-4 py-2 sm:py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden flex items-center justify-center whitespace-nowrap"
+      className="px-2.5 sm:px-4.5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden flex items-center justify-center whitespace-nowrap shrink-0"
       style={{
         backgroundColor: isActive 
           ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.8 : isLight ? 0.9 : 1})` 
@@ -1638,7 +1665,7 @@ const InteractiveMascot = React.memo(function InteractiveMascot({
                 onLoad={() => setIsImageLoaded(true)}
                 onError={(e) => {
                   setIsImageLoaded(true); // 失敗也照常觸發顯示對話框
-                  e.currentTarget.src = "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp";
+                  e.currentTarget.src = "https://drive.google.com/thumbnail?sz=w800&id=16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI";
                 }}
               />
             </AnimatePresence>
@@ -2860,6 +2887,15 @@ export default function App() {
     return ["All", ...Array.from(list)];
   }, [items]);
 
+  // Split categories evenly into 2 fixed lines/rows
+  const { row1, row2 } = useMemo(() => {
+    const half = Math.ceil(categories.length / 2);
+    return {
+      row1: categories.slice(0, half),
+      row2: categories.slice(half)
+    };
+  }, [categories]);
+
   React.useEffect(() => {
     checkCategoriesScroll();
   }, [categories, checkCategoriesScroll]);
@@ -3442,21 +3478,38 @@ export default function App() {
             </p>
           </div>
 
-          {/* 各類作品過濾選項 (網格佈局，行動裝置自動換行) */}
+          {/* 各類作品過濾選項 (固定成兩行，電腦版置中呈現，自動雙行換行且內容置中對齊) */}
           <div className="w-full pt-2 flex flex-col items-center gap-4">
-            <div 
-              ref={categoriesRef}
-              className="flex flex-wrap justify-center gap-1.5 md:gap-2 lg:gap-3 px-4 md:px-0 py-1"
-            >
-              {categories.map((cat) => (
-                <CategoryButton
-                  key={cat}
-                  cat={cat}
-                  theme={theme}
-                  isActive={selectedCategory === cat}
-                  onClick={() => setSelectedCategory(cat)}
-                />
-              ))}
+            <div className="w-full max-w-5xl flex flex-col items-center gap-2.5 sm:gap-3 px-4">
+              {/* 第一行 */}
+              <div 
+                className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5"
+              >
+                {row1.map((cat) => (
+                  <CategoryButton
+                    key={cat}
+                    cat={cat}
+                    theme={theme}
+                    isActive={selectedCategory === cat}
+                    onClick={() => setSelectedCategory(cat)}
+                  />
+                ))}
+              </div>
+              
+              {/* 第二行 */}
+              <div 
+                className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5"
+              >
+                {row2.map((cat) => (
+                  <CategoryButton
+                    key={cat}
+                    cat={cat}
+                    theme={theme}
+                    isActive={selectedCategory === cat}
+                    onClick={() => setSelectedCategory(cat)}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* 卡片詳情顯示模式切換按鈕 */}

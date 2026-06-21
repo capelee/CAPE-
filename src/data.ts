@@ -2,6 +2,165 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "huatiancun-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "彰化田尾花田村品牌視覺識別系統與 CIS 規範",
+    "titleEn": "Tianwei Flower Village Brand Identity System & CIS Guidelines",
+    "philosophy": "融合花草與蝴蝶自然語彙，搭配古典襯線字體與溫暖大地色系。版面以古典對稱插畫與柔和圓形徽章進行視覺構圖，結合田園景觀筆觸，展現優雅且富生命力的品牌形象。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "CIS 規範",
+      "品牌識別"
+    ],
+    "imageUrl": "/images/huatiancun_cis/01.webp",
+    "placeholderId": "IMAGE_HUATIANCUN_CIS",
+    "colorTheme": "from-[#3d2f21] via-[#1f2d1a] to-[#2e1d23]",
+    "images": [
+      "/images/huatiancun_cis/01.webp",
+      "/images/huatiancun_cis/02.webp",
+      "/images/huatiancun_cis/03.webp",
+      "/images/huatiancun_cis/04.webp",
+      "/images/huatiancun_cis/05.webp",
+      "/images/huatiancun_cis/06.webp",
+      "/images/huatiancun_cis/07.webp",
+      "/images/huatiancun_cis/08.webp",
+      "/images/huatiancun_cis/09.webp",
+      "/images/huatiancun_cis/10.webp",
+      "/images/huatiancun_cis/11.webp",
+      "/images/huatiancun_cis/12.webp",
+      "/images/huatiancun_cis/13.webp",
+      "/images/huatiancun_cis/14.webp",
+      "/images/huatiancun_cis/15.webp",
+      "/images/huatiancun_cis/16.webp",
+      "/images/huatiancun_cis/17.webp",
+      "/images/huatiancun_cis/18.webp",
+      "/images/huatiancun_cis/19.webp",
+      "/images/huatiancun_cis/20.webp",
+      "/images/huatiancun_cis/21.webp",
+      "/images/huatiancun_cis/22.webp",
+      "/images/huatiancun_cis/23.webp",
+      "/images/huatiancun_cis/24.webp",
+      "/images/huatiancun_cis/25.webp",
+      "/images/huatiancun_cis/26.webp",
+      "/images/huatiancun_cis/27.webp",
+      "/images/huatiancun_cis/28.webp",
+      "/images/huatiancun_cis/29.webp",
+      "/images/huatiancun_cis/30.webp",
+      "/images/huatiancun_cis/31.webp",
+      "/images/huatiancun_cis/32.webp",
+      "/images/huatiancun_cis/33.webp",
+      "/images/huatiancun_cis/34.webp",
+      "/images/huatiancun_cis/35.webp",
+      "/images/huatiancun_cis/36.webp",
+      "/images/huatiancun_cis/37.webp",
+      "/images/huatiancun_cis/38.webp",
+      "/images/huatiancun_cis/39.webp",
+      "/images/huatiancun_cis/40.webp"
+    ]
+  },
+  {
+    "id": "shanye-muren-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "山野牧人 品牌視覺識別系統與手冊設計",
+    "titleEn": "Wilderness Shepherd Brand Identity & CIS Guidelines",
+    "philosophy": "以溫潤大地色系與半圓幾何圖形重構自然意象，結合手寫書法體與古典襯線字型。版面採不對稱網格，搭配工藝紙張紋理與手作木藝意象，傳遞反璞歸真的品牌本質。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "InDesign",
+      "CIS 規範",
+      "品牌識別"
+    ],
+    "imageUrl": "/images/shanye_muren_cis/01.webp",
+    "placeholderId": "IMAGE_SHANYE_MUREN_CIS",
+    "colorTheme": "from-[#3e3227] via-[#2f3d32] to-[#24313d]",
+    "images": [
+      "/images/shanye_muren_cis/01.webp",
+      "/images/shanye_muren_cis/02.webp",
+      "/images/shanye_muren_cis/03.webp",
+      "/images/shanye_muren_cis/04.webp",
+      "/images/shanye_muren_cis/05.webp",
+      "/images/shanye_muren_cis/06.webp",
+      "/images/shanye_muren_cis/07.webp",
+      "/images/shanye_muren_cis/08.webp",
+      "/images/shanye_muren_cis/09.webp",
+      "/images/shanye_muren_cis/10.webp",
+      "/images/shanye_muren_cis/11.webp",
+      "/images/shanye_muren_cis/12.webp",
+      "/images/shanye_muren_cis/13.webp",
+      "/images/shanye_muren_cis/14.webp",
+      "/images/shanye_muren_cis/15.webp",
+      "/images/shanye_muren_cis/16.webp",
+      "/images/shanye_muren_cis/17.webp",
+      "/images/shanye_muren_cis/18.webp",
+      "/images/shanye_muren_cis/19.webp",
+      "/images/shanye_muren_cis/20.webp",
+      "/images/shanye_muren_cis/21.webp",
+      "/images/shanye_muren_cis/22.webp",
+      "/images/shanye_muren_cis/23.webp",
+      "/images/shanye_muren_cis/24.webp",
+      "/images/shanye_muren_cis/25.webp",
+      "/images/shanye_muren_cis/26.webp",
+      "/images/shanye_muren_cis/27.webp",
+      "/images/shanye_muren_cis/28.webp",
+      "/images/shanye_muren_cis/29.webp",
+      "/images/shanye_muren_cis/30.webp",
+      "/images/shanye_muren_cis/31.webp",
+      "/images/shanye_muren_cis/32.webp",
+      "/images/shanye_muren_cis/33.webp",
+      "/images/shanye_muren_cis/34.webp",
+      "/images/shanye_muren_cis/35.webp",
+      "/images/shanye_muren_cis/36.webp",
+      "/images/shanye_muren_cis/80.webp"
+    ]
+  },
+  {
+    "id": "shanye-muren-signboard",
+    "category": "實體店面與展覽",
+    "title": "山野牧人 戶外實體招牌與視覺形象設計",
+    "titleEn": "Wilderness Shepherd Storefront Signage and Visual Identity Design",
+    "philosophy": "以大地溫潤色調與手寫書法字體為核心，搭配山巒漸層背景，建立自然樸實的質感。下方排版利用三欄式實作照片結合水平對齊文字，展現平衡的職人手工藝美學。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "招牌設計",
+      "木工工藝"
+    ],
+    "imageUrl": "/images/shanye_muren_signboard.webp",
+    "placeholderId": "IMAGE_SHANYE_MUREN_SIGN",
+    "colorTheme": "from-[#33251a] via-[#523d2b] to-[#241910]",
+    "images": [
+      "/images/shanye_muren_signboard.webp"
+    ]
+  },
+  {
+    "id": "charity-birdhouse",
+    "category": "實體店面與展覽",
+    "title": "百人插畫公益鳥屋誠品展",
+    "titleEn": "Eslite Bookstore Hundred Illustrators Charity Birdhouse Exhibition",
+    "philosophy": "以木質調溫暖色澤為底，結合手繪插畫筆觸與幾何屋頂線條。運用多層次實體展品構圖與對稱排列格線，強化空間立體感與趣味色彩對比，傳遞樸質且具溫度的工藝美學。",
+    "isHighlight": true,
+    "tools": [
+      "展覽設計",
+      "手繪插畫",
+      "立體構造",
+      "色彩規劃"
+    ],
+    "imageUrl": "/images/charity_birdhouse/01.webp",
+    "placeholderId": "IMAGE_CHARITY_BIRDHOUSE",
+    "colorTheme": "from-[#523d2b] via-[#785b43] to-[#39291b]",
+    "images": [
+      "/images/charity_birdhouse/01.webp",
+      "/images/charity_birdhouse/02.webp",
+      "/images/charity_birdhouse/03.webp",
+      "/images/charity_birdhouse/04.webp",
+      "/images/charity_birdhouse/05.webp"
+    ]
+  },
+  {
     "id": "buddy-red-envelope",
     "category": "商務印刷品設計",
     "title": "巴迪醫療 好年紅包袋",
@@ -127,6 +286,26 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
+    "id": "gufeng-shaonian-illustration",
+    "category": "平面海報設計",
+    "title": "客家電視台《谷風少年》電視劇宣傳插畫設計",
+    "titleEn": "Hakka TV 'Valley Wind Boy' Drama Commissioned Illustration",
+    "philosophy": "以低飽和粉暖色調為基底，結合雙人對稱構圖與紅線意象，展現細緻情感連結。運用圓形夕陽作為視覺核心，搭配向量線條與層疊筆觸，營造溫潤靜謐的氛圍。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "向量繪圖",
+      "角色設計"
+    ],
+    "imageUrl": "/images/gufeng_shaonian.jpg",
+    "placeholderId": "IMAGE_GUFENG_SHAONIAN_POSTER",
+    "colorTheme": "from-[#2e1b23] via-[#4d2d18] to-[#13221d]",
+    "images": [
+      "/images/gufeng_shaonian.jpg"
+    ]
+  },
+  {
     "id": "chengmei-tavi-symposium",
     "category": "平面海報設計",
     "title": "成美論壇 ── TAVI 案例研討會 海報",
@@ -234,6 +413,144 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1UaYFJhfzch6tLQScjxK6ZoHIC5W73r8L.webp",
       "/images/optimized/1kexMMRbO8V4K9cucyVNApcs3mXcyuO5g.webp",
       "/images/optimized/1cQBkNWAckbc1Foa8vnUKq-wAFn-itXBh.webp"
+    ]
+  },
+  {
+    "id": "wild-burger-club-family",
+    "category": "角色IP&插畫與貼圖",
+    "title": "WILD BURGER CLUB™ 品牌吉祥物 IP 全家族設定",
+    "titleEn": "WILD BURGER CLUB: Whole Mascot Family IP & Stickers Visual Design",
+    "philosophy": "以粗黑描邊與幾何塊狀分割為視覺骨幹，導入高彩度色調與系列化符號系統。透過當代街頭風格的圖形演算法，重構角色造型，建立具備強烈視覺張力的家族特徵與識別規範。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "貼圖設計",
+      "角色設定",
+      "向量插畫"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
+    "placeholderId": "IMAGE_WILD_BURGER_FAMILY",
+    "colorTheme": "from-[#0d141d] via-[#102435] to-[#0d141d]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dmYX08sqLYCrGUOiMoug9D7E60b1X_Mr",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oto9F8ATuP7aaEOr4e9dAt9S5NK07ksR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1L64ABp9djtlkhg00NfyCVTK3k5wYZqDq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1X_su9VdarsFSbhgj4BoDIIwr7LR8Tzy9"
+    ]
+  },
+  {
+    "id": "wild-burger-captain-wild",
+    "category": "角色IP&插畫與貼圖",
+    "title": "WILD BURGER CLUB 品牌吉祥物 CAPTAIN WILD 角色設計",
+    "titleEn": "WILD BURGER CLUB Brand Mascot: CAPTAIN WILD IP Character Design",
+    "philosophy": "融合美式復古插畫風格，以粗獷黑線勾勒飽滿圓潤的漢堡主廚輪廓。運用高飽和度鮮紅與金黃對比色塊，結合無襯線體與幾何網格排版，展現美式速食文化的經典視覺動態。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Procreate",
+      "向量插畫",
+      "角色設定",
+      "色彩配色"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
+    "placeholderId": "IMAGE_WILD_CAPTAIN_WILD",
+    "colorTheme": "from-[#2A0505] via-[#401205] to-[#1A0303]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QETp0K_9-ixJs-Hm7vWjVIupDwkRoLgG",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UeStk4uuxRm7DCyUbKzO7P1srG0OGTXK"
+    ]
+  },
+  {
+    "id": "wild-burger-capy-wild",
+    "category": "角色IP&插畫與貼圖",
+    "title": "WILD BURGER CLUB 品牌吉祥物 CAPY WILD 角色設計",
+    "titleEn": "CAPY WILD Mascot: Wild Burger Club IP Character Illustration",
+    "philosophy": "以圓潤幾何線條建構水豚軀體，搭配高對比結構化色塊與粗重向量外框。頭部融合廚師帽幾何造形，利用逗趣表情比例拉開視覺張力。色彩計畫採用美式復古飽和橘黃與暖褐。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Procreate",
+      "向量繪製",
+      "角色設計",
+      "色彩規劃"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1dmYX08sqLYCrGUOiMoug9D7E60b1X_Mr",
+    "placeholderId": "IMAGE_WILD_CAPY_WILD",
+    "colorTheme": "from-[#2D1710] via-[#5C2E16] to-[#2D1710]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dmYX08sqLYCrGUOiMoug9D7E60b1X_Mr",
+      "https://drive.google.com/thumbnail?sz=w1000&id=12OegVFuWUiRx4krXAVzUadxnwIqYu8uw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tfmt56yOElSH6enzYS9mHp7fCelNqB4W"
+    ]
+  },
+  {
+    "id": "wild-burger-luna",
+    "category": "角色IP&插畫與貼圖",
+    "title": "WILD BURGER CLUB 吉祥物 LUNA 角色設計",
+    "titleEn": "LUNA Mascot: Wild Burger Club IP Design",
+    "philosophy": "運用圓潤線條結構，融合低飽和粉紅色調與不對稱幾何圖形，搭配星月元素進行點線面構成。藉由對比色塊與向量插畫技法，呈現具備空間層次與溫柔感的視覺比例。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Procreate",
+      "向量插畫",
+      "色彩配色",
+      "角色設定"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1oto9F8ATuP7aaEOr4e9dAt9S5NK07ksR",
+    "placeholderId": "IMAGE_WILD_LUNA",
+    "colorTheme": "from-[#1f1625] via-[#3d223c] to-[#1f1625]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oto9F8ATuP7aaEOr4e9dAt9S5NK07ksR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tjkae7NmfbMC47qglZYni_pQLlvdTqhh",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1G7U7n40kgy90tonPg9FDHCqWx1x_IXtZ"
+    ]
+  },
+  {
+    "id": "wild-burger-ranger-ray",
+    "category": "角色IP&插畫與貼圖",
+    "title": "RANGER RAY 吉祥物 IP 角色設計",
+    "titleEn": "RANGER RAY Mascot: Wild Burger Club IP Character Illustration",
+    "philosophy": "以幾何圓潤線條形塑浣熊犬五官，融入大地色與森林綠厚重色塊，營造復古美式冒險風格。透過對稱結構與明晰描邊，確保探險帽與哨子配件在各類數位載體皆具識別度。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Procreate",
+      "向量繪圖",
+      "角色設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1L64ABp9djtlkhg00NfyCVTK3k5wYZqDq",
+    "placeholderId": "IMAGE_WILD_RANGER_RAY",
+    "colorTheme": "from-[#1b2b1e] via-[#2c1d11] to-[#111c13]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1L64ABp9djtlkhg00NfyCVTK3k5wYZqDq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-T0YCIaQGWCrx6i6d9hSaxZJc609gRzr",
+      "https://drive.google.com/thumbnail?sz=w1000&id=13q5hrqI19UdPnK40EkiCU34W1Xoek0O-"
+    ]
+  },
+  {
+    "id": "wild-burger-slowmo",
+    "category": "角色IP&插畫與貼圖",
+    "title": "WILD BURGER CLUB 吉祥物 SLOWMO 角色設計",
+    "titleEn": "WILD BURGER CLUB Mascot SLOWMO IP Design",
+    "philosophy": "運用厚重圓潤的幾何線條勾勒樹懶慵懶輪廓，搭配高飽和度美式復古對比色調。以低重心結構與半睜眼造形強化視覺記憶點，並透過雙手捧漢堡的三角形構圖建立畫面穩定感。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Procreate",
+      "向量插畫",
+      "角色設定",
+      "色彩配色"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1X_su9VdarsFSbhgj4BoDIIwr7LR8Tzy9",
+    "placeholderId": "IMAGE_WILD_SLOWMO",
+    "colorTheme": "from-[#231709] via-[#402a18] to-[#192b15]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1X_su9VdarsFSbhgj4BoDIIwr7LR8Tzy9",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kgpp6aaqlEMeAATuykNtfiSIh6AoAV4i",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iJxdPuJK8GJ7xIaKnrDzIlIK0DFtjg4I"
     ]
   },
   {
