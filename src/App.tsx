@@ -97,12 +97,15 @@ function getOptimizedGoogleUrl(url: string, size?: number): string {
 function resolveImageUrl(url: string, size?: number): string {
   if (!url) return "";
   
-  // Directly convert local root-relative paths to highly compatible dot-relative paths
-  // This bypasses the absolute root hosting issue in iframe previews, reverse proxies, and sub-routing setups.
+  // Support robust base URL prefixed absolute paths for local image assets.
+  // This automatically handles subdirectories (e.g. GitHub Pages) and respects absolute routing sub-folders.
   const isLocalImage = (url.startsWith("/") || url.startsWith("./")) && url.includes("/images/") && !url.includes("/images/optimized/");
   if (isLocalImage) {
     const relativePart = url.startsWith("/") ? url.slice(1) : url.startsWith("./") ? url.slice(2) : url;
-    return `./${relativePart}`;
+    // @ts-ignore
+    const baseUrl = import.meta.env.BASE_URL || "/";
+    const formattedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+    return `${formattedBase}${relativePart}`;
   }
   
   // Support subdirectory hosting (e.g. GitHub Pages) by resolving local domain-relative paths relative to Vite base URL
@@ -1208,7 +1211,7 @@ function ImageWithFallback({
     );
   }
 
-  if (fallbackAttempt >= 4) {
+  if (fallbackAttempt >= 4 && !currentSrc.startsWith("http") && !currentSrc.startsWith("https")) {
     return (
       <div ref={containerRef} className={`w-full h-full bg-gradient-to-br ${fallbackTheme} flex flex-col items-center justify-center p-6 text-center select-none relative overflow-hidden`}>
         {/* Decorative Grid Pattern */}
