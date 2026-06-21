@@ -97,6 +97,14 @@ function getOptimizedGoogleUrl(url: string, size?: number): string {
 function resolveImageUrl(url: string, size?: number): string {
   if (!url) return "";
   
+  // Directly convert local root-relative paths to highly compatible dot-relative paths
+  // This bypasses the absolute root hosting issue in iframe previews, reverse proxies, and sub-routing setups.
+  const isLocalImage = (url.startsWith("/") || url.startsWith("./")) && url.includes("/images/") && !url.includes("/images/optimized/");
+  if (isLocalImage) {
+    const relativePart = url.startsWith("/") ? url.slice(1) : url.startsWith("./") ? url.slice(2) : url;
+    return `./${relativePart}`;
+  }
+  
   // Support subdirectory hosting (e.g. GitHub Pages) by resolving local domain-relative paths relative to Vite base URL
   let targetUrl = url;
   if (url.startsWith("/") && !url.startsWith("/images/optimized/") && !url.startsWith("//")) {
@@ -1098,57 +1106,46 @@ function ImageWithFallback({
     const id = extractDriveId(src);
     const nextAttempt = fallbackAttempt + 1;
 
-    // Check if the source is a local asset (local portfolio images)
-    const isLocal = src.startsWith("/") && (src.includes("/images/") || src.startsWith("/images/")) && !src.startsWith("/images/optimized/");
+    // Upgrade local asset validation: matches both root-relative and dot-relative layouts safely.
+    const isLocal = (src.includes("/images/") || currentSrc.includes("/images/")) && !src.includes("/images/optimized/") && !currentSrc.includes("/images/optimized/");
 
     if (isLocal) {
-      // Robust multi-tier recovery mechanism specifically for local images to handle subdirectories & routing issues
-      // Auto-skip attempts where the target URL would be structurally identical to the already-failed currentSrc
       let nextSrc = src;
       let attempt = nextAttempt;
 
-      if (attempt === 1) {
-        if (currentSrc === src) {
-          attempt = 2; // skip absolute, try relative
-        } else {
-          nextSrc = src;
-        }
-      }
-
-      if (attempt === 2) {
-        const relativePath = src.startsWith("/") ? src.slice(1) : src;
-        if (currentSrc === relativePath) {
-          attempt = 3; // skip relative, try dot-relative
-        } else {
-          nextSrc = relativePath;
-        }
-      }
-
-      if (attempt === 3) {
-        const relativePath = src.startsWith("/") ? src.slice(1) : src;
-        const dotRelative = `./${relativePath}`;
-        if (currentSrc === dotRelative) {
-          attempt = 4; // skip dot-relative, try extension swap
-        } else {
-          nextSrc = dotRelative;
-        }
-      }
-
-      if (attempt === 4) {
-        // Swap file extension to recover from mismatches (e.g. JPG vs WebP)
+      // Ensure neat sequential fallback checks using standard if-else chains instead of independent cascaded checkblocks!
+      if (fallbackAttempt === 0) {
+        // Step 1: try standard dot relative
+        const relativePath = src.startsWith("/") ? src.slice(1) : src.startsWith("./") ? src.slice(2) : src;
+        nextSrc = `./${relativePath}`;
+        attempt = 1;
+      } else if (fallbackAttempt === 1) {
+        // Step 2: try relative without dot prefix
+        const relativePath = src.startsWith("/") ? src.slice(1) : src.startsWith("./") ? src.slice(2) : src;
+        nextSrc = relativePath;
+        attempt = 2;
+      } else if (fallbackAttempt === 2) {
+        // Step 3: try root absolute
+        const relativePath = src.startsWith("/") ? src.slice(1) : src.startsWith("./") ? src.slice(2) : src;
+        nextSrc = `/${relativePath}`;
+        attempt = 3;
+      } else if (fallbackAttempt === 3) {
+        // Step 4: try switching file format suffix (.webp <=> .jpg)
         let switched = "";
-        if (src.endsWith(".webp")) {
-          switched = src.replace(/\.webp$/, ".jpg");
-        } else if (src.endsWith(".jpg")) {
-          switched = src.replace(/\.jpg$/, ".webp");
-        } else if (src.endsWith(".png")) {
-          switched = src.replace(/\.png$/, ".webp");
+        const cleanSrc = src.split("?")[0];
+        if (cleanSrc.endsWith(".webp")) {
+          switched = src.replace(/\.webp($|\?)/, ".jpg$1");
+        } else if (cleanSrc.endsWith(".jpg")) {
+          switched = src.replace(/\.jpg($|\?)/, ".webp$1");
+        } else if (cleanSrc.endsWith(".png")) {
+          switched = src.replace(/\.png($|\?)/, ".webp$1");
         }
 
         if (switched && currentSrc !== switched) {
           nextSrc = switched;
+          attempt = 4;
         } else {
-          attempt = 5; // skip to Premium Concept Card
+          attempt = 5;
         }
       }
 
@@ -1157,8 +1154,9 @@ function ImageWithFallback({
       if (attempt < 5) {
         safeSetCurrentSrc(nextSrc, attempt);
       } else {
-        // Handover to stunning representation fallback
-        setFallbackAttempt(5);
+        // Final fallback for local imagery: use elegant Unsplash placeholders styled by category
+        setPlaceholderFallback(attempt);
+        setFallbackAttempt(5); // This will transition high-contrast fallback details
       }
     } else {
       setFallbackAttempt(nextAttempt);
