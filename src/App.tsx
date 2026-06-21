@@ -100,7 +100,8 @@ function resolveImageUrl(url: string, size?: number): string {
   // Support subdirectory hosting (e.g. GitHub Pages) by resolving local domain-relative paths relative to Vite base URL
   let targetUrl = url;
   if (url.startsWith("/") && !url.startsWith("/images/optimized/") && !url.startsWith("//")) {
-    const baseUrl = (import.meta as any).env.BASE_URL || "/";
+    // @ts-ignore
+    const baseUrl = import.meta.env.BASE_URL || "/";
     const formattedBase = baseUrl.startsWith("/") 
       ? (baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`) 
       : `/${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`;
@@ -1052,9 +1053,9 @@ function ImageWithFallback({
 
   const handleError = () => {
     setIsLoaded(false);
-    // If it's a youtube image that failed to load (e.g. 404 instead of 120x90 fallback image)
+    
+    // 1. YouTube specific fallback logic to try lower quality thumbnails gracefully
     if (src.includes("youtube.com") || src.includes("ytimg.com") || currentSrc.includes("youtube.com") || currentSrc.includes("ytimg.com")) {
-      const isYoutubeUrl = true;
       if (fallbackAttempt === 0 && currentSrc.includes("maxresdefault.jpg")) {
         setCurrentSrc(currentSrc.replace("maxresdefault.jpg", "hqdefault.jpg"));
         setFallbackAttempt(1);
@@ -1070,32 +1071,78 @@ function ImageWithFallback({
     const nextAttempt = fallbackAttempt + 1;
     setFallbackAttempt(nextAttempt);
 
-    if (nextAttempt === 1) {
-      if (id) {
-        // 1st fallback: Use direct Google Drive export view URL
-        setCurrentSrc(`https://drive.google.com/uc?export=view&id=${id}`);
+    // Check if the source is a local asset (local portfolio images)
+    const isLocal = src.startsWith("/") && (src.includes("/images/") || src.startsWith("/images/")) && !src.startsWith("/images/optimized/");
+
+    if (isLocal) {
+      // Robust multi-tier recovery mechanism specifically for local images to handle subdirectories & routing issues
+      if (nextAttempt === 1) {
+        // Try absolute root path directly (bypassing any custom base prefixes)
+        setCurrentSrc(src);
+      } else if (nextAttempt === 2) {
+        // Try relative path (removing leading slash) - extremely effective for subdirectories / iframe wrappers
+        const relativePath = src.startsWith("/") ? src.slice(1) : src;
+        setCurrentSrc(relativePath);
+      } else if (nextAttempt === 3) {
+        // Try explicit dot-relative path
+        const relativePath = src.startsWith("/") ? src.slice(1) : src;
+        setCurrentSrc(`./${relativePath}`);
+      } else if (nextAttempt === 4) {
+        // Typo / extension mismatch recovery: try to swap file extension (e.g. .jpg <-> .webp)
+        if (src.endsWith(".webp")) {
+          setCurrentSrc(src.replace(/\.webp$/, ".jpg"));
+        } else if (src.endsWith(".jpg")) {
+          setCurrentSrc(src.replace(/\.jpg$/, ".webp"));
+        } else {
+          setPlaceholderFallback();
+        }
       } else {
-        setPlaceholderFallback();
+        // All local attempts failed. Instead of a generic landscape, display a stunning gradient-based Premium Concept Card with the correct project details!
+        setFallbackAttempt(5);
       }
-    } else if (nextAttempt === 2) {
-      if (id) {
-        // 2nd fallback: LH3 direct view format
-        setCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || 600}`);
-      } else {
-        setPlaceholderFallback();
-      }
-    } else if (nextAttempt === 3) {
-      // 3rd fallback: Premium custom aesthetic Unsplash placeholders
-      setPlaceholderFallback();
     } else {
-      // 4th fallback: Elegant concept card gradients
-      setFallbackAttempt(4);
+      // Standard image fallback (Drive / External)
+      if (nextAttempt === 1) {
+        if (id) {
+          // 1st fallback for Drive: direct view URL
+          setCurrentSrc(`https://drive.google.com/uc?export=view&id=${id}`);
+        } else {
+          setPlaceholderFallback();
+        }
+      } else if (nextAttempt === 2) {
+        if (id) {
+          // 2nd fallback for Drive: LH3 direct view format
+          setCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || 600}`);
+        } else {
+          setPlaceholderFallback();
+        }
+      } else if (nextAttempt === 3) {
+        // Try high-availability thumbnail URL
+        if (id) {
+          setCurrentSrc(`https://drive.google.com/thumbnail?sz=w${optimizeSize || 600}&id=${id}`);
+        } else {
+          setPlaceholderFallback();
+        }
+      } else {
+        // Display beautiful gradient-based Premium Concept Card with correct project details
+        setFallbackAttempt(4);
+      }
     }
   };
 
   const setPlaceholderFallback = () => {
+    // Elegant fallback Unsplash placeholders or beautiful representation matching the category
     if (src.includes("photo-1627308595229-7830a5c91f9f") || alt.includes("茂生") || alt.includes("月餅")) {
       setCurrentSrc("https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450");
+    } else if (categoryName && (categoryName.includes("LOGO") || categoryName.includes("CIS"))) {
+      // Minimalist brand/identity design topic photo
+      setCurrentSrc("https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=80&w=600&h=450");
+    } else if (categoryName && (categoryName.includes("實體") || categoryName.includes("展覽") || categoryName.includes("空間"))) {
+      // Architectural and exhibition design topic photo
+      setCurrentSrc("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600&h=450");
+    } else if (categoryName && (categoryName.includes("插畫") || categoryName.includes("繪圖"))) {
+      // Craft art and painting workspace photo
+      setCurrentSrc("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600&h=450");
     } else {
       setCurrentSrc("https://picsum.photos/seed/" + encodeURIComponent(alt) + "/600/450");
     }
