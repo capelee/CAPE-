@@ -4,161 +4,119 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "huatiancun-cis",
     "category": "企業LOGO與CIS設計",
-    "title": "彰化田尾花田村品牌視覺識別系統與 CIS 規範",
-    "titleEn": "Tianwei Flower Village Brand Identity System & CIS Guidelines",
-    "philosophy": "融合花草與蝴蝶自然語彙，搭配古典襯線字體與溫暖大地色系。版面以古典對稱插畫與柔和圓形徽章進行視覺構圖，結合田園景觀筆觸，展現優雅且富生命力的品牌形象。",
+    "title": "彰化田尾花田村品牌視覺識別系統",
+    "titleEn": "Tianwei Flower Village Brand Identity System",
+    "philosophy": "融合植物與花卉自然線條，以墨綠與暖大地色系為主調。採用經典襯線體搭配簡潔對稱網格排版，結合圓形徽章視覺特徵，展現具深厚自然生命力與現代洗練美感的品牌常態識別。",
     "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
-      "CIS 規範",
+      "CIS規範",
       "品牌識別"
     ],
-    "imageUrl": "/images/huatiancun_cis/01.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1aDP1dMgixI6kxtvzmoQYQ_GjckmNp7Lh",
     "placeholderId": "IMAGE_HUATIANCUN_CIS",
     "colorTheme": "from-[#3d2f21] via-[#1f2d1a] to-[#2e1d23]",
     "images": [
-      "/images/huatiancun_cis/01.webp",
-      "/images/huatiancun_cis/02.webp",
-      "/images/huatiancun_cis/03.webp",
-      "/images/huatiancun_cis/04.webp",
-      "/images/huatiancun_cis/05.webp",
-      "/images/huatiancun_cis/06.webp",
-      "/images/huatiancun_cis/07.webp",
-      "/images/huatiancun_cis/08.webp",
-      "/images/huatiancun_cis/09.webp",
-      "/images/huatiancun_cis/10.webp",
-      "/images/huatiancun_cis/11.webp",
-      "/images/huatiancun_cis/12.webp",
-      "/images/huatiancun_cis/13.webp",
-      "/images/huatiancun_cis/14.webp",
-      "/images/huatiancun_cis/15.webp",
-      "/images/huatiancun_cis/16.webp",
-      "/images/huatiancun_cis/17.webp",
-      "/images/huatiancun_cis/18.webp",
-      "/images/huatiancun_cis/19.webp",
-      "/images/huatiancun_cis/20.webp",
-      "/images/huatiancun_cis/21.webp",
-      "/images/huatiancun_cis/22.webp",
-      "/images/huatiancun_cis/23.webp",
-      "/images/huatiancun_cis/24.webp",
-      "/images/huatiancun_cis/25.webp",
-      "/images/huatiancun_cis/26.webp",
-      "/images/huatiancun_cis/27.webp",
-      "/images/huatiancun_cis/28.webp",
-      "/images/huatiancun_cis/29.webp",
-      "/images/huatiancun_cis/30.webp",
-      "/images/huatiancun_cis/31.webp",
-      "/images/huatiancun_cis/32.webp",
-      "/images/huatiancun_cis/33.webp",
-      "/images/huatiancun_cis/34.webp",
-      "/images/huatiancun_cis/35.webp",
-      "/images/huatiancun_cis/36.webp",
-      "/images/huatiancun_cis/37.webp",
-      "/images/huatiancun_cis/38.webp",
-      "/images/huatiancun_cis/39.webp",
-      "/images/huatiancun_cis/40.webp"
-    ]
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aDP1dMgixI6kxtvzmoQYQ_GjckmNp7Lh",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1J_4nmaycENi2ORZAkEuz6n2Xro83CgAb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GKjzviVXZW-5sfnBxAQY3VHdKUEwEc2k",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15zy2J-P-nubAs7zxhckAF0Kwy5UpLNDg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1n8Vvw1635yDnOl4iLnT5Yb4_IYP43HRM"
+    ],
+    "driveFolderId": "1EF-HKBNOtTzxRvDp3LEJs_QYwnWCIh9S"
   },
   {
     "id": "shanye-muren-cis",
     "category": "企業LOGO與CIS設計",
-    "title": "山野牧人 品牌視覺識別系統與手冊設計",
-    "titleEn": "Wilderness Shepherd Brand Identity & CIS Guidelines",
-    "philosophy": "以溫潤大地色系與半圓幾何圖形重構自然意象，結合手寫書法體與古典襯線字型。版面採不對稱網格，搭配工藝紙張紋理與手作木藝意象，傳遞反璞歸真的品牌本質。",
+    "title": "山野牧人品牌視覺識別系統與手冊",
+    "titleEn": "Wilderness Shepherd Brand Identity System and Manual",
+    "philosophy": "運用原木色調與幾何圖形重構大自然氛圍，輔以流暢的手寫書法字。版面設計特意呈現不對稱網格，結合細膩紙張紋理以及手作工藝意象，理性傳遞反璞歸真之品牌人文厚度與極簡美學。",
     "isHighlight": true,
     "tools": [
       "Ai",
       "InDesign",
-      "CIS 規範",
+      "CIS規範",
       "品牌識別"
     ],
-    "imageUrl": "/images/shanye_muren_cis/01.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1seTiaf3NFkSmusddI8PDg7exMzPQeSLe",
     "placeholderId": "IMAGE_SHANYE_MUREN_CIS",
     "colorTheme": "from-[#3e3227] via-[#2f3d32] to-[#24313d]",
     "images": [
-      "/images/shanye_muren_cis/01.webp",
-      "/images/shanye_muren_cis/02.webp",
-      "/images/shanye_muren_cis/03.webp",
-      "/images/shanye_muren_cis/04.webp",
-      "/images/shanye_muren_cis/05.webp",
-      "/images/shanye_muren_cis/06.webp",
-      "/images/shanye_muren_cis/07.webp",
-      "/images/shanye_muren_cis/08.webp",
-      "/images/shanye_muren_cis/09.webp",
-      "/images/shanye_muren_cis/10.webp",
-      "/images/shanye_muren_cis/11.webp",
-      "/images/shanye_muren_cis/12.webp",
-      "/images/shanye_muren_cis/13.webp",
-      "/images/shanye_muren_cis/14.webp",
-      "/images/shanye_muren_cis/15.webp",
-      "/images/shanye_muren_cis/16.webp",
-      "/images/shanye_muren_cis/17.webp",
-      "/images/shanye_muren_cis/18.webp",
-      "/images/shanye_muren_cis/19.webp",
-      "/images/shanye_muren_cis/20.webp",
-      "/images/shanye_muren_cis/21.webp",
-      "/images/shanye_muren_cis/22.webp",
-      "/images/shanye_muren_cis/23.webp",
-      "/images/shanye_muren_cis/24.webp",
-      "/images/shanye_muren_cis/25.webp",
-      "/images/shanye_muren_cis/26.webp",
-      "/images/shanye_muren_cis/27.webp",
-      "/images/shanye_muren_cis/28.webp",
-      "/images/shanye_muren_cis/29.webp",
-      "/images/shanye_muren_cis/30.webp",
-      "/images/shanye_muren_cis/31.webp",
-      "/images/shanye_muren_cis/32.webp",
-      "/images/shanye_muren_cis/33.webp",
-      "/images/shanye_muren_cis/34.webp",
-      "/images/shanye_muren_cis/35.webp",
-      "/images/shanye_muren_cis/36.webp",
-      "/images/shanye_muren_cis/80.webp"
-    ]
+      "https://drive.google.com/thumbnail?sz=w1000&id=1seTiaf3NFkSmusddI8PDg7exMzPQeSLe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=12Nb4ECUFyJpdlppUBBaDB-Rw79sKxC1P",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Y2nI3dR57wP5_hWOlSatQevslUXUlIC8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oQ7vhRLxCjmp0VsvYgm0YG3srZj74_dS",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fLJ9psuSt5ZxaNWBwPGH3GaY3XEzzSAs"
+    ],
+    "driveFolderId": "1op79WMlUOubntQeKfam4fGyfO64704mf"
   },
   {
     "id": "shanye-muren-signboard",
     "category": "實體店面與展覽",
-    "title": "山野牧人 戶外實體招牌與視覺形象設計",
-    "titleEn": "Wilderness Shepherd Storefront Signage and Visual Identity Design",
-    "philosophy": "以大地溫潤色調與手寫書法字體為核心，搭配山巒漸層背景，建立自然樸實的質感。下方排版利用三欄式實作照片結合水平對齊文字，展現平衡的職人手工藝美學。",
+    "title": "山野牧人戶外實體招牌設計",
+    "titleEn": "Wilderness Shepherd Storefront Signage Design",
+    "philosophy": "以溫潤木質調色底融合工整不對稱網格，搭配自然山巒意象與手寫書法字體。視覺排版採用三欄式對稱展示格線與水平精準對齊，於實體空間中建構高對比、安定且富含手作溫度的招牌美學。",
     "isHighlight": false,
     "tools": [
       "Ai",
       "Photoshop",
-      "招牌設計",
-      "木工工藝"
+      "空間排版",
+      "店面規劃"
     ],
-    "imageUrl": "/images/shanye_muren_signboard.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1xfb5P2SDOr1aU65HetIo-veJBVYczIbG",
     "placeholderId": "IMAGE_SHANYE_MUREN_SIGN",
     "colorTheme": "from-[#33251a] via-[#523d2b] to-[#241910]",
     "images": [
-      "/images/shanye_muren_signboard.webp"
-    ]
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xfb5P2SDOr1aU65HetIo-veJBVYczIbG"
+    ],
+    "driveFolderId": "17Ktyzdop9X8nfHdZ7osqiYRs83fTGtA9"
   },
   {
     "id": "charity-birdhouse",
     "category": "實體店面與展覽",
     "title": "百人插畫公益鳥屋誠品展",
-    "titleEn": "Eslite Bookstore Hundred Illustrators Charity Birdhouse Exhibition",
-    "philosophy": "以木質調溫暖色澤為底，結合手繪插畫筆觸與幾何屋頂線條。運用多層次實體展品構圖與對稱排列格線，強化空間立體感與趣味色彩對比，傳遞樸質且具溫度的工藝美學。",
+    "titleEn": "Eslite Hundred Illustrators Charity Birdhouse Exhibition",
+    "philosophy": "採用天然木質調為底，烘托溫暖樸實氛圍。空間規劃結合多層次立體展品結構與對稱幾何框架排版，以高對比冷暖色系互補，創造具備三維點線面張力與人文深度的當代實體工藝展覽視覺。",
     "isHighlight": true,
     "tools": [
       "展覽設計",
       "手繪插畫",
       "立體構造",
-      "色彩規劃"
+      "空間規劃"
     ],
-    "imageUrl": "/images/charity_birdhouse/01.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1NN-fZlyKmGYDHbQsKfdIxSzeEI7YL207",
     "placeholderId": "IMAGE_CHARITY_BIRDHOUSE",
     "colorTheme": "from-[#523d2b] via-[#785b43] to-[#39291b]",
     "images": [
-      "/images/charity_birdhouse/01.webp",
-      "/images/charity_birdhouse/02.webp",
-      "/images/charity_birdhouse/03.webp",
-      "/images/charity_birdhouse/04.webp",
-      "/images/charity_birdhouse/05.webp"
-    ]
+      "https://drive.google.com/thumbnail?sz=w1000&id=1NN-fZlyKmGYDHbQsKfdIxSzeEI7YL207",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1F0cU3KBMS5iKimkvHo7KQwkgUpJUs5PE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AmsGIsGLZWLLJPVcxfirSaTNL0b1o6sM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=13LrnYxYitFGqeCxELnYw40UKGceYJGIy",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YjVA6o8cLsGc1o4HMmgZpyXNyF9Je4Ma"
+    ],
+    "driveFolderId": "1iIcsz3YjExQxf3KfMLY1wgvqMBnUQPn7"
+  },
+  {
+    "id": "gufeng-shaonian-illustration",
+    "category": "平面海報設計",
+    "title": "客家電視台谷風少年電視劇宣傳插畫",
+    "titleEn": "Hakka TV Drama Valley Wind Boy Editorial Illustration",
+    "philosophy": "採用暖白與柔和橘紅、粉橘等低飽和色彩為基底，結合雙人主體對稱構圖。背景融入圓形烈陽作為點線面構造焦點，運用流暢的向量線條與低明度色塊，形塑溫潤且充滿故事性的視覺意境。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "向量繪圖",
+      "角色設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1qfLl5WMPLuV4oN0yqRPXUGctG8Pa4eFG",
+    "placeholderId": "IMAGE_GUFENG_SHAONIAN_POSTER",
+    "colorTheme": "from-[#2e1b23] via-[#4d2d18] to-[#13221d]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qfLl5WMPLuV4oN0yqRPXUGctG8Pa4eFG"
+    ],
+    "driveFolderId": "1FBI4L_A0ymzBHWzvEvu3ZGSw4CRDrxbT"
   },
   {
     "id": "buddy-red-envelope",
@@ -283,26 +241,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1-BB48uMk_OYFtz5hvepA4uM_Rs35TpaJ.webp",
       "/images/optimized/1n-Vc33c2ZKMrv_G1zfzYahihfnq5k0-Q.webp"
-    ]
-  },
-  {
-    "id": "gufeng-shaonian-illustration",
-    "category": "平面海報設計",
-    "title": "客家電視台《谷風少年》電視劇宣傳插畫設計",
-    "titleEn": "Hakka TV 'Valley Wind Boy' Drama Commissioned Illustration",
-    "philosophy": "以低飽和粉暖色調為基底，結合雙人對稱構圖與紅線意象，展現細緻情感連結。運用圓形夕陽作為視覺核心，搭配向量線條與層疊筆觸，營造溫潤靜謐的氛圍。",
-    "isHighlight": false,
-    "tools": [
-      "Ai",
-      "Photoshop",
-      "向量繪圖",
-      "角色設計"
-    ],
-    "imageUrl": "/images/gufeng_shaonian.jpg",
-    "placeholderId": "IMAGE_GUFENG_SHAONIAN_POSTER",
-    "colorTheme": "from-[#2e1b23] via-[#4d2d18] to-[#13221d]",
-    "images": [
-      "/images/gufeng_shaonian.jpg"
     ]
   },
   {

@@ -916,6 +916,7 @@ function ImageWithFallback({
     return (priority || !lazy) ? resolveImageUrl(src, optimizeSize) : "";
   });
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
+  const [failedCount, setFailedCount] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
@@ -990,8 +991,35 @@ function ImageWithFallback({
     if (isInView) {
       setCurrentSrc(resolveImageUrl(src, optimizeSize));
       setFallbackAttempt(0);
+      setFailedCount(0);
       setIsLoaded(false);
     }
+  }, [src, optimizeSize, isInView]);
+
+  // HEAD check request verification for instant fallback selection on mount or src change
+  React.useEffect(() => {
+    if (!isInView || !src) return;
+    const resolved = resolveImageUrl(src, optimizeSize);
+    if (!resolved || resolved.startsWith("data:") || resolved.includes("localhost")) return;
+
+    let active = true;
+    const checkUrlWithHead = async () => {
+      try {
+        const response = await fetch(resolved, { method: "HEAD" });
+        if (active && response.status !== 200) {
+          console.warn(`[HEAD check non-200] ${response.status} for ${resolved}. Skipping normal loading flow.`);
+          setPlaceholderFallback(1);
+          setFallbackAttempt(1);
+        }
+      } catch (err) {
+        // Safe standard CORS handling
+        console.log("[HEAD check CORS / TypeError ignored]", err);
+      }
+    };
+    checkUrlWithHead();
+    return () => {
+      active = false;
+    };
   }, [src, optimizeSize, isInView]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
@@ -1092,6 +1120,35 @@ function ImageWithFallback({
 
   const handleError = () => {
     setIsLoaded(false);
+    const nextFailed = failedCount + 1;
+    setFailedCount(nextFailed);
+
+    console.log("[ImageWithFallback Error] Failed to load image:", {
+      originalSrc: src,
+      currentSrc: currentSrc,
+      fallbackAttempt: fallbackAttempt,
+      failedCount: nextFailed,
+      alt: alt,
+      categoryName: categoryName,
+      titleText: titleText,
+      loadedState: "error"
+    });
+
+    // If reached 3 failures, directly switch to category preset Unsplash URL & resolve immediately
+    if (nextFailed >= 3) {
+      console.warn(`[failedCount >= 3] Switching to category preset Unsplash URL for ${categoryName}`);
+      let unsplashUrl = "https://images.unsplash.com/photo-1618005182384-a83a8dc5735e?auto=format&fit=crop&q=80&w=600&h=450";
+      if (categoryName && (categoryName.includes("LOGO") || categoryName.includes("CIS"))) {
+        unsplashUrl = "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600&h=450";
+      } else if (categoryName && (categoryName.includes("實體") || categoryName.includes("展覽") || categoryName.includes("空間"))) {
+        unsplashUrl = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600&h=450";
+      } else if (categoryName && (categoryName.includes("插畫") || categoryName.includes("繪圖") || categoryName.includes("平面"))) {
+        unsplashUrl = "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600&h=450";
+      }
+      setCurrentSrc(unsplashUrl);
+      setIsLoaded(true);
+      return;
+    }
     
     // 1. YouTube specific fallback logic to try lower quality thumbnails gracefully
     if (src.includes("youtube.com") || src.includes("ytimg.com") || currentSrc.includes("youtube.com") || currentSrc.includes("ytimg.com")) {
@@ -2341,14 +2398,91 @@ function getYouTubeEmbedUrl(url?: string): string | null {
   return null;
 }
 
+function extractDriveIdsFromHtml(html: string, folderId: string): string[] {
+  const fileIdRegex = /\/file\/d\/([a-zA-Z0-9_-]{28,45})/g;
+  const ids: string[] = [];
+  let match;
+  while ((match = fileIdRegex.exec(html)) !== null) {
+    if (match[1] && !ids.includes(match[1])) {
+      if (match[1] !== folderId && match[1].length >= 28) {
+        ids.push(match[1]);
+      }
+    }
+  }
+  return ids.map(id => `https://drive.google.com/thumbnail?sz=w1000&id=${id}`);
+}
+
+async function fetchFolderImages(folderId: string): Promise<string[]> {
+  const targetUrl = `https://drive.google.com/drive/folders/${folderId}`;
+  
+  // Try Proxy 1: AllOrigins
+  try {
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+    const response = await fetch(proxyUrl);
+    if (response.ok) {
+      const data = await response.json();
+      const html = data.contents;
+      if (html) {
+        const images = extractDriveIdsFromHtml(html, folderId);
+        if (images.length > 0) return images;
+      }
+    }
+  } catch (err) {
+    console.warn("AllOrigins proxy error, attempting fallback...", err);
+  }
+
+  // Try Proxy 2: CorsProxy.io
+  try {
+    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
+    const response = await fetch(proxyUrl);
+    if (response.ok) {
+      const html = await response.text();
+      if (html) {
+        const images = extractDriveIdsFromHtml(html, folderId);
+        if (images.length > 0) return images;
+      }
+    }
+  } catch (err) {
+    console.warn("CorsProxy backup error:", err);
+  }
+
+  return [];
+}
+
 export default function App() {
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const initialDataRef = React.useRef<PortfolioItem[]>([]);
   
   React.useEffect(() => {
     import("./data").then(module => {
-      initialDataRef.current = module.initialPortfolioData;
-      setItems(module.initialPortfolioData);
+      const initialItems = module.initialPortfolioData;
+      initialDataRef.current = initialItems;
+      setItems(initialItems);
+
+      // Dynamically load images from Google Drive folders for cloud-based items
+      initialItems.forEach(item => {
+        if (item.driveFolderId) {
+          fetchFolderImages(item.driveFolderId).then(images => {
+            if (images && images.length > 0) {
+              const updateItem = (prevList: PortfolioItem[]) =>
+                prevList.map(p => {
+                  if (p.id === item.id) {
+                    return {
+                      ...p,
+                      imageUrl: images[0],
+                      images: images
+                    };
+                  }
+                  return p;
+                });
+              setItems(prev => updateItem(prev));
+              initialDataRef.current = updateItem(initialDataRef.current);
+            }
+          }).catch(err => {
+            console.error(`Failed to dynamically fetch images for folder ${item.driveFolderId}:`, err);
+          });
+        }
+      });
     });
   }, []);
 
