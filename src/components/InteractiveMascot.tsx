@@ -1,0 +1,391 @@
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
+import { PortfolioItem } from "../types";
+
+interface InteractiveMascotProps {
+  currentMascot: {
+    name: string;
+    role: string;
+    imageDriveId: string;
+    glowColor: string;
+    dialogues: string[];
+    idles: string[];
+  };
+  theme: "dark" | "light" | "sepia";
+  activeModalItem: any;
+  isWorkflowOpen: boolean;
+  isContactCardOpen: boolean;
+}
+
+
+export const InteractiveMascot = React.memo(function InteractiveMascot({
+  currentMascot,
+  theme,
+  activeModalItem,
+  isWorkflowOpen,
+  isContactCardOpen
+}: InteractiveMascotProps) {
+  const [mascotDialogue, setMascotDialogue] = useState<string>("");
+  const [showMascotDialogue, setShowMascotDialogue] = useState<boolean>(false);
+  const [isTouched, setIsTouched] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  
+  // 雙指縮放狀態
+  const [mascotScale, setMascotScale] = useState<number>(1);
+  const initialDistanceRef = React.useRef<number | null>(null);
+  const currentScaleRef = React.useRef<number>(1);
+  
+  const dragControls = useDragControls();
+
+  // 建立滑鼠/指標跟蹤角度邏輯及其平滑彈性曲線 (Motion values)
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const rotateValue = useMotionValue(-5);
+  const smoothRotate = useSpring(rotateValue, { damping: 25, stiffness: 180 });
+
+  // 監聽全球 pointermove 計算與吉祥物的相對角度，達成靈活動態跟隨效果
+  React.useEffect(() => {
+    let animationFrameId: number | null = null;
+    let targetX = 0;
+    let targetY = 0;
+
+    const updateRotation = () => {
+      animationFrameId = null;
+      if (!isImageLoaded || !containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const dx = targetX - centerX;
+      const dy = targetY - centerY;
+      const distance = Math.hypot(dx, dy);
+      const triggerDistance = 250; // 觸發距離設定為 250px
+      
+      if (distance < triggerDistance) {
+        // 指向性夾角計算
+        const angleRad = Math.atan2(dy, dx);
+        const angleDeg = angleRad * (180 / Math.PI);
+        
+        // 吉祥物頭部朝上為基準 (-90)，所以加 90 以使插畫指向指標
+        let targetRotate = angleDeg + 90;
+        
+        // 限制傾斜角度範圍在 [-15, 15] 之間，既生動又不易與對話框重疊遮擋
+        targetRotate = Math.max(-15, Math.min(15, targetRotate));
+        
+        // 基於接近程度進行平滑漸變 (從接觸邊緣 250px 的 0 到重心的 1)
+        const t = (triggerDistance - distance) / triggerDistance;
+        const interpolatedRotate = -5 + (targetRotate - (-5)) * t;
+        
+        rotateValue.set(interpolatedRotate);
+      } else {
+        // 距離超過 250px 時，平滑回復預設 -5 度偏斜
+        rotateValue.set(-5);
+      }
+    };
+
+    const handlePointerMove = (e: PointerEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!animationFrameId) {
+        animationFrameId = window.requestAnimationFrame(updateRotation);
+      }
+    };
+
+    const handlePointerLeave = () => {
+      // 滑鼠移出視窗或離開時，平滑回復預設 -5 度偏斜
+      rotateValue.set(-5);
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    document.addEventListener("pointerleave", handlePointerLeave, { passive: true });
+    
+    return () => {
+      if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerleave", handlePointerLeave);
+    };
+  }, [isImageLoaded, rotateValue]);
+
+  // 當常駐代言吉祥物改變時，自動重置並介紹
+  React.useEffect(() => {
+    setIsImageLoaded(false);
+    if (currentMascot && currentMascot.dialogues.length > 0) {
+      setMascotDialogue(currentMascot.dialogues[0]);
+      setShowMascotDialogue(false);
+      setIsVisible(true);
+    }
+  }, [currentMascot]);
+
+  // 當圖片載入完成時，顯示吉祥物對話框
+  React.useEffect(() => {
+    // 確保留有一點彈出緩衝時間，不至於卡頓
+    let timer: NodeJS.Timeout;
+    if (isImageLoaded) {
+      timer = setTimeout(() => setShowMascotDialogue(true), 250);
+    }
+    return () => clearTimeout(timer);
+  }, [isImageLoaded]);
+
+  // 點擊吉祥物時隨機切換台詞 (且不影響 App.tsx 渲染)
+  const handleNextMascot = () => {
+    if (currentMascot && currentMascot.dialogues.length > 0) {
+      const candidates = currentMascot.dialogues.filter(item => item !== mascotDialogue);
+      const chosen = candidates.length > 0
+        ? candidates[Math.floor(Math.random() * candidates.length)]
+        : currentMascot.dialogues[0];
+      setMascotDialogue(chosen);
+      setShowMascotDialogue(true);
+    }
+  };
+
+  // 7.5 秒自動播放常駐吉祥物的閒聊 (採元件內部定時，0% 全局 App re-render 開銷)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentMascot && currentMascot.idles.length > 0) {
+        const randomIdle = currentMascot.idles[Math.floor(Math.random() * currentMascot.idles.length)];
+        setMascotDialogue(randomIdle);
+      }
+    }, 7500);
+
+    return () => clearInterval(interval);
+  }, [currentMascot, mascotDialogue]);
+
+  // 手機震動反饋與極速觸摸響應 & 雙指縮放
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => {
+    if (e.touches && e.touches.length === 2) {
+      // 雙指觸控開始
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const dist = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+      initialDistanceRef.current = dist;
+      currentScaleRef.current = mascotScale;
+    } else if (e.touches && e.touches.length === 1) {
+      setIsTouched(true);
+      if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
+        try {
+          window.navigator.vibrate(15);
+        } catch (err) {
+          // Safe catch for iframe / permission constraints
+        }
+      }
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLButtonElement | HTMLDivElement>) => {
+    // 檢查是否有進行拖曳 (framermotion drag 會有些攔截，但如果是 2 指，則嘗試計算縮放)
+    if (e.touches && e.touches.length === 2 && initialDistanceRef.current !== null) {
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const dist = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
+      const ratio = dist / initialDistanceRef.current;
+      const newScale = Math.min(Math.max(currentScaleRef.current * ratio, 0.5), 2.5); // 限制縮放範圍在 0.5 到 2.5 倍
+      setMascotScale(newScale);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsTouched(false);
+    initialDistanceRef.current = null;
+  };
+
+  return (
+    <AnimatePresence>
+      {isVisible && !activeModalItem && !isWorkflowOpen && !isContactCardOpen && (
+        <motion.div
+          ref={containerRef}
+          initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
+          animate={isImageLoaded ? { y: 0, opacity: 1, rotate: -5, scale: mascotScale } : { y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
+          exit={{ y: "150%", opacity: 0, rotate: 20, scale: 0.5 }}
+          transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }}
+          className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-none origin-bottom flex flex-col items-center drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[250px]"
+          style={{ backfaceVisibility: "hidden", willChange: "transform, opacity" }}
+          drag
+          dragControls={dragControls}
+          dragListener={false}
+          dragMomentum={false}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+        >
+          {/* 自定義組件自密閉 CSS 動態效果：包含對話框微幅上下飄移 & 優雅氣泡指向動畫 */}
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes mascotBubbleFloat {
+              0%, 100% { transform: translateY(0px) rotate(0deg); }
+              50% { transform: translateY(-5px) rotate(-0.5deg); }
+            }
+            .animate-mascot-bubble-float {
+              animation: mascotBubbleFloat 4.5s ease-in-out infinite;
+            }
+          `}} />
+
+          {/* 互動對話氣泡 */}
+          <AnimatePresence>
+            {showMascotDialogue && (
+              <motion.div
+                initial={{ scale: 0, opacity: 0, y: 10 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0, opacity: 0, y: 10 }}
+                transition={{ type: "spring", bounce: 0.4, duration: 0.4 }}
+                onClick={handleNextMascot}
+                onPointerDown={(e) => dragControls.start(e)}
+                className={`${
+                  theme === "light"
+                    ? "bg-white/95 border-amber-500/50 shadow-[0_4px_25px_rgba(245,158,11,0.2)]"
+                    : theme === "sepia"
+                    ? "bg-[#FCF8EE]/95 border-amber-600/40 shadow-[0_4px_25px_rgba(180,83,9,0.2)]"
+                    : "bg-black/95 border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.25)]"
+                } backdrop-blur-sm border p-3 pt-3.5 rounded-2xl mb-2.5 relative flex flex-col items-center justify-center pointer-events-auto max-w-[145px] sm:max-w-[190px] md:max-w-[240px] overflow-hidden cursor-pointer transition-colors group animate-mascot-bubble-float`}
+                style={{ willChange: "transform, opacity, scale", touchAction: "none" }}
+                title="點擊對話，長按可自由拖曳！🐾"
+              >
+                {/* 關閉對話框的 X 按鈕 */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowMascotDialogue(false);
+                    setIsVisible(false);
+                  }}
+                  className={`absolute top-0 right-0 z-10 p-2 rounded-full transition-colors cursor-pointer ${
+                    theme === "light"
+                      ? "text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100"
+                      : theme === "sepia"
+                      ? "text-[#433422]/60 hover:text-[#433422] hover:bg-[#E2D5B9]"
+                      : "text-zinc-400 hover:text-white hover:bg-white/10"
+                  }`}
+                  aria-label="Close dialogue"
+                  title="關閉對話框"
+                >
+                  <svg className="w-[17px] h-[17px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                <div className={`${
+                  theme === "light"
+                    ? "text-zinc-850 font-semibold group-hover:text-amber-600"
+                    : theme === "sepia"
+                    ? "text-[#433422]/60 font-bold group-hover:text-[#B45309]"
+                    : "text-zinc-100 group-hover:text-amber-200"
+                } text-[10px] sm:text-[11.5px] text-center leading-relaxed font-sans px-1 select-none whitespace-normal break-words transition-colors min-h-[30px] sm:min-h-[34px] flex flex-col items-center justify-center`}>
+                  {/* 顯示角色名字與職位 */}
+                  <span className={`text-[8.5px] sm:text-[9.5px] tracking-wider opacity-75 mb-1 font-bold font-sans px-1.5 py-0.5 rounded-full ${
+                    theme === "light" 
+                      ? "bg-zinc-100 text-zinc-650" 
+                      : theme === "sepia" 
+                      ? "bg-[#EDE2CA] text-[#433422]" 
+                      : "bg-white/10 text-zinc-300"
+                  }`}>
+                    {currentMascot.name} • {currentMascot.role}
+                  </span>
+                  
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={mascotDialogue}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
+                      transition={{ duration: 0.18, ease: "easeInOut" }}
+                      className="block leading-relaxed"
+                    >
+                      {mascotDialogue}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+                <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 border-r border-b rotate-45 ${
+                  theme === "light"
+                    ? "bg-white border-amber-500/50"
+                    : theme === "sepia"
+                    ? "bg-[#FCF8EE] border-amber-600/40"
+                    : "bg-black/95 border-amber-500/40"
+                }`} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          <motion.button
+            onClick={handleNextMascot}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
+            onPointerDown={(e) => dragControls.start(e)}
+            type="button"
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            animate={{
+              y: [0, -6, 0],
+              scale: isTouched ? 0.95 : 1
+            }}
+            transition={{
+              y: {
+                repeat: Infinity,
+                duration: 3,
+                ease: "easeInOut"
+              },
+              scale: {
+                duration: 0.12,
+                ease: "easeOut"
+              }
+            }}
+            className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
+            title={`點我跟 ${currentMascot.name} 互動！(長按可拖曳)`}
+            style={{ willChange: "transform", touchAction: "none", rotate: smoothRotate }}
+          >
+            {/* 動態背景彩色發光暈圈 */}
+            <div 
+              className={`absolute inset-4 -z-10 rounded-full blur-[40px] opacity-[0.06] group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 ease-out bg-gradient-to-tr ${
+                currentMascot.glowColor
+              } pointer-events-none`}
+              style={{ willChange: "transform, opacity" }}
+            />
+            
+            <AnimatePresence mode="wait">
+              <motion.img 
+                key={currentMascot.imageDriveId}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                src={`https://drive.google.com/thumbnail?sz=w800&id=${currentMascot.imageDriveId}`} 
+                alt={currentMascot.name} 
+                draggable={false}
+                className="w-full h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] brightness-110 group-hover:brightness-125 transition-all duration-300 pointer-events-none select-none"
+                onLoad={() => setIsImageLoaded(true)}
+                onError={(e) => {
+                  setIsImageLoaded(true); // 失敗也照常觸發顯示對話框
+                  e.currentTarget.src = "https://drive.google.com/thumbnail?sz=w800&id=16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI";
+                }}
+              />
+            </AnimatePresence>
+
+            {/* 收納狀態提示小紅點 (呼吸燈效果) */}
+            <AnimatePresence>
+              {!showMascotDialogue && isImageLoaded && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  className="absolute -top-1 right-2 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white/20 shadow-[0_0_10px_rgba(239,68,68,0.8)] z-10"
+                >
+                  <div className="absolute inset-0 rounded-full animate-ping bg-red-400 opacity-75" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/75 border border-white/10 text-[9px] text-zinc-300 px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+              💬 點擊跟我對話吧！({currentMascot.name})
+            </div>
+          </motion.button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+});
+

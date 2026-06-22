@@ -4,9 +4,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "huatiancun-cis",
     "category": "企業LOGO與CIS設計",
-    "title": "彰化田尾花田村品牌視覺識別系統",
+    "title": "彰化田尾花田村品牌識別系統",
     "titleEn": "Tianwei Flower Village Brand Identity System",
-    "philosophy": "融合植物與花卉自然線條，以墨綠與暖大地色系為主調。採用經典襯線體搭配簡潔對稱網格排版，結合圓形徽章視覺特徵，展現具深厚自然生命力與現代洗練美感的品牌常態識別。",
+    "philosophy": "融合植物與花卉自然線條，以墨綠與暖大地色系為視覺基調。採用經典襯線字體與簡潔對稱對齊排版，結合圓形徽章標誌，展現純樸土地生命力與現代洗練感之品牌識別系統。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -22,7 +22,42 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1J_4nmaycENi2ORZAkEuz6n2Xro83CgAb",
       "https://drive.google.com/thumbnail?sz=w1000&id=1GKjzviVXZW-5sfnBxAQY3VHdKUEwEc2k",
       "https://drive.google.com/thumbnail?sz=w1000&id=15zy2J-P-nubAs7zxhckAF0Kwy5UpLNDg",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1n8Vvw1635yDnOl4iLnT5Yb4_IYP43HRM"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1n8Vvw1635yDnOl4iLnT5Yb4_IYP43HRM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CiC30CltIZXEw3MQ9uYHdwKj7U87uJZZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mPNLZz7kRr-UNca7VnkpnzjwelNVbnWS",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1s_XnzVejhc7wWxxLr7CZeRjzWu7W2-EB",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GT3dHnFZJlFTA4a2keTabanTr9ekriPx",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Qy9WnXtJ1gl3vTECzswe8YygInqcGqVC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16534pC87_X6rLZIRhjq8iSMAJ7nSZhtl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1N7903qCTHfnevFQS6HhM5fHXRA8s7fbc",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1IoNQVyxtRNXsiJYrhAY9gYXmpFYJDPL2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HxslkcMCYgzkJuCEKPpSwbfpk516IC0M",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VllIF5VOtm88XAMrQ7ERHRR-zuBxPQAw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1W9i_3GaKgBwzZ5Ql4q6Y-urxbFwnQs3U",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xsyeNBUp0VgAY8LPhxpTBJFh8dC8s6T-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aONehRVLIrlINK6bINY6fdr7-Z5hSLXC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PqkaxOXYZt47v2Uix-Jl-hZW_71ZFsiu",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pieQmxL2qk-fVyFI5aUqPzGL9McZWSJ2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kFH1qCm8usa4ydmZR9S1SbG1_Ghh-EBP",
+      "https://drive.google.com/thumbnail?sz=w1000&id=19dkrfna6JAH6OK_R8IphpWxwgz4rT6E0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WsviMnpa3t8RlXpmoQVyphjJQpgYXJsW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sgJG6uBpOr24B_aCSrD9Ooyr8DuVjqvw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fap7K3l5LP1dmLCJOe7wkf1W2VAMNU4i",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dZG4wITPr5sHgNJsTFQVefkXYphS8Cj0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1NzCeQUOJwtl8mzZIC5W_03_K7Z27ZvwA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14_1dE7R8yTfw95ypaYH7MtI45tH599m5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gBM3ApEk7ECfr73_4oqyQ1ddy9Pt2Jqi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1SN7_pgHfzaevHJj_w7XNIEVlzxzEiFk7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1IO0X7ShuRVxvnvd82fKm9WiUZnbHh0cg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JwQD-ARxM4cnBuC-XuwPS8dhYEPoUkm9",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kfu0t65BjBFT4Z3YHysyPIjGWogACHJW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1XBz5PrLwDskRvqKV6ykvwZHGQ8-PqydE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hBemIsjSl03deGaF58RZy5LC0JCxqidg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1m75FZyXA9OtXGbvEAEY2LFzUq4hf75ew",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HV__Hl_4bbu8KVPshgVOd8Sob5gNgabo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vDfjvo8YAI7w_AZN5nj4MIONP8uK5wZn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1RkZtC5kQNs2t-BBRfNzcmxuALo1tsRWl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DTZE5KYz817fDHtdfo7YB8SqZV4Ucs-a"
     ],
     "driveFolderId": "1EF-HKBNOtTzxRvDp3LEJs_QYwnWCIh9S"
   },
@@ -31,7 +66,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "山野牧人品牌視覺識別系統與手冊",
     "titleEn": "Wilderness Shepherd Brand Identity System and Manual",
-    "philosophy": "運用原木色調與幾何圖形重構大自然氛圍，輔以流暢的手寫書法字。版面設計特意呈現不對稱網格，結合細膩紙張紋理以及手作工藝意象，理性傳遞反璞歸真之品牌人文厚度與極簡美學。",
+    "philosophy": "以原木色調與幾何圖形重組自然氛圍，輔以流暢手寫書法。版面設計呈現不對稱網格，結合細膩紙張紋理與手作工藝意象，傳遞反璞歸真之品牌常態識別與極簡美學。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -47,7 +82,39 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=12Nb4ECUFyJpdlppUBBaDB-Rw79sKxC1P",
       "https://drive.google.com/thumbnail?sz=w1000&id=1Y2nI3dR57wP5_hWOlSatQevslUXUlIC8",
       "https://drive.google.com/thumbnail?sz=w1000&id=1oQ7vhRLxCjmp0VsvYgm0YG3srZj74_dS",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1fLJ9psuSt5ZxaNWBwPGH3GaY3XEzzSAs"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fLJ9psuSt5ZxaNWBwPGH3GaY3XEzzSAs",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1s34VAx6W_1EhVqyT2MbIjKWD8A5NIcxa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1otBUtZWIDjaQInKbKYXKkUK0r6i2wSaf",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ipzXeS1lqUxDyu7C2TLJRzBNNir7c_Ev",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LnsKI8XVKX2C55TwUzGYtWlGx2e7YVjo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HlOr8vRQ48gtMTXEBKcfxYy8c39M28XY",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uYXxucZZ0OUfmfNGOm8KLEACizNyQjnP",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TXPP6-oFk6NeDX_Z-WdOU2HZ8TevQARe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HRhuvQTPtYKLeN4NhjEjoGBYDsJm102q",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WR-SH76PEJ1-IWr1mW6Z8ufhRRhRLvJs",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Q6dA7ta47MK1I2HOcySOd037Lghwqtkw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1FS7XHfHCAPLi1E97yV4inrx3OdOpxrM1",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1y3_dwRvSiQDz1HqBt5S0L8N8ioTcC-Z1",
+      "https://drive.google.com/thumbnail?sz=w1000&id=19aBYnrRLveCyLAlqN5qe9_Wh4SSF2u3A",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hFFkMjkHcnkkqwkexTPY5bpbEpw_9OqC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eMksyjsqPjl30bogjNmWb7Wm3D-lhhr0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10iCJyR9_YrMJ336RdoRnkIAphdvjSXQF",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GUQyDCfhxHkMaz2O5ZFe7RsXxkUFzfZK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iGsa6mId6XMlptfLKqA5O3mUq8RihFPe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1P-zxjh_DIoyPAXn7CQywUiKSOZLHgVS3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KPs4AJ_vRzhdskSu6PvBCpts0Bvp4PWc",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15zYJ0_sgKlXF4fmS84jbihX8luCV0e0-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1RyZahYTe21rcDeVUcXOepjAJBTljjo7C",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pcxLqBwmebvMgR3bCqCUzNc9mFWgh0h4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uLtPUvLCKvQj482HNU32qbsuZf5TqP_S",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KOhzYax6Mt1Eu54pVALa_X_tOJ58s1wW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1q89HXt9qTbgQfmJ56k5yWBNMT1GV2eMX",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wl7y-lkFkL7nUsrpOuJQbSPD5mpNsDFq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vFN4RhVW_9RHj_B6f-uy0z-ZXGEaJgL8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10wRvlAcBRpJDdbcquPdTrDayW_47rMGZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xRrUvYev2vG7abRv-ZFNJjMhQA_pgMYi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11QGY1rmXbe-1aGGHwTx48LtPBobGM3fo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1khnpEiPwZr0eKj9TofopHnZ_ynFKkw09"
     ],
     "driveFolderId": "1op79WMlUOubntQeKfam4fGyfO64704mf"
   },
@@ -56,7 +123,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "山野牧人戶外實體招牌設計",
     "titleEn": "Wilderness Shepherd Storefront Signage Design",
-    "philosophy": "以溫潤木質調色底融合工整不對稱網格，搭配自然山巒意象與手寫書法字體。視覺排版採用三欄式對稱展示格線與水平精準對齊，於實體空間中建構高對比、安定且富含手作溫度的招牌美學。",
+    "philosophy": "以木質底色融合工整不對稱網格，搭配自然山巒意象與手寫書法。排版採用三欄式對稱展示格線與水平精準對齊，於實體店面空間中建構高對比、安定且富含手作溫度的招牌美學。",
     "isHighlight": false,
     "tools": [
       "Ai",
@@ -77,7 +144,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "百人插畫公益鳥屋誠品展",
     "titleEn": "Eslite Hundred Illustrators Charity Birdhouse Exhibition",
-    "philosophy": "採用天然木質調為底，烘托溫暖樸實氛圍。空間規劃結合多層次立體展品結構與對稱幾何框架排版，以高對比冷暖色系互補，創造具備三維點線面張力與人文深度的當代實體工藝展覽視覺。",
+    "philosophy": "採用天然木紋色為底襯托純樸氛圍，空間規劃結合多層次立體實體結構與幾何框架排版。搭配高對比冷暖色調，在三維空間中創造具點線面張力與人文深度的當代工藝展覽視覺。",
     "isHighlight": true,
     "tools": [
       "展覽設計",
@@ -102,7 +169,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "平面海報設計",
     "title": "客家電視台谷風少年電視劇宣傳插畫",
     "titleEn": "Hakka TV Drama Valley Wind Boy Editorial Illustration",
-    "philosophy": "採用暖白與柔和橘紅、粉橘等低飽和色彩為基底，結合雙人主體對稱構圖。背景融入圓形烈陽作為點線面構造焦點，運用流暢的向量線條與低明度色塊，形塑溫潤且充滿故事性的視覺意境。",
+    "philosophy": "以低飽和橘紅與暖白為基底，結合雙人對稱構圖。背景融入圓形烈陽作為點線面焦點，運用流暢向量線條與沉穩色塊，形塑具有中式美學與豐富故事性的電視劇宣傳海報視覺。",
     "isHighlight": false,
     "tools": [
       "Ai",
@@ -121,9 +188,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "buddy-red-envelope",
     "category": "商務印刷品設計",
-    "title": "巴迪醫療 好年紅包袋",
+    "title": "巴迪醫療好年紅包袋",
     "titleEn": "Buddy Medical Lucky Red Envelope - New Year High-End Hot Stamping Gift Design",
-    "philosophy": "巴迪醫療（Buddy Medical）量身定制「好年紅包袋」年節商務贈禮設計。",
+    "philosophy": "以深紅色彩與精緻燙金工藝為底，結合流暢書法字體與幾何向量圖騰。排版呈中心對稱結構，展現極簡且富含年節人文溫度的商務贈禮視覺美學。",
     "isHighlight": false,
     "tools": [
       "燙金工藝",
@@ -142,15 +209,15 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "buddy-ttt-badge",
     "category": "商務印刷品設計",
-    "title": "2025 TTT 年會巴迪醫療與會人員識別證贊助廣告",
+    "title": "2025 TTT年會巴迪醫療識別證廣告",
     "titleEn": "2025 TTT Buddy Medical Sponsor Badge AD - Bare Metal Stent (AVANTGARDE BMS) Creative & Venue Identity",
-    "philosophy": "巴迪醫療（Buddy Medical）。",
+    "philosophy": "採用雙語排版與結構化色塊，並結合二維條碼識別與三維背景渲染技術。視覺佈局以模組化網格排版，建構易於辨識且具科技感的年會與會人員識別證。",
     "isHighlight": false,
     "tools": [
       "背景渲染",
       "3D模型",
       "雙語排版",
-      "QR識別"
+      "條碼設計"
     ],
     "imageUrl": "/images/optimized/1Vxt1vifCHXUhrcEDRu8L1MqWMzI_W_Ds.webp",
     "placeholderId": "buddy-ttt-badge-01",
@@ -184,9 +251,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "wugu-ai-media-gugugu",
     "category": "平面海報設計",
-    "title": "2025 五股職訓局 AI 媒體應用 02 期 古菇顧班級海報",
+    "title": "五股職訓局AI媒體應用古菇顧海報",
     "titleEn": "2025 Wugu Vocational Training AI Media Applications Class 02 - GuGuGu Class Poster - Sustainable Ecology & Advanced AI Generative Vision Poster Design",
-    "philosophy": "2025 年五股職訓局「AI 媒體應用 02 期」班級代表視覺海報設計。視覺核心圍繞著富有生命溫度與森林色彩的班級象徵角色「古菇顧」，並深度釋放生成式 AI 媒體技術的視覺創造力。",
+    "philosophy": "以森林色調搭配班級象徵角色，並融入人工智慧生成圖樣。採用不對稱網格排版，結合圓形對稱視覺焦點與流暢點線面構成，建構兼具生命力與科技感的班級宣傳海報。",
     "isHighlight": false,
     "tools": [
       "AI渲染",
@@ -225,9 +292,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "youth-coalition-blueprint",
     "category": "商品周邊企業禮贈品",
-    "title": "青年政連線｜共創新藍圖 海報與主視覺",
+    "title": "青年政連線共創新藍圖海報",
     "titleEn": "Youth Coalition - Cohere and Co-create a New Blueprint - Modern Geometric Grid & Vibrant Bi-color Contrast Identity & Poster Campaign Design",
-    "philosophy": "「青年政連線｜共創新藍圖」青年自主參政倡議團體年度大會海報與完整的品牌視覺識別系統。",
+    "philosophy": "採用簡明幾何符號搭配不對稱網格，色彩配色使用高飽和對比，直接呈現青年參政代表意象。視覺編排重視平衡與留白，建構具現代洗練感的倡議大會品牌識別。",
     "isHighlight": false,
     "tools": [
       "色彩搭配",
@@ -309,12 +376,12 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "ni-neuro-symposium",
     "category": "平面海報設計",
-    "title": "NI是我的神 中區研討會 海報與背板",
+    "title": "NI中區研討會海報與背板",
     "titleEn": "Neuro Intervention Launch Symposium In Taichung (NI IS MY GOD) - Medical Poster & Venue Identity",
-    "philosophy": "「NI是我的神 中區研討會」（Neuro Intervention Launch Symposium In Taichung）為核心，為神經介入醫學領域的專業學術交流。",
+    "philosophy": "以高對比醫療深藍色系搭配向量線條，建構具科技感之背景架構。版面運用雙語對襯編排與網格對齊，呈獻學術交流活動的安定與專業度。",
     "isHighlight": false,
     "tools": [
-      "展配設計",
+      "展會設計",
       "雙語編排",
       "向量繪製",
       "品牌視覺"
@@ -612,15 +679,15 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "new-dino-triko",
     "category": "角色IP&插畫與貼圖",
-    "title": "Triko 翠可吉祥物 IP角色與貼圖",
+    "title": "Triko翠可吉祥物角色與貼圖",
     "titleEn": "Triko: City Explorer and Life Documentary IP Character Design",
-    "philosophy": "Triko 的設計核心在於「城市觀察者」這一哲學意境。我們旨在跳脫傳統恐龍 IP 粗獷或史前恐懼的符號框架，將其轉化為一個具備當代人文關懷與冒險精神的城市探索者。",
+    "philosophy": "跳脫傳統恐龍圖案框架，以流暢向量線條結構勾勒城市觀察者形象。色彩配色採用清爽明亮組合，結合幾何色塊搭配，形塑展現當代探險精神之平面角色視覺。",
     "tools": [
       "Ai",
-      "2D 原畫概念草稿",
-      "IP 核心品牌包裝",
-      "插畫貼圖情境開發",
-      "故事敘事與性格建立"
+      "2D草稿",
+      "IP包裝",
+      "插畫貼圖",
+      "性格設定"
     ],
     "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=16lSTH72n4Em8WEIUFGMt3sUPaT1amGHm",
     "placeholderId": "IMAGE_DINO_NEW_3",
@@ -633,13 +700,13 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "new-dino-bronti",
     "category": "角色IP&插畫與貼圖",
-    "title": "Bronti 朋迪吉祥物 IP角色與貼圖",
+    "title": "Bronti朋迪吉祥物角色與貼圖",
     "titleEn": "Bronti: Cozy Healing & Specialty Coffee IP Character Design",
-    "philosophy": "Bronti 的設計初衷，旨在將遠古生物的厚重歷史感，轉化為現代都市生活中最溫暖的一抹色彩。作為「Shone City」咖啡店的靈魂，Bronti 的視覺語彙緊扣「」與「連結」兩大核心價值。",
+    "philosophy": "將遠古生物厚重感轉化為明亮柔和色階，結合沉浸式場景插畫與手製貼圖排版。視覺佈局以結構化網格為底，勾勒出兼具温暖質感與都市親切感的角色識別。",
     "tools": [
       "Ai",
       "品牌包裝",
-      "沉浸式場景插畫開發",
+      "場景插畫",
       "貼圖設計",
       "符號排版"
     ],
@@ -1875,9 +1942,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "61",
     "category": "社群行銷小編圖文",
-    "title": "Segway-Ninebot ZT3 Pro 總代理官方公司貨 VS 水貨(平行輸入)消費者權益差異圖文資訊設計暨防偽防坑宣導",
+    "title": "Segway-Ninebot ZT3 Pro 官方公司貨與水貨權益差異圖文",
     "titleEn": "Standardizing Consumer Security: Segway-Ninebot ZT3 Pro Official Local Authorized Version vs. Parallel Import (Grey Market) Visual Comparison System",
-    "philosophy": "警示鮮紅與九號探險螢光綠核心對比，將複雜公司貨與水貨條目多欄網格化，文案深度翻譯轉譯NCC認證，BSMI台灣合規。",
+    "philosophy": "以警示紅與螢光綠色彩對比為底，結合多欄網格化排版，將繁複的認證合規條目結構化呈現，強化核心權益資訊的閱讀流暢度，展現高度理性的資訊圖表語彙。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -2025,9 +2092,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "67",
     "category": "影音與多媒體設計",
-    "title": "興家安速 - 免水洗冷氣清潔劑 動態開箱與多媒體廣告企劃 (DA量販店合作案)",
+    "title": "Segway-Ninebot F2 Pro 官方公司貨與水貨權益差異圖文",
     "titleEn": "Earth Chem Air Conditioner Cleaner: Multi-Media Unboxing Campaign & Interactive Video Strategy",
-    "philosophy": "結合冷氣翅片實體透視剖析，引入高動態Before & After清洗對比，字體動態標引搭配ASMR級高對比音軌優化。",
+    "philosophy": "以實體透視剖析為底，結合高動態前後對比視覺與動態字體標引，搭配聲效音軌，強化產品清潔效能的直覺傳遞，展現高流暢度的多媒體開箱廣告語彙。",
     "tools": [
       "Premiere",
       "Photoshop",
@@ -2442,9 +2509,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "wild-burger-club-cis",
     "category": "企業LOGO與CIS設計",
-    "title": "WILD BURGER CLUB™ 野性漢堡俱樂部 IP 形象、標誌與 CIS 品牌識別系統規範",
+    "title": "WILD BURGER CLUB野性漢堡俱樂部品牌識別系統",
     "titleEn": "WILD BURGER CLUB™ - American Retro Trend & Wild Dining Aesthetic - Brand LOGO & 24-part Corporate Identity System (CIS) Work",
-    "philosophy": "「WILD BURGER CLUB™」美式潮流手工漢堡餐飲品牌打造的完整全套 LOGO 與 CIS 品牌識別系統。設計概念緊咬「狂野、美式街頭、高熱量」的飲食精神。",
+    "philosophy": "以粗黑描邊與幾何塊狀分割為基礎，導入高彩度色調與系列化符號，並透過街頭圖形比例設計重構品牌角色，建立具視覺張力的家族特徵與識別手冊。",
     "isHighlight": false,
     "tools": [
       "手繪線稿",
@@ -2679,9 +2746,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "91",
     "category": "實體店面與展覽",
-    "title": "巴迪醫療 2025 中華民國心臟學會 (TSOC) 年會心血管醫療展覽攤位與空間廣告",
+    "title": "九號單輪平衡車Z10評測與極限露營玩家教學",
     "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiology (TSOC) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
-    "philosophy": "醫學深藍與皓雪白底色搭配線性LED燈帶，正上方懸浮發光吊盒聚焦品牌氣場，弧形玻璃櫃陳列 Myval 生物瓣膜與3D解剖模型。",
+    "philosophy": "以深藍與皓雪白為空間基調，結合線性光帶與懸浮發光體，搭配弧形陳列櫃與三維解剖模型，強化品牌立體視覺聚焦，展現專業洗練的醫療空間展示美學。",
     "tools": [
       "品牌識別",
       "印刷優化",
@@ -2708,9 +2775,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "92",
     "category": "實體店面與展覽",
-    "title": "巴迪醫療 2025 中華民國心臟血管介入專科醫學會 (TSCI) 年會心血管醫療展覽攤位與空間廣告",
+    "title": "Ninebot S-PRO 雙輪自平衡車科技出行圖文",
     "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiovascular Interventions (TSCI) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
-    "philosophy": "皓雪白與智慧藍主調嵌入線性LED光帶，懸浮立方吊箱與無縫透光吊頂高亮商標，展示櫃收納3D病理解剖模型與介入輸送導管。",
+    "philosophy": "以白與藍色彩對比為基調，結合線性燈帶與無縫透光吊頂，搭配懸浮立方體與產品展示櫃，強化空間層次感與商標視認性，展現高度理性的醫療展位美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -2754,9 +2821,9 @@ export const initialPortfolioData: PortfolioItem[] = [
     "id": "94",
     "category": "平面海報設計",
     "isHighlight": true,
-    "title": "巴迪醫療 中華民國胸腔及心臟血管外科學會 (TATCS) 展覽 Meril Life Sciences Dafodil 心包生物瓣膜產品海報",
+    "title": "米家電動滑板車1S經典款都會通勤指南圖文",
     "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
-    "philosophy": "醫學深藍與無塵皓雪白採黃金分割網格，3D視覺圖解三葉心包生物瓣膜與鈷鉻框架，雙語對照標註，印前湛藍防溢流並四色黑。",
+    "philosophy": "以深藍與皓雪白為底，結合黃金分割網格與三維立體圖解，透過雙語對排版與精密色彩管理，強化醫學產品技術解析的易讀性，展現專業嚴謹的醫療海報美學。",
     "tools": [
       "醫學插畫",
       "Photoshop",
@@ -2798,9 +2865,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "99",
     "category": "企業LOGO與CIS設計",
-    "title": "巴迪醫療 品牌標誌與企業識別系統（CIS）",
+    "title": "巴迪醫療品牌標誌與企業識別系統",
     "titleEn": "Buddy Medical: Premium Logo Rebranding & Modern Corporate Identity System (CIS) Redesign",
-    "philosophy": "LOGO結合細胞分裂，無限與心跳符號，配以俐落圓角無襯線字體，調和「醫理深藍」與「暖心珊瑚橘」雙核心色彩，從標準排版到名片。",
+    "philosophy": "以暖色系燈光與溫潤木質調為基底，採用對稱佈局與乾淨的垂直對齊。在簡明黑色框架中烘托綠意植栽，於實體辦公空間中營造溫和安定且沉靜的視覺張力。",
     "tools": [
       "品牌識別",
       "CIS設計",
@@ -2895,9 +2962,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "102",
     "category": "角色IP&插畫與貼圖",
-    "title": "巴迪醫療 Meril Myval 人工心臟瓣膜吉祥物 小脈 (小MY) IP角色設定與設計",
+    "title": "一期一會日式簡約禪風花藝展視覺設計",
     "titleEn": "Buddy Medical: Meril Myval Artificial Heart Valve Official Mascot 'Little MY' Character Design",
-    "philosophy": "結合 Myval 網格皇冠與臨床心率，打造暖心擬人化「小脈」IP角色形象，醫理深藍對位元氣珊瑚橘，提供吉祥物三視圖。",
+    "philosophy": "採用低飽和灰白色系搭配溫潤木質調。佈局採用二欄式不對稱網格，融合枯木、麻繩與自然書法，為實體花藝展形塑靜謐且具備東方人文厚度的沉澱感。",
     "tools": [
       "吉祥物設計",
       "IP角色",
@@ -2947,9 +3014,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "104",
     "category": "電商產品銷售圖",
-    "title": "Dr. Wen 溫太醫 阿里山薑黃按摩滾珠精油 品牌電商視覺與海報製圖",
+    "title": "溫太醫阿里山薑黃按摩滾珠精油電商視覺與海報設計",
     "titleEn": "Dr. Wen Alishan Turmeric Massage Essential Oil: Premium E-Commerce Campaign & Product Banner Design",
-    "philosophy": "精密重組切片薑黃，天然晨露與阿里山群山背景，琥珀金配以山嵐綠雙色彩，提亮滾珠瓶折射，精心排版1:1電商首圖與痛點分析詳情。",
+    "philosophy": "採用低明度茶金色搭配乾淨黑灰白。版面使用秩序性的非對稱對齊排版，結合聚光燈影與結構化綠色植栽，展現古典與當代兼備的沉靜下午茶空間視覺。",
     "tools": [
       "影像合成",
       "電商設計",
@@ -4476,9 +4543,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "162",
     "category": "商業視覺攝影",
-    "title": "紅龍嚴選香滷牛腱心",
+    "title": "紅龍香滷牛腱心",
     "titleEn": "KK Foods Premium Braised Beef Shank Art Direction",
-    "philosophy": "融合溫潤木質與古樸器皿色調，利用高反差暖陽側光，雕琢紅龍香滷牛腱心的自然肉質肌理與晶瑩筋花。結合傳統對角平衡構圖與細緻辛香料散落細節，向大眾傳遞膳食深厚。",
+    "philosophy": "以黑白手繪線稿呈現經典建築構造，融合精細透視與雙語排版。視覺著重黑白虛實留白，彰顯傳統文化厚度與古典人文張力。",
     "tools": [
       "Photoshop",
       "Lightroom",
@@ -7000,9 +7067,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "274",
     "category": "賣場Banner橫幅廣告",
-    "title": "小米手環7「夏日豪禮」LINE推播 Banner 與視覺設計",
+    "title": "Yahoo購物中心雙11週年慶主題橫幅設計",
     "titleEn": "Xiaomi Smart Band 7 'Summer Gift' LINE Push Banner Design",
-    "philosophy": "運用高亮黃橘色系與對稱圓角矩形框，在限時推送中營造搶眼急迫感，精心編排核心利益點，成功在行動端極小版面引導視覺掃描並帶動高點擊率。",
+    "philosophy": "高明度橘紅對比沉穩暗藍，搭配動態斜線構圖，並融入立體禮盒，配合展示無襯線體，呈現檔期活動獨有的豐富視覺張力。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7130,9 +7197,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "281",
     "category": "賣場Banner橫幅廣告",
-    "title": "量感降溫貼「限時秒殺2元」夏日酷暑消暑推播 Banner",
+    "title": "禎祥御膳中式美食限時特展橫幅設計",
     "titleEn": "Cooling Patch '2-Dollar Flash Sale' Summer Special LINE Banner",
-    "philosophy": "以強烈冷感亮藍色系為主調，透過冰晶擬真漸層與巨大化秒殺字體疊加，在尺寸中快速傳遞防暑降溫的清爽意象，強力觸發社群分享與訂購。",
+    "philosophy": "將美食主體置於中心，輔以高明度紅黃色調。配合放射狀光影排版，建構具備精緻度與空間感的食品宣傳導購視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7165,9 +7232,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "283",
     "category": "賣場Banner橫幅廣告",
-    "title": "PChome百貨節 跨品類周年慶特企橫幅設計",
+    "title": "PChome百貨節週年慶橫幅設計",
     "titleEn": "PChome Department Store Festival Campaign Banner Design List",
-    "philosophy": "以亮麗高飽和色彩塊與非對稱格柵結構，流暢展示多品類熱銷商品，精心置入大紅色折扣導購標籤，在大尺寸廣告看板中強化精細對齊，大幅推升點擊力道。",
+    "philosophy": "採用高明度黃綠配色，搭配圓形與柔暢流線圖案。結合點線面雙語文字編排，佐以圓潤無襯線體，呈現休閒與健康活力風格。",
     "tools": [
       "Ai",
       "Photoshop"
@@ -7379,9 +7446,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "295",
     "category": "賣場Banner橫幅廣告",
-    "title": "黑師傅捲心酥 午茶新享受官方旗艦橫幅設計",
+    "title": "黑師傅捲心酥午茶官方橫幅設計",
     "titleEn": "Healthful Wafer Rolls Afternoon Tea Promo Banner",
-    "philosophy": "精選濃郁溫暖的醇黑可可與奶香金配色，藉由高雅的器皿擺盤展現下午茶氛圍，黃金三角排版精準聚焦經典捲心酥，極大化行動端視覺張力與品牌質感。",
+    "philosophy": "以醇黑與奶香金配色為底，結合下午茶器皿擺盤與黃金三角構圖，精準聚焦產品主體，強化畫面色澤質感，展現優雅且具食慾張力的行動端橫幅排版。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7433,9 +7500,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "298",
     "category": "賣場Banner橫幅廣告",
-    "title": "年末最殺終極促銷 購物網強檔推播橫幅",
+    "title": "年末年終購物節焦點推播橫幅設計",
     "titleEn": "ETMall Year-End Ultimate Mega Sale Promotion Banner",
-    "philosophy": "採用極具速度感與壓迫感的霓虹紫與狂放金黃幾何塊面，將驚爆價與限時字體放置於中央落點，瞬間引燃年末囤貨者的強烈點擊意願。",
+    "philosophy": "以霓虹紫與金黃幾何色塊為底，結合具速度感的不對稱斜線分割，將核心促銷資訊放置於視覺黃金交叉點，強化限時緊迫感，展現高張力的電商推播語彙。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7484,9 +7551,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "301",
     "category": "賣場Banner橫幅廣告",
-    "title": "雙11美食嘉年華 豪禮大放送推播廣告",
+    "title": "雙11美食嘉年華餐飲主題推播廣告",
     "titleEn": "ETMall Double 11 Gourmet Carnival Free Gift Banner",
-    "philosophy": "運用高亮撞色的醒目排版結構與精細邊線框，將美食實體與爆款『買就送』標籤進行多層級立體堆疊，在雙11資訊洪流中快速引導視覺掃描與高點擊率。",
+    "philosophy": "以高亮撞色排版為底，結合精細邊線框與立體層級堆疊手法，將食品主體與促銷標籤結構化整合，強化雙十一檔期的視覺掃描效率，展現明晰的導購排版美學。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7541,9 +7608,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "304",
     "category": "賣場Banner橫幅廣告",
-    "title": "禎祥滋補養生雞湯三件組 暖心橫幅廣告",
+    "title": "禎祥滋補養生雞湯三件組特展橫幅廣告",
     "titleEn": "Chen-Hsiang Nourishing Chicken Soup 3-Piece Promo",
-    "philosophy": "烘托裊裊熱氣與溫潤典雅白瓷，在暗色深邃背景中對比凸顯黃金湯頭，字體清麗脫俗，流暢傳遞宮廷漢方溫補美學，在低溫時節極大化點擊暖胃商機。",
+    "philosophy": "以暗色背景為底，對比凸顯白瓷與金黃湯頭，結合裊裊熱氣影像與清秀展示字體，強化產品溫補特質，展現兼具典雅漢方美學與精緻層次的食品廣告視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7561,9 +7628,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "305",
     "category": "賣場Banner橫幅廣告",
-    "title": "【粗味】養生糙米堅果酥 購物網主題橫幅設計",
+    "title": "粗味養生糙米堅果酥購物網主題橫幅設計",
     "titleEn": "Rough Taste Brown Rice Cake & Nuts Crunchy Bars Banner",
-    "philosophy": "運用溫暖怡人的原木與農夫陽光色調，以有機圓角與自然纖維線框交織排版，精緻展示糙米與堅果的醇香酥脆，在養生風潮中鎖定高回購客群。",
+    "philosophy": "以暖木與麥穗金為基調，結合有機圓角矩形與自然纖維線框排版，精緻勾勒糙米與堅果主體，強化健康天然屬性，展現具溫和親和力的現代養生視覺美學。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7578,9 +7645,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "306",
     "category": "賣場Banner橫幅廣告",
-    "title": "3M雙線細滑牙線棒 品牌特惠日促銷橫幅設計",
+    "title": "3M雙線細滑牙線棒品牌特惠日橫幅設計",
     "titleEn": "3M Double Thread Dental Floss Picks Promo Banner",
-    "philosophy": "採用極淨科技感的蔚藍與清透白，藉著明淨透亮的日光感排版展現口腔護理的潔淨，排版維持高呼吸感，襯托實物線條並聚焦超值特惠呼籲。",
+    "philosophy": "高明度藍色與亮黃色呈對角線分割。結合品牌專屬商品外觀，搭配純白留白背景與清晰數字展示，傳遞明確的促銷排版美學。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7595,9 +7662,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "307",
     "category": "賣場Banner橫幅廣告",
-    "title": "九月秋季新品大賞 購物官網焦點推播廣告",
+    "title": "九月秋季新品購物官網推播廣告",
     "titleEn": "September New Arrivals Showcase Web Editorial Banner",
-    "philosophy": "以秋意漸濃的楓紅與麥穗金漸層為主軸，精緻排版本月首發旗艦，營造高級的換季儀式感與探索氛圍，最大化刺激時尚買主點擊率。",
+    "philosophy": "以楓紅與麥穗金漸層為底，結合俐落對齊網格與精細框線，結構化呈現本月首發新品，強化換季視覺氛圍，展現低調典雅、高資訊易讀性的時尚推播視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7629,9 +7696,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "309",
     "category": "賣場Banner橫幅廣告",
-    "title": "LG極智家用大電視 限時特賣會推播廣告設計",
+    "title": "LG家用電視限時特賣會推播廣告設計",
     "titleEn": "LG Smart TV Mega Sale Special Campaign Banner",
-    "philosophy": "以奢黑襯托LG超薄自發光面板的飽滿對比度，精心配置高調極簡無襯線型與醒目促銷落點，用視聽震撼將高質感家電的下單轉換率拉滿。",
+    "philosophy": "大面積平鋪極簡黑灰白背景，搭配高飽和亮橘裝飾線條，結合去背置中的電視外觀圖樣，打造具現代科技感的導購排版網格。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7680,9 +7747,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "312",
     "category": "賣場Banner橫幅廣告",
-    "title": "卜蜂經典熟食義大利麵 國民美食限時秒殺",
+    "title": "卜蜂經典熟食義大利麵食品促銷宣傳橫幅",
     "titleEn": "CP Taiwan Classic Italian Pasta Meal Banner Design",
-    "philosophy": "以香濃茄汁橘紅與歐風黑石板餐桌為底色，聚焦Q彈麵條與豐盛醬汁剖面，輔以高飽和促銷字體，釋放不可抗拒的即食佳餚誘惑。",
+    "philosophy": "以茄汁橘紅與深黑石板紋理為底，結合非對稱排版聚焦麵條與豐盛醬汁，搭配高對比促銷字體強化即時資訊，展現高食慾感與俐落節奏的即食熟食視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7697,9 +7764,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "313",
     "category": "賣場Banner橫幅廣告",
-    "title": "聯華食品參參祝福 頂級花旗蔘茶禮盒特企",
+    "title": "聯華食品參參祝福花旗蔘茶禮盒宣傳橫幅",
     "titleEn": "LianHwa Ginseng Blessing Herbal Tea Gift Banner",
-    "philosophy": "融入東方典雅皇家宮廷綠與養生赤紅，鋪設人蔘原生質地，排版古典而內斂，傳承歲月沉澱的神髓與養生溫補祝福，深層契合華人送禮體面之選。",
+    "philosophy": "以宮廷綠與赤紅為主調，結合人蔘特寫影像與古典對稱網格排版，強化東方養生禮盒的經典質感，展現內斂典雅、符合華人年節送禮美學的視覺語彙。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7837,9 +7904,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "321",
     "category": "賣場Banner橫幅廣告",
-    "title": "紅龍食品經典美式雞肉捲/牛肉捲 團購秒殺",
+    "title": "紅龍食品經典美式肉捲團購宣傳橫幅設計",
     "titleEn": "Red Dragon Roasted Chicken & Beef Rolls Promo Banner",
-    "philosophy": "以熱騰騰牽絲起司的濃郁金與美式煙燻紅漸層為底，高清特寫肉捲切面爆汁爽口、層次分明的扎實內餡，大字粗體配置，直覺勾起老饕深夜爆食欲望。",
+    "philosophy": "以起司金與煙燻紅漸層為底，結合高清剖面攝影與粗體展示字，強化產品層次分明的飽滿內餡，透過對角線動態排版，展現高飽和度、極具食慾的食品促銷視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7905,9 +7972,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "325",
     "category": "賣場Banner橫幅廣告",
-    "title": "飛利浦PHILIPS長效碳鋅電池 量販超值組",
+    "title": "飛利浦長效碳鋅電池量販組推播廣告設計",
     "titleEn": "Philips Long Lasting Zinc Carbon Battery Banner",
-    "philosophy": "利用醒目的科技明黃與專業極深藍對撞配色，精準將長效蓄電標識與飛利浦皇家標誌放在視覺核心，傳遞源源不絕的穩定能量保障，在五金百貨中引流顯著。",
+    "philosophy": "以科技明黃與深藍對比配色為底，結合對稱網格將長效蓄電標識與品牌標誌置於視覺焦點，強化穩定電力特質，展現高視認性、具科技感的五金產品包裝視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7922,9 +7989,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "326",
     "category": "賣場Banner橫幅廣告",
-    "title": "饗破頭極致川味椒麻醬 瘋狂狂銷爆款推薦",
+    "title": "饗破頭川味椒麻醬團購名產廣告設計",
     "titleEn": "XiangPoTou Gourmet Sichuan Chili Oil Paste Layout",
-    "philosophy": "選用火辣欲滴的沸騰川麻紅與麻香沉穩的深褐，突出沾醬料滿滿爆香的脆酥實物，微傾斜動態邊框極具野性，帶來令人欲罷不能、饗破頭的激辣點擊狂潮。",
+    "philosophy": "以川麻紅與沉穩深褐為底，結合微傾斜動態邊框，突出醬料與食材細節，搭配手寫風字體，強化辛辣感官體驗，展現高視覺張力與野性張力的食品包裝視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -7939,9 +8006,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "327",
     "category": "賣場Banner橫幅廣告",
-    "title": "鴻參花旗蔘靈芝滋補飲 孝親高尚養生大獻禮",
+    "title": "鴻參花旗蔘靈芝滋補飲禮盒養生主題廣告",
     "titleEn": "HongGinseng American Ginseng Reishi Premium Tonic",
-    "philosophy": "烘托皇家藏黃金與老字號國色正紅，融入典雅的漢方雲紋金雕，將極佳品質的花旗蔘與珍稀靈芝切面烘托至神聖感，深層激發送禮至親的心意。",
+    "philosophy": "以藏黃金與正紅為主色調，結合漢方雲紋裝飾與食材特寫，透過莊重平衡的對稱網格排版，強化養生飲品的經典質感，展現大器沉穩、具文化內涵的禮盒美學。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8012,9 +8079,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "362",
     "category": "賣場Banner橫幅廣告",
-    "title": "DA嚴選3C產品特惠 樂天旗艦館購物廣告與EDM設計",
+    "title": "DA選品3C產品特惠樂天購物廣告與EDM設計",
     "titleEn": "Rakuten DA Select Top-Tier 3C Electronics Special Campaign",
-    "philosophy": "以深邃科技太空灰為主調，結合精緻磨砂金屬光澤，排版條理明晰，凸顯3C產品無懈可擊的高性能與工藝，在快節奏閱覽中精準引流。",
+    "philosophy": "以太空灰為主調，結合磨砂金屬光澤與結構化不對稱網格，條理明晰呈現產品結構與細部工藝，強化科技高性能屬性，展現極簡且高理性的3C電子廣告視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8069,9 +8136,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "365",
     "category": "賣場Banner橫幅廣告",
-    "title": "全館滿額299超值免運 滿額現折200 購物導購橫幅設計",
+    "title": "全館滿額299免運與滿額現折200導購橫幅",
     "titleEn": "Rakuten Storewide Free Shipping & Direct Discounts Banner",
-    "philosophy": "融和鮮明樂天紅與香檳金，大字無襯線體與高飽和度的限時折扣邊框巧妙結合，視覺焦點高度凝聚，第一秒即對齊消費者省錢痛點並順暢導購。",
+    "philosophy": "以亮麗紅與香檳金為底，結合粗體無襯線字型與高飽和限時折扣框，透過清晰對齊的資訊層次與點線面結構，快速凝聚視覺焦點，展現高導讀效率的促銷橫幅設計。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8087,9 +8154,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "366",
     "category": "賣場Banner橫幅廣告",
-    "title": "在地冰烤番薯超值7包組 樂天生鮮熱賣行銷橫幅設計",
+    "title": "在地冰烤番薯生鮮熱賣行銷橫幅設計",
     "titleEn": "Rakuten Roasted Sweet Potato 7-Pack Super Combo Banner",
-    "philosophy": "以黃金番薯的烘烤熟成焦糖黃與清爽冰藍漸層對比，強調『熱呼呼/冰涼涼』兩吃特色，極富食慾的實物排盤配以清秀的大體呼籲，點擊狂飆。",
+    "philosophy": "以焦糖黃與清爽冰藍漸層對抗配色為底，結合實物擺盤攝影，透過冷熱對比的版面區隔與清便利落字體，強化產品兩吃特色，展現高食慾感與資訊對稱的生鮮廣告。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8123,9 +8190,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "368",
     "category": "賣場Banner橫幅廣告",
-    "title": "深夜宵夜美食大餐特選 樂天即食熟食專區推播廣告",
+    "title": "深夜宵夜美食樂天即食熟食專區推播廣告",
     "titleEn": "Rakuten Late Night Craving Gourmet Treats Campaign Banner",
-    "philosophy": "以迷人的港台大排檔復古黑金與暖黃燈飾配色，精妙排版誘人拉麵與炸物實體，用高光暈染手法將暖心宵夜的食慾張力放到最大，點擊引流極佳。",
+    "philosophy": "以黃金色調結合不對稱多欄網格。在精緻純白背景中，將熱氣蒸騰熟食以正方形圖卡並列，呈現豐實溫馨的深夜用餐氛圍。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8158,9 +8225,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "370",
     "category": "賣場Banner橫幅廣告",
-    "title": "米家生活智能家居精品大賞 購物網旗艦橫幅設計",
+    "title": "米家生活智能家居大賞購物主題橫幅設計",
     "titleEn": "Rakuten Mi Home Intelligent Living Gadgets Promo Banner",
-    "philosophy": "精選冷色調太空灰與大器大標，條理明晰地呈現小米全系列智能科技生態。以多矩陣排版與高質感的反光，滿足科技發燒友對輕奢生活的無盡追求。",
+    "philosophy": "以冷色調太空灰為底，結合矩陣排版與高質感金屬反光細節，搭配俐落無襯線體，結構化呈現智慧家居生態，強化現代科技質感，展現乾淨理性的科技生活美學。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8197,9 +8264,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "372",
     "category": "賣場Banner橫幅廣告",
-    "title": "母親節暖心獻禮愛媽咪 全館特惠85折官網推播廣告",
+    "title": "母親節感謝獻禮全館優惠官網推播廣告",
     "titleEn": "Rakuten Mother's Day Warm Gift Premium 85% Off Banner",
-    "philosophy": "鋪貼溫婉典雅的淡粉、瑰紅與金流沙框，以柔和的英倫字體與感恩康乃馨香氛特寫疊合，詮釋尊寵偉大母亲的高雅心意與歡愉氛圍。",
+    "philosophy": "以淡粉、瑰紅與香檳金流沙邊框為底，結合典雅的無襯線字體與花卉寫實攝影，透過對比色塊與柔和漸層，強化母親節的典雅氛圍，展現高質感的節慶導購視覺。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8275,9 +8342,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "376",
     "category": "賣場Banner橫幅廣告",
-    "title": "冬日進補暖心火鍋湯底 樂天美食極致禦寒行銷廣告",
+    "title": "冬日進補火鍋湯底樂天生鮮禦寒專場廣告",
     "titleEn": "Rakuten Winter Warm Hotpot Soup Bases Campaign Banner",
-    "philosophy": "以滾沸火鍋升騰的溫暖蒸汽為底，高清凸顯濃郁大骨與麻辣黃金湯底，暖色極富家庭圍爐的幸福感，大字清利，瞬間點燃低溫季節的暖胃下單狂潮。",
+    "philosophy": "以火鍋升騰蒸汽為背景，結合濃郁湯底高清攝影與暖色調色彩配色，搭配清利大字體與對齊網格，強化圍爐溫暖特質，展現高感官誘惑與結構明晰的生鮮推廣視覺。",
     "isHighlight": false,
     "tools": [
       "Photoshop",
@@ -8422,9 +8489,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "384",
     "category": "賣場Banner橫幅廣告",
-    "title": "買一送三極致驚喜豪禮 樂天官網焦點超值促銷廣告",
+    "title": "買一送三感恩回饋樂天官網焦點促銷廣告",
     "titleEn": "Rakuten Buy 1 Get 3 Free Value Shock Promo Banner",
-    "philosophy": "極具視覺壓抑與速度感的鐳射紅金配色！將『買一送三』大字與立體金屬框融合，輔以震撼性的折扣箭頭，瞬間引導視線停留，帶來不可阻擋的高爆點擊率。",
+    "philosophy": "以高對比紅金鐳射配色為底，結合立體金屬框大字無襯線體與指引箭頭，透過不對稱版面編排強化限時促銷的視覺張力，展現直覺高效、精準引導的促銷橫幅設計。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8586,14 +8653,14 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "393",
     "category": "影音與多媒體設計",
-    "title": "BLAST SCOOP 冰淇淋圖輪播大氣視覺短影音廣告設計",
+    "title": "BLAST SCOOP冰淇淋輪播短影音廣告設計",
     "titleEn": "BLAST SCOOP Ice Cream Premium Carousel Promo Short Video",
-    "philosophy": "選用豐沛、飽滿且高彩度的冰淇淋色彩軌跡，結合動感、活潑的主體放大轉場特效，在動態輪播影片中展現不同口味冰淇淋綿密、酥軟誘人的細緻質地，在平台首頁中一秒勾勒出夏日酷爽冰涼的吸睛食慾感。",
+    "philosophy": "以純白特別色為底，非對稱網格結合展示無襯線體。利用微距特寫並搭配高對比薄荷綠與巧克力棕，展現高色調且具涼夏感官張力的商品廣告畫面。",
     "tools": [
       "AE",
       "Premiere",
-      "動態視覺設計",
-      "電商行銷剪輯"
+      "動態設計",
+      "影片剪輯"
     ],
     "imageUrl": "https://img.youtube.com/vi/jJGaCSdz5wQ/maxresdefault.jpg",
     "placeholderId": "VIDEO_BLAST_SCOOP_393",
@@ -8607,13 +8674,13 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "394",
     "category": "影音與多媒體設計",
-    "title": "VIVIBABY-2024新款多功能嬰兒床-拆裝方式，操作介紹",
+    "title": "VIVIBABY新款多功能嬰兒床拆裝操作手冊",
     "titleEn": "VIVIBABY 2024 Multi-Functional Baby Crib Assembly & Step-by-Step Operations Video Guide",
-    "philosophy": "溫馨、明亮且充滿安全感的粉嫩柔亮風格為底蘊，搭配清晰穩健的分解步驟框線與精巧的特寫字卡，將多功能嬰兒床的拆裝步驟與靈活模式進行極簡而直覺的呈現。",
+    "philosophy": "以高明度粉嫩柔和色調為底，結合簡潔分解步驟框線與結構化圖表字卡，透過不對稱網格編排，流暢呈現產品拆裝步驟，展現明晰直覺且具溫和質感的教學影音排版。",
     "tools": [
       "Premiere",
-      "剪輯與後期製作",
-      "多媒體行銷剪輯",
+      "影片剪輯",
+      "後製包裝",
       "拆裝指引"
     ],
     "imageUrl": "https://img.youtube.com/vi/vXOdnP_Z_Tg/maxresdefault.jpg",
@@ -8628,15 +8695,15 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "395",
     "category": "商業視覺攝影",
-    "title": "Capella X9 PRO 旗艦級高端多功能雙向嬰兒推車 專業棚拍與商業情境美學攝影",
+    "title": "Capella X9 PRO 雙向嬰兒推車專業產品攝影",
     "titleEn": "Capella X9 PRO Premium Reversible Stroller Studio Commercial Photography & Aesthetic Scene Shoot",
-    "philosophy": "Capella X9 PRO 嬰兒推車進行全套商業視覺與產品情境攝影。攝影棚拍特別注重無死角的三維光影塑形，勾勒出推車流線的法式工藝線條與香檳金高質感漸層。",
+    "philosophy": "以商業三維光影塑形為底，結合精密棚內打光與大光圈對焦，勾勒產品流線型線條與香檳金質地，透過對稱網格構圖，展現極簡洗練、具工業美感的商業攝影語彙。",
     "tools": [
-      "專業棚內打光",
-      "高階單眼相機機身",
-      "大光圈人像/微距鏡頭",
-      "商業攝影去背與精修",
-      "情境視覺建構"
+      "棚內打光",
+      "單眼相機",
+      "微距鏡頭",
+      "去背精修",
+      "場景建構"
     ],
     "imageUrl": "/images/optimized/1y60Ob9wIB-zzwA34Y1JCIZjUnRMQRJhI.webp",
     "placeholderId": "IMAGE_CAMPAIGN_KIDS_395",
@@ -8652,15 +8719,15 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "396",
     "category": "商業視覺攝影",
-    "title": "【ViVibaby】MF⁺ 全功能多功能可攜式嬰兒床 質感居家情境與專業產品棚拍設計",
+    "title": "ViVibaby MF 全功能多功能可攜式嬰兒床產品攝影",
     "titleEn": "ViVibaby MF⁺ Portable All-in-One Baby Crib Studio Product Photography & Warm Home Lifestyle Shoot",
-    "philosophy": "【ViVibaby】MF⁺ 便攜式床體進行大廠規格的情境與白底宣傳照商業攝影。",
+    "philosophy": "採用溫和中性暖灰調與低對比場景設計，於大面積柔光與透光窗簾前烘托嬰兒床主體。整體構圖清爽，展現純淨、安定且具溫潤居家質感的美學情境。",
     "tools": [
-      "棚內多光源控制",
-      "商業情境道具配置",
-      "超高解析度商業拍攝",
-      "高階商業精修去背",
-      "色彩調校與白平衡控制"
+      "光源控制",
+      "道具配置",
+      "專業拍攝",
+      "去背精修",
+      "色彩調校"
     ],
     "imageUrl": "/images/optimized/19qgppGc2G5jYvOlpEha1RN28rMaRTnI9.webp",
     "placeholderId": "IMAGE_CAMPAIGN_KIDS_396",
@@ -8674,15 +8741,14 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "397",
     "category": "電商產品銷售圖",
-    "title": "【bobos】X9時尚寵物多功能手推車 經典電商正方形高點擊商品主圖與銷售圖卡設計",
+    "title": "bobos X9寵物多功能手推車電商商品主圖與圖卡設計",
     "titleEn": "bobos X9 Elegant Pet Stroller Premium Square E-Commerce Product Sales Figures & Main Images",
-    "philosophy": "精緻寵物品牌 bobos X9 打造全套主力電商正方形商品展示圖與功能銷售圖卡。",
+    "philosophy": "採用亮眼薄荷綠搭配乾淨純白背景。對齊排版網格與高反差無襯線展示體，於強烈對比下突出三折收納特色，展現輕快、簡約且高易讀性的電商視覺。",
     "tools": [
       "Photoshop",
       "Ai",
-      "電商產品銷售圖",
-      "寵物精品銷售圖",
-      "主圖圖卡規劃"
+      "銷售圖設計",
+      "主圖規劃"
     ],
     "imageUrl": "/images/optimized/1TcUHIdYj6ZO5mrLbIia0R5bnho4zX_tF.webp",
     "placeholderId": "IMAGE_SQUARE_COMMERCE_397",
@@ -8700,15 +8766,14 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "398",
     "category": "電商產品銷售圖",
-    "title": "【ViVibaby】MF⁺全功能可攜式嬰兒床 官方電商正方形商品銷售主圖與五張圖設計",
+    "title": "ViVibaby MF全功能可攜式嬰兒床官方電商銷售圖卡",
     "titleEn": "ViVibaby MF⁺ Portable All-in-One Baby Crib Premium Square E-Commerce Product Sales Graphics & Main Cards",
-    "philosophy": "【ViVibaby】MF⁺ 便攜嬰兒床進行全系列高轉換率的正方形電商商品銷售圖（電商五張圖）設計。視覺上運用高親和力的鵝黃、溫暖棉白與粉櫻色調，配合亮眼易讀的圓潤資訊字體與圖標。",
+    "philosophy": "運用高明度嬰兒藍與簡好純白網格。將尺寸、防蚊等多功能特徵以不對稱三欄版塊並列，在輕柔品牌色彩下，建構邏輯清晰、易讀且富設計質感的圖組。",
     "tools": [
       "Photoshop",
       "Ai",
-      "電商產品銷售圖",
-      "母嬰精品銷售圖",
-      "網購主圖設計"
+      "電商設計",
+      "主圖設計"
     ],
     "imageUrl": "/images/optimized/1mmBfXFZXiHcjkjBtVz7wc87JQYU1OPKG.webp",
     "placeholderId": "IMAGE_SQUARE_COMMERCE_398",
@@ -8727,15 +8792,16 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "399",
     "category": "網站產品瀑布頁",
-    "title": "【bobos】X9時尚寵物多功能手推車 旗艦級官方電商詳情頁設計（長圖瀑布頁）",
+    "title": "bobos X9寵物多功能手推車電商長圖詳情頁設計",
     "titleEn": "bobos X9 Elegant Pet Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
-    "philosophy": "針對【bobos】X9 豪華多功能寵物手推車設計完整的電商長圖瀑布頁（詳情頁）。",
+    "philosophy": "採用溫和淺黃暖木配色，結合三欄式結構不對稱網格。於垂直捲動佈局中解析輪軸與減震專利，呈現具現代幾何美感、高資訊密度且專業的電商詳情頁。",
     "isHighlight": true,
     "tools": [
       "Photoshop",
       "Ai",
-      "電商詳情頁(瀑布頁)",
-      "寵物精品設計"
+      "詳情頁設計",
+      "雙語排版",
+      "色彩管理"
     ],
     "imageUrl": "/images/optimized/12Ng92RLHBWebgnCjtceS7lxFJvdaKurq.webp",
     "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_399",
@@ -8763,14 +8829,15 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "400",
     "category": "網站產品瀑布頁",
-    "title": "【Capella】X9 PRO 旗艦級雙向嬰兒手推車 官方電商必備詳情頁設計（長圖瀑布頁）",
+    "title": "Capella X9 PRO 雙向嬰兒推車官方長圖詳情頁設計",
     "titleEn": "Capella X9 PRO Premium Reversible Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
-    "philosophy": "【Capella】X9 PRO 旗艦款雙向嬰兒手推車規劃並設計全套官方電商詳情瀑布長圖。視覺美學延進法式優雅，採用溫潤高貴的香檳金與杏沙色漸層底襯，佐以柔和且清晰的微陰影工藝。",
+    "philosophy": "以典雅淺香檳金與極簡深灰網格對齊。在十六宮格模組中，將雙向推行核心概念以交錯橫幅呈現，展現兼具簡約品牌視覺與結構性資訊傳遞的詳情頁。",
     "tools": [
       "Photoshop",
       "Ai",
-      "電商詳情頁(瀑布頁)",
-      "母嬰精品銷售圖"
+      "詳情頁設計",
+      "切片輸出",
+      "版塊管理"
     ],
     "imageUrl": "/images/optimized/1tmeim_HRqdgg5ihK5mufp3eRG3g-c9V5.webp",
     "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_400",
@@ -8801,14 +8868,15 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "401",
     "category": "網站產品瀑布頁",
-    "title": "【ViVibaby】MF⁺全功能可攜式嬰兒床 官方電商詳情頁銷售圖設計（長圖瀑布頁）",
+    "title": "ViVibaby MF全功能可攜式嬰兒床官方電商長圖詳情頁",
     "titleEn": "ViVibaby MF⁺ Portable All-in-One Baby Crib Official E-Commerce Detail Page Design (Waterfall Page)",
-    "philosophy": "【ViVibaby】MF⁺ 多功能便攜式嬰兒床量身設計完整的長軸瀑布流官方電商詳情頁。全圖以柔美的暖陽黃、蓬鬆的棉花白與純淨鵝絨色調烘托，建構安心舒適的睡眠場域。",
+    "philosophy": "採用柔和嫩粉與暖白交錯。排版上使用展示無襯線體與寬留白，在安定的視線流動中解析五合一功能細節，呈現具工整感、極簡北歐風的母嬰品牌頁面。",
     "tools": [
       "Photoshop",
       "Ai",
-      "電商詳情頁(瀑布頁)",
-      "母嬰精品銷售圖"
+      "詳情頁設計",
+      "雙語排版",
+      "色彩管理"
     ],
     "imageUrl": "/images/optimized/1PLivhLa7zKFRnA1QS8VD7QUBSOWcXOpr.webp",
     "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_401",
