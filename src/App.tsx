@@ -1940,7 +1940,7 @@ export default function App() {
           </div>
 
           {/* 作品卡片 RWD 呈現 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8 min-h-[300px]">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]">
             <AnimatePresence>
               {visibleItems.map((item, index) => (
                 <PortfolioCard

@@ -426,24 +426,24 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             isSepia ? "bg-[#FAF4E5]/90 backdrop-blur-[3px]" : isLight ? "bg-white/90 backdrop-blur-[3px]" : "bg-black/70 backdrop-blur-[2px]"
           }`}>
             {!showAllDetails && (
-              <div className={`px-4 text-center transform transition-all duration-300 relative z-[60] ${isHovered ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
-                <p className={`text-[10px] sm:text-xs font-mono tracking-widest mb-2 uppercase drop-shadow-sm ${
+              <div className="px-2.5 sm:px-4 text-center transform transition-all duration-300 relative z-[60] [transform-style:preserve-3d]">
+                <p className={`text-[8.5px] sm:text-xs font-mono tracking-widest mb-1 sm:mb-2 uppercase drop-shadow-sm ${
                   isSepia ? "text-[#734C22]/90 font-bold" : isLight ? "text-amber-700 font-bold" : "text-[#FFF9DF]/80 drop-shadow-md"
                 }`}>
                   {item.titleEn}
                 </p>
-                <h3 className={`text-xl sm:text-2xl font-display font-medium mb-4 tracking-wide ${
+                <h3 className={`text-xs sm:text-xl font-display font-medium mb-2 sm:mb-4 tracking-wide line-clamp-2 ${
                   isSepia ? "text-[#2B1B0C] drop-shadow-sm font-bold" : isLight ? "text-zinc-900 drop-shadow-sm font-bold" : "text-white drop-shadow-lg"
                 }`}>
                   {item.title}
                 </h3>
               </div>
             )}
-            <span className={`text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-3.5 py-1.5 rounded-lg shadow-lg transition-transform duration-300 uppercase flex items-center gap-1.5 relative z-[60] ${
+            <span className={`text-[8.5px] sm:text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-lg transition-transform duration-300 uppercase flex items-center gap-1 sm:gap-1.5 relative z-[60] ${
               isHovered ? "translate-y-0 scale-100" : "translate-y-2 scale-95"
             }`}>
               <span>觀看精彩設計細節</span>
-              <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
+              <ArrowUpRight className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0 stroke-[2.5]" />
             </span>
           </div>
         </div>
