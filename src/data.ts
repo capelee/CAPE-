@@ -2,6 +2,29 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "shone-dinosaur-intro",
+    "category": "影音與多媒體設計",
+    "title": "SHONE恐龍自我介紹 動態短片",
+    "titleEn": "SHONE Dinosaur Character Introduction Short Video",
+    "philosophy": "以鮮明翠綠為主調，結合手繪風格吉祥物角色與生動運鏡。運用不對稱字卡排版與高對比色塊對位，在輕快的動態剪輯節奏中，明晰呈現品牌角色的活潑個性與核心視覺形象。",
+    "isHighlight": true,
+    "tools": [
+      "AE",
+      "Premiere",
+      "Procreate",
+      "角色插畫",
+      "動態設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG",
+    "placeholderId": "VIDEO_SHONE_INTRO_WVvC8x8r_W8",
+    "colorTheme": "from-[#0F2B1F] via-[#1C4534] to-[#0A1A14]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG",
+      "https://img.youtube.com/vi/WVvC8x8r_W8/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=WVvC8x8r_W8"
+  },
+  {
     "id": "bronti-coffee-house-film",
     "category": "影音與多媒體設計",
     "title": "BRONTI COFFEE HOUSE 品牌日常短片",
