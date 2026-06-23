@@ -420,13 +420,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           )}
 
           {/* hover 視覺遮罩提示 - 採用 react isHovered 狀態控制，免除 3D rotate 後 CSS 邊界滯留 bug */}
-          <div className={`absolute inset-0 transition-opacity duration-300 flex flex-col items-center justify-center ${
+          <div className={`absolute inset-0 z-[50] transition-opacity duration-300 flex flex-col items-center justify-center ${
             isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
           } ${
-            isSepia ? "bg-[#FAF4E5]/90 backdrop-blur-[3px]" : isLight ? "bg-white/90 backdrop-blur-[3px]" : "bg-black/70 backdrop-blur-sm"
+            isSepia ? "bg-[#FAF4E5]/90 backdrop-blur-[3px]" : isLight ? "bg-white/90 backdrop-blur-[3px]" : "bg-black/70 backdrop-blur-[2px]"
           }`}>
             {!showAllDetails && (
-              <div className={`px-4 text-center transform transition-all duration-300 z-10 ${isHovered ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
+              <div className={`px-4 text-center transform transition-all duration-300 relative z-[60] ${isHovered ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
                 <p className={`text-[10px] sm:text-xs font-mono tracking-widest mb-2 uppercase drop-shadow-sm ${
                   isSepia ? "text-[#734C22]/90 font-bold" : isLight ? "text-amber-700 font-bold" : "text-[#FFF9DF]/80 drop-shadow-md"
                 }`}>
@@ -439,9 +439,9 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 </h3>
               </div>
             )}
-            <span className={`text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-3.5 py-1.5 rounded-lg shadow-lg transform transition-all duration-300 uppercase flex items-center gap-1.5 ${
-              isHovered ? "translate-y-0" : "translate-y-2"
-            }`} style={{ transform: "translateZ(15px)" }}>
+            <span className={`text-[11px] font-sans font-semibold tracking-wider text-black ${catColor.bgClass} px-3.5 py-1.5 rounded-lg shadow-lg transition-transform duration-300 uppercase flex items-center gap-1.5 relative z-[60] ${
+              isHovered ? "translate-y-0 scale-100" : "translate-y-2 scale-95"
+            }`}>
               <span>觀看精彩設計細節</span>
               <ArrowUpRight className="h-3 w-3 shrink-0 stroke-[2.5]" />
             </span>

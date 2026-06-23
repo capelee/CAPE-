@@ -17,6 +17,7 @@ import {
   Video,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Copy,
   Check,
   CheckCircle2,
@@ -35,7 +36,8 @@ import {
   Search,
   Image as ImageIcon,
   QrCode,
-  Download
+  Download,
+  SlidersHorizontal
 } from "lucide-react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
 import { PortfolioItem } from "./types";
@@ -690,6 +692,10 @@ export default function App() {
   const categoriesRef = React.useRef<HTMLDivElement>(null);
   const [showCategoriesLeftMask, setShowCategoriesLeftMask] = useState<boolean>(false);
   const [showCategoriesRightMask, setShowCategoriesRightMask] = useState<boolean>(false);
+  const [isMobileExpanded, setIsMobileExpanded] = useState<boolean>(false);
+  const [isWorkExpanded, setIsWorkExpanded] = useState<boolean>(false);
+  const [isEducationExpanded, setIsEducationExpanded] = useState<boolean>(false);
+  const [isCapabilitiesExpanded, setIsCapabilitiesExpanded] = useState<boolean>(false);
 
   const checkCategoriesScroll = React.useCallback(() => {
     if (categoriesRef.current) {
@@ -701,6 +707,10 @@ export default function App() {
 
   React.useEffect(() => {
     checkCategoriesScroll();
+    // Re-check after short paint delay to handle mobile layout renders correctly
+    const initId = window.setTimeout(checkCategoriesScroll, 250);
+    const initId2 = window.setTimeout(checkCategoriesScroll, 800);
+    
     let timeoutId: number;
     const handleResize = () => {
       window.clearTimeout(timeoutId);
@@ -710,6 +720,8 @@ export default function App() {
     return () => {
       window.removeEventListener('resize', handleResize);
       window.clearTimeout(timeoutId);
+      window.clearTimeout(initId);
+      window.clearTimeout(initId2);
     };
   }, [checkCategoriesScroll]);
 
@@ -860,7 +872,7 @@ export default function App() {
 
   // Profile data
   const profile = {
-    name: "李凱博",
+    name: "Cape Lee",
     engName: "capelee",
     title: "特約專案設計師",
     company: "立陽鴻企業禮贈品",
@@ -872,8 +884,8 @@ export default function App() {
     portfolioUrl: "https://canva.link/6byrfm8uow141cv", 
     intro: "擁有 6 年以上品牌商業整合設計實戰經驗，經手超過百個品牌、逾千件商品視覺製作，熟悉電商、醫療、文創等多元產業。具備視覺設計、商業攝影、品牌識別、影音製作與生成式 AI 工作流整合之全方位能力，作品涵蓋月銷破萬電商視覺、客家電視台邀約插畫、個人原創 IP 角色開發及企業 CIS 規劃，致力於將品牌價值轉化為最精準、最具張力的視覺語言。",
     education: [
-      { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業" },
-      { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府" }
+      { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
+      { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"] }
     ],
     experienceList: [
       { title: "特約專案設計師", company: "立陽鴻企業禮贈品", badge: "現任" },
@@ -1027,8 +1039,8 @@ export default function App() {
     return [
       "BEGIN:VCARD",
       "VERSION:3.0",
-      `FN:${profile.name} (${profile.engName})`,
-      "N:李;凱博;;;",
+      `FN:${profile.name}`,
+      "N:Lee;Cape;;;",
       `TITLE:${profile.title}`,
       `ORG:${profile.company}`,
       `EMAIL;TYPE=INTERNET,WORK:${profile.email}`,
@@ -1291,7 +1303,6 @@ export default function App() {
                   </div>
                   <div>
                     <h1 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">{profile.name}</h1>
-                    <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mt-0.5">{profile.engName}</p>
                   </div>
                 </div>
 
@@ -1360,118 +1371,199 @@ export default function App() {
               <div className="lg:col-span-4 space-y-6">
                 
                 {/* 實戰經歷 */}
-                <div className="space-y-3.5">
-                  <div className="flex items-center gap-1.5 pl-1">
-                    <Briefcase className="h-4 w-4 text-amber-400 shrink-0" />
-                    <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Work History / 實戰經歷</p>
+                <div className={`space-y-3.5 transition-all duration-300 ${
+                  theme === "sepia"
+                    ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                    : theme === "light"
+                    ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                    : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                }`}>
+                  <div 
+                    onClick={() => {
+                      if (window.innerWidth < 1024) {
+                        setIsWorkExpanded(!isWorkExpanded);
+                      }
+                    }}
+                    className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Briefcase className="h-4 w-4 text-amber-400 shrink-0" />
+                      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Work History / 實戰經歷</p>
+                    </div>
+                    {/* 手機版折疊/展開指示器 */}
+                    <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
+                      <span className="text-[8.5px] font-mono opacity-60">
+                        {isWorkExpanded ? "摺疊" : `展開 (${profile.experienceList.length})`}
+                      </span>
+                      <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isWorkExpanded ? "rotate-180 text-amber-400" : ""}`} />
+                    </div>
                   </div>
                   
-                  <div className="space-y-4 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] before:bg-white/10">
-                    {profile.experienceList.map((exp, i) => (
-                      <div key={i} className="flex gap-3 pl-1 relative group">
-                        <div className="h-[22px] w-[22px] rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400 transition-colors duration-300 z-10 shrink-0 mt-0.5">
-                          <span className="text-[9px] font-mono font-bold leading-none">{i + 1}</span>
-                        </div>
-                        <div className="space-y-0.5 min-w-0">
-                          <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="text-[13px] font-medium text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-200">{exp.title}</span>
-                            <span className={`text-[8.5px] font-mono px-1 rounded leading-none py-0.5 ${
-                              exp.badge === "現任" 
-                                ? "bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium" 
-                                : "bg-white/5 text-zinc-500"
-                            }`}>
-                              {exp.badge}
-                            </span>
+                  <div className={`lg:block ${isWorkExpanded ? "block" : "hidden"}`}>
+                    <div className="space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] before:bg-white/10">
+                      {profile.experienceList.map((exp, i) => (
+                        <div key={i} className="flex gap-3 pl-1 relative group">
+                          <div className="h-[22px] w-[22px] rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400 transition-colors duration-300 z-10 shrink-0 mt-0.5">
+                            <span className="text-[9px] font-mono font-bold leading-none">{i + 1}</span>
                           </div>
-                          <p className="text-[11px] text-zinc-400 font-light truncate leading-relaxed">{exp.company}</p>
+                          <div className="space-y-0.5 min-w-0">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="text-[13px] font-medium text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-200">{exp.title}</span>
+                              <span className={`text-[8.5px] font-mono px-1 rounded leading-none py-0.5 ${
+                                exp.badge === "現任" 
+                                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium" 
+                                  : "bg-white/5 text-zinc-500"
+                              }`}>
+                                {exp.badge}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-zinc-400 font-light truncate leading-relaxed">{exp.company}</p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
 
                 {/* 特色學歷 */}
-                <div className="space-y-3.5 pt-1">
-                  <div className="flex items-center gap-1.5 pl-1">
-                    <GraduationCap className="h-4 w-4 text-indigo-400 shrink-0" />
-                    <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Education / 專業學歷</p>
+                <div className={`space-y-3.5 pt-1 transition-all duration-300 ${
+                  theme === "sepia"
+                    ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                    : theme === "light"
+                    ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                    : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                }`}>
+                  <div 
+                    onClick={() => {
+                      if (window.innerWidth < 1024) {
+                        setIsEducationExpanded(!isEducationExpanded);
+                      }
+                    }}
+                    className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <GraduationCap className="h-4 w-4 text-indigo-400 shrink-0" />
+                      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Education / 專業學歷</p>
+                    </div>
+                    {/* 手機版折疊/展開指示器 */}
+                    <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
+                      <span className="text-[8.5px] font-mono opacity-60">
+                        {isEducationExpanded ? "摺疊" : `展開 (${profile.education.length})`}
+                      </span>
+                      <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isEducationExpanded ? "rotate-180 text-indigo-400" : ""}`} />
+                    </div>
                   </div>
                   
-                  <div className="space-y-4 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] before:bg-white/10">
-                    {profile.education.map((edu, i) => (
-                      <div key={i} className="flex gap-3 pl-1 relative group">
-                        <div className="h-[22px] w-[22px] rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-indigo-400 group-hover:text-indigo-400 transition-colors duration-300 z-10 shrink-0 mt-0.5">
-                          <div className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
-                        </div>
-                        <div className="space-y-0.5 min-w-0">
-                          <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="text-[13px] font-medium text-white tracking-tight leading-tight group-hover:text-[#818CF8] transition-colors duration-200">{edu.school}</span>
-                            <span className="text-[8.5px] font-mono px-1 rounded leading-none py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                              {edu.info}
-                            </span>
+                  <div className={`lg:block ${isEducationExpanded ? "block" : "hidden"}`}>
+                    <div className="space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] before:bg-white/10">
+                      {profile.education.map((edu, i) => (
+                        <div key={i} className="flex gap-3 pl-1 relative group">
+                          <div className="h-[22px] w-[22px] rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-indigo-400 group-hover:text-indigo-400 transition-colors duration-300 z-10 shrink-0 mt-0.5">
+                            <div className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
                           </div>
-                          <p className="text-[11px] text-zinc-400 font-light leading-relaxed">{edu.dept}</p>
+                          <div className="space-y-0.5 min-w-0">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="text-[13px] font-medium text-white tracking-tight leading-tight group-hover:text-[#818CF8] transition-colors duration-200">{edu.school}</span>
+                              <span className="text-[8.5px] font-mono px-1 rounded leading-none py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                                {edu.info}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-zinc-400 font-light leading-relaxed">{edu.dept}</p>
+                            {edu.activities && edu.activities.length > 0 && (
+                              <div className="flex flex-wrap gap-1 mt-1.5">
+                                {edu.activities.map((act, idx) => (
+                                  <span key={idx} className="text-[9.5px] font-sans px-1.5 py-0.5 rounded bg-zinc-800/80 text-zinc-300 border border-zinc-700/50">
+                                    {act}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
 
               </div>
 
               {/* 第三欄：專業能力範疇 (佔 4 欄) */}
-              <div className="lg:col-span-4 space-y-3.5">
-                <div className="flex items-center gap-1.5 pl-1">
-                  <Layers className="h-4 w-4 text-amber-500 shrink-0" />
-                  <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Capabilities / 核心專長</p>
+              <div className={`lg:col-span-4 space-y-3.5 transition-all duration-300 ${
+                theme === "sepia"
+                  ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                  : theme === "light"
+                  ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                  : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+              }`}>
+                <div 
+                  onClick={() => {
+                    if (window.innerWidth < 1024) {
+                      setIsCapabilitiesExpanded(!isCapabilitiesExpanded);
+                    }
+                  }}
+                  className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
+                >
+                  <div className="flex items-center gap-1.5">
+                    <Layers className="h-4 w-4 text-amber-500 shrink-0" />
+                    <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Capabilities / 核心專長</p>
+                  </div>
+                  {/* 手機版折疊/展開指示器 */}
+                  <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
+                    <span className="text-[8.5px] font-mono opacity-60">
+                      {isCapabilitiesExpanded ? "摺疊" : `展開 (${profile.scopes.length})`}
+                    </span>
+                    <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isCapabilitiesExpanded ? "rotate-180 text-amber-500" : ""}`} />
+                  </div>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
-                  {profile.scopes.map((s) => {
-                    let icon = <Layers className="h-3.5 w-3.5 text-amber-400" />;
-                    let colorBorder = "group-hover:border-amber-500/20 group-hover:bg-amber-500/[0.02]";
-                    
-                    if (s.title.includes("識別")) {
-                      icon = <Briefcase className="h-3.5 w-3.5 text-blue-400" />;
-                      colorBorder = "group-hover:border-blue-500/20 group-hover:bg-blue-500/[0.02]";
-                    } else if (s.title.includes("攝影")) {
-                      icon = <Camera className="h-3.5 w-3.5 text-purple-400" />;
-                      colorBorder = "group-hover:border-purple-500/20 group-hover:bg-purple-500/[0.02]";
-                    } else if (s.title.includes("影音")) {
-                      icon = <Video className="h-3.5 w-3.5 text-emerald-400" />;
-                      colorBorder = "group-hover:border-emerald-500/20 group-hover:bg-emerald-500/[0.02]";
-                    } else if (s.title.includes("印刷")) {
-                      icon = <Printer className="h-3.5 w-3.5 text-rose-400" />;
-                      colorBorder = "group-hover:border-rose-500/20 group-hover:bg-rose-500/[0.02]";
-                    } else if (s.title.includes("IP")) {
-                      icon = <Sparkles className="h-3.5 w-3.5 text-cyan-400" />;
-                      colorBorder = "group-hover:border-cyan-500/20 group-hover:bg-cyan-500/[0.02]";
-                    } else if (s.title.includes("AI")) {
-                      icon = <Zap className="h-3.5 w-3.5 text-indigo-400" />;
-                      colorBorder = "group-hover:border-indigo-500/20 group-hover:bg-indigo-500/[0.02]";
-                    } else if (s.title.includes("禮贈品")) {
-                      icon = <Award className="h-3.5 w-3.5 text-orange-400" />;
-                      colorBorder = "group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.02]";
-                    }
+                <div className={`lg:block ${isCapabilitiesExpanded ? "block" : "hidden"}`}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-2 lg:pt-0">
+                    {profile.scopes.map((s) => {
+                      let icon = <Layers className="h-3.5 w-3.5 text-amber-400" />;
+                      let colorBorder = "group-hover:border-amber-500/20 group-hover:bg-amber-500/[0.02]";
+                      
+                      if (s.title.includes("識別")) {
+                        icon = <Briefcase className="h-3.5 w-3.5 text-blue-400" />;
+                        colorBorder = "group-hover:border-blue-500/20 group-hover:bg-blue-500/[0.02]";
+                      } else if (s.title.includes("攝影")) {
+                        icon = <Camera className="h-3.5 w-3.5 text-purple-400" />;
+                        colorBorder = "group-hover:border-purple-500/20 group-hover:bg-purple-500/[0.02]";
+                      } else if (s.title.includes("影音")) {
+                        icon = <Video className="h-3.5 w-3.5 text-emerald-400" />;
+                        colorBorder = "group-hover:border-emerald-500/20 group-hover:bg-emerald-500/[0.02]";
+                      } else if (s.title.includes("印刷")) {
+                        icon = <Printer className="h-3.5 w-3.5 text-rose-400" />;
+                        colorBorder = "group-hover:border-rose-500/20 group-hover:bg-rose-500/[0.02]";
+                      } else if (s.title.includes("IP")) {
+                        icon = <Sparkles className="h-3.5 w-3.5 text-cyan-400" />;
+                        colorBorder = "group-hover:border-cyan-500/20 group-hover:bg-cyan-500/[0.02]";
+                      } else if (s.title.includes("AI")) {
+                        icon = <Zap className="h-3.5 w-3.5 text-indigo-400" />;
+                        colorBorder = "group-hover:border-indigo-500/20 group-hover:bg-indigo-500/[0.02]";
+                      } else if (s.title.includes("禮贈品")) {
+                        icon = <Award className="h-3.5 w-3.5 text-orange-400" />;
+                        colorBorder = "group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.02]";
+                      }
 
-                    return (
-                      <div 
-                        key={s.id} 
-                        className={`bg-white/[0.015] border border-white/5 rounded-xl p-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder}`}
-                      >
-                        <div className="p-1.5 bg-white/5 rounded-lg shrink-0 mt-0.5 border border-white/5 group-hover:scale-105 transition-transform duration-200">
-                          {icon}
-                        </div>
-                        <div className="space-y-0.5 min-w-0">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-[12.5px] text-white font-medium group-hover:text-amber-400 transition-colors whitespace-nowrap">{s.title}</span>
-                            <span className="text-[7.5px] font-mono bg-white/5 text-zinc-500 px-1 rounded uppercase tracking-wider py-0.5 leading-none shrink-0">{s.badge}</span>
+                      return (
+                        <div 
+                          key={s.id} 
+                          className={`bg-white/[0.015] border border-white/5 rounded-xl p-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder}`}
+                        >
+                          <div className="p-1.5 bg-white/5 rounded-lg shrink-0 mt-0.5 border border-white/5 group-hover:scale-105 transition-transform duration-200">
+                            {icon}
                           </div>
-                          <p className="text-[10px] text-[#A1A1AA] leading-relaxed font-light line-clamp-1 group-hover:line-clamp-none transition-all duration-300">{s.desc}</p>
+                          <div className="space-y-0.5 min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-[12.5px] text-white font-medium group-hover:text-amber-400 transition-colors whitespace-nowrap">{s.title}</span>
+                              <span className="text-[7.5px] font-mono bg-white/5 text-zinc-500 px-1 rounded uppercase tracking-wider py-0.5 leading-none shrink-0">{s.badge}</span>
+                            </div>
+                            <p className="text-[10px] text-[#A1A1AA] leading-relaxed font-light line-clamp-1 group-hover:line-clamp-none transition-all duration-300">{s.desc}</p>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
               
@@ -1495,13 +1587,12 @@ export default function App() {
             </p>
           </div>
 
-          {/* 各類作品過濾選項 (固定成兩行，電腦版置中呈現，自動雙行換行且內容置中對齊) */}
+          {/* 各類作品過濾選項 (電腦版精緻呈現，手機版優化為橫向滑動選單與二列極簡格狀面板) */}
           <div className="w-full pt-2 flex flex-col items-center gap-4">
-            <div className="w-full max-w-5xl flex flex-col items-center gap-2.5 sm:gap-3 px-4">
+            {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
+            <div className="hidden md:flex w-full max-w-5xl flex-col items-center gap-2.5 sm:gap-3 px-4">
               {/* 第一行 */}
-              <div 
-                className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5"
-              >
+              <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
                 {row1.map((cat) => (
                   <CategoryButton
                     key={cat}
@@ -1514,9 +1605,7 @@ export default function App() {
               </div>
               
               {/* 第二行 */}
-              <div 
-                className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5"
-              >
+              <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
                 {row2.map((cat) => (
                   <CategoryButton
                     key={cat}
@@ -1527,6 +1616,142 @@ export default function App() {
                   />
                 ))}
               </div>
+            </div>
+
+            {/* 手機版：整合式橫向滑軌 + 摺疊網格快速選單 (md 尺寸以下顯示) */}
+            <div className="w-full px-4 flex flex-col gap-3 md:hidden relative">
+              <div className="flex items-center gap-2 w-full">
+                {/* 左右微淡出遮罩 + 左右滑動選單軌道 */}
+                <div className="relative flex-grow overflow-hidden rounded-full">
+                  {/* 左側漸變淡出 */}
+                  <div 
+                    className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r ${
+                      theme === "sepia" 
+                        ? "from-[#FAF4E5]" 
+                        : theme === "light" 
+                        ? "from-[#FAFAFA]" 
+                        : "from-[#0A0A0A]"
+                    } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+                      showCategoriesLeftMask ? "opacity-100" : "opacity-0"
+                    }`} 
+                  />
+                  
+                  {/* 滑動軌道本體 */}
+                  <div 
+                    ref={categoriesRef}
+                    onScroll={checkCategoriesScroll}
+                    className="flex gap-2 overflow-x-auto scrollbar-none py-1.5 px-4 w-full flex-nowrap whitespace-nowrap scroll-smooth"
+                  >
+                    {categories.map((cat) => (
+                      <CategoryButton
+                        key={cat}
+                        cat={cat}
+                        theme={theme}
+                        isActive={selectedCategory === cat}
+                        onClick={() => setSelectedCategory(cat)}
+                      />
+                    ))}
+                  </div>
+
+                  {/* 右側漸變淡出 */}
+                  <div 
+                    className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l ${
+                      theme === "sepia" 
+                        ? "from-[#FAF4E5]" 
+                        : theme === "light" 
+                        ? "from-[#FAFAFA]" 
+                        : "from-[#0A0A0A]"
+                    } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+                      showCategoriesRightMask ? "opacity-100" : "opacity-0"
+                    }`} 
+                  />
+                </div>
+
+                {/* 網格展開 & 下拉清單按鈕 */}
+                <button
+                  type="button"
+                  onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+                  className={`p-2.5 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    isMobileExpanded 
+                      ? theme === "sepia"
+                        ? "bg-[#C8A97A]/20 border-[#C8A97A] text-[#433422]"
+                        : theme === "light"
+                        ? "bg-amber-100 border-amber-300 text-amber-700"
+                        : "bg-amber-500/20 border-amber-500/40 text-amber-400"
+                      : theme === "sepia"
+                        ? "bg-[#FAF4E5] border-[#EADECC] text-[#8C7B69] hover:bg-[#F3DFBD]"
+                        : theme === "light"
+                        ? "bg-white border-zinc-200 text-zinc-500 hover:bg-zinc-50"
+                        : "bg-white/5 border-white/10 text-zinc-400 hover:bg-white/10"
+                  }`}
+                  title={isMobileExpanded ? "摺疊分類目錄" : "展開網格目錄"}
+                >
+                  <SlidersHorizontal className={`w-4 h-4 transition-transform duration-300 ${isMobileExpanded ? "rotate-90" : "rotate-0"}`} />
+                </button>
+              </div>
+
+              {/* 手機版：展開的二列極簡格狀面板 */}
+              <AnimatePresence>
+                {isMobileExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -8 }}
+                    animate={{ opacity: 1, height: "auto", y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -8 }}
+                    className="overflow-hidden w-full z-10"
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                  >
+                    <div className={`p-4 rounded-2xl border grid grid-cols-2 gap-2 shadow-2xl ${
+                      theme === "sepia"
+                        ? "bg-[#FAF4E5]/95 border-[#EADECC]/60 text-[#433422]"
+                        : theme === "light"
+                        ? "bg-white/95 border-zinc-200/60 text-zinc-800 shadow-zinc-200/50"
+                        : "bg-zinc-900/90 backdrop-blur-md border-white/5 text-white"
+                    }`}>
+                      <div className="col-span-2 flex items-center justify-between px-1 mb-1 border-b border-white/5 pb-1.5 opacity-60">
+                        <span className="text-[10px] uppercase tracking-wider font-mono">
+                          🔍 快速篩選分類
+                        </span>
+                        <span className="text-[10px] font-sans">共 {categories.length} 個維度</span>
+                      </div>
+                      {categories.map((cat) => {
+                        const isActive = selectedCategory === cat;
+                        const catColor = getCategoryColor(cat);
+                        return (
+                          <button
+                            key={cat}
+                            type="button"
+                            onClick={() => {
+                              setSelectedCategory(cat);
+                              setIsMobileExpanded(false); // 點選後自動摺疊
+                            }}
+                            className={`w-full text-left py-2.5 px-3 rounded-xl text-xs font-medium border transition-all duration-200 flex items-center justify-between ${
+                              isActive
+                                ? theme === "sepia"
+                                  ? "bg-[#F3DFBD] border-[#C8A97A] text-[#433422] font-semibold"
+                                  : theme === "light"
+                                  ? "bg-amber-100 border-amber-300 text-amber-800 font-semibold"
+                                  : "bg-amber-500/25 border-amber-500/40 text-amber-400 font-semibold shadow-[0_0_12px_rgba(245,158,11,0.15)]"
+                                : theme === "sepia"
+                                  ? "bg-transparent border-[#EADECC]/45 text-[#8C7B69] hover:bg-[#FAF4E5]"
+                                  : theme === "light"
+                                  ? "bg-transparent border-zinc-200/50 text-zinc-600 hover:bg-zinc-100"
+                                  : "bg-white/[0.02] border-white/5 text-zinc-400 hover:bg-white/[0.05]"
+                            }`}
+                          >
+                            <span className="truncate">{cat === "All" ? "全部精選展示" : cat}</span>
+                            {isActive && (
+                              <span 
+                                className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]"
+                                style={{ backgroundColor: `rgba(${catColor.rgbaGlow}, 1)` }}
+                              />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* 卡片詳情顯示模式切換按鈕 */}
@@ -1893,7 +2118,7 @@ export default function App() {
               CP
             </div>
             <p className="text-xs text-zinc-400">
-              李凱博 capelee <span className="text-zinc-600">|</span> 2026 Creative Visual & IP Portfolio
+              Cape Lee <span className="text-zinc-600">|</span> 2026 Creative Visual & IP Portfolio
             </p>
           </div>
           <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider text-center md:text-right">
@@ -1965,9 +2190,9 @@ export default function App() {
                 <div className={`bg-zinc-950 relative overflow-hidden flex flex-col justify-between border border-white/5 transition-all duration-300 ${
                   activeModalItem.category === "網站產品瀑布頁" && isMaximized 
                     ? "col-span-12 md:col-span-12 h-full flex-grow" 
-                    : "md:col-span-7 aspect-[4/3] md:aspect-auto md:h-[500px]"
+                    : "md:col-span-7 h-[330px] sm:h-[450px] md:h-[500px]"
                 }`}>
-                  <div className={`relative w-full flex-grow bg-black/40 min-h-[280px] ${
+                  <div className={`relative w-full flex-grow bg-black/40 min-h-[200px] md:min-h-[280px] ${
                     activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" 
                       ? `overflow-y-auto block ${isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "h-[500px]"} scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent` 
                       : `overflow-hidden flex items-center justify-center ${activeModalItem.category === "網站產品瀑布頁" && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
@@ -2100,20 +2325,39 @@ export default function App() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent pointer-events-none"></div>
                     )}
 
-                    {/* 左右切換細節照片 */}
-                    {waterfallMode !== "stitch" && !isVideoActive && activeModalItem.images && activeModalItem.images.length > 1 && (
+                    {/* 左右切換媒體 (含影片與細節照片) */}
+                    {waterfallMode !== "stitch" && ((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0)) > 1 && (
                       <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-20">
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const current = activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined);
-                            const idx = activeModalItem.images.indexOf(current!);
-                            const prevIdx = idx <= 0 ? activeModalItem.images.length - 1 : idx - 1;
-                            setActiveImageUrl(activeModalItem.images[prevIdx]);
+                            const hasVideo = !!activeModalItem.videoUrl;
+                            const images = activeModalItem.images || [];
+                            
+                            if (isVideoActive) {
+                              // From video, go to the last image
+                              setIsVideoActive(false);
+                              if (images.length > 0) {
+                                setActiveImageUrl(images[images.length - 1]);
+                              }
+                            } else {
+                              // From current image index
+                              const current = activeImageUrl || activeModalItem.imageUrl || (images.length > 0 ? images[0] : undefined);
+                              const idx = images.indexOf(current!);
+                              if (idx <= 0) {
+                                if (hasVideo) {
+                                  setIsVideoActive(true);
+                                } else {
+                                  setActiveImageUrl(images[images.length - 1]);
+                                }
+                              } else {
+                                setActiveImageUrl(images[idx - 1]);
+                              }
+                            }
                           }}
                           className="p-2 rounded-full bg-black/70 hover:bg-black/90 text-zinc-300 hover:text-white border border-white/10 shadow-lg pointer-events-auto transition active:scale-90 cursor-pointer"
-                          title="上一張照片"
+                          title="上一個媒體內容"
                         >
                           <ChevronLeft className="h-5 w-5" />
                         </button>
@@ -2121,13 +2365,32 @@ export default function App() {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const current = activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined);
-                            const idx = activeModalItem.images.indexOf(current!);
-                            const nextIdx = idx === -1 || idx === activeModalItem.images.length - 1 ? 0 : idx + 1;
-                            setActiveImageUrl(activeModalItem.images[nextIdx]);
+                            const hasVideo = !!activeModalItem.videoUrl;
+                            const images = activeModalItem.images || [];
+                            
+                            if (isVideoActive) {
+                              // From video, go to the first image
+                              setIsVideoActive(false);
+                              if (images.length > 0) {
+                                setActiveImageUrl(images[0]);
+                              }
+                            } else {
+                              // From current image index
+                              const current = activeImageUrl || activeModalItem.imageUrl || (images.length > 0 ? images[0] : undefined);
+                              const idx = images.indexOf(current!);
+                              if (idx === -1 || idx === images.length - 1) {
+                                if (hasVideo) {
+                                  setIsVideoActive(true);
+                                } else {
+                                  setActiveImageUrl(images[0]);
+                                }
+                              } else {
+                                setActiveImageUrl(images[idx + 1]);
+                              }
+                            }
                           }}
                           className="p-2 rounded-full bg-black/70 hover:bg-black/90 text-zinc-300 hover:text-white border border-white/10 shadow-lg pointer-events-auto transition active:scale-90 cursor-pointer"
-                          title="下一張照片"
+                          title="下一個媒體內容"
                         >
                           <ChevronRight className="h-5 w-5" />
                         </button>
@@ -2801,7 +3064,7 @@ export default function App() {
                               ? "text-[#382B1D]" 
                               : "text-zinc-900"
                           }`}>
-                            {profile.name} <span className="text-xs font-mono font-normal opacity-60">({profile.engName})</span>
+                            {profile.name}
                           </h2>
                           <p className="text-xs font-sans text-amber-500/95 font-medium mt-1">{profile.title}</p>
                         </div>

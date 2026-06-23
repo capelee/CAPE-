@@ -943,3 +943,13 @@ a:active,
   animation: grid-flow-slow 180s linear infinite;
 }
 
+/* Hide scrollbar for clean custom sliders/horizontal scroll areas */
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-none {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+

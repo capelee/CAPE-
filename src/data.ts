@@ -2,6 +2,29 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "bronti-coffee-house-film",
+    "category": "影音與多媒體設計",
+    "title": "BRONTI COFFEE HOUSE 品牌日常短片",
+    "titleEn": "BRONTI COFFEE HOUSE Brand Short Film",
+    "philosophy": "以溫潤暖木調與森林綠色階為基底，結合手繪吉祥物小恐龍與手沖咖啡日常情境。運用三分法網格分鏡與對稱圖卡字幕編排，展現極簡且富含人文溫度的動態短片視覺美學。",
+    "isHighlight": true,
+    "tools": [
+      "Premiere",
+      "AE",
+      "Procreate",
+      "分鏡繪製",
+      "影片剪輯"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/3QKiNoYlbbo/maxresdefault.jpg",
+    "placeholderId": "VIDEO_BRONTI_FILM_3QKiNoYlbbo",
+    "colorTheme": "from-[#11241C] via-[#244030] to-[#0A1A14]",
+    "images": [
+      "https://img.youtube.com/vi/3QKiNoYlbbo/maxresdefault.jpg",
+      "https://img.youtube.com/vi/3QKiNoYlbbo/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=3QKiNoYlbbo"
+  },
+  {
     "id": "huatiancun-cis",
     "category": "企業LOGO與CIS設計",
     "title": "彰化田尾花田村品牌識別系統",
@@ -2092,7 +2115,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "67",
     "category": "影音與多媒體設計",
-    "title": "Segway-Ninebot F2 Pro 官方公司貨與水貨權益差異圖文",
+    "title": "DA量販店 興家安速免水洗冷氣清潔劑 多媒體開箱與視覺企劃",
     "titleEn": "Earth Chem Air Conditioner Cleaner: Multi-Media Unboxing Campaign & Interactive Video Strategy",
     "philosophy": "以實體透視剖析為底，結合高動態前後對比視覺與動態字體標引，搭配聲效音軌，強化產品清潔效能的直覺傳遞，展現高流暢度的多媒體開箱廣告語彙。",
     "tools": [
@@ -2746,7 +2769,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "91",
     "category": "實體店面與展覽",
-    "title": "九號單輪平衡車Z10評測與極限露營玩家教學",
+    "title": "巴迪醫療 2025 TSOC 中華民國心臟學會年會 特裝展位與空間視覺設計",
     "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiology (TSOC) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
     "philosophy": "以深藍與皓雪白為空間基調，結合線性光帶與懸浮發光體，搭配弧形陳列櫃與三維解剖模型，強化品牌立體視覺聚焦，展現專業洗練的醫療空間展示美學。",
     "tools": [
@@ -2775,7 +2798,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "92",
     "category": "實體店面與展覽",
-    "title": "Ninebot S-PRO 雙輪自平衡車科技出行圖文",
+    "title": "巴迪醫療 2025 TSCI 中華民國心血管介入學會年會 特裝展位與空間視覺設計",
     "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiovascular Interventions (TSCI) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
     "philosophy": "以白與藍色彩對比為基調，結合線性燈帶與無縫透光吊頂，搭配懸浮立方體與產品展示櫃，強化空間層次感與商標視認性，展現高度理性的醫療展位美學。",
     "tools": [
@@ -2821,7 +2844,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "id": "94",
     "category": "平面海報設計",
     "isHighlight": true,
-    "title": "米家電動滑板車1S經典款都會通勤指南圖文",
+    "title": "巴迪醫療 TATCS 台灣胸腔及心臟血管外科學會年會 醫療產品海報設計",
     "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
     "philosophy": "以深藍與皓雪白為底，結合黃金分割網格與三維立體圖解，透過雙語對排版與精密色彩管理，強化醫學產品技術解析的易讀性，展現專業嚴謹的醫療海報美學。",
     "tools": [
@@ -2962,9 +2985,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "102",
     "category": "角色IP&插畫與貼圖",
-    "title": "一期一會日式簡約禪風花藝展視覺設計",
+    "title": "巴迪醫療 官方吉祥物 小脈 (小MY) 角色企劃與視覺設計",
     "titleEn": "Buddy Medical: Meril Myval Artificial Heart Valve Official Mascot 'Little MY' Character Design",
-    "philosophy": "採用低飽和灰白色系搭配溫潤木質調。佈局採用二欄式不對稱網格，融合枯木、麻繩與自然書法，為實體花藝展形塑靜謐且具備東方人文厚度的沉澱感。",
+    "philosophy": "以3D圓潤透視為主軸，融合支架紋理與暖色親和五官，運用圓角幾何輪廓降低醫療冷硬感，傳遞陪伴、信賴與專業照護的療癒親和視覺形象。",
     "tools": [
       "吉祥物設計",
       "IP角色",
@@ -7197,9 +7220,9 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "281",
     "category": "賣場Banner橫幅廣告",
-    "title": "禎祥御膳中式美食限時特展橫幅設計",
+    "title": "清涼降溫貼 2元限時秒殺 特惠LINE橫幅設計",
     "titleEn": "Cooling Patch '2-Dollar Flash Sale' Summer Special LINE Banner",
-    "philosophy": "將美食主體置於中心，輔以高明度紅黃色調。配合放射狀光影排版，建構具備精緻度與空間感的食品宣傳導購視覺。",
+    "philosophy": "選用高飽和冰川藍與水波紋理為底，結合動感放射狀排版與斜體金屬立體字，利用高冷色對比凸顯價格數字，強化瞬間降溫的直覺清涼衝擊。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8899,5 +8922,208 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1ChxEYOMLqzh9o8kDQ4b93mqsBZ11URbB.webp",
       "/images/optimized/1QpRNmMJLZbt3mH6HJX74b-zYRF4bEcrw.webp"
     ]
+  },
+  {
+    "id": "402",
+    "category": "商品周邊企業禮贈品",
+    "title": "新寮鎮安宮 客製手機提包",
+    "titleEn": "Hsinliao Zhenan Temple Custom Smartphone Pouch Visual Layout",
+    "philosophy": "以傳統宮廟硃砂紅為底，結合簡約金色幾何窗花紋理，融入傳統篆體印章元素。排版採用中軸對稱結構與明晰色欄，展現典雅兼具現代感的文創禮品視覺。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌包裝",
+      "向量插畫"
+    ],
+    "imageUrl": "/images/optimized/1-aXtc9nv3hk6LdrJ5Esif8geh7Rqi9Tp.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_402",
+    "colorTheme": "from-red-950 via-zinc-900 to-red-950",
+    "images": [
+      "/images/optimized/1-aXtc9nv3hk6LdrJ5Esif8geh7Rqi9Tp.webp",
+      "/images/optimized/1ECEytGGNXppS4aL7R_X26OMMyEkin7QX.webp"
+    ],
+    "driveFolderId": "1tdwwZaU7RSgsFW4CKdsM9NCiZyu32qRe"
+  },
+  {
+    "id": "403",
+    "category": "商品周邊企業禮贈品",
+    "title": "新寮鎮安宮 環保收納摺疊提袋",
+    "titleEn": "Hsinliao Zhenan Temple Eco-Friendly Foldable Shopping Bag Design",
+    "philosophy": "採用深沉藏青藍搭配古樸朱砂紅。主視覺交織傳統廟宇飛簷線條與幾何雲紋圖樣，排版以工整網格對齊，利用不對稱色塊對比，勾勒既具信仰厚度又利於日常攜帶的提袋外觀。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌包裝",
+      "向量插畫"
+    ],
+    "imageUrl": "/images/optimized/1l7z7Csvs8Bq4TS1QvJFIZ1-y3nrCr8RI.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_403",
+    "colorTheme": "from-blue-950 via-zinc-900 to-red-950",
+    "images": [
+      "/images/optimized/1l7z7Csvs8Bq4TS1QvJFIZ1-y3nrCr8RI.webp",
+      "/images/optimized/1vo2IzvBL_9E2kExT8x9yL8-WDXbF9Ui3.webp",
+      "/images/optimized/18dG_3fbNbIAlAG9sGila90rCa86IamrV.webp"
+    ],
+    "driveFolderId": "15z6AOWAefSzRIxiMwzb_kAPw2fgctlOG"
+  },
+  {
+    "id": "404",
+    "category": "電商產品銷售圖",
+    "title": "立陽鴻 蝦皮客製化徽章詳情頁",
+    "titleEn": "Liyanghong Shopee E-Commerce Custom Badge Detail Page Design",
+    "philosophy": "運用高明度飽和底色區隔不同款式，搭配結構性網格排版呈現規格參數。以金屬質感的微浮雕投影與高反差展示無襯線體，在直覺的購買動線中，凸顯客製化徽章的精準細節。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "詳情頁設計",
+      "色彩管理"
+    ],
+    "imageUrl": "/images/optimized/1sdYw_ccjiC6GPzll8c9iyPObnDqrdar0.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_404",
+    "colorTheme": "from-zinc-950 via-teal-900 to-zinc-950",
+    "images": [
+      "/images/optimized/1sdYw_ccjiC6GPzll8c9iyPObnDqrdar0.webp",
+      "/images/optimized/19qYKSPxNegI7n4bGNRtxGm5kRzg_Ll02.webp",
+      "/images/optimized/1EgKa0QCjGx_tMrDLvjERL9WPTCA8zlHd.webp",
+      "/images/optimized/1P-8nEBEiAfgp6-QKsEZsgcQOPo2EWiM3.webp",
+      "/images/optimized/156BQt6mWwG-VIO2gd8hZS9DUCBAThUEM.webp"
+    ],
+    "driveFolderId": "1vRyoyUW6UCxFuLj81BS1RT2keJ23Bk0r"
+  },
+  {
+    "id": "405",
+    "category": "電商產品銷售圖",
+    "title": "立陽鴻 蝦皮客製化野餐墊詳情頁",
+    "titleEn": "Liyanghong Shopee E-Commerce Custom Picnic Mat Detail Page Design",
+    "philosophy": "選用大地色系搭配格紋底理，排版採用三欄式等寬網絡，清晰界定商品規格、材質分析與應用場景。融入直覺的圖示引導，營造簡潔、資訊層次分明的數位賣場導購版面。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "詳情頁設計",
+      "版面編排"
+    ],
+    "imageUrl": "/images/optimized/1KPkoFMCZLfwZefYvb0z7pQKXDd4Q-iPi.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_405",
+    "colorTheme": "from-amber-950 via-zinc-900 to-amber-950",
+    "images": [
+      "/images/optimized/1KPkoFMCZLfwZefYvb0z7pQKXDd4Q-iPi.webp",
+      "/images/optimized/11qBv01a3Z7eWKNhA4QmWK68zck5IDf4c.webp",
+      "/images/optimized/1ca4kZtzfPjeJsZ9pio9y_8AuW3cK_dkM.webp",
+      "/images/optimized/1tkABTU5GJ775O1LbFFW3xUZpf2KVE9rh.webp",
+      "/images/optimized/1MQDgH8ruKqmdVPXx16ezd8OB_UVODxEh.webp",
+      "/images/optimized/1MUgOPeukW0EDIMBHOn7h1nC1vvdujI2_.webp",
+      "/images/optimized/1GRhXfjwYwv_uT53kXwRjnh-UMu-SPHCB.webp",
+      "/images/optimized/1HckmD60Ugk8u5tqOZ2PCF68RedNNK5-z.webp",
+      "/images/optimized/1Q4-0SglWtnu7xK65NYyYZE-QJuZZMgLu.webp"
+    ],
+    "driveFolderId": "1fW4ewxXgZQSUpm8gLId4VvZstpFJ7VeC"
+  },
+  {
+    "id": "406",
+    "category": "電商產品銷售圖",
+    "title": "立陽鴻 蝦皮客製化金鏟子詳情頁",
+    "titleEn": "Liyanghong Shopee E-Commerce Custom Golden Shovel Detail Page Design",
+    "philosophy": "以紅、金高明度雙色展現喜慶質感，排版以大字元標題與格狀區塊對稱，結合多角度商品實拍與細節局部放大。利用高對比資訊圖表呈現規格，建立高清晰度的銷售圖文架構。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "詳情頁設計",
+      "電商設計"
+    ],
+    "imageUrl": "/images/optimized/17V1bFUiq5LNwvp0hsa2HOhKfL86v6OB2.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_406",
+    "colorTheme": "from-amber-950 via-red-900 to-amber-950",
+    "images": [
+      "/images/optimized/17V1bFUiq5LNwvp0hsa2HOhKfL86v6OB2.webp",
+      "/images/optimized/1VsjZH_kTI6IOWblmTgqo-KAkgAlJchZz.webp",
+      "/images/optimized/1nj0VN56ztMzi290rCe51MhoqFxAu6Tdy.webp",
+      "/images/optimized/1-Ys-HO964RCdM6eZQDbacddUmat1gxj5.webp",
+      "/images/optimized/14gVvgcsjLAgyaSiQ-cIBiXx6s801oMt9.webp",
+      "/images/optimized/18dOucJnYxOVbkQVzjSAl3ouSfVZL6z0u.webp"
+    ],
+    "driveFolderId": "1vJKJvLeBt9pxoUc6fPlGVwudbyjwWuiq"
+  },
+  {
+    "id": "407",
+    "category": "平面海報設計",
+    "title": "WILD BURGER CLUB™ 套餐宣傳",
+    "titleEn": "WILD BURGER CLUB™ Direct-Mail Combo & Social Poster Design System",
+    "philosophy": "採美式復古報紙排版，以粗獷黑體搭配高明度亮橘與鵝黃，建構高對比視覺張力。結合漢堡剖面實拍與復古美式插標，利用不對稱多欄網格聚焦核心餐點與推廣字樣。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "版面編排"
+    ],
+    "imageUrl": "/images/optimized/1iQLRXQ6PCXlTfh5a4VA0_EevFuZ34SD_.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_407",
+    "colorTheme": "from-amber-950 via-zinc-900 to-amber-950",
+    "images": [
+      "/images/optimized/1iQLRXQ6PCXlTfh5a4VA0_EevFuZ34SD_.webp",
+      "/images/optimized/1JhPWp9RyN74-zYNZ-MUIVZ0Kvctjf1dw.webp"
+    ],
+    "driveFolderId": "1pCZ_RZ6IjI-7_mX6ZkVCYFPPXkyiAJnN"
+  },
+  {
+    "id": "408",
+    "category": "影音與多媒體設計",
+    "title": "WILD BURGER CLUB 漢堡行銷動態影片",
+    "titleEn": "WILD BURGER CLUB™ Short-Form Dynamic Video Campaign",
+    "philosophy": "以美式復古色調為視覺底蘊，結合快節奏剪輯與手繪風動態線條，融入大字元無襯線體與高明度黃橘色彩。不對稱的畫幅分割與特寫運鏡，強化餐點爆漿質感與美式粗獷行銷張力。",
+    "tools": [
+      "AE",
+      "Premiere",
+      "動態設計",
+      "影片剪輯"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/slHuODzgriw/maxresdefault.jpg",
+    "placeholderId": "VIDEO_WILD_BURGER_408",
+    "colorTheme": "from-amber-950 via-zinc-900 to-red-950",
+    "images": [
+      "https://img.youtube.com/vi/slHuODzgriw/maxresdefault.jpg",
+      "https://img.youtube.com/vi/slHuODzgriw/0.jpg"
+    ],
+    "videoUrl": "https://youtube.com/shorts/slHuODzgriw"
+  },
+  {
+    "id": "409",
+    "category": "影音與多媒體設計",
+    "title": "BLEND MONSTER 芒果雙星 行銷動態影片",
+    "titleEn": "BLEND MONSTER Mango Twin Stars Short-Form Marketing Video Campaign",
+    "philosophy": "以鮮豔芒果澄黃為主調，結合流暢流體動態線條與高明度色塊對比。排版運用動態無襯線體，在俐落的字體飛入與多視角產品特寫剪輯中，勾勒出盛夏果飲的夏日消暑意象。",
+    "tools": [
+      "AE",
+      "Premiere",
+      "動態設計",
+      "影片剪輯"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/WQpqHQcZ1B8/maxresdefault.jpg",
+    "placeholderId": "VIDEO_BLEND_MONSTER_409",
+    "colorTheme": "from-amber-500 via-orange-600 to-amber-950",
+    "images": [
+      "https://img.youtube.com/vi/WQpqHQcZ1B8/maxresdefault.jpg",
+      "https://img.youtube.com/vi/WQpqHQcZ1B8/0.jpg"
+    ],
+    "videoUrl": "https://youtube.com/shorts/WQpqHQcZ1B8"
+  },
+  {
+    "id": "410",
+    "category": "平面海報設計",
+    "title": "WILD ISLAND BURGER 漢堡宣傳",
+    "titleEn": "WILD ISLAND BURGER Promotion Poster Design System",
+    "philosophy": "運用對比強烈的多色彩網格編排，搭配美式熱帶風情背景。排版結合粗大字體與直覺的幾何邊框，並以不對稱比例突顯產品結構，打造高張力且兼具清晰資訊層次的漢堡宣傳海報。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "版面編排"
+    ],
+    "imageUrl": "/images/optimized/1uslsF-X2bfuxCf8oEu5EssiICp-YuMNi.webp",
+    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_410",
+    "colorTheme": "from-teal-950 via-zinc-900 to-amber-950",
+    "images": [
+      "/images/optimized/1uslsF-X2bfuxCf8oEu5EssiICp-YuMNi.webp"
+    ],
+    "driveFolderId": "14iDHdeopFU60DgR_ceQzSuXKieqhXhiS"
   }
 ];
