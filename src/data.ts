@@ -512,7 +512,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "WILD BURGER CLUB™ 品牌吉祥物 IP 全家族設定",
     "titleEn": "WILD BURGER CLUB: Whole Mascot Family IP & Stickers Visual Design",
-    "philosophy": "以粗黑描邊與幾何塊狀分割為視覺骨幹，導入高彩度色調與系列化符號系統。透過當代街頭風格的圖形演算法，重構角色造型，建立具備強烈視覺張力的家族特徵與識別規範。",
+    "philosophy": "以粗黑描邊與幾何塊狀分割為視覺骨幹，導入高彩度色調與系列化符號系統。透過當代街頭風格重構角色造型，建立具備鮮明視覺張力的家族特徵與識別規範。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -727,7 +727,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "Ptera 皮特拉吉祥物 IP角色與貼圖",
     "titleEn": "Ptera the Sky Explorer: Tech-Street Adventure IP & Sticker Design",
-    "philosophy": "「皮特拉 (Ptera)」的設計理念源自於對「探索未知的渴望」與「現代科技生活」的深度融合。",
+    "philosophy": "以明亮天空藍與橙黃對比為色調，採用圓潤飽滿的向量線條建構恐龍飛行角色。結合非對稱排版與科技感符號，呈現具現代探險張力之幾何圖像構成。",
     "tools": [
       "Ai",
       "2D 原畫概念草稿",
@@ -970,7 +970,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商品周邊企業禮贈品",
     "title": "PGA TOUR 581 美巡賽紀念金屬高爾夫球標",
     "titleEn": "PGA TOUR \"581\" Commemorative Metallic Golf Ball Marker Design",
-    "philosophy": "鋅合金鍍鎳搭配深藍色烤漆營造強烈對比，流暢揮桿剪影展現動態力量美，放射狀髮絲紋工藝隨光線交織精緻層次，結合現代與流線字體。",
+    "philosophy": "鋅合金鍍鎳搭配深藍色烤漆營造鮮明對比，流暢揮桿剪影展現動態力量。放射狀髮絲紋工藝交織出層次，並結合無襯線現代字體與流線排版，展現高質感工業美學。",
     "tools": [
       "Ai",
       "產品設計",
@@ -1499,7 +1499,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商品周邊企業禮贈品",
     "title": "墾丁國家公園 鸚哥魚主題海洋保育陶瓷紀念杯",
     "titleEn": "Kenting National Park Parrotfish Ocean Conservation Commemorative Ceramic Cup",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以海洋蔚藍與珊瑚粉嫩色彩撞色為底，將寫實鸚哥魚彩繪線條融入陶瓷杯身。採用對稱網格排版，在簡約版面配置中傳遞海洋保育訴求，展現具自然生命力的文創美學。",
     "tools": [
       "文創企劃",
       "陶瓷彩繪",
@@ -1815,7 +1815,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "社群行銷小編圖文",
     "title": "心泰 PRO 泰國料理 昕境廣場百貨 母親節平日滿額禮視覺與實體商品後期設計",
     "titleEn": "Thai Heart Pro @ Shine Square Mall: Mother's Day Gift-With-Purchase Campaign Layout & Product Digital Art Direction",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以溫馨淡雅的康乃馨粉與泰式古典金為主調，結合不對稱排版。將實體滿額禮瓷盤與花卉插畫元素進行點線面構成，於社群圖卡中建構高易讀性的母親節行銷氛圍。",
     "tools": [
       "行銷企劃",
       "排版設計",
@@ -1838,7 +1838,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商務印刷品設計",
     "title": "心泰 PRO 泰國料理 聯名餐券 1000元餐券商品攝影與文案整合設計",
     "titleEn": "Thai Heart Pro: $1000 Premium Dining Voucher Creative Product Photography & Copywriting Integration",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以深沉雅緻的墨綠與貴氣燙金為底，運用雙語對襯排版。結合精準微距產品攝影與無襯線展示體，於嚴謹網格比例中呈現餐券面額，建構高質感且易辨識的實體商務印刷。",
     "tools": [
       "Ai",
       "Photoshop",
@@ -2379,7 +2379,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "影音與多媒體設計",
     "title": "勞動部職訓局多媒體專題製作 電腦教室的謎團 實景電影與 AI 影音生成創作",
     "titleEn": "Mystery of the Computer Lab: Bureau of Vocational Training Multi-Media Graduation Project, Suspense Short Film & AI-Synthesized Video Fusion",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以深邃冷酷的暗色調與電腦螢幕幽藍微光為視覺基調，結合不對稱影片分鏡與動態字幕排版。透過緊湊的實景電影剪輯與 AI 生成影音融接，營造具張力的懸疑敘事美學。",
     "tools": [
       "Premiere",
       "Photoshop",
@@ -2444,7 +2444,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商品周邊企業禮贈品",
     "title": "棋勝汽車 金屬車徽與包裝禮盒",
     "titleEn": "Qi Sheng Motors: Premium Metallic Emblem & Luxury Gift Packaging Box Integrated Design",
-    "philosophy": "車徽採3D精密切削配以鍍銀耀金與噴砂工藝，展現強烈光影立體感，啞光暗黑禮盒搭配高細節燙金，打凸與阻尼磁吸。",
+    "philosophy": "車徽採3D精密切削配以鍍銀耀金與噴砂工藝，展現深邃光影立體感。啞光暗黑禮盒搭配精準對位燙金、打凸與阻尼磁吸結構，建構出平衡洗練的包裝美學。",
     "tools": [
       "包裝設計",
       "排版設計",
@@ -3696,7 +3696,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "速必效 果蠅誘捕器",
     "titleEn": "SPEED Fruit Fly Trap: Precision Hunting and Visual Tension E-commerce Detail Page and Poster Design",
-    "philosophy": "自然綠意搭配溫潤木質底，標靶準星符號突顯強烈機能性引導，紅黃配色外殼與包裝，重黑體強調滅滅捕蠅數據與科學誘引。",
+    "philosophy": "自然綠意搭配溫潤木質底，標靶準星符號突顯清晰機能性引導。採用紅黃雙色對比外殼，搭配厚重無襯線體，在結構化網格中明晰傳遞科學誘引與關鍵數據。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -3866,7 +3866,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "ST 雞仔牌 洗淨力 洗衣槽清潔劑",
     "titleEn": "ST Chicken Brand Washing Tub Cleaner: 3-Minute Fast-Acting Stain Removal & Disinfection E-commerce Detail Page & Poster Design",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以清爽亮藍與高飽和檸檬黃為色彩基調，結合不對稱網格。將實體洗衣槽去汙特寫與簡明圖表進行點線面構成，搭配加粗無襯線體排版，於電商圖中明晰傳遞強效洗淨機能。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -4287,7 +4287,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "Future Lab. 未來實驗室 家電",
     "titleEn": "Future Lab. Intelligent Lifestyle: A Comprehensive Visual Showcase of Ergonomic Tech-Suite Design",
-    "philosophy": "沉浸式冷灰基底搭配強烈螢光綠與亮橘，高精微網格對齊，人體熱感圖解與數據排版極客美學，統一光影渲染。",
+    "philosophy": "沉浸式冷灰基底搭配高對比螢光綠與亮橘色塊，並以高精細網格對齊。結合人體熱感圖解與數據圖表，透過統一的光影渲染，呈現極客美學與理性的科技視覺張力。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -4472,7 +4472,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "DH.Fruit 鮮果茶飲 店頭 門市立牌",
     "titleEn": "DH.Fruit: Storefront Lightboxes, Acrylic Stands, and Brand Promotion Posters",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以高飽和度的鮮橘色與鮮綠為視覺色彩基調，結合對稱店面網格。將新鮮水果與清透茶飲攝影去背排列，搭配俐落無襯線體，於門市展覽中建構高易讀性的立牌廣告。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -4490,7 +4490,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "社群行銷小編圖文",
     "title": "DH.Fruit 鮮果茶飲 貼文與 圖卡",
     "titleEn": "DH.Fruit: Social Media Promotion Graphics and Tea Product Feature Cards",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以清透果綠與亮白背景，結合網格對齊排版。運用水果切片特寫與手繪清新插符號，在不對稱的排版構圖中突顯茶飲鮮活本質，展現極簡且兼具高度易讀性的社群行銷圖文。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -4511,7 +4511,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "isHighlight": true,
     "title": "DH Fruit 動態",
     "titleEn": "DH Fruit Dynamic Advertisement",
-    "philosophy": "運用簡潔網格系統與嚴謹的資訊分級架構，使商品亮點更加引人注目，透過流暢的動線引導與美學氛圍，全面提升品牌轉換率與使用者信任度。",
+    "philosophy": "以高彩度果汁色彩為視覺底蘊，結合動態影片剪輯。運用流暢的轉場節奏與不對稱動態字卡，將鮮果汁液滴落之慢鏡特寫融合展現，打造高質感且富感官吸引力的多媒體廣告。",
     "tools": [
       "AE",
       "Premiere",
@@ -4841,7 +4841,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "不鏽鋼收納",
     "titleEn": "Minimalist Living: Stainless Steel Functional Organization Series",
-    "philosophy": "設計團隊透過精準的冷冽工業感攝影視角，強調SUS304不鏽鋼的細膩金屬紋理與堅韌品質。整體布局採用留白與對稱排列，對比黑銀冷色系，藉由強烈的明暗光。",
+    "philosophy": "以精準的冷冽工業感攝影視角，強調SUS304不鏽鋼的細膩金屬紋理。整體布局採用留白與對稱排列，對比黑銀冷色系，藉由深邃的明暗光影展現收納結構美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5005,7 +5005,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "防護與遮陽",
     "titleEn": "Voyage Shield: Premium Automotive Sunshade & Tailgate Protection Series",
-    "philosophy": "設計哲學立足於『極簡實用與感官舒適』。透過冷色調的光線軌跡勾勒產品輪廓，強化車內遮陽與通風的機能性語彙。排版布局遵循黃金比例，將強烈的科技藍光與黑白灰基調融。",
+    "philosophy": "立足於極簡實用與感官舒適。透過冷色調的光線軌跡勾勒產品輪廓，強化車內遮陽與通風的機能性語彙。排版布局遵循非對稱網格，將科技藍光與黑白灰基調融為一體。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5156,7 +5156,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "棉襪與修眉",
     "titleEn": "Minimalist Lifestyle: Classic Cotton Essentials & Precision Beauty Tools",
-    "philosophy": "設計旨在透過簡約的構圖突顯產品的純粹本質。針對黑白棉襪系列，採用高對比度的單色背景與清透光影，強調材質的親膚紋理與極簡時尚感；修眉剪影像則透過明亮的粉色。",
+    "philosophy": "透過簡約的構圖突顯產品的純粹本質。針對黑白棉襪系列，採用高對比度的單色背景與清透光影，強調材質的親膚紋理與時尚感；修眉剪影像則透過明亮的粉色調呈現。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5236,7 +5236,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "核心強化與滑行訓練",
     "titleEn": "Ultimate Kinetic Series: Home Core Strengthening and Gliding Training Solutions",
-    "philosophy": "本系列視覺規劃旨在精準捕捉動態力量與居家簡約美學的平衡點。透過高對比度的橙灰色調鋪陳，強化產品的科技感與安全屬性。畫面構圖採用開放式留白與動態捕捉，將器材的。",
+    "philosophy": "精準捕捉動態力量與居家簡約美學的平衡。透過高對比度的橙灰色調鋪陳，強化產品的科技屬性。畫面構圖採用開放式留白與動態捕捉，將器材特色清晰呈現。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5333,7 +5333,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "廚房收納",
     "titleEn": "Home Aesthetic Essentials: Minimalist Kitchen Utility Series",
-    "philosophy": "本系列設計理念在於將日常廚房工具提升至生活美學層次。影像透過沈穩的深色基調與極簡結構佈局，强化產品的工業設計感與專業精準度。燈光設計聚焦於切刀的機械結構與泡。",
+    "philosophy": "將日常廚房工具提升至生活美學層次。影像透過沈穩的深色基調與極簡結構佈局，強化產品的工業設計感與專業精準度。燈光設計則聚焦於刀具的機械結構與材質肌理。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -5691,7 +5691,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "公仔收納展示櫃",
     "titleEn": "公仔收納展示櫃 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以俐落深灰色調與透光材質對比為底，結合瑞士網格系統。將高透明防塵展示櫃特寫與模組化規格進行點線面構成，搭配無襯線展示體，呈現清爽直覺的收納美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5719,7 +5719,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "壓縮木漿海綿",
     "titleEn": "壓縮木漿海綿 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以自然純淨的淡鵝黃與水感藍為主調，結合不對稱網格。展示木漿棉吸水膨脹的質地對比，透過乾淨的排版與微距材質特寫，傳遞環保實用的功能，展現溫潤生活感。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5744,7 +5744,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "北歐寵食高腳碗",
     "titleEn": "Nordic Petware Elevated Inclined Bowl: E-commerce Detail Page Design for Harmonious Living & Pet Well-being",
-    "philosophy": "旨在為「北歐風斜口高腳寵物碗」電商詳情頁面，構建一套兼具美學與功能性的視覺敘事。設計理念圍繞簡約、溫暖與實用主義，旨在提升使用者體驗並有效引導購買決策。",
+    "philosophy": "以簡約、溫暖的北歐風格為基調，為寵物高腳碗構建一套兼具美學與功能性的詳情頁。運用溫和色塊與俐落排版層次，清晰展現產品結構，提供高易讀性的觀看體驗。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -5768,7 +5768,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "寵物紗窗",
     "titleEn": "寵物紗窗 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以居家灰黑與冷調白背景為色彩基礎，結合結構化瑞士網格。精準突顯防抓防撞金屬紗網質感，搭配清晰明瞭的裝設圖解，於簡約圖卡中呈現寵物安全防護機能美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5793,7 +5793,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "寵物餵藥器",
     "titleEn": "寵物餵藥器 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以高明度清爽白與低飽和藍色調為底，結合嚴謹的資訊分級排版。微距展示餵藥器軟矽膠針頭細節，搭配對稱圖卡說明與直覺圖標，為寵物醫療用品注入親和機能美。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5818,7 +5818,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "慕斯分裝瓶",
     "titleEn": "慕斯分裝瓶 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以溫潤的大地暖灰與純淨白為底，運用不對稱網格。突顯磨砂瓶身與綿密慕斯泡沫的材質細節，搭配乾淨簡約的無襯線字體，展現具北歐風日用清潔器皿之極簡美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5842,7 +5842,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "折疊貓砂盆_側開款",
     "titleEn": "折疊貓砂盆_側開款 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以雅緻粉櫻色與溫潤淺灰為主調，結合結構化排版.將雙向折疊收納特寫與大空間尺寸圖表進行點線面構成，搭配簡潔無襯線展示體，傳遞輕巧實用的貓砂盆機能美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5873,7 +5873,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "折疊貓砂盆_前開款",
     "titleEn": "折疊貓砂盆_前開款 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以溫和薄荷綠與現代灰為主調，結合不對稱瑞士網格。突出貓砂盆前開抽屜式結構與便捷拆裝特色，透過乾淨白底與高易讀字體，於電商銷售圖卡中建立明晰閱讀動線。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5903,7 +5903,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "旋轉手電筒",
     "titleEn": "旋轉手電筒 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以深沉純黑與高亮度金屬銀撞色，結合精密資訊圖表。展現旋轉變焦鏡頭細節與多檔光源圖解，透過冷調光感氛圍，將專業照明設備轉化為俐落、理性的科技視覺。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5930,7 +5930,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "爬蟲燈泡",
     "titleEn": "爬蟲燈泡 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以深邃岩石黑與溫暖金黃光源為色彩基礎，結合非對稱排版。特寫折射燈頭金屬紋理與暖意光譜圖解，透過明暗高反差，在幾何網格中傳遞爬行動物專用保溫之功能性。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5956,7 +5956,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "磨砂擴香瓶+纖維棒",
     "titleEn": "磨砂擴香瓶+纖維棒 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以高透光磨砂白與沉穩香檳色為主調，結合極簡對稱網格。勾勒精緻纖維棒與香氛精油的微距質地，搭配細緻的古典無襯線字體，傳遞靜謐、優雅的高質感生活氛圍。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -5981,7 +5981,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "露營腳架手電筒",
     "titleEn": "露營腳架手電筒 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以硬派軍風墨綠與工業黑為基調，結合不對稱瑞士網格。特寫多功能腳架金屬關節與防潑水機能，在戶外露營場景中搭配俐落無襯線黑體，展現粗獷且實用的機能美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -6007,7 +6007,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "馬卡龍藍牙喇叭",
     "titleEn": "馬卡龍藍牙喇叭 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "色彩規劃汲取自產品本身，輔以精緻高規格的布光調度與肌理細節，突顯非凡質感。文案編排以黃金閱讀動線巧妙引導觀者，將功能數據流暢融入精微圖形中，大幅降低閱讀疲勞。",
+    "philosophy": "以清新馬卡龍淡粉藍與櫻粉為主色，採用不對稱網格。微距展示小巧機身與揚聲孔細節，搭配輕盈、簡潔無襯線字體，在溫潤光影中展現活潑且具現代感之數位配件美學。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -7136,7 +7136,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商務印刷品設計",
     "title": "得速科技 商務名片設計",
     "titleEn": "Dual-Sided Business Card Design for Dashop Technology Co., Ltd.",
-    "philosophy": "正面以左欄網格與無襯線體建構明晰的資訊層級，精確引導商務掃描路徑；背面採等角投影插畫具體呈現物流服務，藉由強烈色彩對比平衡功能性傳達與品牌識別度。",
+    "philosophy": "正面以左欄網格與無襯線體建構明晰資訊層級，引導商務閱讀路徑；背面採等角投影插畫具體呈現物流服務，藉由鮮明色彩對比平衡功能性傳達與品牌識別度。",
     "tools": [
       "Ai",
       "Photoshop"
@@ -7904,7 +7904,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "賣場Banner橫幅廣告",
     "title": "御華生極品燕窩美容飲 貴婦級保養熱賣中",
     "titleEn": "Royal Essence Premium Bird's Nest Beauty Drink Banner",
-    "philosophy": "精選高雅和風深邃絳紅與璀璨香檳流沙，將燕窩飽滿的晶瑩露水精確置於黃金分割點，釋放東方御用美顏祕境並強烈鎖定精確轉換。",
+    "philosophy": "精選和風深邃絳紅與璀璨香檳色調，將燕窩飽滿的晶瑩露水精確置於黃金分割點，透過高反差排版與優雅襯線體，在古典美感中突顯核心商品之視覺張力。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8487,7 +8487,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "賣場Banner橫幅廣告",
     "title": "年中慶震撼特賣 歡慶半年度盛典購物官網推播廣告",
     "titleEn": "Rakuten Glorious Mid-Year Shopping Festival Campaign",
-    "philosophy": "絢麗霓虹紫與前沿鐳射流光底紋，大排版聚焦『狂歡年中慶』核心標籤，營造大牌嘉年華的盛宴氣氛，強烈推動首頁高意向點擊導購流。",
+    "philosophy": "絢麗霓虹紫與鐳射流光底紋，大排版聚焦『狂歡年中慶』核心標籤，營造嘉年華盛宴氣氛，並以不對稱網格排版與高彩度配色，精確引導觀者視線並建立點閱動線。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8723,7 +8723,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "賣場Banner橫幅廣告",
     "title": "露天拍賣 夏殺折扣碼大釋出 限時神祕好康推播橫幅設計",
     "titleEn": "Ruten Auction Summer Crazy Coupon Codes Special Offer Banner",
-    "philosophy": "以具備高飽和衝擊力的盛夏亮麗橙與蔚藍海岸色調撞色，在大版面中強烈彰顯夏殺折扣碼代號，堆疊倒數計時氛圍，大幅拉升買家搶券欲。",
+    "philosophy": "以高飽和的盛夏亮麗橙與蔚藍海岸色調撞色，在大版面中突出夏殺折扣碼代號，運用高反差的排版堆疊倒數氛圍，建立具視覺張力的推播導購動線。",
     "tools": [
       "Photoshop",
       "Ai"
@@ -8830,7 +8830,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "bobos X9寵物多功能手推車電商商品主圖與圖卡設計",
     "titleEn": "bobos X9 Elegant Pet Stroller Premium Square E-Commerce Product Sales Figures & Main Images",
-    "philosophy": "採用亮眼薄荷綠搭配乾淨純白背景。對齊排版網格與高反差無襯線展示體，於強烈對比下突出三折收納特色，展現輕快、簡約且高易讀性的電商視覺。",
+    "philosophy": "採用薄荷綠搭配乾淨純白背景。對齊排版網格與高反差無襯線展示體，於鮮明對比下突出三折收納特色，展現輕快、簡約且高易讀性的電商視覺結構。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -9175,7 +9175,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "平面海報設計",
     "title": "WILD ISLAND BURGER 漢堡宣傳",
     "titleEn": "WILD ISLAND BURGER Promotion Poster Design System",
-    "philosophy": "運用對比強烈的多色彩網格編排，搭配美式熱帶風情背景。排版結合粗大字體與直覺的幾何邊框，並以不對稱比例突顯產品結構，打造高張力且兼具清晰資訊層次的漢堡宣傳海報。",
+    "philosophy": "運用色彩鮮明的多欄網格編排，搭配美式熱帶風情背景。結合粗體字與幾何邊框，並以不對稱比例突顯產品結構，打造具視覺張力且兼具清晰資訊層次的漢堡宣傳系統。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -9289,5 +9289,48 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1dyVSi_vM6kpoPWCSpCFLqh6bjmnTHLfE"
     ],
     "driveFolderId": "1UBwvJUf3d-vOr-Jlg_UaV5YQAGSNK9yh"
+  },
+  {
+    "id": "charity-poster-113",
+    "category": "平面海報設計",
+    "title": "113 公益海報反家暴與反霸凌",
+    "titleEn": "113 Anti-Domestic Violence & Anti-Bullying Public Service Poster",
+    "philosophy": "以紅藍對比色為底，結合不對稱網格。將阻擋手勢剪影與113標記進行點線面構成，搭配無襯線體與雙語排版，在幾何色塊中傳遞防制家暴與霸凌的社會訴求。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "點線面構成",
+      "色彩對比"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1vA_EThtPUr1vv7BxiFpqCtsEHFC4B0ky",
+    "placeholderId": "IMAGE_CHARITY_POSTER_113",
+    "colorTheme": "from-[#3c1212] via-[#182a4d] to-[#0d0d0d]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vA_EThtPUr1vv7BxiFpqCtsEHFC4B0ky",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uMolAliLdzuEbLe7SU6Tq5jCjC-QmyQw"
+    ],
+    "driveFolderId": "10kMRCtJ5zEtn1ItZ_lWwWSObTTqrMhjZ"
+  },
+  {
+    "id": "misty-eco-poster",
+    "category": "平面海報設計",
+    "title": "淹霧瀰漫 環保海報",
+    "titleEn": "Misty Fog Eco Public Service Poster",
+    "philosophy": "以藍色調為底，將北極熊剪影與海平面、紅白煙囪及排放的煙霧進行點線面構成。雙側對稱排版文字，透過冷色調對比，以簡練圖形語言呈現生態危機與環保訴求。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "點線面構成",
+      "色彩對比"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1PiYqgHiUnUIM2LNNwAY7G154j1UwNtyN",
+    "placeholderId": "IMAGE_MISTY_ECO_POSTER",
+    "colorTheme": "from-[#08203e] via-[#1c3e66] to-[#030d1a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PiYqgHiUnUIM2LNNwAY7G154j1UwNtyN"
+    ],
+    "driveFolderId": "1pXm-oYFXs_Ty_ZPkaI6ZC6TQLPBf7VV4"
   }
 ];
