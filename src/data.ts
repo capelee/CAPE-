@@ -2654,16 +2654,16 @@ export const initialPortfolioData: PortfolioItem[] = [
       "包裝打樣",
       "撞色渲染"
     ],
-    "imageUrl": "/images/optimized/1jZ8v7VQEHnBCpWRmK2SSfyDHIw8qdAvU.webp",
+    "imageUrl": "/images/optimized/17Yi_oGMEYdsQ4T2W1iac03-UG31oiQA0.webp",
     "placeholderId": "blend-monster-cis-01",
     "colorTheme": "from-[#0d1f11] via-[#103a19] to-[#0d1f11]",
     "images": [
-      "/images/optimized/1jZ8v7VQEHnBCpWRmK2SSfyDHIw8qdAvU.webp",
+      "/images/optimized/17Yi_oGMEYdsQ4T2W1iac03-UG31oiQA0.webp",
       "/images/optimized/1QRSUgkasEs-NaCVjv8H5woDGFT4ajILg.webp",
       "/images/optimized/1jhgGnuK3N_yPdpJKqp-Jp5H9RJWynFk0.webp",
       "/images/optimized/15J0lCdU5YacPyFQ0tdb0Fkzpked97w-0.webp",
       "/images/optimized/1TJ-wC6d_7M-jtKiNJAHTtaB5jBy66BBH.webp",
-      "/images/optimized/17Yi_oGMEYdsQ4T2W1iac03-UG31oiQA0.webp",
+      "/images/optimized/1jZ8v7VQEHnBCpWRmK2SSfyDHIw8qdAvU.webp",
       "/images/optimized/1WRUhi53lo87QeniMwpQK2jVvx9rFE8YJ.webp",
       "/images/optimized/1LKfYvhytiqYWPNGzrBDI8Grhv-t75b0T.webp",
       "/images/optimized/1GoZ9XaRXyIjSORlkPh1FkxYQlOzoQdeK.webp",
@@ -9189,5 +9189,105 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1uslsF-X2bfuxCf8oEu5EssiICp-YuMNi.webp"
     ],
     "driveFolderId": "14iDHdeopFU60DgR_ceQzSuXKieqhXhiS"
+  },
+  {
+    "id": "wild-burger-club-waterfall",
+    "category": "網站產品瀑布頁",
+    "title": "WILD BURGER CLUB™ 品牌產品長條瀑布圖",
+    "titleEn": "WILD BURGER CLUB™ Brand Product Waterfall Landing Page",
+    "philosophy": "以復古美式飽和黃綠色系為底，結合寬體不對稱網格排版與結構化色塊分割。透過高清漢堡實物實拍與俐落展示無襯線體對齊，展現具點線面節奏感之品牌產品長圖。",
+    "tools": [
+      "Photoshop",
+      "電商排版",
+      "色彩對比",
+      "自適應切片"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=17UKkXevuvXg6x6SNW4747rYLys455jl4",
+    "placeholderId": "IMAGE_WATERFALL_WILD_BURGER_CLUB",
+    "colorTheme": "from-[#1F2411] via-[#353F1C] to-[#0F1208]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=17UKkXevuvXg6x6SNW4747rYLys455jl4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VeBYtgHkGRNIXwXkNFp3NnIiV8wR7hjM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sZXqFg_Y98fJJ-hNYlEA8HaupHz4hscb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1T2DCO-uPsPi6yrZYH1EIqu91tFEvcEfe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1bsWnpVOlZQ2jaB-fxoO4vL0ulxnXI-ot",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MFMuFav7zxuQYpX9K8E37ns8mxhzSdy5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xbpvIv4dNe9RtM6zEzTQS7Z9v_-KNUOa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1z7ot6_Lm_COEUrwJsmZ2emJpcBz4dKfA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rtlF3Mq_dnb9N0BrD6BtxEzLWEVml1YL",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1W14vwLlYrMiLyqkyxF0IM1-2REPLQVWZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1L18-07Ui7FYZtgTysvpLJ9s549p6zzCD",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YV2PPlZDBt9CdSC9NMo2iKfsEjk19o-9",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1H-T8WIPSREwbkbkXaQF7hRiYICL236uf",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1roZdhZ9K89iMMhfg5OzRwuDOb7OutnI3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gdp2_Dx43o16kYX5rqlrwbJwmV0F0_lK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=18CjywMCQ2KOXaRCC3ixr64MMiG3EGPi5"
+    ],
+    "driveFolderId": "1XTL9zF5puGTfQpYqYeg1nU6Z3xbxFa4U"
+  },
+  {
+    "id": "bmw-r1200c-vector",
+    "category": "平面海報設計",
+    "title": "BMW R1200C 向量重機插畫",
+    "titleEn": "BMW R1200C Vector Cruiser Motorcycle Illustration",
+    "philosophy": "運用工整的向量網格與半透明漸層填色，細緻還原德式巡航重機的複雜金屬骨架與機械結構。以高對比冷色調冷灰與鍍鉻銀色塊，搭配極簡線條背景，展現理性的工業機械構成美學。",
+    "tools": [
+      "Ai",
+      "向量插畫",
+      "金屬質感",
+      "光影表現",
+      "機械結構"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1axhu9vi-1Nwkjq-3sJr-1hE-lpzSS74Y",
+    "placeholderId": "IMAGE_BMW_R1200C_VECTOR",
+    "colorTheme": "from-[#1a1a1a] via-[#333333] to-[#121212]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1axhu9vi-1Nwkjq-3sJr-1hE-lpzSS74Y",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qstMzmeF-JyWv9C3vRGxcc-VupL2p7co"
+    ],
+    "driveFolderId": "1zLY_42HH1Sfze27UZktHyTBPlCweSweA"
+  },
+  {
+    "id": "derbi-terra-vector",
+    "category": "平面海報設計",
+    "title": "Derbi Terra 125 向量重機插畫",
+    "titleEn": "Derbi Terra 125 Vector Adventure Motorcycle Illustration",
+    "philosophy": "以高對比飽和橘與越野泥灰為主色調，藉由精確的鋼筆工具勾勒林道越野車的鋼管車架與輪幅輪圈。利用塊狀色面與俐落的投影分割，展現冒險運動風格的幾何視覺美感。",
+    "tools": [
+      "Ai",
+      "向量插畫",
+      "鋼筆工具",
+      "光影表現",
+      "色彩配色"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1JIMApTx6V4-QNhB-CzKbHrXN4bn7HJsH",
+    "placeholderId": "IMAGE_DERBI_TERRA_VECTOR",
+    "colorTheme": "from-[#2b1f15] via-[#4d2d18] to-[#1a130e]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JIMApTx6V4-QNhB-CzKbHrXN4bn7HJsH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uDO5wl3CZApL_Xxu-dA7dg_XOMIC-FAa"
+    ],
+    "driveFolderId": "1IRf-wKLWIROx-IkT7vK9Rbxgjshk7ov9"
+  },
+  {
+    "id": "peace-under-muzzle",
+    "category": "平面海報設計",
+    "title": "槍口下的和平 台北設計獎投稿作品",
+    "titleEn": "Peace Under the Muzzle - Taipei Design Award Submission",
+    "philosophy": "以黑白雙色對位為底，結合不對稱幾何網格。將寫實槍管剪影與鴿翼造形進行結構性縫合，透過無襯線展示體排版與極簡色塊對比，展現理性且具張力的點線面構成美學。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "點線面構成",
+      "色彩對比"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1dyVSi_vM6kpoPWCSpCFLqh6bjmnTHLfE",
+    "placeholderId": "IMAGE_PEACE_UNDER_MUZZLE",
+    "colorTheme": "from-[#0a0a0a] via-[#1a1a1a] to-[#020202]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dyVSi_vM6kpoPWCSpCFLqh6bjmnTHLfE"
+    ],
+    "driveFolderId": "1UBwvJUf3d-vOr-Jlg_UaV5YQAGSNK9yh"
   }
 ];
