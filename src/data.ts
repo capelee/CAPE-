@@ -2,6 +2,48 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "wild-burger-club-mini",
+    "category": "影音與多媒體設計",
+    "title": "WILD BURGER CLUB™ 微縮世界影片",
+    "titleEn": "WILD BURGER CLUB™ Miniature World Promotional Video",
+    "philosophy": "以復古美式飽和黃綠色系為底，結合微縮模型實景運鏡與不對稱動態字卡排版。藉由高對比明暗色彩對位與緊湊的短影音剪輯點，展現具趣味性與點線面結構美學的立體微縮視覺。",
+    "tools": [
+      "Premiere",
+      "AE",
+      "影片剪輯",
+      "色彩配色"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/Fygmxv4GdoI/maxresdefault.jpg",
+    "placeholderId": "VIDEO_WILD_BURGER_CLUB_Fygmxv4GdoI",
+    "colorTheme": "from-[#1F2411] via-[#353F1C] to-[#0F1208]",
+    "images": [
+      "https://img.youtube.com/vi/Fygmxv4GdoI/maxresdefault.jpg",
+      "https://img.youtube.com/vi/Fygmxv4GdoI/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=Fygmxv4GdoI"
+  },
+  {
+    "id": "gucci-bloom-promo",
+    "category": "影音與多媒體設計",
+    "title": "GUCCI BLOOM 品牌行銷短片",
+    "titleEn": "GUCCI BLOOM Brand Promotional Short Video",
+    "philosophy": "以高明度柔和粉色調為底，結合非對稱三分法網格分鏡與手繪花草紋理自然意象。在溫和慢鏡調色中融入俐落剪輯點，展現法式優雅且富含花香詩性的動態短影音排版。",
+    "tools": [
+      "Premiere",
+      "AE",
+      "影片剪輯",
+      "色彩配色"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/5oVBiT38Bl4/maxresdefault.jpg",
+    "placeholderId": "VIDEO_GUCCI_BLOOM_5oVBiT38Bl4",
+    "colorTheme": "from-[#2B1B15] via-[#4A2E25] to-[#140A07]",
+    "images": [
+      "https://img.youtube.com/vi/5oVBiT38Bl4/maxresdefault.jpg",
+      "https://img.youtube.com/vi/5oVBiT38Bl4/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=5oVBiT38Bl4"
+  },
+  {
     "id": "shone-dinosaur-intro",
     "category": "影音與多媒體設計",
     "title": "SHONE恐龍自我介紹 動態短片",
@@ -191,7 +233,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "百人插畫公益鳥屋誠品展",
     "titleEn": "Eslite Hundred Illustrators Charity Birdhouse Exhibition",
     "philosophy": "採用天然木紋色為底襯托純樸氛圍，空間規劃結合多層次立體實體結構與幾何框架排版。搭配高對比冷暖色調，在三維空間中創造具點線面張力與人文深度的當代工藝展覽視覺。",
-    "isHighlight": true,
     "tools": [
       "展覽設計",
       "手繪插畫",

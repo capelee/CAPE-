@@ -272,9 +272,9 @@ export default function App() {
   const [theme, setTheme] = useState<"dark" | "light" | "sepia">(() => {
     try {
       const saved = localStorage.getItem("capelee_theme");
-      return (saved === "light" || saved === "dark" || saved === "sepia") ? saved : "dark";
+      return (saved === "light" || saved === "dark" || saved === "sepia") ? saved : "sepia";
     } catch {
-      return "dark";
+      return "sepia";
     }
   });
 
@@ -1290,8 +1290,16 @@ export default function App() {
         <section id="designer-bento" className="relative scroll-mt-24">
           <div className="absolute -top-32 -left-32 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
           
-          <div className="bg-gradient-to-b from-[#111]/90 to-[#0c0c0c]/90 border border-white/5 rounded-2xl p-6 lg:p-8 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div className={`border rounded-2xl p-6 lg:p-8 relative overflow-hidden shadow-2xl transition-all duration-300 ${
+            theme === "sepia"
+              ? "bg-[#F5ECD8] border-[#DFD0B8] text-[#433422]"
+              : theme === "light"
+              ? "bg-white border-zinc-200 text-zinc-800 shadow-zinc-200/50"
+              : "bg-gradient-to-b from-[#111]/90 to-[#0c0c0c]/90 border-white/5 text-white"
+          }`}>
+            <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl pointer-events-none ${
+              theme === "dark" ? "bg-indigo-500/5" : "bg-indigo-500/[0.02]"
+            }`}></div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               
@@ -1302,40 +1310,72 @@ export default function App() {
                     CP
                   </div>
                   <div>
-                    <h1 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">{profile.name}</h1>
+                    <h1 className={`text-2xl md:text-3xl font-display font-bold tracking-tight ${
+                      theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-950" : "text-white"
+                    }`}>{profile.name}</h1>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] font-sans font-medium px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center gap-1 shadow-inner">
+                  <span className={`text-[10px] font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1 shadow-inner ${
+                    theme === "sepia"
+                      ? "bg-amber-700/10 text-amber-900 border border-amber-700/20"
+                      : theme === "light"
+                      ? "bg-amber-500/10 text-amber-800 border border-amber-500/20"
+                      : "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                  }`}>
                     <Sparkles className="h-2.5 w-2.5 shrink-0 animate-pulse text-amber-300" />
                     <span>{profile.title}</span>
                   </span>
-                  <span className="text-[10px] font-sans font-medium px-3 py-1 rounded-full bg-white/5 text-zinc-400 border border-white/10">
+                  <span className={`text-[10px] font-sans font-medium px-3 py-1 rounded-full border ${
+                    theme === "sepia" 
+                      ? "bg-amber-950/5 text-[#5C4D3C] border-amber-950/10" 
+                      : theme === "light" 
+                      ? "bg-zinc-100 text-zinc-600 border-zinc-200" 
+                      : "bg-white/5 text-zinc-400 border-white/10"
+                  }`}>
                     {profile.company}
                   </span>
                 </div>
 
                 {/* 履歷簡介 */}
-                <div className="bg-white/[0.01] border border-white/5 rounded-xl p-4 lg:p-5">
+                <div className={`border rounded-xl p-4 lg:p-5 ${
+                  theme === "sepia"
+                    ? "bg-[#FAF4E5]/80 border-[#EADECC]"
+                    : theme === "light"
+                    ? "bg-zinc-50 border-zinc-200"
+                    : "bg-white/[0.01] border-white/5"
+                }`}>
                   <div className="flex items-center gap-1.5 mb-2.5">
                     <div className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse"></div>
                     <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Biography summary / 專業特質</p>
                   </div>
-                  <p className="text-zinc-300 text-xs leading-relaxed font-light">
+                  <p className={`text-xs leading-relaxed font-light ${
+                    theme === "sepia" ? "text-[#433422]" : theme === "light" ? "text-zinc-700" : "text-zinc-300"
+                  }`}>
                     {profile.intro}
                   </p>
                 </div>
 
                 {/* 聯繫資訊與期望 */}
-                <div className="space-y-3 text-[13px] text-zinc-300 leading-relaxed font-light pt-2 pl-1 border-l-2 border-amber-500/20">
+                <div className={`space-y-3 text-[13px] leading-relaxed font-light pt-2 pl-1 border-l-2 border-amber-500/20 ${
+                  theme === "sepia" ? "text-[#433422]" : theme === "light" ? "text-zinc-700" : "text-zinc-300"
+                }`}>
                   <div className="flex items-center gap-3">
                     <Award className="h-4 w-4 text-amber-400 shrink-0" />
-                    <span>期望職缺：<span className="text-white hover:text-amber-400 transition-colors font-medium underline underline-offset-4 decoration-amber-500/40">{profile.desireTitle}</span></span>
+                    <span>期望職缺：<span className={`transition-colors font-medium underline underline-offset-4 decoration-amber-500/40 ${
+                      theme === "sepia" ? "text-[#2B1B0C] hover:text-amber-700" : theme === "light" ? "text-zinc-950 hover:text-amber-600" : "text-white hover:text-amber-400"
+                    }`}>{profile.desireTitle}</span></span>
                   </div>
                   <div className="flex items-center gap-3 group/mail cursor-pointer" onClick={copyEmailToClipboard}>
                     <Mail className="h-4 w-4 text-zinc-500 group-hover/mail:text-amber-400 transition-colors shrink-0" />
-                    <span className="font-mono text-zinc-400 group-hover/mail:text-white transition-colors text-[12px]">{profile.email}</span>
+                    <span className={`font-mono transition-colors text-[12px] ${
+                      theme === "sepia" 
+                        ? "text-[#6C5B48] group-hover/mail:text-[#2B1B0C]" 
+                        : theme === "light" 
+                        ? "text-zinc-500 group-hover/mail:text-zinc-900" 
+                        : "text-zinc-400 group-hover/mail:text-white"
+                    }`}>{profile.email}</span>
                   </div>
                 </div>
 
@@ -1400,24 +1440,48 @@ export default function App() {
                   </div>
                   
                   <div className={`lg:block ${isWorkExpanded ? "block" : "hidden"}`}>
-                    <div className="space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] before:bg-white/10">
+                    <div className={`space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] ${
+                      theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
+                    }`}>
                       {profile.experienceList.map((exp, i) => (
                         <div key={i} className="flex gap-3 pl-1 relative group">
-                          <div className="h-[22px] w-[22px] rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400 transition-colors duration-300 z-10 shrink-0 mt-0.5">
+                          <div className={`h-[22px] w-[22px] rounded-full flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
+                            theme === "sepia"
+                              ? "bg-[#FAF4E5] border border-[#EADECC]/80 text-[#8C7B69] group-hover:border-amber-750 group-hover:text-amber-800"
+                              : theme === "light"
+                              ? "bg-white border border-zinc-200 text-zinc-500 group-hover:border-amber-600 group-hover:text-amber-600"
+                              : "bg-[#0a0a0a] border border-white/10 text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400"
+                          }`}>
                             <span className="text-[9px] font-mono font-bold leading-none">{i + 1}</span>
                           </div>
                           <div className="space-y-0.5 min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className="text-[13px] font-medium text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-200">{exp.title}</span>
+                              <span className={`text-[13px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
+                                theme === "sepia"
+                                  ? "text-[#2B1B0C] group-hover:text-amber-800"
+                                  : theme === "light"
+                                  ? "text-zinc-950 group-hover:text-amber-600"
+                                  : "text-white group-hover:text-amber-400"
+                              }`}>{exp.title}</span>
                               <span className={`text-[8.5px] font-mono px-1 rounded leading-none py-0.5 ${
                                 exp.badge === "現任" 
-                                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium" 
+                                  ? theme === "sepia"
+                                    ? "bg-amber-700/10 text-amber-900 border border-amber-700/20 font-medium"
+                                    : theme === "light"
+                                    ? "bg-amber-100 text-amber-800 border border-amber-200 font-medium"
+                                    : "bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium" 
+                                  : theme === "sepia"
+                                  ? "bg-[#EADECC]/40 text-[#6C5B48]"
+                                  : theme === "light"
+                                  ? "bg-zinc-100 text-zinc-500"
                                   : "bg-white/5 text-zinc-500"
                               }`}>
                                 {exp.badge}
                               </span>
                             </div>
-                            <p className="text-[11px] text-zinc-400 font-light truncate leading-relaxed">{exp.company}</p>
+                            <p className={`text-[11px] font-light truncate leading-relaxed ${
+                              theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                            }`}>{exp.company}</p>
                           </div>
                         </div>
                       ))}
@@ -1455,24 +1519,55 @@ export default function App() {
                   </div>
                   
                   <div className={`lg:block ${isEducationExpanded ? "block" : "hidden"}`}>
-                    <div className="space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] before:bg-white/10">
+                    <div className={`space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] ${
+                      theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
+                    }`}>
                       {profile.education.map((edu, i) => (
                         <div key={i} className="flex gap-3 pl-1 relative group">
-                          <div className="h-[22px] w-[22px] rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-indigo-400 group-hover:text-indigo-400 transition-colors duration-300 z-10 shrink-0 mt-0.5">
+                          <div className={`h-[22px] w-[22px] rounded-full border flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
+                            theme === "sepia"
+                              ? "bg-[#FAF4E5] border-[#EADECC]/80 text-[#8C7B69] group-hover:border-indigo-500 group-hover:text-indigo-500"
+                              : theme === "light"
+                              ? "bg-white border-zinc-200 text-zinc-500 group-hover:border-indigo-500 group-hover:text-indigo-500"
+                              : "bg-[#0a0a0a] border-white/10 text-zinc-500 group-hover:border-indigo-400 group-hover:text-indigo-400"
+                          }`}>
                             <div className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
                           </div>
                           <div className="space-y-0.5 min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className="text-[13px] font-medium text-white tracking-tight leading-tight group-hover:text-[#818CF8] transition-colors duration-200">{edu.school}</span>
-                              <span className="text-[8.5px] font-mono px-1 rounded leading-none py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                              <span className={`text-[13px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
+                                theme === "sepia"
+                                  ? "text-[#2B1B0C] group-hover:text-indigo-600"
+                                  : theme === "light"
+                                  ? "text-zinc-950 group-hover:text-indigo-600"
+                                  : "text-white group-hover:text-[#818CF8]"
+                              }`}>{edu.school}</span>
+                              <span className={`text-[8.5px] font-mono px-1 rounded leading-none py-0.5 ${
+                                theme === "sepia"
+                                  ? "bg-indigo-700/10 text-indigo-900 border border-indigo-700/20"
+                                  : theme === "light"
+                                  ? "bg-indigo-100 text-indigo-800 border border-indigo-200"
+                                  : "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20"
+                              }`}>
                                 {edu.info}
                               </span>
                             </div>
-                            <p className="text-[11px] text-zinc-400 font-light leading-relaxed">{edu.dept}</p>
+                            <p className={`text-[11px] font-light leading-relaxed ${
+                              theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                            }`}>{edu.dept}</p>
                             {edu.activities && edu.activities.length > 0 && (
                               <div className="flex flex-wrap gap-1 mt-1.5">
                                 {edu.activities.map((act, idx) => (
-                                  <span key={idx} className="text-[9.5px] font-sans px-1.5 py-0.5 rounded bg-zinc-800/80 text-zinc-300 border border-zinc-700/50">
+                                  <span 
+                                    key={idx} 
+                                    className={`text-[9.5px] font-sans px-1.5 py-0.5 rounded transition-all duration-300 ${
+                                      theme === "sepia"
+                                        ? "bg-[#EADECC]/60 text-[#433422] border border-[#D5C2A5]"
+                                        : theme === "light"
+                                        ? "bg-zinc-100 text-zinc-700 border border-zinc-200"
+                                        : "bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
+                                    }`}
+                                  >
                                     {act}
                                   </span>
                                 ))}
@@ -1548,17 +1643,39 @@ export default function App() {
                       return (
                         <div 
                           key={s.id} 
-                          className={`bg-white/[0.015] border border-white/5 rounded-xl p-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder}`}
+                          className={`border rounded-xl p-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder} ${
+                            theme === "sepia"
+                              ? "bg-[#FAF4E5]/60 border-[#EADECC]/80"
+                              : theme === "light"
+                              ? "bg-zinc-50 border-zinc-200"
+                              : "bg-white/[0.015] border-white/5"
+                          }`}
                         >
-                          <div className="p-1.5 bg-white/5 rounded-lg shrink-0 mt-0.5 border border-white/5 group-hover:scale-105 transition-transform duration-200">
+                          <div className={`p-1.5 rounded-lg shrink-0 mt-0.5 border group-hover:scale-105 transition-transform duration-200 ${
+                            theme === "sepia"
+                              ? "bg-[#FAF4E5] border-[#EADECC]/80"
+                              : theme === "light"
+                              ? "bg-white border-zinc-200"
+                              : "bg-white/5 border-white/5"
+                          }`}>
                             {icon}
                           </div>
                           <div className="space-y-0.5 min-w-0">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-[12.5px] text-white font-medium group-hover:text-amber-400 transition-colors whitespace-nowrap">{s.title}</span>
-                              <span className="text-[7.5px] font-mono bg-white/5 text-zinc-500 px-1 rounded uppercase tracking-wider py-0.5 leading-none shrink-0">{s.badge}</span>
+                              <span className={`text-[12.5px] font-medium group-hover:text-amber-500 transition-colors whitespace-nowrap ${
+                                theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
+                              }`}>{s.title}</span>
+                              <span className={`text-[7.5px] font-mono px-1 rounded uppercase tracking-wider py-0.5 leading-none shrink-0 ${
+                                theme === "sepia"
+                                  ? "bg-amber-950/5 text-[#8C7B69]"
+                                  : theme === "light"
+                                  ? "bg-zinc-100 text-zinc-500"
+                                  : "bg-white/5 text-zinc-500"
+                              }`}>{s.badge}</span>
                             </div>
-                            <p className="text-[10px] text-[#A1A1AA] leading-relaxed font-light line-clamp-1 group-hover:line-clamp-none transition-all duration-300">{s.desc}</p>
+                            <p className={`text-[10px] leading-relaxed font-light line-clamp-1 group-hover:line-clamp-none transition-all duration-300 ${
+                              theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-[#A1A1AA]"
+                            }`}>{s.desc}</p>
                           </div>
                         </div>
                       );
