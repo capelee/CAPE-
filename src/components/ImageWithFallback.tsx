@@ -11,6 +11,8 @@ interface ImageWithFallbackProps {
   zoomable?: boolean;
   priority?: boolean;
   theme?: "dark" | "light" | "sepia";
+  heightAuto?: boolean;
+  onLoad?: () => void;
 }
 
 import React, { useState } from "react";
@@ -31,7 +33,9 @@ export function ImageWithFallback({
   lazy = false,
   zoomable = false,
   priority = false,
-  theme = "dark"
+  theme = "dark",
+  heightAuto = false,
+  onLoad
 }: ImageWithFallbackProps) {
   const [isInView, setIsInView] = useState<boolean>(priority || !lazy);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -213,6 +217,9 @@ export function ImageWithFallback({
 
   const onFinalSuccess = (img: HTMLImageElement) => {
     setIsLoaded(true);
+    if (onLoad) {
+      onLoad();
+    }
     
     // Performance metrics
     const loadTime = performance.now() - loadStartTimeRef.current;
@@ -596,9 +603,12 @@ export function ImageWithFallback({
       onMouseMove={handleMouseMove}
       onClick={handleZoomClick}
       onMouseLeave={handleMouseLeave}
-      className={`relative w-full h-full flex items-center justify-center overflow-hidden bg-neutral-950/20 select-none ${
-        zoomable ? "cursor-zoom-in" : ""
-      }`}
+      className={heightAuto 
+        ? `relative w-full h-auto block overflow-hidden bg-transparent select-none ${zoomable ? "cursor-zoom-in" : ""}`
+        : `relative w-full h-full flex items-center justify-center overflow-hidden bg-neutral-950/20 select-none ${
+            zoomable ? "cursor-zoom-in" : ""
+          }`
+      }
     >
       {/* 簡單、高性能的純色佔位塊，此處在沒有上一張圖作快取時展示 */}
       {!isLoaded && fallbackAttempt < 4 && !lastSuccessfulSrc && (

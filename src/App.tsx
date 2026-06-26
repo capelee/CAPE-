@@ -121,6 +121,7 @@ function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) 
 
 
 import { ImageWithFallback } from "./components/ImageWithFallback";
+import { StitchImageObserver } from "./components/StitchImageObserver";
 
 import { MagneticButton } from "./components/MagneticButton";
 
@@ -858,7 +859,7 @@ export default function App() {
       setActiveImageUrl(activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined));
       setIsVideoActive(!!activeModalItem.videoUrl);
       setIsMaximized(false);
-      if (activeModalItem.category === "網站產品瀑布頁") {
+      if (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") {
         setWaterfallMode("stitch");
       } else {
         setWaterfallMode("single");
@@ -1000,7 +1001,7 @@ export default function App() {
     itemsToPreload.forEach(item => {
       const coverUrl = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : "");
       if (coverUrl) {
-        const optimizedUrl = resolveImageUrl(coverUrl, 600);
+        const optimizedUrl = resolveImageUrl(coverUrl, 360);
         const img = new Image();
         img.referrerPolicy = "no-referrer";
         img.src = optimizedUrl;
@@ -1016,8 +1017,8 @@ export default function App() {
     if (activeModalItem.images) {
       activeModalItem.images.slice(0, 6).forEach(imgUrl => {
         if (imgUrl) {
-          // Preload detail view (1200 px) and thumbnail item select menu (120 px)
-          [1200, 120].forEach(size => {
+          // Preload detail view (800 px) and thumbnail item select menu (120 px)
+          [800, 120].forEach(size => {
             const optimizedUrl = resolveImageUrl(imgUrl, size);
             const img = new Image();
             img.referrerPolicy = "no-referrer";
@@ -2262,7 +2263,7 @@ export default function App() {
               transition={{ type: "spring", duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
               className={`bg-[#0E0E0E] border border-white/10 shadow-2xl relative my-auto transition-all duration-300 ${
-                activeModalItem && activeModalItem.category === "網站產品瀑布頁" && isMaximized
+                activeModalItem && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized
                   ? "max-w-full md:max-w-6xl w-full h-[95vh] md:h-[92vh] flex flex-col rounded-2xl"
                   : "max-w-4xl w-full rounded-2xl"
               }`}
@@ -2301,20 +2302,20 @@ export default function App() {
                 </div>
               )}
 
-              <div className={`grid grid-cols-1 md:grid-cols-12 ${isMaximized && activeModalItem.category === "網站產品瀑布頁" ? "h-full flex-grow overflow-hidden" : ""}`}>
+              <div className={`grid grid-cols-1 md:grid-cols-12 ${isMaximized && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") ? "h-full flex-grow overflow-hidden" : ""}`}>
                 
                 {/* 左側大圖 */}
                 <div className={`bg-zinc-950 relative overflow-hidden flex flex-col justify-between border border-white/5 transition-all duration-300 ${
-                  activeModalItem.category === "網站產品瀑布頁" && isMaximized 
+                  (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized 
                     ? "col-span-12 md:col-span-12 h-full flex-grow" 
                     : "md:col-span-7 h-[330px] sm:h-[450px] md:h-[500px]"
                 }`}>
                   <div className={`relative w-full flex-grow bg-black/40 min-h-[200px] md:min-h-[280px] ${
-                    activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" 
+                    (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" 
                       ? `overflow-y-auto block ${isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "h-[500px]"} scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent` 
-                      : `overflow-hidden flex items-center justify-center ${activeModalItem.category === "網站產品瀑布頁" && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
+                      : `overflow-hidden flex items-center justify-center ${(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
                   }`}>
-                    {activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" ? (
+                    {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" ? (
                       <div className="w-full flex flex-col select-none bg-[#050505]">
                         {/* 頂部操作列 / 提示 */}
                         <div className="sticky top-0 z-20 bg-black/90 backdrop-blur-md px-4 py-2.5 border-b border-white/10 flex items-center justify-between text-[11.5px] font-sans text-zinc-400">
@@ -2349,15 +2350,14 @@ export default function App() {
                         <div className="flex flex-col gap-0 w-full overflow-hidden bg-[#050505]">
                           {activeModalItem.images && activeModalItem.images.map((imgUrl, idx) => (
                             <div key={idx} className="w-full block bg-[#050505] p-0 m-0 border-0 leading-[0]">
-                              <ImageWithFallback 
+                              <StitchImageObserver 
                                 src={imgUrl}
                                 alt={`${activeModalItem.title} - 拼接第 ${idx + 1} 節`}
-                                referrerPolicy="no-referrer"
                                 fallbackTheme={activeModalItem.colorTheme}
                                 categoryName={activeModalItem.category}
                                 titleText={activeModalItem.title}
-                                optimizeSize={1200}
-                                className="w-full h-auto object-contain block p-0 m-0 border-0 outline-none"
+                                idx={idx}
+                                optimizeSize={800}
                               />
                             </div>
                           ))}
@@ -2369,7 +2369,7 @@ export default function App() {
                       </div>
                     ) : (
                       <>
-                        {activeModalItem.category === "網站產品瀑布頁" && (
+                        {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && (
                           <div className="absolute top-3 left-3 z-[25] hidden md:flex items-center gap-2">
                             <button
                               type="button"
@@ -2416,7 +2416,7 @@ export default function App() {
                               fallbackTheme={activeModalItem.colorTheme}
                               categoryName={activeModalItem.category}
                               titleText={activeModalItem.title}
-                              optimizeSize={1200}
+                              optimizeSize={800}
                               className="w-full h-full object-contain transition-all duration-300"
                               zoomable={true}
                             />
@@ -2525,7 +2525,7 @@ export default function App() {
                   </div>
 
                   {/* Thumbnail gallery selector */}
-                  {activeModalItem.category === "網站產品瀑布頁" && waterfallMode === "stitch" ? (
+                  {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" ? (
                     <div className="relative z-10 w-full bg-[#090909] px-4 py-3 border-t border-white/10 shrink-0 select-none">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                         <div className="space-y-0.5">
@@ -2626,7 +2626,7 @@ export default function App() {
                 </div>
 
                 {/* 右側資訊 */}
-                {!(activeModalItem.category === "網站產品瀑布頁" && isMaximized) && (
+                {!((activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized) && (
                   <div className="md:col-span-5 p-6 lg:p-8 flex flex-col md:h-[500px] border-t md:border-t-0 md:border-l border-white/5">
                     
                     {/* 標題 (靜態不滾動) */}

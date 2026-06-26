@@ -345,7 +345,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             fallbackTheme={item.colorTheme}
             categoryName={item.category}
             titleText={item.title}
-            optimizeSize={600}
+            optimizeSize={360}
             className={`w-full h-full object-cover transform transition-all duration-700 ease-out ${
               isHovered ? "scale-105" : "scale-100"
             }`}

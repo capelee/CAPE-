@@ -9332,5 +9332,96 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1PiYqgHiUnUIM2LNNwAY7G154j1UwNtyN"
     ],
     "driveFolderId": "1pXm-oYFXs_Ty_ZPkaI6ZC6TQLPBf7VV4"
+  },
+  {
+    "id": "global-warming-poster",
+    "category": "平面海報設計",
+    "title": "全球暖化 公益海報",
+    "titleEn": "Global Warming Public Service Poster",
+    "philosophy": "以漸變藍黑與冰川消融意象為底，結合不對稱網格。將北極熊剪影、海平面上升與乾涸大地進行點線面構成，搭配簡練無襯線字體，呈現氣候變遷與環境危機之視覺張力。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "點線面構成",
+      "視覺排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1cBXJzUjXxHZz3ULl8yYMrBnDOuCRhWLi",
+    "placeholderId": "IMAGE_GLOBAL_WARMING_POSTER",
+    "colorTheme": "from-[#0b1b2d] via-[#1a2d42] to-[#040c14]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cBXJzUjXxHZz3ULl8yYMrBnDOuCRhWLi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1r7CLPraNS4OA2wPL8F02tKMFWmKo3uLi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zlgfvzjBRO3kQYzvo46QK8Lb8vUlftHh",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fEYlE1RKMMHOcHnh0bQXWPQUSEv-7oNx"
+    ],
+    "driveFolderId": "1x3iUAs-TzPrRXnHZw8kOgBhTPKJMtnU5"
+  },
+  {
+    "id": "blood-donation-poster",
+    "category": "平面海報設計",
+    "title": "捐血 公益海報",
+    "titleEn": "Blood Donation Public Service Poster",
+    "philosophy": "以高明度紅與白雙色為色彩基調，結合結構化不對稱網格。將愛心與滴血符號進行點線面構成，搭配無襯線展示體，在簡約版面中傳遞公益訴求，展現清晰易讀之視覺張力。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "點線面構成",
+      "視覺排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=13FtnF08XAIxQpi4jAYeimMACmvHyy0ne",
+    "placeholderId": "IMAGE_BLOOD_DONATION_POSTER",
+    "colorTheme": "from-[#3a0a0d] via-[#7d1c22] to-[#120304]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=13FtnF08XAIxQpi4jAYeimMACmvHyy0ne",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1roe4B2tdCadJXTEfILh_vE2lJwFBoRpR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YuinagJpgjH0IYlDqoaPWyoMJ3egyKqU"
+    ],
+    "driveFolderId": "1THuN0wDJTGvN98yiIWIfsAuksjiFtajW"
+  },
+  {
+    "id": "unique-personality-poster",
+    "category": "平面海報設計",
+    "title": "你未必成績拔萃，但肯定與眾不同",
+    "titleEn": "Unique and Outstanding Public Service Poster",
+    "philosophy": "以明亮暖黃與深沉黑白雙色對比，結合非對稱網格。運用簡潔點線面與圖案符號進行視覺構成，搭配粗體無襯線字體，在寬廣的留白佈局中，展現富有個性的現代公益海報美學。",
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "海報設計",
+      "點線面構成",
+      "視覺排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1JoG9REOdvKZy9I2D0Y9zhdrk8teAIebT",
+    "placeholderId": "IMAGE_UNIQUE_PERSONALITY_POSTER",
+    "colorTheme": "from-[#1c1c1e] via-[#2c2c2e] to-[#0c0c0e]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JoG9REOdvKZy9I2D0Y9zhdrk8teAIebT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AfaqFjy_7-6XgGVdOP191q8Z0jbu4q-H"
+    ],
+    "driveFolderId": "18OTCj414T72uyGxw8xIkkvV0FEtYhoLq"
+  },
+  {
+    "id": "pink-afternoon-jungle-date",
+    "category": "平面海報設計",
+    "title": "粉色下午-叢林約會",
+    "titleEn": "Pink Afternoon: Jungle Date Character IP Illustration",
+    "philosophy": "以粉嫩柔和色彩與綠意對比為底，結合不對稱網格。運用溫潤的手繪線條與幾何塊面進行角色造型構成，搭配簡潔無襯線字體，呈現溫馨趣味的叢林約會插畫美學。",
+    "tools": [
+      "Ai",
+      "Procreate",
+      "角色插畫",
+      "向量插畫",
+      "色彩配色"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1HMNzbni4RcvDniNHx7soFZvkdJPHS0mw",
+    "placeholderId": "IMAGE_PINK_AFTERNOON_JUNGLE_DATE",
+    "colorTheme": "from-[#3a1a24] via-[#5e2b3c] to-[#1a0a10]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HMNzbni4RcvDniNHx7soFZvkdJPHS0mw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kMGEEjjrPhEFBuSb4BpDbZRc_29PZcej"
+    ],
+    "driveFolderId": "1a6iKQ3Z8NYayYdLmb4fRNDSNEgAsUB7k"
   }
 ];
