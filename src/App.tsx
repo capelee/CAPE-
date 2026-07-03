@@ -130,6 +130,7 @@ import { InteractiveMascot } from "./components/InteractiveMascot";
 
 
 import { PortfolioCard } from "./components/PortfolioCard";
+import { MinimalistLogo } from "./components/MinimalistLogo";
 
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
@@ -213,18 +214,13 @@ export default function App() {
   });
   
   React.useEffect(() => {
-    import("./data").then(module => {
-      const initialItems = module.initialPortfolioData;
-      initialDataRef.current = initialItems;
-      setItems(initialItems);
-
-      // Dynamically load images from Google Drive folders for cloud-based items
-      initialItems.forEach(item => {
+    // Helper to fetch folder images for Google Drive integration
+    const setupFolderImages = (portfolioItems: PortfolioItem[]) => {
+      portfolioItems.forEach(item => {
         if (item.driveFolderId) {
           fetchFolderImages(item.driveFolderId).then(images => {
             if (images && images.length > 0) {
               const currentImagesCount = item.images ? item.images.length : 0;
-              // Only update state if we fetch more images than currently available to prevent unnecessary flash and re-renders
               if (images.length > currentImagesCount) {
                 const updateItem = (prevList: PortfolioItem[]) =>
                   prevList.map(p => {
@@ -246,7 +242,35 @@ export default function App() {
           });
         }
       });
-    });
+    };
+
+    const loadLocalData = () => {
+      import("./data").then(module => {
+        const initialItems = module.initialPortfolioData;
+        initialDataRef.current = initialItems;
+        setItems(initialItems);
+        setupFolderImages(initialItems);
+      });
+    };
+
+    // Try live API first to support direct hot updates without static module cache issues
+    fetch("/api/portfolio")
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error("API not ready");
+      })
+      .then(res => {
+        if (res.success && res.data && res.data.length > 0) {
+          initialDataRef.current = res.data;
+          setItems(res.data);
+          setupFolderImages(res.data);
+        } else {
+          loadLocalData();
+        }
+      })
+      .catch(() => {
+        loadLocalData();
+      });
   }, []);
 
   const [isRandomMode, setIsRandomMode] = useState<boolean>(false);
@@ -1184,9 +1208,7 @@ export default function App() {
       >
         <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-white text-xs sm:text-sm font-semibold font-display shadow-lg shadow-amber-950/20 border border-white/10 shrink-0">
-              CP
-            </div>
+            <MinimalistLogo size={36} theme={theme} className="shrink-0" />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className={`font-display font-semibold tracking-tight text-xs sm:text-sm md:text-md uppercase transition-colors duration-300 ${brandingTextClass}`}>capelee</span>
@@ -1307,9 +1329,7 @@ export default function App() {
               {/* 第一欄：個人身分與品牌自述 (佔 4 欄) */}
               <div className="lg:col-span-4 space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-display font-semibold shadow-xl shadow-amber-500/10 border border-white/10 shrink-0">
-                    CP
-                  </div>
+                  <MinimalistLogo size={64} theme={theme} className="shrink-0" />
                   <div>
                     <h1 className={`text-2xl md:text-3xl font-display font-bold tracking-tight ${
                       theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-950" : "text-white"
