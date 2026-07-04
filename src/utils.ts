@@ -97,7 +97,10 @@ export function getOptimizedGoogleUrl(url: string, size?: number): string {
 
   if (id) {
     const s = size ? size : 600;
-    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${extraParams}`;
+    const busterValue = Math.floor(Date.now() / 120000);
+    const busterParam = `&v=${busterValue}`;
+    const finalExtraParams = extraParams.includes("&v=") ? extraParams : `${extraParams}${busterParam}`;
+    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${finalExtraParams}`;
   }
   if (url.includes("lh3.googleusercontent.com")) {
     const cleanUrl = url.split("=")[0];
@@ -167,17 +170,23 @@ export function resolveImageUrl(url: string, size?: number): string {
   if (id) {
     const s = size ? size : 1000;
 
+    // Use a stable 2-minute cache buster to force browsers and CDN gateways to fetch the latest version 
+    // of modified files while preventing visual flashes on every single re-render.
+    const busterValue = Math.floor(Date.now() / 120000);
+    const busterParam = `&v=${busterValue}`;
+    const finalExtraParams = extraParams.includes("&v=") ? extraParams : `${extraParams}${busterParam}`;
+
     if (DRIVE_THUMBNAIL_CACHE.has(id)) {
       const cachedUrlType = DRIVE_THUMBNAIL_CACHE.get(id);
       if (cachedUrlType === 'view') {
-        return `https://drive.google.com/uc?export=view&id=${id}${extraParams}`;
+        return `https://drive.google.com/uc?export=view&id=${id}${finalExtraParams}`;
       } else if (cachedUrlType === 'lh3') {
-        return `https://lh3.googleusercontent.com/d/${id}=w${s}${extraParams}`;
+        return `https://lh3.googleusercontent.com/d/${id}=w${s}${finalExtraParams}`;
       }
     }
     
     // Default: Use high-availability Drive thumbnail API to completely bypass CORS 403 and referrer limits
-    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${extraParams}`;
+    return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${finalExtraParams}`;
   }
   return getOptimizedGoogleUrl(targetUrl, size);
 }

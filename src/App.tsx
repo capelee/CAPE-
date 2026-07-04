@@ -152,17 +152,64 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 }
 
 function extractDriveIdsFromHtml(html: string, folderId: string): string[] {
-  const fileIdRegex = /\/file\/d\/([a-zA-Z0-9_-]{28,45})/g;
-  const ids: string[] = [];
+  if (!html) return [];
+
+  // Unescape standard HTML characters in Google Drive's embedded JSON payload
+  const cleanHtml = html
+    .replace(/\\x22/g, '"')
+    .replace(/\\x27/g, "'")
+    .replace(/\\x5b/g, '[')
+    .replace(/\\x5d/g, ']')
+    .replace(/\\x2c/g, ',');
+
+  // Find file arrays of the shape: ["FILE_ID", ["FOLDER_ID"], "FILENAME", "MIME_TYPE"
+  const fileArrayRegex = /"([a-zA-Z0-9_-]{28,45})"\s*,\s*\[\s*"([a-zA-Z0-9_-]{28,45})"\s*\]\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"/g;
+  const results: Array<{ id: string; name: string }> = [];
+  const seenIds = new Set<string>();
+
   let match;
-  while ((match = fileIdRegex.exec(html)) !== null) {
-    if (match[1] && !ids.includes(match[1])) {
-      if (match[1] !== folderId && match[1].length >= 28) {
-        ids.push(match[1]);
+  while ((match = fileArrayRegex.exec(cleanHtml)) !== null) {
+    const [_, fileId, parentFolderId, fileName] = match;
+    if (parentFolderId === folderId && !seenIds.has(fileId)) {
+      seenIds.add(fileId);
+      results.push({ id: fileId, name: fileName });
+    }
+  }
+
+  // Fallback 1: Match single-quoted JSON format if double-quoted didn't find anything
+  if (results.length === 0) {
+    const singleQuoteRegex = /'([a-zA-Z0-9_-]{28,45})'\s*,\s*\[\s*'([a-zA-Z0-9_-]{28,45})'\s*\]\s*,\s*'([^']+)'\s*,\s*'([^']+)'/g;
+    let matchSingle;
+    while ((matchSingle = singleQuoteRegex.exec(cleanHtml)) !== null) {
+      const [_, fileId, parentFolderId, fileName] = matchSingle;
+      if (parentFolderId === folderId && !seenIds.has(fileId)) {
+        seenIds.add(fileId);
+        results.push({ id: fileId, name: fileName });
       }
     }
   }
-  return ids.map(id => `https://drive.google.com/thumbnail?sz=w1000&id=${id}`);
+
+  // Fallback 2: Legacy fallback matching /file/d/ links
+  if (results.length === 0) {
+    const fileIdRegex = /\/file\/d\/([a-zA-Z0-9_-]{28,45})/g;
+    let matchLegacy;
+    while ((matchLegacy = fileIdRegex.exec(cleanHtml)) !== null) {
+      const fileId = matchLegacy[1];
+      if (fileId && !seenIds.has(fileId)) {
+        if (fileId !== folderId && fileId.length >= 28) {
+          seenIds.add(fileId);
+          results.push({ id: fileId, name: `file_${fileId}` });
+        }
+      }
+    }
+  }
+
+  // Sort results by filename numerically so slides are rendered in order
+  results.sort((a, b) => {
+    return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+  });
+
+  return results.map(r => `https://drive.google.com/thumbnail?sz=w1000&id=${r.id}`);
 }
 
 async function fetchFolderImages(folderId: string): Promise<string[]> {
