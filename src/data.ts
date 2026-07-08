@@ -3174,6 +3174,28 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
+    "id": "naoit-badge",
+    "category": "商品周邊企業禮贈品",
+    "title": "NAOIT中華民國口腔植體學會北區分會徽章與徽章盒",
+    "titleEn": "NAOIT Dental Implantology Society Northern Branch Badge & Box",
+    "philosophy": "以深藍與金色為主色調，將口腔植體意象與學會縮寫幾何化結合，構成雙圓對稱結構。包裝盒結構搭配霧面燙金工藝與高密度海綿內襯，提升徽章收納質感與學術分會的專業識別度。",
+    "isHighlight": false,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "包裝設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=13qI1Kwvr4dQvb6RTCD45fwnujmOghyeu",
+    "placeholderId": "IMAGE_NAOIT_BADGE",
+    "colorTheme": "from-[#0A192F] via-[#172A45] to-[#0A192F]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=13qI1Kwvr4dQvb6RTCD45fwnujmOghyeu",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-c-iHlB9-czKa6M_rPl_1Pii85EenDvQ"
+    ],
+    "driveFolderId": "1V_LuSZkGn9wYDZYBoh5ZZk5fsRfdoRwM"
+  },
+  {
     "id": "99",
     "category": "企業LOGO與CIS設計",
     "title": "巴迪醫療品牌標誌與企業識別系統",
