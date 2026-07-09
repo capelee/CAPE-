@@ -17,6 +17,112 @@ import { ImageWithFallback } from "./ImageWithFallback";
 import { getCategoryColor } from "../categoryColors";
 import { EXISTING_OPTIMIZED_IMAGES } from "../existingImages";
 
+const getToolStyle = (tool: string, theme: "dark" | "light" | "sepia") => {
+  const t = tool.toLowerCase().trim();
+
+  // Categories: Graphic, Video/Motion, Code/Programming, Branding/Concept
+  let category: "graphic" | "video" | "programming" | "branding";
+
+  if (
+    t.includes("ai") ||
+    t.includes("photoshop") ||
+    t.includes("procreate") ||
+    t.includes("插畫") ||
+    t.includes("向量") ||
+    t.includes("貼圖") ||
+    t.includes("手繪") ||
+    t.includes("3d") ||
+    t.includes("模型") ||
+    t.includes("渲染") ||
+    t.includes("幾何") ||
+    t.includes("圖像") ||
+    t.includes("海報") ||
+    t.includes("字體") ||
+    t.includes("視覺") ||
+    t.includes("繪製")
+  ) {
+    category = "graphic";
+  } else if (
+    t.includes("ae") ||
+    t.includes("premiere") ||
+    t.includes("剪輯") ||
+    t.includes("動態") ||
+    t.includes("分鏡") ||
+    t.includes("動畫") ||
+    t.includes("影片") ||
+    t.includes("特效") ||
+    t.includes("音效") ||
+    t.includes("配樂") ||
+    t.includes("多媒體") ||
+    t.includes("影音")
+  ) {
+    category = "video";
+  } else if (
+    t.includes("html") ||
+    t.includes("css") ||
+    t.includes("react") ||
+    t.includes("typescript") ||
+    t.includes("javascript") ||
+    t.includes("vue") ||
+    t.includes("next") ||
+    t.includes("d3") ||
+    t.includes("recharts") ||
+    t.includes("rwd") ||
+    t.includes("網頁") ||
+    t.includes("程式") ||
+    t.includes("排版") ||
+    t.includes("網格") ||
+    t.includes("code") ||
+    t.includes("前端") ||
+    t.includes("資料") ||
+    t.includes("互動") ||
+    t.includes("開發")
+  ) {
+    category = "programming";
+  } else {
+    category = "branding";
+  }
+
+  if (theme === "sepia") {
+    switch (category) {
+      case "graphic":
+        return "bg-[#EAE0CA] text-[#4F3824] border-[#DECFA9] hover:bg-[#E3D7BB] hover:border-[#D0C098]";
+      case "video":
+        return "bg-[#ECDAC3] text-[#693E1B] border-[#E1C5A6] hover:bg-[#E2CEB4] hover:border-[#D5B593]";
+      case "programming":
+        return "bg-[#DFE9D4] text-[#22441F] border-[#CFDCBF] hover:bg-[#D5E1C8] hover:border-[#BFCDAD]";
+      case "branding":
+      default:
+        return "bg-[#DAE7EC] text-[#1D3E4F] border-[#C7D9E0] hover:bg-[#CFDEE4] hover:border-[#B5CBD4]";
+    }
+  } else if (theme === "light") {
+    switch (category) {
+      case "graphic":
+        return "bg-indigo-50/80 text-indigo-700 border-indigo-200/60 hover:bg-indigo-100 hover:text-indigo-800 hover:border-indigo-300";
+      case "video":
+        return "bg-rose-50/80 text-rose-700 border-rose-200/60 hover:bg-rose-100 hover:text-rose-800 hover:border-rose-300";
+      case "programming":
+        return "bg-emerald-50/80 text-emerald-700 border-emerald-200/60 hover:bg-emerald-100 hover:text-emerald-800 hover:border-emerald-300";
+      case "branding":
+      default:
+        return "bg-sky-50/80 text-sky-700 border-sky-200/60 hover:bg-sky-100 hover:text-sky-800 hover:border-sky-300";
+    }
+  } else {
+    // dark theme
+    switch (category) {
+      case "graphic":
+        return "bg-indigo-500/10 text-indigo-300 border-indigo-500/20 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-indigo-200";
+      case "video":
+        return "bg-rose-500/10 text-rose-300 border-rose-500/20 hover:bg-rose-500/20 hover:border-rose-500/40 hover:text-rose-200";
+      case "programming":
+        return "bg-emerald-500/10 text-emerald-300 border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40 hover:text-emerald-200";
+      case "branding":
+      default:
+        return "bg-sky-500/10 text-sky-300 border-sky-500/20 hover:bg-sky-500/20 hover:border-sky-500/40 hover:text-sky-200";
+    }
+  }
+};
+
 
 export const PortfolioCard = React.memo(function PortfolioCard({ 
   item, 
@@ -492,14 +598,6 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   </h3>
                 </div>
 
-                <p 
-                  className={`text-xs leading-relaxed font-sans font-light flex-1 line-clamp-3 transition-all duration-400 ease-out ${
-                    isHovered ? "translate-y-[-3px]" : "translate-y-0"
-                  } ${descriptionClassValue}`}
-                >
-                  {item.philosophy}
-                </p>
-
                 {/* 工具 Tags */}
                 <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-400 ease-out ${
                   isHovered ? "translate-y-[-1.2px]" : "translate-y-0"
@@ -507,17 +605,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   {item.tools.map((tech) => (
                     <span 
                       key={tech} 
-                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${
-                        isSepia
-                          ? item.isHighlight
-                            ? "bg-[#F3DFBD] text-[#3E250A] border-amber-600/30 hover:border-amber-600/50"
-                            : "bg-[#EDE2CA] text-[#433422] border-amber-900/10 hover:border-amber-900/20"
-                          : isLight
-                          ? item.isHighlight
-                            ? "bg-[#FFF2D4] text-[#78350F] border-amber-500/25 hover:border-amber-500/40"
-                            : "bg-zinc-100 text-zinc-600 border-zinc-200/80 hover:bg-zinc-200 hover:border-zinc-300 hover:text-zinc-900"
-                          : `bg-white/5 text-zinc-300 hover:text-white border-white/5 group-hover:bg-white/[0.08] group-hover:border-${catColor.accent}/30`
-                      }`}
+                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${getToolStyle(tech, theme)}`}
                     >
                       {tech}
                     </span>
@@ -526,7 +614,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               </div>
             )}
           </div>
-
+ 
           {/* Back Face of the Card */}
           <div
             className={`absolute inset-0 w-full h-full flex flex-col rounded-2xl overflow-hidden p-5 md:p-6 justify-between transition-[background-color,border-color,color] duration-500 ${themeContainerClass}`}
@@ -544,7 +632,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 background: `radial-gradient(circle at 50% 50%, rgba(${catColor.rgbaGlow}, 0.15) 0%, transparent 80%)`
               }}
             />
-
+ 
             <div className="relative z-10 flex flex-col h-full justify-between space-y-3">
               {/* Header: Category & ID */}
               <div className="flex items-center justify-between">
@@ -567,7 +655,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   #{item.id}
                 </span>
               </div>
-
+ 
               {/* Title Block */}
               <div className="space-y-1">
                 <p className={`text-[10px] font-mono tracking-widest uppercase truncate ${titleEnClassValue}`}>
@@ -577,12 +665,26 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   {item.title}
                 </h3>
               </div>
-
-              {/* Footer CTA */}
-              <div className={`pt-2.5 border-t flex items-center justify-between text-[10px] font-medium ${dividerClassValue}`}>
-                <span className={`font-sans tracking-wide ${isSepia ? 'text-[#734C22]/80' : isLight ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                  點擊展開專案多媒體
+ 
+              {/* Technologies / Tools Tags - Auto Expanded Layout */}
+              <div className="flex-1 flex flex-col justify-start space-y-2 pt-2.5 pb-1 overflow-hidden">
+                <span className={`text-[9px] font-sans font-medium block tracking-wider uppercase ${isSepia ? 'text-[#734C22]/70' : isLight ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                  技術與工藝 / Technologies
                 </span>
+                <div className="flex flex-wrap gap-1.5 overflow-y-auto max-h-[110px] pr-0.5 scrollbar-thin">
+                  {item.tools.map((tech) => (
+                    <span 
+                      key={tech} 
+                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${getToolStyle(tech, theme)}`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+ 
+              {/* Footer CTA */}
+              <div className={`pt-2.5 border-t flex items-center justify-end text-[10px] font-medium ${dividerClassValue}`}>
                 <span className={`px-2 py-1 rounded-lg text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm`}>
                   <span>展開</span>
                   <ArrowUpRight className="h-2 w-2 stroke-[2.5]" />

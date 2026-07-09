@@ -30,7 +30,6 @@ import {
   Moon,
   Eye,
   ArrowUp,
-  Shuffle,
   Maximize2,
   Minimize2,
   Search,
@@ -102,16 +101,7 @@ function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) 
             : "none"
       }}
     >
-      <span className="relative z-10 flex items-center gap-1.5">
-        {isActive && (
-          <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSepia ? "bg-[#2B1B0C]" : isLight ? "bg-white" : "bg-black"}`} />
-        )}
-        {!isActive && isHovered && (
-          <span 
-            className="w-1 h-1 rounded-full shrink-0"
-            style={{ backgroundColor: `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.8 : isLight ? 0.9 : 1})` }}
-          />
-        )}
+      <span className="relative z-10">
         {cat === "All" ? "全部精選展示" : cat}
       </span>
     </button>
@@ -320,25 +310,7 @@ export default function App() {
       });
   }, []);
 
-  const [isRandomMode, setIsRandomMode] = useState<boolean>(false);
   const [showAllDetails, setShowAllDetails] = useState<boolean>(false);
-
-  const handleShuffle = () => {
-    const shuffled = [...items];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = shuffled[i];
-      shuffled[i] = shuffled[j];
-      shuffled[j] = temp;
-    }
-    setItems(shuffled);
-    setIsRandomMode(true);
-  };
-
-  const handleResetOrder = () => {
-    setItems(initialDataRef.current);
-    setIsRandomMode(false);
-  };
 
   // Theme state: "dark" | "light" | "sepia" (stores user preference in localStorage)
   const [theme, setTheme] = useState<"dark" | "light" | "sepia">(() => {
@@ -383,11 +355,11 @@ export default function App() {
     return () => clearTimeout(handler);
   }, [searchInputVal, searchQuery]);
 
-  // Automatically reset visibleCount when category, search query, or order is changed to improve rendering load
+  // Automatically reset visibleCount when category or search query is changed to improve rendering load
   React.useEffect(() => {
     setVisibleCount(12);
     setPrevVisibleCount(0);
-  }, [selectedCategory, searchQuery, isRandomMode]);
+  }, [selectedCategory, searchQuery]);
 
   // Dynamically inject Schema.org JSON-LD structured data (CreativeWork) for SEO
   React.useEffect(() => {
@@ -767,6 +739,7 @@ export default function App() {
   const [isMobileExpanded, setIsMobileExpanded] = useState<boolean>(false);
   const [isWorkExpanded, setIsWorkExpanded] = useState<boolean>(false);
   const [isEducationExpanded, setIsEducationExpanded] = useState<boolean>(false);
+  const [isCertificatesExpanded, setIsCertificatesExpanded] = useState<boolean>(false);
   const [isCapabilitiesExpanded, setIsCapabilitiesExpanded] = useState<boolean>(false);
 
   const checkCategoriesScroll = React.useCallback(() => {
@@ -822,23 +795,8 @@ export default function App() {
             setShowScrollTop(showScroll);
           }
 
-          // Show/Hide top navbar without triggering React state updates if value is identical
-          if (currentScrollY < 10) {
-            if (!scrollTrackerRef.current.showHeader) {
-              scrollTrackerRef.current.showHeader = true;
-              setShowHeader(true);
-            }
-          } else if (currentScrollY > lastY + 5) { // scrolling down
-            if (scrollTrackerRef.current.showHeader) {
-              scrollTrackerRef.current.showHeader = false;
-              setShowHeader(false);
-            }
-          } else if (currentScrollY < lastY - 5) { // scrolling up
-            if (!scrollTrackerRef.current.showHeader) {
-              scrollTrackerRef.current.showHeader = true;
-              setShowHeader(true);
-            }
-          }
+          // Always keep top navbar visible and do not trigger show/hide state updates
+          scrollTrackerRef.current.showHeader = true;
 
           lastY = currentScrollY;
           ticking = false;
@@ -959,6 +917,12 @@ export default function App() {
       { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
       { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"] }
     ],
+    certificates: [
+      { name: "Adobe Certified Professional in Visual Design", issuer: "Photoshop & Illustrator 專業雙認證" },
+      { name: "Adobe Certified Professional in Video Design", issuer: "Premiere Pro & After Effects 影音雙認證" },
+      { name: "TQC+ 影像處理、向量視覺設計 專業人員", issuer: "中華民國電腦技能基金會" },
+      { name: "丙級廣告設計技術士", issuer: "中華民國勞動部國家技術士證" }
+    ],
     experienceList: [
       { title: "特約專案設計師", company: "立陽鴻企業禮贈品", badge: "現任" },
       { title: "整合行銷設計師", company: "歡喜媛媛有限公司 / 巴迪醫療器材有限公司", badge: "曾任" },
@@ -1018,16 +982,13 @@ export default function App() {
       );
     }
     
-    if (!isRandomMode) {
-      // Sort: isHighlight === true projects go to the front
-      return [...list].sort((a, b) => {
-        const aVal = a.isHighlight ? 1 : 0;
-        const bVal = b.isHighlight ? 1 : 0;
-        return bVal - aVal;
-      });
-    }
-    return list;
-  }, [items, selectedCategory, searchQuery, isRandomMode]);
+    // Sort: isHighlight === true projects go to the front
+    return [...list].sort((a, b) => {
+      const aVal = a.isHighlight ? 1 : 0;
+      const bVal = b.isHighlight ? 1 : 0;
+      return bVal - aVal;
+    });
+  }, [items, selectedCategory, searchQuery]);
 
   const visibleItems = useMemo(() => {
     return filteredItems.slice(0, visibleCount);
@@ -1235,7 +1196,7 @@ export default function App() {
       {/* 頂部導航列 (Branding Bar) */}
       <motion.header
         initial={{ y: 0 }}
-        animate={{ y: showHeader ? 0 : -100 }}
+        animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 280, damping: 30 }}
         style={{
           "--header-bg": headerBg,
@@ -1266,14 +1227,6 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-3 md:gap-4">
-            <div className="hidden md:flex items-center gap-4 text-xs">
-              <a href="#designer-bento" className={navLinkClass}>關於我</a>
-              <span className={navSlashClass}>/</span>
-              <a href="#portfolio-grid" className={navLinkClass}>精選作品</a>
-              <span className={navSlashClass}>/</span>
-              <a href="#designer-bento" className={navLinkClass}>專業範疇</a>
-            </div>
-
             <div className="flex items-center gap-1 sm:gap-2">
               {/* 我的工作流按鈕 (桌機 & 行動裝置通用) */}
               <button
@@ -1591,15 +1544,21 @@ export default function App() {
                       theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                     }`}>
                       {profile.education.map((edu, i) => (
-                        <div key={i} className="flex gap-3 pl-1 relative group">
-                          <div className={`h-[22px] w-[22px] rounded-full border flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
+                        <div key={i} className={`flex gap-3 p-2 -mx-2 rounded-xl relative group transition-all duration-300 ${
+                          theme === "sepia"
+                            ? "hover:bg-[#E3D3BE]/40"
+                            : theme === "light"
+                            ? "hover:bg-zinc-100"
+                            : "hover:bg-white/[0.03]"
+                        }`}>
+                          <div className={`h-[22px] w-[22px] rounded-full border flex items-center justify-center transition-all duration-300 z-10 shrink-0 mt-0.5 group-hover:scale-110 ${
                             theme === "sepia"
                               ? "bg-[#FAF4E5] border-[#EADECC]/80 text-[#8C7B69] group-hover:border-indigo-500 group-hover:text-indigo-500"
                               : theme === "light"
                               ? "bg-white border-zinc-200 text-zinc-500 group-hover:border-indigo-500 group-hover:text-indigo-500"
                               : "bg-[#0a0a0a] border-white/10 text-zinc-500 group-hover:border-indigo-400 group-hover:text-indigo-400"
                           }`}>
-                            <div className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
+                            <div className="h-1.5 w-1.5 rounded-full bg-indigo-500 transition-transform duration-300 group-hover:scale-125" />
                           </div>
                           <div className="space-y-0.5 min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
@@ -1641,6 +1600,72 @@ export default function App() {
                                 ))}
                               </div>
                             )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 專業證照 */}
+                <div className={`space-y-3.5 pt-4 border-t transition-all duration-300 ${
+                  theme === "sepia"
+                    ? "border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                    : theme === "light"
+                    ? "border-zinc-200 max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                    : "border-white/5 max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                }`}>
+                  <div 
+                    onClick={() => {
+                      if (window.innerWidth < 1024) {
+                        setIsCertificatesExpanded(!isCertificatesExpanded);
+                      }
+                    }}
+                    className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <Award className="h-4 w-4 text-amber-500 shrink-0" />
+                      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Certifications / 專業證照</p>
+                    </div>
+                    {/* 手機版折疊/展開指示器 */}
+                    <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
+                      <span className="text-[8.5px] font-mono opacity-60">
+                        {isCertificatesExpanded ? "摺疊" : `展開 (${profile.certificates.length})`}
+                      </span>
+                      <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isCertificatesExpanded ? "rotate-180 text-amber-500" : ""}`} />
+                    </div>
+                  </div>
+                  
+                  <div className={`lg:block ${isCertificatesExpanded ? "block" : "hidden"}`}>
+                    <div className="space-y-3 pt-2 lg:pt-0">
+                      {profile.certificates.map((cert, i) => (
+                        <div key={i} className={`flex items-start gap-2.5 p-2 -mx-2 rounded-xl group transition-all duration-300 ${
+                          theme === "sepia"
+                            ? "hover:bg-[#E3D3BE]/40"
+                            : theme === "light"
+                            ? "hover:bg-zinc-100"
+                            : "hover:bg-white/[0.03]"
+                        }`}>
+                          <div className={`h-5 w-5 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 mt-0.5 group-hover:scale-110 ${
+                            theme === "sepia"
+                              ? "bg-[#FAF4E5] border-[#EADECC]/80 text-amber-700 group-hover:border-amber-500 group-hover:text-amber-500"
+                              : theme === "light"
+                              ? "bg-white border-zinc-200 text-zinc-400 group-hover:border-amber-500 group-hover:text-amber-500"
+                              : "bg-[#0a0a0a] border-white/10 text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400"
+                          }`}>
+                            <CheckCircle2 className="h-3 w-3 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
+                          </div>
+                          <div className="space-y-0.5 min-w-0">
+                            <span className={`text-[12.5px] font-medium tracking-tight leading-tight transition-colors duration-200 block ${
+                              theme === "sepia"
+                                ? "text-[#2B1B0C] group-hover:text-amber-700"
+                                : theme === "light"
+                                ? "text-zinc-950 group-hover:text-amber-700"
+                                : "text-white group-hover:text-amber-400"
+                            }`}>{cert.name}</span>
+                            <p className={`text-[11px] font-light leading-normal ${
+                              theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                            }`}>{cert.issuer}</p>
                           </div>
                         </div>
                       ))}
@@ -1759,16 +1784,12 @@ export default function App() {
         {/* 區塊標題 & 卡片過濾器 */}
         <section id="portfolio-grid" className="space-y-8 scroll-mt-24">
           <div className="max-w-3xl mx-auto text-center space-y-3">
-            <span className="inline-flex items-center gap-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase tracking-wider">
-              Selected Showcase
-            </span>
             <h2 className="text-3xl md:text-4xl font-display font-medium text-white tracking-tight">
-              探索精選設計維度
+              探索設計作品
             </h2>
             <div className="h-[2px] w-12 bg-amber-500 mx-auto rounded-full"></div>
             <p className="text-zinc-400 text-xs md:text-sm leading-relaxed font-light">
-              融合藝術美學與商業功能思考，為品牌創造可視的商業價值。
-              點擊任何作品卡片可查看詳實的設計理念與工具標籤分析。
+              點擊作品查看詳細資訊
             </p>
           </div>
 
@@ -1924,12 +1945,6 @@ export default function App() {
                             }`}
                           >
                             <span className="truncate">{cat === "All" ? "全部精選展示" : cat}</span>
-                            {isActive && (
-                              <span 
-                                className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px_currentColor]"
-                                style={{ backgroundColor: `rgba(${catColor.rgbaGlow}, 1)` }}
-                              />
-                            )}
                           </button>
                         );
                       })}
@@ -2071,58 +2086,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* 隨機瀏覽玩法/洗牌控制項 */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1 pb-3">
-            <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-[10px] uppercase tracking-widest">
-              <Shuffle className={`h-3.5 w-3.5 text-amber-500/80 ${isRandomMode ? "animate-pulse" : ""}`} />
-              <span>Browse Mode / 瀏覽模式：</span>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <div className="inline-flex rounded-full p-0.5 bg-white/[0.02] border border-white/5 shadow-inner">
-                <MagneticButton
-                  type="button"
-                  id="btn_mode_normal"
-                  onClick={handleResetOrder}
-                  className={`px-3.5 py-1 text-xs font-sans rounded-full transition-all duration-300 cursor-pointer ${
-                    !isRandomMode
-                      ? "bg-amber-500 text-black font-semibold shadow-md"
-                      : "text-zinc-400 hover:text-zinc-200"
-                  }`}
-                >
-                  預設排序
-                </MagneticButton>
-                
-                <MagneticButton
-                  type="button"
-                  id="btn_mode_shuffle"
-                  onClick={handleShuffle}
-                  className={`px-3.5 py-1 text-xs font-sans rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
-                    isRandomMode
-                      ? "bg-amber-500 text-black font-semibold shadow-md"
-                      : "text-zinc-400 hover:text-zinc-200"
-                  }`}
-                >
-                  <span>隨機洗牌瀏覽</span>
-                </MagneticButton>
-              </div>
 
-              {isRandomMode && (
-                <MagneticButton
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  type="button"
-                  id="btn_reshuffle"
-                  onClick={handleShuffle}
-                  className="px-3 py-1 text-xs bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20 hover:border-amber-500/40 rounded-full cursor-pointer transition-all duration-300 flex items-center gap-1 font-sans active:scale-95"
-                  title="重新洗牌一次"
-                >
-                  <span>再洗一次 🎲</span>
-                </MagneticButton>
-              )}
-            </div>
-          </div>
 
           {/* 作品卡片 RWD 呈現 */}
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]">
