@@ -188,6 +188,12 @@ const responseSchema = {
 // API Routes
 app.get("/api/portfolio", (req, res) => {
   try {
+    // Explicitly disable any caching on client, CDN, and browser levels
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.setHeader("Surrogate-Control", "no-store");
+    
     const data = getLatestPortfolioData();
     res.json({ success: true, data });
   } catch (err: any) {

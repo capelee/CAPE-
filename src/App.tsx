@@ -301,7 +301,7 @@ export default function App() {
     };
 
     // Try live API first to support direct hot updates without static module cache issues
-    fetch("/api/portfolio")
+    fetch(`/api/portfolio?t=${Date.now()}`)
       .then(res => {
         if (res.ok) return res.json();
         throw new Error("API not ready");

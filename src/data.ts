@@ -736,7 +736,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "WILD BURGER CLUB™ 品牌吉祥物 IP 全家族設定",
     "titleEn": "WILD BURGER CLUB: Whole Mascot Family IP & Stickers Visual Design",
-    "philosophy": "圖中畫著WILD BURGER CLUB™ 品牌吉祥物 IP 全家族設定在生活裡生氣或開心的怪表情，配上大大的驚嘆號與生活詞彙，適合在日常聊天中快速表達想法。",
+    "philosophy": "以復古美式插畫為底，融合高飽和色彩與幽默逗趣的表情。透過粗獷線條與簡約幾何形體，塑造各具性格的漢堡家族成員，展現極具社群凝聚力與美式幽默的IP品牌視覺美學。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -744,10 +744,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "角色設定",
       "向量插畫"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1hx99nCHNlKnCUr1ZjPKJi3WV1jHsk6vH",
     "placeholderId": "IMAGE_WILD_BURGER_FAMILY",
     "colorTheme": "from-[#0d141d] via-[#102435] to-[#0d141d]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hx99nCHNlKnCUr1ZjPKJi3WV1jHsk6vH",
       "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
       "https://drive.google.com/thumbnail?sz=w1000&id=1dmYX08sqLYCrGUOiMoug9D7E60b1X_Mr",
       "https://drive.google.com/thumbnail?sz=w1000&id=1oto9F8ATuP7aaEOr4e9dAt9S5NK07ksR",
@@ -883,6 +884,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "品牌延展"
     ],
     "imageUrl": "/images/optimized/19PGK-ZonFWWhX9ZPPDMTU_RdGyV0Afvn.webp",
+    "videoUrl": "https://youtu.be/7TCn7_x03kM",
     "placeholderId": "blend-monster-mascot-01",
     "colorTheme": "from-[#0d1f11] via-[#103a19] to-[#0d1f11]",
     "images": [
@@ -909,7 +911,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "SHONE CITY CREW 恐龍家族 IP 吉祥物與品牌貼圖",
     "titleEn": "SHONE CITY CREW: Street-Chic, Music & Cozy Lifestyle Mascot Family & Sticker IP Design",
-    "philosophy": "貼圖畫出SHONE CITY CREW 恐龍家族 IP 吉祥物與品牌眨眼、大笑等各種好玩的生活動作，旁邊配上日常常用的聊天字，方便大家在發訊息時隨時傳送。",
+    "philosophy": "以街頭潮流與音樂生活為底，融合繽紛色彩與生動的手繪線條，描繪多樣化的趣味生活動態。搭配日常實用對話文字，形塑具社群凝聚力與溫馨療癒感的IP品牌貼圖美學。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -918,10 +920,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "手繪草稿",
       "符號設計"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1g8RhvSdRVAIIMYD1wg58ML7f10zuvW21",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=17S5-0lfUzk1Pm9psD7eRcQczL3w5UcZo",
     "placeholderId": "IMAGE_DINO_CREW",
     "colorTheme": "from-[#0D1527] via-[#102B4B] to-[#0D1527]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=17S5-0lfUzk1Pm9psD7eRcQczL3w5UcZo",
       "https://drive.google.com/thumbnail?sz=w1000&id=1g8RhvSdRVAIIMYD1wg58ML7f10zuvW21",
       "https://drive.google.com/thumbnail?sz=w1000&id=1zERUOnN5bzc36a5tx-XoAhxEOzDam_JX"
     ]
@@ -938,10 +941,12 @@ export const initialPortfolioData: PortfolioItem[] = [
       "IP角色",
       "吉祥物設計"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1Rw62baTyGYK3jjDnOXZScGybtKHFxc0I",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1a77oQSm8L2XYk3Z7TQDAogMJOykyvWwc",
+    "videoUrl": "https://youtu.be/oHdcTw5-SIw",
     "placeholderId": "IMAGE_DINO",
     "colorTheme": "from-[#0A192F] via-[#112240] to-[#0A192F]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1a77oQSm8L2XYk3Z7TQDAogMJOykyvWwc",
       "https://drive.google.com/thumbnail?sz=w1000&id=1Rw62baTyGYK3jjDnOXZScGybtKHFxc0I",
       "https://drive.google.com/thumbnail?sz=w1000&id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG"
     ]
@@ -951,19 +956,22 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "Ptera 皮特拉吉祥物 IP角色與貼圖",
     "titleEn": "Ptera the Sky Explorer: Tech-Street Adventure IP & Sticker Design",
-    "philosophy": "主角帶著Ptera 皮特拉吉祥物 IP角色與代表性的生活對白與俏皮姿勢，平時在群組聊天傳送很實用，用最親近的方法帶給朋友好心情。",
+    "philosophy": "以活潑鮮明的亮藍色調為基調，結合流暢的手繪有機線條與生動日常動態。透過簡約富張力的表情符號與實用對話排版，提升社群互動趣味，展現具科技街頭感的角色IP視覺美學。",
     "tools": [
       "Ai",
-      "2D 原畫概念草稿",
-      "IP 核心品牌包裝",
-      "插畫貼圖情境開發"
+      "2D草稿",
+      "品牌包裝",
+      "貼圖設計"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1WR4TI87XZbt53ySarce8wVPWkNbxJMnZ",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1EUBrl9Pkgrc-PKZkjjM2Gii9ty_4rjD0",
+    "videoUrl": "https://youtu.be/QM2U6jCALRo",
     "placeholderId": "IMAGE_DINO_NEW_1",
     "colorTheme": "from-[#1A0E2E] via-[#321A5C] to-[#1A0E2E]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1EUBrl9Pkgrc-PKZkjjM2Gii9ty_4rjD0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pj7P1yrCsfRi6C_RxS7dSVGG-RBTzbMJ",
       "https://drive.google.com/thumbnail?sz=w1000&id=1WR4TI87XZbt53ySarce8wVPWkNbxJMnZ",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1pj7P1yrCsfRi6C_RxS7dSVGG-RBTzbMJ"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rK4WQAogKTcP_VwKeIAHAUZ5QJHli52o"
     ]
   },
   {
@@ -971,20 +979,23 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "CARNO卡諾吉祥物 IP角色與貼圖",
     "titleEn": "CARNO: Retro Street DJ Style Mascot IP & Sticker Design",
-    "philosophy": "圖中畫著CARNO卡諾吉祥物 IP角色與在生活裡生氣或開心的怪表情，配上大大的驚嘆號與生活詞彙，適合在日常聊天中快速表達想法。",
+    "philosophy": "以復古街頭與音樂文化為靈感，選用飽和暖橘與深沉碳黑配色，融合手繪幾何線條。搭配個性化的街頭對話編排與動態張力，形塑具街頭潮流感與強烈個人特質的 IP 視覺美學。",
     "tools": [
       "Ai",
-      "2D 原畫概念草稿",
-      "IP 核心品牌包裝",
-      "插畫貼圖情境開發",
+      "2D草稿",
+      "品牌包裝",
+      "貼圖設計",
       "Procreate"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=180vjBisFIR8Sd4-mRFusIw13G4UTg5Zl",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1VTkGiM2_90elE_vX-lQM4shRgoS1A-6R",
+    "videoUrl": "https://www.youtube.com/shorts/u-sPJygMWLY",
     "placeholderId": "IMAGE_DINO_CARNO",
     "colorTheme": "from-[#0F172A] via-[#3C1E08] to-[#0F172A]",
     "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=180vjBisFIR8Sd4-mRFusIw13G4UTg5Zl",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1DP-cQLMU20sG902gNR1Btv48H7hQBO0_"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VTkGiM2_90elE_vX-lQM4shRgoS1A-6R",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DP-cQLMU20sG902gNR1Btv48H7hQBO0_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vNhoA0kEP2QsApurpHZvSpLSE4w3x6d3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=180vjBisFIR8Sd4-mRFusIw13G4UTg5Zl"
     ]
   },
   {
@@ -992,20 +1003,25 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "Triko翠可吉祥物角色與貼圖",
     "titleEn": "Triko: City Explorer and Life Documentary IP Character Design",
-    "philosophy": "插圖畫著Triko翠可吉祥物角色與和好朋友出門玩的趣味情景，用最單純可愛的線條描繪，平時當成手機桌布看，讓人感覺很愉快。",
+    "philosophy": "以大地與柔和綠色調為基底，結合手繪有機線條與生動的日常出遊情境。透過簡約逗趣的角色互動與溫馨插畫排版，形塑親切且具療癒感的IP角色視覺美學。",
     "tools": [
       "Ai",
       "2D草稿",
-      "IP包裝",
-      "插畫貼圖",
-      "性格設定"
+      "品牌包裝",
+      "貼圖設計",
+      "插畫設計"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=16lSTH72n4Em8WEIUFGMt3sUPaT1amGHm",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=16zLAYTO2a8S-TEGKIVG08jUoxhfdkWnu",
+    "videoUrl": "https://youtube.com/shorts/59lXJo3mnis",
     "placeholderId": "IMAGE_DINO_NEW_3",
     "colorTheme": "from-[#1C201A] via-[#3D3524] to-[#1C201A]",
     "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=16lSTH72n4Em8WEIUFGMt3sUPaT1amGHm",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1pFDhRFRu7F3FsbYu7LZ_4K1DQFYgFpxl"
+      "https://drive.google.com/thumbnail?sz=w1000&id=16zLAYTO2a8S-TEGKIVG08jUoxhfdkWnu",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pFDhRFRu7F3FsbYu7LZ_4K1DQFYgFpxl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jeDp3SrUGY7v_UfJ0RJ3RM1vAGlTDw3t",
+      "https://drive.google.com/thumbnail?sz=w1000&id=113KdXEP4nIa1VKVe-_kzi8TTZZW9eGFP",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jqRSh54Z_FQnW2bsEBw3phwvUfLO7jkn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16lSTH72n4Em8WEIUFGMt3sUPaT1amGHm"
     ]
   },
   {
@@ -1013,7 +1029,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "Bronti朋迪吉祥物角色與貼圖",
     "titleEn": "Bronti: Cozy Healing & Specialty Coffee IP Character Design",
-    "philosophy": "貼圖畫出Bronti朋迪吉祥物角色與眨眼、大笑等各種好玩的生活動作，旁邊配上日常常用的聊天字，方便大家在發訊息時隨時傳送。",
+    "philosophy": "以溫暖柔和的森林綠色調為基底，結合手繪有機線條與生動的日常動態。透過簡約逗趣的角色神情與實用聊天對話排版，強化社群互動情境，展現療癒且富親和力的IP視覺美學。",
     "tools": [
       "Ai",
       "品牌包裝",
@@ -1021,12 +1037,16 @@ export const initialPortfolioData: PortfolioItem[] = [
       "貼圖設計",
       "符號排版"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1YuoDxGAVMhQeQaLf0Wq_Fc18zP0ZsWXU",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1HA9KySXsgQ46nQEzaF6MsCP2xn_1ESB4",
+    "videoUrl": "https://www.youtube.com/watch?v=aQ6Ws3no-rs",
     "placeholderId": "IMAGE_DINO_NEW_4",
     "colorTheme": "from-[#12241F] via-[#2F4435] to-[#12241F]",
     "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1YuoDxGAVMhQeQaLf0Wq_Fc18zP0ZsWXU",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1bjngfCO98_w7rmvmap7K4zGeupClB9eS"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HA9KySXsgQ46nQEzaF6MsCP2xn_1ESB4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1bjngfCO98_w7rmvmap7K4zGeupClB9eS",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1SrOB9PHDDlSZexJnG8s_JazCJNqMbZtL",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tyOCq5HkCM33ICiEXZTt7NToHTBoEBrp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YuoDxGAVMhQeQaLf0Wq_Fc18zP0ZsWXU"
     ]
   },
   {
@@ -4778,7 +4798,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "DH.Fruit Fruit Boy 鮮果 IP 角色",
     "titleEn": "DH.Fruit Mascot 'Fruit Boy': A Fusion of Freshness, Vitality, and Natural Playfulness IP Character Design",
-    "philosophy": "主角帶著DH.Fruit Fruit Boy 鮮果 IP 角色代表性的生活對白與俏皮姿勢，平時在群組聊天傳送很實用，用最親近的方法帶給朋友好心情。",
+    "philosophy": "以亮黃與翠綠雙色為主調，結合流線立體建模與活潑逗趣的動態表情。透過大膽的高對比色彩與簡約幾何形體，塑造具現代感與親和力的茶飲品牌吉祥物形象。",
     "tools": [
       "Blender",
       "Substance",
@@ -4786,10 +4806,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Photoshop",
       "KeyShot"
     ],
-    "imageUrl": "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=10fg2eG_Hv-qVU1NNqXRAnoZ0pcuRy0xa",
     "placeholderId": "IMAGE_FRUIT_16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI",
     "colorTheme": "from-[#FAD02C] via-[#90C83C] to-[#2B6330]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=10fg2eG_Hv-qVU1NNqXRAnoZ0pcuRy0xa",
       "/images/optimized/16RO9RvE_GrYhKKb_umrUJ8oFpmig40CI.webp",
       "/images/optimized/1Tk13XjiweBkySnOXOia4stesmCA_0IEl.webp",
       "/images/optimized/1hjNGrc1b9DiWgCD_K8GdFuY387g03_kp.webp",
@@ -4817,7 +4838,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "DH.Fruit 「檸檬小男孩」 IP 角色",
     "titleEn": "DH.Fruit Mascot 'Lemon Boy': A Fresh and Healing Nature-Inspired IP Character Design",
-    "philosophy": "圖中畫著DH.Fruit 「檸檬小男孩」 IP 角色在生活裡生氣或開心的怪表情，配上大大的驚嘆號與生活詞彙，適合在日常聊天中快速表達想法。",
+    "philosophy": "以鮮活的檸檬黃與草綠色為視覺基調，結合流線立體建模與生動的日常動態神情。透過高對比色彩搭配與簡約幾何結構，形塑具延伸性與溫馨療癒感的品牌IP吉祥物形象。",
     "tools": [
       "Ai",
       "Photoshop",
@@ -4825,10 +4846,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "KeyShot",
       "Wacom"
     ],
-    "imageUrl": "/images/optimized/1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1ds-_eNyAoRJAZaYL9WiSU3PMrvbYCL45",
     "placeholderId": "IMAGE_FRUIT_1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD",
     "colorTheme": "from-[#FCD116] via-[#8CC63F] to-[#009245]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ds-_eNyAoRJAZaYL9WiSU3PMrvbYCL45",
       "/images/optimized/1PAcWwchTLksUjjtTTk9jTqiPNOk_syJD.webp",
       "/images/optimized/1TMvphL7b-ba5SmdKnPZVcS60O3CWaDHy.webp"
     ]
@@ -5644,17 +5666,18 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "BLAST SCOOP 動態",
     "titleEn": "BLAST SCOOP: Official Brand Mascot & Animated Stickers Creative Project",
-    "philosophy": "手機聊天群組裡，圓滾滾的角色揮著右手說哈囉，眼睛還眨了兩下。當朋友傳來好消息，立刻發送一個跳起來放煙火的貼圖，螢幕畫面上滾出火花，互動好玩。",
+    "philosophy": "以活潑生動的冰淇淋吉祥物為主角，結合細緻的骨架綁定與趣味動態表情。透過明亮高飽和的色彩搭配與流暢的逐幀動態，形塑具品牌渲染力與社群互動價值的IP貼圖視覺美學。",
     "tools": [
       "Ai",
       "Photoshop",
       "Procreate",
       "Spine"
     ],
-    "imageUrl": "/images/optimized/17FIpnpnSPcZ9XdoE5otks7MMskn9BsJM.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1Cxfosj51n8HGtw-pT54WPYTPddaOklXo",
     "placeholderId": "IMAGE_MASCOT_BLAST_SCOOP",
     "colorTheme": "from-[#081C13] via-[#0E2C1E] to-[#040806]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Cxfosj51n8HGtw-pT54WPYTPddaOklXo",
       "/images/optimized/17FIpnpnSPcZ9XdoE5otks7MMskn9BsJM.webp",
       "/images/optimized/1_JBrKk2xiTtlPCb5L81hgIyjjzyWmBpZ.webp",
       "/images/optimized/1q11pThoF_KfNYek6aH2mnFdvmZvoNXiu.webp",
