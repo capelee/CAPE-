@@ -232,7 +232,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     if (cardInnerRef.current) {
       const baseRotateY = baseFlipped ? 180 : 0;
       const adjustedRotateY = baseRotateY + (baseFlipped ? -rotateY : rotateY);
-      cardInnerRef.current.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${adjustedRotateY}deg) scale3d(${isPressed ? 0.955 : 1.025}, ${isPressed ? 0.955 : 1.025}, 1)`;
+      cardInnerRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${adjustedRotateY}deg) scale3d(${isPressed ? 0.955 : 1.025}, ${isPressed ? 0.955 : 1.025}, 1)`;
       cardInnerRef.current.style.boxShadow = `0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(${catColor.rgbaGlow}, 0.22)`;
     }
     if (glareRef.current) {
@@ -313,7 +313,6 @@ export const PortfolioCard = React.memo(function PortfolioCard({
         </div>
       ) : (
         <div
-          ref={cardInnerRef}
           id={`portfolio_item_card_${item.id}`}
           onClick={handleCardClick}
           onMouseMove={handleMouseMove}
@@ -328,18 +327,31 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchEnd}
+          className="group relative w-full h-full cursor-pointer"
           style={{
+            perspective: "1000px",
             transformStyle: "preserve-3d",
-            transform: isCardFlipped 
-              ? `perspective(1200px) rotateY(180deg) scale3d(${isPressed ? 0.97 : isHovered ? 1.025 : 1}, ${isPressed ? 0.97 : isHovered ? 1.025 : 1}, 1)` 
-              : `perspective(1200px) rotateY(0deg) scale3d(${isPressed ? 0.97 : isHovered ? 1.025 : 1}, ${isPressed ? 0.97 : isHovered ? 1.025 : 1}, 1)`,
-            transition: isCardFlipped || isHovered || isPressed 
-              ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, background-color 0.4s ease" 
-              : "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)",
-            boxShadow: defaultShadow,
           }}
-          className="group relative flex flex-col rounded-2xl cursor-pointer h-full"
         >
+          <motion.div
+            ref={cardInnerRef}
+            style={{
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+              boxShadow: defaultShadow,
+            }}
+            animate={{
+              rotateY: isCardFlipped ? 180 : 0,
+              scale: isPressed ? 0.97 : isHovered ? 1.025 : 1,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 160,
+              damping: 14,
+              mass: 0.9,
+            }}
+            className="relative flex flex-col rounded-2xl w-full h-full"
+          >
           {/* Front Face of the Card */}
           <div
             className={`w-full h-full flex flex-col rounded-2xl overflow-hidden transition-[background-color,border-color,color] duration-500 ${themeContainerClass}`}
@@ -578,7 +590,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               </div>
           </div>
         </div>
-      </div>
+      </motion.div>
+    </div>
     )}
     </motion.div>
   );
