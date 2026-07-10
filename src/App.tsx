@@ -919,9 +919,9 @@ export default function App() {
     ],
     certificates: [
       { name: "Adobe Certified Professional in Visual Design", issuer: "Photoshop & Illustrator 專業雙認證" },
-      { name: "Adobe Certified Professional in Video Design", issuer: "Premiere Pro & After Effects 影音雙認證" },
-      { name: "TQC+ 影像處理、向量視覺設計 專業人員", issuer: "中華民國電腦技能基金會" },
-      { name: "丙級廣告設計技術士", issuer: "中華民國勞動部國家技術士證" }
+      { name: "AutoCAD 2011、2012 Certified Professional", issuer: "Autodesk 國際認證人員" },
+      { name: "TQC+ 影像處理、電腦圖像編輯製作 專業人員", issuer: "中華民國電腦技能基金會" },
+      { name: "視覺傳達設計丙級技術士", issuer: "中華民國勞動部國家技術士證" }
     ],
     experienceList: [
       { title: "特約專案設計師", company: "立陽鴻企業禮贈品", badge: "現任" },
@@ -1212,11 +1212,11 @@ export default function App() {
             ? "rgba(67, 52, 34, 0.08)"
             : "rgba(255, 255, 255, 0.05)"
         } as any}
-        className="sticky top-0 z-40 border-b py-4 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
+        className="fixed top-0 left-0 right-0 z-40 border-b py-2 md:py-2.5 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
       >
         <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3">
-            <MinimalistLogo size={36} theme={theme} className="shrink-0" />
+            <MinimalistLogo theme={theme} className="w-[30px] h-[30px] md:w-[36px] md:h-[36px] shrink-0" />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className={`font-display font-semibold tracking-tight text-xs sm:text-sm md:text-md uppercase transition-colors duration-300 ${brandingTextClass}`}>capelee</span>
@@ -1307,7 +1307,7 @@ export default function App() {
       </motion.header>
 
       {/* 主要展示區 */}
-      <main className="flex-1 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 z-10 space-y-12 md:space-y-16">
+      <main className="flex-1 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 md:pt-24 md:pb-12 z-10 space-y-12 md:space-y-16">
         
         {/* 設計師個人簡介 Bento 板塊 (精雕细琢，全幅 12 欄) */}
         <section id="designer-bento" className="relative scroll-mt-24">
@@ -1324,7 +1324,7 @@ export default function App() {
               theme === "dark" ? "bg-indigo-500/5" : "bg-indigo-500/[0.02]"
             }`}></div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 items-start">
               
               {/* 第一欄：個人身分與品牌自述 (佔 4 欄) */}
               <div className="lg:col-span-4 space-y-6">
@@ -1429,15 +1429,15 @@ export default function App() {
               </div>
 
               {/* 第二欄：個人工作經歷與教育學歷 (佔 4 欄) */}
-              <div className="lg:col-span-4 space-y-6">
+              <div className="lg:col-span-4 space-y-3 lg:space-y-6">
                 
                 {/* 實戰經歷 */}
                 <div className={`space-y-3.5 transition-all duration-300 ${
                   theme === "sepia"
-                    ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                    ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                     : theme === "light"
-                    ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
-                    : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                    ? `max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                    : `max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                 }`}>
                   <div 
                     onClick={() => {
@@ -1511,12 +1511,12 @@ export default function App() {
                 </div>
 
                 {/* 特色學歷 */}
-                <div className={`space-y-3.5 pt-1 transition-all duration-300 ${
+                <div className={`space-y-3.5 lg:pt-1 transition-all duration-300 ${
                   theme === "sepia"
-                    ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                    ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                     : theme === "light"
-                    ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
-                    : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                    ? `max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                    : `max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                 }`}>
                   <div 
                     onClick={() => {
@@ -1608,12 +1608,12 @@ export default function App() {
                 </div>
 
                 {/* 專業證照 */}
-                <div className={`space-y-3.5 pt-4 border-t transition-all duration-300 ${
+                <div className={`space-y-3.5 lg:pt-4 lg:border-t transition-all duration-300 ${
                   theme === "sepia"
-                    ? "border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                    ? `border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                     : theme === "light"
-                    ? "border-zinc-200 max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
-                    : "border-white/5 max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                    ? `border-zinc-200 max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                    : `border-white/5 max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                 }`}>
                   <div 
                     onClick={() => {
@@ -1676,12 +1676,12 @@ export default function App() {
               </div>
 
               {/* 第三欄：專業能力範疇 (佔 4 欄) */}
-              <div className={`lg:col-span-4 space-y-3.5 transition-all duration-300 ${
+              <div className={`lg:col-span-4 space-y-3 transition-all duration-300 ${
                 theme === "sepia"
-                  ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
+                  ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isCapabilitiesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                   : theme === "light"
-                  ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
-                  : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
+                  ? `max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isCapabilitiesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                  : `max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isCapabilitiesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
               }`}>
                 <div 
                   onClick={() => {
@@ -2311,6 +2311,20 @@ export default function App() {
                 <X className="h-5 w-5" />
               </button>
 
+              {/* 作品連結按鈕 (如果存在 link) */}
+              {activeModalItem.link && (
+                <a
+                  href={activeModalItem.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-4 right-16 z-[35] px-3 md:px-4 py-2 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-black text-xs font-semibold tracking-wide transition-all duration-300 shadow-lg border border-amber-300/20 cursor-pointer flex items-center gap-1.5 active:scale-95"
+                  title="前往作品連結"
+                >
+                  <span>前往作品</span>
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              )}
+
               {/* 上一張 / 下一張左右滑鎖 */}
               {filteredItems.length > 1 && !isMaximized && (
                 <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none hidden lg:flex">
@@ -2692,18 +2706,31 @@ export default function App() {
                     </div>
 
                     {/* 底部行動 (靜態不滾動) */}
-                    <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between shrink-0">
+                    <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between gap-3 shrink-0">
                       <span className="text-[10.5px] font-mono text-zinc-500">
                         CASE NO. 0{activeModalItem.id}
                       </span>
                       
-                      <button
-                        type="button"
-                        onClick={() => setActiveModalItem(null)}
-                        className="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/5 cursor-pointer"
-                      >
-                        關閉回列表
-                      </button>
+                      <div className="flex items-center gap-2">
+                        {activeModalItem.link && (
+                          <a
+                            href={activeModalItem.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-1.5 text-xs font-semibold text-black bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 rounded-lg transition duration-200 flex items-center gap-1 cursor-pointer"
+                          >
+                            <span>前往作品</span>
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setActiveModalItem(null)}
+                          className="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/5 cursor-pointer"
+                        >
+                          關閉回列表
+                        </button>
+                      </div>
                     </div>
 
                   </div>

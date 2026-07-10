@@ -7,7 +7,7 @@ interface MinimalistLogoProps {
   theme?: "dark" | "light" | "sepia";
 }
 
-export function MinimalistLogo({ className = "", size = 36, theme = "dark" }: MinimalistLogoProps) {
+export function MinimalistLogo({ className = "", size, theme = "dark" }: MinimalistLogoProps) {
   // Color configuration based on theme
   const strokeColor = 
     theme === "light" 
@@ -22,7 +22,7 @@ export function MinimalistLogo({ className = "", size = 36, theme = "dark" }: Mi
   return (
     <motion.div
       className={`relative flex items-center justify-center select-none cursor-pointer ${className}`}
-      style={{ width: size, height: size }}
+      style={size !== undefined ? { width: size, height: size } : undefined}
       whileHover="hover"
       initial="initial"
     >

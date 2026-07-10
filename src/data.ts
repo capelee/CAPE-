@@ -20,7 +20,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://img.youtube.com/vi/Fygmxv4GdoI/maxresdefault.jpg",
       "https://img.youtube.com/vi/Fygmxv4GdoI/0.jpg"
     ],
-    "videoUrl": "https://www.youtube.com/watch?v=Fygmxv4GdoI"
+    "videoUrl": "https://www.youtube.com/watch?v=Fygmxv4GdoI",
+    "link": "https://www.youtube.com/watch?v=Fygmxv4GdoI"
   },
   {
     "id": "gucci-bloom-promo",
@@ -41,7 +42,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://img.youtube.com/vi/5oVBiT38Bl4/maxresdefault.jpg",
       "https://img.youtube.com/vi/5oVBiT38Bl4/0.jpg"
     ],
-    "videoUrl": "https://www.youtube.com/watch?v=5oVBiT38Bl4"
+    "videoUrl": "https://www.youtube.com/watch?v=5oVBiT38Bl4",
+    "link": "https://www.youtube.com/watch?v=5oVBiT38Bl4"
   },
   {
     "id": "shone-dinosaur-intro",
@@ -443,7 +445,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1F0cU3KBMS5iKimkvHo7KQwkgUpJUs5PE",
       "https://drive.google.com/thumbnail?sz=w1000&id=1AmsGIsGLZWLLJPVcxfirSaTNL0b1o6sM",
       "https://drive.google.com/thumbnail?sz=w1000&id=13LrnYxYitFGqeCxELnYw40UKGceYJGIy",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1YjVA6o8cLsGc1o4HMmgZpyXNyF9Je4Ma"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YjVA6o8cLsGc1o4HMmgZpyXNyF9Je4Ma",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14zUifrCSeBt7-RikiytmjNLcXnJ80plN"
     ],
     "driveFolderId": "1iIcsz3YjExQxf3KfMLY1wgvqMBnUQPn7"
   },
@@ -770,13 +773,15 @@ export const initialPortfolioData: PortfolioItem[] = [
       "角色設定",
       "色彩配色"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1zet7Yx8jK6HDbtfVGVuXJXjIkSAdZoua",
     "placeholderId": "IMAGE_WILD_CAPTAIN_WILD",
     "colorTheme": "from-[#2A0505] via-[#401205] to-[#1A0303]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zet7Yx8jK6HDbtfVGVuXJXjIkSAdZoua",
       "https://drive.google.com/thumbnail?sz=w1000&id=1XE5reYjwWiYtm8u_GiBrZcw2dDq1oYvb",
       "https://drive.google.com/thumbnail?sz=w1000&id=1QETp0K_9-ixJs-Hm7vWjVIupDwkRoLgG",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1UeStk4uuxRm7DCyUbKzO7P1srG0OGTXK"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UeStk4uuxRm7DCyUbKzO7P1srG0OGTXK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1k4zEK3ylYtSBe6Pk2eDVeTHDit5QRGis"
     ]
   },
   {
@@ -793,13 +798,15 @@ export const initialPortfolioData: PortfolioItem[] = [
       "角色設計",
       "色彩規劃"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1dmYX08sqLYCrGUOiMoug9D7E60b1X_Mr",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1uVYfXBSf-jdVRV9cugp0DqUp-LnClrdu",
     "placeholderId": "IMAGE_WILD_CAPY_WILD",
     "colorTheme": "from-[#2D1710] via-[#5C2E16] to-[#2D1710]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uVYfXBSf-jdVRV9cugp0DqUp-LnClrdu",
       "https://drive.google.com/thumbnail?sz=w1000&id=1dmYX08sqLYCrGUOiMoug9D7E60b1X_Mr",
       "https://drive.google.com/thumbnail?sz=w1000&id=12OegVFuWUiRx4krXAVzUadxnwIqYu8uw",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1tfmt56yOElSH6enzYS9mHp7fCelNqB4W"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tfmt56yOElSH6enzYS9mHp7fCelNqB4W",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ivNtDSKn7EWmXZOSetIKyMA-sL1ABW7c"
     ]
   },
   {
@@ -816,13 +823,15 @@ export const initialPortfolioData: PortfolioItem[] = [
       "色彩配色",
       "角色設定"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1oto9F8ATuP7aaEOr4e9dAt9S5NK07ksR",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1hRGjY3vI-phbheiR4m9eBeRWkwx6Toze",
     "placeholderId": "IMAGE_WILD_LUNA",
     "colorTheme": "from-[#1f1625] via-[#3d223c] to-[#1f1625]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hRGjY3vI-phbheiR4m9eBeRWkwx6Toze",
       "https://drive.google.com/thumbnail?sz=w1000&id=1oto9F8ATuP7aaEOr4e9dAt9S5NK07ksR",
       "https://drive.google.com/thumbnail?sz=w1000&id=1tjkae7NmfbMC47qglZYni_pQLlvdTqhh",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1G7U7n40kgy90tonPg9FDHCqWx1x_IXtZ"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1G7U7n40kgy90tonPg9FDHCqWx1x_IXtZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10f8A1vWdN-gFC2mZL4OlNRrKT6qPWP_F"
     ]
   },
   {
@@ -838,13 +847,15 @@ export const initialPortfolioData: PortfolioItem[] = [
       "向量繪圖",
       "角色設計"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1L64ABp9djtlkhg00NfyCVTK3k5wYZqDq",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=12A-Xo0oEhS3oblY23Kien7mCntz6D8Ct",
     "placeholderId": "IMAGE_WILD_RANGER_RAY",
     "colorTheme": "from-[#1b2b1e] via-[#2c1d11] to-[#111c13]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=12A-Xo0oEhS3oblY23Kien7mCntz6D8Ct",
       "https://drive.google.com/thumbnail?sz=w1000&id=1L64ABp9djtlkhg00NfyCVTK3k5wYZqDq",
       "https://drive.google.com/thumbnail?sz=w1000&id=1-T0YCIaQGWCrx6i6d9hSaxZJc609gRzr",
-      "https://drive.google.com/thumbnail?sz=w1000&id=13q5hrqI19UdPnK40EkiCU34W1Xoek0O-"
+      "https://drive.google.com/thumbnail?sz=w1000&id=13q5hrqI19UdPnK40EkiCU34W1Xoek0O-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1bZeSXiuL8IsIdQ2bO7tQ8g3w5wPL--7t"
     ]
   },
   {
@@ -861,13 +872,15 @@ export const initialPortfolioData: PortfolioItem[] = [
       "角色設定",
       "色彩配色"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1X_su9VdarsFSbhgj4BoDIIwr7LR8Tzy9",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1Zpt9nGhUVHyXg0L9SNqDv9zlKn_FATT4",
     "placeholderId": "IMAGE_WILD_SLOWMO",
     "colorTheme": "from-[#231709] via-[#402a18] to-[#192b15]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Zpt9nGhUVHyXg0L9SNqDv9zlKn_FATT4",
       "https://drive.google.com/thumbnail?sz=w1000&id=1X_su9VdarsFSbhgj4BoDIIwr7LR8Tzy9",
       "https://drive.google.com/thumbnail?sz=w1000&id=1kgpp6aaqlEMeAATuykNtfiSIh6AoAV4i",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1iJxdPuJK8GJ7xIaKnrDzIlIK0DFtjg4I"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iJxdPuJK8GJ7xIaKnrDzIlIK0DFtjg4I",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uqjwiOEpNPJ4IVceMyIs2w33BP8I8H_p"
     ]
   },
   {

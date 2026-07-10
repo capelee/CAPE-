@@ -12,4 +12,5 @@ export interface PortfolioItem {
   videoUrl?: string; // Optional embedded video link (e.g. YouTube video URL)
   isHighlight?: boolean; // Highlighted featured project cards
   driveFolderId?: string; // Google Drive Folder ID for fully cloud-based assets
+  link?: string; // 外部連結、訪問專案或作品網站
 }

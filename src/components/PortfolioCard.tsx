@@ -617,7 +617,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
  
           {/* Back Face of the Card */}
           <div
-            className={`absolute inset-0 w-full h-full flex flex-col rounded-2xl overflow-hidden p-5 md:p-6 justify-between transition-[background-color,border-color,color] duration-500 ${themeContainerClass}`}
+            className={`absolute inset-0 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 ${themeContainerClass}`}
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -633,7 +633,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               }}
             />
  
-            <div className="relative z-10 flex flex-col h-full justify-between space-y-3">
+            <div className={`relative z-10 flex flex-col h-full justify-between ${showAllDetails ? "space-y-3" : "space-y-1.5"}`}>
               {/* Header: Category & ID */}
               <div className="flex items-center justify-between">
                 <span 
@@ -651,40 +651,24 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 >
                   {item.category}
                 </span>
-                <span className={`text-[9px] font-mono tracking-wider ${isSepia ? 'text-[#734C22]/60' : isLight ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                  #{item.id}
-                </span>
               </div>
  
               {/* Title Block */}
-              <div className="space-y-1">
-                <p className={`text-[10px] font-mono tracking-widest uppercase truncate ${titleEnClassValue}`}>
+              <div className="space-y-0.5">
+                <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${titleEnClassValue}`}>
                   {item.titleEn}
                 </p>
-                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 ${titleClassValue}`}>
+                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 md:line-clamp-3 ${titleClassValue}`}>
                   {item.title}
                 </h3>
               </div>
  
-              {/* Technologies / Tools Tags - Auto Expanded Layout */}
-              <div className="flex-1 flex flex-col justify-start space-y-2 pt-2.5 pb-1 overflow-hidden">
-                <span className={`text-[9px] font-sans font-medium block tracking-wider uppercase ${isSepia ? 'text-[#734C22]/70' : isLight ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                  技術與工藝 / Technologies
-                </span>
-                <div className="flex flex-wrap gap-1.5 overflow-y-auto max-h-[110px] pr-0.5 scrollbar-thin">
-                  {item.tools.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${getToolStyle(tech, theme)}`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+
+              {/* Spacer to push footer to bottom when tags are removed */}
+              <div className="flex-1" />
  
               {/* Footer CTA */}
-              <div className={`pt-2.5 border-t flex items-center justify-end text-[10px] font-medium ${dividerClassValue}`}>
+              <div className={`${showAllDetails ? "pt-2.5" : "pt-1.5"} border-t flex items-center justify-end text-[10px] font-medium ${dividerClassValue}`}>
                 <span className={`px-2 py-1 rounded-lg text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm`}>
                   <span>展開</span>
                   <ArrowUpRight className="h-2 w-2 stroke-[2.5]" />
