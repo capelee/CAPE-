@@ -2824,10 +2824,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Photoshop",
       "向量繪圖"
     ],
-    "imageUrl": "/images/optimized/1CbX1ch_go1BNOI_j-y7BiUqfMbE3tnD_.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1nlZTY0vrgrE2xStHi3YeYi30tRbMwT3d",
     "placeholderId": "IMAGE_84",
     "colorTheme": "from-[#1a0a24] via-[#37164d] to-[#12061a]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nlZTY0vrgrE2xStHi3YeYi30tRbMwT3d",
       "/images/optimized/1CbX1ch_go1BNOI_j-y7BiUqfMbE3tnD_.webp",
       "/images/optimized/1MC-RFl3mEQnW8jW-2NqGyBF7nlJPjrpq.webp",
       "/images/optimized/1oGphoCz_H_Ib5XHT8iodqy7v--Q8iXmt.webp",
@@ -3337,10 +3338,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Ai",
       "Photoshop"
     ],
-    "imageUrl": "/images/optimized/1yKUPO4ZdZrrhE-CHhY7CP2jOOwIvPY2c.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=14YCc8q_RDjf43NX3AFzH3dsiGA28sYNs",
     "placeholderId": "IMAGE_102",
     "colorTheme": "from-[#081829] via-[#102d4d] to-[#081829]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=14YCc8q_RDjf43NX3AFzH3dsiGA28sYNs",
       "/images/optimized/1yKUPO4ZdZrrhE-CHhY7CP2jOOwIvPY2c.webp",
       "/images/optimized/1Kb-OurKrrdq3Md1LkXl5IHRoHQ3VR3Uq.webp",
       "/images/optimized/1WNHhQfCw8FFBQRGD3m5ZQkaUGxhDz5SN.webp",
@@ -5686,10 +5688,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Procreate",
       "Spine"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1Cxfosj51n8HGtw-pT54WPYTPddaOklXo",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1JU2bcQJEKNOzCW623RKb25FFRJRNdtAC",
     "placeholderId": "IMAGE_MASCOT_BLAST_SCOOP",
     "colorTheme": "from-[#081C13] via-[#0E2C1E] to-[#040806]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JU2bcQJEKNOzCW623RKb25FFRJRNdtAC",
       "https://drive.google.com/thumbnail?sz=w1000&id=1Cxfosj51n8HGtw-pT54WPYTPddaOklXo",
       "/images/optimized/17FIpnpnSPcZ9XdoE5otks7MMskn9BsJM.webp",
       "/images/optimized/1_JBrKk2xiTtlPCb5L81hgIyjjzyWmBpZ.webp",
