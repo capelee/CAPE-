@@ -162,6 +162,9 @@ export function ImageWithFallback({
     if (isInView) {
       const targetSize = optimizeSize || containerWidth;
       const resolved = resolveImageUrl(src, targetSize);
+      if (currentSrc === resolved) {
+        return;
+      }
       setCurrentSrc(resolved);
       setFallbackAttempt(0);
       setFailedCount(0);
@@ -175,7 +178,7 @@ export function ImageWithFallback({
         "color: inherit;"
       );
     }
-  }, [src, optimizeSize, containerWidth, isInView, titleText, alt]);
+  }, [src, optimizeSize, containerWidth, isInView, titleText, alt, currentSrc]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
     const isYoutube = img.src.includes("youtube.com") || img.src.includes("img.youtube.com") || img.src.includes("ytimg.com");
