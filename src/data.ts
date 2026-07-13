@@ -3176,11 +3176,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "色彩管理",
       "Ai"
     ],
-    "imageUrl": "/images/optimized/1Ttr__JYQOHWri9vLXYNrh8annLOelDCU.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1Ttr__JYQOHWri9vLXYNrh8annLOelDCU",
     "placeholderId": "IMAGE_94",
     "colorTheme": "from-[#040d21] via-[#102a54] to-[#040d21]",
     "images": [
-      "/images/optimized/1Ttr__JYQOHWri9vLXYNrh8annLOelDCU.webp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Ttr__JYQOHWri9vLXYNrh8annLOelDCU",
       "/images/optimized/1ziJC94xKkbtczHTniEAOjrJIpD_dVuS_.webp",
       "/images/optimized/1Yy13d8taKdHH6-IFAMK3CRYstH8x9FFd.webp"
     ]

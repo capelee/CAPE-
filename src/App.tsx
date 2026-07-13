@@ -914,6 +914,75 @@ export default function App() {
     });
   };
 
+  const scrollToElement = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    if (id === "designer-bento") {
+      isJumpingToBentoRef.current = true;
+    }
+
+    // Get actual header height dynamically
+    const header = document.querySelector("header");
+    const headerHeight = header ? header.offsetHeight : 64;
+
+    // Elegant offset gap (16px)
+    const extraOffset = 16;
+
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerHeight - extraOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+
+    if (id === "designer-bento") {
+      // 1. First scroll phase check (350ms) - Adjust smoothly if slight layout shifts happened during load
+      setTimeout(() => {
+        const updatedElement = document.getElementById(id);
+        if (updatedElement) {
+          const updatedPosition = updatedElement.getBoundingClientRect().top + window.scrollY - headerHeight - extraOffset;
+          if (Math.abs(window.scrollY - updatedPosition) > 4) {
+            window.scrollTo({
+              top: updatedPosition,
+              behavior: "smooth"
+            });
+          }
+        }
+      }, 350);
+
+      // 2. Second final compensation check (850ms) - instant precise lock-in
+      setTimeout(() => {
+        const updatedElement = document.getElementById(id);
+        if (updatedElement) {
+          const updatedPosition = updatedElement.getBoundingClientRect().top + window.scrollY - headerHeight - extraOffset;
+          if (Math.abs(window.scrollY - updatedPosition) > 1) {
+            window.scrollTo({
+              top: updatedPosition,
+              behavior: "auto"
+            });
+          }
+        }
+        isJumpingToBentoRef.current = false;
+      }, 850);
+    } else {
+      // For portfolio-grid or other sections, a single standard correction at 350ms is perfect
+      setTimeout(() => {
+        const updatedElement = document.getElementById(id);
+        if (updatedElement) {
+          const updatedPosition = updatedElement.getBoundingClientRect().top + window.scrollY - headerHeight - extraOffset;
+          if (Math.abs(window.scrollY - updatedPosition) > 4) {
+            window.scrollTo({
+              top: updatedPosition,
+              behavior: "smooth"
+            });
+          }
+        }
+      }, 350);
+    }
+  };
+
   React.useEffect(() => {
     if (activeModalItem) {
       setActiveImageUrl(activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined));
@@ -1270,27 +1339,21 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-            {/* 導航文字連結：作品 & 關於我 & AI工作流 */}
+            {/* 導航文字連結：作品 & 履歷 & AI工作流 */}
             <div className="flex items-center gap-3.5 sm:gap-5 mr-1 sm:mr-2">
               <button
                 type="button"
-                onClick={() => document.getElementById("portfolio-grid")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => scrollToElement("portfolio-grid")}
                 className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
               >
                 作品
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  isJumpingToBentoRef.current = true;
-                  document.getElementById("designer-bento")?.scrollIntoView({ behavior: "smooth" });
-                  setTimeout(() => {
-                    isJumpingToBentoRef.current = false;
-                  }, 1500);
-                }}
+                onClick={() => scrollToElement("designer-bento")}
                 className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
               >
-                關於我
+                履歷
               </button>
               <button
                 type="button"
@@ -1475,7 +1538,7 @@ export default function App() {
       <main className="flex-1 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 md:pt-24 md:pb-12 z-10 space-y-12 md:space-y-16">
         
         {/* 極簡頂部 Hero Section */}
-        <section id="hero-minimalist" className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-24">
+        <section id="hero-minimalist" className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]">
           <div className="flex-1 space-y-6 max-w-2xl text-left">
             <div className="space-y-2">
               <span className={`text-[11px] sm:text-xs font-mono tracking-[0.2em] font-bold uppercase ${
@@ -1510,7 +1573,7 @@ export default function App() {
 
             <div className="flex items-center gap-3.5 pt-2">
               <button
-                onClick={() => document.getElementById("portfolio-grid")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => scrollToElement("portfolio-grid")}
                 className={`px-6 py-3 font-semibold rounded-xl text-xs sm:text-sm transition-all duration-300 shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
                   theme === "sepia"
                     ? "bg-[#A05C2C] hover:bg-[#854B22] text-[#FCF8EE] shadow-amber-950/20"
@@ -1522,13 +1585,7 @@ export default function App() {
                 看作品
               </button>
               <button
-                onClick={() => {
-                  isJumpingToBentoRef.current = true;
-                  document.getElementById("designer-bento")?.scrollIntoView({ behavior: "smooth" });
-                  setTimeout(() => {
-                    isJumpingToBentoRef.current = false;
-                  }, 1500);
-                }}
+                onClick={() => scrollToElement("designer-bento")}
                 className={`px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
                   theme === "sepia"
                     ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
@@ -1562,7 +1619,7 @@ export default function App() {
         </section>
 
         {/* 區塊標題 & 卡片過濾器 */}
-        <section id="portfolio-grid" className="space-y-8 scroll-mt-24">
+        <section id="portfolio-grid" className="space-y-8 scroll-mt-[48px] md:scroll-mt-[58px]">
           <div className="max-w-3xl mx-auto text-center space-y-3">
             <h2 className="text-3xl md:text-4xl font-display font-medium text-white tracking-tight">
               探索設計作品
@@ -1891,7 +1948,7 @@ export default function App() {
           </div>
 
           {/* 無限滾動偵測點與極簡毛玻璃載入指示器 */}
-          <div ref={loaderRef} className="w-full py-12 flex flex-col items-center justify-center gap-3 shrink-0">
+          <div ref={loaderRef} className="w-full py-4 flex flex-col items-center justify-center gap-3 shrink-0">
             {filteredItems.length > visibleCount ? (
               <div className="flex flex-col items-center gap-2 text-zinc-500 font-sans text-xs">
                 {/* 輕量級動態三點跳躍加載指示器 */}
@@ -2932,8 +2989,8 @@ export default function App() {
                     theme === "dark" 
                       ? "bg-amber-500 hover:bg-amber-400 text-black shadow-md shadow-amber-500/10" 
                       : theme === "sepia" 
-                      ? "bg-[#D97706] hover:bg-[#B45309] text-white shadow-md shadow-amber-900/10" 
-                      : "bg-zinc-900 hover:bg-zinc-800 text-white shadow-md"
+                      ? "bg-[#D97706] hover:bg-[#B45309] text-amber-50 shadow-md shadow-amber-900/10" 
+                      : "bg-zinc-900 hover:bg-zinc-800 text-zinc-50 shadow-md"
                   }`}
                 >
                   探索完成，開始瀏覽作品

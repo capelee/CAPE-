@@ -401,7 +401,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
         scale: { duration: 0.22, ease: "easeOut", delay },
         y: { duration: 0.22, ease: "easeOut", delay }
       }}
-      className="h-full scroll-mt-24"
+      className="h-full scroll-mt-16 md:scroll-mt-20"
     >
       {!isVisible ? (
         <div

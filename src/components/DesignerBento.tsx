@@ -58,10 +58,6 @@ interface DesignerBentoProps {
 }
 
 export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmail }: DesignerBentoProps) {
-  const [isWorkExpanded, setIsWorkExpanded] = useState<boolean>(false);
-  const [isEducationExpanded, setIsEducationExpanded] = useState<boolean>(false);
-  const [isCertificatesExpanded, setIsCertificatesExpanded] = useState<boolean>(false);
-  const [isCapabilitiesExpanded, setIsCapabilitiesExpanded] = useState<boolean>(false);
   const [localCopied, setLocalCopied] = useState<boolean>(false);
 
   const handleCopyEmail = () => {
@@ -76,7 +72,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
   };
 
   return (
-    <section id="designer-bento" className="relative scroll-mt-24">
+    <section id="designer-bento" className="relative scroll-mt-[48px] md:scroll-mt-[58px]">
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
       
       <div className={`border rounded-2xl p-6 lg:p-8 relative overflow-hidden shadow-2xl transition-all duration-300 ${
@@ -207,33 +203,19 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             {/* 實戰經歷 */}
             <div className={`space-y-3 transition-all duration-300 ${
               theme === "sepia"
-                ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
                 : theme === "light"
-                ? `max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
-                : `max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
             }`}>
-              <div 
-                onClick={() => {
-                  if (window.innerWidth < 1024) {
-                    setIsWorkExpanded(!isWorkExpanded);
-                  }
-                }}
-                className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
-              >
+              <div className="flex items-center justify-between pl-1 select-none py-1 lg:py-0">
                 <div className="flex items-center gap-1.5">
                   <Briefcase className="h-4 w-4 text-amber-400 shrink-0" />
                   <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Work History / 實戰經歷</p>
                 </div>
-                {/* 手機版折疊/展開指示器 */}
-                <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
-                  <span className="text-[8.5px] font-mono opacity-60">
-                    {isWorkExpanded ? "摺疊" : `展開 (${profile.experienceList.length})`}
-                  </span>
-                  <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isWorkExpanded ? "rotate-180 text-amber-400" : ""}`} />
-                </div>
               </div>
               
-              <div className={`lg:block ${isWorkExpanded ? "block" : "hidden"}`}>
+              <div>
                 <div className={`space-y-2.5 pt-1.5 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
@@ -286,33 +268,19 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             {/* 特色學歷 */}
             <div className={`space-y-3 lg:pt-1 transition-all duration-300 ${
               theme === "sepia"
-                ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
                 : theme === "light"
-                ? `max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
-                : `max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
             }`}>
-              <div 
-                onClick={() => {
-                  if (window.innerWidth < 1024) {
-                    setIsEducationExpanded(!isEducationExpanded);
-                  }
-                }}
-                className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
-              >
+              <div className="flex items-center justify-between pl-1 select-none py-1 lg:py-0">
                 <div className="flex items-center gap-1.5">
                   <GraduationCap className="h-4 w-4 text-indigo-400 shrink-0" />
                   <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Education / 專業學歷</p>
                 </div>
-                {/* 手機版折疊/展開指示器 */}
-                <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
-                  <span className="text-[8.5px] font-mono opacity-60">
-                    {isEducationExpanded ? "摺疊" : `展開 (${profile.education.length})`}
-                  </span>
-                  <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isEducationExpanded ? "rotate-180 text-indigo-400" : ""}`} />
-                </div>
               </div>
               
-              <div className={`lg:block ${isEducationExpanded ? "block" : "hidden"}`}>
+              <div>
                 <div className={`space-y-2.5 pt-1.5 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
@@ -383,33 +351,19 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             {/* 專業證照 */}
             <div className={`space-y-3 lg:pt-3.5 lg:border-t transition-all duration-300 ${
               theme === "sepia"
-                ? `border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                ? "border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
                 : theme === "light"
-                ? `border-zinc-200 max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
-                : `border-white/5 max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+                ? "border-zinc-200 max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+                : "border-white/5 max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
             }`}>
-              <div 
-                onClick={() => {
-                  if (window.innerWidth < 1024) {
-                    setIsCertificatesExpanded(!isCertificatesExpanded);
-                  }
-                }}
-                className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
-              >
+              <div className="flex items-center justify-between pl-1 select-none py-1 lg:py-0">
                 <div className="flex items-center gap-1.5">
                   <Award className="h-4 w-4 text-amber-500 shrink-0" />
                   <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Certifications / 專業證照</p>
                 </div>
-                {/* 手機版折疊/展開指示器 */}
-                <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
-                  <span className="text-[8.5px] font-mono opacity-60">
-                    {isCertificatesExpanded ? "摺疊" : `展開 (${profile.certificates.length})`}
-                  </span>
-                  <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isCertificatesExpanded ? "rotate-180 text-amber-500" : ""}`} />
-                </div>
               </div>
               
-              <div className={`lg:block ${isCertificatesExpanded ? "block" : "hidden"}`}>
+              <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-2 pt-1.5 lg:pt-0">
                   {profile.certificates.map((cert, i) => (
                     <div key={i} className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
@@ -451,33 +405,19 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
           {/* 第三欄：專業能力範疇 (佔 4 欄) */}
           <div className={`lg:col-span-4 space-y-3 transition-all duration-300 ${
             theme === "sepia"
-              ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isCapabilitiesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+              ? "max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
               : theme === "light"
-              ? `max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 ${isCapabilitiesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
-              : `max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 ${isCapabilitiesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
+              ? "max-lg:bg-zinc-50 max-lg:border max-lg:border-zinc-200 max-lg:p-4 max-lg:rounded-2xl"
+              : "max-lg:bg-white/[0.012] max-lg:border max-lg:border-white/5 max-lg:p-4 max-lg:rounded-2xl"
           }`}>
-            <div 
-              onClick={() => {
-                if (window.innerWidth < 1024) {
-                  setIsCapabilitiesExpanded(!isCapabilitiesExpanded);
-                }
-              }}
-              className="flex items-center justify-between pl-1 cursor-pointer lg:cursor-default select-none py-1 lg:py-0"
-            >
+            <div className="flex items-center justify-between pl-1 select-none py-1 lg:py-0">
               <div className="flex items-center gap-1.5">
                 <Layers className="h-4 w-4 text-amber-500 shrink-0" />
                 <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest pl-1">Capabilities / 核心專長</p>
               </div>
-              {/* 手機版折疊/展開指示器 */}
-              <div className="flex items-center gap-1.5 lg:hidden text-zinc-400 text-[10px]">
-                <span className="text-[8.5px] font-mono opacity-60">
-                  {isCapabilitiesExpanded ? "摺疊" : `展開 (${profile.scopes.length})`}
-                </span>
-                <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isCapabilitiesExpanded ? "rotate-180 text-amber-500" : ""}`} />
-              </div>
             </div>
             
-            <div className={`lg:block ${isCapabilitiesExpanded ? "block" : "hidden"}`}>
+            <div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-2 lg:pt-0">
                 {profile.scopes.map((s) => {
                   let icon = <Layers className="h-3.5 w-3.5 text-amber-400" />;
