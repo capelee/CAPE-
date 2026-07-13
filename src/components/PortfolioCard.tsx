@@ -7,6 +7,7 @@ interface PortfolioCardProps {
   prevVisibleCount: number;
   theme: "dark" | "light" | "sepia";
   showAllDetails: boolean;
+  onNearBottom?: () => void;
 }
 
 import React, { useState } from "react";
@@ -131,7 +132,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   index,
   prevVisibleCount,
   theme,
-  showAllDetails
+  showAllDetails,
+  onNearBottom
 }: PortfolioCardProps) {
   const catColor = getCategoryColor(item.category);
   const [isHovered, setIsHovered] = useState(false);
@@ -228,18 +230,26 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   React.useEffect(() => {
     if (priority || index < 12) {
       setIsVisible(true);
+      // Still trigger onNearBottom if initially loaded and near bottom (handled by index match)
+      if (onNearBottom) {
+        onNearBottom();
+      }
       return;
     }
 
+    // Keep card loaded once visible to prevent reloads when scrolling back up
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          if (onNearBottom) {
+            onNearBottom();
+          }
           observer.disconnect();
         }
       },
       {
-        rootMargin: "580px 0px 580px 0px", // Expanded sentinel envelope for rapid modern scrolling safety
+        rootMargin: "800px 0px 800px 0px", // Expanded sentinel envelope for rapid modern scrolling safety
         threshold: 0.001,
       }
     );
@@ -252,7 +262,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     return () => {
       observer.disconnect();
     };
-  }, [priority, index]);
+  }, [priority, index, onNearBottom]);
 
   React.useEffect(() => {
     return () => {
@@ -688,6 +698,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     prevProps.index === nextProps.index &&
     prevProps.prevVisibleCount === nextProps.prevVisibleCount &&
     prevProps.theme === nextProps.theme &&
-    prevProps.showAllDetails === nextProps.showAllDetails
+    prevProps.showAllDetails === nextProps.showAllDetails &&
+    prevProps.onNearBottom === nextProps.onNearBottom
   );
 });

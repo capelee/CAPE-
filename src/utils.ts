@@ -188,5 +188,51 @@ export function resolveImageUrl(url: string, size?: number): string {
     // Default: Use high-availability Drive thumbnail API to completely bypass CORS 403 and referrer limits
     return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${finalExtraParams}`;
   }
+  // Support Unsplash dynamic image scaling
+  if (targetUrl.includes("images.unsplash.com")) {
+    const s = size ? size : 600;
+    try {
+      const urlObj = new URL(targetUrl);
+      urlObj.searchParams.set("w", s.toString());
+      urlObj.searchParams.set("auto", "format");
+      urlObj.searchParams.set("fit", "crop");
+      urlObj.searchParams.set("q", "80");
+      return urlObj.toString();
+    } catch (e) {
+      let baseUrl = targetUrl.split("?")[0];
+      return `${baseUrl}?w=${s}&auto=format&fit=crop&q=80`;
+    }
+  }
+
+  // Support Cloudinary dynamic image scaling
+  if (targetUrl.includes("res.cloudinary.com")) {
+    const s = size ? size : 600;
+    if (targetUrl.includes("/upload/")) {
+      const parts = targetUrl.split("/upload/");
+      const prefix = parts[0];
+      let suffix = parts[1];
+      if (suffix.match(/w_\d+/)) {
+        suffix = suffix.replace(/w_\d+/, `w_${s}`);
+      } else {
+        suffix = `f_auto,q_auto,w_${s}/${suffix}`;
+      }
+      return `${prefix}/upload/${suffix}`;
+    }
+  }
+
+  // Support Imgix dynamic image scaling
+  if (targetUrl.includes(".imgix.net") || targetUrl.includes("imgix=")) {
+    const s = size ? size : 600;
+    try {
+      const urlObj = new URL(targetUrl);
+      urlObj.searchParams.set("w", s.toString());
+      urlObj.searchParams.set("auto", "format,compress");
+      return urlObj.toString();
+    } catch (e) {
+      let baseUrl = targetUrl.split("?")[0];
+      return `${baseUrl}?w=${s}&auto=format,compress`;
+    }
+  }
+
   return getOptimizedGoogleUrl(targetUrl, size);
 }

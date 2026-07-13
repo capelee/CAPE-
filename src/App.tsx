@@ -994,6 +994,17 @@ export default function App() {
     return filteredItems.slice(0, visibleCount);
   }, [filteredItems, visibleCount]);
 
+  const preloadThresholdIndex = useMemo(() => {
+    return Math.max(0, Math.floor(visibleItems.length * 0.8));
+  }, [visibleItems.length]);
+
+  const handlePreloadNextBatch = React.useCallback(() => {
+    if (filteredItems.length > visibleCount) {
+      setPrevVisibleCount(visibleCount);
+      setVisibleCount((prev) => Math.min(prev + 12, filteredItems.length));
+    }
+  }, [filteredItems.length, visibleCount]);
+
   // Infinite scroll loader using Intersection Observer to detect the viewport boundary and trigger pagination
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1023,13 +1034,14 @@ export default function App() {
     };
   }, [filteredItems.length, visibleCount]);
 
-  // Performance Optimization: Preload the cover images (600px width) of only the active category dynamically.
+  // Performance Optimization: Preload the cover images (360px-600px width) of the active category and upcoming predictive batch dynamically.
   // This avoids overwhelming the browser and Google Drive API, resolving rate limits, lag, and black screen failures.
   React.useEffect(() => {
     if (!filteredItems || filteredItems.length === 0) return;
     
-    // Limits preloading to max 12 items of the current category to prevent network saturation.
-    const itemsToPreload = filteredItems.slice(0, 12);
+    // Limits preloading to currently visible items + predictive next batch of 12 items to prevent network saturation while staying ahead of scrolling.
+    const endRange = Math.min(visibleCount + 12, filteredItems.length);
+    const itemsToPreload = filteredItems.slice(0, endRange);
     itemsToPreload.forEach(item => {
       const coverUrl = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : "");
       if (coverUrl) {
@@ -1039,7 +1051,7 @@ export default function App() {
         img.src = optimizedUrl;
       }
     });
-  }, [selectedCategory, filteredItems]);
+  }, [selectedCategory, filteredItems, visibleCount]);
 
   // Performance Optimization: Preload the slider and detail images (1200px / 120px) only when a modal is opened.
   React.useEffect(() => {
@@ -1432,7 +1444,7 @@ export default function App() {
               <div className="lg:col-span-4 space-y-3 lg:space-y-6">
                 
                 {/* 實戰經歷 */}
-                <div className={`space-y-3.5 transition-all duration-300 ${
+                <div className={`space-y-3 transition-all duration-300 ${
                   theme === "sepia"
                     ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isWorkExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                     : theme === "light"
@@ -1461,30 +1473,30 @@ export default function App() {
                   </div>
                   
                   <div className={`lg:block ${isWorkExpanded ? "block" : "hidden"}`}>
-                    <div className={`space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] ${
+                    <div className={`space-y-2.5 pt-1.5 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
                       theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                     }`}>
                       {profile.experienceList.map((exp, i) => (
-                        <div key={i} className="flex gap-3 pl-1 relative group">
-                          <div className={`h-[22px] w-[22px] rounded-full flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
+                        <div key={i} className="flex gap-2.5 pl-0.5 relative group">
+                          <div className={`h-[18px] w-[18px] rounded-full flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
                             theme === "sepia"
                               ? "bg-[#FAF4E5] border border-[#EADECC]/80 text-[#8C7B69] group-hover:border-amber-750 group-hover:text-amber-800"
                               : theme === "light"
                               ? "bg-white border border-zinc-200 text-zinc-500 group-hover:border-amber-600 group-hover:text-amber-600"
                               : "bg-[#0a0a0a] border border-white/10 text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400"
                           }`}>
-                            <span className="text-[9px] font-mono font-bold leading-none">{i + 1}</span>
+                            <span className="text-[8px] font-mono font-bold leading-none">{i + 1}</span>
                           </div>
-                          <div className="space-y-0.5 min-w-0">
+                          <div className="space-y-px min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className={`text-[13px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
+                              <span className={`text-[12px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
                                 theme === "sepia"
                                   ? "text-[#2B1B0C] group-hover:text-amber-800"
                                   : theme === "light"
                                   ? "text-zinc-950 group-hover:text-amber-600"
                                   : "text-white group-hover:text-amber-400"
                               }`}>{exp.title}</span>
-                              <span className={`text-[8.5px] font-mono px-1 rounded leading-none py-0.5 ${
+                              <span className={`text-[8px] font-mono px-1 rounded leading-none py-0.5 ${
                                 exp.badge === "現任" 
                                   ? theme === "sepia"
                                     ? "bg-amber-700/10 text-amber-900 border border-amber-700/20 font-medium"
@@ -1500,7 +1512,7 @@ export default function App() {
                                 {exp.badge}
                               </span>
                             </div>
-                            <p className={`text-[11px] font-light truncate leading-relaxed ${
+                            <p className={`text-[10px] font-light truncate leading-relaxed ${
                               theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
                             }`}>{exp.company}</p>
                           </div>
@@ -1511,7 +1523,7 @@ export default function App() {
                 </div>
 
                 {/* 特色學歷 */}
-                <div className={`space-y-3.5 lg:pt-1 transition-all duration-300 ${
+                <div className={`space-y-3 lg:pt-1 transition-all duration-300 ${
                   theme === "sepia"
                     ? `max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isEducationExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                     : theme === "light"
@@ -1540,36 +1552,36 @@ export default function App() {
                   </div>
                   
                   <div className={`lg:block ${isEducationExpanded ? "block" : "hidden"}`}>
-                    <div className={`space-y-4 pt-2 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[11px] before:w-[1px] ${
+                    <div className={`space-y-2.5 pt-1.5 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
                       theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                     }`}>
                       {profile.education.map((edu, i) => (
-                        <div key={i} className={`flex gap-3 p-2 -mx-2 rounded-xl relative group transition-all duration-300 ${
+                        <div key={i} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${
                           theme === "sepia"
                             ? "hover:bg-[#E3D3BE]/40"
                             : theme === "light"
                             ? "hover:bg-zinc-100"
                             : "hover:bg-white/[0.03]"
                         }`}>
-                          <div className={`h-[22px] w-[22px] rounded-full border flex items-center justify-center transition-all duration-300 z-10 shrink-0 mt-0.5 group-hover:scale-110 ${
+                          <div className={`h-[18px] w-[18px] rounded-full border flex items-center justify-center transition-all duration-300 z-10 shrink-0 mt-0.5 group-hover:scale-105 ${
                             theme === "sepia"
                               ? "bg-[#FAF4E5] border-[#EADECC]/80 text-[#8C7B69] group-hover:border-indigo-500 group-hover:text-indigo-500"
                               : theme === "light"
                               ? "bg-white border-zinc-200 text-zinc-500 group-hover:border-indigo-500 group-hover:text-indigo-500"
                               : "bg-[#0a0a0a] border-white/10 text-zinc-500 group-hover:border-indigo-400 group-hover:text-indigo-400"
                           }`}>
-                            <div className="h-1.5 w-1.5 rounded-full bg-indigo-500 transition-transform duration-300 group-hover:scale-125" />
+                            <div className="h-1 w-1 rounded-full bg-indigo-500 transition-transform duration-300 group-hover:scale-110" />
                           </div>
-                          <div className="space-y-0.5 min-w-0">
+                          <div className="space-y-px min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
-                              <span className={`text-[13px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
+                              <span className={`text-[12px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
                                 theme === "sepia"
                                   ? "text-[#2B1B0C] group-hover:text-indigo-600"
                                   : theme === "light"
                                   ? "text-zinc-950 group-hover:text-indigo-600"
                                   : "text-white group-hover:text-[#818CF8]"
                               }`}>{edu.school}</span>
-                              <span className={`text-[8.5px] font-mono px-1 rounded leading-none py-0.5 ${
+                              <span className={`text-[8px] font-mono px-1 rounded leading-none py-0.5 ${
                                 theme === "sepia"
                                   ? "bg-indigo-700/10 text-indigo-900 border border-indigo-700/20"
                                   : theme === "light"
@@ -1579,15 +1591,15 @@ export default function App() {
                                 {edu.info}
                               </span>
                             </div>
-                            <p className={`text-[11px] font-light leading-relaxed ${
+                            <p className={`text-[10px] font-light leading-relaxed ${
                               theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
                             }`}>{edu.dept}</p>
                             {edu.activities && edu.activities.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mt-1.5">
+                              <div className="flex flex-wrap gap-1 mt-1">
                                 {edu.activities.map((act, idx) => (
                                   <span 
                                     key={idx} 
-                                    className={`text-[9.5px] font-sans px-1.5 py-0.5 rounded transition-all duration-300 ${
+                                    className={`text-[8.5px] font-sans px-1.5 py-0.5 rounded transition-all duration-300 ${
                                       theme === "sepia"
                                         ? "bg-[#EADECC]/60 text-[#433422] border border-[#D5C2A5]"
                                         : theme === "light"
@@ -1608,7 +1620,7 @@ export default function App() {
                 </div>
 
                 {/* 專業證照 */}
-                <div className={`space-y-3.5 lg:pt-4 lg:border-t transition-all duration-300 ${
+                <div className={`space-y-3 lg:pt-3.5 lg:border-t transition-all duration-300 ${
                   theme === "sepia"
                     ? `border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 ${isCertificatesExpanded ? "max-lg:p-4" : "max-lg:py-1.5 max-lg:px-3"} max-lg:rounded-2xl`
                     : theme === "light"
@@ -1637,33 +1649,33 @@ export default function App() {
                   </div>
                   
                   <div className={`lg:block ${isCertificatesExpanded ? "block" : "hidden"}`}>
-                    <div className="space-y-3 pt-2 lg:pt-0">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-2 pt-1.5 lg:pt-0">
                       {profile.certificates.map((cert, i) => (
-                        <div key={i} className={`flex items-start gap-2.5 p-2 -mx-2 rounded-xl group transition-all duration-300 ${
+                        <div key={i} className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
                           theme === "sepia"
                             ? "hover:bg-[#E3D3BE]/40"
                             : theme === "light"
                             ? "hover:bg-zinc-100"
                             : "hover:bg-white/[0.03]"
                         }`}>
-                          <div className={`h-5 w-5 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 mt-0.5 group-hover:scale-110 ${
+                          <div className={`h-4.5 w-4.5 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 mt-0.5 group-hover:scale-105 ${
                             theme === "sepia"
                               ? "bg-[#FAF4E5] border-[#EADECC]/80 text-amber-700 group-hover:border-amber-500 group-hover:text-amber-500"
                               : theme === "light"
                               ? "bg-white border-zinc-200 text-zinc-400 group-hover:border-amber-500 group-hover:text-amber-500"
                               : "bg-[#0a0a0a] border-white/10 text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400"
                           }`}>
-                            <CheckCircle2 className="h-3 w-3 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
+                            <CheckCircle2 className="h-2.5 w-2.5 text-amber-500 transition-transform duration-300 group-hover:scale-105" />
                           </div>
-                          <div className="space-y-0.5 min-w-0">
-                            <span className={`text-[12.5px] font-medium tracking-tight leading-tight transition-colors duration-200 block ${
+                          <div className="space-y-px min-w-0">
+                            <span className={`text-[12px] font-medium tracking-tight leading-snug transition-colors duration-200 block ${
                               theme === "sepia"
                                 ? "text-[#2B1B0C] group-hover:text-amber-700"
                                 : theme === "light"
                                 ? "text-zinc-950 group-hover:text-amber-700"
                                 : "text-white group-hover:text-amber-400"
                             }`}>{cert.name}</span>
-                            <p className={`text-[11px] font-light leading-normal ${
+                            <p className={`text-[10px] font-light leading-normal ${
                               theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
                             }`}>{cert.issuer}</p>
                           </div>
@@ -2091,18 +2103,22 @@ export default function App() {
           {/* 作品卡片 RWD 呈現 */}
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]">
             <AnimatePresence>
-              {visibleItems.map((item, index) => (
-                <PortfolioCard
-                  key={item.id}
-                  item={item}
-                  onClick={() => setActiveModalItem(item)}
-                  priority={index < 6}
-                  index={index}
-                  prevVisibleCount={prevVisibleCount}
-                  theme={deferredTheme}
-                  showAllDetails={showAllDetails}
-                />
-              ))}
+              {visibleItems.map((item, index) => {
+                const is80PercentMark = index === preloadThresholdIndex;
+                return (
+                  <PortfolioCard
+                    key={item.id}
+                    item={item}
+                    onClick={() => setActiveModalItem(item)}
+                    priority={index < 6}
+                    index={index}
+                    prevVisibleCount={prevVisibleCount}
+                    theme={deferredTheme}
+                    showAllDetails={showAllDetails}
+                    onNearBottom={is80PercentMark ? handlePreloadNextBatch : undefined}
+                  />
+                );
+              })}
             </AnimatePresence>
           </div>
 

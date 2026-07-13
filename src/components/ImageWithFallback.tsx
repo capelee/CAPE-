@@ -39,8 +39,33 @@ export function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const [isInView, setIsInView] = useState<boolean>(priority || !lazy);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(optimizeSize || 600);
+
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect && rect.width > 0) {
+        // Snap width to nearest multiple of 120px to maximize CDN/browser caching
+        const measuredWidth = Math.ceil(rect.width);
+        const snappedWidth = Math.max(360, Math.min(1200, Math.ceil(measuredWidth / 120) * 120));
+        setContainerWidth(snappedWidth);
+      }
+    };
+    
+    updateWidth();
+    
+    if (typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(() => {
+        updateWidth();
+      });
+      observer.observe(containerRef.current);
+      return () => observer.disconnect();
+    }
+  }, []);
+
   const [currentSrc, setCurrentSrc] = useState<string>(() => {
-    return (priority || !lazy) ? resolveImageUrl(src, optimizeSize) : "";
+    return (priority || !lazy) ? resolveImageUrl(src, optimizeSize || containerWidth) : "";
   });
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
   const [failedCount, setFailedCount] = useState<number>(0);
@@ -135,21 +160,22 @@ export function ImageWithFallback({
 
   React.useEffect(() => {
     if (isInView) {
-      const resolved = resolveImageUrl(src, optimizeSize);
+      const targetSize = optimizeSize || containerWidth;
+      const resolved = resolveImageUrl(src, targetSize);
       setCurrentSrc(resolved);
       setFallbackAttempt(0);
       setFailedCount(0);
       setIsLoaded(false);
       loadStartTimeRef.current = performance.now();
       
-      console.log(`%c[ImageWithFallback:INIT]%c Loading image for [%c${titleText || alt}%c]\nSource: ${resolved}`, 
+      console.log(`%c[ImageWithFallback:INIT]%c Loading image for [%c${titleText || alt}%c] (size: ${targetSize}px)\nSource: ${resolved}`, 
         "color: #10B981; font-weight: bold;", 
         "color: inherit;", 
         "color: #F59E0B; font-weight: bold;", 
         "color: inherit;"
       );
     }
-  }, [src, optimizeSize, isInView, titleText, alt]);
+  }, [src, optimizeSize, containerWidth, isInView, titleText, alt]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
     const isYoutube = img.src.includes("youtube.com") || img.src.includes("img.youtube.com") || img.src.includes("ytimg.com");
@@ -438,14 +464,14 @@ export function ImageWithFallback({
       } else if (nextAttempt === 2) {
         if (id) {
           // 2nd fallback for Drive: LH3 direct view format
-          safeSetCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || 600}`, nextAttempt);
+          safeSetCurrentSrc(`https://lh3.googleusercontent.com/d/${id}=w${optimizeSize || containerWidth}`, nextAttempt);
         } else {
           setPlaceholderFallback(nextAttempt);
         }
       } else if (nextAttempt === 3) {
         // Try high-availability thumbnail URL
         if (id) {
-          safeSetCurrentSrc(`https://drive.google.com/thumbnail?sz=w${optimizeSize || 600}&id=${id}`, nextAttempt);
+          safeSetCurrentSrc(`https://drive.google.com/thumbnail?sz=w${optimizeSize || containerWidth}&id=${id}`, nextAttempt);
         } else {
           setPlaceholderFallback(nextAttempt);
         }
