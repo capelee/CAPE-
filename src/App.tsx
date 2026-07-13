@@ -29,6 +29,7 @@ import {
   Sun,
   Moon,
   Eye,
+  Instagram,
   ArrowUp,
   Maximize2,
   Minimize2,
@@ -317,7 +318,19 @@ export default function App() {
   const [theme, setTheme] = useState<"dark" | "light" | "sepia">(() => {
     try {
       const saved = localStorage.getItem("capelee_theme");
-      return (saved === "light" || saved === "dark" || saved === "sepia") ? saved : "sepia";
+      if (saved === "light" || saved === "dark" || saved === "sepia") {
+        return saved;
+      }
+
+      // 根據使用者系統偏好自動設定初始主題，若無偏好則維持預設的護眼暖沙 (sepia)
+      if (typeof window !== "undefined" && window.matchMedia) {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+          return "light";
+        }
+      }
+      return "sepia";
     } catch {
       return "sepia";
     }
@@ -325,14 +338,34 @@ export default function App() {
 
   const deferredTheme = React.useDeferredValue(theme);
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : theme === "light" ? "sepia" : "dark";
-    setTheme(nextTheme);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState<boolean>(false);
+  const themeMenuRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (themeMenuRef.current && !themeMenuRef.current.contains(event.target as Node)) {
+        setIsThemeMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const changeTheme = (newTheme: "dark" | "light" | "sepia") => {
+    setTheme(newTheme);
     try {
-      localStorage.setItem("capelee_theme", nextTheme);
+      localStorage.setItem("capelee_theme", newTheme);
     } catch (e) {
       console.error(e);
     }
+    setIsThemeMenuOpen(false);
+  };
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : theme === "light" ? "sepia" : "dark";
+    changeTheme(nextTheme);
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -863,16 +896,16 @@ export default function App() {
     : "text-zinc-300 hover:text-white bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/20";
 
   const themeToggleClass = theme === "sepia"
-    ? "p-1.5 sm:p-2 rounded-lg border flex items-center justify-center transition-all duration-300 transform active:scale-95 shadow-sm bg-[#EDE2CA]/95 hover:bg-[#E2D5B9] border-[#DFCFA0]/80 hover:border-amber-600/40 text-[#4F3C28] hover:text-[#2B1B0C] shrink-0 cursor-pointer"
+    ? "p-1 flex items-center justify-center transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-[#7A6B58] hover:text-[#433422] cursor-pointer"
     : theme === "light"
-    ? "p-1.5 sm:p-2 rounded-lg border flex items-center justify-center transition-all duration-300 transform active:scale-95 shadow-sm bg-zinc-100 hover:bg-zinc-200/80 border-zinc-200/80 hover:border-amber-500/30 text-zinc-750 hover:text-zinc-950 shrink-0 cursor-pointer"
-    : "p-1.5 sm:p-2 rounded-lg border-2 flex items-center justify-center transition-all duration-300 transform active:scale-95 shadow-sm text-zinc-400 hover:text-white bg-white/5 border-white/5 hover:bg-white/10 shrink-0 cursor-pointer";
+    ? "p-1 flex items-center justify-center transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-zinc-400 hover:text-zinc-800 cursor-pointer"
+    : "p-1 flex items-center justify-center transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-zinc-550 hover:text-zinc-200 cursor-pointer";
 
   const copyEmailClass = theme === "sepia"
-    ? "text-xs bg-[#EDE2CA]/95 hover:bg-[#E2D5B9] text-[#4F3C28] hover:text-[#2B1B0C] p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg border border-[#DFCFA0]/80 hover:border-amber-600/40 transition flex items-center gap-2 relative group cursor-pointer"
+    ? "text-xs sm:text-sm font-sans font-normal text-[#7A6B58] hover:text-[#433422] transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95"
     : theme === "light"
-    ? "text-xs bg-zinc-100 hover:bg-zinc-200/80 text-zinc-750 hover:text-zinc-950 p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg border border-zinc-200/80 hover:border-amber-500/30 transition flex items-center gap-2 relative group cursor-pointer"
-    : "text-xs bg-[#111] hover:bg-[#161616] text-zinc-300 hover:text-white p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg border border-white/5 transition flex items-center gap-2 relative group cursor-pointer";
+    ? "text-xs sm:text-sm font-sans font-normal text-zinc-400 hover:text-zinc-650 transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95"
+    : "text-xs sm:text-sm font-sans font-normal text-zinc-500 hover:text-zinc-300 transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95";
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -1236,42 +1269,40 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-3 md:gap-4">
-            <div className="flex items-center gap-1 sm:gap-2">
-              {/* 我的工作流按鈕 (桌機 & 行動裝置通用) */}
+          <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+            {/* 導航文字連結：作品 & 關於我 & AI工作流 */}
+            <div className="flex items-center gap-3.5 sm:gap-5 mr-1 sm:mr-2">
+              <button
+                type="button"
+                onClick={() => document.getElementById("portfolio-grid")?.scrollIntoView({ behavior: "smooth" })}
+                className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
+              >
+                作品
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  isJumpingToBentoRef.current = true;
+                  document.getElementById("designer-bento")?.scrollIntoView({ behavior: "smooth" });
+                  setTimeout(() => {
+                    isJumpingToBentoRef.current = false;
+                  }, 1500);
+                }}
+                className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
+              >
+                關於我
+              </button>
               <button
                 type="button"
                 onClick={() => setIsWorkflowOpen(true)}
-                className={`p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg border flex items-center justify-center gap-1.5 transition-all duration-300 transform active:scale-95 text-xs shrink-0 cursor-pointer ${workflowBtnClass}`}
+                className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
                 title="查看 AI 輔助設計工作流"
               >
-                <Sparkles className="h-4 w-4 sm:h-3.5 sm:w-3.5 text-amber-500 animate-pulse" />
-                <span className="hidden md:inline font-sans">我的工作流</span>
-                <span className="hidden sm:inline md:hidden font-mono text-[10px]">工作流</span>
+                AI工作流
               </button>
+            </div>
 
-              {/* 主題切換按鈕 (深邃黑 vs 極簡白 vs 護眼暖沙) */}
-              <button
-                type="button"
-                id="btn_theme_toggle"
-                onClick={toggleTheme}
-                className={themeToggleClass}
-                title={
-                  theme === "dark" 
-                    ? "目前：深邃黑 (點擊切換為極簡白)" 
-                    : theme === "light" 
-                    ? "目前：極簡白 (點擊切換為護眼暖沙)" 
-                    : "目前：護眼暖沙 (點擊切換為深邃黑)"
-                }
-              >
-                {theme === "dark" ? (
-                  <Moon className="h-4 w-4 text-indigo-400" />
-                ) : theme === "light" ? (
-                  <Sun className="h-4 w-4 text-[#D97706]" />
-                ) : (
-                  <Eye className="h-4 w-4 text-amber-700 animate-pulse" />
-                )}
-              </button>
+            <div className="flex items-center gap-2 sm:gap-3">
 
               {/* 電子郵件點擊複製 */}
               <button
@@ -1284,33 +1315,157 @@ export default function App() {
                 {copiedEmail ? (
                   <>
                      <Check className="h-3.5 w-3.5 text-green-400" />
-                     <span className="hidden sm:inline text-green-400 text-[11px] font-medium font-sans">已複製信箱</span>
+                     <span className="hidden sm:inline text-green-400 text-xs sm:text-sm font-normal font-sans">已複製信箱</span>
                   </>
                 ) : (
                   <>
                      <Mail className={`h-3.5 w-3.5 transition-colors ${
                        theme === 'sepia' 
-                         ? 'text-[#8C7B69]/80 group-hover:text-amber-700' 
+                         ? 'text-[#8C7B69]/80 group-hover:text-[#433422]' 
                          : theme === 'light' 
-                         ? 'text-zinc-400 group-hover:text-amber-600' 
-                         : 'text-zinc-500 group-hover:text-amber-400'
+                         ? 'text-zinc-400 group-hover:text-zinc-600' 
+                         : 'text-zinc-500 group-hover:text-zinc-350'
                      }`} />
-                     <span className="hidden sm:inline text-[11px] font-mono">capelee0715@gmail.com</span>
+                     <span className="hidden sm:inline">capelee0715@gmail.com</span>
                   </>
                 )}
               </button>
 
-              {/* 外部官方作品集連結 */}
-              <a 
-                href={profile.portfolioUrl}
-                target="_blank" 
+              {/* 主題切換按鈕 (選單形式) - 往右移 */}
+              <div className="relative" ref={themeMenuRef}>
+                <button
+                  type="button"
+                  id="btn_theme_toggle"
+                  onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                  className={themeToggleClass}
+                  title="選擇主題配色"
+                >
+                  {theme === "dark" ? (
+                    <Moon className="h-4 w-4 text-indigo-400" />
+                  ) : theme === "light" ? (
+                    <Sun className="h-4 w-4 text-[#D97706]" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-amber-700" />
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {isThemeMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: -8 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -8 }}
+                      transition={{ duration: 0.15 }}
+                      className={`absolute right-0 mt-2 w-28 rounded-xl border p-1 z-50 shadow-lg ${
+                        theme === "sepia"
+                          ? "bg-[#F4EAD4] border-[#DFCFA0]/80 text-[#4F3C28]"
+                          : theme === "light"
+                          ? "bg-white border-zinc-150 text-zinc-800"
+                          : "bg-[#18181b] border-white/10 text-zinc-200"
+                      }`}
+                    >
+                      {/* 淺色選項 */}
+                      <button
+                        type="button"
+                        onClick={() => changeTheme("light")}
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer ${
+                          theme === "light"
+                            ? theme === "sepia"
+                              ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
+                              : theme === "light"
+                              ? "bg-zinc-100 text-zinc-950 font-medium"
+                              : "bg-white/10 text-white font-medium"
+                            : theme === "sepia"
+                            ? "hover:bg-[#E2D5B9]/40 text-[#7A6B58]"
+                            : theme === "light"
+                            ? "hover:bg-zinc-100/50 text-zinc-650"
+                            : "hover:bg-white/5 text-zinc-400"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <Sun className="h-3.5 w-3.5 text-[#D97706]" />
+                          <span>淺色</span>
+                        </div>
+                        {theme === "light" && (
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#D97706]" />
+                        )}
+                      </button>
+
+                      {/* 深色選項 */}
+                      <button
+                        type="button"
+                        onClick={() => changeTheme("dark")}
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
+                          theme === "dark"
+                            ? theme === "sepia"
+                              ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
+                              : theme === "light"
+                              ? "bg-zinc-100 text-zinc-950 font-medium"
+                              : "bg-white/10 text-white font-medium"
+                            : theme === "sepia"
+                            ? "hover:bg-[#E2D5B9]/40 text-[#7A6B58]"
+                            : theme === "light"
+                            ? "hover:bg-zinc-100/50 text-zinc-650"
+                            : "hover:bg-white/5 text-zinc-400"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <Moon className="h-3.5 w-3.5 text-indigo-400" />
+                          <span>深色</span>
+                        </div>
+                        {theme === "dark" && (
+                          <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
+                        )}
+                      </button>
+
+                      {/* 暖沙選項 */}
+                      <button
+                        type="button"
+                        onClick={() => changeTheme("sepia")}
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
+                          theme === "sepia"
+                            ? theme === "sepia"
+                              ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
+                              : theme === "light"
+                              ? "bg-zinc-100 text-zinc-950 font-medium"
+                              : "bg-white/10 text-white font-medium"
+                            : theme === "sepia"
+                            ? "hover:bg-[#E2D5B9]/40 text-[#7A6B58]"
+                            : theme === "light"
+                            ? "hover:bg-zinc-100/50 text-zinc-650"
+                            : "hover:bg-white/5 text-zinc-400"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <Eye className="h-3.5 w-3.5 text-amber-700" />
+                          <span>暖沙</span>
+                        </div>
+                        {theme === "sepia" && (
+                          <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
+                        )}
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Instagram 按鈕 */}
+              <a
+                href="https://www.instagram.com/mumao1_the_cat_religion/"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 sm:px-3.5 sm:py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-1 shrink-0"
-                title="訪問官方全網作品集"
+                className={themeToggleClass}
+                title="訪問 Instagram (木貓教)"
               >
-                <span className="hidden sm:inline">官方全網 ↗</span>
-                <ArrowUpRight className="h-4 w-4 sm:hidden block" />
+                <Instagram className={`h-4 w-4 ${
+                  theme === "sepia" 
+                    ? "text-[#4F3C28] hover:text-[#E1306C]" 
+                    : theme === "light" 
+                    ? "text-zinc-550 hover:text-[#E1306C]" 
+                    : "text-zinc-400 hover:text-[#E1306C]"
+                } transition-colors`} />
               </a>
+
             </div>
           </div>
         </div>
@@ -1397,7 +1552,7 @@ export default function App() {
               {/* Soft background glow matching mascot role */}
               <div className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms]" />
               <img
-                src="https://drive.google.com/thumbnail?sz=w1000&id=1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl"
+                src="https://drive.google.com/thumbnail?sz=w1000&id=1ZeWPbgI98shJ4PjEfHUMpjeKILsE0SQL"
                 alt="創意總監 Shone"
                 referrerPolicy="no-referrer"
                 className="w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:scale-[1.02] transition-transform duration-500 overflow-visible"
