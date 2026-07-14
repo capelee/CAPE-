@@ -44,6 +44,7 @@ import { PortfolioItem } from "./types";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
 import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl } from "./utils";
+import { animaleseSynth } from "./utils/animalese";
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
 
@@ -767,9 +768,36 @@ export default function App() {
 
   // Hero white cat character interaction states
   const [isHeroSpeaking, setIsHeroSpeaking] = useState<boolean>(false);
-  const [heroFrameIndex, setHeroFrameIndex] = useState<number>(0);
   const [showHeroDialogue, setShowHeroDialogue] = useState<boolean>(false);
   const [heroDialogue, setHeroDialogue] = useState<string>("");
+  const [displayedDialogue, setDisplayedDialogue] = useState<string>("");
+  const [heroParticles, setHeroParticles] = useState<{ id: number; x: number; y: number; emoji: string }[]>([]);
+
+  // Handle typewriter effect for lively dialog popups
+  React.useEffect(() => {
+    if (!showHeroDialogue || !heroDialogue) {
+      setDisplayedDialogue("");
+      return;
+    }
+
+    setDisplayedDialogue("");
+    let currentText = "";
+    let i = 0;
+    
+    const interval = setInterval(() => {
+      if (i < heroDialogue.length) {
+        currentText += heroDialogue[i];
+        setDisplayedDialogue(currentText);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 35); // 35ms per character is highly responsive and synced with cute audio blips
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [showHeroDialogue, heroDialogue]);
 
   const heroDialogues = useMemo(() => [
     "哈囉！我是 Cape Lee 👋 歡迎來到我的視覺與品牌整合設計宇宙！",
@@ -782,37 +810,66 @@ export default function App() {
   const triggerHeroSpeaking = () => {
     if (isHeroSpeaking) {
       setIsHeroSpeaking(false);
-      setShowHeroDialogue(false);
       return;
     }
     const randomIndex = Math.floor(Math.random() * heroDialogues.length);
     setHeroDialogue(heroDialogues[randomIndex]);
-    setShowHeroDialogue(true);
     setIsHeroSpeaking(true);
   };
 
+  const handleHeroClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const emojis = ["✨", "💖", "🐾", "🎨", "💬", "⭐", "🎵", "😻", "🎀"];
+    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+    const newParticle = {
+      id: Date.now() + Math.random(),
+      x,
+      y,
+      emoji: randomEmoji,
+    };
+
+    setHeroParticles((prev) => [...prev, newParticle].slice(-20));
+    triggerHeroSpeaking();
+  };
+
   React.useEffect(() => {
-    let intervalId: NodeJS.Timeout | null = null;
-    let timeoutId: NodeJS.Timeout | null = null;
+    let dialogDelayTimeout: NodeJS.Timeout | null = null;
+    let autoCloseTimeout: NodeJS.Timeout | null = null;
 
     if (isHeroSpeaking) {
-      intervalId = setInterval(() => {
-        setHeroFrameIndex((prev) => (prev + 1) % 4);
-      }, 140);
+      // 一開始對話框先隱藏 (或重設)
+      setShowHeroDialogue(false);
 
-      timeoutId = setTimeout(() => {
+      // 播放動物森友會風格的語音 (根據對話內容，最長播放 2.5 秒)
+      if (heroDialogue) {
+        animaleseSynth.play(heroDialogue, 2500);
+      }
+
+      // 嘴部動作開始 300ms 後，對話框才同步出現，使表情與講話節奏更立體生動
+      dialogDelayTimeout = setTimeout(() => {
+        setShowHeroDialogue(true);
+      }, 300);
+
+      // 4.2 秒後自動閉嘴，並隱藏對話框
+      autoCloseTimeout = setTimeout(() => {
         setIsHeroSpeaking(false);
         setShowHeroDialogue(false);
-      }, 3500);
+      }, 4200);
     } else {
-      setHeroFrameIndex(0);
+      setShowHeroDialogue(false);
+      animaleseSynth.stop();
     }
 
     return () => {
-      if (intervalId) clearInterval(intervalId);
-      if (timeoutId) clearTimeout(timeoutId);
+      if (dialogDelayTimeout) clearTimeout(dialogDelayTimeout);
+      if (autoCloseTimeout) clearTimeout(autoCloseTimeout);
+      animaleseSynth.stop();
     };
-  }, [isHeroSpeaking]);
+  }, [isHeroSpeaking, heroDialogue]);
 
   // Mascot visibility based on scrolling sections
   const [isMascotVisibleByScroll, setIsMascotVisibleByScroll] = useState<boolean>(false);
@@ -1684,13 +1741,35 @@ export default function App() {
             <motion.div
               initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.93, scaleY: 0.88, scaleX: 1.05 }}
               transition={{ type: "spring", bounce: 0.15, duration: 1.2, delay: 0.1 }}
-              onClick={triggerHeroSpeaking}
+              onClick={handleHeroClick}
               className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none"
             >
               {/* Soft background glow matching mascot role */}
               <div className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms]" />
               
+              {/* Click Particles Burst */}
+              <AnimatePresence>
+                {heroParticles.map((p) => (
+                  <motion.span
+                    key={p.id}
+                    initial={{ opacity: 1, scale: 0.4, x: p.x - 12, y: p.y - 12, rotate: 0 }}
+                    animate={{ opacity: 0, scale: 1.6, y: p.y - 110, x: p.x - 12 + (Math.random() * 80 - 40), rotate: Math.random() * 120 - 60 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.85, ease: "easeOut" }}
+                    onAnimationComplete={() => {
+                      setHeroParticles((prev) => prev.filter((item) => item.id !== p.id));
+                    }}
+                    className="absolute pointer-events-none select-none text-2xl z-40"
+                    style={{ left: 0, top: 0 }}
+                  >
+                    {p.emoji}
+                  </motion.span>
+                ))}
+              </AnimatePresence>
+
               {/* Hover indicator tooltip */}
               {!isHeroSpeaking && (
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1 pointer-events-none z-20">
@@ -1735,19 +1814,119 @@ export default function App() {
                           : "bg-zinc-950 border-zinc-800/80"
                       }
                     `} />
-                    <p>{heroDialogue}</p>
+                    <motion.div
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 3.5,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <p className="relative">
+                        {displayedDialogue}
+                        {displayedDialogue.length < heroDialogue.length && (
+                          <span className="inline-block ml-1 w-1.5 h-3.5 bg-amber-500 animate-pulse rounded align-middle" />
+                        )}
+                      </p>
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              <div className="w-full h-auto relative overflow-visible">
+              <div className={`w-full h-auto relative overflow-visible transition-all duration-500 ease-out ${
+                isHeroSpeaking 
+                  ? "mumao-speaking" 
+                  : "mumao-idle group-hover:mumao-playful"
+              }`}>
+                {/* Embedded smooth mouth & body animations */}
+                <style>{`
+                  @keyframes mumao-closed {
+                    0%, 19.99%, 80%, 100% {
+                      opacity: 1;
+                    }
+                    20%, 79.99% {
+                      opacity: 0;
+                    }
+                  }
+                  @keyframes mumao-medium {
+                    0%, 19.99%, 40%, 59.99%, 80%, 100% {
+                      opacity: 0;
+                    }
+                    20%, 39.99%, 60%, 79.99% {
+                      opacity: 1;
+                    }
+                  }
+                  @keyframes mumao-open {
+                    0%, 39.99%, 60%, 100% {
+                      opacity: 0;
+                    }
+                    40%, 59.99% {
+                      opacity: 1;
+                    }
+                  }
+                  .mumao-anim-closed {
+                    animation: mumao-closed 0.7s infinite steps(1);
+                  }
+                  .mumao-anim-medium {
+                    animation: mumao-medium 0.7s infinite steps(1);
+                  }
+                  .mumao-anim-open {
+                    animation: mumao-open 0.7s infinite steps(1);
+                  }
+
+                  /* Body movement keyframes for lively expressions (Subtler/Gentler) */
+                  @keyframes mumao-idle-float {
+                    0%, 100% {
+                      transform: translateY(0) rotate(0deg);
+                    }
+                    50% {
+                      transform: translateY(-2px) rotate(0.3deg);
+                    }
+                  }
+                  @keyframes mumao-speaking-bounce {
+                    0%, 100% {
+                      transform: translateY(0) scale(1) rotate(0deg);
+                    }
+                    25% {
+                      transform: translateY(-3.5px) scale(1.012) rotate(-0.4deg);
+                    }
+                    50% {
+                      transform: translateY(0.6px) scale(0.988) rotate(0.2deg);
+                    }
+                    75% {
+                      transform: translateY(-2.2px) scale(1.006) rotate(-0.2deg);
+                    }
+                  }
+                  @keyframes mumao-hover-wiggle {
+                    0%, 100% {
+                      transform: scale(1.01) rotate(0deg) translateY(0);
+                    }
+                    25% {
+                      transform: scale(1.015) rotate(-0.5deg) translateY(-1px);
+                    }
+                    75% {
+                      transform: scale(1.015) rotate(0.5deg) translateY(-1px);
+                    }
+                  }
+
+                  .mumao-idle {
+                    animation: mumao-idle-float 3.8s infinite ease-in-out;
+                  }
+                  .mumao-speaking {
+                    animation: mumao-speaking-bounce 0.95s infinite ease-in-out;
+                  }
+                  .mumao-playful {
+                    animation: mumao-hover-wiggle 1.2s infinite ease-in-out;
+                  }
+                `}</style>
+
                 {/* 1. 閉嘴版 (Base / Default) */}
                 <img
                   src="https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
                   alt="Cape Lee mascot closed mouth"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-opacity duration-[30ms] group-hover:scale-[1.03] transition-transform duration-500 ${
-                    !isHeroSpeaking || heroFrameIndex === 0 ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 z-0 pointer-events-none"
+                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] relative z-10 transition-transform duration-500 ${
+                    isHeroSpeaking ? "mumao-anim-closed" : "opacity-100"
                   }`}
                 />
                 {/* 2. 說話版1 (中開) */}
@@ -1755,8 +1934,8 @@ export default function App() {
                   src="https://drive.google.com/thumbnail?sz=w1000&id=1ZhhZ25s_ADm5iFcAO_I-YxglQlFlcsjk"
                   alt="Cape Lee mascot speaking 1"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-opacity duration-[30ms] group-hover:scale-[1.03] transition-transform duration-500 ${
-                    isHeroSpeaking && (heroFrameIndex === 1 || heroFrameIndex === 3) ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 z-0 pointer-events-none"
+                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] absolute inset-0 transition-transform duration-500 ${
+                    isHeroSpeaking ? "mumao-anim-medium z-20" : "opacity-0 pointer-events-none z-0"
                   }`}
                 />
                 {/* 3. 說話版2 (大開) */}
@@ -1764,8 +1943,8 @@ export default function App() {
                   src="https://drive.google.com/thumbnail?sz=w1000&id=1Q7naVG-GPyr6s5X57rYiKlSofgb8hpBh"
                   alt="Cape Lee mascot speaking 2"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-opacity duration-[30ms] group-hover:scale-[1.03] transition-transform duration-500 ${
-                    isHeroSpeaking && heroFrameIndex === 2 ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 z-0 pointer-events-none"
+                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] absolute inset-0 transition-transform duration-500 ${
+                    isHeroSpeaking ? "mumao-anim-open z-20" : "opacity-0 pointer-events-none z-0"
                   }`}
                 />
               </div>
