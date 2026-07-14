@@ -250,6 +250,7 @@ export default function App() {
     isScrolled: false,
     showScrollTop: false,
     showHeader: true,
+    isMascotVisible: false,
   });
   
   React.useEffect(() => {
@@ -450,6 +451,7 @@ export default function App() {
     name: string;
     role: string;
     imageDriveId: string;
+    imageDriveIdSpeaking?: string;
     glowColor: string;
     dialogues: string[];
     idles: string[];
@@ -763,6 +765,58 @@ export default function App() {
     }, 2000);
   };
 
+  // Hero white cat character interaction states
+  const [isHeroSpeaking, setIsHeroSpeaking] = useState<boolean>(false);
+  const [heroFrameIndex, setHeroFrameIndex] = useState<number>(0);
+  const [showHeroDialogue, setShowHeroDialogue] = useState<boolean>(false);
+  const [heroDialogue, setHeroDialogue] = useState<string>("");
+
+  const heroDialogues = useMemo(() => [
+    "哈囉！我是 Cape Lee 👋 歡迎來到我的視覺與品牌整合設計宇宙！",
+    "點選左下角的『看作品』，就能解鎖我經手的所有精彩作品喔！✨",
+    "每一像素都承載著設計的溫度與堅持。希望你今天逛得開心！💖",
+    "這隻白貓是我的原創 IP 角色 MuMㄠ 喔！是不是很可愛呢？🐾",
+    "在右下角還有我們的 12 隻專業恐龍與吉祥物戰隊，也可以找他們聊天喔！🦖"
+  ], []);
+
+  const triggerHeroSpeaking = () => {
+    if (isHeroSpeaking) {
+      setIsHeroSpeaking(false);
+      setShowHeroDialogue(false);
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * heroDialogues.length);
+    setHeroDialogue(heroDialogues[randomIndex]);
+    setShowHeroDialogue(true);
+    setIsHeroSpeaking(true);
+  };
+
+  React.useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    if (isHeroSpeaking) {
+      intervalId = setInterval(() => {
+        setHeroFrameIndex((prev) => (prev + 1) % 4);
+      }, 140);
+
+      timeoutId = setTimeout(() => {
+        setIsHeroSpeaking(false);
+        setShowHeroDialogue(false);
+      }, 3500);
+    } else {
+      setHeroFrameIndex(0);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [isHeroSpeaking]);
+
+  // Mascot visibility based on scrolling sections
+  const [isMascotVisibleByScroll, setIsMascotVisibleByScroll] = useState<boolean>(false);
+
   // Scroll to top and navbar transition support
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -824,6 +878,33 @@ export default function App() {
           if (scrollTrackerRef.current.showScrollTop !== showScroll) {
             scrollTrackerRef.current.showScrollTop = showScroll;
             setShowScrollTop(showScroll);
+          }
+
+          // Check scroll-based visibility for interactive mascot:
+          // It should show up ONLY in the portfolio works area (i.e. once the top of #portfolio-grid is scrolled into view or has passed,
+          // and retracted when we go back to the top or down to the bottom resume section (#designer-bento)).
+          const portfolioGrid = document.getElementById("portfolio-grid");
+          const designerBento = document.getElementById("designer-bento");
+          
+          let mascotVisible = false;
+          if (portfolioGrid) {
+            const portfolioRect = portfolioGrid.getBoundingClientRect();
+            // Start showing once the top of portfolio grid has entered the lower portion of the viewport
+            const enteredPortfolio = portfolioRect.top < window.innerHeight * 0.7;
+            
+            let reachedResume = false;
+            if (designerBento) {
+              const bentoRect = designerBento.getBoundingClientRect();
+              // Hide once the designer bento resume section has entered the viewport (e.g. 60% of screen height)
+              reachedResume = bentoRect.top < window.innerHeight * 0.6;
+            }
+            
+            mascotVisible = enteredPortfolio && !reachedResume;
+          }
+
+          if (scrollTrackerRef.current.isMascotVisible !== mascotVisible) {
+            scrollTrackerRef.current.isMascotVisible = mascotVisible;
+            setIsMascotVisibleByScroll(mascotVisible);
           }
 
           // Always keep top navbar visible and do not trigger show/hide state updates
@@ -1604,16 +1685,90 @@ export default function App() {
               initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
               transition={{ type: "spring", bounce: 0.15, duration: 1.2, delay: 0.1 }}
-              className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible"
+              onClick={triggerHeroSpeaking}
+              className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none"
             >
               {/* Soft background glow matching mascot role */}
               <div className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms]" />
-              <img
-                src="https://drive.google.com/thumbnail?sz=w1000&id=1ZeWPbgI98shJ4PjEfHUMpjeKILsE0SQL"
-                alt="創意總監 Shone"
-                referrerPolicy="no-referrer"
-                className="w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:scale-[1.02] transition-transform duration-500 overflow-visible"
-              />
+              
+              {/* Hover indicator tooltip */}
+              {!isHeroSpeaking && (
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1 pointer-events-none z-20">
+                  <div className={`px-2.5 py-1 text-[11px] font-medium rounded-full shadow-md flex items-center gap-1 backdrop-blur border whitespace-nowrap ${
+                    theme === "sepia"
+                      ? "bg-[#FCF8EE] border-[#DFCFA0] text-[#4F3C28]"
+                      : theme === "light"
+                      ? "bg-white border-zinc-200 text-zinc-800"
+                      : "bg-zinc-900 border-zinc-800 text-zinc-200"
+                  }`}>
+                    點我說話 💬
+                  </div>
+                </div>
+              )}
+
+              {/* Dialogue Bubble */}
+              <AnimatePresence>
+                {showHeroDialogue && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: 15 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                    className={`absolute z-30 w-[240px] sm:w-[280px] p-4 rounded-2xl shadow-xl border text-xs sm:text-sm font-medium leading-relaxed
+                      ${
+                        theme === "sepia"
+                          ? "bg-[#FAF4E5] border-[#EAD09D] text-[#382B1D] shadow-[#382B1D]/5"
+                          : theme === "light"
+                          ? "bg-white border-zinc-150 text-zinc-800 shadow-zinc-200/50"
+                          : "bg-zinc-950/95 border-zinc-800/80 text-zinc-100 shadow-black/40"
+                      }
+                      bottom-[105%] left-1/2 -translate-x-1/2 lg:left-auto lg:right-[72%] lg:-translate-x-0 lg:bottom-[88%] lg:translate-y-0
+                    `}
+                  >
+                    {/* Tiny bubble tail pointing down-right towards mascot, solid matching background to cover parent border */}
+                    <div className={`absolute w-3 h-3 rotate-45 border-r border-b bottom-[-5px] left-1/2 -translate-x-1/2 lg:left-auto lg:right-8 lg:-translate-x-0
+                      ${
+                        theme === "sepia"
+                          ? "bg-[#FAF4E5] border-[#EAD09D]"
+                          : theme === "light"
+                          ? "bg-white border-zinc-150"
+                          : "bg-zinc-950 border-zinc-800/80"
+                      }
+                    `} />
+                    <p>{heroDialogue}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <div className="w-full h-auto relative overflow-visible">
+                {/* 1. 閉嘴版 (Base / Default) */}
+                <img
+                  src="https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
+                  alt="Cape Lee mascot closed mouth"
+                  referrerPolicy="no-referrer"
+                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-opacity duration-[30ms] group-hover:scale-[1.03] transition-transform duration-500 ${
+                    !isHeroSpeaking || heroFrameIndex === 0 ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 z-0 pointer-events-none"
+                  }`}
+                />
+                {/* 2. 說話版1 (中開) */}
+                <img
+                  src="https://drive.google.com/thumbnail?sz=w1000&id=1ZhhZ25s_ADm5iFcAO_I-YxglQlFlcsjk"
+                  alt="Cape Lee mascot speaking 1"
+                  referrerPolicy="no-referrer"
+                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-opacity duration-[30ms] group-hover:scale-[1.03] transition-transform duration-500 ${
+                    isHeroSpeaking && (heroFrameIndex === 1 || heroFrameIndex === 3) ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 z-0 pointer-events-none"
+                  }`}
+                />
+                {/* 3. 說話版2 (大開) */}
+                <img
+                  src="https://drive.google.com/thumbnail?sz=w1000&id=1Q7naVG-GPyr6s5X57rYiKlSofgb8hpBh"
+                  alt="Cape Lee mascot speaking 2"
+                  referrerPolicy="no-referrer"
+                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-opacity duration-[30ms] group-hover:scale-[1.03] transition-transform duration-500 ${
+                    isHeroSpeaking && heroFrameIndex === 2 ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 z-0 pointer-events-none"
+                  }`}
+                />
+              </div>
             </motion.div>
           </div>
         </section>
@@ -2983,6 +3138,7 @@ export default function App() {
                 theme === "dark" ? "border-white/5 bg-zinc-950" : theme === "sepia" ? "border-amber-950/10 bg-[#FAF4E5]" : "border-zinc-100 bg-zinc-50"
               }`}>
                 <button
+                  id="btn-workflow-complete"
                   type="button"
                   onClick={() => setIsWorkflowOpen(false)}
                   className={`px-5 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
@@ -3191,6 +3347,7 @@ export default function App() {
         activeModalItem={activeModalItem}
         isWorkflowOpen={isWorkflowOpen}
         isContactCardOpen={isContactCardOpen}
+        scrollSectionVisible={isMascotVisibleByScroll}
       />
 
       {/* 懸浮回到最上方按鈕 */}

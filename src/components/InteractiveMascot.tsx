@@ -7,6 +7,8 @@ interface InteractiveMascotProps {
     name: string;
     role: string;
     imageDriveId: string;
+    imageDriveIdSpeaking?: string;
+    imageDriveIdSpeakingFrames?: string[];
     glowColor: string;
     dialogues: string[];
     idles: string[];
@@ -15,6 +17,7 @@ interface InteractiveMascotProps {
   activeModalItem: any;
   isWorkflowOpen: boolean;
   isContactCardOpen: boolean;
+  scrollSectionVisible: boolean;
 }
 
 
@@ -23,7 +26,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   theme,
   activeModalItem,
   isWorkflowOpen,
-  isContactCardOpen
+  isContactCardOpen,
+  scrollSectionVisible
 }: InteractiveMascotProps) {
   const [mascotDialogue, setMascotDialogue] = useState<string>("");
   const [showMascotDialogue, setShowMascotDialogue] = useState<boolean>(false);
@@ -31,6 +35,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
+  const [currentFrameIndex, setCurrentFrameIndex] = useState<number>(0);
   
   // 雙指縮放狀態
   const [mascotScale, setMascotScale] = useState<number>(1);
@@ -38,6 +44,42 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const currentScaleRef = React.useRef<number>(1);
   
   const dragControls = useDragControls();
+
+  // 當對話框打開或更換對話時，觸發嘴巴開合動畫 (若有提供說話圖片或多幀)
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+    
+    if (showMascotDialogue && (currentMascot.imageDriveIdSpeaking || currentMascot.imageDriveIdSpeakingFrames)) {
+      setIsSpeaking(true);
+      setCurrentFrameIndex(0);
+
+      const intervalMs = currentMascot.imageDriveIdSpeakingFrames ? 140 : 220;
+
+      intervalId = setInterval(() => {
+        if (currentMascot.imageDriveIdSpeakingFrames && currentMascot.imageDriveIdSpeakingFrames.length > 0) {
+          setCurrentFrameIndex((prev) => (prev + 1) % currentMascot.imageDriveIdSpeakingFrames!.length);
+        } else {
+          setIsSpeaking((prev) => !prev);
+        }
+      }, intervalMs);
+
+      // 說話持續 2.8 秒後自動閉口回到靜態
+      timeoutId = setTimeout(() => {
+        if (intervalId) clearInterval(intervalId);
+        setIsSpeaking(false);
+        setCurrentFrameIndex(0);
+      }, 2800);
+    } else {
+      setIsSpeaking(false);
+      setCurrentFrameIndex(0);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [showMascotDialogue, mascotDialogue, currentMascot.imageDriveIdSpeaking, currentMascot.imageDriveIdSpeakingFrames]);
 
   // 建立滑鼠/指標跟蹤角度邏輯及其平滑彈性曲線 (Motion values)
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -118,6 +160,13 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
     }
   }, [currentMascot]);
 
+  // 當滾動區間能見度變為可見時，自動重置手動隱藏狀態，讓吉祥物再次彈出
+  React.useEffect(() => {
+    if (scrollSectionVisible) {
+      setIsVisible(true);
+    }
+  }, [scrollSectionVisible]);
+
   // 當圖片載入完成時，顯示吉祥物對話框
   React.useEffect(() => {
     // 確保留有一點彈出緩衝時間，不至於卡頓
@@ -192,7 +241,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
 
   return (
     <AnimatePresence>
-      {isVisible && !activeModalItem && !isWorkflowOpen && !isContactCardOpen && (
+      {isVisible && scrollSectionVisible && !activeModalItem && !isWorkflowOpen && !isContactCardOpen && (
         <motion.div
           ref={containerRef}
           initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
@@ -348,12 +397,28 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             
             <AnimatePresence mode="wait">
               <motion.img 
-                key={currentMascot.imageDriveId}
+                key={currentMascot.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                src={`https://drive.google.com/thumbnail?sz=w800&id=${currentMascot.imageDriveId}`} 
+                src={(() => {
+                  let currentId = currentMascot.imageDriveId;
+                  
+                  if (isSpeaking) {
+                    if (currentMascot.imageDriveIdSpeakingFrames && currentMascot.imageDriveIdSpeakingFrames.length > 0) {
+                      currentId = currentMascot.imageDriveIdSpeakingFrames[currentFrameIndex];
+                    } else if (currentMascot.imageDriveIdSpeaking) {
+                      currentId = currentMascot.imageDriveIdSpeaking;
+                    }
+                  }
+
+                  if (!currentId) return "";
+                  if (currentId.startsWith("/") || currentId.startsWith("http") || currentId.startsWith("data:")) {
+                    return currentId;
+                  }
+                  return `https://drive.google.com/thumbnail?sz=w800&id=${currentId}`;
+                })()}
                 alt={currentMascot.name} 
                 draggable={false}
                 className="w-full h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] brightness-110 group-hover:brightness-125 transition-all duration-300 pointer-events-none select-none"

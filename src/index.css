@@ -307,6 +307,10 @@ body {
   color: #111827 !important;
 }
 
+.light-theme .fixed.z-50 #btn-workflow-complete:hover {
+  color: #FAFAFA !important;
+}
+
 .light-theme .fixed.z-50 .hover\:bg-white\/10:hover {
   background-color: #E4E4E7 !important;
 }
@@ -687,6 +691,10 @@ body {
 .sepia-theme .fixed.z-50 button:hover,
 .sepia-theme .fixed.z-50 .hover\:text-white:hover {
   color: #382B1D !important;
+}
+
+.sepia-theme .fixed.z-50 #btn-workflow-complete:hover {
+  color: #FEF3C7 !important;
 }
 
 .sepia-theme .fixed.z-50 .hover\:bg-white\/10:hover {
