@@ -13,7 +13,8 @@ import {
   Zap, 
   Mail, 
   QrCode,
-  Check
+  Check,
+  FileText
 } from "lucide-react";
 import { MinimalistLogo } from "./MinimalistLogo";
 
@@ -30,6 +31,7 @@ interface DesignerBentoProps {
     desireTitle: string;
     email: string;
     portfolioUrl: string;
+    pdfPortfolioUrl?: string;
     intro: string;
     education: Array<{
       school: string;
@@ -177,8 +179,26 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black transition-all shadow-lg shadow-amber-500/25 active:scale-98 text-center uppercase tracking-wide font-sans scroll-smooth"
               >
-                <span>最新 2026 官方作品集 (Canva) ↗</span>
+                <span>PDF 作品集 ↗</span>
               </a>
+
+              {profile.pdfPortfolioUrl && profile.pdfPortfolioUrl !== profile.portfolioUrl && (
+                <a 
+                  href={profile.pdfPortfolioUrl}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl border transition-all duration-300 shadow-md active:scale-98 text-center uppercase tracking-wide font-sans ${
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-200"
+                      : theme === "sepia"
+                      ? "border-[#DFCFA0] bg-[#FCF8EE]/50 hover:bg-[#DFCFA0]/20 text-[#4F3C28]"
+                      : "border-zinc-200 bg-zinc-50 hover:bg-zinc-100 text-zinc-700"
+                  }`}
+                >
+                  <FileText className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                  <span>傳統雲端 PDF 作品集 ↗</span>
+                </a>
+              )}
 
               <button
                 type="button"

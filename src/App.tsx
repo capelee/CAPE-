@@ -37,7 +37,8 @@ import {
   Image as ImageIcon,
   QrCode,
   Download,
-  SlidersHorizontal
+  SlidersHorizontal,
+  FileText
 } from "lucide-react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
 import { PortfolioItem } from "./types";
@@ -1149,7 +1150,8 @@ export default function App() {
     experience: "5 ~ 6 年品牌商業整合設計實戰經驗",
     desireTitle: "視覺設計師 / 平面設計師",
     email: "capelee0715@gmail.com",
-    portfolioUrl: "https://canva.link/6byrfm8uow141cv", 
+    portfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
+    pdfPortfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
     intro: "擁有 6 年以上品牌商業整合設計實戰經驗，經手超過百個品牌、逾千件商品視覺製作，熟悉電商、醫療、文創等多元產業。具備視覺設計、商業攝影、品牌識別、影音製作與生成式 AI 工作流整合之全方位能力，作品涵蓋月銷破萬電商視覺、客家電視台邀約插畫、個人原創 IP 角色開發及企業 CIS 規劃，致力於將品牌價值轉化為最精準、最具張力的視覺語言。",
     education: [
       { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
@@ -1465,8 +1467,12 @@ export default function App() {
         className="fixed top-0 left-0 right-0 z-40 border-b py-2 md:py-2.5 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
       >
         <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <MinimalistLogo theme={theme} className="w-[30px] h-[30px] md:w-[36px] md:h-[36px] shrink-0" />
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer group/brand select-none hover:opacity-90 active:scale-[0.98] transition-all duration-200 text-left outline-none"
+          >
+            <MinimalistLogo theme={theme} className="w-[30px] h-[30px] md:w-[36px] md:h-[36px] shrink-0 group-hover/brand:scale-105 transition-transform duration-300" />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className={`font-display font-semibold tracking-tight text-xs sm:text-sm md:text-md uppercase transition-colors duration-300 ${brandingTextClass}`}>capelee</span>
@@ -1474,7 +1480,7 @@ export default function App() {
               </div>
               <p className="hidden sm:block text-[10px] font-mono text-zinc-500 tracking-wider">CREATIVE VISUAL PORTFOLIO</p>
             </div>
-          </div>
+          </button>
 
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
             {/* 導航文字連結：作品 & 履歷 & AI工作流 */}
@@ -1709,7 +1715,7 @@ export default function App() {
               5 ~ 6 年品牌商業整合設計實戰經驗，作品橫跨電商視覺、品牌識別與原創角色 IP。
             </p>
 
-            <div className="flex items-center gap-3.5 pt-2">
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <button
                 onClick={() => scrollToElement("portfolio-grid")}
                 className={`px-6 py-3 font-semibold rounded-xl text-xs sm:text-sm transition-all duration-300 shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
@@ -1734,6 +1740,24 @@ export default function App() {
               >
                 履歷
               </button>
+              {profile.pdfPortfolioUrl && (
+                <a
+                  href={profile.pdfPortfolioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 ${
+                    theme === "sepia"
+                      ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
+                      : theme === "light"
+                      ? "border-zinc-200 hover:bg-zinc-50 text-zinc-700"
+                      : "border-white/10 hover:bg-white/5 text-zinc-300"
+                  }`}
+                  title="開啟雲端儲存的傳統 PDF 作品集"
+                >
+                  <FileText className="w-4 h-4 text-amber-500 shrink-0" />
+                  <span>PDF 作品集</span>
+                </a>
+              )}
             </div>
           </div>
 
