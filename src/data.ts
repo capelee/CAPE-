@@ -345,7 +345,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1RkZtC5kQNs2t-BBRfNzcmxuALo1tsRWl",
       "https://drive.google.com/thumbnail?sz=w1000&id=1DTZE5KYz817fDHtdfo7YB8SqZV4Ucs-a"
     ],
-    "driveFolderId": "1EF-HKBNOtTzxRvDp3LEJs_QYwnWCIh9S"
+    "driveFolderId": "1EF-HKBNOtTzxRvDp3LEJs_QYwnWCIh9S",
+    "link": "https://bunnyann.tw/bunnyann08/"
   },
   {
     "id": "shanye-muren-cis",
@@ -402,7 +403,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=11QGY1rmXbe-1aGGHwTx48LtPBobGM3fo",
       "https://drive.google.com/thumbnail?sz=w1000&id=1khnpEiPwZr0eKj9TofopHnZ_ynFKkw09"
     ],
-    "driveFolderId": "1op79WMlUOubntQeKfam4fGyfO64704mf"
+    "driveFolderId": "1op79WMlUOubntQeKfam4fGyfO64704mf",
+    "link": "https://www.facebook.com/p/%E5%B1%B1%E9%87%8E%E7%89%A7%E4%BA%BA-Wood-61569585667833/"
   },
   {
     "id": "shanye-muren-signboard",
@@ -448,7 +450,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1YjVA6o8cLsGc1o4HMmgZpyXNyF9Je4Ma",
       "https://drive.google.com/thumbnail?sz=w1000&id=14zUifrCSeBt7-RikiytmjNLcXnJ80plN"
     ],
-    "driveFolderId": "1iIcsz3YjExQxf3KfMLY1wgvqMBnUQPn7"
+    "driveFolderId": "1iIcsz3YjExQxf3KfMLY1wgvqMBnUQPn7",
+    "link": "https://www.facebook.com/storeforbird/"
   },
   {
     "id": "gufeng-shaonian-illustration",
@@ -469,7 +472,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "https://drive.google.com/thumbnail?sz=w1000&id=1qfLl5WMPLuV4oN0yqRPXUGctG8Pa4eFG"
     ],
-    "driveFolderId": "1FBI4L_A0ymzBHWzvEvu3ZGSw4CRDrxbT"
+    "driveFolderId": "1FBI4L_A0ymzBHWzvEvu3ZGSw4CRDrxbT",
+    "link": "http://host.mcu.edu.tw/mol/show_2009.php?nid=171336"
   },
   {
     "id": "buddy-red-envelope",
@@ -511,7 +515,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1Vxt1vifCHXUhrcEDRu8L1MqWMzI_W_Ds.webp",
       "/images/optimized/10oxD3GmmW0utYZKFNyNP-gySz0xQXRYX.webp"
-    ]
+    ],
+    "link": "https://www.94friend.com/article_d.php?lang=tw&tb=9&id=2083"
   },
   {
     "id": "chengmei-tavi-flyer",
@@ -615,7 +620,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1EOgxA9OkDVsXJQzzoOw0lGlA624MBmqR.webp",
       "/images/optimized/1WYYNvyf4JIa3HSmTCY86gzwF9WGPxv-m.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/17v2zvXcBM/"
   },
   {
     "id": "myval-in-valve-symposium",
@@ -704,7 +710,69 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1UaYFJhfzch6tLQScjxK6ZoHIC5W73r8L.webp",
       "/images/optimized/1kexMMRbO8V4K9cucyVNApcs3mXcyuO5g.webp",
       "/images/optimized/1cQBkNWAckbc1Foa8vnUKq-wAFn-itXBh.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/photo/?fbid=447261295332169&set=a.447260965332202"
+  },
+  {
+    "id": "shone-dinosaur-english-stickers",
+    "category": "角色IP&插畫與貼圖",
+    "title": "Shone恐龍來了 - 英文版 V1 LINE貼圖",
+    "titleEn": "Shone Dinosaur - English Version V1 LINE Stickers",
+    "philosophy": "以美式街頭卡通風格為靈感，結合高飽和對比配色與粗黑幾何線條。透過生動逗趣的恐龍特徵動態，搭配簡潔手繪英文對白，設計出具高度實用性與社群凝聚力的LINE貼圖視覺。",
+    "tools": [
+      "Procreate",
+      "Photoshop",
+      "向量插畫",
+      "貼圖設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1lzsJPkw1XJ7bxxdHGzHrxAJyd30d24B8",
+    "placeholderId": "IMAGE_SHONE_DINOSAUR_ENGLISH_STICKERS",
+    "colorTheme": "from-[#143224] via-[#224A37] to-[#0C1E15]",
+    "driveFolderId": "1qFn88fzUMx5EBTgl2sbf1ZCpoRmMsA0_",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lzsJPkw1XJ7bxxdHGzHrxAJyd30d24B8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fvU4SeanrHt5rDXWWMb3fRe37lrMQf8Y",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JwlJT6VJKhidcfN2I-6ZHrUcRHh56db_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lW9rX7vCuR8Qu_m9Rr5vHx0bYxlbqSrM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1q2qM5yyBT7ahzdtMInQuPZ-kjO77M4Ve",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wj8zZoQWOk2BScbacNRd8rks1iCtDocM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1z7Xae8lqkvL2MSs6E-sMEMTPMMYf4If7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14ZpNkytrnZs78ZAj_FFR6yg6XM_NjmVo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dKsSNut4ZXPtVrd9tQDjgLPvPy1dGQra",
+      "https://drive.google.com/thumbnail?sz=w1000&id=13ZyDKdBRsXO5KUqtyWDfTSt1XX1rNsFR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vvV_ANu1Ppd4Y6-3BgbghiDPTlbH2NG3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Yb7hu4Wb3MPvoqabBDCMIwBWkcun6faL",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10m5w-8UiLCjM2TS37qxYurx2KnRIdzUQ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mbipRUvVnfpNSpsNVCoCaPmZaSnEfnZT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1i5gzpqrjT-r90chz6ZmJOP0CjN7c11p8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eMFrFG2ujiNvX_jBE5_YQLjfMrHIhyPg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1stkNcy8PhDfTrie0QTTX3nYSU9bDhYoN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mzQFsPCfIo4gl1UZm5UyS56ftBB98f2i",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aDTXZc9oGv76PfBVN-4GD0eKVk94lpHz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1yqxqcwVPlr62yz9hG5YQ2ysQcNw733q8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1p6XuAXH3yB2LH29k5mXb10NNuLJAgLqX",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hckCl6JAmXdhkycg-fL2T0-RKmXLnjDD",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15wbB_G8pz-H8kcpigoMqPqrTYamNBC6C",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cgQz0jZS-T5ooIwCHX-yM5JlwrOAXWNr",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CkaFq3tMbTwnfKFnsLydqV42cz4o2hXV",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16wueN0-x-fSyfx4no2nAGn2HRTh8OrUl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kwsgEeHSC4Mv21uFA_beDhiB8TaAn59W",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1n3CGFTWVsM1muLfh0cFKIspEQTEtGSEq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=17r0ucue8kM_802LskXf7lnAosPzIO_Nz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-1CwUtM8facCMlC9Cluwa3IXGwx86EHz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1EY-Xu7hRr2y-VuZstM6LW7utFImYcpjp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ADKdCeheS65E6_b2U3_ko0H9TuXcYW9B",
+      "https://drive.google.com/thumbnail?sz=w1000&id=18TRsr3twBDWG0Oa7guyDfJFVpVq0W1p0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14BfRP2Kbh2ekqYii8VAFpw4vacSSLXn2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wrq9rXvmscDO-xV_Yziyod4171EGlhh9",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lPLv8z_44uc0Glfw48bKz_Z4hQDih1FZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fZCir8S9l5FtEoGyI4gNRpHShHuG-V_B",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wLfiT-6MytpwCg8liC-lyt3BYdrDheas",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1j56dYsGOVVUbRgbT8e5p_ALo3dsV56Aa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iFLA2XkHozWSl6_4_X6lPoJlA-5Y1Zu9",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1IqYwJjwwNBzVHDGUULhhE0-DbSDnpkKr"
+    ],
+    "link": "https://store.line.me/stickershop/product/34952764/zh-Hant"
   },
   {
     "id": "sea-siren-intro",
@@ -1132,7 +1200,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1ntu1G2iUTQ9IANbNlzH09fKvh-QMVhNb.webp",
       "https://img.youtube.com/vi/oVAIPxzXT2k/maxresdefault.jpg",
       "https://img.youtube.com/vi/oVAIPxzXT2k/0.jpg"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/1EddwfR1id/"
   },
   {
     "id": "7",
@@ -1165,7 +1234,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/12LDwOx5KaJk_A6th-2vSsCpYdtbzdzH7.webp",
       "/images/optimized/1BCB0lP7E3Kv_TzohFvLLDa9C5s_-Ld6c.webp",
       "/images/optimized/1pcPQwW-2Hj7DQKhDdWj9aS_FMB5rs9TX.webp"
-    ]
+    ],
+    "link": "https://www.bigmedia.com.tw/article/aaa177b5-802d-442e-8343-ff4bb8582ce8"
   },
   {
     "id": "8",
@@ -1335,7 +1405,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1qXXSZRiB0yvCiYXJdVMmpeJiI-Lu-fm6.webp",
       "/images/optimized/1LXIPlXZg89qKND3gvdPz9Gqb20neMDJG.webp",
       "/images/optimized/1Ur6dQ1KQRR5FxsTxHYuBJ9JZrLm--3Rv.webp"
-    ]
+    ],
+    "link": "https://www.week.mcu.edu.tw/54209/"
   },
   {
     "id": "15",
@@ -1361,7 +1432,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/16wpZtacW9UaEaVteAJf-KUJOFkrqYDb8.webp",
       "/images/optimized/1wsraQ5KT2T0dI1UCML_S0TDfIbfb-kKd.webp",
       "/images/optimized/11JKYPOjl01kgV8L-a15BdNHRi2MeG3hL.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/rockbalancing.tw/"
   },
   {
     "id": "16",
@@ -1385,7 +1457,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/18BLol6O9iIsLJap27J1dgbX-SMOuZNTS.webp",
       "/images/optimized/1Sgyj8Lf3lKE_Himam_ydZSyoJSsipwfd.webp",
       "/images/optimized/16cAqcT0vyBIGL9-QVIRx5g8Yf6zh_GNX.webp"
-    ]
+    ],
+    "link": "https://www.taisounds.com/news/content/71/260020"
   },
   {
     "id": "17",
@@ -1452,7 +1525,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1Xi4R7qWREyhHDEGFbQXNymdLKuIHLIs-.webp",
       "/images/optimized/1831MiaXEAXxzatNRqcSf7z9RbDIa2iBR.webp",
       "/images/optimized/1tg9-cFoJjNqEfVPFLfBA9NNzWqDXm8P9.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1AxQeY417K/"
   },
   {
     "id": "20",
@@ -1856,7 +1930,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1Eoft0YIVJjqKo_BpQvtHTu_QqRDUOoUC.webp",
       "/images/optimized/1FH0fmHRyiOh2gHygthv8w7whCBToKQhH.webp"
-    ]
+    ],
+    "link": "https://streetvoice.com/gigs/3331/"
   },
   {
     "id": "42",
@@ -2065,7 +2140,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1bHPtTQZ4hxac_vjkoiTC5LCXcw2rBrF2.webp",
       "/images/optimized/1A255L9IlWDmruhCAwEqgUqzKPv1oq_an.webp",
       "/images/optimized/14uxIpBpUEq9eixgmLuL_IerMedbmZKCw.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/p/%E5%BF%83%E6%B3%B0Pro-%E5%8E%9F%E5%89%B5%E6%B3%B0%E5%9C%8B%E6%96%99%E7%90%86-100083115373054/?locale=zh_TW"
   },
   {
     "id": "53",
@@ -2158,7 +2234,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1nEaVA2I4auvWBztCmGaX7FcVTPGu9yoj.webp",
       "/images/optimized/1JQX0o2t4o3rD5V5pJJbndZ15WxfiijsX.webp",
       "/images/optimized/1U2it_6QxDlaa6Go4LpqwR7RaeqfcqoUy.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1DGVYM6pHv/"
   },
   {
     "id": "57",
@@ -2184,7 +2261,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1jQ_RCuY35_8JFfeZol2ZcRTVJBHsw4WK.webp",
       "/images/optimized/1J6poGvrzgWOmS9oLMfFJM3CWJep9pyqB.webp",
       "/images/optimized/1De33cl-5-guaRwSl_1bS__DzG7OrMyI9.webp"
-    ]
+    ],
+    "link": "https://broscht.com/product/se3spink/"
   },
   {
     "id": "58",
@@ -2213,14 +2291,15 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1fmYd17cQXqVDGzCtajvaMIuGXkXMRi42.webp",
       "/images/optimized/1tdcajil0Fu_JfcWdsTEmAsikk-HD8JYx.webp",
       "/images/optimized/1JrcDxD0nHmnCU96Wdz1f93G5rsLjbwa2.webp"
-    ]
+    ],
+    "link": "https://segway.com.tw/product/e2-pro/"
   },
   {
     "id": "59",
     "category": "網站產品瀑布頁",
-    "title": "小米 Xiaomi Pro 2 電動滑板車官方多語系瀑布頁翻譯與圖文排版",
-    "titleEn": "Xiaomi Electric Scooter Pro 2: Premium Global Multilingual E-Commerce Waterfall Design & Localization Engineering",
-    "philosophy": "頁面詳細說明小米 Xiaomi Pro 2 電動滑板車官方多語系翻譯與圖文排列的使用步驟與顧客常問問題，按鈕做得很大，能引導想要買的人用最快的方式完成下單。",
+    "title": "Segway Ninebot Gokart PRO 2 電動卡丁車 瀑布圖文翻譯排版",
+    "titleEn": "Segway Ninebot Gokart PRO 2 Electric Go-Kart: Multilingual Waterfall Page Translation & Visual Layout Design",
+    "philosophy": "以深色調排版展現高科技感，透過清晰的圖文結構與詳細規格對比，引導使用者流暢地瀏覽車款細節，並結合大尺寸動作按鈕，有效提升產品諮詢與轉化率。",
     "tools": [
       "Photoshop",
       "Ai",
@@ -2246,7 +2325,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1HXxkE3aW-8VPGM0QK6G59vyEQmPkrEm1.webp",
       "/images/optimized/1c_fV2eDbl1vc32sQnHh0xeDUD52XFgx5.webp",
       "/images/optimized/1wbVDlQmyPAi6mWq8X_Ek99Es1lEnTBrC.webp"
-    ]
+    ],
+    "link": "https://segway.com.tw/gokart-pro-2/"
   },
   {
     "id": "60",
@@ -2281,7 +2361,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1zBhG8LhTMnqhf5Y1oqT_WE7Ox8hJAlKN.webp",
       "/images/optimized/1192voSF6y-eE7eJEaUBo__BhoVKCADb2.webp",
       "/images/optimized/18yCr1Rjm38FQ6-PeaW32-M9DTuJkkGpD.webp"
-    ]
+    ],
+    "link": "https://ninebot.one/zt3-pro/"
   },
   {
     "id": "61",
@@ -2306,7 +2387,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1IaXloU25wZXDkyYSnip9jjESA6i97BMC.webp",
       "/images/optimized/1rD67w7irl-y--L9GOg7q19ix4T_ClF9G.webp",
       "/images/optimized/1RVgFpWVVezSDyNE3kh6yzaNvblPvtOFX.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1BPUBusLWv/"
   },
   {
     "id": "62",
@@ -2328,7 +2410,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/14DZB_P1dn3qngdYE2yFYEb_jvwq8f7K4.webp",
       "/images/optimized/1UBoU7SwFpmprbepIkzKgmxIx_ABs6bkX.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1RRyiTyvrC/"
   },
   {
     "id": "63",
@@ -2355,7 +2438,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1I_40t6X1A5wPJgVghGPh4MBNwkFbqiOu.webp",
       "/images/optimized/1sNqeiFj_hN2gWyyaWgpK_Yu1s5SZ1BYx.webp",
       "/images/optimized/1ath3ROEeoME8A-ReImQ2o5xYG2kDUBfR.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1KyphTFEmf/"
   },
   {
     "id": "64",
@@ -2383,7 +2467,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1vas277IWca8yuw3gz1ZtHhCNvkWXKgq_.webp",
       "/images/optimized/1CxdbK05fGI7XXiaPGcgw593hEk4dFuMd.webp",
       "/images/optimized/1oBbRCSYqr8T4QWiWtMSdeNjrwPAeE_Ir.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1ERRT2TZLV/"
   },
   {
     "id": "65",
@@ -2410,7 +2495,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1zNIXpCHbYv6A5OIIzH4ymui07quBTTBk.webp",
       "/images/optimized/1-ReIQ-g49JptaoF_sSX73y-EHFrwNbmM.webp",
       "/images/optimized/1-ITEbLMB1QY22DsWjpwsFGKQGCJDOmkF.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1BZgUu4ZNp/"
   },
   {
     "id": "66",
@@ -2607,7 +2693,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://img.youtube.com/vi/K-bnI4D4Zwg/maxresdefault.jpg",
       "https://img.youtube.com/vi/K-bnI4D4Zwg/0.jpg"
     ],
-    "videoUrl": "https://www.youtube.com/watch?v=K-bnI4D4Zwg"
+    "videoUrl": "https://www.youtube.com/watch?v=K-bnI4D4Zwg",
+    "link": "https://www.facebook.com/share/p/14VmLX9Fqtd/"
   },
   {
     "id": "75",
@@ -2629,7 +2716,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://img.youtube.com/vi/bzAayvFMG7I/maxresdefault.jpg",
       "https://img.youtube.com/vi/bzAayvFMG7I/0.jpg"
     ],
-    "videoUrl": "https://www.youtube.com/watch?v=bzAayvFMG7I"
+    "videoUrl": "https://www.youtube.com/watch?v=bzAayvFMG7I",
+    "link": "https://www.facebook.com/share/v/14m1b5Wwsmb/"
   },
   {
     "id": "76",
@@ -2715,7 +2803,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1vQwcqFq1mkuIQyWZ2U_fD6aNB27nJkfM.webp",
       "/images/optimized/1C0j5tZdtePXacL2nmN_-hL6MZnJnZ6oH.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/r/1DQm1cxvdj/"
   },
   {
     "id": "80",
@@ -2784,7 +2873,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1koIGcvN9b9kXypw-gqn28aTjygXFBOiS.webp",
       "/images/optimized/1KC4Ur6n8Nw_W9lfuD0gAC172AX1piLtX.webp",
       "/images/optimized/1bQhrGKpW025-1S1lmZpFlWoLZKkMOvgq.webp"
-    ]
+    ],
+    "link": "https://www.chelseatechtw.com/index-8-tw"
   },
   {
     "id": "83",
@@ -2849,7 +2939,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1zJ74tK0SavBFYgC84ceuQrPhvx_XSFga.webp",
       "/images/optimized/1WOD6mhoQ055fnDbr2UGOWr2giD9rkap-.webp",
       "/images/optimized/13ZXxcyEQUO9no5dIDvXRb1FCII15VM3t.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1DFQLYPo4R/"
   },
   {
     "id": "wild-burger-club-cis",
@@ -3115,7 +3206,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1Q1aBHsIwG9PXcf9ip3asKKxrWAfZZ8jx.webp",
       "/images/optimized/1eN_NHKGlcjaALUe5XsHor7XXfFzQnBLk.webp",
       "/images/optimized/1fnsCSkigWnZwTngzUJIXq4oIpexcRJf5.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/198mfygdsP/"
   },
   {
     "id": "92",
@@ -3139,7 +3231,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1ZpL20RJVvl4qYsal-ht1CuhbthVSNXrQ.webp",
       "/images/optimized/1O4vGhj3r8T_GYjbU4S_877IQY4TnQwBI.webp",
       "/images/optimized/1HpOcrw9Bxd7rAkwDjsTlLD6XLjga7oOY.webp"
-    ]
+    ],
+    "link": "https://www.chelseatechtw.com/index-8-tw"
   },
   {
     "id": "93",
@@ -3160,7 +3253,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1tJU-4A-o9mUReJui6-7TRlhDldEDMKiv.webp",
       "/images/optimized/1LbDDLI5eKXOeLYag6THAJDFTKi9SnooI.webp",
       "/images/optimized/16Qu5Z4-RID6LvwAOLWx2UaCbyPtKVdvw.webp"
-    ]
+    ],
+    "link": "https://www.chelseatechtw.com/index-8-tw"
   },
   {
     "id": "94",
@@ -3260,7 +3354,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1KOJNdha6MyXKf2plMDiver7EyV7-R7pY.webp",
       "/images/optimized/1E31Wa0DqAYfsU2N-0e4eM6ZNXg-05fkW.webp",
       "/images/optimized/1wIvtXohpaSducIGtDkUQV1vIxCL9daX-.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/profile.php?id=61559121783815"
   },
   {
     "id": "100",
@@ -3281,7 +3376,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1FILSOyKzY-PFfRkX4h29BMczyYVDJJzP.webp",
       "/images/optimized/1ZBzD8S9vGosxIS7kkAxak4vBEYaDx4TI.webp",
       "/images/optimized/1qMpaiyDyynq9LLFiLtoxkeYHo0et0bpS.webp"
-    ]
+    ],
+    "link": "https://www.facebook.com/share/p/1CN8itjRdK/"
   },
   {
     "id": "101",
@@ -3944,7 +4040,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1edX6Cp2BdZkzgdpWZlODBtZ0V1oqWbWt.webp",
       "/images/optimized/1XQd-KXrhyWkMumyinPw5xslgLpz0k6sW.webp",
       "/images/optimized/1QbwJJ4lK3C9wbF0JZV8ZsU0P5R6dutq2.webp"
-    ]
+    ],
+    "link": "https://www.naturalskin.com.tw/collections/200%E5%85%8B%E7%9A%82?page=1"
   },
   {
     "id": "125",
@@ -4971,7 +5068,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1Lot7jAy39_vHe4tZcJBhGe_8wQ2qUmBf.webp",
       "/images/optimized/1tm01m9LWape8DeGwOnh2KxMEmkhwWIJY.webp"
-    ]
+    ],
+    "link": "https://www.klook.com/zh-TW/event-detail/101006017-2022-funkbrother-black-goodie/"
   },
   {
     "id": "165",
@@ -4989,7 +5087,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1bk1shLq-KsqQxBaSMdJgU-k48WgEv8Rz.webp",
       "/images/optimized/1q_J6Z-v251VIspbjCq3VcrVLW6RhhQiK.webp"
-    ]
+    ],
+    "link": "https://riversidemusiccafe.kktix.cc/events/0819-0508"
   },
   {
     "id": "166",
@@ -5007,7 +5106,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1Zr6A-FvAODvkiQdDIVhvla2O6sbUxzJK.webp",
       "/images/optimized/1Fu0agxRL2sOpiRnXinH9TnX3LJexjFCa.webp"
-    ]
+    ],
+    "link": "https://riversidemusiccafe.kktix.cc/events/7777-220514"
   },
   {
     "id": "167",
@@ -9062,7 +9162,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://img.youtube.com/vi/vXOdnP_Z_Tg/maxresdefault.jpg",
       "https://img.youtube.com/vi/vXOdnP_Z_Tg/0.jpg"
     ],
-    "videoUrl": "https://www.youtube.com/watch?v=vXOdnP_Z_Tg"
+    "videoUrl": "https://www.youtube.com/watch?v=vXOdnP_Z_Tg",
+    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
   },
   {
     "id": "395",
@@ -9086,7 +9187,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1MC0AdlVboo1ydXbnKWS5MSm7hkFojaRi.webp",
       "/images/optimized/1XV4ZxfXFnEh6O0JhpOimphlRDKXgbmaY.webp",
       "/images/optimized/1ushuMLp71wHSJinlQbdRTewG9lLo73-g.webp"
-    ]
+    ],
+    "link": "https://www.stbaby.com.tw/SalePage/Index/7994984?lang=zh-TW&srsltid=AfmBOorgep1aDAuaHeIMMBRsPEHgV68-DXV5n_wv0s_8nbzRHXkPBw7h"
   },
   {
     "id": "396",
@@ -9108,7 +9210,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/19qgppGc2G5jYvOlpEha1RN28rMaRTnI9.webp",
       "/images/optimized/1pxW7PbL3d1fHLjhQOoKf32eNOSFH_xXZ.webp",
       "/images/optimized/1pALIlLmL5F3eoGyKURqmGAYp35pSrfzr.webp"
-    ]
+    ],
+    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
   },
   {
     "id": "397",
@@ -9159,7 +9262,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1v7Hgu9YF6FEjLhjoszAFNo0gJsgRfCQC.webp",
       "/images/optimized/1d6yZwvVLSYaNPAfVbfyrvqH6PBWU0ZHO.webp",
       "/images/optimized/10WA1HOQboNO2F_BmBkhDOfd6kwRQJFAP.webp"
-    ]
+    ],
+    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
   },
   {
     "id": "399",
@@ -9196,7 +9300,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1-UOYu27VEG4NwKAUgwUF4kPexKj5kt-e.webp",
       "/images/optimized/1c8Qx-IxxoJC5QGVjaacQYG_ZvIeawVxI.webp",
       "/images/optimized/1Oqh-wh32ZEaVwT08CbcKfSJ6dVhGZUYd.webp"
-    ]
+    ],
+    "link": "https://www.stbaby.com.tw/SalePage/Index/8865579?lang=zh-TW&srsltid=AfmBOopDpKO_mOIGgOKpyEfUKZJexyoNY8HThMyZwg-ApB6aU089wh4l"
   },
   {
     "id": "400",
@@ -9235,7 +9340,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1YmmjVKMMexWitt2cbqFzVTaZIBo5OZyt.webp",
       "/images/optimized/156w9pu944zOifPScPwE3XL-yYpgb7j6N.webp",
       "/images/optimized/14ZtATZBGWGN2qzJeItP_FJMca4rcjDCG.webp"
-    ]
+    ],
+    "link": "https://www.stbaby.com.tw/SalePage/Index/7994984?lang=zh-TW&srsltid=AfmBOorgep1aDAuaHeIMMBRsPEHgV68-DXV5n_wv0s_8nbzRHXkPBw7h"
   },
   {
     "id": "401",
@@ -9270,7 +9376,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1JJfp6pfkc6e2wjX_SlZzGsvz8TAK9b5h.webp",
       "/images/optimized/1ChxEYOMLqzh9o8kDQ4b93mqsBZ11URbB.webp",
       "/images/optimized/1QpRNmMJLZbt3mH6HJX74b-zYRF4bEcrw.webp"
-    ]
+    ],
+    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
   },
   {
     "id": "402",

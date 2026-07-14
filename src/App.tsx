@@ -2579,23 +2579,6 @@ export default function App() {
                             <span className="hidden sm:inline">已無縫拼接為直式長圖 (請往下滾動閱讀)</span>
                             <span className="sm:hidden text-[10px]">無縫長圖 (下滑閱讀)</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <button
-                              type="button"
-                              onClick={() => setIsMaximized(!isMaximized)}
-                              className="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 hover:bg-amber-400 hover:text-black transition duration-200 border border-amber-500/25 text-[10px] uppercase font-mono tracking-wider font-bold cursor-pointer"
-                              title={isMaximized ? "還原視窗" : "全寬滿版"}
-                            >
-                              {isMaximized ? "還原 🗅" : "全寬 🗖"}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setWaterfallMode("single")}
-                              className="px-2.5 py-1 rounded bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white transition duration-200 border border-white/10 text-[10px] uppercase font-mono tracking-wider font-semibold cursor-pointer"
-                            >
-                              單圖 🖼️
-                            </button>
-                          </div>
                         </div>
                         
                         {/* 拼裝大圖 */}
@@ -2913,11 +2896,7 @@ export default function App() {
                     </div>
 
                     {/* 底部行動 (靜態不滾動) */}
-                    <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between gap-3 shrink-0">
-                      <span className="text-[10.5px] font-mono text-zinc-500">
-                        CASE NO. 0{activeModalItem.id}
-                      </span>
-                      
+                    <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-end gap-3 shrink-0">
                       <div className="flex items-center gap-2">
                         {activeModalItem.link && (
                           <a

@@ -577,6 +577,23 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   </span>
                 </div>
               )}
+              {/* 外部連結小圖示 */}
+              {item.link && (
+                <div className="absolute bottom-4 right-4 z-20" style={{ transform: "translateZ(12px)" }}>
+                  <span 
+                    className={`h-7 w-7 rounded-full flex items-center justify-center border backdrop-blur-md shadow-lg transition-all duration-300 ${
+                      isSepia
+                        ? "bg-[#FCF5E3]/85 text-amber-900 border-[#EADECC]/80 hover:bg-[#FCF5E3] hover:scale-110"
+                        : isLight
+                        ? "bg-white/85 text-zinc-800 border-zinc-200/50 hover:bg-white hover:scale-110"
+                        : "bg-black/60 text-zinc-100 border-white/10 hover:bg-black/80 hover:scale-110"
+                    }`}
+                    title="含有外部連結"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* 內容描述區 (可透過上方按鈕開關) */}
