@@ -2518,20 +2518,6 @@ export default function App() {
                 <X className="h-5 w-5" />
               </button>
 
-              {/* 作品連結按鈕 (如果存在 link) */}
-              {activeModalItem.link && (
-                <a
-                  href={activeModalItem.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-4 right-16 z-[35] px-3 md:px-4 py-2 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-black text-xs font-semibold tracking-wide transition-all duration-300 shadow-lg border border-amber-300/20 cursor-pointer flex items-center gap-1.5 active:scale-95"
-                  title="前往作品連結"
-                >
-                  <span>前往作品</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              )}
-
               {/* 上一張 / 下一張左右滑鎖 */}
               {filteredItems.length > 1 && !isMaximized && (
                 <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none hidden lg:flex">
