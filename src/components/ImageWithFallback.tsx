@@ -661,21 +661,7 @@ export function ImageWithFallback({
         />
       )}
       
-      {zoomable && isLoaded && (
-        <div className="absolute top-4 left-4 z-20 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono tracking-wider text-zinc-300 bg-black/85 backdrop-blur-md rounded-md border border-white/10 select-none shadow-lg">
-          {isZoomed ? (
-            <>
-              <ZoomOut className="h-3.5 w-3.5 text-amber-500" />
-              <span>點擊縮小 / 移動滑鼠瀏覽細節</span>
-            </>
-          ) : (
-            <>
-              <ZoomIn className="h-3.5 w-3.5 text-amber-500" />
-              <span>點擊放大細節</span>
-            </>
-          )}
-        </div>
-      )}
+      {/* Zoom overlay has been removed per user request */}
 
       {currentSrc && (
         <img

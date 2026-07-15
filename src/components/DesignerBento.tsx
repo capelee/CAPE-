@@ -57,9 +57,10 @@ interface DesignerBentoProps {
   };
   setIsContactCardOpen: (open: boolean) => void;
   onCopyEmail?: () => void;
+  setIsWorkflowOpen?: (open: boolean) => void;
 }
 
-export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmail }: DesignerBentoProps) {
+export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmail, setIsWorkflowOpen }: DesignerBentoProps) {
   const [localCopied, setLocalCopied] = useState<boolean>(false);
 
   const handleCopyEmail = () => {
@@ -213,6 +214,21 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
               >
                 <QrCode className="h-3.5 w-3.5" />
                 <span>一鍵儲存聯絡資訊 (vCard)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setIsWorkflowOpen && setIsWorkflowOpen(true)}
+                className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl border transition-all duration-300 shadow-md active:scale-98 text-center uppercase tracking-wide font-sans cursor-pointer ${
+                  theme === "dark"
+                    ? "border-amber-500/25 bg-amber-500/10 hover:bg-amber-500 hover:text-black hover:border-amber-400 text-amber-400"
+                    : theme === "sepia"
+                    ? "border-amber-700/25 bg-amber-700/10 hover:bg-amber-700 hover:text-white hover:border-amber-600 text-amber-900"
+                    : "border-amber-600/25 bg-amber-500/10 hover:bg-amber-600 hover:text-white hover:border-amber-500 text-amber-700"
+                }`}
+              >
+                <Sparkles className="h-3.5 w-3.5 text-amber-500 shrink-0" />
+                <span>AI 輔助設計工作流</span>
               </button>
             </div>
           </div>
