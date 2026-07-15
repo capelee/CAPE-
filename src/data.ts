@@ -599,7 +599,8 @@ export const initialPortfolioData: PortfolioItem[] = [
     "images": [
       "/images/optimized/1-BB48uMk_OYFtz5hvepA4uM_Rs35TpaJ.webp",
       "/images/optimized/1n-Vc33c2ZKMrv_G1zfzYahihfnq5k0-Q.webp"
-    ]
+    ],
+    "link": "https://www.cmoney.tw/forum/article/180231352"
   },
   {
     "id": "chengmei-tavi-symposium",
