@@ -116,8 +116,6 @@ function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) 
 import { ImageWithFallback } from "./components/ImageWithFallback";
 import { StitchImageObserver } from "./components/StitchImageObserver";
 
-import { MagneticButton } from "./components/MagneticButton";
-
 import { InteractiveMascot } from "./components/InteractiveMascot";
 
 
@@ -125,6 +123,9 @@ import { InteractiveMascot } from "./components/InteractiveMascot";
 import { PortfolioCard } from "./components/PortfolioCard";
 import { MinimalistLogo } from "./components/MinimalistLogo";
 import { DesignerBento } from "./components/DesignerBento";
+import { AIWorkflowModal } from "./components/AIWorkflowModal";
+import { ContactModal } from "./components/ContactModal";
+import { PortfolioDetailModal } from "./components/PortfolioDetailModal";
 
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
@@ -735,13 +736,7 @@ export default function App() {
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [isWorkflowOpen, setIsWorkflowOpen] = useState<boolean>(false);
   const [isContactCardOpen, setIsContactCardOpen] = useState<boolean>(false);
-  const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
-  const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
-  const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">("stitch");
-  const [isMaximized, setIsMaximized] = useState<boolean>(false);
-  const [stitchScrollProgress, setStitchScrollProgress] = useState<number>(0);
   const loaderRef = React.useRef<HTMLDivElement | null>(null);
-  const stitchScrollContainerRef = React.useRef<HTMLDivElement | null>(null);
   const isJumpingToBentoRef = React.useRef<boolean>(false);
 
   // 當開啟作品細節 Lightbox Modal、我的工作流 Modal 或聯絡資訊 Modal 時，對 Body 進行滾動鎖定，確保手持裝置體驗如 Native App 般精確穩定
@@ -805,7 +800,8 @@ export default function App() {
     "點選左下角的『看作品』，就能解鎖我經手的所有精彩作品喔！✨",
     "每一像素都承載著設計的溫度與堅持。希望你今天逛得開心！💖",
     "這隻白貓是我的原創 IP 角色 MuMㄠ 喔！是不是很可愛呢？🐾",
-    "在右下角還有我們的 12 隻專業恐龍與吉祥物戰隊，也可以找他們聊天喔！🦖"
+    "在右下角還有我們的 12 隻專業恐龍與吉祥物戰隊，也可以找他們聊天喔！🦖",
+    "我的原創 IP 插畫音樂祭粉專開張囉！歡迎點擊氣泡下方的前往按鈕追蹤 MuMㄠ（姆貓教）的 IG 吧！🎸🐾"
   ], []);
 
   const triggerHeroSpeaking = () => {
@@ -1122,24 +1118,7 @@ export default function App() {
     }
   };
 
-  React.useEffect(() => {
-    if (activeModalItem) {
-      setActiveImageUrl(activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined));
-      setIsVideoActive(!!activeModalItem.videoUrl);
-      setIsMaximized(false);
-      setStitchScrollProgress(0);
-      if (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") {
-        setWaterfallMode("stitch");
-      } else {
-        setWaterfallMode("single");
-      }
-    } else {
-      setActiveImageUrl(null);
-      setIsVideoActive(false);
-      setIsMaximized(false);
-      setStitchScrollProgress(0);
-    }
-  }, [activeModalItem]);
+
 
   // Profile data
   const profile = {
@@ -1349,171 +1328,23 @@ export default function App() {
     URL.revokeObjectURL(objectUrl);
   };
 
-  // Find index of current modal item to support sliding control inside Lightbox
-  const modalItemIndex = useMemo(() => {
-    if (!activeModalItem) return -1;
-    return filteredItems.findIndex(i => i.id === activeModalItem.id);
-  }, [activeModalItem, filteredItems]);
-
-  // List of media items for the active modal item to coordinate slides/media navigation
-  const modalMediaList = useMemo(() => {
-    if (!activeModalItem) return [];
-    const list: { type: "video" | "image"; url: string }[] = [];
-    if (activeModalItem.videoUrl) {
-      list.push({ type: "video", url: activeModalItem.videoUrl });
-    }
-    if (activeModalItem.images && activeModalItem.images.length > 0) {
-      activeModalItem.images.forEach((img) => {
-        list.push({ type: "image", url: img });
-      });
-    } else if (activeModalItem.imageUrl) {
-      list.push({ type: "image", url: activeModalItem.imageUrl });
-    }
-    return list;
-  }, [activeModalItem]);
-
-  const currentMediaIndex = useMemo(() => {
-    if (modalMediaList.length === 0) return -1;
-    if (isVideoActive) {
-      return modalMediaList.findIndex(m => m.type === "video");
-    }
-    const currentUrl = activeImageUrl || (activeModalItem ? activeModalItem.imageUrl : null);
-    return modalMediaList.findIndex(m => m.type === "image" && m.url === currentUrl);
-  }, [modalMediaList, isVideoActive, activeImageUrl, activeModalItem]);
-
-  const handlePrevSlide = () => {
-    if (modalMediaList.length <= 1) return;
-    const newIndex = (currentMediaIndex - 1 + modalMediaList.length) % modalMediaList.length;
-    const target = modalMediaList[newIndex];
-    if (target.type === "video") {
-      setIsVideoActive(true);
+  const handlePrevModalItem = () => {
+    const idx = filteredItems.findIndex(i => i.id === activeModalItem?.id);
+    if (idx > 0) {
+      setActiveModalItem(filteredItems[idx - 1]);
     } else {
-      setIsVideoActive(false);
-      setActiveImageUrl(target.url);
+      setActiveModalItem(filteredItems[filteredItems.length - 1]);
     }
   };
 
-  const handleNextSlide = () => {
-    if (modalMediaList.length <= 1) return;
-    const newIndex = (currentMediaIndex + 1) % modalMediaList.length;
-    const target = modalMediaList[newIndex];
-    if (target.type === "video") {
-      setIsVideoActive(true);
+  const handleNextModalItem = () => {
+    const idx = filteredItems.findIndex(i => i.id === activeModalItem?.id);
+    if (idx < filteredItems.length - 1) {
+      setActiveModalItem(filteredItems[idx + 1]);
     } else {
-      setIsVideoActive(false);
-      setActiveImageUrl(target.url);
+      setActiveModalItem(filteredItems[0]);
     }
   };
-
-  // Touch Swipe gestures support
-  const touchStartX = React.useRef<number | null>(null);
-  const touchStartY = React.useRef<number | null>(null);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    touchStartX.current = touch.clientX;
-    touchStartY.current = touch.clientY;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null || touchStartY.current === null) return;
-    const touch = e.changedTouches[0];
-    const diffX = touch.clientX - touchStartX.current;
-    const diffY = touch.clientY - touchStartY.current;
-
-    // 水平滑動距離大於垂直滑動距離，避免干擾上下滾動
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-      if (Math.abs(diffX) > 40) { // 至少滑動 40px
-        if (diffX < 0) {
-          // 向左滑動 (下一張 / 下一個作品)
-          if (modalMediaList.length > 1 && currentMediaIndex < modalMediaList.length - 1) {
-            handleNextSlide();
-          } else {
-            // 切換至下一個作品
-            if (modalItemIndex < filteredItems.length - 1) {
-              setActiveModalItem(filteredItems[modalItemIndex + 1]);
-            } else {
-              setActiveModalItem(filteredItems[0]);
-            }
-          }
-        } else {
-          // 向右滑動 (上一張 / 上一個作品)
-          if (modalMediaList.length > 1 && currentMediaIndex > 0) {
-            handlePrevSlide();
-          } else {
-            // 切換至上一個作品
-            if (modalItemIndex > 0) {
-              setActiveModalItem(filteredItems[modalItemIndex - 1]);
-            } else {
-              setActiveModalItem(filteredItems[filteredItems.length - 1]);
-            }
-          }
-        }
-      }
-    }
-    touchStartX.current = null;
-    touchStartY.current = null;
-  };
-
-  const handlePrevModalItem = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (modalItemIndex > 0) {
-      setActiveModalItem(filteredItems[modalItemIndex - 1]);
-    } else {
-      setActiveModalItem(filteredItems[filteredItems.length - 1]); // loop to end
-    }
-  };
-
-  const handleNextModalItem = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (modalItemIndex < filteredItems.length - 1) {
-      setActiveModalItem(filteredItems[modalItemIndex + 1]);
-    } else {
-      setActiveModalItem(filteredItems[0]); // loop to start
-    }
-  };
-
-  // Keyboard navigation for Lightbox modal
-  React.useEffect(() => {
-    if (!activeModalItem) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const activeElement = document.activeElement;
-      if (
-        activeElement &&
-        (activeElement.tagName === "INPUT" ||
-          activeElement.tagName === "TEXTAREA" ||
-          (activeElement as HTMLElement).isContentEditable)
-      ) {
-        return;
-      }
-
-      if (e.key === "Escape" || e.key === "Esc") {
-        setActiveModalItem(null);
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        // 左右方向鍵直接切換「上一個 / 下一個」作品
-        if (modalItemIndex > 0) {
-          setActiveModalItem(filteredItems[modalItemIndex - 1]);
-        } else {
-          setActiveModalItem(filteredItems[filteredItems.length - 1]);
-        }
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        // 左右方向鍵直接切換「上一個 / 下一個」作品
-        if (modalItemIndex < filteredItems.length - 1) {
-          setActiveModalItem(filteredItems[modalItemIndex + 1]);
-        } else {
-          setActiveModalItem(filteredItems[0]);
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [activeModalItem, filteredItems, modalItemIndex, modalMediaList, currentMediaIndex]);
 
   return (
     <div className={`min-h-screen flex flex-col font-sans relative overflow-x-hidden transition-colors duration-500 ${
@@ -1759,7 +1590,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={themeToggleClass}
-                title="訪問 Instagram (木貓教)"
+                title="訪問 Instagram (姆貓教)"
               >
                 <Instagram className={`h-4 w-4 ${
                   theme === "sepia" 
@@ -1776,7 +1607,7 @@ export default function App() {
       </motion.header>
 
       {/* 主要展示區 */}
-      <main className="flex-1 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-2 md:pt-24 md:pb-2 z-10 space-y-12 md:space-y-16">
+      <main className="flex-1 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 md:pt-24 md:pb-12 z-10 space-y-12 md:space-y-16">
         
         {/* 極簡頂部 Hero Section */}
         <section id="hero-minimalist" className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]">
@@ -1914,6 +1745,7 @@ export default function App() {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: 15 }}
                     transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                    onClick={(e) => e.stopPropagation()}
                     className={`absolute z-30 w-[240px] sm:w-[280px] p-4 rounded-2xl shadow-xl border text-xs sm:text-sm font-medium leading-relaxed
                       ${
                         theme === "sepia"
@@ -1949,6 +1781,21 @@ export default function App() {
                           <span className="inline-block ml-1 w-1.5 h-3.5 bg-amber-500 animate-pulse rounded align-middle" />
                         )}
                       </p>
+
+                      {heroDialogue.includes("IG") && displayedDialogue.length >= 10 && (
+                        <div className="mt-3 pt-2.5 border-t border-dashed border-zinc-200/60 dark:border-white/10 flex justify-center">
+                          <a
+                            href="https://www.instagram.com/mumao1_the_cat_religion?igsh=MXF2a3N1bm45ajhkaw=="
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md hover:shadow-pink-500/10 cursor-pointer bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Instagram className="h-3.5 w-3.5 shrink-0" />
+                            <span>前往 MuMㄠ 教主 IG 🐾</span>
+                          </a>
+                        </div>
+                      )}
                     </motion.div>
                   </motion.div>
                 )}
@@ -2075,15 +1922,36 @@ export default function App() {
 
         {/* 區塊標題 & 卡片過濾器 */}
         <section id="portfolio-grid" className="space-y-8 scroll-mt-[48px] md:scroll-mt-[58px]">
-          <div className="max-w-3xl mx-auto text-center space-y-3">
-            <h2 className="text-3xl md:text-4xl font-display font-medium text-white tracking-tight">
-              探索設計作品
-            </h2>
-            <div className="h-[2px] w-12 bg-amber-500 mx-auto rounded-full"></div>
-          </div>
+          {/* 標題與分類選單緊湊排版包裝器 */}
+          <div className="space-y-1 md:space-y-1.5 flex flex-col items-center w-full">
+            <div className="max-w-3xl mx-auto text-center space-y-2">
+              <h2 className="text-3xl md:text-4xl font-display font-medium text-white tracking-tight">
+                探索設計作品
+              </h2>
+              <div className="h-[2px] w-12 bg-amber-500 mx-auto rounded-full"></div>
+            </div>
 
-          {/* 各類作品過濾選項 (電腦版精緻呈現，手機版優化為橫向滑動選單與二列極簡格狀面板) */}
-          <div className="w-full pt-2 flex flex-col items-center gap-4">
+            {/* 輕量級動態裝飾光軌：呼吸起伏，與吉祥物說話 (isHeroSpeaking) 互動產生霓虹色彩漣漪反應 */}
+            <div className="py-2 flex items-center justify-center gap-1.5 pointer-events-none select-none">
+              <div className={`h-[3px] rounded-full transition-all duration-750 ease-out ${
+                isHeroSpeaking 
+                  ? "w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-amber-450 animate-pulse shadow-[0_0_12px_rgba(236,72,153,0.6)] scale-y-125" 
+                  : "w-12 bg-gradient-to-r from-amber-500/60 to-amber-300/20 opacity-40 animate-pulse duration-2000"
+              }`} />
+              <div className={`h-1.5 w-1.5 rounded-full transition-all duration-500 ease-out ${
+                isHeroSpeaking 
+                  ? "bg-pink-500 scale-125 shadow-[0_0_8px_rgba(236,72,153,0.8)]" 
+                  : "bg-amber-500/40"
+              }`} />
+              <div className={`h-[3px] rounded-full transition-all duration-750 ease-out ${
+                isHeroSpeaking 
+                  ? "w-24 bg-gradient-to-r from-amber-450 via-purple-500 to-pink-500 animate-pulse shadow-[0_0_12px_rgba(236,72,153,0.6)] scale-y-125" 
+                  : "w-12 bg-gradient-to-r from-amber-300/20 to-amber-500/60 opacity-40 animate-pulse duration-2000"
+              }`} />
+            </div>
+
+            {/* 各類作品過濾選項 (電腦版精緻呈現，手機版優化為橫向滑動選單與二列極簡格狀面板) */}
+            <div className="w-full flex flex-col items-center gap-4">
             {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
             <div className="hidden md:flex w-full max-w-5xl flex-col items-center gap-2.5 sm:gap-3 px-4">
               {/* 第一行 */}
@@ -2243,6 +2111,7 @@ export default function App() {
               </AnimatePresence>
             </div>
 
+          </div>
           </div>
 
           {/* 即時文字搜尋框 (完美支援黑/白/暖沙主題) */}
@@ -2490,14 +2359,14 @@ export default function App() {
         />
 
         {/* 回到最上方按鈕 */}
-        <div id="section_scroll_to_top_bottom" className="flex justify-center pt-0 !mt-3 md:!mt-4">
+        <div id="section_scroll_to_top_bottom" className="flex justify-center pt-0 !mt-10 md:!mt-12">
           <button
             type="button"
             id="btn_scroll_to_top_bottom"
             onClick={scrollToTop}
             className={`group px-6 py-3 rounded-full font-semibold text-xs transition-all duration-300 border flex items-center gap-2 shadow-lg cursor-pointer active:scale-95 ${
               theme === "light"
-                ? "bg-white hover:bg-amber-500 text-zinc-600 hover:text-white border-zinc-200 hover:border-amber-400 shadow-sm hover:shadow-amber-500/10"
+                ? "bg-white hover:bg-amber-500 text-zinc-650 hover:text-white border-zinc-200 hover:border-amber-400 shadow-sm hover:shadow-amber-500/10"
                 : "bg-[#0E0E0E] hover:bg-amber-500 text-zinc-400 hover:text-black border-white/5 hover:border-amber-400 shadow-black/50 hover:shadow-amber-500/10"
             }`}
             title="回到最上方"
@@ -2510,7 +2379,7 @@ export default function App() {
       </main>
 
       {/* 底部靜態版權聲明 */}
-      <footer className="mt-3 border-t border-white/5 bg-[#080808]">
+      <footer className="mt-0 border-t border-white/5 bg-[#080808]">
         <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-white text-xs font-semibold">
@@ -2527,976 +2396,32 @@ export default function App() {
       {/* 全域作品亮點彈出 Lightbox (Lightbox Modal with motion) */}
       <AnimatePresence>
         {activeModalItem && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveModalItem(null)}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
-          >
-            <motion.div 
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              transition={{ type: "spring", duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
-              className={`bg-[#0E0E0E] border border-white/10 shadow-2xl relative my-auto transition-all duration-300 ${
-                activeModalItem && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized
-                  ? "max-w-full md:max-w-6xl w-full h-[95vh] md:h-[92vh] flex flex-col rounded-2xl"
-                  : "max-w-4xl w-full rounded-2xl"
-              }`}
-            >
-              
-              {/* 關閉按鈕 */}
-              <button
-                type="button"
-                id="btn_modal_close"
-                onClick={() => setActiveModalItem(null)}
-                className="absolute top-4 right-4 z-[35] p-2 rounded-lg bg-black/70 hover:bg-black text-zinc-400 hover:text-white transition-colors border border-white/10 cursor-pointer"
-                title="關閉明細"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              {/* 上一張 / 下一張左右滑鎖 */}
-              {filteredItems.length > 1 && !isMaximized && (
-                <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none hidden lg:flex">
-                  <button
-                    type="button"
-                    onClick={handlePrevModalItem}
-                    className="p-2.5 rounded-full bg-black/80 hover:bg-black/95 text-zinc-400 hover:text-white border border-white/5 pointer-events-auto transition active:scale-95 cursor-pointer"
-                    title="前一個作品"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNextModalItem}
-                    className="p-2.5 rounded-full bg-black/80 hover:bg-black/95 text-zinc-400 hover:text-white border border-white/5 pointer-events-auto transition active:scale-95 cursor-pointer"
-                    title="下一個作品"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                </div>
-              )}
-
-              <div className={`grid grid-cols-1 md:grid-cols-12 ${isMaximized && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") ? "h-full flex-grow overflow-hidden" : ""}`}>
-                
-                {/* 左側大圖 */}
-                <div className={`bg-zinc-950 relative overflow-hidden flex flex-col justify-between border border-white/5 transition-all duration-300 ${
-                  (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized 
-                    ? "col-span-12 md:col-span-12 h-full flex-grow" 
-                    : "md:col-span-7 h-[330px] sm:h-[450px] md:h-[500px]"
-                }`}>
-                  <div 
-                    ref={stitchScrollContainerRef}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                    onScroll={(e) => {
-                      if ((activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch") {
-                        const target = e.currentTarget;
-                        const totalScroll = target.scrollHeight - target.clientHeight;
-                        if (totalScroll > 0) {
-                          const progress = (target.scrollTop / totalScroll) * 100;
-                          setStitchScrollProgress(progress);
-                        } else {
-                          setStitchScrollProgress(0);
-                        }
-                      }
-                    }}
-                    className={`relative w-full flex-grow bg-black/40 min-h-[200px] md:min-h-[280px] ${
-                      (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" 
-                        ? `overflow-y-auto block ${isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "h-[500px]"} waterfall-scrollbar` 
-                        : `overflow-hidden flex items-center justify-center ${(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
-                    }`}
-                  >
-                    {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" ? (
-                      <div className="w-full flex flex-col select-none bg-[#050505]">
-                        {/* 頂部操作列 / 提示 */}
-                        <div className="sticky top-0 z-20 bg-black/90 backdrop-blur-md px-4 py-2.5 border-b border-white/10 flex items-center justify-between text-[11.5px] font-sans text-zinc-400">
-                          <div></div>
-                          
-                          {/* 右側：回到頂端按鈕 */}
-                          {stitchScrollProgress > 8 && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                stitchScrollContainerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-                              }}
-                              className="flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500 text-amber-400 hover:text-black border border-amber-500/25 hover:border-amber-400 text-[10px] font-medium tracking-wide transition-all duration-200 cursor-pointer active:scale-95"
-                              title="回到頂端"
-                            >
-                              <span>回到頂端 ↑</span>
-                            </button>
-                          )}
-                          
-                          {/* 滾動進度條 (Scroll Progress Indicator) */}
-                          <div 
-                            className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-amber-500 to-amber-400 transition-all duration-75 shadow-[0_1px_4px_rgba(245,158,11,0.4)]" 
-                            style={{ width: `${stitchScrollProgress}%` }}
-                          ></div>
-                        </div>
-                        
-                        {/* 拼裝大圖 */}
-                        <div className="flex flex-col gap-0 w-full overflow-hidden bg-[#050505]">
-                          {activeModalItem.images && activeModalItem.images.map((imgUrl, idx) => (
-                            <div key={idx} className="w-full block bg-[#050505] p-0 m-0 border-0 leading-[0]">
-                              <StitchImageObserver 
-                                src={imgUrl}
-                                alt={`${activeModalItem.title} - 拼接第 ${idx + 1} 節`}
-                                fallbackTheme={activeModalItem.colorTheme}
-                                categoryName={activeModalItem.category}
-                                titleText={activeModalItem.title}
-                                idx={idx}
-                                optimizeSize={800}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <div className="py-8 text-center text-[10px] font-mono tracking-wider text-zinc-500 border-t border-white/5 bg-black/50 uppercase">
-                          • END OF WATERFALL DETAIL PAGE •
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        {isVideoActive && getYouTubeEmbedUrl(activeModalItem.videoUrl) ? (
-                          <div className="absolute inset-0 z-10 w-full h-full bg-[#050505] flex items-center justify-center">
-                            <iframe
-                              src={getYouTubeEmbedUrl(activeModalItem.videoUrl)!}
-                              title={activeModalItem.title}
-                              className="w-full h-full border-0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                              allowFullScreen
-                            ></iframe>
-                          </div>
-                        ) : (
-                          <>
-                            <ImageWithFallback 
-                              src={activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : '')}
-                              alt={activeModalItem.title}
-                              referrerPolicy="no-referrer"
-                              fallbackTheme={activeModalItem.colorTheme}
-                              categoryName={activeModalItem.category}
-                              titleText={activeModalItem.title}
-                              optimizeSize={800}
-                              className="w-full h-full object-contain transition-all duration-300"
-                              zoomable={true}
-                            />
-                            {activeModalItem.videoUrl && !((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/30 bg-opacity-40">
-                                <button
-                                  type="button"
-                                  onClick={() => setIsVideoActive(true)}
-                                  className="p-5 rounded-full bg-amber-500 hover:bg-amber-400 text-black hover:scale-110 active:scale-95 transition-all shadow-xl shadow-amber-500/20 cursor-pointer flex items-center justify-center gap-2 group"
-                                  title="播放產品宣傳影片"
-                                >
-                                  <Video className="h-6 w-6 fill-black/10 text-black" />
-                                  <span className="text-xs font-semibold uppercase tracking-wider pr-1">播放宣傳影片</span>
-                                </button>
-                              </div>
-                            )}
-                          </>
-                        )}
-                      </>
-                    )}
-                    
-                    {waterfallMode !== "stitch" && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent pointer-events-none"></div>
-                    )}
- 
-                    {/* 左右切換媒體 (含影片與細節照片) */}
-                    {waterfallMode !== "stitch" && modalMediaList.length > 1 && (
-                      <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-20">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handlePrevSlide();
-                          }}
-                          className="p-2 rounded-full bg-black/70 hover:bg-black/90 text-zinc-300 hover:text-white border border-white/10 shadow-lg pointer-events-auto transition active:scale-90 cursor-pointer"
-                          title="上一個媒體內容"
-                        >
-                          <ChevronLeft className="h-5 w-5" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleNextSlide();
-                          }}
-                          className="p-2 rounded-full bg-black/70 hover:bg-black/90 text-zinc-300 hover:text-white border border-white/10 shadow-lg pointer-events-auto transition active:scale-90 cursor-pointer"
-                          title="下一個媒體內容"
-                        >
-                          <ChevronRight className="h-5 w-5" />
-                        </button>
-                      </div>
-                    )}
-                    
-                    {/* 分類浮水印標籤 */}
-                    {waterfallMode !== "stitch" && (
-                      <div className="absolute bottom-4 left-4 z-10">
-                        <span className="px-3 py-1 text-xs font-semibold tracking-wide text-amber-400 bg-black/80 backdrop-blur-md rounded-md border border-amber-500/20 shadow-md">
-                          {activeModalItem.category}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Thumbnail gallery selector */}
-                  {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" ? (
-                    <div className="relative z-10 w-full bg-[#090909] px-4 py-3 border-t border-white/10 shrink-0 select-none">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <div className="space-y-0.5">
-                          {isMaximized && (
-                            <span className="bg-amber-400/20 text-amber-400 text-[9px] px-1.5 py-0.5 rounded font-mono font-bold tracking-wider border border-amber-400/30">
-                              FULL SCREEN READ MODE
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2 self-start sm:self-auto">
-                          <button
-                            type="button"
-                            onClick={() => setIsMaximized(!isMaximized)}
-                            className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black rounded-lg text-xs font-bold tracking-wide flex items-center gap-1.5 transition active:scale-95 duration-200 shadow-md cursor-pointer shrink-0"
-                          >
-                            {isMaximized ? (
-                              <>
-                                <Minimize2 className="h-3.5 w-3.5 animate-pulse" />
-                                <span>還原正常視窗</span>
-                              </>
-                            ) : (
-                              <>
-                                <Maximize2 className="h-3.5 w-3.5" />
-                                <span>全螢幕沉浸閱讀</span>
-                              </>
-                            )}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setWaterfallMode("single")}
-                            className="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-white hover:text-amber-400 rounded-lg border border-white/10 text-xs font-semibold transition cursor-pointer shrink-0"
-                          >
-                            切換單頁 🖼️
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ) : ((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0) > 1) ? (
-                    <div id="modal-multimedia-menu" className="relative z-10 w-full bg-[#0E0E0E] px-4 py-3 border-t border-white/10 shrink-0">
-                      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                        
-                        {/* 影片專屬切換小圖 */}
-                        {activeModalItem.videoUrl && (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setIsVideoActive(true);
-                            }}
-                            className={`relative h-12 w-12 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer flex flex-col items-center justify-center bg-[#07090c] border-dashed ${
-                              isVideoActive
-                                ? "border-amber-400 scale-[1.05] shadow-md shadow-amber-500/10"
-                                : "border-zinc-800 hover:border-zinc-500 opacity-60 hover:opacity-100"
-                            }`}
-                            title="播放影片"
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-red-500/5 flex flex-col items-center justify-center">
-                              <Video className="h-5 w-5 text-amber-400" />
-                              <span className="text-[7px] text-zinc-400 mt-0.5 tracking-wider font-mono font-bold">PLAY</span>
-                            </div>
-                            <span className="absolute bottom-0 inset-x-0 bg-amber-500 text-black text-[7px] font-bold text-center py-0.5 uppercase">影片</span>
-                          </button>
-                        )}
-
-                        {activeModalItem.images && activeModalItem.images.map((imgUrl, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => {
-                              setIsVideoActive(false);
-                              setActiveImageUrl(imgUrl);
-                            }}
-                            className={`relative h-12 w-12 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                              (!isVideoActive && (activeImageUrl || activeModalItem.imageUrl) === imgUrl)
-                                ? "border-amber-400 scale-[1.05] shadow-md shadow-amber-500/10"
-                                : "border-transparent hover:border-zinc-500 opacity-60 hover:opacity-100"
-                            }`}
-                          >
-                            <ImageWithFallback
-                              src={imgUrl}
-                              alt={`${activeModalItem.title} - ${idx + 1}`}
-                              className="w-full h-full object-cover"
-                              referrerPolicy="no-referrer"
-                              optimizeSize={120}
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-
-                {/* 右側資訊 */}
-                {!((activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized) && (
-                  <div className="md:col-span-5 p-6 lg:p-8 flex flex-col md:h-[500px] border-t md:border-t-0 md:border-l border-white/5">
-                    
-                    {/* 標題 (靜態不滾動) */}
-                    <div className="space-y-1 pb-4 shrink-0">
-                      <p className="text-[10px] font-mono tracking-widest text-amber-500 font-semibold uppercase">{activeModalItem.titleEn}</p>
-                      <h3 className="text-xl lg:text-2xl font-display font-medium text-white tracking-tight">
-                        {activeModalItem.title}
-                      </h3>
-                    </div>
-
-                    {/* 可滾動主體 (包含設計理念與工具) */}
-                    <div className="flex-1 overflow-y-auto pr-1 py-1 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent min-h-0">
-                      {/* 設計思考核心觀點 */}
-                      <div className="space-y-2">
-                        <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Design Philosophy / 設計理念</p>
-                        <p className="text-zinc-300 text-xs leading-relaxed font-light font-sans">
-                          {activeModalItem.philosophy}
-                        </p>
-                      </div>
-
-                      {/* 使用工具與技術疊量 */}
-                      <div className="space-y-2 pt-1">
-                        <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Technologies & Tools</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {activeModalItem.tools.map((tech) => (
-                            <span key={tech} className="px-2.5 py-1 rounded text-[11px] font-mono bg-white/5 text-zinc-300 border border-white/5">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 底部行動 (靜態不滾動) */}
-                    <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-end gap-3 shrink-0">
-                      <div className="flex items-center gap-2">
-                        {activeModalItem.link && (
-                          <a
-                            href={activeModalItem.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-4 py-1.5 text-xs font-semibold text-black bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 rounded-lg transition duration-200 flex items-center gap-1 cursor-pointer"
-                          >
-                            <span>前往作品</span>
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
-                        )}
-                        <button
-                          type="button"
-                          onClick={() => setActiveModalItem(null)}
-                          className="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/5 cursor-pointer"
-                        >
-                          關閉回列表
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
-                )}
-
-              </div>
-              
-              {/* 手機版前後控制項 */}
-              {!isMaximized && (
-                <div className="flex justify-between items-center bg-zinc-950 p-3 lg:hidden border-t border-white/5">
-                  <button
-                    type="button"
-                    onClick={handlePrevModalItem}
-                    className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-3 py-1 cursor-pointer"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                    <span>上一件</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNextModalItem}
-                    className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-3 py-1 cursor-pointer"
-                  >
-                    <span>下一件</span>
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
-                </div>
-              )}
-
-            </motion.div>
-          </motion.div>
+          <PortfolioDetailModal
+            activeModalItem={activeModalItem}
+            onClose={() => setActiveModalItem(null)}
+            filteredItems={filteredItems}
+            onPrevItem={handlePrevModalItem}
+            onNextItem={handleNextModalItem}
+          />
         )}
       </AnimatePresence>
 
       {/* AI 設計輔助工作流彈出框 (Workflow Bottom Sheet / Modal) */}
-      <AnimatePresence>
-        {isWorkflowOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsWorkflowOpen(false)}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6"
-          >
-            <motion.div
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 220 }}
-              onClick={(e) => e.stopPropagation()}
-              className={`w-full max-w-4xl rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[85vh] sm:h-auto max-h-[85vh] sm:max-h-[90vh] border transition-colors duration-300 ${
-                theme === "dark" 
-                  ? "bg-[#0E0E0E] border-white/10 text-zinc-100" 
-                  : theme === "sepia" 
-                  ? "bg-[#FAF4E5] border-[#EADECC] text-[#433422]" 
-                  : "bg-white border-zinc-200 text-zinc-900"
-              }`}
-            >
-              {/* 頂部裝飾條 (手機板 RWD 拖拽把手視覺表示) */}
-              <div className="flex sm:hidden justify-center py-2 shrink-0">
-                <div className={`w-12 h-1 rounded-full ${
-                  theme === "dark" ? "bg-zinc-800" : theme === "sepia" ? "bg-[#DECDB2]" : "bg-zinc-200"
-                }`} />
-              </div>
-
-              {/* 模態框標頭 */}
-              <div className={`px-6 py-5 border-b flex items-center justify-between shrink-0 ${
-                theme === "dark" ? "border-white/5" : theme === "sepia" ? "border-amber-950/10" : "border-zinc-100"
-              }`}>
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-xl flex items-center justify-center ${
-                    theme === "dark" ? "bg-amber-500/10 text-amber-400" : theme === "sepia" ? "bg-amber-700/10 text-[#433422]" : "bg-amber-100 text-amber-700"
-                  }`}>
-                    <Sparkles className="h-5 w-5 animate-pulse" />
-                  </div>
-                  <div>
-                    <h3 className={`text-base md:text-lg font-display font-semibold ${
-                      theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-900"
-                    }`}>
-                      我的 AI 輔助設計工作流
-                    </h3>
-                    <p className={`text-[11px] font-mono tracking-wider uppercase mt-0.5 ${
-                      theme === "dark" ? "text-zinc-500" : theme === "sepia" ? "text-[#8C7B69]" : "text-zinc-500"
-                    }`}>
-                      AI-ASSISTED DESIGN & ENGINEERING ENGINE
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setIsWorkflowOpen(false)}
-                  className={`p-1.5 rounded-lg border transition-all cursor-pointer ${
-                    theme === "dark" 
-                      ? "bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border-white/5" 
-                      : theme === "sepia" 
-                      ? "bg-[#F4ECD8] hover:bg-[#EFE5CC] text-[#8C7B69] hover:text-[#433422] border-[#E8DCBD]" 
-                      : "bg-zinc-50 hover:bg-zinc-100 text-zinc-500 hover:text-zinc-900 border-zinc-200"
-                  }`}
-                  title="關閉工作流說明"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* 模態框主體 (可捲動區塊) */}
-              <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 md:space-y-8 scrollbar-thin">
-                
-                {/* 引言部分 */}
-                <div className={`p-4 md:p-5 rounded-xl border flex flex-col md:flex-row md:items-center gap-4 ${
-                  theme === "dark" 
-                    ? "bg-amber-500/5 border-amber-500/10" 
-                    : theme === "sepia" 
-                    ? "bg-[#F4ECD8]/40 border-amber-900/10" 
-                    : "bg-amber-50/45 border-amber-200/40"
-                }`}>
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0 ${
-                    theme === "dark" ? "bg-amber-500/10" : theme === "sepia" ? "bg-[#EDE2CA]" : "bg-amber-100/50"
-                  }`}>
-                    🚀
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className={`text-xs md:text-sm font-semibold tracking-wide flex items-center gap-2 ${
-                      theme === "sepia" ? "text-amber-950" : theme === "light" ? "text-zinc-800" : "text-amber-400"
-                    }`}>
-                      人機協作美學理念
-                    </h4>
-                    <p className={`text-xs leading-relaxed ${
-                      theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
-                    }`}>
-                      在創意的起點與終點，設計師始終擁有絕對控制。AI 不是在取代創作，而是在極大限度拓展想像力的邊界。通過結構化的提示工程與神經解耦局部重繪，我們將混亂的像素鍛造成富有呼吸感的前端組件。
-                    </p>
-                  </div>
-                </div>
-
-                {/* 導航工作流四大流程步驟 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  
-                  {/* Step 1 */}
-                  <div className={`p-5 md:p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
-                    theme === "dark" 
-                      ? "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10" 
-                      : theme === "sepia" 
-                      ? "bg-[#F4ECD8] border-[#E8DCBD]" 
-                      : "bg-zinc-50 border-zinc-200/60"
-                  }`}>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase px-2 py-0.5 rounded ${
-                          theme === "dark" ? "bg-amber-500/10 text-amber-400" : "bg-amber-500/20 text-amber-800"
-                        }`}>STAGES 01</span>
-                        <div className={`p-1.5 rounded-lg ${
-                          theme === "dark" ? "bg-white/5" : "bg-black/5"
-                        }`}>
-                          <Zap className={`h-4 w-4 ${
-                            theme === "dark" ? "text-amber-400" : "text-amber-800"
-                          }`} />
-                        </div>
-                      </div>
-                      
-                      <h4 className={`text-sm md:text-base font-semibold ${
-                        theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
-                      }`}>
-                        前期發想｜思維激盪與文案策略
-                      </h4>
-                      
-                      <p className={`text-xs leading-relaxed ${
-                        theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
-                      }`}>
-                        在專案啟動初期，我將 AI 作為最強大腦，打破單一思考的局限性。輸入核心概念，引導 AI 進行多維度的受眾分析（Target Audience）與市場痛點盲測。同時，利用 AI 產出結構化的 Prompt 關鍵字策略，在極短時間內延伸出多元的視覺風格可能性。
-                      </p>
-
-                      <div className="space-y-1.5 pt-2">
-                        <span className={`text-[9.5px] font-mono uppercase block ${
-                          theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>協作工具:</span>
-                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
-                          theme === "dark" 
-                            ? "bg-black/60 text-zinc-300 border-white/5" 
-                            : theme === "sepia" 
-                            ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
-                            : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
-                        }`}>
-                          <div>• <span className="text-amber-500">Gemini</span>, <span className="text-amber-500">ChatGPT</span></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
-                      theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
-                    }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
-                      <span>【多樣性躍升】 在 1 小時內精準提煉出 5 種不同維度與敘事走向的視覺提案，讓前期的創意漏斗（Funnel）更加寬廣。</span>
-                    </div>
-                  </div>
-
-                  {/* Step 2 */}
-                  <div className={`p-5 md:p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
-                    theme === "dark" 
-                      ? "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10" 
-                      : theme === "sepia" 
-                      ? "bg-[#F4ECD8] border-[#E8DCBD]" 
-                      : "bg-zinc-50 border-zinc-200/60"
-                  }`}>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase px-2 py-0.5 rounded ${
-                          theme === "dark" ? "bg-indigo-500/10 text-indigo-400" : "bg-indigo-500/15 text-indigo-800"
-                        }`}>STAGES 02</span>
-                        <div className={`p-1.5 rounded-lg ${
-                          theme === "dark" ? "bg-white/5" : "bg-black/5"
-                        }`}>
-                          <Layers className={`h-4 w-4 ${
-                            theme === "dark" ? "text-indigo-400" : "text-indigo-800"
-                          }`} />
-                        </div>
-                      </div>
-                      
-                      <h4 className={`text-sm md:text-base font-semibold ${
-                        theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
-                      }`}>
-                        中期探索｜風格原型與視覺盲測
-                      </h4>
-                      
-                      <p className={`text-xs leading-relaxed ${
-                        theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
-                      }`}>
-                        拒絕傳統耗時的素材搜集，用最快的速度看見創意的形狀。利用前期提煉出的關鍵字，進行多版本的風格原稿生成。在這個階段，我專注於色調、構圖與氛圍（Moodboard）的快速矩陣測試，不發散、不盲目開盲盒，而是精準定調專案的視覺 DNA。
-                      </p>
-
-                      <div className="space-y-1.5 pt-2">
-                        <span className={`text-[9.5px] font-mono uppercase block ${
-                          theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>協作工具:</span>
-                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
-                          theme === "dark" 
-                            ? "bg-black/60 text-zinc-300 border-white/5" 
-                            : theme === "sepia" 
-                            ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
-                            : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
-                        }`}>
-                          <div>• <span className="text-amber-500">Adobe Firefly</span></div>
-                          <div>• <span className="text-amber-500">Leonardo AI</span></div>
-                          <div>• <span className="text-amber-500">Midjourney</span></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
-                      theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
-                    }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
-                      <span>【專注核心】大幅降低過往在圖庫中大海撈針的繁瑣時間，將工作重心 100% 回歸於設計師最核心的「美學把關」與「精緻度雕琢」。</span>
-                    </div>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className={`p-5 md:p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
-                    theme === "dark" 
-                      ? "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10" 
-                      : theme === "sepia" 
-                      ? "bg-[#F4ECD8] border-[#E8DCBD]" 
-                      : "bg-zinc-50 border-zinc-200/60"
-                  }`}>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase px-2 py-0.5 rounded ${
-                          theme === "dark" ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-500/15 text-emerald-800"
-                        }`}>STAGES 03</span>
-                        <div className={`p-1.5 rounded-lg ${
-                          theme === "dark" ? "bg-white/5" : "bg-black/5"
-                        }`}>
-                          <ZoomIn className={`h-4 w-4 ${
-                            theme === "dark" ? "text-emerald-400" : "text-emerald-800"
-                          }`} />
-                        </div>
-                      </div>
-                      
-                      <h4 className={`text-sm md:text-base font-semibold ${
-                        theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
-                      }`}>
-                        後期完稿｜專業精修與商業落地
-                      </h4>
-                      
-                      <p className={`text-xs leading-relaxed ${
-                        theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
-                      }`}>
-                        AI 產出的只是素材，唯有透過設計師的手，才能轉化為符合市場標準的商品。將 AI 生成的原型匯入專業軟體，進行局部重繪（Inpainting）、光影細修、去背與去瑕疵。利用編修軟體優化角色骨架，並透過 Illustrator 將關鍵視覺進行向量化（Vectorization）與精準排版，確保多解析度輸出的品質。
-                      </p>
-
-                      <div className="space-y-1.5 pt-2">
-                        <span className={`text-[9.5px] font-mono uppercase block ${
-                          theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>協作工具:</span>
-                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
-                          theme === "dark" 
-                            ? "bg-black/60 text-zinc-300 border-white/5" 
-                            : theme === "sepia" 
-                            ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
-                            : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
-                        }`}>
-                          <div>• <span className="text-amber-500">Adobe Photoshop</span></div>
-                          <div>• <span className="text-amber-500">Adobe Illustrator</span></div>
-                          <div>• <span className="text-amber-500">Canva</span></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
-                      theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
-                    }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
-                      <span>【效率轉化】成功實現「AI 輔助繪圖 20% + 人類美學完稿 80%」的黃金比例，既保有設計師獨特的筆觸與結構主導權，又兼顧了產出效率。</span>
-                    </div>
-                  </div>
-
-                  {/* Step 4 */}
-                  <div className={`p-5 md:p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
-                    theme === "dark" 
-                      ? "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10" 
-                      : theme === "sepia" 
-                      ? "bg-[#F4ECD8] border-[#E8DCBD]" 
-                      : "bg-zinc-50 border-zinc-200/60"
-                  }`}>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-mono tracking-wider font-semibold uppercase px-2 py-0.5 rounded ${
-                          theme === "dark" ? "bg-amber-500/10 text-amber-400" : "bg-amber-505/20 text-amber-800"
-                        }`}>STAGES 04</span>
-                        <div className={`p-1.5 rounded-lg ${
-                          theme === "dark" ? "bg-white/5" : "bg-black/5"
-                        }`}>
-                          <Sparkles className={`h-4 w-4 ${
-                            theme === "dark" ? "text-amber-400" : "text-amber-800"
-                          }`} />
-                        </div>
-                      </div>
-                      
-                      <h4 className={`text-sm md:text-base font-semibold ${
-                        theme === "dark" ? "text-white" : theme === "sepia" ? "text-[#433422]" : "text-zinc-800"
-                      }`}>
-                        印前模擬｜圖生圖與週邊開發
-                      </h4>
-                      
-                      <p className={`text-xs leading-relaxed ${
-                        theme === "dark" ? "text-zinc-400" : theme === "sepia" ? "text-[#6C5B48]" : "text-zinc-600"
-                      }`}>
-                        在正式進入印刷與市集量產前，用技術降低實體製作的容錯率。運用「圖生圖」與結構參考功能，將設計好的 2D 視覺或角色 IP，快速投射至模擬場景（Mockup）中。無論是市集宣傳海報的街頭貼圖，還是壓克力立牌、週邊商品的實體光影模擬，都能在打樣前得到最直觀的視覺驗證。
-                      </p>
-
-                      <div className="space-y-1.5 pt-2">
-                        <span className={`text-[9.5px] font-mono uppercase block ${
-                          theme === "dark" ? "text-zinc-500" : "text-zinc-400"
-                        }`}>協作工具:</span>
-                        <div className={`relative px-3 py-2 rounded-lg font-mono text-[10.5px] leading-relaxed border flex flex-col gap-1 ${
-                          theme === "dark" 
-                            ? "bg-black/60 text-zinc-300 border-white/5" 
-                            : theme === "sepia" 
-                            ? "bg-[#EDE2CA] text-[#433422] border-amber-950/5" 
-                            : "bg-zinc-100 text-zinc-700 border-zinc-200/50"
-                        }`}>
-                          <div>• <span className="text-amber-500">Image-to-Image (圖生圖控制技術)</span></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={`mt-4 pt-3 border-t text-[11px] leading-relaxed flex items-start gap-1 ${
-                      theme === "dark" ? "border-white/5 text-zinc-500" : "border-black/5 text-[#8C7B69]"
-                    }`}>
-                      <span className="shrink-0 text-amber-500 font-semibold font-sans">💡 生產力產出：</span>
-                      <span>【決策加速】透過高擬真的印前視覺模擬，讓概念發想與風格定調時間縮短 60%，大幅降低與印刷廠商、合作夥伴之間的溝通成本。</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* 腳部技巧總結 */}
-                <div className={`p-4 rounded-xl border text-center space-y-1.5 ${
-                  theme === "dark" 
-                    ? "bg-zinc-900/60 border-white/5" 
-                    : theme === "sepia" 
-                    ? "bg-[#EDE2CA]/50 border-amber-950/5" 
-                    : "bg-zinc-50 border-zinc-200/50"
-                }`}>
-                  <p className={`text-[11px] font-sans font-medium uppercase tracking-widest ${
-                    theme === "dark" ? "text-amber-400" : "text-amber-800"
-                  }`}>
-                    ✦ 人工智能不是對手，而是最具未來感的畫筆 ✦
-                  </p>
-                  <p className={`text-[10px] leading-relaxed ${
-                    theme === "dark" ? "text-zinc-500" : "text-zinc-600"
-                  }`}>
-                    本站所有視覺插畫、擬真擬立體主視覺，皆誕生自以上設計引擎的深度交融。不間斷地疊代、提煉和磨砺。
-                  </p>
-                </div>
-
-              </div>
-              
-              {/* 底部按鈕 */}
-              <div className={`p-4 border-t flex justify-end shrink-0 ${
-                theme === "dark" ? "border-white/5 bg-zinc-950" : theme === "sepia" ? "border-amber-950/10 bg-[#FAF4E5]" : "border-zinc-100 bg-zinc-50"
-              }`}>
-                <button
-                  id="btn-workflow-complete"
-                  type="button"
-                  onClick={() => setIsWorkflowOpen(false)}
-                  className={`px-5 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                    theme === "dark" 
-                      ? "bg-amber-500 hover:bg-amber-400 text-black shadow-md shadow-amber-500/10" 
-                      : theme === "sepia" 
-                      ? "bg-[#D97706] hover:bg-[#B45309] text-amber-50 shadow-md shadow-amber-900/10" 
-                      : "bg-zinc-900 hover:bg-zinc-800 text-zinc-50 shadow-md"
-                  }`}
-                >
-                  探索完成，開始瀏覽作品
-                </button>
-              </div>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <AIWorkflowModal
+        isOpen={isWorkflowOpen}
+        onClose={() => setIsWorkflowOpen(false)}
+        theme={theme}
+      />
 
       {/* 傳統 vCard 數位名片與 QR Code 彈出視窗 */}
-      <AnimatePresence>
-        {isContactCardOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsContactCardOpen(false)}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4"
-          >
-            <motion.div
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 220 }}
-              onClick={(e) => e.stopPropagation()}
-              className={`w-full max-w-2xl rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] border transition-colors duration-300 ${
-                theme === "dark" 
-                  ? "bg-[#0E0E0E] border-white/10 text-zinc-100" 
-                  : theme === "sepia" 
-                  ? "bg-[#FAF4E5] border-[#EADECC] text-[#433422]" 
-                  : "bg-white border-zinc-200 text-zinc-900"
-              }`}
-            >
-              {/* 頂部標題 */}
-              <div className={`px-6 py-4 border-b flex items-center justify-between shrink-0 ${
-                theme === "dark" ? "border-white/5" : theme === "sepia" ? "border-amber-950/10" : "border-zinc-100"
-              }`}>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-amber-500 animate-ping"></div>
-                  <h3 className="font-display font-bold text-base tracking-tight">商務特調 • 數位名片 & 儲存聯絡資訊</h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsContactCardOpen(false)}
-                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                    theme === "dark" ? "hover:bg-white/10 text-zinc-400" : "hover:bg-black/5 text-zinc-500"
-                  }`}
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* 內容區域 */}
-              <div className="p-6 overflow-y-auto space-y-6">
-                
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                  
-                  {/* 左側：精緻數位名片展示 (佔 7 欄) */}
-                  <div className="md:col-span-7 flex flex-col justify-between">
-                    <div className={`relative overflow-hidden rounded-2xl border p-5 shadow-lg flex flex-col h-full justify-between gap-6 ${
-                      theme === "dark"
-                        ? "bg-gradient-to-br from-zinc-900 via-zinc-950 to-black border-white/10 hover:border-amber-500/30"
-                        : theme === "sepia"
-                        ? "bg-gradient-to-br from-[#FAF4E5] via-[#F4ECD8] to-[#EDE2CA] border-[#E8DCBD] shadow-[#433422]/5"
-                        : "bg-gradient-to-br from-white via-zinc-50 to-zinc-100 border-zinc-200 shadow-zinc-250/50"
-                    }`}>
-                      {/* 裝飾背景 */}
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full blur-xl pointer-events-none"></div>
-                      
-                      <div className="space-y-4 relative z-10">
-                        {/* 名片頂部：Logo / 頭像與公司 */}
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="h-12 w-12 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-600 flex items-center justify-center text-white text-lg font-display font-semibold shadow-md">
-                              CP
-                            </div>
-                            <div className="space-y-0.5">
-                              <span className="text-[10px] font-mono tracking-widest uppercase opacity-60">Creative Designer</span>
-                              <h4 className="font-display font-medium text-xs tracking-wide opacity-80">{profile.company}</h4>
-                            </div>
-                          </div>
-                          <span className={`text-[9px] font-mono border px-1.5 py-0.5 rounded ${
-                            theme === "dark" ? "border-amber-500/30 text-amber-400 bg-amber-500/5" : "border-amber-600/30 text-amber-800 bg-amber-600/5"
-                          }`}>vCard Standard</span>
-                        </div>
-
-                        {/* 名片中部：名字與職位 */}
-                        <div className="pt-2">
-                          <h2 className={`text-xl font-display font-bold tracking-tight ${
-                            theme === "dark" 
-                              ? "text-white" 
-                              : theme === "sepia" 
-                              ? "text-[#382B1D]" 
-                              : "text-zinc-900"
-                          }`}>
-                            {profile.name}
-                          </h2>
-                          <p className="text-xs font-sans text-amber-500/95 font-medium mt-1">{profile.title}</p>
-                        </div>
-
-                        {/* 名片詳細資訊 */}
-                        <div className={`space-y-2.5 text-xs pt-3 border-t ${
-                          theme === "dark" ? "border-white/5" : "border-black/5"
-                        }`}>
-                          <div className="flex items-center gap-3">
-                            <Mail className="h-3.5 w-3.5 opacity-60 text-amber-500" />
-                            <span className="font-mono opacity-80 select-all">{profile.email}</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <Globe className="h-3.5 w-3.5 opacity-60 text-amber-500" />
-                            <a href={profile.portfolioUrl} target="_blank" rel="noopener noreferrer" className="opacity-80 hover:text-amber-500 hover:underline inline-flex items-center gap-1 transition-colors">
-                              <span>Canva 官方精選作品集</span>
-                              <ExternalLink className="h-2.5 w-2.5" />
-                            </a>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <Award className="h-3.5 w-3.5 opacity-60 text-amber-500" />
-                            <span className="opacity-80">5 - 6 年品牌商業整合設計實戰經驗</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* 底部按鈕 */}
-                      <div className={`pt-4 border-t flex flex-col gap-2 ${
-                        theme === "dark" ? "border-white/5" : "border-black/5"
-                      }`}>
-                        <button
-                          type="button"
-                          onClick={downloadVCard}
-                          className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-md shadow-amber-500/10 active:scale-98 transition-all cursor-pointer"
-                        >
-                          <Download className="h-3.5 w-3.5" />
-                          <span>一鍵下載並匯入通訊錄 (.vcf)</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 右側：QR Code 掃描區 (佔 5 欄) */}
-                  <div className="md:col-span-5 flex flex-col items-center justify-center space-y-4">
-                    <div className="p-4 bg-white rounded-2xl shadow-xl border border-zinc-100 flex items-center justify-center max-w-[200px] md:max-w-none w-full aspect-square">
-                      {/* 完美高對比、相機最易辨識的實體 QR Code */}
-                      <img 
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(vCardText)}`}
-                        alt="vCard QR Code"
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    
-                    <div className="text-center space-y-1 px-2">
-                      <p className={`text-xs font-medium ${
-                        theme === "dark" ? "text-zinc-300" : "text-zinc-700"
-                      }`}>手機相機掃描 QR Code</p>
-                      <p className="text-[10px] text-zinc-500 leading-normal">
-                        可直接在智慧型手機上辨識並「加入聯絡人」，迅速建立客製化商務橋樑。
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              {/* 底部收起 */}
-              <div className={`p-4 border-t flex items-center justify-between shrink-0 ${
-                theme === "dark" ? "border-white/5 bg-zinc-950" : theme === "sepia" ? "border-amber-950/10 bg-[#FAF4E5]" : "border-zinc-100 bg-zinc-50"
-              }`}>
-                <span className="text-[10px] text-zinc-500">
-                  ✦ Business Contact Sync Platform v1.1
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsContactCardOpen(false)}
-                  className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                    theme === "dark" 
-                      ? "bg-zinc-800 hover:bg-zinc-700 text-zinc-300" 
-                      : theme === "sepia" 
-                      ? "bg-[#EDE2CA] hover:bg-[#E2D5B9] text-[#433422]" 
-                      : "bg-zinc-100 hover:bg-zinc-200 text-zinc-600"
-                  }`}
-                >
-                  關閉名片
-                </button>
-              </div>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ContactModal
+        isOpen={isContactCardOpen}
+        onClose={() => setIsContactCardOpen(false)}
+        theme={theme}
+        profile={profile}
+        downloadVCard={downloadVCard}
+        vCardText={vCardText}
+      />
 
       {/* 角色插畫類別配置：右下角生動彈出裝飾（極高解析度 GPU 隔離渲染） */}
       <InteractiveMascot 

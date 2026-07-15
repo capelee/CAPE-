@@ -172,7 +172,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
               </div>
             </div>
 
-            {/* 2026作品集主要按鈕與一鍵儲存聯絡資訊 */}
+            {/* 2026作品集主要按鈕與儲存聯絡資訊 */}
             <div className="pt-2 flex flex-col gap-2.5">
               <a 
                 href={profile.portfolioUrl}
@@ -213,7 +213,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                 }`}
               >
                 <QrCode className="h-3.5 w-3.5" />
-                <span>一鍵儲存聯絡資訊 (vCard)</span>
+                <span>儲存聯絡資訊</span>
               </button>
 
               <button
