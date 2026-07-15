@@ -741,6 +741,7 @@ export default function App() {
   const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
   const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">("stitch");
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
+  const [stitchScrollProgress, setStitchScrollProgress] = useState<number>(0);
   const loaderRef = React.useRef<HTMLDivElement | null>(null);
   const isJumpingToBentoRef = React.useRef<boolean>(false);
 
@@ -1127,6 +1128,7 @@ export default function App() {
       setActiveImageUrl(activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : undefined));
       setIsVideoActive(!!activeModalItem.videoUrl);
       setIsMaximized(false);
+      setStitchScrollProgress(0);
       if (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") {
         setWaterfallMode("stitch");
       } else {
@@ -1136,6 +1138,7 @@ export default function App() {
       setActiveImageUrl(null);
       setIsVideoActive(false);
       setIsMaximized(false);
+      setStitchScrollProgress(0);
     }
   }, [activeModalItem]);
 
@@ -1353,6 +1356,106 @@ export default function App() {
     return filteredItems.findIndex(i => i.id === activeModalItem.id);
   }, [activeModalItem, filteredItems]);
 
+  // List of media items for the active modal item to coordinate slides/media navigation
+  const modalMediaList = useMemo(() => {
+    if (!activeModalItem) return [];
+    const list: { type: "video" | "image"; url: string }[] = [];
+    if (activeModalItem.videoUrl) {
+      list.push({ type: "video", url: activeModalItem.videoUrl });
+    }
+    if (activeModalItem.images && activeModalItem.images.length > 0) {
+      activeModalItem.images.forEach((img) => {
+        list.push({ type: "image", url: img });
+      });
+    } else if (activeModalItem.imageUrl) {
+      list.push({ type: "image", url: activeModalItem.imageUrl });
+    }
+    return list;
+  }, [activeModalItem]);
+
+  const currentMediaIndex = useMemo(() => {
+    if (modalMediaList.length === 0) return -1;
+    if (isVideoActive) {
+      return modalMediaList.findIndex(m => m.type === "video");
+    }
+    const currentUrl = activeImageUrl || (activeModalItem ? activeModalItem.imageUrl : null);
+    return modalMediaList.findIndex(m => m.type === "image" && m.url === currentUrl);
+  }, [modalMediaList, isVideoActive, activeImageUrl, activeModalItem]);
+
+  const handlePrevSlide = () => {
+    if (modalMediaList.length <= 1) return;
+    const newIndex = (currentMediaIndex - 1 + modalMediaList.length) % modalMediaList.length;
+    const target = modalMediaList[newIndex];
+    if (target.type === "video") {
+      setIsVideoActive(true);
+    } else {
+      setIsVideoActive(false);
+      setActiveImageUrl(target.url);
+    }
+  };
+
+  const handleNextSlide = () => {
+    if (modalMediaList.length <= 1) return;
+    const newIndex = (currentMediaIndex + 1) % modalMediaList.length;
+    const target = modalMediaList[newIndex];
+    if (target.type === "video") {
+      setIsVideoActive(true);
+    } else {
+      setIsVideoActive(false);
+      setActiveImageUrl(target.url);
+    }
+  };
+
+  // Touch Swipe gestures support
+  const touchStartX = React.useRef<number | null>(null);
+  const touchStartY = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const touch = e.changedTouches[0];
+    const diffX = touch.clientX - touchStartX.current;
+    const diffY = touch.clientY - touchStartY.current;
+
+    // 水平滑動距離大於垂直滑動距離，避免干擾上下滾動
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > 40) { // 至少滑動 40px
+        if (diffX < 0) {
+          // 向左滑動 (下一張 / 下一個作品)
+          if (modalMediaList.length > 1 && currentMediaIndex < modalMediaList.length - 1) {
+            handleNextSlide();
+          } else {
+            // 切換至下一個作品
+            if (modalItemIndex < filteredItems.length - 1) {
+              setActiveModalItem(filteredItems[modalItemIndex + 1]);
+            } else {
+              setActiveModalItem(filteredItems[0]);
+            }
+          }
+        } else {
+          // 向右滑動 (上一張 / 上一個作品)
+          if (modalMediaList.length > 1 && currentMediaIndex > 0) {
+            handlePrevSlide();
+          } else {
+            // 切換至上一個作品
+            if (modalItemIndex > 0) {
+              setActiveModalItem(filteredItems[modalItemIndex - 1]);
+            } else {
+              setActiveModalItem(filteredItems[filteredItems.length - 1]);
+            }
+          }
+        }
+      }
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   const handlePrevModalItem = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (modalItemIndex > 0) {
@@ -1389,16 +1492,20 @@ export default function App() {
       if (e.key === "Escape" || e.key === "Esc") {
         setActiveModalItem(null);
       } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        // 左右方向鍵直接切換「上一個 / 下一個」作品
         if (modalItemIndex > 0) {
           setActiveModalItem(filteredItems[modalItemIndex - 1]);
         } else {
-          setActiveModalItem(filteredItems[filteredItems.length - 1]); // loop to end
+          setActiveModalItem(filteredItems[filteredItems.length - 1]);
         }
       } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        // 左右方向鍵直接切換「上一個 / 下一個」作品
         if (modalItemIndex < filteredItems.length - 1) {
           setActiveModalItem(filteredItems[modalItemIndex + 1]);
         } else {
-          setActiveModalItem(filteredItems[0]); // loop to start
+          setActiveModalItem(filteredItems[0]);
         }
       }
     };
@@ -1407,7 +1514,7 @@ export default function App() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeModalItem, filteredItems, modalItemIndex]);
+  }, [activeModalItem, filteredItems, modalItemIndex, modalMediaList, currentMediaIndex]);
 
   return (
     <div className={`min-h-screen flex flex-col font-sans relative overflow-x-hidden transition-colors duration-500 ${
@@ -2419,7 +2526,7 @@ export default function App() {
                       <ShieldAlert className="h-6 w-6" />
                     </div>
                   </div>
-                  <h4 className="font-display font-semibold text-sm mb-2">此特定類別下尚未登錄核心作品</h4>
+                  <h4 className="font-display font-semibold text-sm mb-2">此特定類別下尚未登錄 core 作品</h4>
                   <p className={`text-xs max-w-sm mx-auto mb-5 leading-relaxed ${
                     theme === "sepia" ? "text-[#8C7B69]" : "text-zinc-500"
                   }`}>
@@ -2548,11 +2655,27 @@ export default function App() {
                     ? "col-span-12 md:col-span-12 h-full flex-grow" 
                     : "md:col-span-7 h-[330px] sm:h-[450px] md:h-[500px]"
                 }`}>
-                  <div className={`relative w-full flex-grow bg-black/40 min-h-[200px] md:min-h-[280px] ${
-                    (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" 
-                      ? `overflow-y-auto block ${isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "h-[500px]"} scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent` 
-                      : `overflow-hidden flex items-center justify-center ${(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
-                  }`}>
+                  <div 
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                    onScroll={(e) => {
+                      if ((activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch") {
+                        const target = e.currentTarget;
+                        const totalScroll = target.scrollHeight - target.clientHeight;
+                        if (totalScroll > 0) {
+                          const progress = (target.scrollTop / totalScroll) * 100;
+                          setStitchScrollProgress(progress);
+                        } else {
+                          setStitchScrollProgress(0);
+                        }
+                      }
+                    }}
+                    className={`relative w-full flex-grow bg-black/40 min-h-[200px] md:min-h-[280px] ${
+                      (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" 
+                        ? `overflow-y-auto block ${isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "h-[500px]"} waterfall-scrollbar` 
+                        : `overflow-hidden flex items-center justify-center ${(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized ? "h-[calc(95vh-140px)] md:h-[calc(92vh-100px)]" : "md:h-[500px]"}`
+                    }`}
+                  >
                     {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && waterfallMode === "stitch" ? (
                       <div className="w-full flex flex-col select-none bg-[#050505]">
                         {/* 頂部操作列 / 提示 */}
@@ -2562,9 +2685,15 @@ export default function App() {
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                               <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                             </span>
-                            <span className="hidden sm:inline">已無縫拼接為直式長圖 (請往下滾動閱讀)</span>
-                            <span className="sm:hidden text-[10px]">無縫長圖 (下滑閱讀)</span>
+                            <span className="hidden sm:inline">已無縫拼接為直式長圖 (請往下滾動閱讀 / 可左右滑動切換作品)</span>
+                            <span className="sm:hidden text-[10px]">無縫長圖 (下滑閱讀 / 左右滑動切換作品)</span>
                           </div>
+                          
+                          {/* 滾動進度條 (Scroll Progress Indicator) */}
+                          <div 
+                            className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-amber-500 to-amber-400 transition-all duration-75 shadow-[0_1px_4px_rgba(245,158,11,0.4)]" 
+                            style={{ width: `${stitchScrollProgress}%` }}
+                          ></div>
                         </div>
                         
                         {/* 拼裝大圖 */}
@@ -2590,34 +2719,6 @@ export default function App() {
                       </div>
                     ) : (
                       <>
-                        {(activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && (
-                          <div className="absolute top-3 left-3 z-[25] hidden md:flex items-center gap-2">
-                            <button
-                              type="button"
-                              onClick={() => setWaterfallMode("stitch")}
-                              className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-semibold text-xs tracking-wide shadow-lg border border-amber-500/10 cursor-pointer flex items-center gap-1.5 transition active:scale-95 duration-200"
-                            >
-                              <span>🗂️ 拼裝切換：一鍵查看直式無縫長圖</span>
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setIsMaximized(!isMaximized)}
-                              className="px-3 py-1.5 rounded-lg bg-black/60 hover:bg-amber-500 hover:text-black text-amber-400 font-semibold text-xs tracking-wide shadow-lg border border-amber-500/20 cursor-pointer flex items-center gap-1.5 transition active:scale-95 duration-200 backdrop-blur-md"
-                            >
-                              {isMaximized ? (
-                                <>
-                                  <Minimize2 className="h-3.5 w-3.5" />
-                                  <span>還原視窗 🗅</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Maximize2 className="h-3.5 w-3.5" />
-                                  <span>全寬滿版 🗖</span>
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        )}
                         {isVideoActive && getYouTubeEmbedUrl(activeModalItem.videoUrl) ? (
                           <div className="absolute inset-0 z-10 w-full h-full bg-[#050505] flex items-center justify-center">
                             <iframe
@@ -2662,37 +2763,15 @@ export default function App() {
                     {waterfallMode !== "stitch" && (
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent pointer-events-none"></div>
                     )}
-
+ 
                     {/* 左右切換媒體 (含影片與細節照片) */}
-                    {waterfallMode !== "stitch" && ((activeModalItem.videoUrl ? 1 : 0) + (activeModalItem.images?.length || 0)) > 1 && (
+                    {waterfallMode !== "stitch" && modalMediaList.length > 1 && (
                       <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-20">
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const hasVideo = !!activeModalItem.videoUrl;
-                            const images = activeModalItem.images || [];
-                            
-                            if (isVideoActive) {
-                              // From video, go to the last image
-                              setIsVideoActive(false);
-                              if (images.length > 0) {
-                                setActiveImageUrl(images[images.length - 1]);
-                              }
-                            } else {
-                              // From current image index
-                              const current = activeImageUrl || activeModalItem.imageUrl || (images.length > 0 ? images[0] : undefined);
-                              const idx = images.indexOf(current!);
-                              if (idx <= 0) {
-                                if (hasVideo) {
-                                  setIsVideoActive(true);
-                                } else {
-                                  setActiveImageUrl(images[images.length - 1]);
-                                }
-                              } else {
-                                setActiveImageUrl(images[idx - 1]);
-                              }
-                            }
+                            handlePrevSlide();
                           }}
                           className="p-2 rounded-full bg-black/70 hover:bg-black/90 text-zinc-300 hover:text-white border border-white/10 shadow-lg pointer-events-auto transition active:scale-90 cursor-pointer"
                           title="上一個媒體內容"
@@ -2703,29 +2782,7 @@ export default function App() {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            const hasVideo = !!activeModalItem.videoUrl;
-                            const images = activeModalItem.images || [];
-                            
-                            if (isVideoActive) {
-                              // From video, go to the first image
-                              setIsVideoActive(false);
-                              if (images.length > 0) {
-                                setActiveImageUrl(images[0]);
-                              }
-                            } else {
-                              // From current image index
-                              const current = activeImageUrl || activeModalItem.imageUrl || (images.length > 0 ? images[0] : undefined);
-                              const idx = images.indexOf(current!);
-                              if (idx === -1 || idx === images.length - 1) {
-                                if (hasVideo) {
-                                  setIsVideoActive(true);
-                                } else {
-                                  setActiveImageUrl(images[0]);
-                                }
-                              } else {
-                                setActiveImageUrl(images[idx + 1]);
-                              }
-                            }
+                            handleNextSlide();
                           }}
                           className="p-2 rounded-full bg-black/70 hover:bg-black/90 text-zinc-300 hover:text-white border border-white/10 shadow-lg pointer-events-auto transition active:scale-90 cursor-pointer"
                           title="下一個媒體內容"

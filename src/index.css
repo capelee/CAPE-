@@ -959,4 +959,47 @@ a:active,
   scrollbar-width: none !important;  /* Firefox */
 }
 
+/* Beautiful, highly visible custom scrollbar for vertical stitched long images */
+.waterfall-scrollbar::-webkit-scrollbar {
+  width: 10px !important; /* Slightly wider so it is easy to drag and click */
+  display: block !important;
+}
+.waterfall-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 4px;
+}
+.waterfall-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.45) !important; /* Amber-500 with opacity */
+  border: 2px solid rgba(0, 0, 0, 0.5) !important;
+  border-radius: 6px !important;
+  transition: background 0.2s ease;
+}
+.waterfall-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.8) !important; /* Brighter amber on hover for feedback */
+}
+
+/* Light Theme version */
+.light-theme .waterfall-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+.light-theme .waterfall-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.4) !important; /* Amber thumb */
+  border: 2px solid #FFFFFF !important;
+}
+.light-theme .waterfall-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.75) !important;
+}
+
+/* Sepia Theme version */
+.sepia-theme .waterfall-scrollbar::-webkit-scrollbar-track {
+  background: rgba(67, 52, 34, 0.08) !important;
+}
+.sepia-theme .waterfall-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(180, 83, 9, 0.4) !important; /* Warm amber/brown thumb */
+  border: 2px solid #FCF8EE !important;
+}
+.sepia-theme .waterfall-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 83, 9, 0.75) !important;
+}
+
 
