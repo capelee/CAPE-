@@ -646,6 +646,20 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
           </AnimatePresence>
         </div>
 
+        {/* 方案三：紙燈籠燭光微弱搖曳暖橘色呼吸光暈 (Candle flickering halo behind button) */}
+        <motion.div
+          animate={{
+            scale: [0.96, 1.08, 0.94, 1.14, 0.96, 1.05, 0.96],
+            opacity: [0.35, 0.65, 0.3, 0.75, 0.45, 0.55, 0.35],
+          }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute w-[210px] h-[65px] rounded-full bg-gradient-to-r from-amber-500/25 via-orange-500/40 to-red-500/15 blur-xl pointer-events-none -z-10"
+        />
+
         {/* 罐罐按鈕：與頁尾設計高度融合的精美橫向按鈕 */}
         <motion.button
           onClick={triggerOpenCan}
@@ -1042,13 +1056,15 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
                   <span>再開一罐 🥫</span>
                 </button>
 
-                <button
-                  type="button"
+                <a
+                  href="https://www.instagram.com/mumao1_the_cat_religion/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
-                  className="py-3 px-5 rounded-2xl text-xs font-serif font-bold border-2 border-[#DFCFA0] bg-[#FAF6F0] hover:bg-[#EADECC]/30 text-[#4F3C28] transition-all active:scale-95 cursor-pointer tracking-wider"
+                  className="py-3 px-5 rounded-2xl text-xs font-serif font-bold border-2 border-[#DFCFA0] bg-[#FAF6F0] hover:bg-[#EADECC]/30 text-[#4F3C28] transition-all active:scale-95 cursor-pointer tracking-wider inline-flex items-center justify-center"
                 >
                   領取好運 🐾
-                </button>
+                </a>
               </div>
 
               {/* 最下方五色祈福線條 */}

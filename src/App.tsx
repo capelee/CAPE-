@@ -2858,6 +2858,61 @@ export default function App() {
           </div>
         </div>
 
+        {/* 左側：神社鳥居抽象線條剪影 (Abstract Torii Gate Vector Watermark) */}
+        <svg 
+          className={`absolute left-4 sm:left-10 md:left-16 bottom-0 h-28 sm:h-36 w-auto pointer-events-none select-none transition-all duration-300 z-0 ${
+            theme === "dark" 
+              ? "text-[#D33F33] opacity-[0.25]" 
+              : theme === "sepia"
+              ? "text-[#D33F33] opacity-[0.28]"
+              : "text-[#D33F33] opacity-[0.20]"
+          }`} 
+          viewBox="0 0 120 120" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1.5" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        >
+          <path d="M 10,25 Q 60,32 110,25" />
+          <path d="M 12,20 Q 60,27 108,20" />
+          <path d="M 20,40 L 100,40" />
+          <path d="M 35,40 L 30,110" />
+          <path d="M 85,40 L 90,110" />
+          <path d="M 60,28 L 60,40" />
+          <path d="M 25,110 L 35,110" />
+          <path d="M 85,110 L 95,110" />
+        </svg>
+
+        {/* 右側：日式石燈籠抽象線條剪影 (Abstract Toro Lantern Vector Watermark) */}
+        <svg 
+          className={`absolute right-4 sm:right-10 md:right-16 bottom-0 h-28 sm:h-36 w-auto pointer-events-none select-none transition-all duration-300 z-0 ${
+            theme === "dark" 
+              ? "text-[#C5A059] opacity-[0.25]" 
+              : theme === "sepia"
+              ? "text-[#8C7B69] opacity-[0.28]"
+              : "text-[#C5A059] opacity-[0.20]"
+          }`} 
+          viewBox="0 0 100 120" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1.5" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        >
+          <path d="M 50,15 C 47,22 47,25 50,28 C 53,25 53,22 50,15 Z" />
+          <path d="M 32,45 Q 50,32 68,45" />
+          <path d="M 30,45 L 70,45" />
+          <path d="M 30,45 L 35,40 L 65,40 L 70,45" />
+          <rect x="38" y="45" width="24" height="24" rx="1" />
+          <line x1="45" y1="45" x2="45" y2="69" />
+          <line x1="55" y1="45" x2="55" y2="69" />
+          <line x1="38" y1="57" x2="62" y2="57" />
+          <path d="M 34,69 L 66,69 L 62,75 L 38,75 Z" />
+          <path d="M 44,75 L 44,105 L 56,105 L 56,75 Z" />
+          <path d="M 36,105 L 64,105 L 68,115 L 32,115 Z" />
+        </svg>
+
         {/* 神社和紙纖維底紋與御神光 */}
         <div className="absolute inset-0 opacity-[0.012] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:12px_12px]" />
         <div 
