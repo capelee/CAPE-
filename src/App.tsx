@@ -418,7 +418,7 @@ export default function App() {
     changeTheme(nextTheme);
   };
 
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchInputVal, setSearchInputVal] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(12);
@@ -507,6 +507,22 @@ export default function App() {
   }
 
   const categoryMascotMap: Record<string, MascotCharacter> = useMemo(() => ({
+    "亮點設計": {
+      name: "創意總監 Shone",
+      role: "全能創意總監",
+      imageDriveId: "1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl", // SHONE_P.png (主形象)
+      glowColor: "from-amber-400/25 to-rose-500/20 shadow-[0_0_50px_rgba(245,158,11,0.25)]",
+      dialogues: [
+        "吼吼～我是創意總監 Shone！這裡是我最引以為傲的精選『亮點設計』大集合！🐾✨",
+        "每一件亮點作品，都融合了極致的完稿美學與匠心獨具的靈感亮點喔！💎",
+        "點選上方的其他分類按鈕，隨時解鎖 12 隻專業吉祥物戰隊伙伴和精美作品！🌟",
+        "把溫暖人心的溫度融進每一像素中，這就是我的美學指南！💖"
+      ],
+      idles: [
+        "這裡展示的都是我最推薦的精選代表作，希望有擊中你的靈魂處！🦖",
+        "點選其他分類，看看我的百變恐龍特攻隊夥伴吧！🦕"
+      ]
+    },
     "All": {
       name: "創意總監 Shone",
       role: "全能創意總監",
@@ -1325,7 +1341,7 @@ export default function App() {
     if (!list.has("賣場Banner橫幅廣告")) {
       list.add("賣場Banner橫幅廣告");
     }
-    return ["All", ...Array.from(list)];
+    return ["亮點設計", "All", ...Array.from(list)];
   }, [items]);
 
   // Split categories evenly into 2 fixed lines/rows
@@ -1343,9 +1359,14 @@ export default function App() {
 
   // Filter items
   const filteredItems = useMemo(() => {
-    let list = selectedCategory === "All" 
-      ? items 
-      : items.filter(item => item.category === selectedCategory);
+    let list;
+    if (selectedCategory === "All") {
+      list = items;
+    } else if (selectedCategory === "亮點設計") {
+      list = items.filter(item => item.isHighlight);
+    } else {
+      list = items.filter(item => item.category === selectedCategory);
+    }
     
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
