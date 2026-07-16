@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
 import { PortfolioItem } from "../types";
+import { playMeowSound, catPurr } from "../utils/audioEffects";
 
 interface InteractiveMascotProps {
   currentMascot: {
@@ -42,6 +43,36 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const [clickCount, setClickCount] = useState<number>(0);
   const [lastClickTime, setLastClickTime] = useState<number>(0);
   const [isChasing, setIsChasing] = useState<boolean>(false);
+
+  // Cat Purr Hover states
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPurring, setIsPurring] = useState<boolean>(false);
+
+  const handleMouseEnter = () => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = setTimeout(() => {
+      catPurr.start();
+      setIsPurring(true);
+    }, 1000);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    if (isPurring) {
+      catPurr.stop();
+      setIsPurring(false);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+      catPurr.stop();
+    };
+  }, []);
   
   // 雙指縮放狀態
   const [mascotScale, setMascotScale] = useState<number>(1);
@@ -257,6 +288,9 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
     setLastClickTime(now);
 
     if (currentMascot && currentMascot.dialogues.length > 0) {
+      // Play high-fidelity synthesized meow
+      playMeowSound();
+
       const candidates = currentMascot.dialogues.filter(item => item !== mascotDialogue);
       const chosen = candidates.length > 0
         ? candidates[Math.floor(Math.random() * candidates.length)]
@@ -454,6 +488,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
             onPointerDown={(e) => dragControls.start(e)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             type="button"
             whileHover={{ 
               scale: 1.05,

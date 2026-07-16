@@ -51,7 +51,11 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
   const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
-  const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">("stitch");
+  const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">(
+    activeModalItem && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計")
+      ? "stitch"
+      : "single"
+  );
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const [stitchScrollProgress, setStitchScrollProgress] = useState<number>(0);
 
@@ -63,7 +67,11 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
   useEffect(() => {
     setActiveImageUrl(null);
     setIsVideoActive(false);
-    setWaterfallMode("stitch");
+    setWaterfallMode(
+      activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計"
+        ? "stitch"
+        : "single"
+    );
     setIsMaximized(false);
     setStitchScrollProgress(0);
     if (stitchScrollContainerRef.current) {
@@ -225,14 +233,14 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
         {/* 上一張 / 下一張左右滑鎖 */}
         {filteredItems.length > 1 && !isMaximized && (
-          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none hidden lg:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 lg:-left-16 lg:-right-16 xl:-left-20 xl:-right-20 flex justify-between lg:px-0 px-2 pointer-events-none hidden lg:flex">
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 onPrevItem();
               }}
-              className="p-2.5 rounded-full bg-black/80 hover:bg-black/95 text-zinc-400 hover:text-white border border-white/5 pointer-events-auto transition active:scale-95 cursor-pointer"
+              className="p-3 rounded-full bg-black/85 hover:bg-black text-zinc-300 hover:text-amber-400 border border-white/10 hover:border-amber-500/30 pointer-events-auto transition active:scale-90 cursor-pointer"
               title="前一個作品"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -243,7 +251,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
                 e.stopPropagation();
                 onNextItem();
               }}
-              className="p-2.5 rounded-full bg-black/80 hover:bg-black/95 text-zinc-400 hover:text-white border border-white/5 pointer-events-auto transition active:scale-95 cursor-pointer"
+              className="p-3 rounded-full bg-black/85 hover:bg-black text-zinc-300 hover:text-amber-400 border border-white/10 hover:border-amber-500/30 pointer-events-auto transition active:scale-90 cursor-pointer"
               title="下一個作品"
             >
               <ChevronRight className="h-5 w-5" />

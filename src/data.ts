@@ -3501,31 +3501,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1wN4e1HyWptikEwE1vPap7QAur31JOqRS.webp"
     ]
   },
-  {
-    "id": "105",
-    "category": "電商產品銷售圖",
-    "title": "Dr. Wen 溫太醫 潤喉珠（60粒裝） 品牌視覺與電商產品圖文",
-    "titleEn": "Dr. Wen Herbal Throat Pearls: Full Brand E-Commerce Marketing Banners & Product Detail Campaign Design",
-    "philosophy": "頁面詳細說明Dr. Wen 溫太醫 潤喉珠（60粒裝） 品牌畫面與電商產品圖文的使用步驟與顧客常問問題，按鈕做得很大，能引導想要買的人用最快的方式完成下單。",
-    "tools": [
-      "影像合成",
-      "電商設計",
-      "色彩校正",
-      "Photoshop"
-    ],
-    "imageUrl": "/images/optimized/1nBlca9c4-38iVAi4nkTK4Ukrj1Ywxwuy.webp",
-    "placeholderId": "IMAGE_105",
-    "colorTheme": "from-[#081b16] via-[#11382e] to-[#0d1613]",
-    "images": [
-      "/images/optimized/1nBlca9c4-38iVAi4nkTK4Ukrj1Ywxwuy.webp",
-      "/images/optimized/18ehqP0aO2_4ngzVfkpSTzcEgkCbYOaxA.webp",
-      "/images/optimized/1E-RYT731eF0zaaP-_K-M5ELTwOcXs4qq.webp",
-      "/images/optimized/17pfLakFXOq1ZunpHVtWQa1YB39qGcc84.webp",
-      "/images/optimized/1pI1t1H4AM8bdCdLtUMhKjvW-lBeZ5Ti-.webp",
-      "/images/optimized/1jsO0BJhRYjpGr3DQINVQURtaVk9KiTCn.webp",
-      "/images/optimized/1hyuxMJuZ904h7stGaQAzHZCRPSB0NB0D.webp"
-    ]
-  },
+
   {
     "id": "106",
     "category": "電商產品銷售圖",
@@ -3550,28 +3526,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1ef7LvRE-1mz4_MMJzhFb9WWyp85Iw6iy.webp"
     ]
   },
-  {
-    "id": "107",
-    "category": "電商產品銷售圖",
-    "title": "3M 雙線牙線棒/分享包 電商圖文",
-    "titleEn": "3M Double-Thread Dental Floss Picks: Complete Campaign Design & Value Sharing Pack E-Commerce Display Banners",
-    "philosophy": "橫幅廣告寫著3M 雙線牙線棒/分享包 文的特惠促銷大字標題，旁邊配上實物特寫照片，讓人在滑網頁時一眼就能看清特價內容。",
-    "tools": [
-      "影像合成",
-      "電商設計",
-      "排版設計",
-      "Photoshop"
-    ],
-    "imageUrl": "/images/optimized/1ouiiHXMcgATDcjpi_rP93a4iB_rAOytK.webp",
-    "placeholderId": "IMAGE_107",
-    "colorTheme": "from-[#0a1829] via-[#102d4d] to-[#081321]",
-    "images": [
-      "/images/optimized/1ouiiHXMcgATDcjpi_rP93a4iB_rAOytK.webp",
-      "/images/optimized/1mM5Guke-b14AntMdCjqxp7rJBwX1464w.webp",
-      "/images/optimized/1AqAGa5V-OiTLJ_lmFTOt5JL6b6VhZfQf.webp",
-      "/images/optimized/1CIOK1oPtlbepyFpgisbjHgDBo_fRCZSW.webp"
-    ]
-  },
+
   {
     "id": "108",
     "category": "電商產品銷售圖",
@@ -4070,34 +4025,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1bhSDvY-IgL6IasR4fFlmQIHhhwC5oqfA.webp"
     ]
   },
-  {
-    "id": "126",
-    "category": "電商產品銷售圖",
-    "title": "速必效 果蠅誘捕器",
-    "titleEn": "SPEED Fruit Fly Trap: Precision Hunting and Visual Tension E-commerce Detail Page and Poster Design",
-    "philosophy": "網頁把速必效 果蠅誘捕器的按鈕與詳細說明分區放好，字體很大，不論用手機或電腦觀看都很好點，能快速看清商品資訊。",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "排版設計",
-      "字體設計",
-      "影像合成"
-    ],
-    "imageUrl": "/images/optimized/1m_8WSnryV3MkzFlTaVHLVsjWYZmwauIL.webp",
-    "placeholderId": "IMAGE_126",
-    "colorTheme": "from-[#1a1a1a] via-[#4a3424] to-[#f4f1ea]",
-    "images": [
-      "/images/optimized/1m_8WSnryV3MkzFlTaVHLVsjWYZmwauIL.webp",
-      "/images/optimized/1x0cuyn0PPress_HtS4p4LlOAE09FcWIB.webp",
-      "/images/optimized/1kyFxgU7xze3i4NvQqzGDVcobSiV8Gxt0.webp",
-      "/images/optimized/1PukPTZpky-xH0dMYPnh5Rw0crDr3bgtU.webp",
-      "/images/optimized/1e1UHpOqe4uWkkHHiW-bGMl-LxetvOXQx.webp",
-      "/images/optimized/1bzj_iDwD3GWHaovCMGSPwVhyHKTluZIL.webp",
-      "/images/optimized/1GecSsZb6R4dN58UogTMCPwM0Nwq-ZK61.webp",
-      "/images/optimized/1DF-zL0XV0tI4nnvpj7H1GS3yTXl5jY7N.webp",
-      "/images/optimized/1vU69sbemFzBi348BlR4BxfUQnZXQ3FbT.webp"
-    ]
-  },
+
   {
     "id": "127",
     "category": "電商產品銷售圖",
@@ -5660,34 +5588,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/16mv7_pQeNZ4zNtE2KUJSBezBEGNw6Ch5.webp"
     ]
   },
-  {
-    "id": "188",
-    "category": "電商產品銷售圖",
-    "title": "INDUSTRIAL連接",
-    "titleEn": "INDUSTRIAL Connectivity: High-Efficiency Electrical Connector Series",
-    "philosophy": "將黃銅接頭轉進藍色水管，鎖緊螺絲確保不漏水。牆上的黑色插座插滿三腳插頭，電線順著灰色線槽固定在牆角，按下開關後，機器傳出低沉的運轉聲。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1X4_uX-ndQ4RvKcsHSEoe_3XS3G5DkrMu.webp",
-    "placeholderId": "IMAGE_CAT_188",
-    "colorTheme": "from-[#FDE047] via-[#FFFFFF] to-[#38BDF8]",
-    "images": [
-      "/images/optimized/1X4_uX-ndQ4RvKcsHSEoe_3XS3G5DkrMu.webp",
-      "/images/optimized/13m95BbwmynrGveSJQ1VTWR-Pu5EcYbfj.webp",
-      "/images/optimized/1xRXBm3oN_W2gG8nMzDCVXu05-6wePDRD.webp",
-      "/images/optimized/1nQaufLs53W-17-5c3w4jhKhNpm4URSR1.webp",
-      "/images/optimized/1P37cKqYY9HMvv3vsd2WA2ug9RyNzq_NT.webp",
-      "/images/optimized/1A32kYp8Uza7OZNAnYMPAx8-vWCA1KjTj.webp",
-      "/images/optimized/1uirzx9vvl3F_vBVRpwgeEtLYAv88sPTL.webp",
-      "/images/optimized/1Q8b04blIkq5i1aa-oyGUk1PEF6kfa_ke.webp",
-      "/images/optimized/1r_Ca6ub9lD6FNnJoDqdlCP4X0g_8zab5.webp",
-      "/images/optimized/1bPIE2ZeN4hkb1CpWi71l9BMSk5X6Okpj.webp",
-      "/images/optimized/1jcJmEZJnyYXwIg2fxHcI0G33SRAJCatP.webp",
-      "/images/optimized/1bLjEMsJAmWb15FhhTLyOYZpex8vrG-je.webp"
-    ]
-  },
+
   {
     "id": "189",
     "category": "電商產品銷售圖",
@@ -6043,35 +5944,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1nsZO2jftgrF0o9dXDJri5h4UNaNudqb7.webp"
     ]
   },
-  {
-    "id": "209",
-    "category": "電商產品銷售圖",
-    "title": "三合一數據線",
-    "titleEn": "Red Dot Awarded 3-in-1 Magnetic Data Cable: Seamless Storage, Elegant Design E-commerce Experience",
-    "philosophy": "桌面上放著一條尼龍編織線，分出三種不同的金屬接頭。一邊幫行動電源充電，一邊把另一頭插進平板，不打結的粗線收納在背包裡，出門帶這一條就夠用。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1pvWNw3fETMBCu-JCrmuy9g5UvZwpfsbr.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_209",
-    "colorTheme": "from-[#B5E1E0] via-[#6DBCBC] to-[#3A3A3A]",
-    "images": [
-      "/images/optimized/1pvWNw3fETMBCu-JCrmuy9g5UvZwpfsbr.webp",
-      "/images/optimized/1yB4Mw2dpCEx5zxVcUCUEy5P4sqsWKbD9.webp",
-      "/images/optimized/1KmiuTzDVkFWm4lY3gIAW4buMKDYIllM3.webp",
-      "/images/optimized/1YkX4umGScZTpcPXljQgONIF_lSLaA857.webp",
-      "/images/optimized/1W4lX-Z1uKITV3TuLQ6ECjT8DYXfZP5nW.webp",
-      "/images/optimized/1umW3lL0Z9GQgUfR-x8UGOJmLNk1qowJK.webp",
-      "/images/optimized/1LJoYDp2QNBCUz93Aobu-q5HiVotIiZkV.webp",
-      "/images/optimized/1jR8TaPHYmgmwBR19wXUIBxjA2-SyS0hW.webp",
-      "/images/optimized/14w_exNzprXtpblhfY_FsALHPE2_WPmEX.webp",
-      "/images/optimized/1iKLmAtL_UdQfJJikwTT-LUuq19HgjA_o.webp",
-      "/images/optimized/1kN8dvfovdgaMVIO3eknkOT3sy_m9Uvnw.webp",
-      "/images/optimized/11ZPAnJCdCKDdESAY-7XCL6AypV0XBDKq.webp",
-      "/images/optimized/1cq1QBTvsIuziNhK5UBfGnzBgDjXgE8XZ.webp"
-    ]
-  },
+
   {
     "id": "210",
     "category": "電商產品銷售圖",
@@ -6284,33 +6157,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1eU2kQOCDXHUU-Rh6ya_grNHY8CKu053A.webp"
     ]
   },
-  {
-    "id": "218",
-    "category": "電商產品銷售圖",
-    "title": "旋轉手電筒",
-    "titleEn": "旋轉手電筒 E-commerce Visual & Marketing Layout Design",
-    "philosophy": "握住手電筒中段，轉動金屬圈就能改變照出來的光線範圍。照亮腳邊小路，或者照亮遠處的電線桿，停電時放在桌上轉成散光，整間客廳就像點了蠟燭一樣亮。",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "瑞士網格"
-    ],
-    "imageUrl": "/images/optimized/1j2vviMYFh7N58RRAjHPCwW-eXMB8AtxB.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_218",
-    "colorTheme": "from-[#111] via-[#1c1c1f] to-[#0d0d0f]",
-    "images": [
-      "/images/optimized/1j2vviMYFh7N58RRAjHPCwW-eXMB8AtxB.webp",
-      "/images/optimized/1uFx7ERJjZwcmfZS-TVYURbUKxegxiL8z.webp",
-      "/images/optimized/1d37siwL0Pv0eGFA0LdVudIqHJ_wQU3n0.webp",
-      "/images/optimized/1q4PeImnqWK7ldbYsXP-OLQZ5g3MvP33g.webp",
-      "/images/optimized/17fHjdPCfydCFYsH9T80SRsoGKiC0MHsm.webp",
-      "/images/optimized/1UNNq5vVxBGx8ydF3dnmun4AQz7VpTMeD.webp",
-      "/images/optimized/13A0PWD3MaMBjvdYw58Gy8GtxAwEWrE21.webp",
-      "/images/optimized/1Puwej_s6wqKx0oE7D8mEnxPdX6eFojaZ.webp",
-      "/images/optimized/1-lSMDEA5ACB_IJjG4PjZ302CLruiiSit.webp",
-      "/images/optimized/1lgt1i_W9t4Evs8_Gwx2Zv0RStT6IZjD2.webp"
-    ]
-  },
+
   {
     "id": "219",
     "category": "電商產品銷售圖",
@@ -6922,28 +6769,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1FIwEq9ECqkeNxKdNQPmfNslnRPf2lSs3.webp"
     ]
   },
-  {
-    "id": "246",
-    "category": "電商產品銷售圖",
-    "title": "印尼 Nabati麗芝士 巧克力威化餅",
-    "titleEn": "印尼 Nabati麗芝士 巧克力威化餅 E-commerce Detail Page Design",
-    "philosophy": "折斷長條威化餅，露出層層堆疊的巧克力夾心。咬下時脆聲響起，用手接著碎屑，嘴裡滿是濃郁可可甜香，配熱茶一起吃下。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1tGIG-OFVQxa3NBiGerXkvBzgJV9evNHJ.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_246",
-    "colorTheme": "from-[#222] via-[#1a1a1c] to-[#0a0a0c]",
-    "images": [
-      "/images/optimized/1tGIG-OFVQxa3NBiGerXkvBzgJV9evNHJ.webp",
-      "/images/optimized/157jMYPiWE46-iACgjgTqQB3_95ZqOzso.webp",
-      "/images/optimized/1OhRU_mwrbMJ622ZyW5W6JFU5H2YsNiX4.webp",
-      "/images/optimized/1ALvufwxoGir9N23W7zyPYgOGdhkewTMJ.webp",
-      "/images/optimized/1F9d5FRnutCuxFq83RmXAFmV7AVgzV5nS.webp",
-      "/images/optimized/1BsHabM2_1bqLvPpHEnLaj1EEl5vsnFCs.webp"
-    ]
-  },
+
   {
     "id": "247",
     "category": "電商產品銷售圖",
@@ -7341,28 +7167,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1De05RdkMcrP8o_0auFjmv1cKGLluULPS.webp"
     ]
   },
-  {
-    "id": "265",
-    "category": "電商產品銷售圖",
-    "title": "泰國 低糖芒果乾 電商詳情頁設計",
-    "titleEn": "泰國 低糖芒果乾 E-commerce Detail Page Design",
-    "philosophy": "用手撕開厚黃色芒果乾，看得見果肉纖維。咬下去軟糯有嚼勁，嘴裡滿是芒果甜香，手指沾著少許糖粉，適合配茶解饞。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1QVOXRcLlLTXHl_fvfKmPvxS-sjDjwczU.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_265",
-    "colorTheme": "from-[#222] via-[#1a1a1c] to-[#0a0a0c]",
-    "images": [
-      "/images/optimized/1QVOXRcLlLTXHl_fvfKmPvxS-sjDjwczU.webp",
-      "/images/optimized/1S2aAmcrKxww-l357dySbc1fmsPFpWveF.webp",
-      "/images/optimized/1JqkJiBLLnA5o93G7-HPgR3QLhbMTFr71.webp",
-      "/images/optimized/1gZ1YIEEQPPANC1GLESpymY2KGf2mfOKi.webp",
-      "/images/optimized/1wxghspVBDTgZ7NJRR-W8QKPw93In9PD7.webp",
-      "/images/optimized/1dIqR4_TJghbVxiIofll_0CK2eXWTPdXK.webp"
-    ]
-  },
+
   {
     "id": "266",
     "category": "電商產品銷售圖",
@@ -7811,57 +7616,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1VZx4y-BZhzCW7mVTjII1dOG0KOl1v9N2.webp"
     ]
   },
-  {
-    "id": "289",
-    "category": "賣場Banner橫幅廣告",
-    "title": "職人工匠五金百貨 促銷分類橫幅設計",
-    "titleEn": "Yahoo-Kimo Hardware & Tools Special Section Design",
-    "philosophy": "家裡水管漏水時，上網搜尋黑色板手與黃色工具箱。網頁頂端用粗黑大字寫著電鑽送鑽頭，點進去就能找到各式各樣的螺絲釘與手套，方便在家敲敲打打修理壞掉的櫃子。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1hzaOxkH-SMZbMiJ29N_HWGdFh3OJZRdp.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_YAHOO_289",
-    "colorTheme": "from-slate-900 via-zinc-800 to-amber-950",
-    "images": [
-      "/images/optimized/1hzaOxkH-SMZbMiJ29N_HWGdFh3OJZRdp.webp"
-    ]
-  },
-  {
-    "id": "290",
-    "category": "賣場Banner橫幅廣告",
-    "title": "小米米家智慧家電 品牌專區橫幅設計",
-    "titleEn": "Xiaomi Mijia Smart Home Appliances Banner Concept",
-    "philosophy": "回家前先用手機點開網頁，看到白色空氣清淨機與除濕機的降價消息。橘色商標旁邊寫著一鍵控制的文字，讓人想多買一台擺在房間，用手指輕輕一點就能吹出乾淨空氣。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1zE8OWCdvUq2P9kQqtOgJ6kKE2ObPwpmj.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_YAHOO_290",
-    "colorTheme": "from-orange-900 via-stone-800 to-zinc-950",
-    "images": [
-      "/images/optimized/1zE8OWCdvUq2P9kQqtOgJ6kKE2ObPwpmj.webp"
-    ]
-  },
-  {
-    "id": "291",
-    "category": "賣場Banner橫幅廣告",
-    "title": "萌寵毛孩用品專區 療癒系分類橫幅設計",
-    "titleEn": "Yahoo-Kimo Lovable Pets Supplies Campaign Layout",
-    "philosophy": "貓咪在沙發旁蹭著腳邊討摸，打開網購頁面看見貓罐頭與小麥草的黃色標籤，上頭用圓滾滾的字寫著買十罐送兩罐，馬上點擊下單，讓家裡的毛小孩每天吃飽飽搖尾巴。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1UOHl2WGB8SKmtXXvYScIbgS41X7i-fle.webp",
-    "placeholderId": "IMAGE_NEW_FOLDER_YAHOO_291",
-    "colorTheme": "from-yellow-950 via-amber-950 to-stone-900",
-    "images": [
-      "/images/optimized/1UOHl2WGB8SKmtXXvYScIbgS41X7i-fle.webp"
-    ]
-  },
+
   {
     "id": "292",
     "category": "賣場Banner橫幅廣告",
@@ -7916,23 +7671,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1sp_R7liKUPJ_nM381E7MQa2dTRJ9bCf2.webp"
     ]
   },
-  {
-    "id": "295",
-    "category": "賣場Banner橫幅廣告",
-    "title": "黑師傅捲心酥午茶官方橫幅設計",
-    "titleEn": "Healthful Wafer Rolls Afternoon Tea Promo Banner",
-    "philosophy": "打開鐵罐蓋子，拿出一根黑白相間的巧克力捲心酥，咬下去發出咔滋聲。螢幕上擺著兩罐點心與熱紅茶的圖片，標示著辦公室團購優惠，讓人忍不住找同事一起登記。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1ywsAI-bowKraSPpi6BlykyGCrPuc9rzH.webp",
-    "placeholderId": "IMAGE_NEW_DASHOP_295",
-    "colorTheme": "from-yellow-950 via-stone-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1ywsAI-bowKraSPpi6BlykyGCrPuc9rzH.webp"
-    ]
-  },
+
   {
     "id": "296",
     "category": "賣場Banner橫幅廣告",
@@ -8060,24 +7799,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1CA1feYAf5UBWDVOoemUawyRXk5VYh2_O.webp"
     ]
   },
-  {
-    "id": "303",
-    "category": "賣場Banner橫幅廣告",
-    "title": "禎祥御膳精選年菜 隱藏版特惠橫幅設計",
-    "titleEn": "Chen-Hsiang Imperial New Year Feast Hidden Offer Banner",
-    "philosophy": "年夜飯時間，媽媽把熱好的東坡肉裝進紅色瓷盤，香氣撲鼻。網頁上一整桌豐盛年菜搭配隱藏優惠黃色按鈕，讓人想偷偷按下去，用划算價多添一道佛跳牆孝敬父母。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1WwSi0MJ0wOkzaQ8P0uN_qtzEZKzHDpD2.webp",
-    "placeholderId": "IMAGE_NEW_EASTERN_303",
-    "colorTheme": "from-stone-900 via-red-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1WwSi0MJ0wOkzaQ8P0uN_qtzEZKzHDpD2.webp",
-      "/images/optimized/1uUMkpLKgNxoguuGafsPifFHk0cwR92yi.webp"
-    ]
-  },
+
   {
     "id": "304",
     "category": "賣場Banner橫幅廣告",
@@ -8132,23 +7854,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1IoQza8A7yzZVzOq3F-KTLrx3y3ehAQXu.webp"
     ]
   },
-  {
-    "id": "307",
-    "category": "賣場Banner橫幅廣告",
-    "title": "九月秋季新品購物官網推播廣告",
-    "titleEn": "September New Arrivals Showcase Web Editorial Banner",
-    "philosophy": "九月天氣漸漸轉涼，翻開衣櫃想找件長袖外套。網頁上擺著卡其色風衣與深色長褲的照片，旁邊寫著秋季新品上市的白底大字，讓人想動手挑選，幫自己添購換季衣物。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1DNdHf36j9JBjDGywp1NkjcfDW-F7Q-QN.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_307",
-    "colorTheme": "from-red-950 via-amber-950 to-stone-900",
-    "images": [
-      "/images/optimized/1DNdHf36j9JBjDGywp1NkjcfDW-F7Q-QN.webp"
-    ]
-  },
+
   {
     "id": "308",
     "category": "賣場Banner橫幅廣告",
@@ -8319,27 +8025,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1_E8TQbuwbDozVijXJVIOWj51gZKPb4Ur.webp"
     ]
   },
-  {
-    "id": "318",
-    "category": "賣場Banner橫幅廣告",
-    "title": "政府機關福委會員工限定特惠 EDM視覺與切版圖文設計",
-    "titleEn": "Civil Servants Dedicated Benefit Festival EDM Layout",
-    "philosophy": "坐在辦公桌前收信，打開藍色底圖的福委會通知信，看到員工限定的八折標示。點擊信件下方黃色連結直接前往訂購單，方便大家團購中秋節月餅與水果禮盒。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1PBA0bwE9LPi7lXYwjfJlbJUCRcnqO0L2.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_318",
-    "colorTheme": "from-blue-950 via-red-950 to-zinc-950",
-    "images": [
-      "/images/optimized/1PBA0bwE9LPi7lXYwjfJlbJUCRcnqO0L2.webp",
-      "/images/optimized/1zBc-g7LR8bHZs6TWWgv_N6srrmeY4LOJ.webp",
-      "/images/optimized/1owZaqk26lR667gpFF23sSzw5PjUCXG8r.webp",
-      "/images/optimized/1VcWF9AV7ETUIrA0_MXUhx4Nd-VmsWJOF.webp",
-      "/images/optimized/1Aa5f4T4hT8awRkIUBssj15-vLmXkwoE9.webp"
-    ]
-  },
+
   {
     "id": "319",
     "category": "賣場Banner橫幅廣告",
@@ -9033,23 +8719,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1xx1raZWt3ewSlhnyLrcgKoaOP6Btd27T.webp"
     ]
   },
-  {
-    "id": "388",
-    "category": "賣場Banner橫幅廣告",
-    "title": "黃金限時72小時驚爆購 全館加碼回饋5%焦點廣告",
-    "titleEn": "Rakuten Golden 72-Hour Flash Sale Extra 5% Cashback",
-    "philosophy": "螢幕上的指針正一分一秒倒數，伴隨著金黃色大字寫著最後三天。點擊這張圖就能領取加碼點數，讓想換新家電的家庭，趕在優惠截止前按下結帳按鈕。",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1Vkuxgdsa9SSxzPNU6GpK5npNsOosRhga.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_388",
-    "colorTheme": "from-stone-900 via-neutral-950 to-amber-950",
-    "images": [
-      "/images/optimized/1Vkuxgdsa9SSxzPNU6GpK5npNsOosRhga.webp"
-    ]
-  },
+
   {
     "id": "389",
     "category": "賣場Banner橫幅廣告",

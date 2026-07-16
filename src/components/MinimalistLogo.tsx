@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Instagram, X } from "lucide-react";
+import { playMeowSound, catPurr } from "../utils/audioEffects";
 
 // 可愛氣球充氣嗶嗶聲 (Balloon Inflation Squeak)
 const playBalloonSqueakSound = () => {
@@ -144,10 +145,37 @@ export function MinimalistLogo({
   const [isLeaking, setIsLeaking] = useState<boolean>(false);
   const [isBalloonDialogue, setIsBalloonDialogue] = useState<boolean>(false);
 
+  // Cat Purr Hover states
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPurring, setIsPurring] = useState<boolean>(false);
+
+  const handleMouseEnter = () => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = setTimeout(() => {
+      catPurr.start();
+      setIsPurring(true);
+    }, 1000);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+    if (isPurring) {
+      catPurr.stop();
+      setIsPurring(false);
+    }
+  };
+
   // Preload the wink image to prevent flickering on first click
   useEffect(() => {
     const img = new Image();
     img.src = winkImageUrl;
+    return () => {
+      if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+      catPurr.stop();
+    };
   }, []);
 
   // Idle ambient wink & love-beam heart particle effect
@@ -293,8 +321,9 @@ export function MinimalistLogo({
       return;
     }
 
-    // 普通連擊：播放嗶嗶嗶可愛橡膠拉伸聲，並微調頭部形變
+    // 普通連擊：播放嗶嗶嗶可愛橡膠拉伸聲，並微調頭部形變，同時發出超萌貓叫聲
     playBalloonSqueakSound();
+    playMeowSound();
     setIsWinking(true);
     setIsWiggling(true);
 
@@ -380,6 +409,8 @@ export function MinimalistLogo({
       <motion.div
         className="relative w-full h-full flex items-center justify-center select-none cursor-pointer"
         onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         whileHover={{ scale: isLeaking ? 1 : balloonScale * 1.06 }}
         whileTap={{ scale: isLeaking ? 1 : balloonScale * 0.94 }}
         animate={

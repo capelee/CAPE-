@@ -127,6 +127,7 @@ import { AIWorkflowModal } from "./components/AIWorkflowModal";
 import { ContactModal } from "./components/ContactModal";
 import { PortfolioDetailModal } from "./components/PortfolioDetailModal";
 import { CatFortuneTeller } from "./components/CatFortuneTeller";
+import { CatFootprintsLayer } from "./components/CatFootprintsLayer";
 
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
@@ -856,55 +857,6 @@ export default function App() {
     );
   }, []);
 
-  // 貓咪點擊腳印足跡互動
-  interface CatFootprint {
-    id: number;
-    x: number;
-    y: number;
-    angle: number;
-    scale: number;
-  }
-  const [footprints, setFootprints] = useState<CatFootprint[]>([]);
-
-  React.useEffect(() => {
-    const handleGlobalClick = (e: MouseEvent) => {
-      let target = e.target as HTMLElement | null;
-      
-      const isInteractive = (el: HTMLElement | null): boolean => {
-        if (!el) return false;
-        const tagName = el.tagName.toLowerCase();
-        if (["button", "a", "input", "select", "textarea", "iframe"].includes(tagName)) return true;
-        if (el.getAttribute("role") === "button") return true;
-        if (el.classList.contains("cursor-pointer") || el.classList.contains("interactive-tap")) return true;
-        if (el.closest("#modal-multimedia-menu") || el.closest(".fixed.z-50") || el.closest(".fixed.z-40")) return true;
-        return isInteractive(el.parentElement);
-      };
-
-      if (isInteractive(target)) {
-        return;
-      }
-
-      const newFootprint: CatFootprint = {
-        id: Date.now() + Math.random(),
-        x: e.pageX,
-        y: e.pageY,
-        angle: -35 + Math.random() * 70,
-        scale: 0.75 + Math.random() * 0.4,
-      };
-
-      setFootprints((prev) => [...prev, newFootprint]);
-
-      setTimeout(() => {
-        setFootprints((prev) => prev.filter((fp) => fp.id !== newFootprint.id));
-      }, 3500);
-    };
-
-    window.addEventListener("click", handleGlobalClick);
-    return () => {
-      window.removeEventListener("click", handleGlobalClick);
-    };
-  }, []);
-
   // Handle typewriter effect for lively dialog popups
   React.useEffect(() => {
     if (!showHeroDialogue || !heroDialogue) {
@@ -1627,9 +1579,16 @@ export default function App() {
         className="fixed top-0 left-0 right-0 z-40 border-b py-2 md:py-2.5 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
       >
         <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between">
-          <button
-            type="button"
+          <div
+            role="button"
+            tabIndex={0}
             onClick={scrollToTop}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                scrollToTop();
+              }
+            }}
             className="flex items-center gap-2 sm:gap-3 cursor-pointer group/brand select-none hover:opacity-90 active:scale-[0.98] transition-all duration-200 text-left outline-none"
           >
             <MinimalistLogo 
@@ -1649,7 +1608,7 @@ export default function App() {
               </div>
               <p className="hidden sm:block text-[10px] font-mono text-zinc-500 tracking-wider">CREATIVE VISUAL PORTFOLIO</p>
             </div>
-          </button>
+          </div>
 
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
             {/* 導航文字連結：作品 & 履歷 */}
@@ -2666,9 +2625,9 @@ export default function App() {
                   )}
                 </div>
               </div>
-            </div>
 
 
+          </div>
           </div>
 
 
@@ -2858,27 +2817,94 @@ export default function App() {
 
       </main>
 
-      {/* 底部靜態版權聲明 */}
-      <footer className="mt-0 border-t border-white/5 bg-[#080808]">
-        <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+      {/* 底部靜態版權聲明 - 典雅日式和風神社風格 */}
+      <footer 
+        className={`mt-0 relative overflow-hidden transition-all duration-300 border-t ${
+          theme === "dark" 
+            ? "bg-[#09090A] border-zinc-900 text-[#D4C4A8]" 
+            : theme === "sepia"
+            ? "bg-[#FAF6F0] border-[#DFCFA0]/60 text-[#3E2715]"
+            : "bg-[#FCFAF7] border-zinc-200 text-[#18181B]"
+        }`}
+      >
+        {/* 朱泥欄柵御簾 (Vermilion Shrine Fence Accent) */}
+        <div className="h-1.5 w-full bg-[#D33F33] relative flex items-center justify-around overflow-hidden">
+          {/* 金色卡榫節點 (Golden Joint Nodes) */}
+          <div className="absolute inset-0 flex justify-around pointer-events-none opacity-30">
+            {Array.from({ length: 16 }).map((_, i) => (
+              <div key={i} className="w-1 h-full bg-[#C5A059]" />
+            ))}
+          </div>
+        </div>
+
+        {/* 神社和紙纖維底紋與御神光 */}
+        <div className="absolute inset-0 opacity-[0.012] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:12px_12px]" />
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: theme === "dark"
+              ? "radial-gradient(circle at 50% 50%, rgba(211, 63, 51, 0.04) 0%, transparent 60%)"
+              : "radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 70%)"
+          }}
+        />
+
+        <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-4 relative z-10">
           
-          {/* 左側版權資訊 */}
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-white text-xs font-semibold">
-              CP
+          {/* 左側：和風簽名與落款印章 */}
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 text-center sm:text-left">
+            {/* 朱泥落款印章 (Japanese Hanko Style Stamp) */}
+            <div className="flex-shrink-0 flex items-center justify-center">
+              <div 
+                className="font-serif border-2 border-[#D33F33] text-[#D33F33] bg-[#D33F33]/5 font-black text-[12px] p-1 rounded-sm shadow-inner select-none flex items-center justify-center transition-transform hover:scale-105 duration-300"
+                style={{ width: "42px", height: "42px" }}
+              >
+                <div className="grid grid-cols-2 gap-x-1 gap-y-0.5 leading-none font-bold text-center">
+                  {/* 傳統右至左、上至下：右欄「李、凱」，左欄「博、印」 */}
+                  <span>博</span>
+                  <span>李</span>
+                  <span>印</span>
+                  <span>凱</span>
+                </div>
+              </div>
             </div>
-            <p className="text-xs text-zinc-400">
-              Cape Lee <span className="text-zinc-600">|</span> 2026 Creative Visual & IP Portfolio
-            </p>
+            <div>
+              <h5 className="font-serif font-bold text-xs tracking-[0.15em] mb-1">
+                李凱博 視覺與品牌整合手札
+              </h5>
+              <p className={`font-mono text-[10px] tracking-wide ${
+                theme === "dark" ? "text-zinc-500" : theme === "sepia" ? "text-[#8C7B69]/80" : "text-zinc-400"
+              }`}>
+                Cape Lee © 2026 Portfolio
+              </p>
+            </div>
           </div>
           
-          {/* 中間：今日姆貓運勢罐罐 */}
-          <div className="flex justify-center items-center">
+          {/* 中間：神社運勢御神籤 (Fortune Teller) */}
+          <div className="flex flex-col items-center justify-center gap-1.5">
             <CatFortuneTeller theme={theme} />
+            <span className={`text-[9px] font-serif tracking-[0.2em] uppercase opacity-40 mt-1 select-none`}>
+              ◆ 神社祝願 · 諸事亨通 ◆
+            </span>
           </div>
 
-          {/* 右側平衡用空區塊 */}
-          <div className="hidden md:block" />
+          {/* 右側：傳統神社歲時記與祝福語 */}
+          <div className="flex flex-col items-center md:items-end justify-center text-center md:text-right gap-1 font-serif select-none">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#D33F33]">
+              <span>⛩️</span>
+              <span className="tracking-[0.25em]">厄除開運 · 諸願成就</span>
+              <span>🐾</span>
+            </div>
+            <p className={`text-[10px] tracking-[0.15em] mt-1 ${
+              theme === "dark" ? "text-zinc-500" : theme === "sepia" ? "text-[#8C7B69]" : "text-zinc-500"
+            }`}>
+              令和八年 丙午年 盛夏 誌
+            </p>
+            <span className={`text-[8px] font-sans tracking-[0.1em] opacity-45 uppercase ${
+              theme === "dark" ? "text-zinc-600" : theme === "sepia" ? "text-[#8C7B69]/60" : "text-zinc-400"
+            }`}>
+              Mumiao Shrine Ritual Center
+            </span>
+          </div>
           
         </div>
       </footer>
@@ -2947,42 +2973,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* 貓咪點擊足跡層 (🐾) */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-30 overflow-hidden">
-        {footprints.map((fp) => (
-          <motion.div
-            key={fp.id}
-            initial={{ opacity: 0, scale: 0.2 }}
-            animate={{ 
-              opacity: [0, 0.75, 0.75, 0], 
-              scale: [0.2, fp.scale, fp.scale, fp.scale * 0.9] 
-            }}
-            transition={{ 
-              duration: 3.5, 
-              times: [0, 0.08, 0.8, 1], 
-              ease: "easeInOut" 
-            }}
-            style={{
-              position: "absolute",
-              left: fp.x - 16,
-              top: fp.y - 16,
-              transform: `rotate(${fp.angle}deg)`,
-            }}
-            className="text-rose-400/70 select-none pointer-events-none filter drop-shadow-[0_1.5px_3px_rgba(244,63,94,0.2)]"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-              <g fill="#fda4af">
-                {/* 貓掌中間大肉墊 */}
-                <path d="M16,16 C12,16 11,19 11,21 C11,23.5 13,25 16,25 C19,25 21,23.5 21,21 C21,19 20,16 16,16 Z" />
-                {/* 四個萌感小腳趾墊 */}
-                <circle cx="8" cy="15" r="2" />
-                <circle cx="12.5" cy="10" r="2" />
-                <circle cx="19.5" cy="10" r="2" />
-                <circle cx="24" cy="15" r="2" />
-              </g>
-            </svg>
-          </motion.div>
-        ))}
-      </div>
+      <CatFootprintsLayer />
 
     </div>
   );
