@@ -126,6 +126,7 @@ import { DesignerBento } from "./components/DesignerBento";
 import { AIWorkflowModal } from "./components/AIWorkflowModal";
 import { ContactModal } from "./components/ContactModal";
 import { PortfolioDetailModal } from "./components/PortfolioDetailModal";
+import { CatFortuneTeller } from "./components/CatFortuneTeller";
 
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
@@ -243,6 +244,52 @@ async function fetchFolderImages(folderId: string): Promise<string[]> {
 
   return [];
 }
+
+// 『叮！』魔法施法聲效 (Magic Ding Casting Sound)
+const playMagicDingSound = () => {
+  try {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const now = ctx.currentTime;
+
+    // A beautiful complex bell/chime chime with sharp attack and lingering decay
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const osc3 = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    osc1.type = "sine";
+    osc1.frequency.setValueAtTime(987.77, now); // B5 note
+    osc1.frequency.exponentialRampToValueAtTime(1975.53, now + 0.12); // slides upward beautifully
+
+    osc2.type = "sine";
+    osc2.frequency.setValueAtTime(1318.51, now); // E6 note for a pleasant chord
+    osc2.frequency.exponentialRampToValueAtTime(2637.02, now + 0.12);
+
+    osc3.type = "triangle";
+    osc3.frequency.setValueAtTime(1567.98, now); // G6 note
+    osc3.frequency.exponentialRampToValueAtTime(3135.96, now + 0.15);
+
+    gainNode.gain.setValueAtTime(0.001, now);
+    gainNode.gain.linearRampToValueAtTime(0.25, now + 0.05); // sharp magical attack
+    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.4); // lingering magical chime decay
+
+    osc1.connect(gainNode);
+    osc2.connect(gainNode);
+    osc3.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    osc1.start(now);
+    osc2.start(now);
+    osc3.start(now);
+    osc1.stop(now + 1.5);
+    osc2.stop(now + 1.5);
+    osc3.stop(now + 1.5);
+  } catch (e) {
+    // Safety fallback
+  }
+};
 
 export default function App() {
   const [items, setItems] = useState<PortfolioItem[]>([]);
@@ -768,6 +815,80 @@ export default function App() {
   const [heroDialogue, setHeroDialogue] = useState<string>("");
   const [displayedDialogue, setDisplayedDialogue] = useState<string>("");
   const [heroParticles, setHeroParticles] = useState<{ id: number; x: number; y: number; emoji: string }[]>([]);
+  const [titleBounceTrigger, setTitleBounceTrigger] = useState<number>(0);
+
+  // 魔法變身互動狀態
+  const [magicClickTimes, setMagicClickTimes] = useState<number[]>([]);
+  const [isMagicTransformed, setIsMagicTransformed] = useState<boolean>(false);
+  const [showRainbowFlash, setShowRainbowFlash] = useState<boolean>(false);
+
+  // 控制台（F12）隱藏罐罐彩蛋 🥫
+  React.useEffect(() => {
+    console.log(
+      "%c" +
+      "   /\\___/\\   \n" +
+      "  (=`o_o`=)  \n" +
+      "    (u u) 🐾 🥫\n",
+      "color: #fda4af; font-weight: bold; font-size: 20px; font-family: monospace; line-height: 1.4; text-shadow: 0 0 5px rgba(251, 113, 133, 0.4);"
+    );
+    console.log(
+      "%c喵！被你發現控制台了！送你一個隱藏罐罐 🥫！",
+      "color: #fb7185; font-weight: bold; font-size: 16px; font-family: system-ui, sans-serif; background: rgba(253, 164, 175, 0.1); padding: 8px 12px; border-left: 4px solid #f43f5e; border-radius: 4px; margin-bottom: 8px;"
+    );
+    console.log(
+      "%c這是一個專門為技術人員與面試官準備的暖心彩蛋。喜歡這份細節與互動體驗嗎？歡迎隨時與我交流、聯繫！✨🐾",
+      "color: #8c7b69; font-size: 12px; font-family: system-ui, sans-serif;"
+    );
+  }, []);
+
+  // 貓咪點擊腳印足跡互動
+  interface CatFootprint {
+    id: number;
+    x: number;
+    y: number;
+    angle: number;
+    scale: number;
+  }
+  const [footprints, setFootprints] = useState<CatFootprint[]>([]);
+
+  React.useEffect(() => {
+    const handleGlobalClick = (e: MouseEvent) => {
+      let target = e.target as HTMLElement | null;
+      
+      const isInteractive = (el: HTMLElement | null): boolean => {
+        if (!el) return false;
+        const tagName = el.tagName.toLowerCase();
+        if (["button", "a", "input", "select", "textarea", "iframe"].includes(tagName)) return true;
+        if (el.getAttribute("role") === "button") return true;
+        if (el.classList.contains("cursor-pointer") || el.classList.contains("interactive-tap")) return true;
+        if (el.closest("#modal-multimedia-menu") || el.closest(".fixed.z-50") || el.closest(".fixed.z-40")) return true;
+        return isInteractive(el.parentElement);
+      };
+
+      if (isInteractive(target)) {
+        return;
+      }
+
+      const newFootprint: CatFootprint = {
+        id: Date.now() + Math.random(),
+        x: e.pageX,
+        y: e.pageY,
+        angle: -35 + Math.random() * 70,
+        scale: 0.75 + Math.random() * 0.4,
+      };
+
+      setFootprints((prev) => [...prev, newFootprint]);
+
+      setTimeout(() => {
+        setFootprints((prev) => prev.filter((fp) => fp.id !== newFootprint.id));
+      }, 3500);
+    };
+
+    window.addEventListener("click", handleGlobalClick);
+    return () => {
+      window.removeEventListener("click", handleGlobalClick);
+    };
+  }, []);
 
   // Handle typewriter effect for lively dialog popups
   React.useEffect(() => {
@@ -804,13 +925,17 @@ export default function App() {
     "我的原創 IP 插畫音樂祭粉專開張囉！歡迎點擊氣泡下方的前往按鈕追蹤 MuMㄠ（姆貓教）的 IG 吧！🎸🐾"
   ], []);
 
+  const lastHeroClickTimeRef = React.useRef<number>(0);
+
   const triggerHeroSpeaking = () => {
-    if (isHeroSpeaking) {
-      setIsHeroSpeaking(false);
-      return;
-    }
+    // If already speaking, switch directly to a new dialogue to make clicking consecutive
     const randomIndex = Math.floor(Math.random() * heroDialogues.length);
     setHeroDialogue(heroDialogues[randomIndex]);
+    setIsHeroSpeaking(true);
+  };
+
+  const triggerMascotDialogue = (dialogue: string) => {
+    setHeroDialogue(dialogue);
     setIsHeroSpeaking(true);
   };
 
@@ -819,7 +944,10 @@ export default function App() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const emojis = ["✨", "💖", "🐾", "🎨", "💬", "⭐", "🎵", "😻", "🎀"];
+    // 變身期間有更華麗、夢幻的點擊粒子
+    const emojis = isMagicTransformed
+      ? ["✨", "💖", "🎀", "⭐️", "🪄", "🌈", "🌸", "🦄"]
+      : ["✨", "💖", "🐾", "🎨", "💬", "⭐", "🎵", "😻", "🎀"];
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
     const newParticle = {
@@ -829,7 +957,41 @@ export default function App() {
       emoji: randomEmoji,
     };
 
+    // Particles remain 100% instantaneous on every tap for tactile, responsive feedback
     setHeroParticles((prev) => [...prev, newParticle].slice(-20));
+
+    // 魔法變身快速點擊計數：3 秒內點擊 15 次
+    const now = Date.now();
+    const updatedClicks = [...magicClickTimes, now].filter((t) => now - t <= 3000);
+    setMagicClickTimes(updatedClicks);
+
+    if (updatedClicks.length >= 15 && !isMagicTransformed) {
+      setIsMagicTransformed(true);
+      setShowRainbowFlash(true);
+      setMagicClickTimes([]);
+      playMagicDingSound();
+
+      // 彩虹光芒包裹 1.2 秒後淡出
+      setTimeout(() => {
+        setShowRainbowFlash(false);
+      }, 1200);
+
+      // 持續 5 秒後自動變回原樣，並加上一句台詞
+      setTimeout(() => {
+        setIsMagicTransformed(false);
+        setHeroDialogue("哎呀！被發現本教主的魔法形態了，這可是秘密喔！✨");
+        setIsHeroSpeaking(true);
+      }, 5000);
+      return;
+    }
+
+    // Throttling mechanism: ignore text bouncing and dialog switches if clicked within 900ms
+    if (now - lastHeroClickTimeRef.current < 900) {
+      return;
+    }
+    lastHeroClickTimeRef.current = now;
+
+    setTitleBounceTrigger((prev) => prev + 1);
     triggerHeroSpeaking();
   };
 
@@ -841,9 +1003,9 @@ export default function App() {
       // 一開始對話框先隱藏 (或重設)
       setShowHeroDialogue(false);
 
-      // 播放動物森友會風格的語音 (根據對話內容，最長播放 2.5 秒)
+      // 播放動物森友會風格的語音 (根據對話內容，最長播放 4.5 秒)
       if (heroDialogue) {
-        animaleseSynth.play(heroDialogue, 2500);
+        animaleseSynth.play(heroDialogue, 4500);
       }
 
       // 嘴部動作開始 300ms 後，對話框才同步出現，使表情與講話節奏更立體生動
@@ -851,11 +1013,11 @@ export default function App() {
         setShowHeroDialogue(true);
       }, 300);
 
-      // 4.2 秒後自動閉嘴，並隱藏對話框
+      // 10 秒後自動閉嘴，並隱藏對話框
       autoCloseTimeout = setTimeout(() => {
         setIsHeroSpeaking(false);
         setShowHeroDialogue(false);
-      }, 4200);
+      }, 10000);
     } else {
       setShowHeroDialogue(false);
       animaleseSynth.stop();
@@ -1409,7 +1571,18 @@ export default function App() {
             onClick={scrollToTop}
             className="flex items-center gap-2 sm:gap-3 cursor-pointer group/brand select-none hover:opacity-90 active:scale-[0.98] transition-all duration-200 text-left outline-none"
           >
-            <MinimalistLogo theme={theme} className="w-[30px] h-[30px] md:w-[36px] md:h-[36px] shrink-0 group-hover/brand:scale-105 transition-transform duration-300" />
+            <MinimalistLogo 
+              theme={theme} 
+              showInteractiveBubble={true} 
+              bubbleDirection="bottom" 
+              className="w-[30px] h-[30px] md:w-[36px] md:h-[36px] shrink-0 group-hover/brand:scale-105 transition-transform duration-300" 
+              externalDialogue={displayedDialogue || heroDialogue}
+              showExternalBubble={showHeroDialogue}
+              onCloseExternalBubble={() => {
+                setIsHeroSpeaking(false);
+                setShowHeroDialogue(false);
+              }}
+            />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className={`font-display font-semibold tracking-tight text-xs sm:text-sm md:text-md transition-colors duration-300 ${brandingTextClass}`}>Cape Lee</span>
@@ -1622,14 +1795,37 @@ export default function App() {
               }`}>
                 視覺設計 · 平面設計
               </span>
-              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight leading-[1.1] transition-colors duration-350 ${
+              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight leading-[1.1] transition-colors duration-350 select-none ${
                 theme === "sepia" 
                   ? "text-[#2B1B0C]" 
                   : theme === "light" 
                   ? "text-zinc-950" 
                   : "text-white"
               }`}>
-                Cape Lee
+                {"Cape Lee".split("").map((char, index) => {
+                  if (char === " ") {
+                    return (
+                      <span key={index} className="inline-block">
+                        &nbsp;
+                      </span>
+                    );
+                  }
+                  return (
+                    <motion.span
+                      key={`${index}-${titleBounceTrigger}`}
+                      className="inline-block origin-bottom"
+                      initial={{ y: 0 }}
+                      animate={titleBounceTrigger > 0 ? { y: [0, -20, 3, 0] } : { y: 0 }}
+                      transition={{
+                        duration: 0.55,
+                        ease: "easeOut",
+                        delay: index * 0.04,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                })}
               </h1>
             </div>
             
@@ -1650,12 +1846,13 @@ export default function App() {
                   theme === "sepia"
                     ? "bg-[#A05C2C] hover:bg-[#854B22] text-[#FCF8EE] shadow-amber-950/20"
                     : theme === "light"
-                    ? "bg-amber-600 hover:bg-amber-750 text-white shadow-amber-600/20"
+                    ? "bg-amber-600 hover:bg-amber-700 text-white shadow-amber-600/20"
                     : "bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-amber-500/20"
                 }`}
               >
                 看作品
               </button>
+              
               <button
                 onClick={() => scrollToElement("designer-bento")}
                 className={`px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
@@ -1668,12 +1865,13 @@ export default function App() {
               >
                 履歷
               </button>
+
               {profile.pdfPortfolioUrl && (
                 <a
                   href={profile.pdfPortfolioUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 ${
+                  className={`relative group px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 ${
                     theme === "sepia"
                       ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
                       : theme === "light"
@@ -1682,6 +1880,27 @@ export default function App() {
                   }`}
                   title="開啟雲端儲存的傳統 PDF 作品集"
                 >
+                  {/* 姆貓偷看 (Peek-a-boo Mascot) */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[-3px] pointer-events-none transition-all duration-300 ease-out opacity-0 translate-y-3 scale-75 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:rotate-[-6deg] z-20 flex flex-col items-center">
+                    {/* 姆貓小氣泡 */}
+                    <div className={`px-2 py-0.5 rounded-full text-[10px] whitespace-nowrap shadow-md mb-1 border font-bold animate-bounce ${
+                      theme === "sepia"
+                        ? "bg-[#FCF8EE] border-[#EAD09D] text-[#382B1D]"
+                        : theme === "light"
+                        ? "bg-white border-zinc-200 text-zinc-700"
+                        : "bg-zinc-800 border-zinc-700 text-zinc-200"
+                    }`}>
+                      看我！🐾
+                    </div>
+                    {/* 姆貓頭像縮圖 */}
+                    <img 
+                      src="https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX" 
+                      alt="姆貓偷看"
+                      className="w-10 h-10 object-contain drop-shadow-md select-none"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+
                   <FileText className="w-4 h-4 text-amber-500 shrink-0" />
                   <span>PDF 作品集</span>
                 </a>
@@ -1689,6 +1908,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Right Mascot column */}
           <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4">
             <motion.div
               initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
@@ -1699,10 +1919,8 @@ export default function App() {
               onClick={handleHeroClick}
               className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none"
             >
-              {/* Soft background glow matching mascot role */}
               <div className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms]" />
               
-              {/* Click Particles Burst */}
               <AnimatePresence>
                 {heroParticles.map((p) => (
                   <motion.span
@@ -1721,6 +1939,167 @@ export default function App() {
                   </motion.span>
                 ))}
               </AnimatePresence>
+
+              {/* 魔法少女版裝飾：精靈之羽 & 魔法配飾 */}
+              <AnimatePresence>
+                {isMagicTransformed && (
+                  <>
+                    {/* 左翅膀 */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0, x: -20 }}
+                      animate={{ opacity: 1, scale: 1, x: 0 }}
+                      exit={{ opacity: 0, scale: 0, x: -20 }}
+                      className="absolute -left-[45px] sm:-left-[60px] top-[25%] -z-10 flex items-center justify-center pointer-events-none"
+                      style={{ transformOrigin: "right center" }}
+                    >
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.15, 1],
+                          rotate: [-10, -22, -10],
+                          x: [0, -6, 0],
+                          y: [0, -4, 0]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="relative"
+                      >
+                        {/* Wing Base Spectrum & Glow */}
+                        <div className="absolute w-24 h-24 rounded-full bg-gradient-to-tr from-pink-400/35 via-white/50 to-pink-300/25 blur-xl animate-pulse" />
+                          {/* Cute Pink Particles/Stars around wing */}
+                          <div className="absolute text-pink-300 text-xs translate-y-[-24px] translate-x-[-24px] animate-bounce">✨</div>
+                          <div className="absolute text-pink-400 text-xs translate-y-[24px] translate-x-[-12px] animate-ping">💖</div>
+                          <span className="text-6xl sm:text-7xl filter drop-shadow-[0_0_15px_rgba(236,72,153,0.85)] select-none block rotate-[-45deg] scale-x-[-1]">🪶</span>
+                        </motion.div>
+                      </motion.div>
+
+                      {/* 右翅膀 */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, x: 20 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0, x: 20 }}
+                        className="absolute -right-[45px] sm:-right-[60px] top-[25%] -z-10 flex items-center justify-center pointer-events-none"
+                        style={{ transformOrigin: "left center" }}
+                      >
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.15, 1],
+                            rotate: [10, 22, 10],
+                            x: [0, 6, 0],
+                            y: [0, -4, 0]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                          className="relative"
+                        >
+                          {/* Wing Base Spectrum & Glow */}
+                          <div className="absolute w-24 h-24 rounded-full bg-gradient-to-tl from-pink-400/35 via-white/50 to-pink-300/25 blur-xl animate-pulse" />
+                          {/* Cute Pink Particles/Stars around wing */}
+                          <div className="absolute text-pink-300 text-xs translate-y-[-24px] translate-x-[24px] animate-bounce">✨</div>
+                          <div className="absolute text-pink-400 text-xs translate-y-[24px] translate-x-[12px] animate-ping">💖</div>
+                          <span className="text-6xl sm:text-7xl filter drop-shadow-[0_0_15px_rgba(236,72,153,0.85)] select-none block rotate-[45deg]">🪶</span>
+                        </motion.div>
+                      </motion.div>
+
+                      {/* 頭部左側大蝴蝶結髮夾（🎀） */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, y: -20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0, y: -20 }}
+                        className="absolute left-[12%] sm:left-[15%] top-[12%] z-30 pointer-events-none"
+                      >
+                        <motion.div
+                          animate={{
+                            y: [0, -8, 0],
+                            rotate: [-5, 8, -5],
+                            scale: [1, 1.12, 1]
+                          }}
+                          transition={{
+                            duration: 1.2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <span className="text-4xl sm:text-5xl filter drop-shadow-[0_4px_10px_rgba(244,63,94,0.6)] select-none block">🎀</span>
+                        </motion.div>
+                      </motion.div>
+
+                      {/* 頭部右側高頻閃爍金黃幸運星（⭐️） */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, y: -20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0, y: -20 }}
+                        className="absolute right-[12%] sm:right-[15%] top-[10%] z-30 pointer-events-none"
+                      >
+                        <motion.div
+                          animate={{
+                            opacity: [0.3, 1, 0.3],
+                            scale: [0.9, 1.3, 0.9],
+                            rotate: [0, 360]
+                          }}
+                          transition={{
+                            opacity: { duration: 0.25, repeat: Infinity, ease: "linear" },
+                            scale: { duration: 0.25, repeat: Infinity, ease: "linear" },
+                            rotate: { duration: 3, repeat: Infinity, ease: "linear" }
+                          }}
+                        >
+                          <span className="text-4xl sm:text-5xl filter drop-shadow-[0_0_12px_rgba(251,191,36,0.95)] select-none block">⭐️</span>
+                        </motion.div>
+                      </motion.div>
+
+                      {/* 右下角浮空環繞施展魔力的魔杖（🪄） */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, x: 20 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0, x: 20 }}
+                        className="absolute right-[2%] sm:right-[5%] bottom-[15%] sm:bottom-[18%] z-30 pointer-events-none"
+                      >
+                        <motion.div
+                          animate={{
+                            x: [0, 15, 0, -15, 0],
+                            y: [0, -15, -25, -10, 0],
+                            rotate: [15, 45, 15, -15, 15]
+                          }}
+                          transition={{
+                            duration: 2.2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                          className="relative"
+                        >
+                          {/* Magic trails / sparkles */}
+                          <div className="absolute -top-4 -left-4 text-amber-300 text-[10px] animate-ping">✨</div>
+                          <div className="absolute top-4 right-4 text-pink-300 text-xs animate-pulse">⭐</div>
+                          <span className="text-5xl sm:text-6xl filter drop-shadow-[0_0_15px_rgba(168,85,247,0.75)] select-none block">🪄</span>
+                        </motion.div>
+                      </motion.div>
+                    </>
+                  )}
+                </AnimatePresence>
+
+                {/* 瞬間彩虹光芒包裹 (Rainbow Burst Effect) */}
+                <AnimatePresence>
+                  {showRainbowFlash && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      animate={{ opacity: [0, 1, 1, 0], scale: [0.7, 1.25, 1.25, 0.95] }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1.2, ease: "easeInOut" }}
+                      className="absolute inset-0 z-40 rounded-3xl mix-blend-screen bg-gradient-to-tr from-pink-500 via-red-500 via-yellow-400 via-green-400 via-blue-500 to-purple-500 opacity-80 blur-sm flex items-center justify-center pointer-events-none"
+                    >
+                      {/* Bursting glowing core */}
+                      <div className="absolute inset-4 bg-white rounded-full blur-xl animate-ping duration-700" />
+                      <div className="text-white font-extrabold text-3xl sm:text-4xl tracking-widest animate-bounce drop-shadow-[0_0_12px_rgba(255,255,255,0.95)] select-none">
+                        ✨ MAGIC! ✨
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
               {/* Hover indicator tooltip */}
               {!isHeroSpeaking && (
@@ -1802,6 +2181,10 @@ export default function App() {
               </AnimatePresence>
 
               <div className={`w-full h-auto relative overflow-visible transition-all duration-500 ease-out ${
+                isMagicTransformed 
+                  ? "mumao-rainbow-glow scale-105" 
+                  : "filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)]"
+              } ${
                 isHeroSpeaking 
                   ? "mumao-speaking" 
                   : "mumao-idle group-hover:mumao-playful"
@@ -1886,6 +2269,28 @@ export default function App() {
                   .mumao-playful {
                     animation: mumao-hover-wiggle 1.2s infinite ease-in-out;
                   }
+
+                  /* 魔法少女彩虹光暈 Drop Shadow 動畫 */
+                  @keyframes rainbow-glow {
+                    0%, 100% {
+                      filter: drop-shadow(0 0 18px rgba(244, 63, 94, 0.85)) drop-shadow(0 0 35px rgba(244, 63, 94, 0.5));
+                    }
+                    20% {
+                      filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.85)) drop-shadow(0 0 35px rgba(251, 191, 36, 0.5));
+                    }
+                    40% {
+                      filter: drop-shadow(0 0 18px rgba(52, 211, 153, 0.85)) drop-shadow(0 0 35px rgba(52, 211, 153, 0.5));
+                    }
+                    60% {
+                      filter: drop-shadow(0 0 18px rgba(96, 165, 250, 0.85)) drop-shadow(0 0 35px rgba(96, 165, 250, 0.5));
+                    }
+                    80% {
+                      filter: drop-shadow(0 0 18px rgba(167, 139, 250, 0.85)) drop-shadow(0 0 35px rgba(167, 139, 250, 0.5));
+                    }
+                  }
+                  .mumao-rainbow-glow {
+                    animation: rainbow-glow 3s infinite linear !important;
+                  }
                 `}</style>
 
                 {/* 1. 閉嘴版 (Base / Default) */}
@@ -1893,7 +2298,7 @@ export default function App() {
                   src="https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
                   alt="Cape Lee mascot closed mouth"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] relative z-10 transition-transform duration-500 ${
+                  className={`w-full h-auto object-contain relative z-10 select-none pointer-events-none ${
                     isHeroSpeaking ? "mumao-anim-closed" : "opacity-100"
                   }`}
                 />
@@ -1902,7 +2307,7 @@ export default function App() {
                   src="https://drive.google.com/thumbnail?sz=w1000&id=1ZhhZ25s_ADm5iFcAO_I-YxglQlFlcsjk"
                   alt="Cape Lee mascot speaking 1"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] absolute inset-0 transition-transform duration-500 ${
+                  className={`w-full h-auto object-contain absolute inset-0 select-none pointer-events-none ${
                     isHeroSpeaking ? "mumao-anim-medium z-20" : "opacity-0 pointer-events-none z-0"
                   }`}
                 />
@@ -1911,7 +2316,7 @@ export default function App() {
                   src="https://drive.google.com/thumbnail?sz=w1000&id=1Q7naVG-GPyr6s5X57rYiKlSofgb8hpBh"
                   alt="Cape Lee mascot speaking 2"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)] absolute inset-0 transition-transform duration-500 ${
+                  className={`w-full h-auto object-contain absolute inset-0 select-none pointer-events-none ${
                     isHeroSpeaking ? "mumao-anim-open z-20" : "opacity-0 pointer-events-none z-0"
                   }`}
                 />
@@ -1931,24 +2336,7 @@ export default function App() {
               <div className="h-[2px] w-12 bg-amber-500 mx-auto rounded-full"></div>
             </div>
 
-            {/* 輕量級動態裝飾光軌：呼吸起伏，與吉祥物說話 (isHeroSpeaking) 互動產生霓虹色彩漣漪反應 */}
-            <div className="py-2 flex items-center justify-center gap-1.5 pointer-events-none select-none">
-              <div className={`h-[3px] rounded-full transition-all duration-750 ease-out ${
-                isHeroSpeaking 
-                  ? "w-24 bg-gradient-to-r from-pink-500 via-purple-500 to-amber-450 animate-pulse shadow-[0_0_12px_rgba(236,72,153,0.6)] scale-y-125" 
-                  : "w-12 bg-gradient-to-r from-amber-500/60 to-amber-300/20 opacity-40 animate-pulse duration-2000"
-              }`} />
-              <div className={`h-1.5 w-1.5 rounded-full transition-all duration-500 ease-out ${
-                isHeroSpeaking 
-                  ? "bg-pink-500 scale-125 shadow-[0_0_8px_rgba(236,72,153,0.8)]" 
-                  : "bg-amber-500/40"
-              }`} />
-              <div className={`h-[3px] rounded-full transition-all duration-750 ease-out ${
-                isHeroSpeaking 
-                  ? "w-24 bg-gradient-to-r from-amber-450 via-purple-500 to-pink-500 animate-pulse shadow-[0_0_12px_rgba(236,72,153,0.6)] scale-y-125" 
-                  : "w-12 bg-gradient-to-r from-amber-300/20 to-amber-500/60 opacity-40 animate-pulse duration-2000"
-              }`} />
-            </div>
+
 
             {/* 各類作品過濾選項 (電腦版精緻呈現，手機版優化為橫向滑動選單與二列極簡格狀面板) */}
             <div className="w-full flex flex-col items-center gap-4">
@@ -2356,6 +2744,7 @@ export default function App() {
           setIsContactCardOpen={setIsContactCardOpen} 
           onCopyEmail={copyEmailToClipboard} 
           setIsWorkflowOpen={setIsWorkflowOpen}
+          triggerMascotSpeech={triggerMascotDialogue}
         />
 
         {/* 回到最上方按鈕 */}
@@ -2380,8 +2769,10 @@ export default function App() {
 
       {/* 底部靜態版權聲明 */}
       <footer className="mt-0 border-t border-white/5 bg-[#080808]">
-        <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+          
+          {/* 左側版權資訊 */}
+          <div className="flex items-center justify-center md:justify-start gap-3">
             <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center text-white text-xs font-semibold">
               CP
             </div>
@@ -2389,6 +2780,15 @@ export default function App() {
               Cape Lee <span className="text-zinc-600">|</span> 2026 Creative Visual & IP Portfolio
             </p>
           </div>
+          
+          {/* 中間：今日姆貓運勢罐罐 */}
+          <div className="flex justify-center items-center">
+            <CatFortuneTeller theme={theme} />
+          </div>
+
+          {/* 右側平衡用空區塊 */}
+          <div className="hidden md:block" />
+          
         </div>
       </footer>
 
@@ -2454,6 +2854,44 @@ export default function App() {
           </motion.button>
         )}
       </AnimatePresence>
+
+      {/* 貓咪點擊足跡層 (🐾) */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-30 overflow-hidden">
+        {footprints.map((fp) => (
+          <motion.div
+            key={fp.id}
+            initial={{ opacity: 0, scale: 0.2 }}
+            animate={{ 
+              opacity: [0, 0.75, 0.75, 0], 
+              scale: [0.2, fp.scale, fp.scale, fp.scale * 0.9] 
+            }}
+            transition={{ 
+              duration: 3.5, 
+              times: [0, 0.08, 0.8, 1], 
+              ease: "easeInOut" 
+            }}
+            style={{
+              position: "absolute",
+              left: fp.x - 16,
+              top: fp.y - 16,
+              transform: `rotate(${fp.angle}deg)`,
+            }}
+            className="text-rose-400/70 select-none pointer-events-none filter drop-shadow-[0_1.5px_3px_rgba(244,63,94,0.2)]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <g fill="#fda4af">
+                {/* 貓掌中間大肉墊 */}
+                <path d="M16,16 C12,16 11,19 11,21 C11,23.5 13,25 16,25 C19,25 21,23.5 21,21 C21,19 20,16 16,16 Z" />
+                {/* 四個萌感小腳趾墊 */}
+                <circle cx="8" cy="15" r="2" />
+                <circle cx="12.5" cy="10" r="2" />
+                <circle cx="19.5" cy="10" r="2" />
+                <circle cx="24" cy="15" r="2" />
+              </g>
+            </svg>
+          </motion.div>
+        ))}
+      </div>
 
     </div>
   );

@@ -58,10 +58,20 @@ interface DesignerBentoProps {
   setIsContactCardOpen: (open: boolean) => void;
   onCopyEmail?: () => void;
   setIsWorkflowOpen?: (open: boolean) => void;
+  triggerMascotSpeech?: (dialogue: string) => void;
 }
 
-export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmail, setIsWorkflowOpen }: DesignerBentoProps) {
+export function DesignerBento({ 
+  theme, 
+  profile, 
+  setIsContactCardOpen, 
+  onCopyEmail, 
+  setIsWorkflowOpen,
+  triggerMascotSpeech
+}: DesignerBentoProps) {
   const [localCopied, setLocalCopied] = useState<boolean>(false);
+  const [shakeActive, setShakeActive] = useState<boolean>(false);
+  const [collapsedActive, setCollapsedActive] = useState<boolean>(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profile.email);
@@ -74,11 +84,81 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
     }, 2000);
   };
 
+  const triggerGravityCollapse = () => {
+    if (collapsedActive) {
+      setCollapsedActive(false);
+      setShakeActive(false);
+      if (triggerMascotSpeech) {
+        triggerMascotSpeech("重力場修復完成！✨ 呼～差點以為我的履歷要永遠變成廢紙堆了！😹");
+      }
+    } else {
+      setShakeActive(true);
+      if (triggerMascotSpeech) {
+        triggerMascotSpeech("等等！發生了什麼事！？地面在搖晃...！？🌋");
+      }
+      
+      setTimeout(() => {
+        setShakeActive(false);
+        setCollapsedActive(true);
+        if (triggerMascotSpeech) {
+          const reactions = [
+            "天啊！我的履歷被你震塌了啦！🐾 QAQ 快用魔法幫我復原！🧹",
+            "天崩地裂！救命啊～文字跟按鈕全都掉到最底下疊在一起了！😱✨",
+            "完蛋了！辛苦寫的經歷都砸爛了... 拜託點擊右上角復原它！🪄"
+          ];
+          const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];
+          triggerMascotSpeech(randomReaction);
+        }
+      }, 900);
+    }
+  };
+
+  const getGravityStyle = (index: number) => {
+    if (!collapsedActive) {
+      return {
+        transition: "transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.8s ease, filter 0.8s ease",
+      };
+    }
+    const seedY = Math.sin(index + 1) * 10000;
+    const seedX = Math.cos(index + 1) * 10000;
+    const seedR = Math.sin(index * 2) * 10000;
+    
+    const y = 300 + Math.abs(seedY % 300);
+    const x = (seedX % 50);
+    const r = -20 + (seedR % 40);
+    
+    return {
+      transform: `translate(${x}px, ${y}px) rotate(${r}deg)`,
+      transition: "transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1.2s ease, filter 1.2s ease",
+      opacity: 0.2,
+      filter: "blur(0.5px)",
+      pointerEvents: "none" as const,
+    };
+  };
+
   return (
     <section id="designer-bento" className="relative scroll-mt-[48px] md:scroll-mt-[58px]">
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes earthquake {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          10% { transform: translate(-4px, 3px) rotate(-1.5deg); }
+          20% { transform: translate(3px, -4px) rotate(1.5deg); }
+          30% { transform: translate(-4px, -2px) rotate(0deg); }
+          40% { transform: translate(4px, 3px) rotate(1.5deg); }
+          50% { transform: translate(-2px, -3px) rotate(-1.5deg); }
+          60% { transform: translate(3px, 3px) rotate(0deg); }
+          70% { transform: translate(-4px, 2px) rotate(1.5deg); }
+          80% { transform: translate(2px, -3px) rotate(-1.5deg); }
+          90% { transform: translate(-3px, 4px) rotate(0deg); }
+          100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .earthquake-shake {
+          animation: earthquake 0.12s infinite;
+        }
+      `}} />
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
       
-      <div className={`border rounded-2xl p-6 lg:p-8 relative overflow-hidden shadow-2xl transition-all duration-300 ${
+      <div className={`border rounded-2xl p-6 lg:p-8 relative overflow-visible shadow-2xl transition-all duration-300 ${
         theme === "sepia"
           ? "bg-[#F5ECD8] border-[#DFD0B8] text-[#433422]"
           : theme === "light"
@@ -89,11 +169,37 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
           theme === "dark" ? "bg-indigo-500/5" : "bg-indigo-500/[0.02]"
         }`}></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 items-start">
+        {/* 地震與重力崩塌互動按鈕 */}
+        <button
+          type="button"
+          onClick={triggerGravityCollapse}
+          className={`absolute top-4 right-4 z-40 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${
+            collapsedActive
+              ? "bg-amber-500 hover:bg-amber-400 text-black shadow-lg shadow-amber-500/20 animate-bounce"
+              : "opacity-45 hover:opacity-100 border border-zinc-500/20 bg-zinc-500/5 hover:bg-zinc-500/10 text-zinc-500 hover:text-amber-500"
+          }`}
+          title={collapsedActive ? "點擊復原履歷" : "觸發重力測試"}
+        >
+          {collapsedActive ? (
+            <>
+              <Sparkles className="h-3 w-3 animate-pulse text-black" />
+              <span>🪄 魔法復原</span>
+            </>
+          ) : (
+            <>
+              <Zap className="h-3 w-3 text-amber-500 animate-pulse" />
+              <span>⚠️ 重力測試</span>
+            </>
+          )}
+        </button>
+
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 items-start ${
+          shakeActive ? "earthquake-shake" : ""
+        }`}>
           
           {/* 第一欄：個人身分與品牌自述 (佔 4 欄) */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="flex items-center gap-4">
+            <div style={getGravityStyle(1)} className="flex items-center gap-4">
               <MinimalistLogo size={64} theme={theme} className="shrink-0" />
               <div>
                 <h1 className={`text-2xl md:text-3xl font-display font-bold tracking-tight ${
@@ -102,7 +208,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-1.5">
+            <div style={getGravityStyle(2)} className="flex flex-wrap gap-1.5">
               <span className={`text-[10px] font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1 shadow-inner ${
                 theme === "sepia"
                   ? "bg-amber-700/10 text-amber-900 border border-amber-700/20"
@@ -125,7 +231,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             </div>
 
             {/* 履歷簡介 */}
-            <div className={`border rounded-xl p-4 lg:p-5 ${
+            <div style={getGravityStyle(3)} className={`border rounded-xl p-4 lg:p-5 ${
               theme === "sepia"
                 ? "bg-[#FAF4E5]/80 border-[#EADECC]"
                 : theme === "light"
@@ -144,7 +250,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             </div>
 
             {/* 聯繫資訊與期望 */}
-            <div className={`space-y-3 text-[13px] leading-relaxed font-light pt-2 pl-1 border-l-2 border-amber-500/20 ${
+            <div style={getGravityStyle(4)} className={`space-y-3 text-[13px] leading-relaxed font-light pt-2 pl-1 border-l-2 border-amber-500/20 ${
               theme === "sepia" ? "text-[#433422]" : theme === "light" ? "text-zinc-700" : "text-zinc-300"
             }`}>
               <div className="flex items-center gap-3">
@@ -173,13 +279,31 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             </div>
 
             {/* 2026作品集主要按鈕與儲存聯絡資訊 */}
-            <div className="pt-2 flex flex-col gap-2.5">
+            <div style={getGravityStyle(5)} className="pt-2 flex flex-col gap-2.5">
               <a 
                 href={profile.portfolioUrl}
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black transition-all shadow-lg shadow-amber-500/25 active:scale-98 text-center uppercase tracking-wide font-sans scroll-smooth"
+                className="relative group w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black transition-all shadow-lg shadow-amber-500/25 active:scale-98 text-center uppercase tracking-wide font-sans scroll-smooth"
               >
+                {/* 姆貓偷看 (Peek-a-boo Mascot) */}
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[-4px] pointer-events-none transition-all duration-300 ease-out opacity-0 translate-y-3 scale-75 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:rotate-[-6deg] z-20 flex flex-col items-center">
+                  <div className={`px-2 py-0.5 rounded-full text-[9px] whitespace-nowrap shadow-md mb-1 border font-bold animate-bounce ${
+                    theme === "sepia"
+                      ? "bg-[#FCF8EE] border-[#EAD09D] text-[#382B1D]"
+                      : theme === "light"
+                      ? "bg-white border-zinc-200 text-zinc-700"
+                      : "bg-zinc-800 border-zinc-700 text-zinc-200"
+                  }`}>
+                    點點我！🐾
+                  </div>
+                  <img 
+                    src="https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX" 
+                    alt="姆貓偷看"
+                    className="w-9 h-9 object-contain drop-shadow-md select-none"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
                 <span>PDF 作品集 ↗</span>
               </a>
 
@@ -188,7 +312,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                   href={profile.pdfPortfolioUrl}
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl border transition-all duration-300 shadow-md active:scale-98 text-center uppercase tracking-wide font-sans ${
+                  className={`relative group w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl border transition-all duration-300 shadow-md active:scale-98 text-center uppercase tracking-wide font-sans ${
                     theme === "dark"
                       ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-200"
                       : theme === "sepia"
@@ -196,6 +320,24 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                       : "border-zinc-200 bg-zinc-50 hover:bg-zinc-100 text-zinc-700"
                   }`}
                 >
+                  {/* 姆貓偷看 (Peek-a-boo Mascot 2) */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[-4px] pointer-events-none transition-all duration-300 ease-out opacity-0 translate-y-3 scale-75 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:rotate-[6deg] z-20 flex flex-col items-center">
+                    <div className={`px-2 py-0.5 rounded-full text-[9px] whitespace-nowrap shadow-md mb-1 border font-bold animate-bounce ${
+                      theme === "sepia"
+                        ? "bg-[#FCF8EE] border-[#EAD09D] text-[#382B1D]"
+                        : theme === "light"
+                        ? "bg-white border-zinc-200 text-zinc-700"
+                        : "bg-zinc-800 border-zinc-700 text-zinc-200"
+                    }`}>
+                      還有我！✨
+                    </div>
+                    <img 
+                      src="https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep" 
+                      alt="姆貓偷看"
+                      className="w-9 h-9 object-contain drop-shadow-md select-none"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                   <FileText className="h-3.5 w-3.5 text-amber-500 shrink-0" />
                   <span>傳統雲端 PDF 作品集 ↗</span>
                 </a>
@@ -256,7 +398,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
                   {profile.experienceList.map((exp, i) => (
-                    <div key={i} className="flex gap-2.5 pl-0.5 relative group">
+                    <div key={i} style={getGravityStyle(6 + i)} className="flex gap-2.5 pl-0.5 relative group">
                       <div className={`h-[18px] w-[18px] rounded-full flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
                         theme === "sepia"
                           ? "bg-[#FAF4E5] border border-[#EADECC]/80 text-[#8C7B69] group-hover:border-amber-750 group-hover:text-amber-800"
@@ -321,7 +463,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
                   {profile.education.map((edu, i) => (
-                    <div key={i} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${
+                    <div key={i} style={getGravityStyle(10 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${
                       theme === "sepia"
                         ? "hover:bg-[#E3D3BE]/40"
                         : theme === "light"
@@ -402,7 +544,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
               <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-2 pt-1.5 lg:pt-0">
                   {profile.certificates.map((cert, i) => (
-                    <div key={i} className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
+                    <div key={i} style={getGravityStyle(14 + i)} className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
                       theme === "sepia"
                         ? "hover:bg-[#E3D3BE]/40"
                         : theme === "light"
@@ -455,7 +597,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
             
             <div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-2 lg:pt-0">
-                {profile.scopes.map((s) => {
+                {profile.scopes.map((s, i) => {
                   let icon = <Layers className="h-3.5 w-3.5 text-amber-400" />;
                   let colorBorder = "group-hover:border-amber-500/20 group-hover:bg-amber-500/[0.02]";
                   
@@ -485,6 +627,7 @@ export function DesignerBento({ theme, profile, setIsContactCardOpen, onCopyEmai
                   return (
                     <div 
                       key={s.id} 
+                      style={getGravityStyle(18 + i)}
                       className={`border rounded-xl p-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder} ${
                         theme === "sepia"
                           ? "bg-[#FAF4E5]/60 border-[#EADECC]/80"

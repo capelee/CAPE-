@@ -38,6 +38,11 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [currentFrameIndex, setCurrentFrameIndex] = useState<number>(0);
   
+  // Cat Chase (快速連續點擊躲避) 互動狀態
+  const [clickCount, setClickCount] = useState<number>(0);
+  const [lastClickTime, setLastClickTime] = useState<number>(0);
+  const [isChasing, setIsChasing] = useState<boolean>(false);
+  
   // 雙指縮放狀態
   const [mascotScale, setMascotScale] = useState<number>(1);
   const initialDistanceRef = React.useRef<number | null>(null);
@@ -177,8 +182,80 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
     return () => clearTimeout(timer);
   }, [isImageLoaded]);
 
+  // 觸發趣味貓咪躲避與瞬移逃跑動畫 (Cat Chase Interaction)
+  const triggerCatChase = () => {
+    setIsChasing(true);
+    setClickCount(0);
+
+    const CHASE_DIALOGUES = [
+      "喵呀！你點太快了！🐾 本教主走位逃跑中！💨",
+      "別、別抓了！再點要漏電（喵叫）了！⚡️ 咻～",
+      "幻影貓步！✨ 你點不到我～ 罐罐都被你點飛啦！🥫",
+      "喵嗚！啟動超光速摸魚閃避模式！🚀 咻～",
+      "被追到了！💦 溜了溜了，本教主要隱身 1 秒鐘！🐾"
+    ];
+
+    const randomChaseDialogue = CHASE_DIALOGUES[Math.floor(Math.random() * CHASE_DIALOGUES.length)];
+    setMascotDialogue(randomChaseDialogue);
+    setShowMascotDialogue(true);
+
+    // 震動回饋 (如果支援)
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      try {
+        navigator.vibrate([100, 50, 100, 50, 100]);
+      } catch (err) {
+        // Safe catch
+      }
+    }
+
+    // 播放趣味加速滑音
+    try {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioContextClass) {
+        const ctx = new AudioContextClass();
+        const now = ctx.currentTime;
+        
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(1800, now + 0.8);
+        
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.8);
+      }
+    } catch (e) {
+      // Ignored
+    }
+
+    // 1.5 秒後恢復
+    setTimeout(() => {
+      setIsChasing(false);
+    }, 1500);
+  };
+
   // 點擊吉祥物時隨機切換台詞 (且不影響 App.tsx 渲染)
   const handleNextMascot = () => {
+    if (isChasing) return; // 動畫中禁止重複點擊觸發
+
+    const now = Date.now();
+    if (now - lastClickTime < 900) {
+      const newCount = clickCount + 1;
+      setClickCount(newCount);
+      if (newCount >= 4) {
+        triggerCatChase();
+        return;
+      }
+    } else {
+      setClickCount(1);
+    }
+    setLastClickTime(now);
+
     if (currentMascot && currentMascot.dialogues.length > 0) {
       const candidates = currentMascot.dialogues.filter(item => item !== mascotDialogue);
       const chosen = candidates.length > 0
@@ -245,9 +322,24 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
         <motion.div
           ref={containerRef}
           initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
-          animate={isImageLoaded ? { y: 0, opacity: 1, rotate: -5, scale: mascotScale } : { y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
+          animate={
+            isChasing
+              ? {
+                  x: [0, -220, 220, -50, 0],
+                  y: [0, -80, 180, -20, 0],
+                  rotate: [-5, -45, 360, -360, -5],
+                  scale: [mascotScale, mascotScale * 0.4, mascotScale * 1.5, 0.2, mascotScale]
+                }
+              : isImageLoaded
+              ? { x: 0, y: 0, opacity: 1, rotate: -5, scale: mascotScale }
+              : { x: 0, y: "100%", opacity: 0, rotate: 15, scale: 0.5 }
+          }
           exit={{ y: "150%", opacity: 0, rotate: 20, scale: 0.5 }}
-          transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }}
+          transition={
+            isChasing
+              ? { duration: 1.5, ease: "easeInOut" }
+              : { type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }
+          }
           className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-none origin-bottom flex flex-col items-center drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[250px]"
           style={{ backfaceVisibility: "hidden", willChange: "transform, opacity" }}
           drag
