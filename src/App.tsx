@@ -817,6 +817,21 @@ export default function App() {
   const [heroParticles, setHeroParticles] = useState<{ id: number; x: number; y: number; emoji: string }[]>([]);
   const [titleBounceTrigger, setTitleBounceTrigger] = useState<number>(0);
 
+  // NAV bar logo mascot interaction states
+  const [navDialogue, setNavDialogue] = useState<string>("");
+  const [showNavDialogue, setShowNavDialogue] = useState<boolean>(false);
+  const [displayedNavDialogue, setDisplayedNavDialogue] = useState<string>("");
+
+  // Email copy flying particles state
+  interface MailParticle {
+    id: number;
+    emoji: string;
+    angle: number;
+    distance: number;
+    delay: number;
+  }
+  const [mailParticles, setMailParticles] = useState<MailParticle[]>([]);
+
   // 魔法變身互動狀態
   const [magicClickTimes, setMagicClickTimes] = useState<number[]>([]);
   const [isMagicTransformed, setIsMagicTransformed] = useState<boolean>(false);
@@ -916,6 +931,32 @@ export default function App() {
     };
   }, [showHeroDialogue, heroDialogue]);
 
+  // Handle typewriter effect for NAV bar dialogue popups
+  React.useEffect(() => {
+    if (!showNavDialogue || !navDialogue) {
+      setDisplayedNavDialogue("");
+      return;
+    }
+
+    setDisplayedNavDialogue("");
+    let currentText = "";
+    let i = 0;
+    
+    const interval = setInterval(() => {
+      if (i < navDialogue.length) {
+        currentText += navDialogue[i];
+        setDisplayedNavDialogue(currentText);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 35); // 35ms per character is highly responsive
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [showNavDialogue, navDialogue]);
+
   const heroDialogues = useMemo(() => [
     "哈囉！我是 Cape Lee 👋 歡迎來到我的視覺與品牌整合設計宇宙！",
     "點選左下角的『看作品』，就能解鎖我經手的所有精彩作品喔！✨",
@@ -935,8 +976,8 @@ export default function App() {
   };
 
   const triggerMascotDialogue = (dialogue: string) => {
-    setHeroDialogue(dialogue);
-    setIsHeroSpeaking(true);
+    setNavDialogue(dialogue);
+    setShowNavDialogue(true);
   };
 
   const handleHeroClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -1460,6 +1501,26 @@ export default function App() {
     navigator.clipboard.writeText(profile.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
+
+    // 觸發導航列姆貓對話吐槽與提示
+    setNavDialogue("喵嗚！聯絡信箱已成功複製到你的剪貼簿囉！💌 歡迎隨時來信！🐾");
+    setShowNavDialogue(true);
+
+    // 產生從信件按鈕炸開的可愛特效粒子（信封、愛心、閃爍、小肉掌、貓罐罐）
+    const emojis = ["✉️", "💌", "✨", "💖", "🐾", "🥫"];
+    const newParticles: MailParticle[] = Array.from({ length: 8 }).map((_, i) => ({
+      id: Date.now() + i + Math.random(),
+      emoji: emojis[Math.floor(Math.random() * emojis.length)],
+      angle: Math.random() * 360,
+      distance: 40 + Math.random() * 75,
+      delay: Math.random() * 0.1,
+    }));
+    setMailParticles((prev) => [...prev, ...newParticles]);
+
+    // 動畫結束後自動清理粒子
+    setTimeout(() => {
+      setMailParticles((prev) => prev.filter(p => !newParticles.find(np => np.id === p.id)));
+    }, 1500);
   };
 
   // vCard details and download handler
@@ -1576,11 +1637,10 @@ export default function App() {
               showInteractiveBubble={true} 
               bubbleDirection="bottom" 
               className="w-[30px] h-[30px] md:w-[36px] md:h-[36px] shrink-0 group-hover/brand:scale-105 transition-transform duration-300" 
-              externalDialogue={displayedDialogue || heroDialogue}
-              showExternalBubble={showHeroDialogue}
+              externalDialogue={displayedNavDialogue || navDialogue}
+              showExternalBubble={showNavDialogue}
               onCloseExternalBubble={() => {
-                setIsHeroSpeaking(false);
-                setShowHeroDialogue(false);
+                setShowNavDialogue(false);
               }}
             />
             <div className="min-w-0">
@@ -1620,6 +1680,37 @@ export default function App() {
                 className={`transition-colors duration-300 ${copyEmailClass}`}
                 title="點擊複製聯絡信箱"
               >
+                {/* 複製郵件飛行粒子 */}
+                <AnimatePresence>
+                  {mailParticles.map((p) => {
+                    const radians = (p.angle * Math.PI) / 180;
+                    const xDest = Math.cos(radians) * p.distance;
+                    const yDest = Math.sin(radians) * p.distance;
+                    return (
+                      <motion.span
+                        key={p.id}
+                        initial={{ opacity: 1, scale: 0.3, x: 0, y: 0 }}
+                        animate={{ 
+                          opacity: [1, 1, 0], 
+                          scale: [0.3, 1.2, 0.6], 
+                          x: xDest, 
+                          y: yDest, 
+                          rotate: p.angle * 1.5 
+                        }}
+                        exit={{ opacity: 0 }}
+                        transition={{ 
+                          duration: 0.9, 
+                          delay: p.delay, 
+                          ease: "easeOut" 
+                        }}
+                        className="absolute pointer-events-none select-none text-base z-50 left-1/2 top-1/2 -ml-2 -mt-2"
+                      >
+                        {p.emoji}
+                      </motion.span>
+                    );
+                  })}
+                </AnimatePresence>
+
                 {copiedEmail ? (
                   <>
                      <Check className="h-3.5 w-3.5 text-green-400" />
