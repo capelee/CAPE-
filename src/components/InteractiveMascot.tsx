@@ -355,27 +355,25 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
       {isVisible && scrollSectionVisible && !activeModalItem && !isWorkflowOpen && !isContactCardOpen && (
         <motion.div
           ref={containerRef}
-          initial={{ y: "100%", opacity: 0, rotate: 15, scale: 0.5 }}
+          initial={{ y: "100%", opacity: 0 }}
           animate={
             isChasing
               ? {
                   x: [0, -220, 220, -50, 0],
                   y: [0, -80, 180, -20, 0],
-                  rotate: [-5, -45, 360, -360, -5],
-                  scale: [mascotScale, mascotScale * 0.4, mascotScale * 1.5, 0.2, mascotScale]
                 }
               : isImageLoaded
-              ? { x: 0, y: 0, opacity: 1, rotate: -5, scale: mascotScale }
-              : { x: 0, y: "100%", opacity: 0, rotate: 15, scale: 0.5 }
+              ? { x: 0, y: 0, opacity: 1 }
+              : { x: 0, y: "100%", opacity: 0 }
           }
-          exit={{ y: "150%", opacity: 0, rotate: 20, scale: 0.5 }}
+          exit={{ y: "150%", opacity: 0 }}
           transition={
             isChasing
               ? { duration: 1.5, ease: "easeInOut" }
               : { type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }
           }
-          className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-none origin-bottom flex flex-col items-center drop-shadow-2xl w-[150px] sm:w-[200px] md:w-[250px]"
-          style={{ backfaceVisibility: "hidden", willChange: "transform, opacity" }}
+          className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-none origin-bottom flex flex-col items-center w-[150px] sm:w-[200px] md:w-[250px]"
+          style={{ touchAction: "none" }}
           drag
           dragControls={dragControls}
           dragListener={false}
@@ -482,14 +480,21 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             onMouseLeave={handleMouseLeave}
             type="button"
             whileHover={{ 
-              scale: 1.05,
+              scale: 1.05 * mascotScale,
               transition: { duration: 0.2 }
             }}
-            whileTap={{ scale: 0.95 }}
-            animate={{
-              y: [0, -6, 0],
-              scale: isTouched ? 0.95 : 1
-            }}
+            whileTap={{ scale: 0.95 * mascotScale }}
+            animate={
+              isChasing
+                ? {
+                    y: [0, -6, 0],
+                    scale: [mascotScale, mascotScale * 0.4, mascotScale * 1.5, 0.2, mascotScale]
+                  }
+                : {
+                    y: [0, -6, 0],
+                    scale: isTouched ? 0.95 * mascotScale : mascotScale
+                  }
+            }
             transition={{
               y: {
                 repeat: Infinity,
