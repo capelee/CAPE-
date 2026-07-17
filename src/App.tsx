@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { 
   Plus, 
   Tag, 
@@ -293,8 +294,13 @@ const playMagicDingSound = () => {
 };
 
 export default function App() {
+  const [mounted, setMounted] = useState<boolean>(false);
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const initialDataRef = React.useRef<PortfolioItem[]>([]);
+  
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Synchronized scrolling properties to prevent redundant state triggering on low-end processors or high-speed networks
   const scrollTrackerRef = React.useRef({
@@ -830,9 +836,14 @@ export default function App() {
   const [isHeroSpeaking, setIsHeroSpeaking] = useState<boolean>(false);
   const [showHeroDialogue, setShowHeroDialogue] = useState<boolean>(false);
   const [heroDialogue, setHeroDialogue] = useState<string>("");
+  const [heroDialogueIndex, setHeroDialogueIndex] = useState<number>(0);
   const [displayedDialogue, setDisplayedDialogue] = useState<string>("");
   const [heroParticles, setHeroParticles] = useState<{ id: number; x: number; y: number; emoji: string }[]>([]);
   const [titleBounceTrigger, setTitleBounceTrigger] = useState<number>(0);
+
+  // Refs for managing timers/intervals cleanly
+  const heroAutoCloseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const heroTypingIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
   // NAV bar logo mascot interaction states
   const [navDialogue, setNavDialogue] = useState<string>("");
@@ -875,6 +886,11 @@ export default function App() {
 
   // Handle typewriter effect for lively dialog popups
   React.useEffect(() => {
+    if (heroTypingIntervalRef.current) {
+      clearInterval(heroTypingIntervalRef.current);
+      heroTypingIntervalRef.current = null;
+    }
+
     if (!showHeroDialogue || !heroDialogue) {
       setDisplayedDialogue("");
       return;
@@ -884,20 +900,40 @@ export default function App() {
     let currentText = "";
     let i = 0;
     
-    const interval = setInterval(() => {
+    heroTypingIntervalRef.current = setInterval(() => {
       if (i < heroDialogue.length) {
         currentText += heroDialogue[i];
         setDisplayedDialogue(currentText);
         i++;
       } else {
-        clearInterval(interval);
+        if (heroTypingIntervalRef.current) {
+          clearInterval(heroTypingIntervalRef.current);
+          heroTypingIntervalRef.current = null;
+        }
       }
     }, 35); // 35ms per character is highly responsive and synced with cute audio blips
 
     return () => {
-      clearInterval(interval);
+      if (heroTypingIntervalRef.current) {
+        clearInterval(heroTypingIntervalRef.current);
+        heroTypingIntervalRef.current = null;
+      }
     };
   }, [showHeroDialogue, heroDialogue]);
+
+  // When dialogue completes speaking/typing, keep it visible for exactly 2 seconds and auto-close
+  React.useEffect(() => {
+    if (displayedDialogue && heroDialogue && displayedDialogue === heroDialogue) {
+      if (heroAutoCloseTimeoutRef.current) {
+        clearTimeout(heroAutoCloseTimeoutRef.current);
+      }
+      
+      heroAutoCloseTimeoutRef.current = setTimeout(() => {
+        setIsHeroSpeaking(false);
+        setShowHeroDialogue(false);
+      }, 2000); // 2 seconds
+    }
+  }, [displayedDialogue, heroDialogue]);
 
   // Handle typewriter effect for NAV bar dialogue popups
   React.useEffect(() => {
@@ -931,16 +967,33 @@ export default function App() {
     "每一像素都承載著設計的溫度與堅持。希望你今天逛得開心！💖",
     "這隻白貓是我的原創 IP 角色 MuMㄠ 喔！是不是很可愛呢？🐾",
     "在右下角還有我們的 12 隻專業恐龍與吉祥物戰隊，也可以找他們聊天喔！🦖",
-    "我的原創 IP 插畫音樂祭粉專開張囉！歡迎點擊氣泡下方的前往按鈕追蹤 MuMㄠ（姆貓教）的 IG 吧！🎸🐾"
+    "我的原創 IP 插畫音樂祭粉專開張囉！歡迎點擊氣泡下方的前往按鈕追蹤 MuMㄠ（姆貓教）的 IG 吧！🎸🐾",
+    "對本教主「快速連續點擊 15 次」，就能解鎖神秘隱藏的「魔法姆貓」夢幻變身姿態喔！✨🪄🐾",
+    "想要測測今天的運勢與求籤開運嗎？點選下方按鈕可以直接導引至最底下的「今日姆貓運勢罐罐」求得吉籤喔！⛩️🥫🔮"
   ], []);
 
   const lastHeroClickTimeRef = React.useRef<number>(0);
 
   const triggerHeroSpeaking = () => {
-    // If already speaking, switch directly to a new dialogue to make clicking consecutive
-    const randomIndex = Math.floor(Math.random() * heroDialogues.length);
-    setHeroDialogue(heroDialogues[randomIndex]);
+    // Select next sequential index and rotate
+    const currentIdx = heroDialogueIndex % heroDialogues.length;
+    setHeroDialogueIndex((prev) => (prev + 1) % heroDialogues.length);
+    
+    // Clear any existing auto-close timeout when trigger speaking
+    if (heroAutoCloseTimeoutRef.current) {
+      clearTimeout(heroAutoCloseTimeoutRef.current);
+      heroAutoCloseTimeoutRef.current = null;
+    }
+    
+    // Clear typing interval too
+    if (heroTypingIntervalRef.current) {
+      clearInterval(heroTypingIntervalRef.current);
+      heroTypingIntervalRef.current = null;
+    }
+
+    setHeroDialogue(heroDialogues[currentIdx]);
     setIsHeroSpeaking(true);
+    setShowHeroDialogue(true);
   };
 
   const triggerMascotDialogue = (dialogue: string) => {
@@ -994,19 +1047,28 @@ export default function App() {
       return;
     }
 
-    // Throttling mechanism: ignore text bouncing and dialog switches if clicked within 900ms
-    if (now - lastHeroClickTimeRef.current < 900) {
-      return;
-    }
-    lastHeroClickTimeRef.current = now;
+    // Check if currently typing
+    const isCurrentlyTyping = isHeroSpeaking && showHeroDialogue && displayedDialogue.length < heroDialogue.length;
 
+    if (isCurrentlyTyping) {
+      // Clear typing interval to stop character-by-character animation
+      if (heroTypingIntervalRef.current) {
+        clearInterval(heroTypingIntervalRef.current);
+        heroTypingIntervalRef.current = null;
+      }
+      // Finish typing instantly
+      setDisplayedDialogue(heroDialogue);
+    } else {
+      // Not speaking/typing or dialog closed, trigger a new dialogue
+      triggerHeroSpeaking();
+    }
+
+    // Always trigger subtle header and card micro-bounce feedback for responsive clicking
     setTitleBounceTrigger((prev) => prev + 1);
-    triggerHeroSpeaking();
   };
 
   React.useEffect(() => {
     let dialogDelayTimeout: NodeJS.Timeout | null = null;
-    let autoCloseTimeout: NodeJS.Timeout | null = null;
 
     if (isHeroSpeaking) {
       // 一開始對話框先隱藏 (或重設)
@@ -1022,11 +1084,14 @@ export default function App() {
         setShowHeroDialogue(true);
       }, 300);
 
-      // 10 秒後自動閉嘴，並隱藏對話框
-      autoCloseTimeout = setTimeout(() => {
+      // 12 秒後自動閉嘴的安全機制 (Safety fallback)
+      if (heroAutoCloseTimeoutRef.current) {
+        clearTimeout(heroAutoCloseTimeoutRef.current);
+      }
+      heroAutoCloseTimeoutRef.current = setTimeout(() => {
         setIsHeroSpeaking(false);
         setShowHeroDialogue(false);
-      }, 10000);
+      }, 12000);
     } else {
       setShowHeroDialogue(false);
       animaleseSynth.stop();
@@ -1034,7 +1099,10 @@ export default function App() {
 
     return () => {
       if (dialogDelayTimeout) clearTimeout(dialogDelayTimeout);
-      if (autoCloseTimeout) clearTimeout(autoCloseTimeout);
+      if (heroAutoCloseTimeoutRef.current) {
+        clearTimeout(heroAutoCloseTimeoutRef.current);
+        heroAutoCloseTimeoutRef.current = null;
+      }
       animaleseSynth.stop();
     };
   }, [isHeroSpeaking, heroDialogue]);
@@ -1980,7 +2048,7 @@ export default function App() {
           </div>
 
           {/* Right Mascot column */}
-          <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4">
+          <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4 relative z-50">
             <motion.div
               initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
@@ -2191,12 +2259,12 @@ export default function App() {
               <AnimatePresence>
                 {showHeroDialogue && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 15 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, y: 15 }}
+                    initial={{ opacity: 0, scale: 0.8, x: -10 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, x: -10 }}
                     transition={{ type: "spring", stiffness: 300, damping: 22 }}
                     onClick={(e) => e.stopPropagation()}
-                    className={`absolute z-30 w-[240px] sm:w-[280px] p-4 rounded-2xl shadow-xl border text-xs sm:text-sm font-medium leading-relaxed
+                    className={`hidden md:block absolute z-50 w-[280px] lg:w-[320px] p-5 rounded-2xl shadow-xl border text-xs sm:text-sm font-medium leading-relaxed
                       ${
                         theme === "sepia"
                           ? "bg-[#FAF4E5] border-[#EAD09D] text-[#382B1D] shadow-[#382B1D]/5"
@@ -2204,17 +2272,17 @@ export default function App() {
                           ? "bg-white border-zinc-150 text-zinc-800 shadow-zinc-200/50"
                           : "bg-zinc-950/95 border-zinc-800/80 text-zinc-100 shadow-black/40"
                       }
-                      bottom-[105%] left-1/2 -translate-x-1/2 lg:left-auto lg:right-[72%] lg:-translate-x-0 lg:bottom-[88%] lg:translate-y-0
+                      md:right-[102%] lg:right-[106%] md:-translate-x-0 md:top-[15%] md:bottom-auto md:left-auto
                     `}
                   >
-                    {/* Tiny bubble tail pointing down-right towards mascot, solid matching background to cover parent border */}
-                    <div className={`absolute w-3 h-3 rotate-45 border-r border-b bottom-[-5px] left-1/2 -translate-x-1/2 lg:left-auto lg:right-8 lg:-translate-x-0
+                    {/* Tiny bubble tail pointing right towards mascot, solid matching background to cover parent border */}
+                    <div className={`absolute w-3 h-3 rotate-45 border-r border-t top-1/3 -right-1.5
                       ${
                         theme === "sepia"
                           ? "bg-[#FAF4E5] border-[#EAD09D]"
                           : theme === "light"
                           ? "bg-white border-zinc-150"
-                          : "bg-zinc-950 border-zinc-800/80"
+                          : "bg-zinc-950/95 border-zinc-800/80"
                       }
                     `} />
                     <motion.div
@@ -2244,6 +2312,24 @@ export default function App() {
                             <Instagram className="h-3.5 w-3.5 shrink-0" />
                             <span>前往 MuMㄠ 教主 IG 🐾</span>
                           </a>
+                        </div>
+                      )}
+
+                      {(heroDialogue.includes("運勢") || heroDialogue.includes("求籤")) && displayedDialogue.length >= 10 && (
+                        <div className="mt-3 pt-2.5 border-t border-dashed border-zinc-200/60 dark:border-white/10 flex justify-center">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const el = document.getElementById("footer-fortune");
+                              if (el) {
+                                el.scrollIntoView({ behavior: "smooth" });
+                              }
+                            }}
+                            className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md cursor-pointer bg-gradient-to-r from-red-500 to-[#D33F33] hover:brightness-110"
+                          >
+                            <span>⛩️ 前往今日運勢求籤 🐾</span>
+                          </button>
                         </div>
                       )}
                     </motion.div>
@@ -2840,6 +2926,7 @@ export default function App() {
 
       {/* 底部靜態版權聲明 - 典雅日式和風神社風格 */}
       <footer 
+        id="footer-fortune"
         className={`mt-0 relative overflow-hidden transition-all duration-300 border-t ${
           theme === "dark" 
             ? "bg-[#09090A] border-zinc-900 text-[#D4C4A8]" 
@@ -3050,6 +3137,137 @@ export default function App() {
 
       {/* 貓咪點擊足跡層 (🐾) */}
       <CatFootprintsLayer />
+
+      {/* 手機版底部精緻 RPG 對話框 (Mobile RPG Dialogue Box) */}
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {showHeroDialogue && (
+            <motion.div
+              initial={{ y: 120, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 120, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 220 }}
+              onClick={(e) => e.stopPropagation()}
+              className={`md:hidden fixed bottom-4 left-4 right-4 z-[99999] p-4.5 rounded-2xl shadow-2xl border flex flex-col gap-3.5
+                ${
+                  theme === "sepia"
+                    ? "bg-[#FAF4E5] border-2 border-[#A05C2C] text-[#382B1D] shadow-[#382B1D]/15"
+                    : theme === "light"
+                    ? "bg-white border-2 border-amber-600 text-zinc-800 shadow-zinc-300/65"
+                    : "bg-zinc-950/98 border-2 border-amber-500 text-zinc-100 shadow-black/90"
+                }
+              `}
+            >
+              {/* Top Row: Avatar & Title & Close button */}
+              <div className="flex items-start gap-3 relative">
+                {/* Cute Avatar of MuMㄠ with matching border frame */}
+                <div className={`relative shrink-0 w-13 h-13 rounded-xl overflow-hidden border-2 p-0.5 shadow-sm
+                  ${
+                    theme === "sepia"
+                      ? "border-[#A05C2C] bg-[#FCF8EE]"
+                      : theme === "light"
+                      ? "border-amber-600 bg-amber-50"
+                      : "border-amber-500 bg-zinc-900"
+                  }
+                `}>
+                  <img
+                    src="https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX"
+                    alt="MuMㄠ"
+                    className="w-full h-full object-contain select-none"
+                    referrerPolicy="no-referrer"
+                  />
+                  {isMagicTransformed && (
+                    <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+                    </span>
+                  )}
+                </div>
+
+                {/* RPG Title & Dialogue text */}
+                <div className="flex-1 min-w-0 pr-6">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className={`text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md text-white bg-gradient-to-r ${
+                      theme === "sepia"
+                        ? "from-[#A05C2C] to-[#854B22]"
+                        : theme === "light"
+                        ? "from-amber-600 to-amber-700"
+                        : "from-amber-500 to-amber-600 text-black font-extrabold"
+                    }`}>
+                      {isMagicTransformed ? "🪄 魔法姆貓" : "🐾 姆貓教主"}
+                    </span>
+                    <span className={`text-[10px] font-mono opacity-60`}>
+                      Oracle
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm leading-relaxed font-semibold">
+                    {displayedDialogue}
+                    {displayedDialogue.length < heroDialogue.length && (
+                      <span className="inline-block ml-1 w-1.5 h-3.5 bg-amber-500 animate-pulse rounded align-middle" />
+                    )}
+                  </p>
+                </div>
+
+                {/* RPG Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setShowHeroDialogue(false)}
+                  className={`absolute right-0 top-0 p-1 rounded-full transition-colors active:scale-90
+                    ${
+                      theme === "sepia"
+                        ? "hover:bg-[#EAD09D]/30 text-[#A05C2C]"
+                        : theme === "light"
+                        ? "hover:bg-zinc-100 text-zinc-400"
+                        : "hover:bg-white/10 text-zinc-400 hover:text-white"
+                    }
+                  `}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Bottom Row Actions inside RPG Box */}
+              {displayedDialogue.length >= 10 && (
+                <div className="flex flex-col gap-2 border-t border-dashed border-zinc-200/60 dark:border-white/10 pt-2.5 mt-0.5">
+                  {heroDialogue.includes("IG") && (
+                    <a
+                      href="https://www.instagram.com/mumao1_the_cat_religion?igsh=MXF2a3N1bm45ajhkaw=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md hover:shadow-pink-500/10 cursor-pointer bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110 text-center"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      <Instagram className="h-3.5 w-3.5 shrink-0" />
+                      <span>前往 MuMㄠ 教主 IG 🐾</span>
+                    </a>
+                  )}
+
+                  {(heroDialogue.includes("運勢") || heroDialogue.includes("求籤")) && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowHeroDialogue(false); // Close first to let them see
+                        const el = document.getElementById("footer-fortune");
+                        if (el) {
+                          el.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md cursor-pointer bg-gradient-to-r from-red-500 to-[#D33F33] hover:brightness-110"
+                    >
+                      <span>⛩️ 前往今日運勢求籤 罐罐開運 🥫</span>
+                    </button>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
     </div>
   );

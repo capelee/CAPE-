@@ -411,8 +411,12 @@ export function MinimalistLogo({
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        whileHover={{ scale: isLeaking ? 1 : balloonScale * 1.06 }}
-        whileTap={{ scale: isLeaking ? 1 : balloonScale * 0.94 }}
+        whileHover={{ 
+          scale: isLeaking ? 1 : [1, balloonScale * 1.14, balloonScale * 0.93, balloonScale * 1.06, balloonScale * 0.98, balloonScale * 1.04],
+          rotate: [0, -7, 5, -4, 2, 0],
+          transition: { duration: 0.6, ease: "easeInOut" }
+        }}
+        whileTap={{ scale: isLeaking ? 1 : balloonScale * 0.91 }}
         animate={
           isLeaking
             ? {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkles, X, RefreshCw, Smile, Heart, Zap } from "lucide-react";
 
@@ -358,6 +359,11 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [showTooltip, setShowTooltip] = useState<boolean>(true);
   const [ripples, setRipples] = useState<Ripple[]>([]);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 10秒後自動隱藏初始氣泡提示，避免遮擋
   useEffect(() => {
@@ -663,7 +669,22 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
         {/* 罐罐按鈕：與頁尾設計高度融合的精美橫向按鈕 */}
         <motion.button
           onClick={triggerOpenCan}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{
+            scale: 1.05,
+            rotate: [0, -2.5, 2.5, -2.5, 2.5, -1.5, 1.5, 0],
+            transition: {
+              rotate: {
+                repeat: Infinity,
+                duration: 0.38,
+                ease: "easeInOut"
+              },
+              scale: {
+                type: "spring",
+                stiffness: 400,
+                damping: 15
+              }
+            }
+          }}
           whileTap={{ scale: 0.95 }}
           animate={isOpening ? { rotate: [0, -8, 8, -8, 8, -8, 8, 0], scale: [1, 1.05, 0.98, 1.05, 1] } : {}}
           transition={isOpening ? { repeat: 0, duration: 0.4 } : {}}
@@ -710,15 +731,16 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
       </div>
 
       {/* 2. 運勢對話卡片：點開後的華麗展現 (AnimatePresence Overlay) */}
-      <AnimatePresence>
-        {isOpen && currentFortune && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {isOpen && currentFortune && (
+            <div className="fixed inset-0 z-[9999] overflow-y-auto bg-black/60 backdrop-blur-sm p-4 flex items-start sm:items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="w-full max-w-sm rounded-3xl border border-[#DFCFA0]/90 text-[#3E2715] shadow-[0_25px_60px_rgba(40,30,20,0.25)] overflow-hidden relative flex flex-col font-serif"
+              className="w-full max-w-sm rounded-3xl border border-[#DFCFA0]/90 text-[#3E2715] shadow-[0_25px_60px_rgba(40,30,20,0.25)] overflow-hidden relative flex flex-col font-serif my-auto sm:my-8"
               style={{
                 backgroundImage: `
                   linear-gradient(to right, rgba(211, 63, 51, 0.003) 1px, transparent 1px),
@@ -953,8 +975,19 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
               </div>
 
               {/* 運勢大吉和紙籤條 (垂直書寫直書排版) */}
-              <div className="px-6 py-2 select-text">
-                <div className="relative bg-[#FCFAF7] border-2 border-double border-[#D33F33]/70 rounded-xl p-5 shadow-inner flex flex-col items-center justify-between min-h-[290px] overflow-hidden">
+              <div className="px-6 py-2 select-text overflow-hidden">
+                <motion.div
+                  key={currentFortune.id + "_" + isBellRinging}
+                  initial={{ scaleY: 0, opacity: 0, transformOrigin: "top" }}
+                  animate={isBellRinging ? { scaleY: 0, opacity: 0 } : { scaleY: 1, opacity: 1 }}
+                  transition={{ 
+                    type: "spring", 
+                    damping: 18, 
+                    stiffness: 110, 
+                    delay: isBellRinging ? 0 : 0.05 
+                  }}
+                  className="relative bg-[#FCFAF7] border-2 border-double border-[#D33F33]/70 rounded-xl p-5 shadow-inner flex flex-col items-center justify-between min-h-[290px] overflow-hidden"
+                >
                   
                   {/* 和紙紋理疊加 */}
                   <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
@@ -1012,7 +1045,7 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
                     <span className="text-[10px] text-[#C5A059] font-serif font-bold tracking-widest">開運厄除 · 福德圓滿</span>
                     <span className="text-[10px]">🐾</span>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* 每日宜忌面板 (繪馬/御守雙側設計) */}
@@ -1046,15 +1079,32 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
 
               {/* 互動操作底欄 */}
               <div className="p-6 pt-3 flex items-center justify-between gap-3 shrink-0">
-                <button
+                <motion.button
                   type="button"
                   onClick={handleNextFortune}
                   disabled={isOpening}
+                  whileHover={{
+                    scale: 1.04,
+                    rotate: [0, -2, 2, -2, 2, 0],
+                    transition: {
+                      rotate: {
+                        repeat: Infinity,
+                        duration: 0.38,
+                        ease: "easeInOut"
+                      },
+                      scale: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15
+                      }
+                    }
+                  }}
+                  whileTap={{ scale: 0.96 }}
                   className="flex-1 py-3 rounded-2xl text-xs font-serif font-black flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer bg-[#D33F33] hover:bg-[#C0392B] text-white border-2 border-[#D33F33] hover:border-[#D33F33]/80 shadow-lg shadow-[#D33F33]/15 tracking-wider"
                 >
                   <RefreshCw className={`w-3.5 h-3.5 ${isOpening ? "animate-spin" : ""}`} />
                   <span>再開一罐 🥫</span>
-                </button>
+                </motion.button>
 
                 <a
                   href="https://www.instagram.com/mumao1_the_cat_religion/"
@@ -1077,8 +1127,10 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
               </div>
             </motion.div>
           </div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 }
