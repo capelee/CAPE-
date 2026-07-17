@@ -385,35 +385,24 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchEnd}
         >
-          {/* 自定義組件自密閉 CSS 動態效果：包含對話框微幅上下飄移 & 優雅氣泡指向動畫 */}
-          <style dangerouslySetInnerHTML={{ __html: `
-            @keyframes mascotBubbleFloat {
-              0%, 100% { transform: translateY(0px) rotate(0deg); }
-              50% { transform: translateY(-5px) rotate(-0.5deg); }
-            }
-            .animate-mascot-bubble-float {
-              animation: mascotBubbleFloat 4.5s ease-in-out infinite;
-            }
-          `}} />
-
           {/* 互動對話氣泡 */}
           <AnimatePresence>
             {showMascotDialogue && (
               <motion.div
-                initial={{ scale: 0, opacity: 0, y: 10 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0, opacity: 0, y: 10 }}
-                transition={{ type: "spring", bounce: 0.4, duration: 0.4 }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
                 onClick={handleNextMascot}
                 onPointerDown={(e) => dragControls.start(e)}
                 className={`${
                   theme === "light"
-                    ? "bg-white/95 border-amber-500/50 shadow-[0_4px_25px_rgba(245,158,11,0.2)]"
+                    ? "bg-white border-amber-500/50 shadow-[0_4px_25px_rgba(245,158,11,0.18)]"
                     : theme === "sepia"
-                    ? "bg-[#FCF8EE]/95 border-amber-600/40 shadow-[0_4px_25px_rgba(180,83,9,0.2)]"
-                    : "bg-black/95 border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.25)]"
-                } backdrop-blur-sm border p-3 pt-3.5 rounded-2xl mb-2.5 relative flex flex-col items-center justify-center pointer-events-auto max-w-[145px] sm:max-w-[190px] md:max-w-[240px] overflow-hidden cursor-pointer transition-colors group animate-mascot-bubble-float`}
-                style={{ willChange: "transform, opacity, scale", touchAction: "none" }}
+                    ? "bg-[#FCF8EE] border-amber-600/40 shadow-[0_4px_25px_rgba(180,83,9,0.18)]"
+                    : "bg-[#0b0b0c] border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.22)]"
+                } border p-3 pt-3.5 rounded-2xl mb-2.5 relative flex flex-col items-center justify-center pointer-events-auto max-w-[145px] sm:max-w-[190px] md:max-w-[240px] overflow-hidden cursor-pointer transition-colors group`}
+                style={{ touchAction: "none" }}
                 title="點擊對話，長按可自由拖曳！🐾"
               >
                 {/* 關閉對話框的 X 按鈕 */}
@@ -441,15 +430,16 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
 
                 <div className={`${
                   theme === "light"
-                    ? "text-zinc-850 font-semibold group-hover:text-amber-600"
+                    ? "text-zinc-800 font-semibold group-hover:text-amber-600"
                     : theme === "sepia"
-                    ? "text-[#433422]/60 font-bold group-hover:text-[#B45309]"
-                    : "text-zinc-100 group-hover:text-amber-200"
-                } text-[10px] sm:text-[11.5px] text-center leading-relaxed font-sans px-1 select-none whitespace-normal break-words transition-colors min-h-[30px] sm:min-h-[34px] flex flex-col items-center justify-center`}>
+                    ? "text-[#433422] font-bold group-hover:text-[#B45309]"
+                    : "text-zinc-100 font-semibold group-hover:text-amber-200"
+                } text-[11px] sm:text-xs text-center leading-relaxed font-sans px-1 select-none whitespace-normal break-words transition-colors min-h-[30px] sm:min-h-[34px] flex flex-col items-center justify-center subpixel-antialiased`}
+                style={{ textRendering: "geometricPrecision" }}>
                   {/* 顯示角色名字與職位 */}
-                  <span className={`text-[8.5px] sm:text-[9.5px] tracking-wider opacity-75 mb-1 font-bold font-sans px-1.5 py-0.5 rounded-full ${
+                  <span className={`text-[8.5px] sm:text-[9.5px] tracking-wider opacity-90 mb-1 font-bold font-sans px-1.5 py-0.5 rounded-full subpixel-antialiased ${
                     theme === "light" 
-                      ? "bg-zinc-100 text-zinc-650" 
+                      ? "bg-zinc-100 text-zinc-600" 
                       : theme === "sepia" 
                       ? "bg-[#EDE2CA] text-[#433422]" 
                       : "bg-white/10 text-zinc-300"
@@ -464,7 +454,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -4 }}
                       transition={{ duration: 0.18, ease: "easeInOut" }}
-                      className="block leading-relaxed"
+                      className="block leading-relaxed subpixel-antialiased font-semibold tracking-wide"
                     >
                       {mascotDialogue}
                     </motion.span>

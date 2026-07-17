@@ -185,6 +185,18 @@ export const PortfolioCard = React.memo(function PortfolioCard({
       : `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
     : `text-white/90 ${isHovered ? "text-white" : ""}`;
 
+  const backTitleEnClassValue = isSepia
+    ? "text-amber-800/80 font-semibold"
+    : isLight
+    ? "text-zinc-500 font-semibold"
+    : `${catColor.textClass}`;
+
+  const backTitleClassValue = isSepia
+    ? `text-[#382B1D] ${isHovered ? "text-amber-800" : ""}`
+    : isLight
+    ? `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
+    : `text-white/90 ${isHovered ? "text-white" : ""}`;
+
   const descriptionClassValue = isSepia
     ? item.isHighlight
       ? `text-[#4F3C28] ${isHovered ? "text-[#2B1B0C]" : ""}`
@@ -453,7 +465,6 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             ref={cardInnerRef}
             style={{
               transformStyle: "preserve-3d",
-              willChange: "transform",
               boxShadow: defaultShadow,
             }}
             animate={{
@@ -470,11 +481,12 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           >
           {/* Front Face of the Card */}
           <div
-            className={`w-full h-full flex flex-col rounded-2xl overflow-hidden transition-[background-color,border-color,color] duration-500 ${themeContainerClass}`}
+            className={`w-full h-full flex flex-col rounded-2xl overflow-hidden transition-[background-color,border-color,color] duration-500 subpixel-antialiased ${themeContainerClass}`}
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(0deg) translateZ(1px)",
+              textRendering: "geometricPrecision",
             }}
           >
             {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
@@ -541,9 +553,6 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                       boxShadow: isHovered
                         ? `0 0 12px 2px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.25' : '0.45'})`
                         : `0 2px 4px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.04' : '0.08'})`,
-                      textShadow: isHovered
-                        ? `0 0 6px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.4' : '0.6'})`
-                        : "0 0 0px rgba(0, 0, 0, 0)",
                       boxSizing: "border-box"
                     }}
                   >
@@ -561,16 +570,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                     
                     <Sparkles className="h-3 w-3 fill-black text-black animate-hover-bounce-icon relative z-10" />
                     {showAllDetails && (
-                      <span 
-                        className="relative z-10"
-                        style={{
-                          textShadow: isSepia 
-                            ? "0px 0.75px 1.5px rgba(255, 255, 255, 0.75), 0px -0.25px 0.5px rgba(255, 255, 255, 0.4)" 
-                            : isLight 
-                            ? "0px 0.75px 1.5px rgba(255, 255, 255, 0.8), 0px -0.25px 0.5px rgba(255, 255, 255, 0.4)" 
-                            : "0px 0.5px 1px rgba(255, 255, 255, 0.35)"
-                        }}
-                      >
+                      <span className="relative z-10">
                         精選亮點
                       </span>
                     )}
@@ -644,12 +644,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
  
           {/* Back Face of the Card */}
           <div
-            className={`absolute inset-0 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 ${themeContainerClass}`}
+            className={`absolute inset-0 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 subpixel-antialiased ${themeContainerClass}`}
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(180deg) translateZ(1px)",
               zIndex: 5,
+              textRendering: "geometricPrecision",
             }}
           >
             {/* Ambient Background Glow inside the back face */}
@@ -682,10 +683,10 @@ export const PortfolioCard = React.memo(function PortfolioCard({
  
               {/* Title Block */}
               <div className="space-y-0.5">
-                <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${titleEnClassValue}`}>
+                <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${backTitleEnClassValue}`}>
                   {item.titleEn}
                 </p>
-                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 md:line-clamp-3 ${titleClassValue}`}>
+                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 md:line-clamp-3 ${backTitleClassValue}`}>
                   {item.title}
                 </h3>
               </div>
