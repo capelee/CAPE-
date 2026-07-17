@@ -996,6 +996,14 @@ export default function App() {
     setShowHeroDialogue(true);
   };
 
+  // Automatically trigger the first dialogue when users enter the webpage (mounts)
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      triggerHeroSpeaking();
+    }, 1200); // 1.2s delay for maximum cinematic entrance polish
+    return () => clearTimeout(timer);
+  }, []);
+
   const triggerMascotDialogue = (dialogue: string) => {
     setNavDialogue(dialogue);
     setShowNavDialogue(true);
