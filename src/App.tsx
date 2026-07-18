@@ -48,7 +48,8 @@ import {
   FileText
 } from "lucide-react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring, animate } from "motion/react";
-import { PortfolioItem } from "./types";
+import { PortfolioItem, MascotCharacter } from "./types";
+import { categoryMascotMap } from "./utils/mascotData";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
 import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl } from "./utils";
@@ -509,262 +510,9 @@ export default function App() {
     };
   }, [items]);
 
-  interface MascotCharacter {
-    name: string;
-    role: string;
-    imageDriveId: string;
-    imageDriveIdSpeaking?: string;
-    glowColor: string;
-    dialogues: string[];
-    idles: string[];
-  }
-
-  const categoryMascotMap: Record<string, MascotCharacter> = useMemo(() => ({
-    "亮點設計": {
-      name: "創意總監 Shone",
-      role: "全能創意總監",
-      imageDriveId: "1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl", // SHONE_P.png (主形象)
-      glowColor: "from-amber-400/25 to-rose-500/20 shadow-[0_0_50px_rgba(245,158,11,0.25)]",
-      dialogues: [
-        "吼吼～我是創意總監 Shone！這裡是我最引以為傲的精選『亮點設計』大集合！🐾✨",
-        "每一件亮點作品，都融合了極致的完稿美學與匠心獨具的靈感亮點喔！💎",
-        "點選上方的其他分類按鈕，隨時解鎖 12 隻專業吉祥物戰隊伙伴和精美作品！🌟",
-        "把溫暖人心的溫度融進每一像素中，這就是我的美學指南！💖"
-      ],
-      idles: [
-        "這裡展示的都是我最推薦的精選代表作，希望有擊中你的靈魂處！🦖",
-        "點選其他分類，看看我的百變恐龍特攻隊夥伴吧！🦕"
-      ]
-    },
-    "All": {
-      name: "創意總監 Shone",
-      role: "全能創意總監",
-      imageDriveId: "1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl", // SHONE_P.png (主形象)
-      glowColor: "from-cyan-400/25 to-blue-500/20 shadow-[0_0_50px_rgba(6,182,212,0.25)]",
-      dialogues: [
-        "吼吼～我是創意總監 Shone！歡迎來到我的品牌整合設計大宇宙！🐾",
-        "點擊上方的分類按鈕，隨時解鎖 12 隻專業吉祥物戰隊伙伴和精美作品喔！✨",
-        "把溫暖人心的溫度融進每一像素與細緻完稿中，這就是我的美學指南！💖",
-        "哈囉～這裡收集了我經手的所有完美裝幀設計與實作大作，請慢慢參觀參觀！💎",
-        "工作累了嗎？有核心總監 Shone 當你的專屬靈感守護神，讓你元氣滿滿！🌟"
-      ],
-      idles: [
-        "每個專案背後，都是幾百次的像素極限微調與 AIGC 優化流程唷！🐾",
-        "創意的本質是點石成金，把繁雜轉化為極簡的品牌尊榮！🌌",
-        "點點我的身體，看我跟著你的節奏唱歌，哼唱專屬靈感曲!🎵",
-        "吼～點個上方的分類按鈕，看看我的百變恐龍特攻隊夥伴吧！🦖"
-      ]
-    },
-    "角色IP&插畫與貼圖": {
-      name: "藍色暴龍 Shone",
-      role: "IP角色與插畫首席大師",
-      imageDriveId: "1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl", // SHONE_P.png
-      glowColor: "from-indigo-500/25 to-cyan-500/20 shadow-[0_0_50px_rgba(99,102,241,0.25)]",
-      dialogues: [
-        "吼吼！我是原創暴龍 Shone！潮流壓舌帽和滑板是我的日常靈感標配！🛹🦖",
-        "踩著滑板畫插畫，讓筆尖帶著自由的風在螢幕上極速奔馳！🔥",
-        "用我有力的暴龍雙手，一筆勾畫出最具溫慢與親和力的品牌原創角色 IP！🐾",
-        "角色 IP 就像是品牌的心臟，能讓品牌超越冰冷符合，與消費者玩在一起！✨",
-        "原創貼圖就是把日常的怪脾氣放大，讓每一句訊息對話都充滿溫度！💖"
-      ],
-      idles: [
-        "在原創 IP 的冒險世界裡，我的滑板沒有終點！Keep pushing! 🛹",
-        "想讓你的品牌擁有超高吸睛度的吉祥物嗎？交給我們的插畫就對了！🦖",
-        "多看幾個我的插畫作品，可以獲得滿滿的角色 IP 靈感爆擊與貼圖驚喜唷！💥"
-      ]
-    },
-    "平面海報設計": {
-      name: "雷龍 Bronti",
-      role: "海報版面大師",
-      imageDriveId: "1S3U5KeLluy942QfF7NI286vr2GP48IZ_", // BRONTI_P.png
-      glowColor: "from-emerald-500/25 to-teal-500/20 shadow-[0_0_50px_rgba(16,185,129,0.25)]",
-      dialogues: [
-        "喔吼～我是溫和雷龍 Bronti！我長頸看高的開闊視野最懂恢弘大氣的海報排版了！🦖🌿",
-        "海報排版要大氣、對比要震撼！用雷龍的俯瞰視角精準對齊極美版面！📐",
-        "把厚重而豐富的色塊與醒目的字型結構層層堆疊，這就是平面美學的極致！✨",
-        "好海報要在遠處十公尺外，一瞬間便擊中並烙印在讀者的靈魂深處！💎"
-      ],
-      idles: [
-        "長脖子伸得高高，是在幫你偵測未來的海報設計大獎熱門靈感喔！🦖",
-        "海報版面的氣韻生動，出自對圖像留白與字級對比的精妙直覺！🌿",
-        "安靜而有力的空間留白，往往比塞滿圖案更具有震耳欲聾的品牌聲音！🌾"
-      ]
-    },
-    "商品周邊企業禮贈品": {
-      name: "小牛龍 Carno",
-      role: "禮贈品工藝專家",
-      imageDriveId: "1E9I5w5yq2qcBry_ebnnQo7UDa96qqDOJ", // CARNO_P.png
-      glowColor: "from-amber-400/25 to-orange-500/20 shadow-[0_0_50px_rgba(245,158,11,0.25)]",
-      dialogues: [
-        "嗨！我是小牛龍 Carno！用我的雙角和 my 頂級匠心打造最有份量的企業禮贈品！🦖🎒",
-        "將厚重合金與細打磨黑核桃實木完美咬合，每一件紀念品都是不凡的傳家寶！🪵",
-        "禮物的尊榮感源於對細節的雕琢，每一個 3D 浮雕壓鑄都刻著匠人的鎔鑄魂魄！💠",
-        "聞一聞～精裝禮盒的高級木質墨香！今天的實體化周邊完稿也元氣滿滿喔！🍹"
-      ],
-      idles: [
-        "鋅合金、原木、高週波燙金... 用沉甸甸的質感，給別人最尊貴的呈上之禮！🎁",
-        "實體化周邊一定要兼具精美實用與收藏價值，這是我作為 Carno 的核心堅持！🔧",
-        "精密咬合、全無瑕疵。我的匠人魂可是承襲了最頂級的工裝美學唷！🐾"
-      ]
-    },
-    "商業視覺攝影": {
-      name: "翼龍 Ptera",
-      role: "全景商業攝影師",
-      imageDriveId: "1zmtZxwZAMmP5rkCi-SAZBPujjisUQvr5", // PTERA_P.png
-      glowColor: "from-violet-500/25 to-fuchsia-500/20 shadow-[0_0_50px_rgba(168,85,247,0.25)]",
-      dialogues: [
-        "咻～我是神速翼龍 Ptera！飛翔在上帝視角，完美捕捉那百萬分之一秒的光影瞬間！📸🦅",
-        "商業攝影是光的精密雕刻、影的多重協奏！用微距與絕美特寫述說品牌格調！✨",
-        "從專業影棚控光到後期像素級精細修圖，每一張大片都安靜綻放著奢華張力！💎",
-        "喀嚓！快門按下。讓我帶你深入凝視精緻玻璃反光與極致金屬背後的拍攝奧秘！🎥"
-      ],
-      idles: [
-        "光圈大小、快門開關。攝影的精髓，在於用反光讓冷靜的名器娓娓道來！🎬",
-        "每一次俯衝與定格，都是為了捕捉那純粹而深邃的奢華質感！🌌",
-        "點大圖看細節，你會讚歎每一道光澤背後的精密控光與像素後期大算計！👁️"
-      ]
-    },
-    "企業LOGO與CIS設計": {
-      name: "三角龍 Triko",
-      role: "品牌識別研發官",
-      imageDriveId: "1M7do_D_NPz-f1NMDJRoCgXQWe4bQpVo_", // TRIKO_P.png
-      glowColor: "from-sky-500/25 to-blue-600/20 shadow-[0_0_50px_rgba(14,165,233,0.25)]",
-      dialogues: [
-        "吼！我是三角龍 Triko！用我最堅硬的頭楯三角幾何，為品牌打下黃金網格！📐🦖",
-        "企業商標不僅線條優美，更是整個 CIS 形象的理性數字縮影！🌌",
-        "手拿幾何對齊定位網格，我們為每一家企業精心搭建最穩定的視覺骨骼！✒️",
-        "一個頂級商標能橫跨百年。一起深入網格探索線條背後的數學幾何美學吧！✨"
-      ],
-      idles: [
-        "比例是線條的鋼琴鍵。好的 LOGO 即使在黑白單色下，音律依舊極致悠揚！🎼",
-        "用極其精緻的簡練幾何線條，盛放品牌的宏大靈魂。這就是設計的理性至上！📐",
-        "企業的視覺識別系統（CIS），是其向世界遞出的最重要第一張視覺名片！🌿"
-      ]
-    },
-    "實體店面與展覽": {
-      name: "空間導覽 MuMㄠ",
-      role: "實體展間空間大師",
-      imageDriveId: "1xdFRDuxv-offTrfIN68jU4i841goOjPZ", // 坐下.png
-      glowColor: "from-rose-500/25 to-coral-500/20 shadow-[0_0_50px_rgba(244,63,94,0.25)]",
-      dialogues: [
-        "悠閒坐好！我是空間美學導師 MuMㄠ！讓我們安靜看著人潮在精美展間湧動吧！🎪🐾",
-        "空間設計是三維的綜合藝術。要如何用大型輸出物料引導最舒服的觀展動線？🗺️",
-        "展區看板、立體結構吊牌... 每一項大圖文輸出都得經過極嚴格的 100% 完稿與出血拼合！📐",
-        "坐在展覽入口，用大器的插畫背景和大開海報，迎接每一位尊崇的參訪貴賓！🌟"
-      ],
-      idles: [
-        "展覽逛累了嗎？來陪我坐一會兒，看看牆上那些精湛的超巨實體設計吧！🎨",
-        "超高精度的海報輸出與抗褪色工藝，是確保實體店面高大上質感的必備底子！🎴",
-        "將平面美學延展到三維的物理空間，我的優雅坐姿就是最佳的代言示範喵！✨"
-      ]
-    },
-    "社群行銷小編圖文": {
-      name: "奮鬥小編 MuMㄠ",
-      role: "熱血社群小編",
-      imageDriveId: "144FgZpX5ebsp7lJadjc3HxaLgTvIqInv", // 爛泥前.png
-      glowColor: "from-yellow-500/25 to-amber-500/20 shadow-[0_0_50px_rgba(234,179,8,0.25)]",
-      dialogues: [
-        "喵唔！我是踩在爛泥裡依然精神抖擻的 MuMㄠ！熱血小編永遠在創意的最前線！🐾🔥",
-        "哪怕生活是成堆的泥巴（爛泥前.png），小編也要繪製出最燃最逗趣的爆讚圖文！💥",
-        "迅速洞察最新話題跟網絡跟熱梗迷因，用最幽默大方的畫筆擊碎大家的疲憊！🛒",
-        "戴上大耳機大聲歌唱～只要心中有熱情，哪怕泥濘滿地也能開出絢麗的創意之花！🎵"
-      ],
-      idles: [
-        "在泥濘中大步流星，這就是我們原創小編苦中作樂的極致浪漫與自豪！🚀",
-        "別怕挫折！現在踩在爛泥裡，意味著未來只會平步青雲噢！打工人加油！✨",
-        "想要能在 0.5 秒内牢牢拴住大眾指尖的小編貼文嗎？看我的熱血手繪企劃！🔥"
-      ]
-    },
-    "商務印刷品設計": {
-      name: "紙藝大師 MuMㄠ",
-      role: "商務印刷極客手札",
-      imageDriveId: "1h_kR_PViTQVM9dyh5ZhcfovaB5kGejD0", // 盤腿坐轉頭去背.png
-      glowColor: "from-teal-500/25 to-cyan-500/20 shadow-[0_0_50px_rgba(20,184,166,0.25)]",
-      dialogues: [
-        "喵唔！細嗅一下油墨配上精緻壓燙後的温潤紙香～我是紙藝大師 MuMㄠ！🖨️🌿",
-        "在心裡精密算計萊尼紙質地、磨砂壓花邊封和高級高亮燙金，盤腿沉思就是我的日常！📜",
-        "商務手冊不只是承載字句，更是品牌的實體面子。裁切溢出與壓痕差半點都不行！📐",
-        "翻閱這本印刷作品集，感受哪怕處在虛擬屏幕中，也彷彿要躍於指掌的完美高檔質感！🎨"
-      ],
-      idles: [
-        "墨香溫熱、紙溫細膩。將數位的代碼化為實體拿在掌心沉甸甸的感動！🖤",
-        "出血、排版拼對、壓折痕裁線... 完稿過程需要精密如同外科手術般的精細！📐",
-        "我們用最專業的印刷製版控片，給品牌賦予最具深邃手感溫度的線下實體！💼"
-      ]
-    },
-    "網站產品瀑布頁": {
-      name: "流光 MuMㄠ",
-      role: "長圖流暢加載大師",
-      imageDriveId: "1nugKG10Q4xf6qoFTyqF8CJxtfqJljq4T", // 睡覺.png
-      glowColor: "from-indigo-600/25 to-purple-500/20 shadow-[0_0_50px_rgba(79,70,229,0.25)]",
-      dialogues: [
-        "呼嚕... 呼嚕... 全能拼接 MuMㄠ 來也！在甜美夢境中才能理出無限順暢的超長網頁拼裝喔～😴💤",
-        "網頁長圖滾動就像古典畫卷，加載載速與品質是考驗！我在夢中都要為之鑽研代碼！💻",
-        "把無數大體積的高精視覺完美切片與無瑕拼接，換來你指尖那流暢極致的敘事視覺長河！🚀",
-        "別輕輕戳醒我唷～睡得足靈感多，大圖拼接才不會出細縫，讓觀展體驗一瀉千里！🌟"
-      ],
-      idles: [
-        "呼嚕嚕... 睡一覺起來，我的長圖瀑布頁加載效率又可以直接爆表了！📈💤",
-        "讓網頁內容如同浩瀚長河般順滑流淌。點開大瀑布頁作品看看完美的對位吧！💻",
-        "長圖排版的核心秘密：掌握在指尖上下滑動時的視覺呼吸、高低對比與精準留白！📜"
-      ]
-    },
-    "電商產品銷售圖": {
-      name: "元氣橘橘",
-      role: "千萬流量銷售爆發大咖",
-      imageDriveId: "1ZqwEVdSgE6ClGKJ4sZj-Cgn2q25AInK6", // 03.png
-      glowColor: "from-orange-500/25 to-red-500/20 shadow-[0_0_50px_rgba(249,115,22,0.25)]",
-      dialogues: [
-        "哇！驚喜亮相！我是爆單智多星橘橘！大眼睛 03.png 可愛姿勢是我今天的元氣象徵！🍊🛒",
-        "高端電商詳情頁的核心密碼：高反差強烈視覺抓睛 + 3秒刺痛購買需求的痛點排版！💥",
-        "每一個微渲染產品大特寫、每一道霓虹廣告，都是點石成金、拉爆轉化率的祕訣！✨",
-        "看我如何用大氣非凡的排版，幫最頂級的產品包裝出月銷破萬的輝煌淘金之路！🚀"
-      ],
-      idles: [
-        "電商的海洋中，漂亮的詳情才能誘發顧客在停留的黃金十秒裡點下成交按鈕！🔥",
-        "痛點狠、吸睛準、版面淨、美感硬！電商美編不單是精緻，更是頂尖的視覺行銷！📊",
-        "來杯柑橘蘇打汽水～一起看看這些把品牌質感與千萬銷能實力完美糅合的小說詳情頁吧！🍹"
-      ]
-    },
-    "賣場Banner橫幅廣告": {
-      name: "彩霓 MuMㄠ",
-      role: "流量橫幅廣告吸睛專家",
-      imageDriveId: "1vw2VmkxKGl_GR50UtJ2dmHqa4kuIIC4d", // 拷貝.png
-      glowColor: "from-pink-500/25 to-rose-500/20 shadow-[0_0_50px_rgba(236,72,153,0.25)]",
-      dialogues: [
-        "嘿！雙手大讚！這是我的『拷貝雙讚影分身』姿勢！我是極光 Banner 視覺魔術師！🎨⚡",
-        "賣場橫幅的最大挑戰：在有限而扁長的區塊中，調和立體炫目字體去極速抓住讀者目光！👁️",
-        "叮！促銷高霓閃爍！讓你的賣場點擊率飆升到最滿，吸金力高高掛起！💰💥",
-        "點擊橫幅展示！每一個完美的流彩色調與浮雕質感，都埋伏著全渠道營銷的心得喔！🔥"
-      ],
-      idles: [
-        "驚豔是第一眼，購買是落點。我的 Banner 會讓點擊這件事變成手指肌肉的本能！⚡",
-        "雖然地方窄扁，但透過精準的三維排布與氣質漸層，依舊能製造澎湃空間感！💎",
-        "一張高大上的促銷 Banner 就是全旗艦店的冠冕，點亮它，銷量不容置疑！📈"
-      ]
-    },
-    "影音與多媒體設計": {
-      name: "回眸編導 MuMㄠ",
-      role: "多媒體動態後期總監",
-      imageDriveId: "1ODr1QBQ77gaEzfbk7VZzvATOMILnyLtJ", // 爛泥後.png
-      glowColor: "from-indigo-500/25 to-violet-500/20 shadow-[0_0_50px_rgba(99,102,241,0.25)]",
-      dialogues: [
-        "喀嚓！動態回眸定格！我是多媒體大師 MuMㄠ！這是我的『回首回眸坐姿』！🎥🎵",
-        "畫面要咬住旋律，轉場卡點、重低音共鳴，這才叫具有生命力的動態美學！🎬",
-        "從分鏡情境腳本、精編後期字效到 AI 智能音軌拼接，為企業品牌注入大片級震撼！✨",
-        "戴上大音響吧！進去欣賞我的視頻作品集，保證一秒點燃並引爆你的视聽官感！🍿🚀"
-      ],
-      idles: [
-        "節奏卡點、動感炫幕。每一個鏡頭對齐轉場，都是我們對電影品質不懈的深耕！🎞️",
-        "好的影像短片超越一切無力的言辭，用故事直逼心扉，這就是多媒體的魔法！💖",
-        "回首再回首，靈光一現、神作誕生。今天也陪我一起，靜靜感受光影留聲的澎湃吧！🌿"
-      ]
-    }
-  }), []);
-
   const currentMascot = useMemo(() => {
     return categoryMascotMap[selectedCategory] || categoryMascotMap["All"];
-  }, [selectedCategory, categoryMascotMap]);
+  }, [selectedCategory]);
 
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -809,7 +557,8 @@ export default function App() {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [selectedCategory, items]);
+  }, []);
+
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [isWorkflowOpen, setIsWorkflowOpen] = useState<boolean>(false);
   const [isContactCardOpen, setIsContactCardOpen] = useState<boolean>(false);
@@ -837,6 +586,77 @@ export default function App() {
     setTimeout(() => {
       setCopiedPromptId(null);
     }, 2000);
+  };
+
+  const lastSoundTime = React.useRef<number>(0);
+  const lastPawPos = React.useRef<{ x: number; y: number; isLeft: boolean }>({ x: 0, y: 0, isLeft: false });
+  const [dragPawprints, setDragPawprints] = useState<{ id: number; x: number; y: number; rotate: number }[]>([]);
+  const pendingPawprintsRef = React.useRef<{ x: number; y: number; rotate: number }[]>([]);
+  const dragRafIdRef = React.useRef<number | null>(null);
+
+  const handleCanDrag = (event: any, info: any) => {
+    const now = performance.now();
+    
+    // 1. Play clinking sound throttled to 200ms and scheduled within requestAnimationFrame
+    if (now - lastSoundTime.current > 200) {
+      lastSoundTime.current = now;
+      requestAnimationFrame(() => {
+        try {
+          playCanClinkSound();
+        } catch (e) {}
+      });
+    }
+
+    // 2. Add soft drag pawprints
+    const px = info.point.x;
+    const py = info.point.y;
+    
+    // If it's the first coordinate, just record it
+    if (lastPawPos.current.x === 0 && lastPawPos.current.y === 0) {
+      lastPawPos.current = { x: px, y: py, isLeft: false };
+      return;
+    }
+
+    const dx = px - lastPawPos.current.x;
+    const dy = py - lastPawPos.current.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist > 28) {
+      const nextIsLeft = !lastPawPos.current.isLeft;
+      const angle = nextIsLeft ? -15 : 15;
+      const newRotate = angle + (Math.random() * 8 - 4);
+      
+      lastPawPos.current = { x: px, y: py, isLeft: nextIsLeft };
+
+      // Buffer pawprint coordinates instead of updating React state synchronously
+      pendingPawprintsRef.current.push({
+        x: px,
+        y: py,
+        rotate: newRotate
+      });
+
+      // Schedule high-performance state update on next render frame
+      if (dragRafIdRef.current === null) {
+        dragRafIdRef.current = requestAnimationFrame(() => {
+          if (pendingPawprintsRef.current.length > 0) {
+            const nowTime = Date.now();
+            const newItems = pendingPawprintsRef.current.map((p, idx) => ({
+              id: nowTime + Math.random() + idx,
+              x: p.x,
+              y: p.y,
+              rotate: p.rotate
+            }));
+            pendingPawprintsRef.current = [];
+
+            setDragPawprints((prev) => [
+              ...prev,
+              ...newItems
+            ].slice(-15)); // Optimized limit to 15 to significantly reduce DOM weight and GC pressure
+          }
+          dragRafIdRef.current = null;
+        });
+      }
+    }
   };
 
   // Hero white cat character interaction states
@@ -991,6 +811,14 @@ export default function App() {
     }
   });
 
+  const [gravityRestoreUnlocked, setGravityRestoreUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_gravity_restore") === "true";
+    } catch {
+      return false;
+    }
+  });
+
   const canX = useMotionValue(0);
   const canY = useMotionValue(0);
   const canRotate = useMotionValue(0);
@@ -1055,51 +883,7 @@ export default function App() {
     });
   };
 
-  const lastSoundTime = React.useRef<number>(0);
-  const lastPawPos = React.useRef<{ x: number; y: number; isLeft: boolean }>({ x: 0, y: 0, isLeft: false });
-  const [dragPawprints, setDragPawprints] = useState<{ id: number; x: number; y: number; rotate: number }[]>([]);
 
-  const handleCanDrag = (event: any, info: any) => {
-    const now = Date.now();
-    // 1. Play clinking sound throttled to 200ms
-    if (now - lastSoundTime.current > 200) {
-      try {
-        playCanClinkSound();
-      } catch (e) {}
-      lastSoundTime.current = now;
-    }
-
-    // 2. Add soft drag pawprints
-    const px = info.point.x;
-    const py = info.point.y;
-    
-    // If it's the first coordinate, just record it
-    if (lastPawPos.current.x === 0 && lastPawPos.current.y === 0) {
-      lastPawPos.current = { x: px, y: py, isLeft: false };
-      return;
-    }
-
-    const dx = px - lastPawPos.current.x;
-    const dy = py - lastPawPos.current.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    if (dist > 28) {
-      const nextIsLeft = !lastPawPos.current.isLeft;
-      const angle = nextIsLeft ? -15 : 15;
-      
-      setDragPawprints((prev) => [
-        ...prev,
-        {
-          id: now + Math.random(),
-          x: px,
-          y: py,
-          rotate: angle + (Math.random() * 8 - 4),
-        }
-      ].slice(-25)); // limit total active to prevent any lag
-
-      lastPawPos.current = { x: px, y: py, isLeft: nextIsLeft };
-    }
-  };
 
   const triggerPremiumCanUnlock = () => {
     try {
@@ -3680,6 +3464,15 @@ export default function App() {
           triggerMascotSpeech={triggerMascotDialogue}
           onInteract={incrementInteraction}
           onBalloonFlyAway={triggerBalloonAchievement}
+          onGravityRestore={() => {
+            if (!gravityRestoreUnlocked) {
+              setGravityRestoreUnlocked(true);
+              try {
+                localStorage.setItem("mumu_ach_gravity_restore", "true");
+              } catch (e) {}
+              triggerAchievementUnlock("重力掌控者 🌌");
+            }
+          }}
         />
 
         {/* 回到最上方按鈕 */}
@@ -4827,6 +4620,44 @@ export default function App() {
                         {magicMumuUnlocked
                           ? "「噗哩噗哩——變身！解鎖神秘隱藏的魔法姆貓姿態，獲得夢幻幸運加持！」"
                           : "（快速連擊 HERO 頁面的白貓 MuMㄠ 姆貓，解鎖變身姿態）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 12: 重力掌控者 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    gravityRestoreUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      gravityRestoreUnlocked 
+                        ? "bg-gradient-to-br from-cyan-500 to-indigo-600 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Zap className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {gravityRestoreUnlocked ? "「重力掌控者」🌌" : "「重力掌控者」🔒"}
+                        </span>
+                        {gravityRestoreUnlocked && (
+                          <span className="text-[8px] font-bold text-cyan-400 uppercase tracking-wider bg-cyan-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {gravityRestoreUnlocked
+                          ? "「重建崩塌的世界！成功解鎖『扭轉乾坤、重塑秩序』之神聖履歷治癒護佑！」"
+                          : "（點擊履歷右上角進行 [重力測試]，再點擊 [魔法復原] 重建履歷）"}
                       </p>
                     </div>
                   </div>

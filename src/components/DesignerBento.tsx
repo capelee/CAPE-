@@ -61,6 +61,7 @@ interface DesignerBentoProps {
   triggerMascotSpeech?: (dialogue: string) => void;
   onInteract?: () => void;
   onBalloonFlyAway?: () => void;
+  onGravityRestore?: () => void;
 }
 
 export function DesignerBento({ 
@@ -71,7 +72,8 @@ export function DesignerBento({
   setIsWorkflowOpen,
   triggerMascotSpeech,
   onInteract,
-  onBalloonFlyAway
+  onBalloonFlyAway,
+  onGravityRestore
 }: DesignerBentoProps) {
   const [localCopied, setLocalCopied] = useState<boolean>(false);
   const [shakeActive, setShakeActive] = useState<boolean>(false);
@@ -94,6 +96,9 @@ export function DesignerBento({
       setShakeActive(false);
       if (triggerMascotSpeech) {
         triggerMascotSpeech("重力場修復完成！✨ 呼～差點以為我的履歷要永遠變成廢紙堆了！😹");
+      }
+      if (onGravityRestore) {
+        onGravityRestore();
       }
     } else {
       setShakeActive(true);
