@@ -12,9 +12,15 @@ import {
   GraduationCap,
   Award,
   Zap,
+  Clock,
+  Palette,
+  BookOpen,
   Globe,
   Printer,
   Camera,
+  Heart,
+  Crown,
+  Share2,
   Video,
   ChevronLeft,
   ChevronRight,
@@ -41,12 +47,13 @@ import {
   SlidersHorizontal,
   FileText
 } from "lucide-react";
-import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
+import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring, animate } from "motion/react";
 import { PortfolioItem } from "./types";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
 import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl } from "./utils";
 import { animaleseSynth } from "./utils/animalese";
+import { playMeowSound, playCanClinkSound, catPurr } from "./utils/audioEffects";
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
 
@@ -865,6 +872,591 @@ export default function App() {
   const [isMagicTransformed, setIsMagicTransformed] = useState<boolean>(false);
   const [showRainbowFlash, setShowRainbowFlash] = useState<boolean>(false);
 
+  // 姆貓互動統計狀態（輕量級狀態管理與 LocalStorage 持久化）
+  const [interactionCount, setInteractionCount] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_interaction_count");
+      return saved ? parseInt(saved, 10) : 0;
+    } catch {
+      return 0;
+    }
+  });
+  const [isCertModalOpen, setIsCertModalOpen] = useState<boolean>(false);
+
+  React.useEffect(() => {
+    try {
+      localStorage.setItem("mumu_interaction_count", interactionCount.toString());
+    } catch (e) {
+      // ignore
+    }
+  }, [interactionCount]);
+
+  // 榮譽成就解鎖狀態管理
+  const [midnightUnlocked, setMidnightUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_midnight") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [visitedThemes, setVisitedThemes] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_visited_themes");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+      return [theme]; // 預設加入目前主題
+    } catch {
+      return [theme];
+    }
+  });
+
+  const [fortuneCount, setFortuneCount] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_fortune_count");
+      return saved ? parseInt(saved, 10) : 0;
+    } catch {
+      return 0;
+    }
+  });
+
+  const [viewedProjects, setViewedProjects] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_viewed_projects");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+      return [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [zenUnlocked, setZenUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_zen") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [socialUnlocked, setSocialUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_social") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [slackerUnlocked, setSlackerUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_slacker") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [aiWizardUnlocked, setAiWizardUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_ai_wizard") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [premiumCanUnlocked, setPremiumCanUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_premium_can") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [balloonUnlocked, setBalloonUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_balloon") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [magicMumuUnlocked, setMagicMumuUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_magic_mumu") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const canX = useMotionValue(0);
+  const canY = useMotionValue(0);
+  const canRotate = useMotionValue(0);
+  const mascotRef = React.useRef<HTMLDivElement>(null);
+  const canRef = React.useRef<HTMLDivElement>(null);
+  const canPhysicsId = React.useRef<number | null>(null);
+
+  const [canFlavor, setCanFlavor] = useState<"tuna" | "chicken" | "luxury">("luxury");
+
+  const FLAVOR_PHYSICS = {
+    tuna: {
+      name: "鮮嫩鮪魚罐",
+      emoji: "🐟",
+      elasticity: 0.76,
+      rotationalInertia: 1.45,
+      topLidFill: "#3B82F6",
+      topLidStroke: "#1D4ED8",
+      innerLidFill: "#60A5FA",
+      bodyGradient: "metallicBlueGradient",
+      labelFill: "#2563EB",
+      labelPatternFill: "#EFF6FF"
+    },
+    chicken: {
+      name: "香嫩雞肉罐",
+      emoji: "🐓",
+      elasticity: 0.52,
+      rotationalInertia: 0.85,
+      topLidFill: "#EF4444",
+      topLidStroke: "#B91C1C",
+      innerLidFill: "#F87171",
+      bodyGradient: "metallicRedGradient",
+      labelFill: "#DC2626",
+      labelPatternFill: "#FEF2F2"
+    },
+    luxury: {
+      name: "極致豪華罐",
+      emoji: "👑",
+      elasticity: 0.88,
+      rotationalInertia: 2.3,
+      topLidFill: "#FBBF24",
+      topLidStroke: "#D97706",
+      innerLidFill: "#FCD34D",
+      bodyGradient: "metallicGoldGradient",
+      labelFill: "#F59E0B",
+      labelPatternFill: "#FEF3C7"
+    }
+  };
+
+  const handleCanDragStart = () => {
+    if (canPhysicsId.current !== null) {
+      cancelAnimationFrame(canPhysicsId.current);
+      canPhysicsId.current = null;
+    }
+  };
+
+  const handleCanTap = () => {
+    // Cycle flavor: tuna -> chicken -> luxury -> tuna
+    setCanFlavor(prev => {
+      if (prev === "tuna") return "chicken";
+      if (prev === "chicken") return "luxury";
+      return "tuna";
+    });
+  };
+
+  const lastSoundTime = React.useRef<number>(0);
+  const lastPawPos = React.useRef<{ x: number; y: number; isLeft: boolean }>({ x: 0, y: 0, isLeft: false });
+  const [dragPawprints, setDragPawprints] = useState<{ id: number; x: number; y: number; rotate: number }[]>([]);
+
+  const handleCanDrag = (event: any, info: any) => {
+    const now = Date.now();
+    // 1. Play clinking sound throttled to 200ms
+    if (now - lastSoundTime.current > 200) {
+      try {
+        playCanClinkSound();
+      } catch (e) {}
+      lastSoundTime.current = now;
+    }
+
+    // 2. Add soft drag pawprints
+    const px = info.point.x;
+    const py = info.point.y;
+    
+    // If it's the first coordinate, just record it
+    if (lastPawPos.current.x === 0 && lastPawPos.current.y === 0) {
+      lastPawPos.current = { x: px, y: py, isLeft: false };
+      return;
+    }
+
+    const dx = px - lastPawPos.current.x;
+    const dy = py - lastPawPos.current.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist > 28) {
+      const nextIsLeft = !lastPawPos.current.isLeft;
+      const angle = nextIsLeft ? -15 : 15;
+      
+      setDragPawprints((prev) => [
+        ...prev,
+        {
+          id: now + Math.random(),
+          x: px,
+          y: py,
+          rotate: angle + (Math.random() * 8 - 4),
+        }
+      ].slice(-25)); // limit total active to prevent any lag
+
+      lastPawPos.current = { x: px, y: py, isLeft: nextIsLeft };
+    }
+  };
+
+  const triggerPremiumCanUnlock = () => {
+    try {
+      playMeowSound();
+      setTimeout(() => {
+        try {
+          playMeowSound();
+        } catch (e) {}
+      }, 150);
+      setTimeout(() => {
+        try {
+          playMeowSound();
+        } catch (e) {}
+      }, 300);
+    } catch (e) {}
+
+    // Trigger cat purr sound for satisfied Mumao
+    try {
+      catPurr.start();
+      setTimeout(() => {
+        try {
+          catPurr.stop();
+        } catch (err) {}
+      }, 3500);
+    } catch (e) {}
+
+    const explosionParticles = Array.from({ length: 55 }).map((_, i) => ({
+      id: Date.now() + i + Math.random(),
+      x: 180 + (Math.random() * 200 - 100),
+      y: 180 + (Math.random() * 200 - 100),
+      emoji: ["🥫", "🐟", "🐾", "✨", "💖", "⭐️", "👑", "🌈", "😻"][Math.floor(Math.random() * 9)],
+    }));
+    setHeroParticles((prev) => [...prev, ...explosionParticles].slice(-100));
+
+    if (!premiumCanUnlocked) {
+      setPremiumCanUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_premium_can", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("極致奢華罐罐奉納 🥫");
+    }
+
+    setHeroDialogue("喵嗚！太美味了吧！這就是極致奢華的貓罐罐奉納嗎？😻🥫✨ 本教主心情大好，特許你擁有無上福報、諸願成就！🐾");
+    setIsHeroSpeaking(true);
+    setShowHeroDialogue(true);
+  };
+
+  const handleCanDragEnd = (event: any, info: any) => {
+    // Reset paw track
+    lastPawPos.current = { x: 0, y: 0, isLeft: false };
+
+    if (!canRef.current) return;
+
+    // Check if it hit the mascot
+    if (mascotRef.current) {
+      const rect = mascotRef.current.getBoundingClientRect();
+      const px = info.point.x;
+      const py = info.point.y;
+      
+      const padding = 15;
+      if (
+        px >= rect.left - padding &&
+        px <= rect.right + padding &&
+        py >= rect.top - padding &&
+        py <= rect.bottom + padding
+      ) {
+        triggerPremiumCanUnlock();
+        animate(canX, 0, { type: "spring", stiffness: 200, damping: 18 });
+        animate(canY, 0, { type: "spring", stiffness: 200, damping: 18 });
+        return;
+      }
+    }
+
+    // Custom Physics Loop for bouncing off the edge of screen with angular momentum
+    const flavorConfig = FLAVOR_PHYSICS[canFlavor];
+    const elasticity = flavorConfig.elasticity;
+    const rotFactor = flavorConfig.rotationalInertia;
+
+    const rect = canRef.current.getBoundingClientRect();
+    const curX = canX.get();
+    const curY = canY.get();
+    const curRot = canRotate.get();
+    
+    // Original (0, 0) position of the can in viewport coordinates
+    const startX = rect.left - curX;
+    const startY = rect.top - curY;
+    const canWidth = rect.width || 48;
+    const canHeight = rect.height || 48;
+
+    // Get velocity from framer-motion (pixels per second)
+    const vx = info.velocity.x;
+    const vy = info.velocity.y;
+
+    // Convert from px/sec to px/frame (assuming ~60fps)
+    let velX = vx / 60;
+    let velY = vy / 60;
+
+    // Initial angular velocity (deg per frame) based on throw speed
+    let rotVel = velX * 0.55 * rotFactor;
+
+    let posX = curX;
+    let posY = curY;
+    let posRot = curRot;
+
+    // If initial velocity is extremely small, we don't start animation loop
+    if (Math.sqrt(velX * velX + velY * velY) < 1.0) {
+      return;
+    }
+
+    let lastFrameTime = performance.now();
+
+    const updatePhysics = (timestamp: number) => {
+      const dt = Math.min((timestamp - lastFrameTime) / 16.666, 3); // cap deltaTime
+      lastFrameTime = timestamp;
+
+      posX += velX * dt;
+      posY += velY * dt;
+      posRot += rotVel * dt;
+
+      // Viewport boundaries relative to start position
+      const margin = 10;
+      const minX = -startX + margin;
+      const maxX = window.innerWidth - startX - canWidth - margin;
+      const minY = -startY + margin;
+      const maxY = window.innerHeight - startY - canHeight - margin;
+
+      let bounced = false;
+
+      // When bouncing off walls, surface friction translates linear speed into rotation (angular momentum)
+      if (posX < minX) {
+        posX = minX;
+        velX = -velX * elasticity; // rebound elastic coefficient
+        rotVel += velY * 1.5 * rotFactor; // roll downward/upward based on vertical velocity
+        bounced = true;
+      } else if (posX > maxX) {
+        posX = maxX;
+        velX = -velX * elasticity;
+        rotVel -= velY * 1.5 * rotFactor; // opposite direction friction on right side
+        bounced = true;
+      }
+
+      if (posY < minY) {
+        posY = minY;
+        velY = -velY * elasticity;
+        rotVel -= velX * 1.5 * rotFactor; // roll left/right based on horizontal velocity
+        bounced = true;
+      } else if (posY > maxY) {
+        posY = maxY;
+        velY = -velY * elasticity;
+        rotVel += velX * 1.5 * rotFactor;
+        bounced = true;
+      }
+
+      if (bounced) {
+        try {
+          playCanClinkSound();
+        } catch (e) {}
+      }
+
+      canX.set(posX);
+      canY.set(posY);
+      canRotate.set(posRot);
+
+      // Apply drag friction (damping) for linear and angular speed
+      velX *= Math.pow(0.965, dt);
+      velY *= Math.pow(0.965, dt);
+      rotVel *= Math.pow(0.955, dt); // rotational decay
+
+      // Stop loop if it has slowed down significantly
+      const linearSpeed = Math.sqrt(velX * velX + velY * velY);
+      const angularSpeed = Math.abs(rotVel);
+      if (linearSpeed > 0.18 || angularSpeed > 0.18) {
+        canPhysicsId.current = requestAnimationFrame(updatePhysics);
+      } else {
+        canPhysicsId.current = null;
+      }
+    };
+
+    if (canPhysicsId.current !== null) {
+      cancelAnimationFrame(canPhysicsId.current);
+    }
+    canPhysicsId.current = requestAnimationFrame(updatePhysics);
+  };
+
+  const [unlockedAchToast, setUnlockedAchToast] = useState<string | null>(null);
+  const toastTimeoutRef = React.useRef<any>(null);
+
+  const triggerAchievementUnlock = (name: string) => {
+    setUnlockedAchToast(name);
+    try {
+      playMeowSound();
+    } catch (e) {}
+
+    // 產生華麗的慶祝粒子
+    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
+      id: Date.now() + i + Math.random(),
+      x: window.innerWidth / 2 + (Math.random() * 320 - 160),
+      y: window.innerHeight / 2 + (Math.random() * 320 - 160),
+      emoji: ["✨", "🏆", "🌟", "🐾", "🎉", "👑", "💖"][Math.floor(Math.random() * 7)],
+    }));
+    setHeroParticles((prev) => [...prev, ...newParticles].slice(-60));
+
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    toastTimeoutRef.current = setTimeout(() => {
+      setUnlockedAchToast(null);
+    }, 4500);
+  };
+
+  const incrementInteraction = () => {
+    setInteractionCount((prev) => {
+      const next = prev + 1;
+      
+      // 1. 檢測深夜擼貓者條件
+      const hour = new Date().getHours();
+      // 深夜時間：23:00 - 04:00 (即 hour >= 23 或是 hour < 4)
+      if (hour >= 23 || hour < 4) {
+        if (!midnightUnlocked) {
+          setMidnightUnlocked(true);
+          try {
+            localStorage.setItem("mumu_ach_midnight", "true");
+          } catch (e) {}
+          triggerAchievementUnlock("深夜擼貓者 🐾");
+        }
+      }
+
+      return next;
+    });
+  };
+
+  // 檢測極意摸魚之神條件 (累計達 100 次以上)
+  React.useEffect(() => {
+    if (interactionCount >= 100 && !slackerUnlocked) {
+      setSlackerUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_slacker", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("極意摸魚之神 👑");
+    }
+  }, [interactionCount, slackerUnlocked]);
+
+  // 檢測靜心禪修者條件 (停留滿 3 分鐘)
+  React.useEffect(() => {
+    if (zenUnlocked) return;
+    const timer = setTimeout(() => {
+      setZenUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_zen", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("靜心禪修者 🧘‍♀️");
+    }, 180000); // 180,000ms = 3 minutes
+    return () => clearTimeout(timer);
+  }, [zenUnlocked]);
+
+  // 檢測 AI 協同巫師條件 (打開並詳細閱讀 AI 設計輔助工作流)
+  React.useEffect(() => {
+    if (isWorkflowOpen && !aiWizardUnlocked) {
+      setAiWizardUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_ai_wizard", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("AI 協同巫師 ✨");
+    }
+  }, [isWorkflowOpen, aiWizardUnlocked]);
+
+  // 社交宣傳使者觸發
+  const handleSocialClick = () => {
+    if (!socialUnlocked) {
+      setSocialUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_social", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("社交宣傳使者 🐾");
+    }
+  };
+
+  // 飛天姆貓成就觸發
+  const triggerBalloonAchievement = () => {
+    if (!balloonUnlocked) {
+      setBalloonUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_balloon", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("飛天姆貓 🎈");
+    }
+  };
+
+  // 2. 檢測時空穿梭大師條件 (體驗完所有主題)
+  React.useEffect(() => {
+    if (!visitedThemes.includes(theme)) {
+      const updated = [...visitedThemes, theme];
+      setVisitedThemes(updated);
+      try {
+        localStorage.setItem("mumu_visited_themes", JSON.stringify(updated));
+      } catch (e) {}
+      
+      // 如果完整體驗了 3 個主題，則解鎖成就
+      if (updated.length === 3) {
+        const alreadyThemeUnlocked = localStorage.getItem("mumu_ach_theme") === "true";
+        if (!alreadyThemeUnlocked) {
+          try {
+            localStorage.setItem("mumu_ach_theme", "true");
+          } catch (e) {}
+          triggerAchievementUnlock("時空穿梭大師 🎨");
+        }
+      }
+    }
+  }, [theme, visitedThemes]);
+
+  // 3. 檢測命運之友條件 (占卜/求籤達 3 次)
+  const handleFortuneConsult = () => {
+    setFortuneCount((prev) => {
+      const next = prev + 1;
+      try {
+        localStorage.setItem("mumu_fortune_count", next.toString());
+      } catch (e) {}
+      
+      if (next === 3) {
+        const alreadyFortuneUnlocked = localStorage.getItem("mumu_ach_fortune") === "true";
+        if (!alreadyFortuneUnlocked) {
+          try {
+            localStorage.setItem("mumu_ach_fortune", "true");
+          } catch (e) {}
+          triggerAchievementUnlock("命運之友 🔮");
+        }
+      }
+      return next;
+    });
+  };
+
+  // 4. 檢測作品鑑賞家條件 (點擊並深入閱讀 5 個以上作品詳細卡片)
+  const handleProjectView = (projectId: string) => {
+    if (!viewedProjects.includes(projectId)) {
+      const updated = [...viewedProjects, projectId];
+      setViewedProjects(updated);
+      try {
+        localStorage.setItem("mumu_viewed_projects", JSON.stringify(updated));
+      } catch (e) {}
+      
+      if (updated.length === 5) {
+        const alreadyPortfolioUnlocked = localStorage.getItem("mumu_ach_portfolio") === "true";
+        if (!alreadyPortfolioUnlocked) {
+          try {
+            localStorage.setItem("mumu_ach_portfolio", "true");
+          } catch (e) {}
+          triggerAchievementUnlock("作品鑑賞家 📖");
+        }
+      }
+    }
+  };
+
+  // 監聽詳細卡片開啟，自動觸發閱讀進度
+  React.useEffect(() => {
+    if (activeModalItem?.id) {
+      handleProjectView(activeModalItem.id);
+    }
+  }, [activeModalItem]);
+
   // 控制台（F12）隱藏罐罐彩蛋 🥫
   React.useEffect(() => {
     console.log(
@@ -969,7 +1561,7 @@ export default function App() {
     "在右下角還有我們的 12 隻專業恐龍與吉祥物戰隊，也可以找他們聊天喔！🦖",
     "我的原創 IP 插畫音樂祭粉專開張囉！歡迎點擊氣泡下方的前往按鈕追蹤 MuMㄠ（姆貓教）的 IG 吧！🎸🐾",
     "對本教主「快速連續點擊 15 次」，就能解鎖神秘隱藏的「魔法姆貓」夢幻變身姿態喔！✨🪄🐾",
-    "想要測測今天的運勢與求籤開運嗎？點選下方按鈕可以直接導引至最底下的「今日姆貓運勢罐罐」求得吉籤喔！⛩️🥫🔮"
+    "想要測測今天的運勢與求籤開運嗎？點選下方按鈕可以直接導引至最底下的「今日姆貓運勢」求得吉籤喔！⛩️🥫🔮"
   ], []);
 
   const lastHeroClickTimeRef = React.useRef<number>(0);
@@ -1010,6 +1602,9 @@ export default function App() {
   };
 
   const handleHeroClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // 統計使用者在 Hero Section 的互動次數
+    incrementInteraction();
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -1040,6 +1635,14 @@ export default function App() {
       setShowRainbowFlash(true);
       setMagicClickTimes([]);
       playMagicDingSound();
+
+      if (!magicMumuUnlocked) {
+        setMagicMumuUnlocked(true);
+        try {
+          localStorage.setItem("mumu_ach_magic_mumu", "true");
+        } catch (e) {}
+        triggerAchievementUnlock("魔法姆貓 🪄");
+      }
 
       // 彩虹光芒包裹 1.2 秒後淡出
       setTimeout(() => {
@@ -1627,6 +2230,32 @@ export default function App() {
         : "bg-[#070707] text-[#E5E7EB] selection:bg-amber-500/20 selection:text-amber-300"
     }`}>
       
+      {/* 拖曳罐罐時產生的淡雅貓掌印軌跡 */}
+      <AnimatePresence>
+        {dragPawprints.map((p) => (
+          <motion.div
+            key={p.id}
+            initial={{ opacity: 0.5, scale: 0.5 }}
+            animate={{ opacity: [0.5, 0.45, 0], scale: [0.5, 0.75, 0.45] }}
+            exit={{ opacity: 0, scale: 0.3 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            onAnimationComplete={() => {
+              setDragPawprints((prev) => prev.filter((item) => item.id !== p.id));
+            }}
+            className="fixed pointer-events-none z-[9999] text-pink-400/40 select-none text-2xl flex items-center justify-center"
+            style={{
+              left: p.x,
+              top: p.y,
+              transform: `translate(-50%, -50%) rotate(${p.rotate}deg)`,
+              width: 24,
+              height: 24
+            }}
+          >
+            🐾
+          </motion.div>
+        ))}
+      </AnimatePresence>
+
       {/* 全域 Loading Bar */}
       <AnimatePresence>
         {isLoading && (
@@ -1698,6 +2327,8 @@ export default function App() {
               onCloseExternalBubble={() => {
                 setShowNavDialogue(false);
               }}
+              onInteract={incrementInteraction}
+              onBalloonFlyAway={triggerBalloonAchievement}
             />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -1911,6 +2542,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className={themeToggleClass}
                 title="訪問 Instagram (姆貓教)"
+                onClick={handleSocialClick}
               >
                 <Instagram className={`h-4 w-4 ${
                   theme === "sepia" 
@@ -2051,6 +2683,7 @@ export default function App() {
                       href={profile.pdfPortfolioUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={incrementInteraction}
                       className={`relative group px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 ${
                         theme === "sepia"
                           ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
@@ -2093,6 +2726,7 @@ export default function App() {
           {/* Right Mascot column */}
           <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4 relative z-50">
             <motion.div
+              ref={mascotRef}
               initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
               whileHover={{ scale: 1.02 }}
@@ -2350,7 +2984,10 @@ export default function App() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md hover:shadow-pink-500/10 cursor-pointer bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSocialClick();
+                            }}
                           >
                             <Instagram className="h-3.5 w-3.5 shrink-0" />
                             <span>前往 MuMㄠ 教主 IG 🐾</span>
@@ -2528,6 +3165,97 @@ export default function App() {
               </motion.div>
             </motion.div>
           </div>
+
+          {/* Draggable cat food can Easter Egg in the corner of the Hero section */}
+          <motion.div
+            ref={canRef}
+            style={{ x: canX, y: canY, rotate: canRotate, touchAction: "none" }}
+            drag
+            dragConstraints={{ left: -1500, right: 1500, top: -1500, bottom: 1500 }}
+            dragElastic={0.15}
+            dragMomentum={false}
+            onDragStart={handleCanDragStart}
+            onDrag={handleCanDrag}
+            onDragEnd={handleCanDragEnd}
+            onTap={handleCanTap}
+            whileHover={{ scale: 1.1 }}
+            whileDrag={{ scale: 1.25, rotate: 12, cursor: "grabbing" }}
+            className="absolute top-2 right-4 lg:top-0 lg:right-0 z-50 cursor-grab select-none p-1.5 active:cursor-grabbing group"
+          >
+            {/* Elegant flavor badge that appears on hover */}
+            <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-neutral-900/95 text-[10px] text-white font-medium px-2 py-0.5 rounded shadow-lg border border-white/10 pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              {FLAVOR_PHYSICS[canFlavor].emoji} {FLAVOR_PHYSICS[canFlavor].name}
+            </span>
+
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 drop-shadow-md">
+              {/* Top lid outer rim */}
+              <ellipse cx="24" cy="14" rx="18" ry="6" fill={FLAVOR_PHYSICS[canFlavor].topLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" />
+              {/* Inner lid recess */}
+              <ellipse cx="24" cy="14" rx="14" ry="4.5" fill={FLAVOR_PHYSICS[canFlavor].innerLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1" />
+              
+              {/* Premium metal pull-tab ring */}
+              <path d="M 24,14 C 24,12 21,10 19,11 C 17,12 17,14 19,15 C 21,16 24,14 24,14" fill={FLAVOR_PHYSICS[canFlavor].innerLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1" />
+              <circle cx="19" cy="13" r="1.5" fill="#FEF3C7" />
+
+              {/* Cylindrical metallic body with smooth gradient shading */}
+              <path d="M 6,14 A 18,6 0 0 0 42,14 L 42,32 A 18,6 0 0 1 6,32 Z" fill={`url(#${FLAVOR_PHYSICS[canFlavor].bodyGradient})`} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" strokeLinejoin="round" />
+              
+              {/* Bottom 3D curved shadow and rim */}
+              <ellipse cx="24" cy="32" rx="18" ry="6" fill={FLAVOR_PHYSICS[canFlavor].topLidStroke} opacity="0.35" />
+              <ellipse cx="24" cy="32" rx="18" ry="6" fill="none" stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" />
+
+              {/* Minimalist wrapper sleeve label */}
+              <path d="M 6,20 A 18,5 0 0 0 42,20 L 42,28 A 18,5 0 0 1 6,28 Z" fill={FLAVOR_PHYSICS[canFlavor].labelFill} opacity="0.95" />
+              
+              {/* Custom patterns for each flavor */}
+              {canFlavor === "tuna" ? (
+                <>
+                  {/* Delicate minimalist vector fish */}
+                  <path d="M 18,24 C 21,21 24,21 27,24 L 29,22.5 L 29,25.5 Z" fill={FLAVOR_PHYSICS[canFlavor].labelPatternFill} />
+                  <circle cx="20" cy="23.5" r="0.6" fill="#1D4ED8" />
+                </>
+              ) : canFlavor === "chicken" ? (
+                <>
+                  {/* Delicate minimalist chicken drumstick/wing shape */}
+                  <circle cx="22" cy="24" r="2.2" fill={FLAVOR_PHYSICS[canFlavor].labelPatternFill} />
+                  <circle cx="24.5" cy="24.5" r="1.6" fill={FLAVOR_PHYSICS[canFlavor].labelPatternFill} />
+                  <path d="M 18,23.5 L 22.5,24.2" stroke={FLAVOR_PHYSICS[canFlavor].labelPatternFill} strokeWidth="1.8" strokeLinecap="round" />
+                </>
+              ) : (
+                <>
+                  {/* Elegant vector paw print detailing on the gold label */}
+                  <circle cx="24" cy="25" r="2.5" fill="#78350F" />
+                  <circle cx="21" cy="21.5" r="1" fill="#78350F" />
+                  <circle cx="24" cy="20.5" r="1" fill="#78350F" />
+                  <circle cx="27" cy="21.5" r="1" fill="#78350F" />
+                </>
+              )}
+
+              <defs>
+                <linearGradient id="metallicGoldGradient" x1="6" y1="23" x2="42" y2="23" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#B45309" />
+                  <stop offset="25%" stopColor="#FBBF24" />
+                  <stop offset="50%" stopColor="#FEF3C7" />
+                  <stop offset="75%" stopColor="#FBBF24" />
+                  <stop offset="100%" stopColor="#92400E" />
+                </linearGradient>
+                <linearGradient id="metallicBlueGradient" x1="6" y1="23" x2="42" y2="23" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#1E3A8A" />
+                  <stop offset="25%" stopColor="#3B82F6" />
+                  <stop offset="50%" stopColor="#93C5FD" />
+                  <stop offset="75%" stopColor="#3B82F6" />
+                  <stop offset="100%" stopColor="#172554" />
+                </linearGradient>
+                <linearGradient id="metallicRedGradient" x1="6" y1="23" x2="42" y2="23" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#7F1D1D" />
+                  <stop offset="25%" stopColor="#EF4444" />
+                  <stop offset="50%" stopColor="#FCA5A5" />
+                  <stop offset="75%" stopColor="#EF4444" />
+                  <stop offset="100%" stopColor="#450A0A" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </motion.div>
         </section>
 
         {/* 區塊標題 & 卡片過濾器 */}
@@ -2950,6 +3678,8 @@ export default function App() {
           onCopyEmail={copyEmailToClipboard} 
           setIsWorkflowOpen={setIsWorkflowOpen}
           triggerMascotSpeech={triggerMascotDialogue}
+          onInteract={incrementInteraction}
+          onBalloonFlyAway={triggerBalloonAchievement}
         />
 
         {/* 回到最上方按鈕 */}
@@ -2975,7 +3705,7 @@ export default function App() {
       {/* 底部靜態版權聲明 - 典雅日式和風神社風格 */}
       <footer 
         id="footer-fortune"
-        className={`mt-0 relative overflow-hidden transition-all duration-300 border-t ${
+        className={`mt-0 relative transition-all duration-300 border-t ${
           theme === "dark" 
             ? "bg-[#09090A] border-zinc-900 text-[#D4C4A8]" 
             : theme === "sepia"
@@ -3059,7 +3789,7 @@ export default function App() {
           }}
         />
 
-        <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-4 relative z-10">
+        <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-6 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-4 relative z-30">
           
           {/* 左側：和風簽名與落款印章 */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 text-center sm:text-left">
@@ -3090,9 +3820,202 @@ export default function App() {
             </div>
           </div>
           
-          {/* 中間：神社運勢御神籤 (Fortune Teller) */}
-          <div className="flex flex-col items-center justify-center gap-1.5">
-            <CatFortuneTeller theme={theme} />
+          {/* 中間：神社運勢御神籤 (Fortune Teller) & 姆貓成就御守 (Omamori) */}
+          <div 
+            style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
+            className="flex flex-col items-center justify-center gap-4 relative z-50 bg-transparent"
+          >
+            <div 
+              style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
+              className="flex items-end gap-10 md:gap-14 justify-center bg-transparent"
+            >
+              {/* 神社運勢御神籤 */}
+              <div 
+                style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
+                className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
+              >
+                <CatFortuneTeller theme={theme} onConsult={handleFortuneConsult} />
+                <span className={`text-[8px] font-serif tracking-[0.25em] uppercase opacity-35 select-none`}>
+                  御神籤
+                </span>
+              </div>
+              
+              {/* 姆貓成就御守 */}
+              <div 
+                style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
+                className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
+              >
+                {(() => {
+                  const totalAchievements = 11;
+                  const unlockedCount = [
+                    midnightUnlocked,
+                    visitedThemes.length >= 3,
+                    fortuneCount >= 3,
+                    viewedProjects.length >= 5,
+                    zenUnlocked,
+                    socialUnlocked,
+                    slackerUnlocked,
+                    aiWizardUnlocked,
+                    premiumCanUnlocked,
+                    balloonUnlocked,
+                    magicMumuUnlocked
+                  ].filter(Boolean).length;
+                  
+                  return (
+                    <motion.button
+                      onClick={() => {
+                        setIsCertModalOpen(true);
+                        try {
+                          playMeowSound();
+                        } catch (e) {}
+                      }}
+                      style={{ 
+                        transformOrigin: "top center", 
+                        background: "transparent", 
+                        backgroundColor: "transparent", 
+                        border: "none", 
+                        outline: "none", 
+                        boxShadow: "none" 
+                      }}
+                      whileHover={{ 
+                        rotate: [0, -8, 6, -5, 4, 0],
+                        scale: 1.05,
+                        transition: { duration: 1.2, ease: "easeInOut" }
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      type="button"
+                      id="btn_mumu_certified_badge"
+                      className="relative cursor-pointer group flex flex-col items-center bg-transparent border-0 p-0 outline-none shadow-none z-50"
+                    >
+                      {/* 完美和風御守本體 (將吊繩與圓點一併繪入 SVG 中，徹底免除外部 HTML 元素與 flex 容器對齊時產生的白塊與渲染問題) */}
+                      <div 
+                        style={{ background: "transparent", backgroundColor: "transparent" }}
+                        className="w-14 h-[94px] relative flex flex-col items-center justify-center pb-2 pt-[22px] gap-2.5 px-1.5 bg-transparent border-0"
+                      >
+                        
+                        {/* 背景 SVG (包含頂端吊繩、黃色圓點、御守本體，一體化渲染) */}
+                        <svg 
+                          width="56" 
+                          height="94" 
+                          viewBox="0 0 56 94" 
+                          style={{ background: "transparent", backgroundColor: "transparent" }}
+                          className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_4px_8px_rgba(0,0,0,0.45)] bg-transparent"
+                        >
+                          <defs>
+                            {/* 定義漸層色 */}
+                            <linearGradient id="omamori-sepia" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0%" stopColor="#A04035" />
+                              <stop offset="100%" stopColor="#732219" />
+                            </linearGradient>
+                            <linearGradient id="omamori-light" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0%" stopColor="#FDF2F4" />
+                              <stop offset="100%" stopColor="#F5D6DA" />
+                            </linearGradient>
+                            <linearGradient id="omamori-dark" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0%" stopColor="#1C1625" />
+                              <stop offset="100%" stopColor="#0D0A12" />
+                            </linearGradient>
+                          </defs>
+
+                          {/* 吊繩 (直接繪製於 SVG 內) */}
+                          <line 
+                            x1="28" 
+                            y1="2" 
+                            x2="28" 
+                            y2="14" 
+                            stroke={
+                              theme === "sepia" 
+                                ? "#E8D4A2" 
+                                : theme === "light" 
+                                ? "rgba(244, 63, 94, 0.85)" 
+                                : "rgba(245, 158, 11, 0.8)"
+                            } 
+                            strokeWidth="1.5" 
+                            strokeLinecap="round" 
+                          />
+                          
+                          {/* 頂部吊繩圓點 */}
+                          <circle 
+                            cx="28" 
+                            cy="2" 
+                            r="1.5" 
+                            fill={
+                              theme === "sepia" 
+                                ? "#EAD09D" 
+                                : theme === "light" 
+                                ? "#F43F5E" 
+                                : "#FBBF24"
+                            } 
+                          />
+
+                          {/* 御守外觀多邊形 (整體下移 14px 以避開吊繩) */}
+                          <polygon 
+                            points="11.2,14 44.8,14 56,30 56,94 0,94 0,30" 
+                            fill={
+                              theme === "sepia"
+                                ? "url(#omamori-sepia)"
+                                : theme === "light"
+                                ? "url(#omamori-light)"
+                                : "url(#omamori-dark)"
+                            }
+                            stroke={
+                              theme === "sepia"
+                                ? "rgba(232, 212, 162, 0.25)"
+                                : theme === "light"
+                                ? "rgba(244, 143, 177, 0.25)"
+                                : "rgba(245, 158, 11, 0.15)"
+                            }
+                            strokeWidth="1"
+                          />
+
+                          {/* 內圈虛線裝飾 (整體下移 14px) */}
+                          <polygon 
+                            points="11.6,16 44.4,16 54,30.4 54,92 2,92 2,30.4" 
+                            fill="none"
+                            stroke={
+                              theme === "sepia"
+                                ? "#E8D4A2"
+                                : theme === "light"
+                                ? "#F472B6"
+                                : "#F59E0B"
+                            }
+                            strokeWidth="1"
+                            strokeDasharray="3,2"
+                            strokeOpacity={
+                              theme === "sepia" ? 0.35 : theme === "light" ? 0.45 : 0.25
+                            }
+                          />
+                        </svg>
+
+                        {/* 結繩裝飾 */}
+                        <div className="w-6 h-3 flex items-center justify-center relative z-10">
+                          <svg viewBox="0 0 24 12" className={`w-full h-full fill-none ${
+                            theme === "sepia" ? "stroke-[#E8D4A2]" : theme === "light" ? "stroke-pink-500" : "stroke-amber-400"
+                          }`} strokeWidth="1.5">
+                            <path d="M12,4 C6,0 4,8 12,6 C20,8 18,0 12,4 Z" />
+                            <path d="M12,6 L9,11 M12,6 L15,11" />
+                          </svg>
+                        </div>
+
+                        {/* 直式文字：姆貓御守 */}
+                        <div className={`flex flex-col items-center leading-[1.1] tracking-[0.05em] font-serif relative z-10 -mt-1 font-extrabold text-[10px] ${
+                          theme === "sepia" ? "text-[#FCF8EE]" : theme === "light" ? "text-pink-700" : "text-amber-400"
+                        }`}>
+                          <span>姆</span>
+                          <span>貓</span>
+                          <span>御</span>
+                          <span>守</span>
+                        </div>
+                      </div>
+                    </motion.button>
+                  );
+                })()}
+                <span className={`text-[8px] font-serif tracking-[0.25em] uppercase opacity-35 select-none`}>
+                  姆貓御守
+                </span>
+              </div>
+            </div>
+            
             <span className={`text-[9px] font-serif tracking-[0.2em] uppercase opacity-40 mt-1 select-none`}>
               ◆ 神社祝願 · 諸事亨通 ◆
             </span>
@@ -3159,6 +4082,7 @@ export default function App() {
         isWorkflowOpen={isWorkflowOpen}
         isContactCardOpen={isContactCardOpen}
         scrollSectionVisible={isMascotVisibleByScroll}
+        onInteract={incrementInteraction}
       />
 
       {/* 懸浮回到最上方按鈕 */}
@@ -3286,6 +4210,7 @@ export default function App() {
                       className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md hover:shadow-pink-500/10 cursor-pointer bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110 text-center"
                       onClick={(e) => {
                         e.stopPropagation();
+                        handleSocialClick();
                       }}
                     >
                       <Instagram className="h-3.5 w-3.5 shrink-0" />
@@ -3306,7 +4231,7 @@ export default function App() {
                       }}
                       className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md cursor-pointer bg-gradient-to-r from-red-500 to-[#D33F33] hover:brightness-110"
                     >
-                      <span>⛩️ 前往今日運勢求籤 罐罐開運 🥫</span>
+                      <span>⛩️ 前往今日運勢 🐾</span>
                     </button>
                   )}
                 </div>
@@ -3316,6 +4241,673 @@ export default function App() {
         </AnimatePresence>,
         document.body
       )}
+
+      {/* 姆貓認證標章 (Mumu Certified Badge) - Removed/Relocated to Footer Omamori */}
+
+      {/* 姆貓認證證書 Modal */}
+      <AnimatePresence>
+        {isCertModalOpen && (
+          <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4">
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCertModalOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+
+            {/* Certificate Card Container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              transition={{ type: "spring", damping: 25, stiffness: 220 }}
+              style={{
+                clipPath: "polygon(15% 0%, 85% 0%, 100% 8%, 100% 100%, 0% 100%, 0% 8%)"
+              }}
+              className={`relative w-full max-w-lg p-6 sm:p-8 pt-10 sm:pt-12 rounded-t-3xl border shadow-2xl overflow-hidden flex flex-col items-center text-center ${
+                theme === "sepia"
+                  ? "bg-gradient-to-b from-[#8C231A] to-[#59110B] border-[#EAD09D]/40 text-[#FCF8EE] shadow-black/60"
+                  : theme === "light"
+                  ? "bg-gradient-to-b from-[#FDF2F4] via-[#FCE4E6] to-[#F5CBD0] border-pink-400/30 text-pink-950 shadow-pink-200/50"
+                  : "bg-gradient-to-b from-[#1C112B] to-[#0A0512] border-amber-500/35 text-amber-100/90 shadow-black/80"
+              }`}
+            >
+              {/* Hanging Silk Cord and Traditional Kano Knot (二重叶結び) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
+                <div className={`w-[2px] h-6 sm:h-7 ${
+                  theme === "sepia" ? "bg-[#EAD09D]" : theme === "light" ? "bg-pink-500" : "bg-amber-400"
+                }`} />
+                <div className="w-10 h-6 -mt-1 flex items-center justify-center">
+                  <svg viewBox="0 0 24 12" className={`w-full h-full fill-none ${
+                    theme === "sepia" ? "stroke-[#EAD09D]" : theme === "light" ? "stroke-pink-600" : "stroke-amber-400"
+                  }`} strokeWidth="2">
+                    <path d="M12,4 C6,0 4,8 12,6 C20,8 18,0 12,4 Z" />
+                    <path d="M12,6 L8,12 M12,6 L16,12" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Decorative Dashed Inner Border */}
+              <div 
+                style={{ 
+                  clipPath: "polygon(15% 0%, 85% 0%, 100% 8%, 100% 100%, 0% 100%, 0% 8%)",
+                  inset: "6px"
+                }}
+                className={`absolute border-2 border-dashed pointer-events-none rounded-t-2xl ${
+                  theme === "sepia"
+                    ? "border-[#EAD09D]/20"
+                    : theme === "light"
+                    ? "border-pink-300/40"
+                    : "border-amber-400/15"
+                }`}
+              />
+
+              {/* Background patterns */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none" />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setIsCertModalOpen(false)}
+                type="button"
+                className={`absolute top-6 right-6 p-1 rounded-lg border transition-all duration-300 cursor-pointer z-30 ${
+                  theme === "sepia"
+                    ? "border-[#EAD09D]/20 text-[#EAD09D]/70 hover:bg-[#EAD09D]/10"
+                    : theme === "light"
+                    ? "border-pink-300/30 text-pink-700 hover:text-pink-900 hover:bg-pink-50/50"
+                    : "border-white/10 text-amber-400/60 hover:text-amber-400 hover:bg-white/5"
+                }`}
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              {/* Elegant header */}
+              <div className="flex flex-col items-center gap-1.5 mb-3.5 relative z-10 mt-2">
+                <div className={`p-2.5 rounded-full border mb-1.5 ${
+                  theme === "sepia"
+                    ? "bg-amber-500/10 border-amber-500/30 text-amber-300"
+                    : theme === "light"
+                    ? "bg-pink-100 border-pink-400/20 text-pink-600"
+                    : "bg-amber-400/15 border-amber-400/30 text-amber-400"
+                }`}>
+                  <Award className="h-7 w-7 animate-bounce" style={{ animationDuration: "2.5s" }} />
+                </div>
+                <h3 className={`text-lg sm:text-xl font-bold tracking-widest font-serif ${
+                  theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-800" : "text-amber-400"
+                }`}>
+                  ⛩️ 姆貓教特別認證御守 🐾
+                </h3>
+                <div className={`h-[1.5px] w-28 bg-gradient-to-r ${
+                  theme === "sepia"
+                    ? "from-transparent via-[#EAD09D]/50 to-transparent"
+                    : theme === "light"
+                    ? "from-transparent via-pink-400/50 to-transparent"
+                    : "from-transparent via-amber-500/50 to-transparent"
+                }`} />
+                <span className={`text-[9px] font-serif tracking-[0.25em] uppercase opacity-60 font-bold ${
+                  theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-600" : "text-amber-400"
+                }`}>
+                  MUMU BLESSED OMAMORI
+                </span>
+              </div>
+
+              {/* Certificate content */}
+              <div className="space-y-3.5 relative z-10 mb-4 text-center max-w-md">
+                <p className={`text-xs sm:text-sm font-medium leading-relaxed ${
+                  theme === "sepia" ? "text-zinc-100" : theme === "light" ? "text-zinc-800" : "text-zinc-200"
+                }`}>
+                  特此證明您與姆貓教主已累積互動達 <strong className={`text-base sm:text-lg mx-1 font-bold ${
+                    theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-600" : "text-amber-400"
+                  }`}>{interactionCount}</strong> 次，展現了無與倫比的虔誠與喜愛！
+                </p>
+                
+                <p className={`text-[11px] sm:text-xs leading-relaxed border-t border-b py-2 px-3 mb-2 rounded-lg italic ${
+                  theme === "sepia"
+                    ? "border-[#EAD09D]/20 text-[#EAD09D]/90 bg-black/25"
+                    : theme === "light"
+                    ? "border-pink-300/30 text-pink-900/95 bg-white/40"
+                    : "border-white/5 text-zinc-300 bg-white/2"
+                }`}>
+                  「本教主授予此御守，特許您獲得『每日摸魚特權、開運招財加薪、諸事順遂』之終身守護魔法祝福！😻✨🐾」
+                </p>
+              </div>
+
+              {/* 榮譽成就清單 (Honorable Achievements List) */}
+              <div className="w-full relative z-10 mb-4 text-left space-y-2">
+                <h4 className={`text-xs font-bold tracking-widest uppercase flex items-center gap-1.5 px-1 font-serif ${
+                  theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-800" : "text-amber-400"
+                }`}>
+                  🏆 神社神格成就進度
+                </h4>
+                
+                <div className="space-y-1.5 max-h-[220px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-700/50">
+                  {/* 成就 1: 深夜擼貓者 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    midnightUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      midnightUnlocked 
+                        ? "bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Clock className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {midnightUnlocked ? "「深夜擼貓者」🐾" : "「深夜擼貓者」🔒"}
+                        </span>
+                        {midnightUnlocked && (
+                          <span className="text-[8px] font-bold text-indigo-400 uppercase tracking-wider bg-indigo-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {midnightUnlocked
+                          ? "「夜深了本教主特賜好眠魔法～✨踩腳印祝福送達！」"
+                          : "（於深夜 11 點至凌晨 4 點間點擊 Hero 貓咪或吉祥物）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 2: 時空穿梭大師 */}
+                  {(() => {
+                    const isThemeUnlocked = visitedThemes.length >= 3;
+                    return (
+                      <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                        isThemeUnlocked
+                          ? theme === "sepia"
+                            ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                            : theme === "light"
+                            ? "bg-white/60 border-pink-400/30 shadow-sm"
+                            : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                          : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                      }`}>
+                        <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                          isThemeUnlocked 
+                            ? "bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-sm"
+                            : "bg-zinc-800/40 text-zinc-500"
+                        }`}>
+                          <Palette className="h-4 w-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <span className={`text-[10px] font-bold tracking-wide ${
+                              theme === "sepia" ? "text-white" : ""
+                            }`}>
+                              {isThemeUnlocked ? "「時空穿梭大師」🎨" : "「時空穿梭大師」🔒"}
+                            </span>
+                            {isThemeUnlocked ? (
+                              <span className="text-[8px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-1 py-0.5 rounded">
+                                已解鎖
+                              </span>
+                            ) : (
+                              <span className="text-[8px] opacity-65 font-mono">
+                                ({visitedThemes.length}/3)
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                            {isThemeUnlocked
+                              ? "「成功解鎖三大神學配色，美感感知力永久加持！」"
+                              : "（完整切換並體驗三種視覺主題配色）"}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* 成就 3: 命運之友 */}
+                  {(() => {
+                    const isFortuneUnlocked = fortuneCount >= 3;
+                    return (
+                      <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                        isFortuneUnlocked
+                          ? theme === "sepia"
+                            ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                            : theme === "light"
+                            ? "bg-white/60 border-pink-400/30 shadow-sm"
+                            : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                          : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                      }`}>
+                        <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                          isFortuneUnlocked 
+                            ? "bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-sm"
+                            : "bg-zinc-800/40 text-zinc-500"
+                        }`}>
+                          <Sparkles className="h-4 w-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <span className={`text-[10px] font-bold tracking-wide ${
+                              theme === "sepia" ? "text-white" : ""
+                            }`}>
+                              {isFortuneUnlocked ? "「命運之友」🔮" : "「命運之友」🔒"}
+                            </span>
+                            {isFortuneUnlocked ? (
+                              <span className="text-[8px] font-bold text-amber-400 uppercase tracking-wider bg-amber-500/10 px-1 py-0.5 rounded">
+                                已解鎖
+                              </span>
+                            ) : (
+                              <span className="text-[8px] opacity-65 font-mono">
+                                ({fortuneCount}/3)
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                            {isFortuneUnlocked
+                              ? "「與神社占卜達成了神聖靈魂連結，今日好運翻倍！」"
+                              : "（於底部神社內進行運勢諮詢或求籤達 3 次）"}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* 成就 4: 作品鑑賞家 */}
+                  {(() => {
+                    const isPortfolioUnlocked = viewedProjects.length >= 5;
+                    return (
+                      <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                        isPortfolioUnlocked
+                          ? theme === "sepia"
+                            ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                            : theme === "light"
+                            ? "bg-white/60 border-pink-400/30 shadow-sm"
+                            : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                          : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                      }`}>
+                        <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                          isPortfolioUnlocked 
+                            ? "bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-sm"
+                            : "bg-zinc-800/40 text-zinc-500"
+                        }`}>
+                          <BookOpen className="h-4 w-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <span className={`text-[10px] font-bold tracking-wide ${
+                              theme === "sepia" ? "text-white" : ""
+                            }`}>
+                              {isPortfolioUnlocked ? "「作品鑑賞家」📖" : "「作品鑑賞家」🔒"}
+                            </span>
+                            {isPortfolioUnlocked ? (
+                              <span className="text-[8px] font-bold text-rose-400 uppercase tracking-wider bg-rose-500/10 px-1 py-0.5 rounded">
+                                已解鎖
+                              </span>
+                            ) : (
+                              <span className="text-[8px] opacity-65 font-mono">
+                                ({viewedProjects.length}/5)
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                            {isPortfolioUnlocked
+                              ? "「深入體悟了設計結晶，創意爆棚與你同在！」"
+                              : "（深入閱讀並打開 5 個不同的作品展示卡片）"}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* 成就 5: 靜心禪修者 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    zenUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      zenUnlocked 
+                        ? "bg-gradient-to-br from-[#A855F7] to-[#EC4899] text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Heart className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {zenUnlocked ? "「靜心禪修者」🧘‍♀️" : "「靜心禪修者」🔒"}
+                        </span>
+                        {zenUnlocked && (
+                          <span className="text-[8px] font-bold text-[#EC4899] uppercase tracking-wider bg-[#EC4899]/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {zenUnlocked
+                          ? "「靜心陪伴本教主，美學感知與專注度已達全新禪境。」"
+                          : "（於網頁停留、賞析作品滿 3 分鐘以上）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 6: 社交宣傳使者 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    socialUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      socialUnlocked 
+                        ? "bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Share2 className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {socialUnlocked ? "「社交宣傳使者」🐾" : "「社交宣傳使者」🔒"}
+                        </span>
+                        {socialUnlocked && (
+                          <span className="text-[8px] font-bold text-[#06B6D4] uppercase tracking-wider bg-[#06B6D4]/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {socialUnlocked
+                          ? "「宣揚我教！特賜你『人緣爆棚、貴人相助』之神社福報！」"
+                          : "（點擊 IG 或社群連結宣揚本教萌光與美學）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 7: 極意摸魚之神 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    slackerUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      slackerUnlocked 
+                        ? "bg-gradient-to-br from-[#F59E0B] to-[#EF4444] text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Crown className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {slackerUnlocked ? "「極意摸魚之神」👑" : "「極意摸魚之神」🔒"}
+                        </span>
+                        {slackerUnlocked ? (
+                          <span className="text-[8px] font-bold text-[#F59E0B] uppercase tracking-wider bg-[#F59E0B]/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        ) : (
+                          <span className="text-[8px] opacity-65 font-mono">
+                            ({interactionCount}/100)
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {slackerUnlocked
+                          ? "「特許你獲得最高榮譽：『終極無罪摸魚特權』，絕不被抓！」"
+                          : "（與網頁上的貓咪或吉祥物互動累計達 100 次）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 8: AI 協同巫師 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    aiWizardUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      aiWizardUnlocked 
+                        ? "bg-gradient-to-br from-[#10B981] to-[#059669] text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Zap className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {aiWizardUnlocked ? "「AI 協同巫師」✨" : "「AI 協同巫師」🔒"}
+                        </span>
+                        {aiWizardUnlocked && (
+                          <span className="text-[8px] font-bold text-[#10B981] uppercase tracking-wider bg-[#10B981]/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {aiWizardUnlocked
+                          ? "「掌握人機協同神力，提案必過、設計效率雙倍加持！」"
+                          : "（打開並閱讀『AI 設計輔助工作流』彈出視窗）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成成 9: 極致奢華罐罐奉納 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    premiumCanUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      premiumCanUnlocked 
+                        ? "bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Award className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {premiumCanUnlocked ? "「極致奢華罐罐奉納」🥫" : "「極致奢華罐罐奉納」🔒"}
+                        </span>
+                        {premiumCanUnlocked && (
+                          <span className="text-[8px] font-bold text-rose-500 uppercase tracking-wider bg-rose-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {premiumCanUnlocked
+                          ? "「成功奉納頂級奢華罐罐！本教主神格超凡昇華，特賜予你『一世富貴、衣食無憂』之終極加冕！」"
+                          : "（將畫面角落的金色貓罐罐 🥫 拖曳至白貓 MuMㄠ 姆貓的頭上）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 10: 飛天姆貓 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    balloonUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      balloonUnlocked 
+                        ? "bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Sparkles className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {balloonUnlocked ? "「飛天姆貓」🎈" : "「飛天姆貓」🔒"}
+                        </span>
+                        {balloonUnlocked && (
+                          <span className="text-[8px] font-bold text-purple-400 uppercase tracking-wider bg-purple-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {balloonUnlocked
+                          ? "「噗咻——！姆貓升空！獲得教主親授『高空俯瞰、視界大開』之靈感飛昇護佑！」"
+                          : "（快速連擊導覽列或履歷面板的姆貓 MuMㄠ 頭像，使其像氣球一樣漏氣飛走）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 11: 魔法姆貓 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    magicMumuUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      magicMumuUnlocked 
+                        ? "bg-gradient-to-br from-pink-500 to-amber-500 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <Sparkles className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {magicMumuUnlocked ? "「魔法姆貓」🪄" : "「魔法姆貓」🔒"}
+                        </span>
+                        {magicMumuUnlocked && (
+                          <span className="text-[8px] font-bold text-amber-500 uppercase tracking-wider bg-amber-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {magicMumuUnlocked
+                          ? "「噗哩噗哩——變身！解鎖神秘隱藏的魔法姆貓姿態，獲得夢幻幸運加持！」"
+                          : "（快速連擊 HERO 頁面的白貓 MuMㄠ 姆貓，解鎖變身姿態）"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive Blessing Button (Ema styled button) */}
+              <div className="w-full space-y-2 relative z-10">
+                <button
+                  onClick={() => {
+                    try {
+                      playMeowSound();
+                    } catch (e) {}
+                    
+                    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
+                      id: Date.now() + Math.random() + i,
+                      x: window.innerWidth / 2 + (Math.random() * 260 - 130),
+                      y: window.innerHeight / 2 + (Math.random() * 260 - 130),
+                      emoji: ["✨", "💖", "🐾", "🏆", "🌟", "🐱", "😻", "🎀"][Math.floor(Math.random() * 8)],
+                    }));
+                    setHeroParticles((prev) => [...prev, ...newParticles].slice(-50));
+                    
+                    setTitleBounceTrigger((prev) => prev + 1);
+                  }}
+                  className={`w-full py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer font-serif ${
+                    theme === "sepia"
+                      ? "bg-[#EAD09D] text-[#59110B] hover:bg-[#F3DFB6] shadow-black/45"
+                      : theme === "light"
+                      ? "bg-pink-600 text-white hover:bg-pink-700 shadow-pink-500/20"
+                      : "bg-amber-400 text-zinc-950 hover:bg-amber-300 shadow-amber-500/20"
+                  }`}
+                >
+                  <Sparkles className="h-4 w-4 fill-current animate-spin" style={{ animationDuration: "3.5s" }} />
+                  召喚教主守護御守・滿願成就！🐾
+                </button>
+
+                <p className={`text-[9px] tracking-wide font-mono opacity-60 ${
+                  theme === "sepia" ? "text-[#EAD09D]" : ""
+                }`}>
+                  虔誠信仰值：{interactionCount} | 已結緣登錄於本地瀏覽器
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* 榮譽成就解鎖通知 (Achievement Unlocked Toast) */}
+      <AnimatePresence>
+        {unlockedAchToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.85 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9, transition: { duration: 0.2 } }}
+            className={`fixed bottom-6 right-6 z-[999999] p-4 rounded-xl border shadow-2xl flex items-center gap-3.5 max-w-xs ${
+              theme === "sepia"
+                ? "bg-[#FCF8EE] border-[#A05C2C]/30 text-[#4F3C28]"
+                : theme === "light"
+                ? "bg-white border-amber-500/35 text-zinc-800 shadow-amber-500/15"
+                : "bg-[#121212]/95 border-amber-500/40 text-zinc-100 shadow-amber-500/30 backdrop-blur-md"
+            }`}
+          >
+            <div className="p-2.5 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-lg text-zinc-950 shadow-md flex-shrink-0 animate-bounce" style={{ animationDuration: "2s" }}>
+              <Award className="h-5 w-5" />
+            </div>
+            <div className="flex-1 text-left">
+              <span className="block text-[9px] font-bold tracking-wider text-amber-500 uppercase">榮譽成就解鎖！</span>
+              <h4 className="text-xs font-bold tracking-wide mt-0.5">{unlockedAchToast}</h4>
+              <p className="text-[10px] opacity-75 mt-0.5 leading-relaxed">
+                恭喜獲得姆貓教特別榮譽認證！已登錄至您的教主證書。
+              </p>
+            </div>
+            <button
+              onClick={() => setUnlockedAchToast(null)}
+              className="text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer self-start p-1"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

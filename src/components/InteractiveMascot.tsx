@@ -19,6 +19,7 @@ interface InteractiveMascotProps {
   isWorkflowOpen: boolean;
   isContactCardOpen: boolean;
   scrollSectionVisible: boolean;
+  onInteract?: () => void;
 }
 
 
@@ -28,7 +29,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   activeModalItem,
   isWorkflowOpen,
   isContactCardOpen,
-  scrollSectionVisible
+  scrollSectionVisible,
+  onInteract
 }: InteractiveMascotProps) {
   const [mascotDialogue, setMascotDialogue] = useState<string>("");
   const [showMascotDialogue, setShowMascotDialogue] = useState<boolean>(false);
@@ -274,6 +276,11 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const handleNextMascot = () => {
     if (isChasing) return; // 動畫中禁止重複點擊觸發
 
+    // Trigger parent callback to track overall interactions
+    if (onInteract) {
+      onInteract();
+    }
+
     const now = Date.now();
     if (now - lastClickTime < 900) {
       const newCount = clickCount + 1;
@@ -288,7 +295,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
     setLastClickTime(now);
 
     if (currentMascot && currentMascot.dialogues.length > 0) {
-      // Play high-fidelity synthesized meow
+      // Play meow sound
       playMeowSound();
 
       const candidates = currentMascot.dialogues.filter(item => item !== mascotDialogue);

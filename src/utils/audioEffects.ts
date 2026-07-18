@@ -180,3 +180,47 @@ class CatPurrManager {
 }
 
 export const catPurr = new CatPurrManager();
+
+// 4. 🥫 罐頭金屬輕微碰撞叮噹聲 (Slight can clink/tinkle synthesis)
+export const playCanClinkSound = () => {
+  try {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const now = ctx.currentTime;
+
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gainNode1 = ctx.createGain();
+    const gainNode2 = ctx.createGain();
+
+    osc1.type = "sine";
+    osc1.frequency.setValueAtTime(1150, now);
+    osc1.frequency.exponentialRampToValueAtTime(750, now + 0.1);
+
+    osc2.type = "triangle";
+    osc2.frequency.setValueAtTime(1850, now);
+    osc2.frequency.exponentialRampToValueAtTime(1450, now + 0.08);
+
+    gainNode1.gain.setValueAtTime(0.05, now);
+    gainNode1.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
+
+    gainNode2.gain.setValueAtTime(0.04, now);
+    gainNode2.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+
+    osc1.connect(gainNode1);
+    gainNode1.connect(ctx.destination);
+
+    osc2.connect(gainNode2);
+    gainNode2.connect(ctx.destination);
+
+    osc1.start(now);
+    osc2.start(now);
+
+    osc1.stop(now + 0.12);
+    osc2.stop(now + 0.08);
+  } catch (e) {
+    // Safety fallback
+  }
+};
+

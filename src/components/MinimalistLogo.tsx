@@ -107,6 +107,8 @@ interface MinimalistLogoProps {
   externalDialogue?: string;
   showExternalBubble?: boolean;
   onCloseExternalBubble?: () => void;
+  onInteract?: () => void;
+  onBalloonFlyAway?: () => void;
 }
 
 export function MinimalistLogo({ 
@@ -117,7 +119,9 @@ export function MinimalistLogo({
   bubbleDirection = "top",
   externalDialogue,
   showExternalBubble,
-  onCloseExternalBubble
+  onCloseExternalBubble,
+  onInteract,
+  onBalloonFlyAway
 }: MinimalistLogoProps) {
   const normalImageUrl = "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep";
   const winkImageUrl = "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX";
@@ -266,6 +270,10 @@ export function MinimalistLogo({
     e.stopPropagation();
     if (isLeaking) return; // 漏氣暴走動畫進行中，暫停普通點擊
 
+    if (onInteract) {
+      onInteract();
+    }
+
     const now = Date.now();
     let newCount = 1;
 
@@ -283,6 +291,9 @@ export function MinimalistLogo({
       setIsBalloonDialogue(true);
       setShowBubble(true);
       playBalloonLeakSound();
+      if (onBalloonFlyAway) {
+        onBalloonFlyAway();
+      }
 
       if (typeof navigator !== "undefined" && navigator.vibrate) {
         try {

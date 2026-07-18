@@ -59,6 +59,8 @@ interface DesignerBentoProps {
   onCopyEmail?: () => void;
   setIsWorkflowOpen?: (open: boolean) => void;
   triggerMascotSpeech?: (dialogue: string) => void;
+  onInteract?: () => void;
+  onBalloonFlyAway?: () => void;
 }
 
 export function DesignerBento({ 
@@ -67,7 +69,9 @@ export function DesignerBento({
   setIsContactCardOpen, 
   onCopyEmail, 
   setIsWorkflowOpen,
-  triggerMascotSpeech
+  triggerMascotSpeech,
+  onInteract,
+  onBalloonFlyAway
 }: DesignerBentoProps) {
   const [localCopied, setLocalCopied] = useState<boolean>(false);
   const [shakeActive, setShakeActive] = useState<boolean>(false);
@@ -200,7 +204,7 @@ export function DesignerBento({
           {/* 第一欄：個人身分與品牌自述 (佔 4 欄) */}
           <div className="lg:col-span-4 space-y-6">
             <div style={getGravityStyle(1)} className="flex items-center gap-4">
-              <MinimalistLogo size={64} theme={theme} className="shrink-0" />
+              <MinimalistLogo size={64} theme={theme} className="shrink-0" onInteract={onInteract} onBalloonFlyAway={onBalloonFlyAway} />
               <div>
                 <h1 className={`text-2xl md:text-3xl font-display font-bold tracking-tight ${
                   theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-950" : "text-white"
@@ -284,6 +288,7 @@ export function DesignerBento({
                 href={profile.portfolioUrl}
                 target="_blank" 
                 rel="noopener noreferrer"
+                onClick={() => onInteract?.()}
                 className="relative group w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black transition-all shadow-lg shadow-amber-500/25 active:scale-98 text-center uppercase tracking-wide font-sans scroll-smooth"
               >
                 {/* 姆貓偷看 (Peek-a-boo Mascot) */}
@@ -312,6 +317,7 @@ export function DesignerBento({
                   href={profile.pdfPortfolioUrl}
                   target="_blank" 
                   rel="noopener noreferrer"
+                  onClick={() => onInteract?.()}
                   className={`relative group w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl border transition-all duration-300 shadow-md active:scale-98 text-center uppercase tracking-wide font-sans ${
                     theme === "dark"
                       ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-200"

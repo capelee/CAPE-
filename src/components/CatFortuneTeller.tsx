@@ -5,6 +5,7 @@ import { Sparkles, X, RefreshCw, Smile, Heart, Zap } from "lucide-react";
 
 interface CatFortuneTellerProps {
   theme: "dark" | "light" | "sepia";
+  onConsult?: () => void;
 }
 
 interface Fortune {
@@ -351,7 +352,7 @@ const bellShakeVariants = {
   }
 };
 
-export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
+export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpening, setIsOpening] = useState<boolean>(false);
   const [isBellRinging, setIsBellRinging] = useState<boolean>(false);
@@ -377,6 +378,11 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
     if (isOpening || isBellRinging) return;
     
     setShowTooltip(false);
+
+    // Trigger parent callback to track fortune consult count
+    if (onConsult) {
+      onConsult();
+    }
 
     // 1. 預先挑選今日好運
     const randomIdx = Math.floor(Math.random() * FORTUNES.length);
@@ -578,8 +584,11 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
 
   return (
     <>
-      {/* 1. 頁尾嵌入式按鈕：姆貓運勢罐罐 */}
-      <div className="relative select-none flex flex-col items-center justify-center">
+      {/* 1. 頁尾嵌入式按鈕：姆貓運勢 */}
+      <div 
+        style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
+        className="relative select-none flex flex-col items-center justify-center bg-transparent z-50"
+      >
         
         {/* Bouncing Tooltip 提示氣泡 (置中顯示) */}
         <AnimatePresence>
@@ -588,7 +597,7 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
               initial={{ opacity: 0, y: 10, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3.5 py-2 rounded-lg text-[11px] font-serif font-bold whitespace-nowrap shadow-md border text-center flex items-center gap-2 cursor-pointer z-40 ${
+              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3.5 py-2 rounded-lg text-[11px] font-serif font-bold whitespace-nowrap shadow-md border text-center flex items-center gap-2 cursor-pointer z-50 ${
                 theme === "sepia"
                   ? "bg-[#FCFAF7] border-[#D33F33]/40 text-[#D33F33]"
                   : theme === "light"
@@ -655,78 +664,184 @@ export function CatFortuneTeller({ theme }: CatFortuneTellerProps) {
         {/* 方案三：紙燈籠燭光微弱搖曳暖橘色呼吸光暈 (Candle flickering halo behind button) */}
         <motion.div
           animate={{
-            scale: [0.96, 1.08, 0.94, 1.14, 0.96, 1.05, 0.96],
-            opacity: [0.35, 0.65, 0.3, 0.75, 0.45, 0.55, 0.35],
+            scale: [0.96, 1.05, 0.94, 1.1, 0.96, 1.03, 0.96],
+            opacity: [0.25, 0.5, 0.2, 0.55, 0.3, 0.45, 0.25],
           }}
           transition={{
             duration: 4.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute w-[210px] h-[65px] rounded-full bg-gradient-to-r from-amber-500/25 via-orange-500/40 to-red-500/15 blur-xl pointer-events-none -z-10"
+          className="absolute w-[80px] h-[100px] rounded-2xl bg-gradient-to-b from-amber-500/20 via-orange-500/30 to-red-500/10 blur-xl pointer-events-none -z-10"
         />
 
-        {/* 罐罐按鈕：與頁尾設計高度融合的精美橫向按鈕 */}
+        {/* 繪馬按鈕：與御守呼應的精美向量日式繪馬 (Ema) */}
         <motion.button
           onClick={triggerOpenCan}
           whileHover={{
+            rotate: [0, -6, 5, -4, 3, 0],
             scale: 1.05,
-            rotate: [0, -2.5, 2.5, -2.5, 2.5, -1.5, 1.5, 0],
-            transition: {
-              rotate: {
-                repeat: Infinity,
-                duration: 0.38,
-                ease: "easeInOut"
-              },
-              scale: {
-                type: "spring",
-                stiffness: 400,
-                damping: 15
-              }
-            }
+            transition: { duration: 1.2, ease: "easeInOut" }
           }}
           whileTap={{ scale: 0.95 }}
           animate={isOpening ? { rotate: [0, -8, 8, -8, 8, -8, 8, 0], scale: [1, 1.05, 0.98, 1.05, 1] } : {}}
           transition={isOpening ? { repeat: 0, duration: 0.4 } : {}}
-          className={`relative px-5 py-2.5 rounded-lg border-4 border-double transition-all duration-300 shadow-md flex items-center justify-center gap-2.5 cursor-pointer group active:scale-95 text-xs font-serif font-black ${
-            theme === "sepia"
-              ? "bg-[#FCFAF7] border-[#D33F33] text-[#D33F33] hover:bg-[#FAF5ED] hover:shadow-[0_4px_12px_rgba(211,63,51,0.15)]"
-              : theme === "light"
-              ? "bg-[#FCFAF7] border-[#D33F33] text-[#D33F33] hover:bg-[#FAF5ED] hover:shadow-[0_4px_12px_rgba(211,63,51,0.12)]"
-              : "bg-[#181212] border-[#D33F33]/80 text-[#FAF1E6] hover:bg-[#201818] hover:border-[#D33F33] hover:shadow-[0_4px_15px_rgba(211,63,51,0.25)]"
-          }`}
-          title="召喚今日姆貓運勢罐罐"
+          style={{
+            transformOrigin: "top center",
+            background: "transparent",
+            backgroundColor: "transparent",
+            border: "none",
+            outline: "none",
+            boxShadow: "none"
+          }}
+          type="button"
+          id="btn_mumu_fortune_ema"
+          className="relative cursor-pointer group flex flex-col items-center bg-transparent border-0 p-0 outline-none shadow-none z-50"
+          title="召喚今日姆貓運勢"
         >
-          {/* 金屬反光裝飾線 */}
-          <div className="absolute inset-x-2 top-0.5 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none rounded-full" />
-          
-          {/* 波紋擴散動畫 (Concentric Expanding Rings) */}
-          <AnimatePresence>
-            {ripples.map((r) => (
-              <motion.span
-                key={r.id}
-                initial={{ scale: 0.9, opacity: 0.8 }}
-                animate={{ scale: 2.2, opacity: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                className="absolute inset-0 rounded-lg border-2 border-[#D33F33]/60 pointer-events-none"
+          {/* 完美和風繪馬本體 (包含吊繩、繪馬外殼、內層虛線，一體化渲染) */}
+          <div 
+            style={{ background: "transparent", backgroundColor: "transparent" }}
+            className="w-[72px] h-[94px] relative flex flex-col items-center justify-between pb-3 pt-[34px] px-1.5 bg-transparent border-0"
+          >
+            {/* 背景 SVG (包含頂端吊繩、繪馬本體) */}
+            <svg 
+              width="72" 
+              height="94" 
+              viewBox="0 0 72 94" 
+              style={{ background: "transparent", backgroundColor: "transparent" }}
+              className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_4px_8px_rgba(0,0,0,0.45)] bg-transparent"
+            >
+              <defs>
+                {/* 定義繪馬漸層色 */}
+                <linearGradient id="ema-sepia" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#F5E8C4" />
+                  <stop offset="100%" stopColor="#D9C394" />
+                </linearGradient>
+                <linearGradient id="ema-light" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#FCFAF7" />
+                  <stop offset="100%" stopColor="#F0E5D8" />
+                </linearGradient>
+                <linearGradient id="ema-dark" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#2E1A1A" />
+                  <stop offset="100%" stopColor="#1C1010" />
+                </linearGradient>
+              </defs>
+
+              {/* 吊繩 (直接繪製於 SVG 內) */}
+              <line 
+                x1="36" 
+                y1="2" 
+                x2="36" 
+                y2="22" 
+                stroke={
+                  theme === "sepia" 
+                    ? "#8C251C" 
+                    : theme === "light" 
+                    ? "#D33F33" 
+                    : "#FBBF24"
+                } 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
               />
-            ))}
-          </AnimatePresence>
+              
+              {/* 頂部吊繩圓點 */}
+              <circle 
+                cx="36" 
+                cy="2" 
+                r="1.5" 
+                fill={
+                  theme === "sepia" 
+                    ? "#8C251C" 
+                    : theme === "light" 
+                    ? "#D33F33" 
+                    : "#FBBF24"
+                } 
+              />
 
-          {/* 罐罐主視覺圖標 */}
-          <span className="text-sm transform group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-300 select-none">
-            🥫
-          </span>
+              {/* 繪馬外觀五邊形 (整體下移 22px 以避開吊繩) */}
+              <polygon 
+                points="36,22 70,34 70,92 2,92 2,34" 
+                fill={
+                  theme === "sepia"
+                    ? "url(#ema-sepia)"
+                    : theme === "light"
+                    ? "url(#ema-light)"
+                    : "url(#ema-dark)"
+                }
+                stroke={
+                  theme === "sepia"
+                    ? "#8C251C"
+                    : theme === "light"
+                    ? "#D33F33"
+                    : "rgba(245, 158, 11, 0.4)"
+                }
+                strokeWidth="1.5" 
+              />
 
-          <span className="tracking-[0.2em] font-serif font-black text-xs sm:text-sm">
-            今日姆貓運勢罐罐
-          </span>
-          
-          {/* 閃爍祈願圖標 */}
-          <span className="text-sm transform group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300 select-none">
-            ✨
-          </span>
+              {/* 內圈虛線裝飾 (比外殼略小 3px) */}
+              <polygon 
+                points="36,26 67,36 67,89 5,89 5,36" 
+                fill="none"
+                stroke={
+                  theme === "sepia"
+                    ? "#8C251C"
+                    : theme === "light"
+                    ? "#D33F33"
+                    : "#F59E0B"
+                }
+                strokeWidth="1"
+                strokeDasharray="3,2"
+                strokeOpacity={
+                  theme === "sepia" ? 0.35 : theme === "light" ? 0.45 : 0.25
+                }
+              />
+
+              {/* 懸掛繩孔 */}
+              <circle 
+                cx="36" 
+                cy="32" 
+                r="2.5" 
+                fill={
+                  theme === "sepia"
+                    ? "#D4C094"
+                    : theme === "light"
+                    ? "#E5DCD0"
+                    : "#140C0C"
+                }
+                stroke={
+                  theme === "sepia"
+                    ? "#8C251C"
+                    : theme === "light"
+                    ? "#D33F33"
+                    : "#F59E0B"
+                }
+                strokeWidth="1"
+                strokeOpacity="0.4"
+              />
+            </svg>
+
+            {/* 直式文字：今日運勢 / 姆貓運勢 */}
+            <div className={`flex flex-col items-center leading-[1.1] tracking-[0.05em] font-serif relative z-10 font-extrabold text-[10px] ${
+              theme === "sepia" 
+                ? "text-[#5C4033]" 
+                : theme === "light" 
+                ? "text-[#1C1917]" 
+                : "text-[#FAF1E6]"
+            }`}>
+              <span>姆</span>
+              <span>貓</span>
+              <span>運</span>
+              <span>勢</span>
+            </div>
+
+            {/* 吉祥落款小紅印 */}
+            <div className={`w-3.5 h-3.5 rounded-[2px] flex items-center justify-center text-[7px] font-serif font-black text-white relative z-10 shadow-sm ${
+              theme === "sepia" ? "bg-[#8C251C]" : theme === "light" ? "bg-[#D33F33]" : "bg-[#F59E0B]"
+            }`}>
+              吉
+            </div>
+          </div>
         </motion.button>
       </div>
 
