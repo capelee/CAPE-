@@ -20,6 +20,9 @@ interface InteractiveMascotProps {
   isContactCardOpen: boolean;
   scrollSectionVisible: boolean;
   onInteract?: () => void;
+  onRandomProject?: () => void;
+  onHighlightProject?: () => void;
+  onChangeCategory?: () => void;
 }
 
 
@@ -30,7 +33,10 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   isWorkflowOpen,
   isContactCardOpen,
   scrollSectionVisible,
-  onInteract
+  onInteract,
+  onRandomProject,
+  onHighlightProject,
+  onChangeCategory
 }: InteractiveMascotProps) {
   const [mascotDialogue, setMascotDialogue] = useState<string>("");
   const [showMascotDialogue, setShowMascotDialogue] = useState<boolean>(false);
@@ -40,6 +46,26 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [currentFrameIndex, setCurrentFrameIndex] = useState<number>(0);
+  
+  const [currentAction, setCurrentAction] = useState<{ label: string; action: string; icon: string } | null>(null);
+
+  useEffect(() => {
+    if (showMascotDialogue) {
+      const actions = [
+        { label: "隨機看一張作品", action: "random", icon: "🎲" },
+        { label: "帶我看精選專案", action: "highlight", icon: "✨" },
+        { label: "隨機切換分類", action: "category", icon: "🏷️" }
+      ];
+      // 75% chance to show an action button for fun
+      if (Math.random() < 0.75) {
+        setCurrentAction(actions[Math.floor(Math.random() * actions.length)]);
+      } else {
+        setCurrentAction(null);
+      }
+    } else {
+      setCurrentAction(null);
+    }
+  }, [showMascotDialogue, mascotDialogue]);
   
   // Cat Chase (快速連續點擊躲避) 互動狀態
   const [clickCount, setClickCount] = useState<number>(0);
@@ -273,7 +299,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   };
 
   // 點擊吉祥物時隨機切換台詞 (且不影響 App.tsx 渲染)
-  const handleNextMascot = () => {
+  const handleNextMascot = (isFromMascot: boolean = false) => {
     if (isChasing) return; // 動畫中禁止重複點擊觸發
 
     // Trigger parent callback to track overall interactions
@@ -281,18 +307,20 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
       onInteract();
     }
 
-    const now = Date.now();
-    if (now - lastClickTime < 900) {
-      const newCount = clickCount + 1;
-      setClickCount(newCount);
-      if (newCount >= 4) {
-        triggerCatChase();
-        return;
+    if (isFromMascot) {
+      const now = Date.now();
+      if (now - lastClickTime < 900) {
+        const newCount = clickCount + 1;
+        setClickCount(newCount);
+        if (newCount >= 4) {
+          triggerCatChase();
+          return;
+        }
+      } else {
+        setClickCount(1);
       }
-    } else {
-      setClickCount(1);
+      setLastClickTime(now);
     }
-    setLastClickTime(now);
 
     if (currentMascot && currentMascot.dialogues.length > 0) {
       // Play meow sound
@@ -398,7 +426,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                onClick={handleNextMascot}
+                onClick={() => handleNextMascot(false)}
                 onPointerDown={(e) => dragControls.start(e)}
                 className={`${
                   theme === "light"
@@ -464,6 +492,39 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                       {mascotDialogue}
                     </motion.span>
                   </AnimatePresence>
+
+                  <AnimatePresence>
+                    {currentAction && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        exit={{ opacity: 0, y: -5, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="mt-3 overflow-hidden"
+                      >
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (currentAction.action === "random" && onRandomProject) onRandomProject();
+                            if (currentAction.action === "highlight" && onHighlightProject) onHighlightProject();
+                            if (currentAction.action === "category" && onChangeCategory) onChangeCategory();
+                            setShowMascotDialogue(false);
+                          }}
+                          className={`w-full py-1.5 px-2 rounded-xl text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-all active:scale-95 border whitespace-nowrap ${
+                            theme === "light"
+                              ? "bg-amber-100/50 text-amber-700 hover:bg-amber-100 border-amber-200"
+                              : theme === "sepia"
+                              ? "bg-[#EADECC]/40 text-[#8A5A32] hover:bg-[#EADECC]/60 border-[#D2B48C]/50"
+                              : "bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 border-amber-500/20"
+                          }`}
+                        >
+                          <span className="text-[13px] sm:text-sm md:text-base">{currentAction.icon}</span>
+                          <span>{currentAction.label}</span>
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 border-r border-b rotate-45 ${
                   theme === "light"
@@ -477,7 +538,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
           </AnimatePresence>
           
           <motion.button
-            onClick={handleNextMascot}
+            onClick={() => handleNextMascot(true)}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}

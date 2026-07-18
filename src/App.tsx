@@ -29,7 +29,7 @@ import {
   Check,
   CheckCircle2,
   Sparkles,
-  ArrowUpRight,
+  ArrowUpRight, MousePointerClick,
   ShieldAlert,
   ZoomIn,
   ZoomOut,
@@ -301,6 +301,137 @@ const playMagicDingSound = () => {
   }
 };
 
+const HighlightItem = ({ highlight, index, theme }: { highlight: any, index: number, theme: string }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <motion.div 
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 * index }}
+      onClick={() => setIsFlipped(!isFlipped)}
+      className="relative min-h-[200px] sm:min-h-[220px] lg:min-h-[240px] w-full group h-full"
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        className="w-full h-full relative cursor-pointer"
+        style={{ transformStyle: "preserve-3d" }}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
+      >
+        {/* Front Face */}
+        <div 
+          className={`absolute inset-0 w-full h-full p-5 lg:p-7 rounded-[1.25rem] border backdrop-blur-md flex flex-col justify-start items-start overflow-hidden transition-colors duration-500 ${
+            theme === "sepia" 
+              ? "bg-[#FCF8EE]/80 border-[#DFCFA0]/50 hover:bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)]" 
+              : theme === "light" 
+              ? "bg-white/70 border-zinc-200/60 hover:bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)]" 
+              : "bg-zinc-900/50 border-white/5 hover:bg-zinc-800/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.2)]"
+          }`}
+          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+        >
+          {/* 背景光暈點綴 */}
+          <div className={`absolute -right-8 -top-8 w-32 h-32 rounded-full blur-[32px] opacity-30 transition-opacity duration-700 group-hover:opacity-60 ${highlight.bg.replace('/10', '')}`} />
+          
+          {/* Decorative Large Icon (Watermark) */}
+          <highlight.Icon 
+            strokeWidth={1}
+            className={`absolute -right-4 -bottom-4 w-32 h-32 rotate-12 transition-all duration-700 group-hover:scale-110 group-hover:-rotate-6 ${
+              theme === "sepia" ? "text-[#8A5A32] opacity-[0.04] group-hover:opacity-[0.08]" 
+              : theme === "light" ? "text-zinc-500 opacity-[0.03] group-hover:opacity-[0.06]" 
+              : "text-white opacity-[0.02] group-hover:opacity-[0.05]"
+            }`} 
+          />
+
+          {/* Action Hint Icon */}
+          <div className={`absolute top-4 right-4 p-1.5 md:p-2 rounded-full transition-all duration-500 ${
+            theme === "sepia" ? "bg-[#DFCFA0]/60 md:bg-[#DFCFA0]/40 text-[#A05C2C]" : theme === "light" ? "bg-zinc-200/80 md:bg-zinc-100 text-zinc-600" : "bg-white/20 md:bg-white/10 text-white/90 md:text-white/80"
+          }`}>
+            <MousePointerClick className="w-3.5 h-3.5 md:w-4 md:h-4 animate-pulse md:animate-none" strokeWidth={2.5} />
+          </div>
+
+          <div className="flex flex-col items-start gap-3 w-full h-full relative z-10">
+            {/* Premium Icon Container */}
+            <div className="relative shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
+              {/* Subtle Outer Glow */}
+              <div className={`absolute inset-0 rounded-[1rem] blur-xl opacity-40 group-hover:opacity-80 transition-opacity duration-500 ${highlight.color.replace('text-', 'bg-')}`} />
+              
+              {/* Glass/Metallic Box */}
+              <div className={`relative p-3 rounded-[1rem] flex items-center justify-center overflow-hidden border ${
+                theme === "sepia" 
+                  ? "bg-gradient-to-br from-[#FCF8EE] to-[#F3E8D0] border-[#E8DCC0] shadow-[0_2px_10px_rgba(200,160,100,0.15),inset_0_1px_0_rgba(255,255,255,0.9)]" 
+                  : theme === "light" 
+                  ? "bg-gradient-to-br from-white to-zinc-50/80 border-zinc-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,1)]" 
+                  : "bg-gradient-to-br from-zinc-800 to-zinc-900 border-zinc-700/80 shadow-[0_4px_15px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]"
+              }`}>
+                {/* Color tint layer */}
+                <div className={`absolute inset-0 opacity-[0.08] ${highlight.color.replace('text-', 'bg-')}`} />
+                
+                <highlight.Icon 
+                  className={`w-5 h-5 md:w-6 md:h-6 relative z-10 ${highlight.color}`} 
+                  strokeWidth={2} 
+                  style={{ filter: theme === 'dark' ? 'drop-shadow(0px 2px 4px rgba(0,0,0,0.5))' : 'drop-shadow(0px 2px 4px rgba(0,0,0,0.1))' }} 
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-1 mt-auto">
+              <h3 className={`text-[14px] lg:text-[16px] font-bold tracking-tight transition-colors duration-300 ${
+                theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
+              }`}>{highlight.label}</h3>
+              <p className={`text-[10px] lg:text-[11px] font-semibold tracking-wider uppercase ${
+                theme === "sepia" ? "text-[#A05C2C]" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
+              }`}>{highlight.sub}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Back Face */}
+        <div 
+          className={`absolute inset-0 w-full h-full p-4 sm:p-5 lg:p-6 rounded-[1.25rem] border backdrop-blur-md flex flex-col justify-start items-start overflow-hidden ${
+            theme === "sepia" 
+              ? "bg-[#FCF8EE]/95 border-[#D0B87A] shadow-[0_8px_30px_-4px_rgba(200,160,100,0.15)]" 
+              : theme === "light" 
+              ? "bg-white/95 border-zinc-300 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)]" 
+              : "bg-zinc-800/95 border-white/10 shadow-[0_8px_30px_-4px_rgba(255,255,255,0.03)]"
+          }`}
+          style={{ 
+            backfaceVisibility: "hidden", 
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)" 
+          }}
+        >
+          {/* Decorative Background Icon */}
+          <highlight.Icon 
+            strokeWidth={1}
+            className={`absolute -right-6 -bottom-6 w-32 h-32 rotate-12 transition-all duration-700 group-hover:scale-110 group-hover:-rotate-6 ${
+              theme === "sepia" ? "text-[#8A5A32] opacity-[0.08]" 
+              : theme === "light" ? "text-zinc-500 opacity-[0.06]" 
+              : "text-white opacity-[0.05]"
+            }`} 
+          />
+
+          {/* Accent Indicator */}
+          <div className={`w-8 h-1 rounded-full mb-2.5 lg:mb-3 shrink-0 ${highlight.color.replace('text-', 'bg-')}`} />
+
+          <h4 className={`text-[14px] sm:text-[15px] lg:text-[16px] font-bold tracking-tight mb-1.5 lg:mb-2 relative z-10 ${
+            theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
+          }`}>
+            {highlight.label}
+          </h4>
+
+          <div className={`text-[12px] sm:text-[13px] md:text-[14px] leading-[1.6] sm:leading-relaxed font-medium relative z-10 ${
+            theme === "sepia" ? "text-[#5A3A22]" : theme === "light" ? "text-zinc-600" : "text-zinc-300"
+          }`}>
+            {highlight.content}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 export default function App() {
   const [mounted, setMounted] = useState<boolean>(false);
   const [items, setItems] = useState<PortfolioItem[]>([]);
@@ -433,6 +564,15 @@ export default function App() {
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
+  const [showCategoryHint, setShowCategoryHint] = useState<boolean>(true);
+
+  const handleCategoryClick = React.useCallback((cat: string) => {
+    setSelectedCategory(cat);
+    if (showCategoryHint) {
+      setShowCategoryHint(false);
+    }
+  }, [showCategoryHint]);
+
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchInputVal, setSearchInputVal] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(12);
@@ -475,14 +615,14 @@ export default function App() {
           "genre": item.category,
           "creator": {
             "@type": "Person",
-            "name": "李品賢 (Cape Lee)",
+            "name": "李凱博 (Cape Lee)",
             "alternateName": "Cape Lee",
             "email": "capelee0715@gmail.com",
             "jobTitle": "Designer & Creative Specialist"
           },
           "publisher": {
             "@type": "ProfilePage",
-            "name": "李品賢 (Cape Lee) - Creative Showcase",
+            "name": "李凱博 (Cape Lee) - Creative Showcase",
             "url": origin
           },
           "keywords": item.tools.join(", "),
@@ -814,6 +954,14 @@ export default function App() {
   const [gravityRestoreUnlocked, setGravityRestoreUnlocked] = useState<boolean>(() => {
     try {
       return localStorage.getItem("mumu_ach_gravity_restore") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [pdfUnlocked, setPdfUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_pdf") === "true";
     } catch {
       return false;
     }
@@ -1159,6 +1307,17 @@ export default function App() {
     }
   };
 
+  // 傳統派讀者觸發
+  const handlePdfClick = () => {
+    if (!pdfUnlocked) {
+      setPdfUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_pdf", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("傳統派讀者 📖");
+    }
+  };
+
   // 飛天姆貓成就觸發
   const triggerBalloonAchievement = () => {
     if (!balloonUnlocked) {
@@ -1275,10 +1434,11 @@ export default function App() {
     setDisplayedDialogue("");
     let currentText = "";
     let i = 0;
+    const chars = Array.from(heroDialogue);
     
     heroTypingIntervalRef.current = setInterval(() => {
-      if (i < heroDialogue.length) {
-        currentText += heroDialogue[i];
+      if (i < chars.length) {
+        currentText += chars[i];
         setDisplayedDialogue(currentText);
         i++;
       } else {
@@ -1321,10 +1481,11 @@ export default function App() {
     setDisplayedNavDialogue("");
     let currentText = "";
     let i = 0;
+    const chars = Array.from(navDialogue);
     
     const interval = setInterval(() => {
-      if (i < navDialogue.length) {
-        currentText += navDialogue[i];
+      if (i < chars.length) {
+        currentText += chars[i];
         setDisplayedNavDialogue(currentText);
         i++;
       } else {
@@ -1384,6 +1545,63 @@ export default function App() {
     setNavDialogue(dialogue);
     setShowNavDialogue(true);
   };
+
+  const openAndScrollToProject = React.useCallback((item: PortfolioItem) => {
+    // If the category doesn't include the item, switch to "All"
+    if (selectedCategory !== "All" && selectedCategory !== item.category && !(selectedCategory === "亮點設計" && item.isHighlight)) {
+      setSelectedCategory("All");
+    }
+    
+    // Smooth scroll to portfolio grid
+    const grid = document.getElementById("portfolio-grid");
+    if (grid) {
+      const header = document.querySelector("header");
+      const headerHeight = header ? header.offsetHeight : 64;
+      const elementPosition = grid.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - headerHeight - 20,
+        behavior: "smooth"
+      });
+    }
+
+    // Open modal
+    setTimeout(() => {
+      setActiveModalItem(item);
+    }, 500); // Wait a bit for scroll
+  }, [selectedCategory]);
+
+  const handleRandomProject = React.useCallback(() => {
+    const randomItem = items[Math.floor(Math.random() * items.length)];
+    openAndScrollToProject(randomItem);
+  }, [items, openAndScrollToProject]);
+
+  const handleHighlightProject = React.useCallback(() => {
+    const highlights = items.filter(i => i.isHighlight);
+    if (highlights.length > 0) {
+      const randomHighlight = highlights[Math.floor(Math.random() * highlights.length)];
+      openAndScrollToProject(randomHighlight);
+    }
+  }, [items, openAndScrollToProject]);
+
+  const handleChangeCategory = React.useCallback(() => {
+    const availableCategories = ["亮點設計", "All", ...Array.from(new Set(items.map(item => item.category)))];
+    const otherCategories = availableCategories.filter(c => c !== selectedCategory);
+    if (otherCategories.length > 0) {
+      const nextCat = otherCategories[Math.floor(Math.random() * otherCategories.length)];
+      setSelectedCategory(nextCat);
+      
+      const grid = document.getElementById("portfolio-grid");
+      if (grid) {
+        const header = document.querySelector("header");
+        const headerHeight = header ? header.offsetHeight : 64;
+        const elementPosition = grid.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - headerHeight - 20,
+          behavior: "smooth"
+        });
+      }
+    }
+  }, [items, selectedCategory]);
 
   const handleHeroClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // 統計使用者在 Hero Section 的互動次數
@@ -1756,7 +1974,7 @@ export default function App() {
 
   // Profile data
   const profile = {
-    name: "Cape Lee",
+    name: "李凱博 (Cape Lee)",
     engName: "capelee",
     title: "特約專案設計師",
     company: "立陽鴻企業禮贈品",
@@ -1767,7 +1985,7 @@ export default function App() {
     email: "capelee0715@gmail.com",
     portfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
     pdfPortfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
-    intro: "擁有 6 年以上品牌商業整合設計實戰經驗，經手超過百個品牌、逾千件商品視覺製作，熟悉電商、醫療、文創等多元產業。具備視覺設計、商業攝影、品牌識別、影音製作與生成式 AI 工作流整合之全方位能力，作品涵蓋月銷破萬電商視覺、客家電視台邀約插畫、個人原創 IP 角色開發及企業 CIS 規劃，致力於將品牌價值轉化為最精準、最具張力的視覺語言。",
+    intro: "擁有 6 年以上品牌商業整合設計實戰經驗，致力於探索生成藝術與當代視覺的深度融合。我擅長以 AI 技術為核心，將生成式工作流無縫導入平面設計、影音製作與品牌識別，展現獨特觀點與豐沛的創作能量。經手超過百個品牌專案，涵蓋破萬銷量電商視覺至原創 IP 開發。在此次臺北生成藝術節，我期待透過實際運用 AI 工具，讓大眾親身體驗生成藝術如何為當代創作注入嶄新活力，推動藝術與科技的深度交融，共同邁向生成藝術共創的未來。",
     education: [
       { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
       { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"] }
@@ -1965,7 +2183,7 @@ export default function App() {
       "BEGIN:VCARD",
       "VERSION:3.0",
       `FN:${profile.name}`,
-      "N:Lee;Cape;;;",
+      "N:李;凱博;;;",
       `TITLE:${profile.title}`,
       `ORG:${profile.company}`,
       `EMAIL;TYPE=INTERNET,WORK:${profile.email}`,
@@ -2467,7 +2685,10 @@ export default function App() {
                       href={profile.pdfPortfolioUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={incrementInteraction}
+                      onClick={() => {
+                        incrementInteraction();
+                        handlePdfClick();
+                      }}
                       className={`relative group px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 ${
                         theme === "sepia"
                           ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
@@ -3042,21 +3263,114 @@ export default function App() {
           </motion.div>
         </section>
 
+        {/* 特色亮點區域 (Highlights Section) - 快速展示履歷重點 */}
+        <section className="w-full relative z-20 pb-4 md:pb-8">
+          <div className="w-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+              {[
+                { 
+                  label: "6+ 年實戰經驗", 
+                  sub: "破百品牌視覺操刀", 
+                  Icon: Award, 
+                  color: "text-amber-500", 
+                  bg: "bg-amber-500/10",
+                  content: "從前端品牌規劃到後端視覺執行，擁有豐富的電商、醫療、文創等多元產業實戰經驗。精準掌握各類型商業目標，並轉化為高轉換率的視覺方案。"
+                },
+                { 
+                  label: "AI 藝術生成", 
+                  sub: "前瞻藝術科技融合", 
+                  Icon: Sparkles, 
+                  color: "text-purple-500", 
+                  bg: "bg-purple-500/10",
+                  content: "熟練運用 Midjourney 等生成式 AI 工具，探索當代生成藝術新邊界。將最新科技無縫整合至實體與數位設計工作流中，打破傳統創作框架。"
+                },
+                { 
+                  label: "全方位視覺整合", 
+                  sub: "平面、影音、攝影", 
+                  Icon: Palette, 
+                  color: "text-blue-500", 
+                  bg: "bg-blue-500/10",
+                  content: "具備商業攝影、影音剪輯、2D/3D 動態設計與平面排版的全端設計能力。一條龍掌握每個視覺細節，確保品牌調性在多媒體間高度一致。"
+                },
+                { 
+                  label: "商業與原創兼具", 
+                  sub: "精準行銷與藝術 IP 開發", 
+                  Icon: Zap, 
+                  color: "text-emerald-500", 
+                  bg: "bg-emerald-500/10",
+                  content: "不僅打造過月銷破萬的爆款商業視覺，亦能從零到一開發具有靈魂的原創角色 IP (如 MuMㄠ)。完美平衡商業需求轉換與感性原創藝術性。"
+                }
+              ].map((highlight, index) => (
+                <HighlightItem key={index} highlight={highlight} index={index} theme={theme} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 區塊標題 & 卡片過濾器 */}
         <section id="portfolio-grid" className="space-y-8 scroll-mt-[48px] md:scroll-mt-[58px]">
           {/* 標題與分類選單緊湊排版包裝器 */}
           <div className="space-y-1 md:space-y-1.5 flex flex-col items-center w-full">
-            <div className="max-w-3xl mx-auto text-center space-y-2">
-              <h2 className="text-3xl md:text-4xl font-display font-medium text-white tracking-tight">
+            <div className="max-w-3xl mx-auto text-center space-y-2 md:space-y-3">
+              <h2 className={`text-3xl md:text-4xl font-display font-medium tracking-tight ${
+                theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
+              }`}>
                 探索設計作品
               </h2>
-              <div className="h-[2px] w-12 bg-amber-500 mx-auto rounded-full"></div>
+              <div className="flex flex-col items-center gap-3 pt-1">
+                <div className="h-[2px] w-12 bg-amber-500 rounded-full"></div>
+                <div className={`text-[12px] sm:text-[13px] font-medium tracking-wider flex items-center justify-center gap-2 sm:gap-3 ${
+                  theme === "sepia" ? "text-[#8A5A32]/90" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
+                }`}>
+                  <span className="flex items-center gap-1.5"><SlidersHorizontal className="w-3.5 h-3.5" /> 切換分類</span>
+                  <span className="opacity-30">|</span>
+                  <span className="flex items-center gap-1.5"><MousePointerClick className="w-3.5 h-3.5" /> 點擊卡片查看詳細資訊</span>
+                </div>
+              </div>
             </div>
 
 
 
             {/* 各類作品過濾選項 (電腦版精緻呈現，手機版優化為橫向滑動選單與二列極簡格狀面板) */}
-            <div className="w-full flex flex-col items-center gap-4">
+            <div className={`w-full flex flex-col items-center gap-4 sticky top-[56px] md:top-[64px] z-30 py-2 sm:py-3 backdrop-blur-md transition-colors duration-300 ${
+              theme === "sepia" ? "bg-[#FAF4E5]/80" : theme === "light" ? "bg-[#FAFAFA]/80" : "bg-[#0A0A0A]/80"
+            }`}>
+              <AnimatePresence>
+                {showCategoryHint && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 5 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="absolute -top-14 md:-top-16 left-1/2 -translate-x-1/2 z-40"
+                  >
+                    <motion.div
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                      onClick={() => {
+                        setShowCategoryHint(false);
+                      }}
+                      className={`relative flex items-center justify-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full shadow-2xl border cursor-pointer transition-transform hover:scale-[1.02] active:scale-95 ${
+                        theme === "light" 
+                          ? "bg-white/95 backdrop-blur-md border-amber-300/80 text-zinc-700 shadow-[0_8px_30px_rgba(245,158,11,0.22)]" 
+                          : theme === "sepia" 
+                          ? "bg-[#FCF8EE]/95 backdrop-blur-md border-[#D2B48C]/60 text-[#5C4033] shadow-[0_8px_30px_rgba(180,83,9,0.2)]" 
+                          : "bg-[#111]/95 backdrop-blur-md border-amber-500/40 text-amber-50/90 shadow-[0_8px_30px_rgba(245,158,11,0.2)]"
+                      }`}
+                    >
+                      <Sparkles className={`w-4 h-4 ${theme === "light" ? "text-amber-500" : theme === "sepia" ? "text-amber-600" : "text-amber-400"}`} />
+                      <span className="text-[13px] md:text-sm font-semibold tracking-wide">按此切換作品分類</span>
+                      <div className={`absolute -bottom-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 border-r border-b rotate-45 ${
+                        theme === "light"
+                          ? "bg-white/95 border-amber-300/80"
+                          : theme === "sepia"
+                          ? "bg-[#FCF8EE]/95 border-[#D2B48C]/60"
+                          : "bg-[#111]/95 border-amber-500/40"
+                      }`} />
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
             <div className="hidden md:flex w-full max-w-5xl flex-col items-center gap-2.5 sm:gap-3 px-4">
               {/* 第一行 */}
@@ -3067,7 +3381,7 @@ export default function App() {
                     cat={cat}
                     theme={theme}
                     isActive={selectedCategory === cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    onClick={() => handleCategoryClick(cat)}
                   />
                 ))}
               </div>
@@ -3080,7 +3394,7 @@ export default function App() {
                     cat={cat}
                     theme={theme}
                     isActive={selectedCategory === cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    onClick={() => handleCategoryClick(cat)}
                   />
                 ))}
               </div>
@@ -3116,23 +3430,27 @@ export default function App() {
                         cat={cat}
                         theme={theme}
                         isActive={selectedCategory === cat}
-                        onClick={() => setSelectedCategory(cat)}
+                        onClick={() => handleCategoryClick(cat)}
                       />
                     ))}
                   </div>
 
-                  {/* 右側漸變淡出 */}
+                  {/* 右側漸變淡出 & 橫向滑動暗示 */}
                   <div 
-                    className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l ${
+                    className={`absolute right-0 top-0 bottom-0 w-12 flex items-center justify-end pr-1.5 bg-gradient-to-l ${
                       theme === "sepia" 
-                        ? "from-[#FAF4E5]" 
+                        ? "from-[#FAF4E5] via-[#FAF4E5]/80" 
                         : theme === "light" 
-                        ? "from-[#FAFAFA]" 
-                        : "from-[#0A0A0A]"
+                        ? "from-[#FAFAFA] via-[#FAFAFA]/80" 
+                        : "from-[#0A0A0A] via-[#0A0A0A]/80"
                     } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
                       showCategoriesRightMask ? "opacity-100" : "opacity-0"
                     }`} 
-                  />
+                  >
+                    <ChevronRight className={`w-4 h-4 animate-pulse ${
+                      theme === "sepia" ? "text-[#A05C2C]" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
+                    }`} />
+                  </div>
                 </div>
 
                 {/* 網格展開 & 下拉清單按鈕 */}
@@ -3189,7 +3507,7 @@ export default function App() {
                             key={cat}
                             type="button"
                             onClick={() => {
-                              setSelectedCategory(cat);
+                              handleCategoryClick(cat);
                               setIsMobileExpanded(false); // 點選後自動摺疊
                             }}
                             className={`w-full text-left py-2.5 px-3 rounded-xl text-xs font-medium border transition-all duration-200 flex items-center justify-between ${
@@ -3315,6 +3633,7 @@ export default function App() {
                     theme={deferredTheme}
                     showAllDetails={false}
                     onNearBottom={is80PercentMark ? handlePreloadNextBatch : undefined}
+                    isFirst={index === 0}
                   />
                 );
               })}
@@ -3639,7 +3958,7 @@ export default function App() {
                 className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
               >
                 {(() => {
-                  const totalAchievements = 11;
+                  const totalAchievements = 13;
                   const unlockedCount = [
                     midnightUnlocked,
                     visitedThemes.length >= 3,
@@ -3651,7 +3970,9 @@ export default function App() {
                     aiWizardUnlocked,
                     premiumCanUnlocked,
                     balloonUnlocked,
-                    magicMumuUnlocked
+                    magicMumuUnlocked,
+                    gravityRestoreUnlocked,
+                    pdfUnlocked
                   ].filter(Boolean).length;
                   
                   return (
@@ -3876,6 +4197,9 @@ export default function App() {
         isContactCardOpen={isContactCardOpen}
         scrollSectionVisible={isMascotVisibleByScroll}
         onInteract={incrementInteraction}
+        onRandomProject={handleRandomProject}
+        onHighlightProject={handleHighlightProject}
+        onChangeCategory={handleChangeCategory}
       />
 
       {/* 懸浮回到最上方按鈕 */}
@@ -4658,6 +4982,44 @@ export default function App() {
                         {gravityRestoreUnlocked
                           ? "「重建崩塌的世界！成功解鎖『扭轉乾坤、重塑秩序』之神聖履歷治癒護佑！」"
                           : "（點擊履歷右上角進行 [重力測試]，再點擊 [魔法復原] 重建履歷）"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 成就 13: 傳統派讀者 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    pdfUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      pdfUnlocked 
+                        ? "bg-gradient-to-br from-orange-400 to-amber-600 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <FileText className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {pdfUnlocked ? "「傳統派讀者」📖" : "「傳統派讀者」🔒"}
+                        </span>
+                        {pdfUnlocked && (
+                          <span className="text-[8px] font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {pdfUnlocked
+                          ? "「返璞歸真！雖然網頁很炫，但你依然沒忘記下載 PDF 版本，本教主賜予你『穩健務實』之力！」"
+                          : "（點擊首頁的 [PDF 作品集] 開啟傳統格式履歷）"}
                       </p>
                     </div>
                   </div>

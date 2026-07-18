@@ -8,11 +8,12 @@ interface PortfolioCardProps {
   theme: "dark" | "light" | "sepia";
   showAllDetails: boolean;
   onNearBottom?: () => void;
+  isFirst?: boolean;
 }
 
 import React, { useState } from "react";
-import { X, Sparkles, ArrowUpRight, ArrowUp, Image as ImageIcon, QrCode, Download, Eye, ExternalLink } from "lucide-react";
-import { motion } from "motion/react";
+import { X, MousePointerClick, Sparkles, ArrowUpRight, ArrowUp, Image as ImageIcon, QrCode, Download, Eye, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { PortfolioItem } from "../types";
 import { ImageWithFallback } from "./ImageWithFallback";
 import { getCategoryColor } from "../categoryColors";
@@ -133,12 +134,15 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   prevVisibleCount,
   theme,
   showAllDetails,
-  onNearBottom
+  onNearBottom,
+  isFirst = false
 }: PortfolioCardProps) {
   const catColor = getCategoryColor(item.category);
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showFirstPulse, setShowFirstPulse] = useState(isFirst);
+  const [showCardHint, setShowCardHint] = useState(isFirst);
   const cardInnerRef = React.useRef<HTMLDivElement>(null);
   const glareRef = React.useRef<HTMLDivElement>(null);
   const isTouchDeviceRef = React.useRef(false);
@@ -305,6 +309,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   }, [isFlipped]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (showFirstPulse) setShowFirstPulse(false);
+    if (showCardHint) setShowCardHint(false);
     if (inertiaFrameRef.current) {
       cancelAnimationFrame(inertiaFrameRef.current);
       inertiaFrameRef.current = null;
@@ -336,6 +342,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (showFirstPulse) setShowFirstPulse(false);
+    if (showCardHint) setShowCardHint(false);
     if (inertiaFrameRef.current) {
       cancelAnimationFrame(inertiaFrameRef.current);
       inertiaFrameRef.current = null;
@@ -413,8 +421,41 @@ export const PortfolioCard = React.memo(function PortfolioCard({
         scale: { duration: 0.22, ease: "easeOut", delay },
         y: { duration: 0.22, ease: "easeOut", delay }
       }}
-      className="h-full scroll-mt-16 md:scroll-mt-20"
+      className="h-full scroll-mt-16 md:scroll-mt-20 relative"
     >
+      <AnimatePresence>
+        {showCardHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 15, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, y: 5 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="absolute -top-14 md:-top-16 left-1/2 -translate-x-1/2 z-40 pointer-events-none"
+          >
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className={`relative flex items-center justify-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full shadow-2xl border ${
+                theme === "light" 
+                  ? "bg-white/95 backdrop-blur-md border-amber-300/80 text-zinc-700 shadow-[0_8px_30px_rgba(245,158,11,0.22)]" 
+                  : theme === "sepia" 
+                  ? "bg-[#FCF8EE]/95 backdrop-blur-md border-[#D2B48C]/60 text-[#5C4033] shadow-[0_8px_30px_rgba(180,83,9,0.2)]" 
+                  : "bg-[#111]/95 backdrop-blur-md border-amber-500/40 text-amber-50/90 shadow-[0_8px_30px_rgba(245,158,11,0.2)]"
+              }`}
+            >
+              <MousePointerClick className={`w-4 h-4 ${theme === "light" ? "text-amber-500" : theme === "sepia" ? "text-amber-600" : "text-amber-400"}`} />
+              <span className="text-[13px] md:text-sm font-semibold tracking-wide">點開看詳情</span>
+              <div className={`absolute -bottom-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 border-r border-b rotate-45 ${
+                theme === "light"
+                  ? "bg-white/95 border-amber-300/80"
+                  : theme === "sepia"
+                  ? "bg-[#FCF8EE]/95 border-[#D2B48C]/60"
+                  : "bg-[#111]/95 border-amber-500/40"
+              }`} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {!isVisible ? (
         <div
           style={{
@@ -479,6 +520,11 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             }}
             className="relative flex flex-col rounded-2xl w-full h-full"
           >
+          {showFirstPulse && (
+            <div className={`absolute -inset-[3px] rounded-[1.2rem] z-[-1] animate-[pulse_2s_ease-in-out_infinite] ${
+              theme === 'sepia' ? 'bg-[#A05C2C]/30' : theme === 'light' ? 'bg-amber-500/30' : 'bg-amber-400/40'
+            }`} />
+          )}
           {/* Front Face of the Card */}
           <div
             className={`w-full h-full flex flex-col rounded-2xl overflow-hidden transition-[background-color,border-color,color] duration-500 subpixel-antialiased ${themeContainerClass}`}
