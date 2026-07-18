@@ -17,6 +17,10 @@ body {
   font-family: var(--font-sans);
   background-color: #0A0A0A;
   color: #E5E7EB;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  text-rendering: optimizeLegibility;
 }
 
 /* Custom scrollbars for a cleaner visual look in Elegant Dark */
