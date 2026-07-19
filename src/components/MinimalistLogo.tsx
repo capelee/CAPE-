@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Instagram, X } from "lucide-react";
 import { playMeowSound, catPurr } from "../utils/audioEffects";
+import { useTutorial } from "../context/TutorialContext";
+import { TutorialTooltip } from "./TutorialTooltip";
 
 // 可愛氣球充氣嗶嗶聲 (Balloon Inflation Squeak)
 const playBalloonSqueakSound = () => {
@@ -152,6 +154,8 @@ export function MinimalistLogo({
   // Cat Purr Hover states
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [isPurring, setIsPurring] = useState<boolean>(false);
+  const { tutorialStep, nextTutorialStep } = useTutorial();
+  const [tutorialDismissed5, setTutorialDismissed5] = useState(false);
 
   const handleMouseEnter = () => {
     if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
@@ -381,6 +385,7 @@ export function MinimalistLogo({
 
   return (
     <div className={`relative overflow-visible ${className}`} style={size !== undefined ? { width: size, height: size } : undefined}>
+      
       {/* 噴發粒子圖層：溢出可見，層級置頂但點擊穿透 */}
       <div className="absolute inset-0 pointer-events-none overflow-visible flex items-center justify-center select-none z-30">
         <AnimatePresence>

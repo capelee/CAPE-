@@ -1,3 +1,5 @@
+import { useTutorial } from './context/TutorialContext';
+import { TutorialTooltip } from './components/TutorialTooltip';
 import React, { useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { 
@@ -301,7 +303,7 @@ const playMagicDingSound = () => {
   }
 };
 
-const HighlightItem = ({ highlight, index, theme }: { highlight: any, index: number, theme: string }) => {
+const HighlightItem: React.FC<{ highlight: any, index: number, theme: string }> = ({ highlight, index, theme }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -564,16 +566,20 @@ export default function App() {
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
-  const [showCategoryHint, setShowCategoryHint] = useState<boolean>(true);
+  const { tutorialStep, nextTutorialStep } = useTutorial();
 
   const handleCategoryClick = React.useCallback((cat: string) => {
     setSelectedCategory(cat);
-    if (showCategoryHint) {
-      setShowCategoryHint(false);
+    if (tutorialStep === 1) {
+      nextTutorialStep();
     }
-  }, [showCategoryHint]);
+  }, [tutorialStep, nextTutorialStep]);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [tutorialDismissed5, setTutorialDismissed5] = useState(false);
+  const [tutorialDismissed6, setTutorialDismissed6] = useState(false);
+  const [tutorialDismissed7, setTutorialDismissed7] = useState(false);
+  const [tutorialDismissed8, setTutorialDismissed8] = useState(false);
   const [searchInputVal, setSearchInputVal] = useState<string>("");
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const [prevVisibleCount, setPrevVisibleCount] = useState<number>(0);
@@ -934,6 +940,14 @@ export default function App() {
       return false;
     }
   });
+  const [fedFlavors, setFedFlavors] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem("mumu_ach_fed_flavors");
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
 
   const [balloonUnlocked, setBalloonUnlocked] = useState<boolean>(() => {
     try {
@@ -962,6 +976,14 @@ export default function App() {
   const [pdfUnlocked, setPdfUnlocked] = useState<boolean>(() => {
     try {
       return localStorage.getItem("mumu_ach_pdf") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [tutorialAchUnlocked, setTutorialAchUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_tutorial") === "true";
     } catch {
       return false;
     }
@@ -1016,6 +1038,10 @@ export default function App() {
   };
 
   const handleCanDragStart = () => {
+    if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6) {
+      setTutorialDismissed6(true);
+      nextTutorialStep();
+    }
     if (canPhysicsId.current !== null) {
       cancelAnimationFrame(canPhysicsId.current);
       canPhysicsId.current = null;
@@ -1066,15 +1092,28 @@ export default function App() {
     }));
     setHeroParticles((prev) => [...prev, ...explosionParticles].slice(-100));
 
-    if (!premiumCanUnlocked) {
+    const newFedFlavors = [...new Set([...fedFlavors, canFlavor])];
+    if (newFedFlavors.length > fedFlavors.length) {
+      setFedFlavors(newFedFlavors);
+      try {
+        localStorage.setItem("mumu_ach_fed_flavors", JSON.stringify(newFedFlavors));
+      } catch (e) {}
+    }
+
+    if (!premiumCanUnlocked && newFedFlavors.length >= 3) {
       setPremiumCanUnlocked(true);
       try {
         localStorage.setItem("mumu_ach_premium_can", "true");
       } catch (e) {}
       triggerAchievementUnlock("極致奢華罐罐奉納 🥫");
+      setHeroDialogue("喵嗚！太美味了吧！你居然集齊了三種口味的罐罐奉納！😻🥫✨ 本教主心情大好，特許你擁有無上福報、諸願成就！🐾");
+    } else if (!premiumCanUnlocked) {
+      const remaining = 3 - newFedFlavors.length;
+      setHeroDialogue(`喵嗚～美味的${FLAVOR_PHYSICS[canFlavor].name}！🤤 再餵我 ${remaining} 種不同口味的罐罐，我就大發慈悲賜予你祝福！🐾`);
+    } else {
+      setHeroDialogue(`喵嗚！是${FLAVOR_PHYSICS[canFlavor].name}！太美味了吧！😻🥫✨ 本教主心情大好！🐾`);
     }
 
-    setHeroDialogue("喵嗚！太美味了吧！這就是極致奢華的貓罐罐奉納嗎？😻🥫✨ 本教主心情大好，特許你擁有無上福報、諸願成就！🐾");
     setIsHeroSpeaking(true);
     setShowHeroDialogue(true);
   };
@@ -1328,6 +1367,17 @@ export default function App() {
       triggerAchievementUnlock("飛天姆貓 🎈");
     }
   };
+
+  // 檢測新手上路成就條件 (完成前三個教學，tutorialStep >= 4)
+  React.useEffect(() => {
+    if (tutorialStep >= 4 && !tutorialAchUnlocked) {
+      setTutorialAchUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_tutorial", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("新手上路 🎓");
+    }
+  }, [tutorialStep, tutorialAchUnlocked]);
 
   // 2. 檢測時空穿梭大師條件 (體驗完所有主題)
   React.useEffect(() => {
@@ -1584,6 +1634,7 @@ export default function App() {
   }, [items, openAndScrollToProject]);
 
   const handleChangeCategory = React.useCallback(() => {
+    if (tutorialStep === 1) nextTutorialStep();
     const availableCategories = ["亮點設計", "All", ...Array.from(new Set(items.map(item => item.category)))];
     const otherCategories = availableCategories.filter(c => c !== selectedCategory);
     if (otherCategories.length > 0) {
@@ -3022,6 +3073,16 @@ export default function App() {
                 )}
               </AnimatePresence>
 
+              {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed5 && (
+                <TutorialTooltip 
+                  step={5}
+                  text="點擊姆貓互動看看吧！"
+                  theme={theme}
+                  onClick={() => { setTutorialDismissed5(true); nextTutorialStep(); }}
+                  pointerDirection="right"
+                  className="absolute top-1/2 -translate-y-1/2 left-0 sm:-left-16 z-[100]"
+                />
+              )}
               <motion.div
                 initial={{ y: 45, scale: 0.98, opacity: 0 }}
                 animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -3171,7 +3232,18 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* Draggable cat food can Easter Egg in the corner of the Hero section */}
+          
+          {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6 && (
+            <TutorialTooltip 
+              step={6}
+              text="試著滑動罐罐"
+              theme={theme}
+              onClick={() => { setTutorialDismissed6(true); nextTutorialStep(); }}
+              pointerDirection="right"
+              className="absolute top-2 right-16 z-[100]"
+            />
+          )}
+{/* Draggable cat food can Easter Egg in the corner of the Hero section */}
           <motion.div
             ref={canRef}
             style={{ x: canX, y: canY, rotate: canRotate, touchAction: "none" }}
@@ -3336,39 +3408,15 @@ export default function App() {
               theme === "sepia" ? "bg-[#FAF4E5]/80" : theme === "light" ? "bg-[#FAFAFA]/80" : "bg-[#0A0A0A]/80"
             }`}>
               <AnimatePresence>
-                {showCategoryHint && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 15, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9, y: 5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="absolute -top-14 md:-top-16 left-1/2 -translate-x-1/2 z-40"
-                  >
-                    <motion.div
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                      onClick={() => {
-                        setShowCategoryHint(false);
-                      }}
-                      className={`relative flex items-center justify-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full shadow-2xl border cursor-pointer transition-transform hover:scale-[1.02] active:scale-95 ${
-                        theme === "light" 
-                          ? "bg-white/95 backdrop-blur-md border-amber-300/80 text-zinc-700 shadow-[0_8px_30px_rgba(245,158,11,0.22)]" 
-                          : theme === "sepia" 
-                          ? "bg-[#FCF8EE]/95 backdrop-blur-md border-[#D2B48C]/60 text-[#5C4033] shadow-[0_8px_30px_rgba(180,83,9,0.2)]" 
-                          : "bg-[#111]/95 backdrop-blur-md border-amber-500/40 text-amber-50/90 shadow-[0_8px_30px_rgba(245,158,11,0.2)]"
-                      }`}
-                    >
-                      <Sparkles className={`w-4 h-4 ${theme === "light" ? "text-amber-500" : theme === "sepia" ? "text-amber-600" : "text-amber-400"}`} />
-                      <span className="text-[13px] md:text-sm font-semibold tracking-wide">按此切換作品分類</span>
-                      <div className={`absolute -bottom-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 border-r border-b rotate-45 ${
-                        theme === "light"
-                          ? "bg-white/95 border-amber-300/80"
-                          : theme === "sepia"
-                          ? "bg-[#FCF8EE]/95 border-[#D2B48C]/60"
-                          : "bg-[#111]/95 border-amber-500/40"
-                      }`} />
-                    </motion.div>
-                  </motion.div>
+                {tutorialStep === 1 && (
+                  <TutorialTooltip 
+                    step={1}
+                    text="按此切換作品分類"
+                    theme={theme}
+                    onClick={() => { handleChangeCategory(); }}
+                    pointerDirection="bottom"
+                    className="top-[-50px] md:top-[-60px] left-1/2 -translate-x-1/2"
+                  />
                 )}
               </AnimatePresence>
             {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
@@ -3623,18 +3671,42 @@ export default function App() {
               {visibleItems.map((item, index) => {
                 const is80PercentMark = index === preloadThresholdIndex;
                 return (
-                  <PortfolioCard
-                    key={item.id}
-                    item={item}
-                    onClick={() => setActiveModalItem(item)}
-                    priority={index < 6}
-                    index={index}
-                    prevVisibleCount={prevVisibleCount}
-                    theme={deferredTheme}
-                    showAllDetails={false}
-                    onNearBottom={is80PercentMark ? handlePreloadNextBatch : undefined}
-                    isFirst={index === 0}
-                  />
+                  
+                  <div className="relative" key={item.id}>
+                    {index === 0 && (tutorialStep === 1 || tutorialStep === 2) && (
+                      <TutorialTooltip 
+                        step={2}
+                        text="點開看詳情"
+                        theme={deferredTheme}
+                        onClick={() => { if (tutorialStep === 1) { nextTutorialStep(); nextTutorialStep(); } else { nextTutorialStep(); } setActiveModalItem(item); }}
+                        pointerDirection="bottom"
+                        className="-top-14 md:-top-16 left-1/2 -translate-x-1/2 z-[100]"
+                      />
+                    )}
+                    <PortfolioCard
+                      key={item.id}
+                      item={item}
+                      onClick={() => {
+                        if (index === 0) {
+                          if (tutorialStep === 1) {
+                            nextTutorialStep();
+                            nextTutorialStep();
+                          } else if (tutorialStep === 2) {
+                            nextTutorialStep();
+                          }
+                        }
+                        setActiveModalItem(item);
+                      }}
+                      priority={index < 6}
+                      index={index}
+                      prevVisibleCount={prevVisibleCount}
+                      theme={deferredTheme}
+                      showAllDetails={false}
+                      onNearBottom={is80PercentMark ? handlePreloadNextBatch : undefined}
+                      isFirst={index === 0}
+                    />
+                  </div>
+
                 );
               })}
             </AnimatePresence>
@@ -3946,6 +4018,18 @@ export default function App() {
                 style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
                 className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
               >
+                
+                {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed7 && (
+                  <TutorialTooltip 
+                    step={7}
+                    text="試試今天手氣"
+                    theme={theme}
+                    vertical={true}
+                    onClick={() => { setTutorialDismissed7(true); nextTutorialStep(); document.getElementById("btn_mumu_fortune_ema")?.click(); }}
+                    pointerDirection="right"
+                    className="absolute right-full mr-3 sm:mr-4 top-1/2 -translate-y-1/2"
+                  />
+                )}
                 <CatFortuneTeller theme={theme} onConsult={handleFortuneConsult} />
                 <span className={`text-[8px] font-serif tracking-[0.25em] uppercase opacity-35 select-none`}>
                   御神籤
@@ -3958,7 +4042,7 @@ export default function App() {
                 className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
               >
                 {(() => {
-                  const totalAchievements = 13;
+                  const totalAchievements = 14;
                   const unlockedCount = [
                     midnightUnlocked,
                     visitedThemes.length >= 3,
@@ -3972,12 +4056,29 @@ export default function App() {
                     balloonUnlocked,
                     magicMumuUnlocked,
                     gravityRestoreUnlocked,
-                    pdfUnlocked
+                    pdfUnlocked,
+                    tutorialAchUnlocked
                   ].filter(Boolean).length;
                   
                   return (
+                    <>
+                      {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed8 && (
+                        <TutorialTooltip 
+                          step={8}
+                          text="蒐集專屬成就"
+                          theme={theme}
+                          vertical={true}
+                          onClick={() => { setTutorialDismissed8(true); nextTutorialStep(); setIsCertModalOpen(true); }}
+                          pointerDirection="left"
+                          className="absolute left-full ml-3 sm:ml-4 top-1/2 -translate-y-1/2"
+                        />
+                      )}
                     <motion.button
                       onClick={() => {
+                        if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed8) {
+                          setTutorialDismissed8(true);
+                          nextTutorialStep();
+                        }
                         setIsCertModalOpen(true);
                         try {
                           playMeowSound();
@@ -4001,6 +4102,7 @@ export default function App() {
                       id="btn_mumu_certified_badge"
                       className="relative cursor-pointer group flex flex-col items-center bg-transparent border-0 p-0 outline-none shadow-none z-50"
                     >
+                      {/* Tooltip moved OUTSIDE the button to prevent CSS stripping */}
                       {/* 完美和風御守本體 (將吊繩與圓點一併繪入 SVG 中，徹底免除外部 HTML 元素與 flex 容器對齊時產生的白塊與渲染問題) */}
                       <div 
                         style={{ background: "transparent", backgroundColor: "transparent" }}
@@ -4122,6 +4224,7 @@ export default function App() {
                         </div>
                       </div>
                     </motion.button>
+                    </>
                   );
                 })()}
                 <span className={`text-[8px] font-serif tracking-[0.25em] uppercase opacity-35 select-none`}>
@@ -4189,18 +4292,20 @@ export default function App() {
       />
 
       {/* 角色插畫類別配置：右下角生動彈出裝飾（極高解析度 GPU 隔離渲染） */}
-      <InteractiveMascot 
-        currentMascot={currentMascot}
-        theme={deferredTheme}
-        activeModalItem={activeModalItem}
-        isWorkflowOpen={isWorkflowOpen}
-        isContactCardOpen={isContactCardOpen}
-        scrollSectionVisible={isMascotVisibleByScroll}
-        onInteract={incrementInteraction}
-        onRandomProject={handleRandomProject}
-        onHighlightProject={handleHighlightProject}
-        onChangeCategory={handleChangeCategory}
-      />
+      {(tutorialStep === 0 || tutorialStep >= 4) && (
+        <InteractiveMascot 
+          currentMascot={currentMascot}
+          theme={deferredTheme}
+          activeModalItem={activeModalItem}
+          isWorkflowOpen={isWorkflowOpen}
+          isContactCardOpen={isContactCardOpen}
+          scrollSectionVisible={isMascotVisibleByScroll}
+          onInteract={incrementInteraction}
+          onRandomProject={handleRandomProject}
+          onHighlightProject={handleHighlightProject}
+          onChangeCategory={handleChangeCategory}
+        />
+      )}
 
       {/* 懸浮回到最上方按鈕 */}
       <AnimatePresence>
@@ -5023,6 +5128,44 @@ export default function App() {
                       </p>
                     </div>
                   </div>
+
+                  {/* 成就 14: 新手上路 */}
+                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                    tutorialAchUnlocked
+                      ? theme === "sepia"
+                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                        : theme === "light"
+                        ? "bg-white/60 border-pink-400/30 shadow-sm"
+                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                  }`}>
+                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                      tutorialAchUnlocked 
+                        ? "bg-gradient-to-br from-blue-400 to-indigo-600 text-white shadow-sm"
+                        : "bg-zinc-800/40 text-zinc-500"
+                    }`}>
+                      <GraduationCap className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold tracking-wide ${
+                          theme === "sepia" ? "text-white" : ""
+                        }`}>
+                          {tutorialAchUnlocked ? "「新手上路」🎓" : "「新手上路」🔒"}
+                        </span>
+                        {tutorialAchUnlocked && (
+                          <span className="text-[8px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-1 py-0.5 rounded">
+                            已解鎖
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                        {tutorialAchUnlocked
+                          ? "「恭喜你完成新手教學！現在你已經掌握了瀏覽這個網站的精髓，本教主賜予你『無畏探索』之力！」"
+                          : "（完成前三個新手教學步驟即可解鎖）"}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -5074,7 +5217,11 @@ export default function App() {
             initial={{ opacity: 0, y: 50, scale: 0.85 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9, transition: { duration: 0.2 } }}
-            className={`fixed bottom-6 right-6 z-[999999] p-4 rounded-xl border shadow-2xl flex items-center gap-3.5 max-w-xs ${
+            onClick={() => {
+              setIsCertModalOpen(true);
+              setUnlockedAchToast(null);
+            }}
+            className={`fixed bottom-6 right-6 z-[999999] p-4 rounded-xl border shadow-2xl flex items-center gap-3.5 max-w-xs cursor-pointer hover:scale-[1.02] active:scale-95 transition-transform duration-200 ${
               theme === "sepia"
                 ? "bg-[#FCF8EE] border-[#A05C2C]/30 text-[#4F3C28]"
                 : theme === "light"
@@ -5089,11 +5236,14 @@ export default function App() {
               <span className="block text-[9px] font-bold tracking-wider text-amber-500 uppercase">榮譽成就解鎖！</span>
               <h4 className="text-xs font-bold tracking-wide mt-0.5">{unlockedAchToast}</h4>
               <p className="text-[10px] opacity-75 mt-0.5 leading-relaxed">
-                恭喜獲得姆貓教特別榮譽認證！已登錄至您的教主證書。
+                恭喜獲得特別榮譽！點擊此處立即查看您的成就御守。
               </p>
             </div>
             <button
-              onClick={() => setUnlockedAchToast(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setUnlockedAchToast(null);
+              }}
               className="text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer self-start p-1"
             >
               <X className="h-3.5 w-3.5" />

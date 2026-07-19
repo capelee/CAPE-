@@ -1,3 +1,5 @@
+import { useTutorial } from '../context/TutorialContext';
+import { TutorialTooltip } from './TutorialTooltip';
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
@@ -47,6 +49,8 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
   onPrevItem,
   onNextItem,
 }) => {
+  const { tutorialStep, nextTutorialStep } = useTutorial();
+
   if (!activeModalItem) return null;
 
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
@@ -138,6 +142,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
+    if (tutorialStep === 3) nextTutorialStep();
     if (touchStartX.current === null || touchStartY.current === null) return;
     const touch = e.changedTouches[0];
     const diffX = touch.clientX - touchStartX.current;
@@ -267,6 +272,17 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
               ? "col-span-12 md:col-span-12 h-full flex-grow" 
               : "md:col-span-7 h-[330px] sm:h-[450px] md:h-[500px]"
           }`}>
+            {tutorialStep === 3 && (
+              <TutorialTooltip 
+                step={3}
+                text={waterfallMode === "stitch" ? "向下瀏覽或點擊完成步驟" : "點擊圖片或滑動來切換"}
+                theme="dark"
+                vertical={false}
+                onClick={() => { nextTutorialStep(); if (waterfallMode !== "stitch") handleNextSlide(); }}
+                pointerDirection="bottom"
+                className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[150]"
+              />
+            )}
             <div 
               ref={stitchScrollContainerRef}
               onTouchStart={handleTouchStart}
@@ -350,6 +366,8 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
                     </div>
                   ) : (
                     <>
+                      
+
                       <ImageWithFallback 
                         src={activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : '')}
                         alt={activeModalItem.title}

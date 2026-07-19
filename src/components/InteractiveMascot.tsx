@@ -1,3 +1,5 @@
+import { useTutorial } from '../context/TutorialContext';
+import { TutorialTooltip } from './TutorialTooltip';
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
 import { PortfolioItem } from "../types";
@@ -38,6 +40,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   onHighlightProject,
   onChangeCategory
 }: InteractiveMascotProps) {
+  const [tutorialDismissed5, setTutorialDismissed5] = useState(false);
+  const { tutorialStep, nextTutorialStep } = useTutorial();
   const [mascotDialogue, setMascotDialogue] = useState<string>("");
   const [showMascotDialogue, setShowMascotDialogue] = useState<boolean>(false);
   const [isTouched, setIsTouched] = useState<boolean>(false);
@@ -300,6 +304,10 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
 
   // 點擊吉祥物時隨機切換台詞 (且不影響 App.tsx 渲染)
   const handleNextMascot = (isFromMascot: boolean = false) => {
+    if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed5) {
+      setTutorialDismissed5(true);
+      nextTutorialStep();
+    }
     if (isChasing) return; // 動畫中禁止重複點擊觸發
 
     // Trigger parent callback to track overall interactions
@@ -536,6 +544,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               </motion.div>
             )}
           </AnimatePresence>
+          
+          
           
           <motion.button
             onClick={() => handleNextMascot(true)}
