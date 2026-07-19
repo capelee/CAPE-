@@ -274,6 +274,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
           }`}>
             {tutorialStep === 3 && (
               <TutorialTooltip 
+                key="tutorial-step-3"
                 step={3}
                 text={waterfallMode === "stitch" ? "向下瀏覽或點擊完成步驟" : "點擊圖片或滑動來切換"}
                 theme="dark"

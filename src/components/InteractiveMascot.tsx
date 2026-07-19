@@ -477,16 +477,6 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                     : "text-zinc-100 font-semibold group-hover:text-amber-200"
                 } text-[11px] sm:text-xs text-center leading-relaxed font-sans px-1 select-none whitespace-normal break-words transition-colors min-h-[30px] sm:min-h-[34px] flex flex-col items-center justify-center subpixel-antialiased`}
                 style={{ textRendering: "geometricPrecision" }}>
-                  {/* 顯示角色名字與職位 */}
-                  <span className={`text-[8.5px] sm:text-[9.5px] tracking-wider opacity-90 mb-1 font-bold font-sans px-1.5 py-0.5 rounded-full subpixel-antialiased ${
-                    theme === "light" 
-                      ? "bg-zinc-100 text-zinc-600" 
-                      : theme === "sepia" 
-                      ? "bg-[#EDE2CA] text-[#433422]" 
-                      : "bg-white/10 text-zinc-300"
-                  }`}>
-                    {currentMascot.name} • {currentMascot.role}
-                  </span>
                   
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -585,7 +575,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               }
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
-            title={`點我跟 ${currentMascot.name} 互動！(長按可拖曳)`}
+            title="點我互動！(長按可拖曳)"
             style={{ willChange: "transform", touchAction: "none", rotate: smoothRotate }}
           >
             {/* 動態背景彩色發光暈圈 */}
@@ -646,7 +636,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             </AnimatePresence>
 
             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/75 border border-white/10 text-[9px] text-zinc-300 px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
-              💬 點擊跟我對話吧！({currentMascot.name})
+              💬 點擊跟我對話吧！
             </div>
           </motion.button>
         </motion.div>

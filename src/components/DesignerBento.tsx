@@ -361,6 +361,7 @@ export function DesignerBento({
               <div className="relative w-full">
                 {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed4 && (
                   <TutorialTooltip 
+                    key={`tutorial-step-4-${tutorialStep}`}
                     step={4}
                     text="喜歡我的作品嗎？來聊聊吧！"
                     theme={theme}

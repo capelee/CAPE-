@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Sparkles } from 'lucide-react';
 
 interface TutorialTooltipProps {
@@ -49,7 +49,7 @@ export const TutorialTooltip: React.FC<TutorialTooltipProps> = ({
       >
         <Sparkles className={`w-3.5 h-3.5 ${theme === "light" ? "text-amber-500" : theme === "sepia" ? "text-amber-600" : "text-amber-400"}`} />
         <span className={`text-[12px] md:text-sm font-semibold tracking-wide ${vertical ? 'writing-vertical-rl' : ''}`} style={vertical ? { writingMode: 'vertical-rl', textOrientation: 'upright' } : {}}>
-          {vertical ? `${step}・${text}` : `${step}. ${text}`}
+          {step >= 4 ? text : (vertical ? `${step}・${text}` : `${step}. ${text}`)}
         </span>
         
         {pointerDirection === 'bottom' && (
