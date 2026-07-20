@@ -1,5 +1,6 @@
 import { useTutorial } from './context/TutorialContext';
 import { TutorialTooltip } from './components/TutorialTooltip';
+import { ScrambleText } from './components/ScrambleText';
 import React, { useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { 
@@ -38,6 +39,7 @@ import {
   Sun,
   Moon,
   Eye,
+  Monitor,
   Instagram,
   ArrowUp,
   Maximize2,
@@ -49,14 +51,16 @@ import {
   SlidersHorizontal,
   FileText, RotateCcw
 } from "lucide-react";
-import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring, animate } from "motion/react";
+import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring, animate, useScroll, useTransform } from "motion/react";
 import { PortfolioItem, MascotCharacter } from "./types";
+import { HeroSection, HeroSectionRef } from './components/Hero';
 import { categoryMascotMap } from "./utils/mascotData";
+import { FLAVOR_PHYSICS } from "./utils/flavorPhysics";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
 import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl } from "./utils";
 import { animaleseSynth } from "./utils/animalese";
-import { playMeowSound, playCanClinkSound, catPurr } from "./utils/audioEffects";
+import { playMeowSound, playCanClinkSound, catPurr, audioContextManager } from "./utils/audioEffects";
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
 
@@ -140,6 +144,7 @@ import { ContactModal } from "./components/ContactModal";
 import { PortfolioDetailModal } from "./components/PortfolioDetailModal";
 import { CatFortuneTeller } from "./components/CatFortuneTeller";
 import { CatFootprintsLayer } from "./components/CatFootprintsLayer";
+import { MumuCertModal, MumuCertModalRef } from "./components/MumuCertModal";
 
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
@@ -261,9 +266,8 @@ async function fetchFolderImages(folderId: string): Promise<string[]> {
 // 『叮！』魔法施法聲效 (Magic Ding Casting Sound)
 const playMagicDingSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // A beautiful complex bell/chime chime with sharp attack and lingering decay
@@ -314,11 +318,11 @@ const HighlightItem: React.FC<{ highlight: any, index: number, theme: string }> 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
       onClick={() => setIsFlipped(!isFlipped)}
-      className="relative min-h-[200px] sm:min-h-[220px] lg:min-h-[240px] w-full group h-full"
+      className="relative min-h-[200px] sm:min-h-[220px] lg:min-h-[240px] w-full group h-full will-change-transform transform-gpu"
       style={{ perspective: 1000 }}
     >
       <motion.div
-        className="w-full h-full relative cursor-pointer"
+        className="w-full h-full relative cursor-pointer will-change-transform transform-gpu"
         style={{ transformStyle: "preserve-3d" }}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
@@ -437,11 +441,24 @@ const HighlightItem: React.FC<{ highlight: any, index: number, theme: string }> 
 
 export default function App() {
   const [mounted, setMounted] = useState<boolean>(false);
+  const { scrollY } = useScroll();
+  
+  // Parallax transform values
+  const mascotY = useTransform(scrollY, [0, 800], [0, 80]);
+  const glowY = useTransform(scrollY, [0, 800], [0, 160]);
+  const elementsY = useTransform(scrollY, [0, 800], [0, -100]);
+  const elementsY2 = useTransform(scrollY, [0, 800], [0, -150]);
+  const rotateElement1 = useTransform(scrollY, [0, 800], [0, 90]);
+  const rotateElement2 = useTransform(scrollY, [0, 800], [0, -90]);
+
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const initialDataRef = React.useRef<PortfolioItem[]>([]);
   
   React.useEffect(() => {
     setMounted(true);
+    return () => {
+      audioContextManager.destroy();
+    };
   }, []);
   
   // Synchronized scrolling properties to prevent redundant state triggering on low-end processors or high-speed networks
@@ -512,27 +529,47 @@ export default function App() {
       });
   }, []);
 
-  // Theme state: "dark" | "light" | "sepia" (stores user preference in localStorage)
-  const [theme, setTheme] = useState<"dark" | "light" | "sepia">(() => {
+  // Theme preference: "dark" | "light" | "sepia" | "system"
+  const [themePreference, setThemePreference] = useState<"dark" | "light" | "sepia" | "system">(() => {
     try {
       const saved = localStorage.getItem("capelee_theme");
-      if (saved === "light" || saved === "dark" || saved === "sepia") {
+      if (saved === "light" || saved === "dark" || saved === "sepia" || saved === "system") {
         return saved;
       }
-
-      // 根據使用者系統偏好自動設定初始主題，若無偏好則維持預設的護眼暖沙 (sepia)
-      if (typeof window !== "undefined" && window.matchMedia) {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-          return "light";
-        }
-      }
-      return "sepia";
+      return "system";
     } catch {
-      return "sepia";
+      return "system";
     }
   });
+
+  const [systemTheme, setSystemTheme] = useState<"dark" | "light">(() => {
+    if (typeof window !== "undefined" && window.matchMedia) {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return "light";
+  });
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia) {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      setSystemTheme(mediaQuery.matches ? "dark" : "light");
+
+      const handler = (e: MediaQueryListEvent) => {
+        setSystemTheme(e.matches ? "dark" : "light");
+      };
+      // Modern browsers
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener("change", handler);
+        return () => mediaQuery.removeEventListener("change", handler);
+      } else {
+        // Fallback for older browsers
+        mediaQuery.addListener(handler);
+        return () => mediaQuery.removeListener(handler);
+      }
+    }
+  }, []);
+
+  const theme = themePreference === "system" ? systemTheme : themePreference;
 
   const deferredTheme = React.useDeferredValue(theme);
 
@@ -551,10 +588,10 @@ export default function App() {
     };
   }, []);
 
-  const changeTheme = (newTheme: "dark" | "light" | "sepia") => {
-    setTheme(newTheme);
+  const changeTheme = (newPref: "dark" | "light" | "sepia" | "system") => {
+    setThemePreference(newPref);
     try {
-      localStorage.setItem("capelee_theme", newTheme);
+      localStorage.setItem("capelee_theme", newPref);
     } catch (e) {
       console.error(e);
     }
@@ -562,7 +599,7 @@ export default function App() {
   };
 
   const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : theme === "light" ? "sepia" : "dark";
+    const nextTheme = themePreference === "dark" ? "light" : themePreference === "light" ? "sepia" : themePreference === "sepia" ? "system" : "dark";
     changeTheme(nextTheme);
   };
 
@@ -662,7 +699,7 @@ export default function App() {
   }, [selectedCategory]);
 
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // 全局觸覺震動回饋 (navigator.vibrate) 監聽器，針對對按鈕、連結、卡片等成功互動點擊
   React.useEffect(() => {
@@ -685,26 +722,130 @@ export default function App() {
     };
   }, []);
 
-  React.useEffect(() => {
-    setIsLoading(true);
-    setLoadingProgress(15);
-    
-    // Set up sequential timers to simulate a super crisp loading bar
-    const t1 = setTimeout(() => setLoadingProgress(45), 80);
-    const t2 = setTimeout(() => setLoadingProgress(75), 180);
-    const t3 = setTimeout(() => {
-      setLoadingProgress(100);
-      const t4 = setTimeout(() => {
-        setIsLoading(false);
-      }, 200);
-    }, 300);
+  // Preloading coordinator using refs to prevent stale closure and double-triggers
+  const preloadStateRef = React.useRef({
+    isLoadingStarted: false,
+    loadedWeight: 10,
+    loadedUrls: new Set<string>(),
+    portfolioMetaLoaded: false,
+    topImagesQueued: false,
+    safetyTimeoutId: 0,
+    completionTimeoutId: 0
+  });
 
+  React.useEffect(() => {
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
+      // Clear safety and completion timeouts on true unmount
+      if (preloadStateRef.current.safetyTimeoutId) {
+        window.clearTimeout(preloadStateRef.current.safetyTimeoutId);
+      }
+      if (preloadStateRef.current.completionTimeoutId) {
+        window.clearTimeout(preloadStateRef.current.completionTimeoutId);
+      }
     };
   }, []);
+
+  React.useEffect(() => {
+    const state = preloadStateRef.current;
+    
+    // 1. Initialize core mascot images preloading on mount
+    if (!state.isLoadingStarted) {
+      state.isLoadingStarted = true;
+      setIsLoading(true);
+      setLoadingProgress(10);
+
+      const criticalMascots = [
+        "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1ZhhZ25s_ADm5iFcAO_I-YxglQlFlcsjk",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1Q7naVG-GPyr6s5X57rYiKlSofgb8hpBh",
+        "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX"
+      ];
+
+      const addWeight = (weight: number) => {
+        state.loadedWeight += weight;
+        const target = Math.min(state.loadedWeight, 100);
+        setLoadingProgress(prev => (target > prev ? target : prev));
+        if (target >= 100) {
+          triggerComplete();
+        }
+      };
+
+      const triggerComplete = () => {
+        setLoadingProgress(100);
+        if (state.completionTimeoutId) window.clearTimeout(state.completionTimeoutId);
+        state.completionTimeoutId = window.setTimeout(() => {
+          setIsLoading(false);
+        }, 200);
+      };
+
+      // 2.5 seconds safety timeout to force loading screen completion on slow networks
+      state.safetyTimeoutId = window.setTimeout(() => {
+        console.log("[True Resource Loading] Safety timeout reached, forcing finish.");
+        triggerComplete();
+      }, 2500);
+
+      // Start preloading critical mascot images (worth 15% progress each = 60% total)
+      criticalMascots.forEach(url => {
+        const img = new Image();
+        img.src = url;
+        const done = () => {
+          if (!state.loadedUrls.has(url)) {
+            state.loadedUrls.add(url);
+            addWeight(15);
+          }
+        };
+        img.onload = done;
+        img.onerror = done; // continue on error to avoid blocks
+      });
+    }
+
+    // 2. When portfolio items are loaded, trigger metadata milestone and preload top images
+    if (items.length > 0 && !state.portfolioMetaLoaded) {
+      state.portfolioMetaLoaded = true;
+      
+      const addWeight = (weight: number) => {
+        state.loadedWeight += weight;
+        const target = Math.min(state.loadedWeight, 100);
+        setLoadingProgress(prev => (target > prev ? target : prev));
+        if (target >= 100) {
+          triggerComplete();
+        }
+      };
+
+      const triggerComplete = () => {
+        setLoadingProgress(100);
+        if (state.completionTimeoutId) window.clearTimeout(state.completionTimeoutId);
+        state.completionTimeoutId = window.setTimeout(() => {
+          setIsLoading(false);
+        }, 200);
+      };
+
+      // Milestone 1: Metadata list loaded (worth 15%)
+      addWeight(15);
+
+      // Milestone 2: Preload top 2 portfolio images (worth 7.5% each = 15%)
+      if (!state.topImagesQueued) {
+        state.topImagesQueued = true;
+        const topImages = items
+          .map(item => item.imageUrl)
+          .filter((url): url is string => !!url)
+          .slice(0, 2);
+
+        topImages.forEach(url => {
+          const img = new Image();
+          img.src = url;
+          const done = () => {
+            if (!state.loadedUrls.has(url)) {
+              state.loadedUrls.add(url);
+              addWeight(7.5);
+            }
+          };
+          img.onload = done;
+          img.onerror = done;
+        });
+      }
+    }
+  }, [items]);
 
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [isWorkflowOpen, setIsWorkflowOpen] = useState<boolean>(false);
@@ -810,10 +951,9 @@ export default function App() {
   const [isHeroSpeaking, setIsHeroSpeaking] = useState<boolean>(false);
   const [showHeroDialogue, setShowHeroDialogue] = useState<boolean>(false);
   const [heroDialogue, setHeroDialogue] = useState<string>("");
-  const [heroDialogueIndex, setHeroDialogueIndex] = useState<number>(0);
+  const heroDialogueIndexRef = React.useRef<number>(0);
   const [displayedDialogue, setDisplayedDialogue] = useState<string>("");
-  const [heroParticles, setHeroParticles] = useState<{ id: number; x: number; y: number; emoji: string }[]>([]);
-  const [titleBounceTrigger, setTitleBounceTrigger] = useState<number>(0);
+  const heroSectionRef = React.useRef<HeroSectionRef>(null);
 
   // Refs for managing timers/intervals cleanly
   const heroAutoCloseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -848,7 +988,7 @@ export default function App() {
       return 0;
     }
   });
-  const [isCertModalOpen, setIsCertModalOpen] = useState<boolean>(false);
+  const certModalRef = React.useRef<MumuCertModalRef>(null);
 
   React.useEffect(() => {
     try {
@@ -999,44 +1139,6 @@ export default function App() {
 
   const [canFlavor, setCanFlavor] = useState<"tuna" | "chicken" | "luxury">("luxury");
 
-  const FLAVOR_PHYSICS = {
-    tuna: {
-      name: "鮮嫩鮪魚罐",
-      emoji: "🐟",
-      elasticity: 0.76,
-      rotationalInertia: 1.45,
-      topLidFill: "#3B82F6",
-      topLidStroke: "#1D4ED8",
-      innerLidFill: "#60A5FA",
-      bodyGradient: "metallicBlueGradient",
-      labelFill: "#2563EB",
-      labelPatternFill: "#EFF6FF"
-    },
-    chicken: {
-      name: "香嫩雞肉罐",
-      emoji: "🐓",
-      elasticity: 0.52,
-      rotationalInertia: 0.85,
-      topLidFill: "#EF4444",
-      topLidStroke: "#B91C1C",
-      innerLidFill: "#F87171",
-      bodyGradient: "metallicRedGradient",
-      labelFill: "#DC2626",
-      labelPatternFill: "#FEF2F2"
-    },
-    luxury: {
-      name: "極致豪華罐",
-      emoji: "👑",
-      elasticity: 0.88,
-      rotationalInertia: 2.3,
-      topLidFill: "#FBBF24",
-      topLidStroke: "#D97706",
-      innerLidFill: "#FCD34D",
-      bodyGradient: "metallicGoldGradient",
-      labelFill: "#F59E0B",
-      labelPatternFill: "#FEF3C7"
-    }
-  };
 
   const handleCanDragStart = () => {
     if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6) {
@@ -1091,7 +1193,7 @@ export default function App() {
       y: 180 + (Math.random() * 200 - 100),
       emoji: ["🥫", "🐟", "🐾", "✨", "💖", "⭐️", "👑", "🌈", "😻"][Math.floor(Math.random() * 9)],
     }));
-    setHeroParticles((prev) => [...prev, ...explosionParticles].slice(-100));
+    heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, ...explosionParticles].slice(-100));
 
     const newFedFlavors = [...new Set([...fedFlavors, canFlavor])];
     if (newFedFlavors.length > fedFlavors.length) {
@@ -1272,7 +1374,7 @@ export default function App() {
       y: window.innerHeight / 2 + (Math.random() * 320 - 160),
       emoji: ["✨", "🏆", "🌟", "🐾", "🎉", "👑", "💖"][Math.floor(Math.random() * 7)],
     }));
-    setHeroParticles((prev) => [...prev, ...newParticles].slice(-60));
+    heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, ...newParticles].slice(-60));
 
     if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
     toastTimeoutRef.current = setTimeout(() => {
@@ -1403,7 +1505,7 @@ export default function App() {
   }, [theme, visitedThemes]);
 
   // 3. 檢測命運之友條件 (占卜/求籤達 3 次)
-  const handleFortuneConsult = () => {
+  const handleFortuneConsult = React.useCallback(() => {
     setFortuneCount((prev) => {
       const next = prev + 1;
       try {
@@ -1421,7 +1523,7 @@ export default function App() {
       }
       return next;
     });
-  };
+  }, []);
 
   // 4. 檢測作品鑑賞家條件 (點擊並深入閱讀 5 個以上作品詳細卡片)
   const handleProjectView = (projectId: string) => {
@@ -1515,10 +1617,11 @@ export default function App() {
         clearTimeout(heroAutoCloseTimeoutRef.current);
       }
       
+      const autoCloseDelay = (heroDialogue.includes("IG") || heroDialogue.includes("Instagram") || heroDialogue.includes("今日姆貓運勢") || heroDialogue.includes("看作品") || heroDialogue.includes("這隻白貓是我的原創") || heroDialogue.includes("12 隻專業恐龍")) ? 8000 : 2000;
       heroAutoCloseTimeoutRef.current = setTimeout(() => {
         setIsHeroSpeaking(false);
         setShowHeroDialogue(false);
-      }, 2000); // 2 seconds
+      }, autoCloseDelay);
     }
   }, [displayedDialogue, heroDialogue]);
 
@@ -1564,8 +1667,8 @@ export default function App() {
 
   const triggerHeroSpeaking = () => {
     // Select next sequential index and rotate
-    const currentIdx = heroDialogueIndex % heroDialogues.length;
-    setHeroDialogueIndex((prev) => (prev + 1) % heroDialogues.length);
+    const currentIdx = heroDialogueIndexRef.current % heroDialogues.length;
+    heroDialogueIndexRef.current = (heroDialogueIndexRef.current + 1) % heroDialogues.length;
     
     // Clear any existing auto-close timeout when trigger speaking
     if (heroAutoCloseTimeoutRef.current) {
@@ -1678,7 +1781,7 @@ export default function App() {
     };
 
     // Particles remain 100% instantaneous on every tap for tactile, responsive feedback
-    setHeroParticles((prev) => [...prev, newParticle].slice(-20));
+    heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, newParticle].slice(-20));
 
     // 魔法變身快速點擊計數：3 秒內點擊 15 次
     const now = Date.now();
@@ -1730,7 +1833,7 @@ export default function App() {
     }
 
     // Always trigger subtle header and card micro-bounce feedback for responsive clicking
-    setTitleBounceTrigger((prev) => prev + 1);
+    heroSectionRef.current?.setTitleBounceTrigger((prev: number) => prev + 1);
   };
 
   React.useEffect(() => {
@@ -2236,7 +2339,7 @@ export default function App() {
     }
   }, [activeModalItem]);
 
-  const copyEmailToClipboard = () => {
+  const copyEmailToClipboard = React.useCallback(() => {
     navigator.clipboard.writeText(profile.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
@@ -2260,7 +2363,7 @@ export default function App() {
     setTimeout(() => {
       setMailParticles((prev) => prev.filter(p => !newParticles.find(np => np.id === p.id)));
     }, 1500);
-  };
+  }, [profile.email]);
 
   // vCard details and download handler
   const vCardText = useMemo(() => {
@@ -2278,7 +2381,7 @@ export default function App() {
     ].join("\r\n");
   }, [profile]);
 
-  const downloadVCard = () => {
+  const downloadVCard = React.useCallback(() => {
     const file = new Blob([vCardText], { type: "text/vcard;charset=utf-8" });
     const element = document.createElement("a");
     const objectUrl = URL.createObjectURL(file);
@@ -2288,25 +2391,25 @@ export default function App() {
     element.click();
     document.body.removeChild(element);
     URL.revokeObjectURL(objectUrl);
-  };
+  }, [vCardText, profile.name, profile.engName]);
 
-  const handlePrevModalItem = () => {
+  const handlePrevModalItem = React.useCallback(() => {
     const idx = filteredItems.findIndex(i => i.id === activeModalItem?.id);
     if (idx > 0) {
       setActiveModalItem(filteredItems[idx - 1]);
     } else {
       setActiveModalItem(filteredItems[filteredItems.length - 1]);
     }
-  };
+  }, [filteredItems, activeModalItem]);
 
-  const handleNextModalItem = () => {
+  const handleNextModalItem = React.useCallback(() => {
     const idx = filteredItems.findIndex(i => i.id === activeModalItem?.id);
     if (idx < filteredItems.length - 1) {
       setActiveModalItem(filteredItems[idx + 1]);
     } else {
       setActiveModalItem(filteredItems[0]);
     }
-  };
+  }, [filteredItems, activeModalItem]);
 
   return (
     <div className={`min-h-screen flex flex-col font-sans relative overflow-x-hidden transition-colors duration-500 ${
@@ -2513,12 +2616,14 @@ export default function App() {
                   className={themeToggleClass}
                   title="選擇主題配色"
                 >
-                  {theme === "dark" ? (
+                  {themePreference === "dark" ? (
                     <Moon className="h-4 w-4 text-indigo-400" />
-                  ) : theme === "light" ? (
+                  ) : themePreference === "light" ? (
                     <Sun className="h-4 w-4 text-[#D97706]" />
-                  ) : (
+                  ) : themePreference === "sepia" ? (
                     <Eye className="h-4 w-4 text-amber-700" />
+                  ) : (
+                    <Monitor className="h-4 w-4 text-zinc-500" />
                   )}
                 </button>
 
@@ -2537,12 +2642,39 @@ export default function App() {
                           : "bg-[#18181b] border-white/10 text-zinc-200"
                       }`}
                     >
+                      {/* 系統選項 */}
+                      <button
+                        type="button"
+                        onClick={() => changeTheme("system")}
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer ${
+                          themePreference === "system"
+                            ? theme === "sepia"
+                              ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
+                              : theme === "light"
+                              ? "bg-zinc-100 text-zinc-950 font-medium"
+                              : "bg-white/10 text-white font-medium"
+                            : theme === "sepia"
+                            ? "hover:bg-[#E2D5B9]/40 text-[#7A6B58]"
+                            : theme === "light"
+                            ? "hover:bg-zinc-100/50 text-zinc-650"
+                            : "hover:bg-white/5 text-zinc-400"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <Monitor className="h-3.5 w-3.5 text-zinc-500" />
+                          <span>系統</span>
+                        </div>
+                        {themePreference === "system" && (
+                          <span className={`h-1.5 w-1.5 rounded-full ${theme === "sepia" ? "bg-zinc-500" : theme === "light" ? "bg-zinc-500" : "bg-zinc-400"}`} />
+                        )}
+                      </button>
+
                       {/* 淺色選項 */}
                       <button
                         type="button"
                         onClick={() => changeTheme("light")}
-                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer ${
-                          theme === "light"
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
+                          themePreference === "light"
                             ? theme === "sepia"
                               ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
                               : theme === "light"
@@ -2559,7 +2691,7 @@ export default function App() {
                           <Sun className="h-3.5 w-3.5 text-[#D97706]" />
                           <span>淺色</span>
                         </div>
-                        {theme === "light" && (
+                        {themePreference === "light" && (
                           <span className="h-1.5 w-1.5 rounded-full bg-[#D97706]" />
                         )}
                       </button>
@@ -2569,7 +2701,7 @@ export default function App() {
                         type="button"
                         onClick={() => changeTheme("dark")}
                         className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
-                          theme === "dark"
+                          themePreference === "dark"
                             ? theme === "sepia"
                               ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
                               : theme === "light"
@@ -2586,7 +2718,7 @@ export default function App() {
                           <Moon className="h-3.5 w-3.5 text-indigo-400" />
                           <span>深色</span>
                         </div>
-                        {theme === "dark" && (
+                        {themePreference === "dark" && (
                           <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
                         )}
                       </button>
@@ -2596,7 +2728,7 @@ export default function App() {
                         type="button"
                         onClick={() => changeTheme("sepia")}
                         className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
-                          theme === "sepia"
+                          themePreference === "sepia"
                             ? theme === "sepia"
                               ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
                               : theme === "light"
@@ -2613,7 +2745,7 @@ export default function App() {
                           <Eye className="h-3.5 w-3.5 text-amber-700" />
                           <span>暖沙</span>
                         </div>
-                        {theme === "sepia" && (
+                        {themePreference === "sepia" && (
                           <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
                         )}
                       </button>
@@ -2649,727 +2781,42 @@ export default function App() {
       <main className="flex-1 w-full max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 md:pt-24 md:pb-12 z-10 space-y-12 md:space-y-16">
         
         {/* 極簡頂部 Hero Section */}
-        <section id="hero-minimalist" className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]">
-          <div className="flex-1 max-w-2xl text-left overflow-visible relative flex flex-col justify-center">
-            {/* 1. Tag Wrapper (above the line, slides UP) */}
-            <div className="overflow-hidden pb-1">
-              <motion.div
-                initial={{ y: "110%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-              >
-                <span className={`text-[11px] sm:text-xs font-mono tracking-[0.2em] font-bold uppercase block ${
-                  theme === "sepia" 
-                    ? "text-[#A05C2C]" 
-                    : theme === "light" 
-                    ? "text-amber-600" 
-                    : "text-amber-400"
-                }`}>
-                  視覺設計 · 平面設計
-                </span>
-              </motion.div>
-            </div>
-
-            {/* 2. The Anchor Line itself (scales horizontally from left) */}
-            <div className="relative py-1 overflow-visible">
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                style={{ transformOrigin: "left" }}
-                className={`h-[1px] w-full ${
-                  theme === "sepia" 
-                    ? "bg-[#DFCFA0]" 
-                    : theme === "light" 
-                    ? "bg-zinc-200" 
-                    : "bg-white/10"
-                }`}
-              />
-            </div>
-
-            {/* 3. Text and Buttons Wrapper (below the line, slides DOWN) */}
-            <div className="overflow-hidden pt-2">
-              <motion.div
-                initial={{ y: "-110%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
-                className="space-y-6"
-              >
-                <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight leading-[1.1] transition-colors duration-350 select-none ${
-                  theme === "sepia" 
-                    ? "text-[#2B1B0C]" 
-                    : theme === "light" 
-                    ? "text-zinc-950" 
-                    : "text-white"
-                }`}>
-                  {"Cape Lee".split("").map((char, index) => {
-                    if (char === " ") {
-                      return (
-                        <span key={index} className="inline-block">
-                          &nbsp;
-                        </span>
-                      );
-                    }
-                    return (
-                      <motion.span
-                        key={`${index}-${titleBounceTrigger}`}
-                        className="inline-block origin-bottom"
-                        initial={{ y: 0 }}
-                        animate={titleBounceTrigger > 0 ? { y: [0, -20, 3, 0] } : { y: 0 }}
-                        transition={{
-                          duration: 0.55,
-                          ease: "easeOut",
-                          delay: index * 0.04,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </h1>
-
-                <p className={`text-sm sm:text-md md:text-[17px] font-light leading-relaxed transition-colors duration-350 ${
-                  theme === "sepia" 
-                    ? "text-[#5C4D3C]" 
-                    : theme === "light" 
-                    ? "text-zinc-650" 
-                    : "text-zinc-300"
-                }`}>
-                  5 ~ 6 年品牌商業整合設計實戰經驗，作品橫跨電商視覺、品牌識別與原創角色 IP。
-                </p>
-
-                <div className="flex flex-wrap items-center gap-3.5 pt-1 pb-1">
-                  <button
-                    onClick={() => scrollToElement("portfolio-grid")}
-                    className={`px-6 py-3 font-semibold rounded-xl text-xs sm:text-sm transition-all duration-300 shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
-                      theme === "sepia"
-                        ? "bg-[#A05C2C] hover:bg-[#854B22] text-[#FCF8EE] shadow-amber-950/20"
-                        : theme === "light"
-                        ? "bg-amber-600 hover:bg-amber-700 text-white shadow-amber-600/20"
-                        : "bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-amber-500/20"
-                    }`}
-                  >
-                    看作品
-                  </button>
-                  
-                  <button
-                    onClick={() => scrollToElement("designer-bento")}
-                    className={`px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer ${
-                      theme === "sepia"
-                        ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
-                        : theme === "light"
-                        ? "border-zinc-200 hover:bg-zinc-50 text-zinc-700"
-                        : "border-white/10 hover:bg-white/5 text-zinc-300"
-                    }`}
-                  >
-                    履歷
-                  </button>
-
-                  {profile.pdfPortfolioUrl && (
-                    <a
-                      href={profile.pdfPortfolioUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => {
-                        incrementInteraction();
-                        handlePdfClick();
-                      }}
-                      className={`relative group px-6 py-3 font-medium rounded-xl text-xs sm:text-sm transition-all duration-300 border backdrop-blur active:scale-95 flex items-center justify-center gap-1.5 ${
-                        theme === "sepia"
-                          ? "border-[#DFCFA0] hover:bg-[#EADECC]/40 text-[#4F3C28]"
-                          : theme === "light"
-                          ? "border-zinc-200 hover:bg-zinc-50 text-zinc-700"
-                          : "border-white/10 hover:bg-white/5 text-zinc-300"
-                      }`}
-                      title="開啟雲端儲存的傳統 PDF 作品集"
-                    >
-                      {/* 姆貓偷看 (Peek-a-boo Mascot) */}
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-[-3px] pointer-events-none transition-all duration-300 ease-out opacity-0 translate-y-3 scale-75 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:rotate-[-6deg] z-20 flex flex-col items-center">
-                        {/* 姆貓小氣泡 */}
-                        <div className={`px-2 py-0.5 rounded-full text-[10px] whitespace-nowrap shadow-md mb-1 border font-bold animate-bounce ${
-                          theme === "sepia"
-                            ? "bg-[#FCF8EE] border-[#EAD09D] text-[#382B1D]"
-                            : theme === "light"
-                            ? "bg-white border-zinc-200 text-zinc-700"
-                            : "bg-zinc-800 border-zinc-700 text-zinc-200"
-                        }`}>
-                          看我！🐾
-                        </div>
-                        {/* 姆貓頭像縮圖 */}
-                        <img 
-                          src="https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX" 
-                          alt="姆貓偷看"
-                          className="w-10 h-10 object-contain drop-shadow-md select-none"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-
-                      <FileText className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span>PDF 作品集</span>
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Right Mascot column */}
-          <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4 relative z-50">
-            <motion.div
-              ref={mascotRef}
-              initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.93, scaleY: 0.88, scaleX: 1.05 }}
-              transition={{ type: "spring", bounce: 0.15, duration: 1.2, delay: 0.1 }}
-              onClick={handleHeroClick}
-              className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none"
-            >
-              <div className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms]" />
-              
-              <AnimatePresence>
-                {heroParticles.map((p) => (
-                  <motion.span
-                    key={p.id}
-                    initial={{ opacity: 1, scale: 0.4, x: p.x - 12, y: p.y - 12, rotate: 0 }}
-                    animate={{ opacity: 0, scale: 1.6, y: p.y - 110, x: p.x - 12 + (Math.random() * 80 - 40), rotate: Math.random() * 120 - 60 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.85, ease: "easeOut" }}
-                    onAnimationComplete={() => {
-                      setHeroParticles((prev) => prev.filter((item) => item.id !== p.id));
-                    }}
-                    className="absolute pointer-events-none select-none text-2xl z-40"
-                    style={{ left: 0, top: 0 }}
-                  >
-                    {p.emoji}
-                  </motion.span>
-                ))}
-              </AnimatePresence>
-
-              {/* 魔法少女版裝飾：精靈之羽 & 魔法配飾 */}
-              <AnimatePresence>
-                {isMagicTransformed && (
-                  <>
-                    {/* 左翅膀 */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0, x: -20 }}
-                      animate={{ opacity: 1, scale: 1, x: 0 }}
-                      exit={{ opacity: 0, scale: 0, x: -20 }}
-                      className="absolute -left-[45px] sm:-left-[60px] top-[25%] -z-10 flex items-center justify-center pointer-events-none"
-                      style={{ transformOrigin: "right center" }}
-                    >
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.15, 1],
-                          rotate: [-10, -22, -10],
-                          x: [0, -6, 0],
-                          y: [0, -4, 0]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="relative"
-                      >
-                        {/* Wing Base Spectrum & Glow */}
-                        <div className="absolute w-24 h-24 rounded-full bg-gradient-to-tr from-pink-400/35 via-white/50 to-pink-300/25 blur-xl animate-pulse" />
-                          {/* Cute Pink Particles/Stars around wing */}
-                          <div className="absolute text-pink-300 text-xs translate-y-[-24px] translate-x-[-24px] animate-bounce">✨</div>
-                          <div className="absolute text-pink-400 text-xs translate-y-[24px] translate-x-[-12px] animate-ping">💖</div>
-                          <span className="text-6xl sm:text-7xl filter drop-shadow-[0_0_15px_rgba(236,72,153,0.85)] select-none block rotate-[-45deg] scale-x-[-1]">🪶</span>
-                        </motion.div>
-                      </motion.div>
-
-                      {/* 右翅膀 */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0, x: 20 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0, x: 20 }}
-                        className="absolute -right-[45px] sm:-right-[60px] top-[25%] -z-10 flex items-center justify-center pointer-events-none"
-                        style={{ transformOrigin: "left center" }}
-                      >
-                        <motion.div
-                          animate={{
-                            scale: [1, 1.15, 1],
-                            rotate: [10, 22, 10],
-                            x: [0, 6, 0],
-                            y: [0, -4, 0]
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
-                          className="relative"
-                        >
-                          {/* Wing Base Spectrum & Glow */}
-                          <div className="absolute w-24 h-24 rounded-full bg-gradient-to-tl from-pink-400/35 via-white/50 to-pink-300/25 blur-xl animate-pulse" />
-                          {/* Cute Pink Particles/Stars around wing */}
-                          <div className="absolute text-pink-300 text-xs translate-y-[-24px] translate-x-[24px] animate-bounce">✨</div>
-                          <div className="absolute text-pink-400 text-xs translate-y-[24px] translate-x-[12px] animate-ping">💖</div>
-                          <span className="text-6xl sm:text-7xl filter drop-shadow-[0_0_15px_rgba(236,72,153,0.85)] select-none block rotate-[45deg]">🪶</span>
-                        </motion.div>
-                      </motion.div>
-
-                      {/* 頭部左側大蝴蝶結髮夾（🎀） */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0, y: -20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0, y: -20 }}
-                        className="absolute left-[12%] sm:left-[15%] top-[12%] z-30 pointer-events-none"
-                      >
-                        <motion.div
-                          animate={{
-                            y: [0, -8, 0],
-                            rotate: [-5, 8, -5],
-                            scale: [1, 1.12, 1]
-                          }}
-                          transition={{
-                            duration: 1.2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
-                        >
-                          <span className="text-4xl sm:text-5xl filter drop-shadow-[0_4px_10px_rgba(244,63,94,0.6)] select-none block">🎀</span>
-                        </motion.div>
-                      </motion.div>
-
-                      {/* 頭部右側高頻閃爍金黃幸運星（⭐️） */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0, y: -20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0, y: -20 }}
-                        className="absolute right-[12%] sm:right-[15%] top-[10%] z-30 pointer-events-none"
-                      >
-                        <motion.div
-                          animate={{
-                            opacity: [0.3, 1, 0.3],
-                            scale: [0.9, 1.3, 0.9],
-                            rotate: [0, 360]
-                          }}
-                          transition={{
-                            opacity: { duration: 0.25, repeat: Infinity, ease: "linear" },
-                            scale: { duration: 0.25, repeat: Infinity, ease: "linear" },
-                            rotate: { duration: 3, repeat: Infinity, ease: "linear" }
-                          }}
-                        >
-                          <span className="text-4xl sm:text-5xl filter drop-shadow-[0_0_12px_rgba(251,191,36,0.95)] select-none block">⭐️</span>
-                        </motion.div>
-                      </motion.div>
-
-                      {/* 右下角浮空環繞施展魔力的魔杖（🪄） */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0, x: 20 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0, x: 20 }}
-                        className="absolute right-[2%] sm:right-[5%] bottom-[15%] sm:bottom-[18%] z-30 pointer-events-none"
-                      >
-                        <motion.div
-                          animate={{
-                            x: [0, 15, 0, -15, 0],
-                            y: [0, -15, -25, -10, 0],
-                            rotate: [15, 45, 15, -15, 15]
-                          }}
-                          transition={{
-                            duration: 2.2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
-                          className="relative"
-                        >
-                          {/* Magic trails / sparkles */}
-                          <div className="absolute -top-4 -left-4 text-amber-300 text-[10px] animate-ping">✨</div>
-                          <div className="absolute top-4 right-4 text-pink-300 text-xs animate-pulse">⭐</div>
-                          <span className="text-5xl sm:text-6xl filter drop-shadow-[0_0_15px_rgba(168,85,247,0.75)] select-none block">🪄</span>
-                        </motion.div>
-                      </motion.div>
-                    </>
-                  )}
-                </AnimatePresence>
-
-                {/* 瞬間彩虹光芒包裹 (Rainbow Burst Effect) */}
-                <AnimatePresence>
-                  {showRainbowFlash && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.7 }}
-                      animate={{ opacity: [0, 1, 1, 0], scale: [0.7, 1.25, 1.25, 0.95] }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 1.2, ease: "easeInOut" }}
-                      className="absolute inset-0 z-40 rounded-3xl mix-blend-screen bg-gradient-to-tr from-pink-500 via-red-500 via-yellow-400 via-green-400 via-blue-500 to-purple-500 opacity-80 blur-sm flex items-center justify-center pointer-events-none"
-                    >
-                      {/* Bursting glowing core */}
-                      <div className="absolute inset-4 bg-white rounded-full blur-xl animate-ping duration-700" />
-                      <div className="text-white font-extrabold text-3xl sm:text-4xl tracking-widest animate-bounce drop-shadow-[0_0_12px_rgba(255,255,255,0.95)] select-none">
-                        ✨ MAGIC! ✨
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-              {/* Hover indicator tooltip */}
-              {!isHeroSpeaking && (
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1 pointer-events-none z-20">
-                  <div className={`px-2.5 py-1 text-[11px] font-medium rounded-full shadow-md flex items-center gap-1 backdrop-blur border whitespace-nowrap ${
-                    theme === "sepia"
-                      ? "bg-[#FCF8EE] border-[#DFCFA0] text-[#4F3C28]"
-                      : theme === "light"
-                      ? "bg-white border-zinc-200 text-zinc-800"
-                      : "bg-zinc-900 border-zinc-800 text-zinc-200"
-                  }`}>
-                    點我說話 💬
-                  </div>
-                </div>
-              )}
-
-              {/* Dialogue Bubble */}
-              <AnimatePresence>
-                {showHeroDialogue && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, x: -10 }}
-                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, x: -10 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                    onClick={(e) => e.stopPropagation()}
-                    className={`hidden md:block absolute z-50 w-[280px] lg:w-[320px] p-5 rounded-2xl shadow-xl border text-xs sm:text-sm font-medium leading-relaxed
-                      ${
-                        theme === "sepia"
-                          ? "bg-[#FAF4E5] border-[#EAD09D] text-[#382B1D] shadow-[#382B1D]/5"
-                          : theme === "light"
-                          ? "bg-white border-zinc-150 text-zinc-800 shadow-zinc-200/50"
-                          : "bg-zinc-950/95 border-zinc-800/80 text-zinc-100 shadow-black/40"
-                      }
-                      md:right-[102%] lg:right-[106%] md:-translate-x-0 md:top-[15%] md:bottom-auto md:left-auto
-                    `}
-                  >
-                    {/* Tiny bubble tail pointing right towards mascot, solid matching background to cover parent border */}
-                    <div className={`absolute w-3 h-3 rotate-45 border-r border-t top-1/3 -right-1.5
-                      ${
-                        theme === "sepia"
-                          ? "bg-[#FAF4E5] border-[#EAD09D]"
-                          : theme === "light"
-                          ? "bg-white border-zinc-150"
-                          : "bg-zinc-950/95 border-zinc-800/80"
-                      }
-                    `} />
-                    <motion.div
-                      animate={{ y: [0, -3, 0] }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 3.5,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <p className="relative">
-                        {displayedDialogue}
-                        {displayedDialogue.length < heroDialogue.length && (
-                          <span className="inline-block ml-1 w-1.5 h-3.5 bg-amber-500 animate-pulse rounded align-middle" />
-                        )}
-                      </p>
-
-                      {heroDialogue.includes("IG") && displayedDialogue.length >= 10 && (
-                        <div className="mt-3 pt-2.5 border-t border-dashed border-zinc-200/60 dark:border-white/10 flex justify-center">
-                          <a
-                            href="https://www.instagram.com/mumao1_the_cat_religion?igsh=MXF2a3N1bm45ajhkaw=="
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md hover:shadow-pink-500/10 cursor-pointer bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleSocialClick();
-                            }}
-                          >
-                            <Instagram className="h-3.5 w-3.5 shrink-0" />
-                            <span>前往 MuMㄠ 教主 IG 🐾</span>
-                          </a>
-                        </div>
-                      )}
-
-                      {(heroDialogue.includes("運勢") || heroDialogue.includes("求籤")) && displayedDialogue.length >= 10 && (
-                        <div className="mt-3 pt-2.5 border-t border-dashed border-zinc-200/60 dark:border-white/10 flex justify-center">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              const el = document.getElementById("footer-fortune");
-                              if (el) {
-                                el.scrollIntoView({ behavior: "smooth" });
-                              }
-                            }}
-                            className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md cursor-pointer bg-gradient-to-r from-red-500 to-[#D33F33] hover:brightness-110"
-                          >
-                            <span>⛩️ 前往今日運勢求籤 🐾</span>
-                          </button>
-                        </div>
-                      )}
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed5 && (
-                <TutorialTooltip 
-                  key={`tutorial-step-5-${tutorialStep}`}
-                  step={5}
-                  text="點擊姆貓互動看看吧！"
-                  theme={theme}
-                  onClick={() => { setTutorialDismissed5(true); nextTutorialStep(); }}
-                  pointerDirection="right"
-                  className="absolute top-1/2 -translate-y-1/2 left-0 sm:-left-16 z-[100]"
-                />
-              )}
-              <motion.div
-                initial={{ y: 45, scale: 0.98, opacity: 0 }}
-                animate={{ y: 0, scale: 1, opacity: 1 }}
-                transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-                className={`w-full h-auto relative overflow-visible transition-all duration-500 ease-out ${
-                  isMagicTransformed 
-                    ? "mumao-rainbow-glow scale-105" 
-                    : "filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)]"
-                } ${
-                  isHeroSpeaking 
-                    ? "mumao-speaking" 
-                    : "mumao-idle group-hover:mumao-playful"
-                }`}
-              >
-                {/* Embedded smooth mouth & body animations */}
-                <style>{`
-                  @keyframes mumao-closed {
-                    0%, 19.99%, 80%, 100% {
-                      opacity: 1;
-                    }
-                    20%, 79.99% {
-                      opacity: 0;
-                    }
-                  }
-                  @keyframes mumao-medium {
-                    0%, 19.99%, 40%, 59.99%, 80%, 100% {
-                      opacity: 0;
-                    }
-                    20%, 39.99%, 60%, 79.99% {
-                      opacity: 1;
-                    }
-                  }
-                  @keyframes mumao-open {
-                    0%, 39.99%, 60%, 100% {
-                      opacity: 0;
-                    }
-                    40%, 59.99% {
-                      opacity: 1;
-                    }
-                  }
-                  .mumao-anim-closed {
-                    animation: mumao-closed 0.7s infinite steps(1);
-                  }
-                  .mumao-anim-medium {
-                    animation: mumao-medium 0.7s infinite steps(1);
-                  }
-                  .mumao-anim-open {
-                    animation: mumao-open 0.7s infinite steps(1);
-                  }
-
-                  /* Body movement keyframes for lively expressions (Subtler/Gentler) */
-                  @keyframes mumao-idle-float {
-                    0%, 100% {
-                      transform: translateY(0) rotate(0deg);
-                    }
-                    50% {
-                      transform: translateY(-2px) rotate(0.3deg);
-                    }
-                  }
-                  @keyframes mumao-speaking-bounce {
-                    0%, 100% {
-                      transform: translateY(0) scale(1) rotate(0deg);
-                    }
-                    25% {
-                      transform: translateY(-3.5px) scale(1.012) rotate(-0.4deg);
-                    }
-                    50% {
-                      transform: translateY(0.6px) scale(0.988) rotate(0.2deg);
-                    }
-                    75% {
-                      transform: translateY(-2.2px) scale(1.006) rotate(-0.2deg);
-                    }
-                  }
-                  @keyframes mumao-hover-wiggle {
-                    0%, 100% {
-                      transform: scale(1.01) rotate(0deg) translateY(0);
-                    }
-                    25% {
-                      transform: scale(1.015) rotate(-0.5deg) translateY(-1px);
-                    }
-                    75% {
-                      transform: scale(1.015) rotate(0.5deg) translateY(-1px);
-                    }
-                  }
-
-                  .mumao-idle {
-                    animation: mumao-idle-float 3.8s infinite ease-in-out;
-                  }
-                  .mumao-speaking {
-                    animation: mumao-speaking-bounce 0.95s infinite ease-in-out;
-                  }
-                  .mumao-playful {
-                    animation: mumao-hover-wiggle 1.2s infinite ease-in-out;
-                  }
-
-                  /* 魔法少女彩虹光暈 Drop Shadow 動畫 */
-                  @keyframes rainbow-glow {
-                    0%, 100% {
-                      filter: drop-shadow(0 0 18px rgba(244, 63, 94, 0.85)) drop-shadow(0 0 35px rgba(244, 63, 94, 0.5));
-                    }
-                    20% {
-                      filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.85)) drop-shadow(0 0 35px rgba(251, 191, 36, 0.5));
-                    }
-                    40% {
-                      filter: drop-shadow(0 0 18px rgba(52, 211, 153, 0.85)) drop-shadow(0 0 35px rgba(52, 211, 153, 0.5));
-                    }
-                    60% {
-                      filter: drop-shadow(0 0 18px rgba(96, 165, 250, 0.85)) drop-shadow(0 0 35px rgba(96, 165, 250, 0.5));
-                    }
-                    80% {
-                      filter: drop-shadow(0 0 18px rgba(167, 139, 250, 0.85)) drop-shadow(0 0 35px rgba(167, 139, 250, 0.5));
-                    }
-                  }
-                  .mumao-rainbow-glow {
-                    animation: rainbow-glow 3s infinite linear !important;
-                  }
-                `}</style>
-
-                {/* 1. 閉嘴版 (Base / Default) */}
-                <img
-                  src="https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
-                  alt="Cape Lee mascot closed mouth"
-                  referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain relative z-10 select-none pointer-events-none ${
-                    isHeroSpeaking ? "mumao-anim-closed" : "opacity-100"
-                  }`}
-                />
-                {/* 2. 說話版1 (中開) */}
-                <img
-                  src="https://drive.google.com/thumbnail?sz=w1000&id=1ZhhZ25s_ADm5iFcAO_I-YxglQlFlcsjk"
-                  alt="Cape Lee mascot speaking 1"
-                  referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain absolute inset-0 select-none pointer-events-none ${
-                    isHeroSpeaking ? "mumao-anim-medium z-20" : "opacity-0 pointer-events-none z-0"
-                  }`}
-                />
-                {/* 3. 說話版2 (大開) */}
-                <img
-                  src="https://drive.google.com/thumbnail?sz=w1000&id=1Q7naVG-GPyr6s5X57rYiKlSofgb8hpBh"
-                  alt="Cape Lee mascot speaking 2"
-                  referrerPolicy="no-referrer"
-                  className={`w-full h-auto object-contain absolute inset-0 select-none pointer-events-none ${
-                    isHeroSpeaking ? "mumao-anim-open z-20" : "opacity-0 pointer-events-none z-0"
-                  }`}
-                />
-              </motion.div>
-            </motion.div>
-          </div>
-
-          
-          {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6 && (
-            <TutorialTooltip 
-              key={`tutorial-step-6-${tutorialStep}`}
-              step={6}
-              text="試著滑動罐罐"
-              theme={theme}
-              onClick={() => { setTutorialDismissed6(true); nextTutorialStep(); }}
-              pointerDirection="right"
-              className="absolute top-2 right-16 z-[100]"
-            />
-          )}
-{/* Draggable cat food can Easter Egg in the corner of the Hero section */}
-          <motion.div
-            ref={canRef}
-            style={{ x: canX, y: canY, rotate: canRotate, touchAction: "none" }}
-            drag
-            dragConstraints={{ left: -1500, right: 1500, top: -1500, bottom: 1500 }}
-            dragElastic={0.15}
-            dragMomentum={false}
-            onDragStart={handleCanDragStart}
-            onDrag={handleCanDrag}
-            onDragEnd={handleCanDragEnd}
-            onTap={handleCanTap}
-            whileHover={{ scale: 1.1 }}
-            whileDrag={{ scale: 1.25, rotate: 12, cursor: "grabbing" }}
-            className="absolute top-2 right-4 lg:top-0 lg:right-0 z-50 cursor-grab select-none p-1.5 active:cursor-grabbing group"
-          >
-            {/* Elegant flavor badge that appears on hover */}
-            <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-neutral-900/95 text-[10px] text-white font-medium px-2 py-0.5 rounded shadow-lg border border-white/10 pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              {FLAVOR_PHYSICS[canFlavor].emoji} {FLAVOR_PHYSICS[canFlavor].name}
-            </span>
-
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 drop-shadow-md">
-              {/* Top lid outer rim */}
-              <ellipse cx="24" cy="14" rx="18" ry="6" fill={FLAVOR_PHYSICS[canFlavor].topLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" />
-              {/* Inner lid recess */}
-              <ellipse cx="24" cy="14" rx="14" ry="4.5" fill={FLAVOR_PHYSICS[canFlavor].innerLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1" />
-              
-              {/* Premium metal pull-tab ring */}
-              <path d="M 24,14 C 24,12 21,10 19,11 C 17,12 17,14 19,15 C 21,16 24,14 24,14" fill={FLAVOR_PHYSICS[canFlavor].innerLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1" />
-              <circle cx="19" cy="13" r="1.5" fill="#FEF3C7" />
-
-              {/* Cylindrical metallic body with smooth gradient shading */}
-              <path d="M 6,14 A 18,6 0 0 0 42,14 L 42,32 A 18,6 0 0 1 6,32 Z" fill={`url(#${FLAVOR_PHYSICS[canFlavor].bodyGradient})`} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" strokeLinejoin="round" />
-              
-              {/* Bottom 3D curved shadow and rim */}
-              <ellipse cx="24" cy="32" rx="18" ry="6" fill={FLAVOR_PHYSICS[canFlavor].topLidStroke} opacity="0.35" />
-              <ellipse cx="24" cy="32" rx="18" ry="6" fill="none" stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" />
-
-              {/* Minimalist wrapper sleeve label */}
-              <path d="M 6,20 A 18,5 0 0 0 42,20 L 42,28 A 18,5 0 0 1 6,28 Z" fill={FLAVOR_PHYSICS[canFlavor].labelFill} opacity="0.95" />
-              
-              {/* Custom patterns for each flavor */}
-              {canFlavor === "tuna" ? (
-                <>
-                  {/* Delicate minimalist vector fish */}
-                  <path d="M 18,24 C 21,21 24,21 27,24 L 29,22.5 L 29,25.5 Z" fill={FLAVOR_PHYSICS[canFlavor].labelPatternFill} />
-                  <circle cx="20" cy="23.5" r="0.6" fill="#1D4ED8" />
-                </>
-              ) : canFlavor === "chicken" ? (
-                <>
-                  {/* Delicate minimalist chicken drumstick/wing shape */}
-                  <circle cx="22" cy="24" r="2.2" fill={FLAVOR_PHYSICS[canFlavor].labelPatternFill} />
-                  <circle cx="24.5" cy="24.5" r="1.6" fill={FLAVOR_PHYSICS[canFlavor].labelPatternFill} />
-                  <path d="M 18,23.5 L 22.5,24.2" stroke={FLAVOR_PHYSICS[canFlavor].labelPatternFill} strokeWidth="1.8" strokeLinecap="round" />
-                </>
-              ) : (
-                <>
-                  {/* Elegant vector paw print detailing on the gold label */}
-                  <circle cx="24" cy="25" r="2.5" fill="#78350F" />
-                  <circle cx="21" cy="21.5" r="1" fill="#78350F" />
-                  <circle cx="24" cy="20.5" r="1" fill="#78350F" />
-                  <circle cx="27" cy="21.5" r="1" fill="#78350F" />
-                </>
-              )}
-
-              <defs>
-                <linearGradient id="metallicGoldGradient" x1="6" y1="23" x2="42" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#B45309" />
-                  <stop offset="25%" stopColor="#FBBF24" />
-                  <stop offset="50%" stopColor="#FEF3C7" />
-                  <stop offset="75%" stopColor="#FBBF24" />
-                  <stop offset="100%" stopColor="#92400E" />
-                </linearGradient>
-                <linearGradient id="metallicBlueGradient" x1="6" y1="23" x2="42" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#1E3A8A" />
-                  <stop offset="25%" stopColor="#3B82F6" />
-                  <stop offset="50%" stopColor="#93C5FD" />
-                  <stop offset="75%" stopColor="#3B82F6" />
-                  <stop offset="100%" stopColor="#172554" />
-                </linearGradient>
-                <linearGradient id="metallicRedGradient" x1="6" y1="23" x2="42" y2="23" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#7F1D1D" />
-                  <stop offset="25%" stopColor="#EF4444" />
-                  <stop offset="50%" stopColor="#FCA5A5" />
-                  <stop offset="75%" stopColor="#EF4444" />
-                  <stop offset="100%" stopColor="#450A0A" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </motion.div>
-        </section>
+        <HeroSection
+          ref={heroSectionRef}
+          theme={theme}
+          profile={profile}
+          incrementInteraction={incrementInteraction}
+          handlePdfClick={handlePdfClick}
+          scrollToElement={scrollToElement}
+        setCategory={setSelectedCategory}
+          mascotRef={mascotRef}
+          mascotY={mascotY}
+          glowY={glowY}
+          elementsY={elementsY}
+          elementsY2={elementsY2}
+          rotateElement1={rotateElement1}
+          rotateElement2={rotateElement2}
+          isMagicTransformed={isMagicTransformed}
+          isHeroSpeaking={isHeroSpeaking}
+          showHeroDialogue={showHeroDialogue}
+          displayedDialogue={displayedDialogue}
+          handleHeroClick={handleHeroClick}
+          tutorialStep={tutorialStep}
+          tutorialDismissed5={tutorialDismissed5}
+          setTutorialDismissed5={setTutorialDismissed5}
+          tutorialDismissed6={tutorialDismissed6}
+          setTutorialDismissed6={setTutorialDismissed6}
+          nextTutorialStep={nextTutorialStep}
+          canRef={canRef}
+          canX={canX}
+          canY={canY}
+          canRotate={canRotate}
+          canFlavor={canFlavor}
+          handleCanDragStart={handleCanDragStart}
+          handleCanDrag={handleCanDrag}
+          handleCanDragEnd={handleCanDragEnd}
+          handleCanTap={handleCanTap}
+        />
 
         {/* 特色亮點區域 (Highlights Section) - 快速展示履歷重點 */}
         <section className="w-full relative z-20 pb-4 md:pb-8">
@@ -3665,10 +3112,13 @@ export default function App() {
 
                 {/* 右側清除功能與搜尋結果計數 badge */}
                 <div className="absolute right-3 flex items-center gap-2">
-                  {searchQuery && (
+                  {searchInputVal && (
                     <button
                       type="button"
-                      onClick={() => setSearchQuery("")}
+                      onClick={() => {
+                        setSearchInputVal("");
+                        setSearchQuery("");
+                      }}
                       className={`p-1 rounded-full transition-colors duration-200 cursor-pointer ${
                         theme === "sepia"
                           ? "hover:bg-[#FAF4E5] text-[#8C7B69] hover:text-amber-800"
@@ -4059,7 +3509,6 @@ export default function App() {
                 style={{ width: "42px", height: "42px" }}
               >
                 <div className="grid grid-cols-2 gap-x-1 gap-y-0.5 leading-none font-bold text-center">
-                  {/* 傳統右至左、上至下：右欄「李、凱」，左欄「博、印」 */}
                   <span>博</span>
                   <span>李</span>
                   <span>印</span>
@@ -4093,7 +3542,6 @@ export default function App() {
                 style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", border: "none" }}
                 className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
               >
-                
                 {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed7 && (
                   <TutorialTooltip 
                     key={`tutorial-step-7-${tutorialStep}`}
@@ -4118,7 +3566,6 @@ export default function App() {
                 className="flex flex-col items-center gap-1.5 relative z-50 bg-transparent"
               >
                 {(() => {
-                  const totalAchievements = 14;
                   const unlockedCount = [
                     midnightUnlocked,
                     visitedThemes.length >= 3,
@@ -4145,162 +3592,154 @@ export default function App() {
                           text="蒐集專屬成就"
                           theme={theme}
                           vertical={true}
-                          onClick={() => { setTutorialDismissed8(true); nextTutorialStep(); setIsCertModalOpen(true); }}
+                          onClick={() => { setTutorialDismissed8(true); nextTutorialStep(); certModalRef.current?.open(); }}
                           pointerDirection="left"
-                          className="absolute left-full ml-3 sm:ml-4 top-1/2 -translate-y-1/2"
+                          className="absolute left-full ml-3 sm:mr-4 top-1/2 -translate-y-1/2"
                         />
                       )}
-                    <motion.button
-                      onClick={() => {
-                        if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed8) {
-                          setTutorialDismissed8(true);
-                          nextTutorialStep();
-                        }
-                        setIsCertModalOpen(true);
-                        try {
-                          playMeowSound();
-                        } catch (e) {}
-                      }}
-                      style={{ 
-                        transformOrigin: "top center", 
-                        background: "transparent", 
-                        backgroundColor: "transparent", 
-                        border: "none", 
-                        outline: "none", 
-                        boxShadow: "none" 
-                      }}
-                      whileHover={{ 
-                        rotate: [0, -8, 6, -5, 4, 0],
-                        scale: 1.05,
-                        transition: { duration: 1.2, ease: "easeInOut" }
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      type="button"
-                      id="btn_mumu_certified_badge"
-                      className="relative cursor-pointer group flex flex-col items-center bg-transparent border-0 p-0 outline-none shadow-none z-50"
-                    >
-                      {/* Tooltip moved OUTSIDE the button to prevent CSS stripping */}
-                      {/* 完美和風御守本體 (將吊繩與圓點一併繪入 SVG 中，徹底免除外部 HTML 元素與 flex 容器對齊時產生的白塊與渲染問題) */}
-                      <div 
-                        style={{ background: "transparent", backgroundColor: "transparent" }}
-                        className="w-14 h-[94px] relative flex flex-col items-center justify-center pb-2 pt-[22px] gap-2.5 px-1.5 bg-transparent border-0"
+                      <motion.button
+                        onClick={() => {
+                          if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed8) {
+                            setTutorialDismissed8(true);
+                            nextTutorialStep();
+                          }
+                          certModalRef.current?.open();
+                          try {
+                            playMeowSound();
+                          } catch (e) {}
+                        }}
+                        style={{ 
+                          transformOrigin: "top center", 
+                          background: "transparent", 
+                          backgroundColor: "transparent", 
+                          border: "none", 
+                          outline: "none", 
+                          boxShadow: "none" 
+                        }}
+                        whileHover={{ 
+                          rotate: [0, -8, 6, -5, 4, 0],
+                          scale: 1.05,
+                          transition: { duration: 1.2, ease: "easeInOut" }
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        type="button"
+                        id="btn_mumu_certified_badge"
+                        className="relative cursor-pointer group flex flex-col items-center bg-transparent border-0 p-0 outline-none shadow-none z-50"
                       >
-                        
-                        {/* 背景 SVG (包含頂端吊繩、黃色圓點、御守本體，一體化渲染) */}
-                        <svg 
-                          width="56" 
-                          height="94" 
-                          viewBox="0 0 56 94" 
+                        {/* 完美和風御守本體 */}
+                        <div 
                           style={{ background: "transparent", backgroundColor: "transparent" }}
-                          className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_4px_8px_rgba(0,0,0,0.45)] bg-transparent"
+                          className="w-14 h-[94px] relative flex flex-col items-center justify-center pb-2 pt-[22px] gap-2.5 px-1.5 bg-transparent border-0"
                         >
-                          <defs>
-                            {/* 定義漸層色 */}
-                            <linearGradient id="omamori-sepia" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#A04035" />
-                              <stop offset="100%" stopColor="#732219" />
-                            </linearGradient>
-                            <linearGradient id="omamori-light" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#FDF2F4" />
-                              <stop offset="100%" stopColor="#F5D6DA" />
-                            </linearGradient>
-                            <linearGradient id="omamori-dark" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#1C1625" />
-                              <stop offset="100%" stopColor="#0D0A12" />
-                            </linearGradient>
-                          </defs>
+                          {/* 背景 SVG */}
+                          <svg 
+                            width="56" 
+                            height="94" 
+                            viewBox="0 0 56 94" 
+                            style={{ background: "transparent", backgroundColor: "transparent" }}
+                            className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_3px_5px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_4px_8px_rgba(0,0,0,0.45)] bg-transparent"
+                          >
+                            <defs>
+                              <linearGradient id="omamori-sepia" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#A04035" />
+                                <stop offset="100%" stopColor="#732219" />
+                              </linearGradient>
+                              <linearGradient id="omamori-light" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#FDF2F4" />
+                                <stop offset="100%" stopColor="#F5D6DA" />
+                              </linearGradient>
+                              <linearGradient id="omamori-dark" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#1C1625" />
+                                <stop offset="100%" stopColor="#0D0A12" />
+                              </linearGradient>
+                            </defs>
 
-                          {/* 吊繩 (直接繪製於 SVG 內) */}
-                          <line 
-                            x1="28" 
-                            y1="2" 
-                            x2="28" 
-                            y2="14" 
-                            stroke={
-                              theme === "sepia" 
-                                ? "#E8D4A2" 
-                                : theme === "light" 
-                                ? "rgba(244, 63, 94, 0.85)" 
-                                : "rgba(245, 158, 11, 0.8)"
-                            } 
-                            strokeWidth="1.5" 
-                            strokeLinecap="round" 
-                          />
-                          
-                          {/* 頂部吊繩圓點 */}
-                          <circle 
-                            cx="28" 
-                            cy="2" 
-                            r="1.5" 
-                            fill={
-                              theme === "sepia" 
-                                ? "#EAD09D" 
-                                : theme === "light" 
-                                ? "#F43F5E" 
-                                : "#FBBF24"
-                            } 
-                          />
+                            <line 
+                              x1="28" 
+                              y1="2" 
+                              x2="28" 
+                              y2="14" 
+                              stroke={
+                                theme === "sepia" 
+                                  ? "#E8D4A2" 
+                                  : theme === "light" 
+                                  ? "rgba(244, 63, 94, 0.85)" 
+                                  : "rgba(245, 158, 11, 0.8)"
+                              } 
+                              strokeWidth="1.5" 
+                              strokeLinecap="round" 
+                            />
+                            
+                            <circle 
+                              cx="28" 
+                              cy="2" 
+                              r="1.5" 
+                              fill={
+                                theme === "sepia" 
+                                  ? "#EAD09D" 
+                                  : theme === "light" 
+                                  ? "#F43F5E" 
+                                  : "#FBBF24"
+                              } 
+                            />
 
-                          {/* 御守外觀多邊形 (整體下移 14px 以避開吊繩) */}
-                          <polygon 
-                            points="11.2,14 44.8,14 56,30 56,94 0,94 0,30" 
-                            fill={
-                              theme === "sepia"
-                                ? "url(#omamori-sepia)"
-                                : theme === "light"
-                                ? "url(#omamori-light)"
-                                : "url(#omamori-dark)"
-                            }
-                            stroke={
-                              theme === "sepia"
-                                ? "rgba(232, 212, 162, 0.25)"
-                                : theme === "light"
-                                ? "rgba(244, 143, 177, 0.25)"
-                                : "rgba(245, 158, 11, 0.15)"
-                            }
-                            strokeWidth="1"
-                          />
+                            <polygon 
+                              points="11.2,14 44.8,14 56,30 56,94 0,94 0,30" 
+                              fill={
+                                theme === "sepia"
+                                  ? "url(#omamori-sepia)"
+                                  : theme === "light"
+                                  ? "url(#omamori-light)"
+                                  : "url(#omamori-dark)"
+                              }
+                              stroke={
+                                theme === "sepia"
+                                  ? "rgba(232, 212, 162, 0.25)"
+                                  : theme === "light"
+                                  ? "rgba(244, 143, 177, 0.25)"
+                                  : "rgba(245, 158, 11, 0.15)"
+                              }
+                              strokeWidth="1"
+                            />
 
-                          {/* 內圈虛線裝飾 (整體下移 14px) */}
-                          <polygon 
-                            points="11.6,16 44.4,16 54,30.4 54,92 2,92 2,30.4" 
-                            fill="none"
-                            stroke={
-                              theme === "sepia"
-                                ? "#E8D4A2"
-                                : theme === "light"
-                                ? "#F472B6"
-                                : "#F59E0B"
-                            }
-                            strokeWidth="1"
-                            strokeDasharray="3,2"
-                            strokeOpacity={
-                              theme === "sepia" ? 0.35 : theme === "light" ? 0.45 : 0.25
-                            }
-                          />
-                        </svg>
-
-                        {/* 結繩裝飾 */}
-                        <div className="w-6 h-3 flex items-center justify-center relative z-10">
-                          <svg viewBox="0 0 24 12" className={`w-full h-full fill-none ${
-                            theme === "sepia" ? "stroke-[#E8D4A2]" : theme === "light" ? "stroke-pink-500" : "stroke-amber-400"
-                          }`} strokeWidth="1.5">
-                            <path d="M12,4 C6,0 4,8 12,6 C20,8 18,0 12,4 Z" />
-                            <path d="M12,6 L9,11 M12,6 L15,11" />
+                            <polygon 
+                              points="11.6,16 44.4,16 54,30.4 54,92 2,92 2,30.4" 
+                              fill="none"
+                              stroke={
+                                theme === "sepia"
+                                  ? "#E8D4A2"
+                                  : theme === "light"
+                                  ? "#F472B6"
+                                  : "#F59E0B"
+                              }
+                              strokeWidth="1"
+                              strokeDasharray="3,2"
+                              strokeOpacity={
+                                theme === "sepia" ? 0.35 : theme === "light" ? 0.45 : 0.25
+                              }
+                            />
                           </svg>
-                        </div>
 
-                        {/* 直式文字：姆貓御守 */}
-                        <div className={`flex flex-col items-center leading-[1.1] tracking-[0.05em] font-serif relative z-10 -mt-1 font-extrabold text-[10px] ${
-                          theme === "sepia" ? "text-[#FCF8EE]" : theme === "light" ? "text-pink-700" : "text-amber-400"
-                        }`}>
-                          <span>姆</span>
-                          <span>貓</span>
-                          <span>御</span>
-                          <span>守</span>
+                          {/* 結繩裝飾 */}
+                          <div className="w-6 h-3 flex items-center justify-center relative z-10">
+                            <svg viewBox="0 0 24 12" className={`w-full h-full fill-none ${
+                              theme === "sepia" ? "stroke-[#E8D4A2]" : theme === "light" ? "stroke-pink-500" : "stroke-amber-400"
+                            }`} strokeWidth="1.5">
+                              <path d="M12,4 C6,0 4,8 12,6 C20,8 18,0 12,4 Z" />
+                              <path d="M12,6 L9,11 M12,6 L15,11" />
+                            </svg>
+                          </div>
+
+                          {/* 直式文字：姆貓御守 */}
+                          <div className={`flex flex-col items-center leading-[1.1] tracking-[0.05em] font-serif relative z-10 -mt-1 font-extrabold text-[10px] ${
+                            theme === "sepia" ? "text-[#FCF8EE]" : theme === "light" ? "text-pink-700" : "text-amber-400"
+                          }`}>
+                            <span>御</span>
+                            <span>守</span>
+                          </div>
+
                         </div>
-                      </div>
-                    </motion.button>
+                      </motion.button>
                     </>
                   );
                 })()}
@@ -4333,10 +3772,9 @@ export default function App() {
               Mumiao Shrine Ritual Center
             </span>
           </div>
-          
+
         </div>
       </footer>
-
 
       {/* 全域作品亮點彈出 Lightbox (Lightbox Modal with motion) */}
       <AnimatePresence>
@@ -4406,886 +3844,28 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* 貓咪點擊足跡層 (🐾) */}
-      <CatFootprintsLayer />
-
-      {/* 手機版底部精緻 RPG 對話框 (Mobile RPG Dialogue Box) */}
-      {mounted && typeof document !== "undefined" && createPortal(
-        <AnimatePresence>
-          {showHeroDialogue && (
-            <motion.div
-              initial={{ y: 120, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 120, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              onClick={(e) => e.stopPropagation()}
-              className={`md:hidden fixed bottom-4 left-4 right-4 z-[99999] p-4.5 rounded-2xl shadow-2xl border flex flex-col gap-3.5
-                ${
-                  theme === "sepia"
-                    ? "bg-[#FAF4E5] border-2 border-[#A05C2C] text-[#382B1D] shadow-[#382B1D]/15"
-                    : theme === "light"
-                    ? "bg-white border-2 border-amber-600 text-zinc-800 shadow-zinc-300/65"
-                    : "bg-zinc-950/98 border-2 border-amber-500 text-zinc-100 shadow-black/90"
-                }
-              `}
-            >
-              {/* Top Row: Avatar & Title & Close button */}
-              <div className="flex items-start gap-3 relative">
-                {/* Cute Avatar of MuMㄠ with matching border frame */}
-                <div className={`relative shrink-0 w-13 h-13 rounded-xl overflow-hidden border-2 p-0.5 shadow-sm
-                  ${
-                    theme === "sepia"
-                      ? "border-[#A05C2C] bg-[#FCF8EE]"
-                      : theme === "light"
-                      ? "border-amber-600 bg-amber-50"
-                      : "border-amber-500 bg-zinc-900"
-                  }
-                `}>
-                  <img
-                    src="https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX"
-                    alt="MuMㄠ"
-                    className="w-full h-full object-contain select-none"
-                    referrerPolicy="no-referrer"
-                  />
-                  {isMagicTransformed && (
-                    <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
-                    </span>
-                  )}
-                </div>
-
-                {/* RPG Title & Dialogue text */}
-                <div className="flex-1 min-w-0 pr-6">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className={`text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md text-white bg-gradient-to-r ${
-                      theme === "sepia"
-                        ? "from-[#A05C2C] to-[#854B22]"
-                        : theme === "light"
-                        ? "from-amber-600 to-amber-700"
-                        : "from-amber-500 to-amber-600 text-black font-extrabold"
-                    }`}>
-                      {isMagicTransformed ? "🪄 魔法姆貓" : "🐾 姆貓教主"}
-                    </span>
-                    <span className={`text-[10px] font-mono opacity-60`}>
-                      Oracle
-                    </span>
-                  </div>
-
-                  <p className="text-xs sm:text-sm leading-relaxed font-semibold">
-                    {displayedDialogue}
-                    {displayedDialogue.length < heroDialogue.length && (
-                      <span className="inline-block ml-1 w-1.5 h-3.5 bg-amber-500 animate-pulse rounded align-middle" />
-                    )}
-                  </p>
-                </div>
-
-                {/* RPG Close Button */}
-                <button
-                  type="button"
-                  onClick={() => setShowHeroDialogue(false)}
-                  className={`absolute right-0 top-0 p-1 rounded-full transition-colors active:scale-90
-                    ${
-                      theme === "sepia"
-                        ? "hover:bg-[#EAD09D]/30 text-[#A05C2C]"
-                        : theme === "light"
-                        ? "hover:bg-zinc-100 text-zinc-400"
-                        : "hover:bg-white/10 text-zinc-400 hover:text-white"
-                    }
-                  `}
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* Bottom Row Actions inside RPG Box */}
-              {displayedDialogue.length >= 10 && (
-                <div className="flex flex-col gap-2 border-t border-dashed border-zinc-200/60 dark:border-white/10 pt-2.5 mt-0.5">
-                  {heroDialogue.includes("IG") && (
-                    <a
-                      href="https://www.instagram.com/mumao1_the_cat_religion?igsh=MXF2a3N1bm45ajhkaw=="
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md hover:shadow-pink-500/10 cursor-pointer bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110 text-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSocialClick();
-                      }}
-                    >
-                      <Instagram className="h-3.5 w-3.5 shrink-0" />
-                      <span>前往 MuMㄠ 教主 IG 🐾</span>
-                    </a>
-                  )}
-
-                  {(heroDialogue.includes("運勢") || heroDialogue.includes("求籤")) && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowHeroDialogue(false); // Close first to let them see
-                        const el = document.getElementById("footer-fortune");
-                        if (el) {
-                          el.scrollIntoView({ behavior: "smooth" });
-                        }
-                      }}
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 rounded-xl text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 shadow-md cursor-pointer bg-gradient-to-r from-red-500 to-[#D33F33] hover:brightness-110"
-                    >
-                      <span>⛩️ 前往今日運勢 🐾</span>
-                    </button>
-                  )}
-                </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
-
-      {/* 姆貓認證標章 (Mumu Certified Badge) - Removed/Relocated to Footer Omamori */}
-
       {/* 姆貓認證證書 Modal */}
-      <AnimatePresence>
-        {isCertModalOpen && (
-          <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4">
-            {/* Backdrop overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsCertModalOpen(false)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            />
-
-            {/* Certificate Card Container */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 30 }}
-              transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              style={{
-                clipPath: "polygon(15% 0%, 85% 0%, 100% 8%, 100% 100%, 0% 100%, 0% 8%)"
-              }}
-              className={`relative w-full max-w-lg p-6 sm:p-8 pt-10 sm:pt-12 rounded-t-3xl border shadow-2xl overflow-hidden flex flex-col items-center text-center ${
-                theme === "sepia"
-                  ? "bg-gradient-to-b from-[#8C231A] to-[#59110B] border-[#EAD09D]/40 text-[#FCF8EE] shadow-black/60"
-                  : theme === "light"
-                  ? "bg-gradient-to-b from-[#FDF2F4] via-[#FCE4E6] to-[#F5CBD0] border-pink-400/30 text-pink-950 shadow-pink-200/50"
-                  : "bg-gradient-to-b from-[#1C112B] to-[#0A0512] border-amber-500/35 text-amber-100/90 shadow-black/80"
-              }`}
-            >
-              {/* Hanging Silk Cord and Traditional Kano Knot (二重叶結び) */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                <div className={`w-[2px] h-6 sm:h-7 ${
-                  theme === "sepia" ? "bg-[#EAD09D]" : theme === "light" ? "bg-pink-500" : "bg-amber-400"
-                }`} />
-                <div className="w-10 h-6 -mt-1 flex items-center justify-center">
-                  <svg viewBox="0 0 24 12" className={`w-full h-full fill-none ${
-                    theme === "sepia" ? "stroke-[#EAD09D]" : theme === "light" ? "stroke-pink-600" : "stroke-amber-400"
-                  }`} strokeWidth="2">
-                    <path d="M12,4 C6,0 4,8 12,6 C20,8 18,0 12,4 Z" />
-                    <path d="M12,6 L8,12 M12,6 L16,12" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Decorative Dashed Inner Border */}
-              <div 
-                style={{ 
-                  clipPath: "polygon(15% 0%, 85% 0%, 100% 8%, 100% 100%, 0% 100%, 0% 8%)",
-                  inset: "6px"
-                }}
-                className={`absolute border-2 border-dashed pointer-events-none rounded-t-2xl ${
-                  theme === "sepia"
-                    ? "border-[#EAD09D]/20"
-                    : theme === "light"
-                    ? "border-pink-300/40"
-                    : "border-amber-400/15"
-                }`}
-              />
-
-              {/* Background patterns */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none" />
-
-              {/* Close Button */}
-              <button
-                onClick={() => setIsCertModalOpen(false)}
-                type="button"
-                className={`absolute top-6 right-6 p-1 rounded-lg border transition-all duration-300 cursor-pointer z-30 ${
-                  theme === "sepia"
-                    ? "border-[#EAD09D]/20 text-[#EAD09D]/70 hover:bg-[#EAD09D]/10"
-                    : theme === "light"
-                    ? "border-pink-300/30 text-pink-700 hover:text-pink-900 hover:bg-pink-50/50"
-                    : "border-white/10 text-amber-400/60 hover:text-amber-400 hover:bg-white/5"
-                }`}
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              {/* Elegant header */}
-              <div className="flex flex-col items-center gap-1.5 mb-3.5 relative z-10 mt-2">
-                <div className={`p-2.5 rounded-full border mb-1.5 ${
-                  theme === "sepia"
-                    ? "bg-amber-500/10 border-amber-500/30 text-amber-300"
-                    : theme === "light"
-                    ? "bg-pink-100 border-pink-400/20 text-pink-600"
-                    : "bg-amber-400/15 border-amber-400/30 text-amber-400"
-                }`}>
-                  <Award className="h-7 w-7 animate-bounce" style={{ animationDuration: "2.5s" }} />
-                </div>
-                <h3 className={`text-lg sm:text-xl font-bold tracking-widest font-serif ${
-                  theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-800" : "text-amber-400"
-                }`}>
-                  ⛩️ 姆貓教特別認證御守 🐾
-                </h3>
-                <div className={`h-[1.5px] w-28 bg-gradient-to-r ${
-                  theme === "sepia"
-                    ? "from-transparent via-[#EAD09D]/50 to-transparent"
-                    : theme === "light"
-                    ? "from-transparent via-pink-400/50 to-transparent"
-                    : "from-transparent via-amber-500/50 to-transparent"
-                }`} />
-                <span className={`text-[9px] font-serif tracking-[0.25em] uppercase opacity-60 font-bold ${
-                  theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-600" : "text-amber-400"
-                }`}>
-                  MUMU BLESSED OMAMORI
-                </span>
-              </div>
-
-              {/* Certificate content */}
-              <div className="space-y-3.5 relative z-10 mb-4 text-center max-w-md">
-                <p className={`text-xs sm:text-sm font-medium leading-relaxed ${
-                  theme === "sepia" ? "text-zinc-100" : theme === "light" ? "text-zinc-800" : "text-zinc-200"
-                }`}>
-                  特此證明您與姆貓教主已累積互動達 <strong className={`text-base sm:text-lg mx-1 font-bold ${
-                    theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-600" : "text-amber-400"
-                  }`}>{interactionCount}</strong> 次，展現了無與倫比的虔誠與喜愛！
-                </p>
-                
-                <p className={`text-[11px] sm:text-xs leading-relaxed border-t border-b py-2 px-3 mb-2 rounded-lg italic ${
-                  theme === "sepia"
-                    ? "border-[#EAD09D]/20 text-[#EAD09D]/90 bg-black/25"
-                    : theme === "light"
-                    ? "border-pink-300/30 text-pink-900/95 bg-white/40"
-                    : "border-white/5 text-zinc-300 bg-white/2"
-                }`}>
-                  「本教主授予此御守，特許您獲得『每日摸魚特權、開運招財加薪、諸事順遂』之終身守護魔法祝福！😻✨🐾」
-                </p>
-              </div>
-
-              {/* 榮譽成就清單 (Honorable Achievements List) */}
-              <div className="w-full relative z-10 mb-4 text-left space-y-2">
-                <h4 className={`text-xs font-bold tracking-widest uppercase flex items-center gap-1.5 px-1 font-serif ${
-                  theme === "sepia" ? "text-[#EAD09D]" : theme === "light" ? "text-pink-800" : "text-amber-400"
-                }`}>
-                  🏆 神社神格成就進度
-                </h4>
-                
-                <div className="space-y-1.5 max-h-[220px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-zinc-700/50">
-                  {/* 成就 1: 深夜擼貓者 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    midnightUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      midnightUnlocked 
-                        ? "bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Clock className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {midnightUnlocked ? "「深夜擼貓者」🐾" : "「深夜擼貓者」🔒"}
-                        </span>
-                        {midnightUnlocked && (
-                          <span className="text-[8px] font-bold text-indigo-400 uppercase tracking-wider bg-indigo-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {midnightUnlocked
-                          ? "「夜深了本教主特賜好眠魔法～✨踩腳印祝福送達！」"
-                          : "（於深夜 11 點至凌晨 4 點間點擊 Hero 貓咪或吉祥物）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 2: 時空穿梭大師 */}
-                  {(() => {
-                    const isThemeUnlocked = visitedThemes.length >= 3;
-                    return (
-                      <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                        isThemeUnlocked
-                          ? theme === "sepia"
-                            ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                            : theme === "light"
-                            ? "bg-white/60 border-pink-400/30 shadow-sm"
-                            : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                          : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                      }`}>
-                        <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                          isThemeUnlocked 
-                            ? "bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-sm"
-                            : "bg-zinc-800/40 text-zinc-500"
-                        }`}>
-                          <Palette className="h-4 w-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between">
-                            <span className={`text-[10px] font-bold tracking-wide ${
-                              theme === "sepia" ? "text-white" : ""
-                            }`}>
-                              {isThemeUnlocked ? "「時空穿梭大師」🎨" : "「時空穿梭大師」🔒"}
-                            </span>
-                            {isThemeUnlocked ? (
-                              <span className="text-[8px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-1 py-0.5 rounded">
-                                已解鎖
-                              </span>
-                            ) : (
-                              <span className="text-[8px] opacity-65 font-mono">
-                                ({visitedThemes.length}/3)
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                            {isThemeUnlocked
-                              ? "「成功解鎖三大神學配色，美感感知力永久加持！」"
-                              : "（完整切換並體驗三種視覺主題配色）"}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })()}
-
-                  {/* 成就 3: 命運之友 */}
-                  {(() => {
-                    const isFortuneUnlocked = fortuneCount >= 3;
-                    return (
-                      <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                        isFortuneUnlocked
-                          ? theme === "sepia"
-                            ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                            : theme === "light"
-                            ? "bg-white/60 border-pink-400/30 shadow-sm"
-                            : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                          : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                      }`}>
-                        <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                          isFortuneUnlocked 
-                            ? "bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-sm"
-                            : "bg-zinc-800/40 text-zinc-500"
-                        }`}>
-                          <Sparkles className="h-4 w-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between">
-                            <span className={`text-[10px] font-bold tracking-wide ${
-                              theme === "sepia" ? "text-white" : ""
-                            }`}>
-                              {isFortuneUnlocked ? "「命運之友」🔮" : "「命運之友」🔒"}
-                            </span>
-                            {isFortuneUnlocked ? (
-                              <span className="text-[8px] font-bold text-amber-400 uppercase tracking-wider bg-amber-500/10 px-1 py-0.5 rounded">
-                                已解鎖
-                              </span>
-                            ) : (
-                              <span className="text-[8px] opacity-65 font-mono">
-                                ({fortuneCount}/3)
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                            {isFortuneUnlocked
-                              ? "「與神社占卜達成了神聖靈魂連結，今日好運翻倍！」"
-                              : "（於底部神社內進行運勢諮詢或求籤達 3 次）"}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })()}
-
-                  {/* 成就 4: 作品鑑賞家 */}
-                  {(() => {
-                    const isPortfolioUnlocked = viewedProjects.length >= 5;
-                    return (
-                      <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                        isPortfolioUnlocked
-                          ? theme === "sepia"
-                            ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                            : theme === "light"
-                            ? "bg-white/60 border-pink-400/30 shadow-sm"
-                            : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                          : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                      }`}>
-                        <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                          isPortfolioUnlocked 
-                            ? "bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-sm"
-                            : "bg-zinc-800/40 text-zinc-500"
-                        }`}>
-                          <BookOpen className="h-4 w-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between">
-                            <span className={`text-[10px] font-bold tracking-wide ${
-                              theme === "sepia" ? "text-white" : ""
-                            }`}>
-                              {isPortfolioUnlocked ? "「作品鑑賞家」📖" : "「作品鑑賞家」🔒"}
-                            </span>
-                            {isPortfolioUnlocked ? (
-                              <span className="text-[8px] font-bold text-rose-400 uppercase tracking-wider bg-rose-500/10 px-1 py-0.5 rounded">
-                                已解鎖
-                              </span>
-                            ) : (
-                              <span className="text-[8px] opacity-65 font-mono">
-                                ({viewedProjects.length}/5)
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                            {isPortfolioUnlocked
-                              ? "「深入體悟了設計結晶，創意爆棚與你同在！」"
-                              : "（深入閱讀並打開 5 個不同的作品展示卡片）"}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })()}
-
-                  {/* 成就 5: 靜心禪修者 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    zenUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      zenUnlocked 
-                        ? "bg-gradient-to-br from-[#A855F7] to-[#EC4899] text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Heart className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {zenUnlocked ? "「靜心禪修者」🧘‍♀️" : "「靜心禪修者」🔒"}
-                        </span>
-                        {zenUnlocked && (
-                          <span className="text-[8px] font-bold text-[#EC4899] uppercase tracking-wider bg-[#EC4899]/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {zenUnlocked
-                          ? "「靜心陪伴本教主，美學感知與專注度已達全新禪境。」"
-                          : "（於網頁停留、賞析作品滿 3 分鐘以上）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 6: 社交宣傳使者 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    socialUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      socialUnlocked 
-                        ? "bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Share2 className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {socialUnlocked ? "「社交宣傳使者」🐾" : "「社交宣傳使者」🔒"}
-                        </span>
-                        {socialUnlocked && (
-                          <span className="text-[8px] font-bold text-[#06B6D4] uppercase tracking-wider bg-[#06B6D4]/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {socialUnlocked
-                          ? "「宣揚我教！特賜你『人緣爆棚、貴人相助』之神社福報！」"
-                          : "（點擊 IG 或社群連結宣揚本教萌光與美學）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 7: 極意摸魚之神 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    slackerUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      slackerUnlocked 
-                        ? "bg-gradient-to-br from-[#F59E0B] to-[#EF4444] text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Crown className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {slackerUnlocked ? "「極意摸魚之神」👑" : "「極意摸魚之神」🔒"}
-                        </span>
-                        {slackerUnlocked ? (
-                          <span className="text-[8px] font-bold text-[#F59E0B] uppercase tracking-wider bg-[#F59E0B]/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        ) : (
-                          <span className="text-[8px] opacity-65 font-mono">
-                            ({interactionCount}/100)
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {slackerUnlocked
-                          ? "「特許你獲得最高榮譽：『終極無罪摸魚特權』，絕不被抓！」"
-                          : "（與網頁上的貓咪或吉祥物互動累計達 100 次）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 8: AI 協同巫師 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    aiWizardUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      aiWizardUnlocked 
-                        ? "bg-gradient-to-br from-[#10B981] to-[#059669] text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Zap className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {aiWizardUnlocked ? "「AI 協同巫師」✨" : "「AI 協同巫師」🔒"}
-                        </span>
-                        {aiWizardUnlocked && (
-                          <span className="text-[8px] font-bold text-[#10B981] uppercase tracking-wider bg-[#10B981]/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {aiWizardUnlocked
-                          ? "「掌握人機協同神力，提案必過、設計效率雙倍加持！」"
-                          : "（打開並閱讀『AI 設計輔助工作流』彈出視窗）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成成 9: 極致奢華罐罐奉納 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    premiumCanUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      premiumCanUnlocked 
-                        ? "bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Award className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {premiumCanUnlocked ? "「極致奢華罐罐奉納」🥫" : "「極致奢華罐罐奉納」🔒"}
-                        </span>
-                        {premiumCanUnlocked && (
-                          <span className="text-[8px] font-bold text-rose-500 uppercase tracking-wider bg-rose-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {premiumCanUnlocked
-                          ? "「成功奉納頂級奢華罐罐！本教主神格超凡昇華，特賜予你『一世富貴、衣食無憂』之終極加冕！」"
-                          : "（將畫面角落的金色貓罐罐 🥫 拖曳至白貓 MuMㄠ 姆貓的頭上）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 10: 飛天姆貓 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    balloonUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      balloonUnlocked 
-                        ? "bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Sparkles className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {balloonUnlocked ? "「飛天姆貓」🎈" : "「飛天姆貓」🔒"}
-                        </span>
-                        {balloonUnlocked && (
-                          <span className="text-[8px] font-bold text-purple-400 uppercase tracking-wider bg-purple-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {balloonUnlocked
-                          ? "「噗咻——！姆貓升空！獲得教主親授『高空俯瞰、視界大開』之靈感飛昇護佑！」"
-                          : "（快速連擊導覽列或履歷面板的姆貓 MuMㄠ 頭像，使其像氣球一樣漏氣飛走）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 11: 魔法姆貓 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    magicMumuUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      magicMumuUnlocked 
-                        ? "bg-gradient-to-br from-pink-500 to-amber-500 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Sparkles className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {magicMumuUnlocked ? "「魔法姆貓」🪄" : "「魔法姆貓」🔒"}
-                        </span>
-                        {magicMumuUnlocked && (
-                          <span className="text-[8px] font-bold text-amber-500 uppercase tracking-wider bg-amber-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {magicMumuUnlocked
-                          ? "「噗哩噗哩——變身！解鎖神秘隱藏的魔法姆貓姿態，獲得夢幻幸運加持！」"
-                          : "（快速連擊 HERO 頁面的白貓 MuMㄠ 姆貓，解鎖變身姿態）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 12: 重力掌控者 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    gravityRestoreUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      gravityRestoreUnlocked 
-                        ? "bg-gradient-to-br from-cyan-500 to-indigo-600 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <Zap className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {gravityRestoreUnlocked ? "「重力掌控者」🌌" : "「重力掌控者」🔒"}
-                        </span>
-                        {gravityRestoreUnlocked && (
-                          <span className="text-[8px] font-bold text-cyan-400 uppercase tracking-wider bg-cyan-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {gravityRestoreUnlocked
-                          ? "「重建崩塌的世界！成功解鎖『扭轉乾坤、重塑秩序』之神聖履歷治癒護佑！」"
-                          : "（點擊履歷右上角進行 [重力測試]，再點擊 [魔法復原] 重建履歷）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 13: 傳統派讀者 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    pdfUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      pdfUnlocked 
-                        ? "bg-gradient-to-br from-orange-400 to-amber-600 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <FileText className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {pdfUnlocked ? "「傳統派讀者」📖" : "「傳統派讀者」🔒"}
-                        </span>
-                        {pdfUnlocked && (
-                          <span className="text-[8px] font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {pdfUnlocked
-                          ? "「返璞歸真！雖然網頁很炫，但你依然沒忘記下載 PDF 版本，本教主賜予你『穩健務實』之力！」"
-                          : "（點擊首頁的 [PDF 作品集] 開啟傳統格式履歷）"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 成就 14: 新手上路 */}
-                  <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
-                    tutorialAchUnlocked
-                      ? theme === "sepia"
-                        ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
-                        : theme === "light"
-                        ? "bg-white/60 border-pink-400/30 shadow-sm"
-                        : "bg-amber-500/5 border-amber-500/25 shadow-inner"
-                      : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
-                  }`}>
-                    <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
-                      tutorialAchUnlocked 
-                        ? "bg-gradient-to-br from-blue-400 to-indigo-600 text-white shadow-sm"
-                        : "bg-zinc-800/40 text-zinc-500"
-                    }`}>
-                      <GraduationCap className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold tracking-wide ${
-                          theme === "sepia" ? "text-white" : ""
-                        }`}>
-                          {tutorialAchUnlocked ? "「新手上路」🎓" : "「新手上路」🔒"}
-                        </span>
-                        {tutorialAchUnlocked && (
-                          <span className="text-[8px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-1 py-0.5 rounded">
-                            已解鎖
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
-                        {tutorialAchUnlocked
-                          ? "「恭喜你完成新手教學！現在你已經掌握了瀏覽這個網站的精髓，本教主賜予你『無畏探索』之力！」"
-                          : "（完成前三個新手教學步驟即可解鎖）"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Interactive Blessing Button (Ema styled button) */}
-              <div className="w-full space-y-2 relative z-10">
-                <button
-                  onClick={() => {
-                    try {
-                      playMeowSound();
-                    } catch (e) {}
-                    
-                    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
-                      id: Date.now() + Math.random() + i,
-                      x: window.innerWidth / 2 + (Math.random() * 260 - 130),
-                      y: window.innerHeight / 2 + (Math.random() * 260 - 130),
-                      emoji: ["✨", "💖", "🐾", "🏆", "🌟", "🐱", "😻", "🎀"][Math.floor(Math.random() * 8)],
-                    }));
-                    setHeroParticles((prev) => [...prev, ...newParticles].slice(-50));
-                    
-                    setTitleBounceTrigger((prev) => prev + 1);
-                  }}
-                  className={`w-full py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer font-serif ${
-                    theme === "sepia"
-                      ? "bg-[#EAD09D] text-[#59110B] hover:bg-[#F3DFB6] shadow-black/45"
-                      : theme === "light"
-                      ? "bg-pink-600 text-white hover:bg-pink-700 shadow-pink-500/20"
-                      : "bg-amber-400 text-zinc-950 hover:bg-amber-300 shadow-amber-500/20"
-                  }`}
-                >
-                  <Sparkles className="h-4 w-4 fill-current animate-spin" style={{ animationDuration: "3.5s" }} />
-                  召喚教主守護御守・滿願成就！🐾
-                </button>
-
-                <p className={`text-[9px] tracking-wide font-mono opacity-60 ${
-                  theme === "sepia" ? "text-[#EAD09D]" : ""
-                }`}>
-                  虔誠信仰值：{interactionCount} | 已結緣登錄於本地瀏覽器
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <MumuCertModal 
+        ref={certModalRef}
+        theme={theme}
+        interactionCount={interactionCount}
+        midnightUnlocked={midnightUnlocked}
+        visitedThemes={visitedThemes}
+        fortuneCount={fortuneCount}
+        viewedProjects={viewedProjects}
+        zenUnlocked={zenUnlocked}
+        socialUnlocked={socialUnlocked}
+        slackerUnlocked={slackerUnlocked}
+        aiWizardUnlocked={aiWizardUnlocked}
+        premiumCanUnlocked={premiumCanUnlocked}
+        balloonUnlocked={balloonUnlocked}
+        magicMumuUnlocked={magicMumuUnlocked}
+        gravityRestoreUnlocked={gravityRestoreUnlocked}
+        pdfUnlocked={pdfUnlocked}
+        tutorialAchUnlocked={tutorialAchUnlocked}
+        setHeroParticles={(action) => heroSectionRef.current?.setHeroParticles(action)}
+        setTitleBounceTrigger={(action) => heroSectionRef.current?.setTitleBounceTrigger(action)}
+      />
 
       {/* 榮譽成就解鎖通知 (Achievement Unlocked Toast) */}
       <AnimatePresence>
@@ -5295,7 +3875,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9, transition: { duration: 0.2 } }}
             onClick={() => {
-              setIsCertModalOpen(true);
+              certModalRef.current?.open();
               setUnlockedAchToast(null);
             }}
             className={`fixed bottom-6 right-6 z-[999999] p-4 rounded-xl border shadow-2xl flex items-center gap-3.5 max-w-xs cursor-pointer hover:scale-[1.02] active:scale-95 transition-transform duration-200 ${

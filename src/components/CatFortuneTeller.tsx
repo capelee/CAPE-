@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkles, X, RefreshCw, Smile, Heart, Zap } from "lucide-react";
+import { audioContextManager } from "../utils/audioEffects";
 
 interface CatFortuneTellerProps {
   theme: "dark" | "light" | "sepia";
@@ -32,9 +33,8 @@ interface Ripple {
 // 神社御守/神樂鈴 (Suzu bell) 專屬極致網頁合成音效：模擬多層清脆銅鈴與祈福繩索晃動聲
 const playSuzuBellSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // 模擬神社搖鈴的三次連續晃動音 (由強至弱)
@@ -100,9 +100,8 @@ const playSuzuBellSound = () => {
 // 完美的網頁合成音效：高逼真度開罐金屬聲與魔法幸運磬音
 const playCanOpenSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // 1. 金屬高壓氣體釋放聲 (Psssh!)
@@ -191,9 +190,8 @@ const playCanOpenSound = () => {
 // 神社清脆木魚與深遠梵鐘（Mokugyo & Temple Bell）神聖合成音效
 const playMokugyoAndTempleBellSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // A. 模擬經典木魚雙擊聲 (Mokugyo "叩、叩")
@@ -357,14 +355,30 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
   const [isOpening, setIsOpening] = useState<boolean>(false);
   const [isBellRinging, setIsBellRinging] = useState<boolean>(false);
   const [currentFortune, setCurrentFortune] = useState<Fortune | null>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [showTooltip, setShowTooltip] = useState<boolean>(true);
+    const [showTooltip, setShowTooltip] = useState<boolean>(true);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Handle background scroll lock and escape key close for fortune teller modal
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsOpen(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.classList.remove("overflow-hidden");
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isOpen]);
 
   // 10秒後自動隱藏初始氣泡提示，避免遮擋
   useEffect(() => {
@@ -393,41 +407,15 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
     setIsBellRinging(true);
 
     // 3. 播放極致神聖神社搖鈴音效 與 深沉禪意梵鐘木魚音
-    playSuzuBellSound();
-    playMokugyoAndTempleBellSound();
+    setTimeout(() => { playSuzuBellSound(); playMokugyoAndTempleBellSound(); }, 20);
 
     // 4. 觸發神社雙重長震動 (高質感回饋)
     if (typeof navigator !== "undefined" && navigator.vibrate) {
       navigator.vibrate([40, 80, 40]);
     }
 
-    // 5. 產生搖鈴時的細微靈性光芒粒子 與 「吉、大吉、中吉」等隨機浮動文字粒子
-    const textPool = ["大吉", "中吉", "小吉", "末吉", "吉", "開運", "喵吉", "招財", "福徳"];
-    const textParticles: Particle[] = Array.from({ length: 6 }).map((_, idx) => {
-      const randomText = textPool[Math.floor(Math.random() * textPool.length)];
-      return {
-        id: Date.now() + 500 + idx + Math.random(),
-        char: randomText,
-        x: (Math.random() * 120) - 60, // 左右微散
-        y: -30 - (Math.random() * 80), // 向上漂移
-        scale: 0.9 + Math.random() * 0.35,
-        rotation: (Math.random() * 24) - 12, // 輕微傾斜
-      };
-    });
-
-    const glowParticles: Particle[] = Array.from({ length: 12 }).map((_, idx) => {
-      const angle = (idx * (360 / 12) + Math.random() * 15) * (Math.PI / 180);
-      const speed = 25 + Math.random() * 30;
-      return {
-        id: Date.now() + idx + Math.random(),
-        char: ["✨", "🐾", "🌸", "🔔"][idx % 4],
-        x: Math.cos(angle) * speed,
-        y: Math.sin(angle) * speed - 10,
-        scale: 0.8 + Math.random() * 0.4,
-        rotation: Math.random() * 180 - 90,
-      };
-    });
-    setParticles([...glowParticles, ...textParticles]);
+          
+    
 
     // 6. 1400ms 後搖鈴儀式完結，驚喜爆開罐罐好運並噴發主視覺粒子！
     setTimeout(() => {
@@ -435,7 +423,7 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
       setIsOpening(true);
 
       // 播放高品質開罐聲，儀式揭曉！
-      playCanOpenSound();
+      setTimeout(() => { playCanOpenSound(); }, 20);
 
       // 觸發金光波紋
       const rippleId = Date.now();
@@ -445,23 +433,12 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
       }, 800);
 
       // 開罐爆炸彩蛋粒子
-      const burstParticles: Particle[] = Array.from({ length: 16 }).map((_, idx) => {
-        const angle = (idx * (360 / 16) + Math.random() * 15) * (Math.PI / 180);
-        const speed = 40 + Math.random() * 60;
-        return {
-          id: Date.now() + 100 + idx + Math.random(),
-          char: PARTICLES_EMOJIS[Math.floor(Math.random() * PARTICLES_EMOJIS.length)],
-          x: Math.cos(angle) * speed,
-          y: Math.sin(angle) * speed - 20,
-          scale: 0.8 + Math.random() * 0.5,
-          rotation: Math.random() * 360 - 180,
-        };
-      });
-      setParticles(burstParticles);
+              
+      
 
       setTimeout(() => {
         setIsOpening(false);
-        setTimeout(() => setParticles([]), 1200);
+        
       }, 500);
     }, 1400);
   };
@@ -478,33 +455,8 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
       navigator.vibrate([40, 80, 40]);
     }
 
-    // 產生祈福輕微粒子 與 浮動吉運文字
-    const textPool = ["大吉", "中吉", "小吉", "末吉", "吉", "開運", "喵吉", "招財", "福徳"];
-    const textParticles: Particle[] = Array.from({ length: 6 }).map((_, idx) => {
-      const randomText = textPool[Math.floor(Math.random() * textPool.length)];
-      return {
-        id: Date.now() + 600 + idx + Math.random(),
-        char: randomText,
-        x: (Math.random() * 120) - 60,
-        y: -30 - (Math.random() * 80),
-        scale: 0.9 + Math.random() * 0.35,
-        rotation: (Math.random() * 24) - 12,
-      };
-    });
-
-    const glowParticles: Particle[] = Array.from({ length: 10 }).map((_, idx) => {
-      const angle = (idx * (360 / 10) + Math.random() * 20) * (Math.PI / 180);
-      const speed = 20 + Math.random() * 25;
-      return {
-        id: Date.now() + idx + Math.random(),
-        char: ["✨", "🐾", "🌸", "🔔"][idx % 4],
-        x: Math.cos(angle) * speed,
-        y: Math.sin(angle) * speed - 10,
-        scale: 0.7 + Math.random() * 0.3,
-        rotation: Math.random() * 180 - 90,
-      };
-    });
-    setParticles([...glowParticles, ...textParticles]);
+          
+    
 
     // 2. 經過 1400ms 搖鈴祈願後揭曉新籤
     setTimeout(() => {
@@ -532,23 +484,12 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
       setCurrentFortune(FORTUNES[nextIdx]);
 
       // 爆開新運勢粒子
-      const burstParticles: Particle[] = Array.from({ length: 12 }).map((_, idx) => {
-        const angle = (idx * (360 / 12) + Math.random() * 15) * (Math.PI / 180);
-        const speed = 35 + Math.random() * 45;
-        return {
-          id: Date.now() + 100 + idx + Math.random(),
-          char: PARTICLES_EMOJIS[Math.floor(Math.random() * PARTICLES_EMOJIS.length)],
-          x: Math.cos(angle) * speed,
-          y: Math.sin(angle) * speed - 15,
-          scale: 0.8 + Math.random() * 0.4,
-          rotation: Math.random() * 360 - 180,
-        };
-      });
-      setParticles(burstParticles);
+              
+      
 
       setTimeout(() => {
         setIsOpening(false);
-        setTimeout(() => setParticles([]), 1000);
+        
       }, 500);
     }, 1400);
   };
@@ -559,7 +500,7 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
       ? "bg-[#FCF8EE] border-[#EAD09D] text-[#382B1D]"
       : theme === "light"
       ? "bg-white border-zinc-200 text-zinc-800 shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
-      : "bg-[#0E0E0E]/95 border-white/10 text-zinc-100 shadow-[0_10px_35px_rgba(0,0,0,0.5)] backdrop-blur-md";
+      : "bg-[#0E0E0E]/95 border-white/10 text-zinc-100 shadow-[0_10px_35px_rgba(0,0,0,0.5)]";
 
   const textMutedClass =
     theme === "sepia"
@@ -628,39 +569,6 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
           )}
         </AnimatePresence>
 
-        {/* 粒子噴發現象容器 */}
-        <div className="absolute inset-0 pointer-events-none overflow-visible flex items-center justify-center">
-          <AnimatePresence>
-            {particles.map((p) => {
-              const isChinese = /[\u4e00-\u9fa5]/.test(p.char);
-              return (
-                <motion.div
-                  key={p.id}
-                  initial={{ opacity: 1, scale: 0, x: 0, y: 0, rotate: 0 }}
-                  animate={{
-                    opacity: [1, 1, 0],
-                    scale: p.scale,
-                    x: p.x,
-                    y: p.y,
-                    rotate: p.rotation,
-                  }}
-                  transition={{ duration: 1.0, ease: "easeOut" }}
-                  className="absolute pointer-events-none select-none"
-                >
-                  {isChinese ? (
-                    <div className="font-serif font-black text-xs text-[#D33F33] bg-[#FCFAF7] border border-[#D33F33]/40 px-2.5 py-1 rounded-md shadow-md whitespace-nowrap tracking-widest flex items-center gap-1">
-                      <span className="text-[10px]">⛩️</span>
-                      <span>{p.char}</span>
-                    </div>
-                  ) : (
-                    <span className="text-xl">{p.char}</span>
-                  )}
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-
         {/* 方案三：紙燈籠燭光微弱搖曳暖橘色呼吸光暈 (Candle flickering halo behind button) */}
         <motion.div
           animate={{
@@ -702,7 +610,7 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
           {/* 完美和風繪馬本體 (包含吊繩、繪馬外殼、內層虛線，一體化渲染) */}
           <div 
             style={{ background: "transparent", backgroundColor: "transparent" }}
-            className="w-[72px] h-[94px] relative flex flex-col items-center justify-between pb-3 pt-[34px] px-1.5 bg-transparent border-0"
+            className="w-[72px] h-[94px] relative flex items-center justify-center bg-transparent border-0"
           >
             {/* 背景 SVG (包含頂端吊繩、繪馬本體) */}
             <svg 
@@ -821,26 +729,18 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
               />
             </svg>
 
-            {/* 直式文字：今日運勢 / 姆貓運勢 */}
-            <div className={`flex flex-col items-center leading-[1.1] tracking-[0.05em] font-serif relative z-10 font-extrabold text-[10px] ${
+            {/* 直式文字：運勢 */}
+            <div className={`absolute top-[60px] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5 font-serif z-10 font-black text-[12px] tracking-[0.1em] ${
               theme === "sepia" 
                 ? "text-[#5C4033]" 
                 : theme === "light" 
                 ? "text-[#1C1917]" 
                 : "text-[#FAF1E6]"
             }`}>
-              <span>姆</span>
-              <span>貓</span>
               <span>運</span>
               <span>勢</span>
             </div>
 
-            {/* 吉祥落款小紅印 */}
-            <div className={`w-3.5 h-3.5 rounded-[2px] flex items-center justify-center text-[7px] font-serif font-black text-white relative z-10 shadow-sm ${
-              theme === "sepia" ? "bg-[#8C251C]" : theme === "light" ? "bg-[#D33F33]" : "bg-[#F59E0B]"
-            }`}>
-              吉
-            </div>
           </div>
         </motion.button>
       </div>
@@ -849,13 +749,17 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
       {mounted && typeof document !== "undefined" && createPortal(
         <AnimatePresence>
           {isOpen && currentFortune && (
-            <div className="fixed inset-0 z-[9999] overflow-y-auto bg-black/60 backdrop-blur-sm p-4 flex items-start sm:items-center justify-center">
+            <div
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 z-[9999] overflow-y-auto bg-black/80 p-4 flex items-start sm:items-center justify-center cursor-pointer"
+            >
             <motion.div
+              onClick={(e) => e.stopPropagation()}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="w-full max-w-sm rounded-3xl border border-[#DFCFA0]/90 text-[#3E2715] shadow-[0_25px_60px_rgba(40,30,20,0.25)] overflow-hidden relative flex flex-col font-serif my-auto sm:my-8"
+              className="w-full max-w-sm rounded-3xl border border-[#DFCFA0]/90 text-[#3E2715] shadow-[0_25px_60px_rgba(40,30,20,0.25)] overflow-hidden relative flex flex-col font-serif my-auto sm:my-8 cursor-default"
               style={{
                 backgroundImage: `
                   linear-gradient(to right, rgba(211, 63, 51, 0.003) 1px, transparent 1px),
@@ -866,61 +770,12 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
               }}
             >
               {/* 模擬神社內香火與燭光的「光影搖曳」細膩氛圍 */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none z-0"
-                animate={{
-                  background: [
-                    "radial-gradient(circle at 50% 25%, rgba(251, 191, 36, 0.08) 0%, rgba(211, 63, 51, 0.02) 50%, transparent 100%)",
-                    "radial-gradient(circle at 47% 28%, rgba(251, 191, 36, 0.14) 0%, rgba(211, 63, 51, 0.045) 55%, transparent 100%)",
-                    "radial-gradient(circle at 53% 22%, rgba(251, 191, 36, 0.05) 0%, rgba(211, 63, 51, 0.01) 45%, transparent 100%)",
-                    "radial-gradient(circle at 48% 26%, rgba(251, 191, 36, 0.11) 0%, rgba(211, 63, 51, 0.035) 52%, transparent 100%)",
-                    "radial-gradient(circle at 50% 25%, rgba(251, 191, 36, 0.08) 0%, rgba(211, 63, 51, 0.02) 50%, transparent 100%)"
-                  ]
-                }}
-                transition={{
-                  duration: 6.0,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-
-              {/* 粒子噴發現象容器 (Modal 內部) */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center z-40">
-                <AnimatePresence>
-                  {particles.map((p) => {
-                    const isChinese = /[\u4e00-\u9fa5]/.test(p.char);
-                    return (
-                      <motion.div
-                        key={p.id}
-                        initial={{ opacity: 1, scale: 0, x: 0, y: 0, rotate: 0 }}
-                        animate={{
-                          opacity: [1, 1, 0],
-                          scale: p.scale,
-                          x: p.x,
-                          y: p.y,
-                          rotate: p.rotation,
-                        }}
-                        transition={{ duration: 1.0, ease: "easeOut" }}
-                        className="absolute pointer-events-none select-none"
-                      >
-                        {isChinese ? (
-                          <div className="font-serif font-black text-xs text-[#D33F33] bg-[#FCFAF7] border border-[#D33F33]/40 px-2.5 py-1 rounded-md shadow-md whitespace-nowrap tracking-widest flex items-center gap-1">
-                            <span className="text-[10px]">⛩️</span>
-                            <span>{p.char}</span>
-                          </div>
-                        ) : (
-                          <span className="text-xl">{p.char}</span>
-                        )}
-                      </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
-              </div>
+              <div className="absolute inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_50%_25%,rgba(251,191,36,0.08)_0%,rgba(211,63,51,0.02)_50%,transparent_100%)]" />
 
               {/* 卡片背景和紙纖維微弱光暈 */}
               <div className="absolute inset-0 opacity-[0.015] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:12px_12px]" />
-              <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-[#D33F33]/5 blur-[60px] pointer-events-none" />
-              <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-[#C5A059]/10 blur-[60px] pointer-events-none" />
+              
+              
 
               {/* 神社搖鈴儀式感動畫過場 */}
               <AnimatePresence>
@@ -982,7 +837,7 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
                         xmlns="http://www.w3.org/2000/svg"
                         variants={bellShakeVariants}
                         animate="ring"
-                        className="origin-top drop-shadow-[0_12px_24px_rgba(40,30,20,0.18)]"
+                        className="origin-top"
                       >
                         {/* 紅白神社編織粗繩 */}
                         <path

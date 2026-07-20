@@ -112,7 +112,7 @@ export function getOptimizedGoogleUrl(url: string, size?: number): string {
   return url;
 }
 
-export function resolveImageUrl(url: string, size?: number): string {
+export function resolveImageUrl(url: string, size?: number, format?: "webp" | "avif" | "jpeg"): string {
   if (!url) return "";
   
   // Support robust base URL prefixed absolute paths for local image assets.
@@ -194,13 +194,13 @@ export function resolveImageUrl(url: string, size?: number): string {
     try {
       const urlObj = new URL(targetUrl);
       urlObj.searchParams.set("w", s.toString());
-      urlObj.searchParams.set("auto", "format");
+      if (format) { urlObj.searchParams.set("fm", format); } else { urlObj.searchParams.set("auto", "format"); }
       urlObj.searchParams.set("fit", "crop");
       urlObj.searchParams.set("q", "80");
       return urlObj.toString();
     } catch (e) {
       let baseUrl = targetUrl.split("?")[0];
-      return `${baseUrl}?w=${s}&auto=format&fit=crop&q=80`;
+      return `${baseUrl}?w=${s}&${format ? `fm=${format}` : "auto=format"}&fit=crop&q=80`;
     }
   }
 

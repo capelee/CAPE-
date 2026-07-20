@@ -618,6 +618,24 @@ export function ImageWithFallback({
       : {}),
   };
 
+  const getSrcSet = (format?: "webp" | "jpeg") => {
+    if (fallbackAttempt !== 0) return undefined;
+    if (!src) return undefined;
+    
+    // Check if it's a URL that supports dynamic resizing
+    const isDynamic = src.includes("images.unsplash.com") || 
+                     src.includes("res.cloudinary.com") || 
+                     src.includes(".imgix.net") || 
+                     src.includes("imgix=");
+                     
+    if (!isDynamic) return undefined;
+
+    const baseW = optimizeSize || containerWidth;
+    if (!baseW) return undefined;
+
+    return `${resolveImageUrl(src, baseW, format)} 1x, ${resolveImageUrl(src, baseW * 2, format)} 2x, ${resolveImageUrl(src, baseW * 3, format)} 3x`;
+  };
+  
   const imageClass = `${baseImgClass} ${
     isLoaded 
       ? "blur-none" 
@@ -634,7 +652,7 @@ export function ImageWithFallback({
       onMouseLeave={handleMouseLeave}
       className={heightAuto 
         ? `relative w-full h-auto block overflow-hidden bg-transparent select-none ${zoomable ? "cursor-zoom-in" : ""}`
-        : `relative w-full h-full flex items-center justify-center overflow-hidden bg-neutral-950/20 select-none ${
+        : `relative w-full h-full flex items-center justify-center overflow-hidden bg-transparent select-none ${
             zoomable ? "cursor-zoom-in" : ""
           }`
       }
@@ -664,19 +682,27 @@ export function ImageWithFallback({
       {/* Zoom overlay has been removed per user request */}
 
       {currentSrc && (
-        <img
-          ref={imgRef}
-          src={currentSrc}
-          alt={alt}
-          onLoad={handleLoad}
-          onError={handleError}
-          decoding="async"
-          style={imageStyle}
-          className={imageClass}
-          referrerPolicy={referrerPolicy}
-          loading={priority ? "eager" : "lazy"}
-          {...(priority ? { fetchPriority: "high" } : {})}
-        />
+        <picture className="w-full h-full block absolute inset-0">
+          {fallbackAttempt === 0 && (src.includes('images.unsplash.com') || src.includes('res.cloudinary.com') || src.includes('.imgix.net') || src.includes('imgix=')) && (
+            <>
+              <source type="image/webp" srcSet={getSrcSet("webp")} />
+              <source type="image/jpeg" srcSet={getSrcSet("jpeg")} />
+            </>
+          )}
+          <img
+            ref={imgRef}
+            src={currentSrc}
+            alt={alt}
+            onLoad={handleLoad}
+            onError={handleError}
+            decoding="async"
+            style={imageStyle}
+            className={imageClass}
+            referrerPolicy={referrerPolicy}
+            loading={priority ? "eager" : "lazy"}
+            {...(priority ? { fetchPriority: "high" } : {})}
+          />
+        </picture>
       )}
     </div>
   );

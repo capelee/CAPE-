@@ -12,8 +12,8 @@ interface PortfolioCardProps {
 }
 
 import React, { useState } from "react";
-import { X, MousePointerClick, Sparkles, ArrowUpRight, ArrowUp, Image as ImageIcon, QrCode, Download, Eye, ExternalLink } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { X, MousePointerClick, Sparkles, ArrowUpRight, ArrowUp, Image as ImageIcon, QrCode, Download, Eye, ExternalLink, PawPrint } from "lucide-react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionTemplate } from "motion/react";
 import { PortfolioItem } from "../types";
 import { ImageWithFallback } from "./ImageWithFallback";
 import { getCategoryColor } from "../categoryColors";
@@ -126,6 +126,40 @@ const getToolStyle = (tool: string, theme: "dark" | "light" | "sepia") => {
 };
 
 
+const CatFootprintsSkeleton = ({ theme }: { theme: "dark" | "light" | "sepia" }) => {
+  const color = theme === "sepia" ? "text-[#EADECC]/60" : theme === "light" ? "text-zinc-300" : "text-white/10";
+  return (
+    <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+       <div className="relative w-32 h-32 flex items-center justify-center transform -rotate-12 scale-75 md:scale-100">
+          <motion.div
+             initial={{ opacity: 0, scale: 0.8 }}
+             animate={{ opacity: [0, 1, 0], scale: [0.8, 1, 0.9] }}
+             transition={{ duration: 2.4, repeat: Infinity, delay: 0, ease: "easeInOut" }}
+             className={`absolute bottom-2 left-4 ${color}`}
+          >
+             <PawPrint className="w-6 h-6 -rotate-[15deg]" />
+          </motion.div>
+          <motion.div
+             initial={{ opacity: 0, scale: 0.8 }}
+             animate={{ opacity: [0, 1, 0], scale: [0.8, 1, 0.9] }}
+             transition={{ duration: 2.4, repeat: Infinity, delay: 0.6, ease: "easeInOut" }}
+             className={`absolute bottom-10 left-14 ${color}`}
+          >
+             <PawPrint className="w-6 h-6 -rotate-6" />
+          </motion.div>
+          <motion.div
+             initial={{ opacity: 0, scale: 0.8 }}
+             animate={{ opacity: [0, 1, 0], scale: [0.8, 1, 0.9] }}
+             transition={{ duration: 2.4, repeat: Infinity, delay: 1.2, ease: "easeInOut" }}
+             className={`absolute top-6 left-24 ${color}`}
+          >
+             <PawPrint className="w-6 h-6 rotate-6" />
+          </motion.div>
+       </div>
+    </div>
+  );
+};
+
 export const PortfolioCard = React.memo(function PortfolioCard({ 
   item, 
   onClick, 
@@ -142,12 +176,45 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   const [isPressed, setIsPressed] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showFirstPulse, setShowFirstPulse] = useState(isFirst);
-  const cardInnerRef = React.useRef<HTMLDivElement>(null);
-  const glareRef = React.useRef<HTMLDivElement>(null);
+  
+  
   const isTouchDeviceRef = React.useRef(false);
   const hasMovedRef = React.useRef(false);
 
   const isCardFlipped = isTouchDeviceRef.current ? isFlipped : (isHovered || isFlipped);
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const springConfig = { stiffness: 150, damping: 15, mass: 0.8 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
+  const rawRotateX = useTransform(springY, [0, 1], [6, -6]);
+  const rawRotateY = useTransform(springX, [0, 1], [-6, 6]);
+
+  const flipSpring = useSpring(0, { stiffness: 160, damping: 14, mass: 0.9 });
+  React.useEffect(() => {
+    flipSpring.set(isCardFlipped ? 180 : 0);
+  }, [isCardFlipped, flipSpring]);
+
+  const rotateX = useTransform(() => rawRotateX.get());
+  const rotateY = useTransform(() => {
+    const flip = flipSpring.get();
+    const isFlippedNow = flip > 90;
+    const ry = rawRotateY.get();
+    return flip + (isFlippedNow ? -ry : ry);
+  });
+
+  const glareX = useTransform(springX, [0, 1], [0, 100]);
+  const glareY = useTransform(springY, [0, 1], [0, 100]);
+  
+  const glareOpacity = useSpring(isHovered ? 1 : 0, { stiffness: 200, damping: 20 });
+  
+  const glareBackground = useTransform(
+    [glareX, glareY],
+    ([x, y]) => `radial-gradient(circle 250px at ${x}% ${y}%, rgba(${catColor.rgbaGlow}, 0.35) 0%, rgba(${catColor.rgbaGlow}, 0.08) 40%, transparent 100%)`
+  );
+
 
   const isSepia = theme === "sepia";
   const isLight = theme === "light";
@@ -158,11 +225,11 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
   const themeContainerClass = isSepia
     ? item.isHighlight
-      ? "bg-[#FCF5E3] bg-gradient-to-b from-[#FCF5E3] to-[#EDE2CA] border-[2.5px] border-amber-600 hover:border-amber-700"
+      ? `bg-[#FCF5E3] bg-gradient-to-b from-[#FCF5E3] to-[#EDE2CA] border ${catColor.highlightBorderSepia}`
       : `${catColor.normalBgSepia} ${catColor.normalBorderSepia}`
     : isLight
     ? item.isHighlight
-      ? "bg-[#FCF8EE] bg-gradient-to-b from-[#FCF8EE] via-[#FCF8EE] to-[#FAF4E5] border-[2.5px] border-amber-500 hover:border-amber-600"
+      ? `bg-[#FCF8EE] bg-gradient-to-b from-[#FCF8EE] via-[#FCF8EE] to-[#FAF4E5] border ${catColor.highlightBorderLight}`
       : `${catColor.normalBgLight} ${catColor.normalBorderLight}`
     : item.isHighlight
     ? `${catColor.highlightBgDark} ${catColor.highlightBorderDark}`
@@ -234,6 +301,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
   // Deceleration inertia physics references for touch interactions
   const inertiaFrameRef = React.useRef<number | null>(null);
+  
   const velocityRef = React.useRef<{ vx: number; vy: number }>({ vx: 0, vy: 0 });
   const lastTouchRef = React.useRef<{ x: number; y: number; time: number } | null>(null);
   const currentRotationRef = React.useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -307,17 +375,23 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     };
   }, [isFlipped]);
 
+  
+  // --- Physics Event Handlers ---
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     if (showFirstPulse) setShowFirstPulse(false);
-    if (inertiaFrameRef.current) {
-      cancelAnimationFrame(inertiaFrameRef.current);
-      inertiaFrameRef.current = null;
-    }
     const touch = e.touches[0];
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
     setIsPressed(true);
     isTouchDeviceRef.current = true;
     hasMovedRef.current = false;
+
+    // Initial physical interaction center
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (touch.clientX - rect.left) / rect.width;
+    const y = (touch.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -325,53 +399,41 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     const touch = e.touches[0];
     const diffX = Math.abs(touch.clientX - touchStartRef.current.x);
     const diffY = Math.abs(touch.clientY - touchStartRef.current.y);
+    
+    // Apply physical damping before scroll threshold
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (touch.clientX - rect.left) / rect.width;
+    const y = (touch.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
 
-    // 當偵測到用戶正在進行頁面滾動（位移大於 10 pixel），立即釋放卡片焦點與縮小反饋，完整交回給瀏覽器原生滚动並標記為已滑動
     if (diffX > 10 || diffY > 10) {
       hasMovedRef.current = true;
       touchStartRef.current = null;
       setIsPressed(false);
+      mouseX.set(0.5);
+      mouseY.set(0.5);
     }
   };
 
   const handleTouchEnd = () => {
     touchStartRef.current = null;
     setIsPressed(false);
+    mouseX.set(0.5);
+    mouseY.set(0.5);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (showFirstPulse) setShowFirstPulse(false);
-    if (inertiaFrameRef.current) {
-      cancelAnimationFrame(inertiaFrameRef.current);
-      inertiaFrameRef.current = null;
-    }
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
     
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    mouseX.set(x);
+    mouseY.set(y);
     
-    // Smooth subtle tilt (-6 to 6 degrees maximum for premium look)
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
-    
-    const glareX = (x / rect.width) * 100;
-    const glareY = (y / rect.height) * 100;
-
-    const baseFlipped = isCardFlipped;
-
-    if (cardInnerRef.current) {
-      const baseRotateY = baseFlipped ? 180 : 0;
-      const adjustedRotateY = baseRotateY + (baseFlipped ? -rotateY : rotateY);
-      cardInnerRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${adjustedRotateY}deg) scale3d(${isPressed ? 0.955 : 1.025}, ${isPressed ? 0.955 : 1.025}, 1)`;
-      cardInnerRef.current.style.boxShadow = `0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(${catColor.rgbaGlow}, 0.22)`;
-    }
-    if (glareRef.current) {
-      glareRef.current.style.opacity = "1";
-      glareRef.current.style.background = `radial-gradient(circle 160px at ${glareX}% ${glareY}%, rgba(${catColor.rgbaGlow}, 0.14) 0%, transparent 100%)`;
-    }
     if (!isHovered) {
       setIsHovered(true);
     }
@@ -381,13 +443,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     setIsPressed(false);
     setIsHovered(false);
     setIsFlipped(false);
-    if (cardInnerRef.current) {
-      cardInnerRef.current.style.transform = "";
-      cardInnerRef.current.style.boxShadow = defaultShadow;
-    }
-    if (glareRef.current) {
-      glareRef.current.style.opacity = "0";
-    }
+    mouseX.set(0.5);
+    mouseY.set(0.5);
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
@@ -422,27 +479,49 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     >
       {!isVisible ? (
         <div
-          style={{
-            minHeight: "365px",
-          }}
-          className={`relative flex flex-col rounded-2xl overflow-hidden h-full transition-all duration-300 ${
+          className={`relative flex flex-col rounded-2xl overflow-hidden h-full transition-all duration-300 border ${
             theme === "sepia"
-              ? "bg-[#FAF4E5]/40 border-[#EADECC]/45"
+              ? "bg-[#FCF5E3]/40 border-[#EADECC]/60"
               : theme === "light"
-              ? "bg-zinc-100/50 border-zinc-200/40"
-              : "bg-[#0E0E0E]/40 border-white/5"
-          } animate-pulse items-center justify-center`}
+              ? "bg-white/40 border-zinc-200/60"
+              : "bg-[#0A0A0A]/40 border-white/5"
+          } animate-pulse`}
+          style={{ minHeight: "365px" }}
         >
-          <div className="flex flex-col items-center gap-1.5 opacity-20">
-            <div className={`w-10 h-10 border rounded-lg flex items-center justify-center text-xs ${
-              theme === "sepia" ? "border-amber-700/10" : theme === "light" ? "border-zinc-200" : "border-white/10"
-            }`}>
-              🎨
-            </div>
-            <span className={`text-[9px] font-mono tracking-widest ${
-              theme === "sepia" ? "text-amber-900" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
-            }`}>SHOWCASE</span>
+          {/* Image Placeholder */}
+          <div className={`w-full relative flex items-center justify-center overflow-hidden ${showAllDetails ? "aspect-[4/3]" : "aspect-square"} ${
+            theme === "sepia" ? "bg-[#EADECC]/20" : theme === "light" ? "bg-zinc-200/40" : "bg-white/5"
+          }`}>
+             <CatFootprintsSkeleton theme={theme} />
           </div>
+          
+          {/* Details Placeholder */}
+          {showAllDetails && (
+            <div className="flex-1 flex flex-col p-5 md:p-6 space-y-4">
+              <div className="space-y-2.5">
+                {/* Title En Placeholder */}
+                <div className={`h-2.5 w-1/3 rounded-full ${
+                  theme === "sepia" ? "bg-[#EADECC]/40" : theme === "light" ? "bg-zinc-200/60" : "bg-white/10"
+                }`} />
+                {/* Title Placeholder */}
+                <div className={`h-4 w-3/4 rounded-full ${
+                  theme === "sepia" ? "bg-[#EADECC]/60" : theme === "light" ? "bg-zinc-300/60" : "bg-white/15"
+                }`} />
+              </div>
+              
+              {/* Tags Placeholder */}
+              <div className={`pt-3.5 border-t flex gap-2 ${
+                theme === "sepia" ? "border-[#EADECC]/30" : theme === "light" ? "border-zinc-200/50" : "border-white/5"
+              }`}>
+                <div className={`h-5 w-12 rounded ${
+                  theme === "sepia" ? "bg-[#EADECC]/30" : theme === "light" ? "bg-zinc-200/50" : "bg-white/10"
+                }`} />
+                <div className={`h-5 w-16 rounded ${
+                  theme === "sepia" ? "bg-[#EADECC]/30" : theme === "light" ? "bg-zinc-200/50" : "bg-white/10"
+                }`} />
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div
@@ -460,29 +539,29 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchEnd}
-          className="group relative w-full h-full cursor-pointer"
+          className="group relative w-full h-full cursor-pointer will-change-transform transform-gpu"
           style={{
             perspective: "1000px",
             transformStyle: "preserve-3d",
           }}
         >
           <motion.div
-            ref={cardInnerRef}
             style={{
               transformStyle: "preserve-3d",
-              boxShadow: defaultShadow,
+              rotateX,
+              rotateY,
             }}
             animate={{
-              rotateY: isCardFlipped ? 180 : 0,
-              scale: isPressed ? 0.97 : isHovered ? 1.025 : 1,
+              scale: isPressed ? 0.955 : isHovered ? 1.025 : 1,
+              boxShadow: isHovered 
+                ? `0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(${catColor.rgbaGlow}, 0.22)`
+                : defaultShadow,
             }}
             transition={{
-              type: "spring",
-              stiffness: 160,
-              damping: 14,
-              mass: 0.9,
+              scale: { type: "spring", stiffness: 250, damping: 20 },
+              boxShadow: { duration: 0.3 }
             }}
-            className="relative flex flex-col rounded-2xl w-full h-full"
+            className="relative flex flex-col rounded-2xl w-full h-full will-change-transform transform-gpu"
           >
           {showFirstPulse && (
             <div className={`absolute -inset-[3px] rounded-[1.2rem] z-[-1] animate-[pulse_2s_ease-in-out_infinite] ${
@@ -501,14 +580,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           >
             {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
             {!isSepia && !isLight && (
-              <div 
-                ref={glareRef}
-                className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+              <motion.div 
+                className="absolute inset-0 pointer-events-none rounded-2xl"
                 style={{
-                  opacity: 0,
-                  background: `radial-gradient(circle 160px at 50% 50%, rgba(${catColor.rgbaGlow}, 0.14) 0%, transparent 100%)`,
-                  border: `1px solid rgba(${catColor.rgbaGlow}, 0.22)`,
-                  mixBlendMode: "screen",
+                  opacity: glareOpacity,
+                  background: glareBackground,
+                  border: `1px solid rgba(${catColor.rgbaGlow}, 0.25)`,
+                  mixBlendMode: "color-dodge",
                   zIndex: 10,
                 }}
               />
@@ -518,7 +596,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             <div className="shimmer-line pointer-events-none absolute inset-0 z-20 rounded-2xl" />
 
             {/* 卡片封面圖 */}
-            <div className={`relative ${showAllDetails ? "aspect-[4/3]" : "aspect-square"} overflow-hidden ${isSepia ? "bg-[#EADECC]/45" : "bg-zinc-950"}`} style={{ transform: "translateZ(8px)" }}>
+            <div className={`relative ${showAllDetails ? "aspect-[4/3]" : "aspect-square"} overflow-hidden ${isSepia ? catColor.highlightBgSepia : isLight ? catColor.highlightBgLight : catColor.highlightBgDark}`} style={{ transform: "translateZ(8px)" }}>
               <ImageWithFallback
                 src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
                 alt={item.title}
@@ -526,7 +604,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 fallbackTheme={item.colorTheme}
                 categoryName={item.category}
                 titleText={item.title}
-                optimizeSize={360}
+                optimizeSize={400}
                 className={`w-full h-full object-cover transform transition-all duration-700 ease-out ${
                   isHovered ? "scale-105" : "scale-100"
                 }`}
@@ -535,12 +613,6 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 theme={theme}
               />
               
-              {/* 背景霓虹光澤 */}
-              <div className={`absolute inset-0 bg-gradient-to-t ${
-                isSepia 
-                  ? "from-[#433422]/90 via-[#433422]/15 to-transparent" 
-                  : "from-black/85 via-black/10 to-transparent"
-              }`}></div>
 
               {/* 卡片類別浮章 */}
               {showAllDetails && (

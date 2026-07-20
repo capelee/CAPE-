@@ -1,6 +1,7 @@
 import { useTutorial } from '../context/TutorialContext';
 import { TutorialTooltip } from './TutorialTooltip';
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import { 
   Sparkles, 
   ChevronDown, 
@@ -19,6 +20,54 @@ import {
   FileText
 } from "lucide-react";
 import { MinimalistLogo } from "./MinimalistLogo";
+
+interface BentoImageWithSkeletonProps {
+  src: string;
+  alt: string;
+  className?: string;
+  theme: "dark" | "light" | "sepia";
+  sizeClass?: string;
+}
+
+function BentoImageWithSkeleton({
+  src,
+  alt,
+  className = "",
+  theme,
+  sizeClass = "w-9 h-9"
+}: BentoImageWithSkeletonProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  const isSepia = theme === "sepia";
+  const isLight = theme === "light";
+  
+  const skeletonBg = isSepia
+    ? "bg-[#EADECC]/40"
+    : isLight
+    ? "bg-zinc-150"
+    : "bg-white/[0.05]";
+    
+  return (
+    <div className={`relative ${sizeClass} aspect-square overflow-hidden rounded-full shrink-0 ${className}`}>
+      {!isLoaded && (
+        <div className={`absolute inset-0 animate-pulse ${skeletonBg} flex items-center justify-center`}>
+          <div className={`w-3 h-3 rounded-full ${
+            isSepia ? "bg-[#433422]/10" : isLight ? "bg-zinc-300" : "bg-white/10"
+          }`} />
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        referrerPolicy="no-referrer"
+        className={`w-full h-full object-contain drop-shadow-md select-none transition-opacity duration-300 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </div>
+  );
+}
 
 interface DesignerBentoProps {
   theme: "dark" | "light" | "sepia";
@@ -311,11 +360,11 @@ export function DesignerBento({
                   }`}>
                     點點我！🐾
                   </div>
-                  <img 
+                  <BentoImageWithSkeleton 
                     src="https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX" 
                     alt="姆貓偷看"
-                    className="w-9 h-9 object-contain drop-shadow-md select-none"
-                    referrerPolicy="no-referrer"
+                    theme={theme}
+                    sizeClass="w-9 h-9"
                   />
                 </div>
                 <span>PDF 作品集 ↗</span>
@@ -346,11 +395,11 @@ export function DesignerBento({
                     }`}>
                       還有我！✨
                     </div>
-                    <img 
+                    <BentoImageWithSkeleton 
                       src="https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep" 
                       alt="姆貓偷看"
-                      className="w-9 h-9 object-contain drop-shadow-md select-none"
-                      referrerPolicy="no-referrer"
+                      theme={theme}
+                      sizeClass="w-9 h-9"
                     />
                   </div>
                   <FileText className="h-3.5 w-3.5 text-amber-500 shrink-0" />
@@ -432,8 +481,9 @@ export function DesignerBento({
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
                   {profile.experienceList.map((exp, i) => (
-                    <div key={i} style={getGravityStyle(6 + i)} className="flex gap-2.5 pl-0.5 relative group">
-                      <div className={`h-[18px] w-[18px] rounded-full flex items-center justify-center transition-colors duration-300 z-10 shrink-0 mt-0.5 ${
+                    <motion.div key={i} style={getGravityStyle(6 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${theme === "sepia" ? "hover:bg-[#E3D3BE]/40" : theme === "light" ? "hover:bg-zinc-100" : "hover:bg-white/[0.03]"}`}
+                      initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-10px" }} transition={{ duration: 0.4, delay: i * 0.1 }} whileHover={{ x: 4, transition: { duration: 0.2 } }}>
+                      <div className={`h-[18px] w-[18px] rounded-full flex items-center justify-center transition-all duration-300 z-10 shrink-0 mt-0.5 group-hover:scale-110 ${
                         theme === "sepia"
                           ? "bg-[#FAF4E5] border border-[#EADECC]/80 text-[#8C7B69] group-hover:border-amber-750 group-hover:text-amber-800"
                           : theme === "light"
@@ -471,7 +521,7 @@ export function DesignerBento({
                           theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
                         }`}>{exp.company}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -497,7 +547,7 @@ export function DesignerBento({
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
                   {profile.education.map((edu, i) => (
-                    <div key={i} style={getGravityStyle(10 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${
+                    <motion.div initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-10px" }} transition={{ duration: 0.4, delay: i * 0.1 }} whileHover={{ x: 4, transition: { duration: 0.2 } }} key={i} style={getGravityStyle(10 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${
                       theme === "sepia"
                         ? "hover:bg-[#E3D3BE]/40"
                         : theme === "light"
@@ -554,7 +604,7 @@ export function DesignerBento({
                           </div>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -578,21 +628,30 @@ export function DesignerBento({
               <div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-2 pt-1.5 lg:pt-0">
                   {profile.certificates.map((cert, i) => (
-                    <div key={i} style={getGravityStyle(14 + i)} className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
-                      theme === "sepia"
-                        ? "hover:bg-[#E3D3BE]/40"
-                        : theme === "light"
-                        ? "hover:bg-zinc-100"
-                        : "hover:bg-white/[0.03]"
-                    }`}>
-                      <div className={`h-4.5 w-4.5 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 mt-0.5 group-hover:scale-105 ${
+                    <motion.div 
+                      key={i} 
+                      style={getGravityStyle(14 + i)} 
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-10px" }}
+                      transition={{ duration: 0.4, delay: i * 0.08 }}
+                      whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                      className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
                         theme === "sepia"
-                          ? "bg-[#FAF4E5] border-[#EADECC]/80 text-amber-700 group-hover:border-amber-500 group-hover:text-amber-500"
+                          ? "hover:bg-[#E3D3BE]/40"
+                          : theme === "light"
+                          ? "hover:bg-zinc-100"
+                          : "hover:bg-white/[0.03]"
+                      }`}
+                    >
+                      <div className={`h-4.5 w-4.5 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 mt-0.5 group-hover:scale-110 ${
+                        theme === "sepia"
+                          ? "bg-[#FAF4E5] border-[#EADECC]/80 text-[#8C7B69] group-hover:border-amber-600 group-hover:text-amber-600"
                           : theme === "light"
                           ? "bg-white border-zinc-200 text-zinc-400 group-hover:border-amber-500 group-hover:text-amber-500"
                           : "bg-[#0a0a0a] border-white/10 text-zinc-500 group-hover:border-amber-400 group-hover:text-amber-400"
                       }`}>
-                        <CheckCircle2 className="h-2.5 w-2.5 text-amber-500 transition-transform duration-300 group-hover:scale-105" />
+                        <CheckCircle2 className="h-2.5 w-2.5 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="space-y-px min-w-0">
                         <span className={`text-[12px] font-medium tracking-tight leading-snug transition-colors duration-200 block ${
@@ -606,7 +665,7 @@ export function DesignerBento({
                           theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
                         }`}>{cert.issuer}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>

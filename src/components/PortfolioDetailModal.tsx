@@ -174,8 +174,9 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
     touchStartY.current = null;
   };
 
-  // Keyboard navigation
+  // Keyboard navigation & background scroll lock
   useEffect(() => {
+    document.body.classList.add("overflow-hidden");
     const handleKeyDown = (e: KeyboardEvent) => {
       const activeElement = document.activeElement;
       if (
@@ -200,6 +201,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
+      document.body.classList.remove("overflow-hidden");
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, onPrevItem, onNextItem]);
@@ -376,7 +378,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
                         fallbackTheme={activeModalItem.colorTheme}
                         categoryName={activeModalItem.category}
                         titleText={activeModalItem.title}
-                        optimizeSize={800}
+                        optimizeSize={1200}
                         className="w-full h-full object-contain transition-all duration-300"
                         zoomable={true}
                       />

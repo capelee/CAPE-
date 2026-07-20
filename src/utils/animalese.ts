@@ -3,6 +3,8 @@
  * Generates dynamic, cute, retro synth blips synced with speech dialogue
  */
 
+import { audioContextManager } from "./audioEffects";
+
 export class AnimaleseSynth {
   private ctx: AudioContext | null = null;
   private activeInterval: any = null;
@@ -10,15 +12,7 @@ export class AnimaleseSynth {
   constructor() {}
 
   private init() {
-    if (!this.ctx) {
-      const AudioCtxClass = window.AudioContext || (window as any).webkitAudioContext;
-      if (AudioCtxClass) {
-        this.ctx = new AudioCtxClass();
-      }
-    }
-    if (this.ctx && this.ctx.state === "suspended") {
-      this.ctx.resume();
-    }
+    this.ctx = audioContextManager.getOrCreateContext();
   }
 
   /**

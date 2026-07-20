@@ -3,7 +3,7 @@ import { TutorialTooltip } from './TutorialTooltip';
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring } from "motion/react";
 import { PortfolioItem } from "../types";
-import { playMeowSound, catPurr } from "../utils/audioEffects";
+import { playMeowSound, catPurr, audioContextManager } from "../utils/audioEffects";
 
 interface InteractiveMascotProps {
   currentMascot: {
@@ -273,9 +273,8 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
 
     // 播放趣味加速滑音
     try {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-      if (AudioContextClass) {
-        const ctx = new AudioContextClass();
+      const ctx = audioContextManager.getOrCreateContext();
+      if (ctx) {
         const now = ctx.currentTime;
         
         const osc = ctx.createOscillator();

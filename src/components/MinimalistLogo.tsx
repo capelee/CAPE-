@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Instagram, X } from "lucide-react";
-import { playMeowSound, catPurr } from "../utils/audioEffects";
+import { playMeowSound, catPurr, audioContextManager } from "../utils/audioEffects";
 import { useTutorial } from "../context/TutorialContext";
 import { TutorialTooltip } from "./TutorialTooltip";
 
 // 可愛氣球充氣嗶嗶聲 (Balloon Inflation Squeak)
 const playBalloonSqueakSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     const osc = ctx.createOscillator();
@@ -36,9 +35,8 @@ const playBalloonSqueakSound = () => {
 // 漏氣 "噗咻——" 飛行尖嘯與洩氣音效 (Balloon Leaking Air & Flight whistle)
 const playBalloonLeakSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // 1. 噴氣摩擦白噪音 (Air Hissing Noise)
@@ -142,6 +140,7 @@ export function MinimalistLogo({
   const [isWinking, setIsWinking] = useState<boolean>(false);
   const [isWiggling, setIsWiggling] = useState<boolean>(false);
   const [showBubble, setShowBubble] = useState<boolean>(false);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
   const [particles, setParticles] = useState<LogoParticle[]>([]);
   const bubbleRef = useRef<HTMLDivElement>(null);
 
@@ -423,7 +422,7 @@ export function MinimalistLogo({
  
       {/* 眨眼與搖晃動畫頭像 */}
       <motion.div
-        className="relative w-full h-full flex items-center justify-center select-none cursor-pointer"
+        className="relative w-full h-full flex items-center justify-center select-none cursor-pointer aspect-square"
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -470,11 +469,25 @@ export function MinimalistLogo({
             : { duration: 0.3 }
         }
       >
+        {!isImageLoaded && (
+          <div className={`absolute inset-0 rounded-full animate-pulse flex items-center justify-center ${
+            theme === "sepia"
+              ? "bg-[#EADECC]/60"
+              : theme === "light"
+              ? "bg-zinc-150"
+              : "bg-white/[0.05]"
+          }`}>
+            <div className={`w-6 h-6 rounded-full ${
+              theme === "sepia" ? "bg-[#433422]/10" : theme === "light" ? "bg-zinc-200" : "bg-white/10"
+            }`} />
+          </div>
+        )}
         <img
           src={isWinking ? winkImageUrl : normalImageUrl}
           alt="Cape Lee Logo (MuMㄠ)"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-contain transition-all duration-150"
+          onLoad={() => setIsImageLoaded(true)}
+          className={`w-full h-full object-contain transition-opacity duration-300 ${isImageLoaded ? "opacity-100" : "opacity-0"}`}
         />
       </motion.div>
 

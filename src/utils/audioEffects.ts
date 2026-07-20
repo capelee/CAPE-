@@ -3,12 +3,87 @@
  * Designed to provide immersive, cute, and performant sound experiences without loading heavy assets.
  */
 
+class SharedAudioContextManager {
+  private ctx: AudioContext | null = null;
+  private suspendTimer: any = null;
+  private preventSuspendCount = 0;
+
+  getOrCreateContext(): AudioContext | null {
+    if (typeof window === "undefined") return null;
+
+    if (!this.ctx) {
+      const AudioCtxClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioCtxClass) {
+        this.ctx = new AudioCtxClass();
+        console.log("[AudioContextManager] Created a new shared AudioContext.");
+      }
+    }
+
+    if (this.ctx) {
+      if (this.ctx.state === "suspended") {
+        this.ctx.resume().catch(() => {});
+      }
+      this.resetSuspendTimer();
+    }
+
+    return this.ctx;
+  }
+
+  resetSuspendTimer() {
+    if (this.suspendTimer) {
+      clearTimeout(this.suspendTimer);
+      this.suspendTimer = null;
+    }
+
+    if (this.preventSuspendCount > 0) return;
+
+    this.suspendTimer = setTimeout(() => {
+      this.suspendContext();
+    }, 10000); // 10 seconds of inactivity
+  }
+
+  incrementPreventSuspend() {
+    this.preventSuspendCount++;
+    if (this.suspendTimer) {
+      clearTimeout(this.suspendTimer);
+      this.suspendTimer = null;
+    }
+  }
+
+  decrementPreventSuspend() {
+    this.preventSuspendCount = Math.max(0, this.preventSuspendCount - 1);
+    if (this.preventSuspendCount === 0) {
+      this.resetSuspendTimer();
+    }
+  }
+
+  private suspendContext() {
+    if (this.ctx && this.ctx.state === "running") {
+      console.log("[AudioContextManager] Suspending AudioContext due to 10s of inactivity.");
+      this.ctx.suspend().catch(() => {});
+    }
+  }
+
+  destroy() {
+    if (this.suspendTimer) {
+      clearTimeout(this.suspendTimer);
+      this.suspendTimer = null;
+    }
+    if (this.ctx) {
+      console.log("[AudioContextManager] Closing AudioContext and executing garbage collection.");
+      this.ctx.close().catch(() => {});
+      this.ctx = null;
+    }
+  }
+}
+
+export const audioContextManager = new SharedAudioContextManager();
+
 // 1. 🐾 肉球按下「啵」水滴聲 (Cute Paw Pop)
 export const playPawPopSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
     
     const osc = ctx.createOscillator();
@@ -35,9 +110,8 @@ export const playPawPopSound = () => {
 // 2. 🐱 軟萌貓咪叫聲 (Mew / Meow Synthesis)
 export const playMeowSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // Carrier oscillator (creates the main warm tone)
@@ -93,15 +167,18 @@ class CatPurrManager {
   private lfo1: OscillatorNode | null = null;
   private lfo2: OscillatorNode | null = null;
   private gainNode: GainNode | null = null;
-  private isPlaying: boolean = false;
+  public isPlaying: boolean = false;
 
   start() {
     if (this.isPlaying) return;
     try {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContextClass) return;
-      this.ctx = new AudioContextClass();
+      const ctx = audioContextManager.getOrCreateContext();
+      if (!ctx) return;
+      this.ctx = ctx;
       const now = this.ctx.currentTime;
+
+      // Prevent shared context from autosuspending during active purr
+      audioContextManager.incrementPreventSuspend();
 
       // Carrier: Ultra-low frequency sine wave representing the deep chest vibration (36Hz)
       this.carrier = this.ctx.createOscillator();
@@ -164,13 +241,14 @@ class CatPurrManager {
           if (this.carrier) this.carrier.stop();
           if (this.lfo1) this.lfo1.stop();
           if (this.lfo2) this.lfo2.stop();
-          if (this.ctx) this.ctx.close();
         } catch (err) {}
         this.carrier = null;
         this.lfo1 = null;
         this.lfo2 = null;
         this.gainNode = null;
         this.ctx = null;
+        // Allow shared context to resume autosuspending after purr stops
+        audioContextManager.decrementPreventSuspend();
       }, 400);
       this.isPlaying = false;
     } catch (e) {
@@ -184,9 +262,8 @@ export const catPurr = new CatPurrManager();
 // 4. 🥫 罐頭金屬輕微碰撞叮噹聲 (Slight can clink/tinkle synthesis)
 export const playCanClinkSound = () => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     const osc1 = ctx.createOscillator();
