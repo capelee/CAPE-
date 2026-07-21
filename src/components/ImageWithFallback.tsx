@@ -682,7 +682,7 @@ export function ImageWithFallback({
       {/* Zoom overlay has been removed per user request */}
 
       {currentSrc && (
-        <picture className="w-full h-full block absolute inset-0">
+        <picture className={heightAuto ? "w-full h-auto block relative" : "w-full h-full block absolute inset-0"}>
           {fallbackAttempt === 0 && (src.includes('images.unsplash.com') || src.includes('res.cloudinary.com') || src.includes('.imgix.net') || src.includes('imgix=')) && (
             <>
               <source type="image/webp" srcSet={getSrcSet("webp")} />

@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useImperativeHandle, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
-  X, Award, Clock, Palette, Sparkles, BookOpen, Heart, Share2, Crown, Zap, FileText, GraduationCap 
+  X, Award, Clock, Palette, Sparkles, BookOpen, Heart, Share2, Crown, Zap, FileText, GraduationCap, Wind 
 } from "lucide-react";
 import { playMeowSound } from "../utils/audioEffects";
 
@@ -26,6 +26,7 @@ interface MumuCertModalProps {
   gravityRestoreUnlocked: boolean;
   pdfUnlocked: boolean;
   tutorialAchUnlocked: boolean;
+  windStormUnlocked: boolean;
   setHeroParticles: React.Dispatch<React.SetStateAction<any[]>>;
   setTitleBounceTrigger: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -48,6 +49,7 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
     gravityRestoreUnlocked,
     pdfUnlocked,
     tutorialAchUnlocked,
+    windStormUnlocked,
     setHeroParticles,
     setTitleBounceTrigger,
   } = props;
@@ -84,7 +86,7 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
     };
   }, [isOpen]);
 
-  const totalAchievements = 14;
+  const totalAchievements = 15;
   const unlockedCount = [
     midnightUnlocked,
     visitedThemes.length >= 3,
@@ -99,7 +101,8 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
     magicMumuUnlocked,
     gravityRestoreUnlocked,
     pdfUnlocked,
-    tutorialAchUnlocked
+    tutorialAchUnlocked,
+    windStormUnlocked
   ].filter(Boolean).length;
 
   return (
@@ -803,6 +806,44 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
                       {tutorialAchUnlocked
                         ? "「恭喜你完成新手教學！現在你已經掌握了瀏覽這個網站的精髓，本教主賜予你『無畏探索』之力！」"
                         : "（完成前三個新手教學步驟即可解鎖）"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 成就 15: 御風神官 */}
+                <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                  windStormUnlocked
+                    ? theme === "sepia"
+                      ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                      : theme === "light"
+                      ? "bg-white/60 border-pink-400/30 shadow-sm"
+                      : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                    : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                }`}>
+                  <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                    windStormUnlocked 
+                      ? "bg-gradient-to-br from-cyan-400 to-blue-500 text-white shadow-sm"
+                      : "bg-zinc-800/40 text-zinc-500"
+                  }`}>
+                    <Wind className="h-4 w-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className={`text-[10px] font-bold tracking-wide ${
+                        theme === "sepia" ? "text-white" : ""
+                      }`}>
+                        {windStormUnlocked ? "「御風神官」🌬️" : "「御風神官」🔒"}
+                      </span>
+                      {windStormUnlocked && (
+                        <span className="text-[8px] font-bold text-cyan-400 uppercase tracking-wider bg-cyan-500/10 px-1 py-0.5 rounded">
+                          已解鎖
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                      {windStormUnlocked
+                        ? "「你在亮點卡片召喚了 6 層以上的狂風！其他卡片皆隨風飛散，風暴召喚特權永久覺醒！」"
+                        : "（在亮點卡片上快速翻頁，疊加風力至 6 層即可解鎖）"}
                     </p>
                   </div>
                 </div>

@@ -9,6 +9,7 @@ interface PortfolioCardProps {
   showAllDetails: boolean;
   onNearBottom?: () => void;
   isFirst?: boolean;
+  selectedCategory?: string;
 }
 
 import React, { useState } from "react";
@@ -169,13 +170,85 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   theme,
   showAllDetails,
   onNearBottom,
-  isFirst = false
+  isFirst = false,
+  selectedCategory
 }: PortfolioCardProps) {
   const catColor = getCategoryColor(item.category);
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showFirstPulse, setShowFirstPulse] = useState(isFirst);
+
+  const [shuffleOffset, setShuffleOffset] = useState({ x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 });
+
+  const [rippleOffset, setRippleOffset] = useState({ y: 0, rotate: 0, scale: 1 });
+
+  React.useEffect(() => {
+    const handleGlobalFlip = (e: Event) => {
+      const customEvent = e as CustomEvent<{ index: number; timestamp: number }>;
+      const { index: clickedIndex } = customEvent.detail;
+      
+      if (clickedIndex === index) return;
+      
+      const diff = index - clickedIndex;
+      const distance = Math.abs(diff);
+      
+      // 只讓鄰近的卡片受到波動影響
+      if (distance > 8) return;
+      
+      // 依距離產生時間差的骨牌漣漪效應
+      const delay = distance * 45; 
+      const distanceFactor = Math.max(0, 1 - distance * 0.12);
+      
+      const timeoutId = setTimeout(() => {
+        const direction = diff > 0 ? 1 : -1;
+        const yOffset = - (14 * distanceFactor);
+        const rotateOffset = direction * (3.5 * distanceFactor);
+        const scaleOffset = Math.max(0.96, 1 - (distance * 0.015));
+        
+        setRippleOffset({ y: yOffset, rotate: rotateOffset, scale: scaleOffset });
+        
+        // 短暫彈起後迅速恢復原位
+        setTimeout(() => {
+           setRippleOffset({ y: 0, rotate: 0, scale: 1 });
+        }, 280);
+      }, delay);
+    };
+    
+    window.addEventListener("portfolio-card-flipped", handleGlobalFlip);
+    return () => window.removeEventListener("portfolio-card-flipped", handleGlobalFlip);
+  }, [index]);
+
+  React.useEffect(() => {
+    // 模擬從牌堆中飛出：定義隨機且富有秩序感的初始散落/收集座標與傾斜角度
+
+    const originX = (index % 2 === 0 ? -60 : 60) + (index % 3) * 20;
+    const originY = 100 + (index % 4) * 15;
+    const originRotate = (index % 2 === 0 ? -10 : 10) + (index % 3) * 3;
+
+    // 瞬間將卡片收攏至牌堆，並呈微縮放與淡出狀態
+    setShuffleOffset({
+      x: originX,
+      y: originY,
+      rotate: originRotate,
+      scale: 0.8,
+      opacity: 0
+    });
+
+    // 依據卡片 index 進行有層次的分批發牌 (Staggered deal-in waves)
+    const dealDelay = Math.min(index, 12) * 55 + 30;
+    const dealTimer = setTimeout(() => {
+      setShuffleOffset({
+        x: 0,
+        y: 0,
+        rotate: 0,
+        scale: 1,
+        opacity: 1
+      });
+    }, dealDelay);
+
+    return () => clearTimeout(dealTimer);
+  }, [selectedCategory, index]);
   
   
   const isTouchDeviceRef = React.useRef(false);
@@ -456,6 +529,12 @@ export const PortfolioCard = React.memo(function PortfolioCard({
       onClick();
     } else {
       setIsFlipped(true);
+      
+      // 發送全局事件，觸發周圍卡片的漣漪起伏效應
+      const event = new CustomEvent("portfolio-card-flipped", {
+        detail: { index, timestamp: Date.now() }
+      });
+      window.dispatchEvent(event);
     }
   };
 
@@ -467,13 +546,20 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, scale: 0.88, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.88, y: -20 }}
+      layout="position"
+      animate={{ 
+        opacity: shuffleOffset.opacity, 
+        scale: shuffleOffset.scale * rippleOffset.scale, 
+        x: shuffleOffset.x,
+        y: shuffleOffset.y + rippleOffset.y,
+        rotate: shuffleOffset.rotate + rippleOffset.rotate
+      }}
       transition={{ 
-        opacity: { duration: 0.22, ease: "easeOut", delay },
-        scale: { duration: 0.22, ease: "easeOut", delay },
-        y: { duration: 0.22, ease: "easeOut", delay }
+        type: "spring",
+        stiffness: 170, // 紙牌特有的俐落剛性與彈性
+        damping: 16,
+        mass: 0.8,
+        layout: { type: "spring", stiffness: 180, damping: 18 } // 平滑、有機的佈局移動軌跡
       }}
       className="h-full scroll-mt-16 md:scroll-mt-20 relative"
     >
@@ -799,6 +885,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     prevProps.prevVisibleCount === nextProps.prevVisibleCount &&
     prevProps.theme === nextProps.theme &&
     prevProps.showAllDetails === nextProps.showAllDetails &&
-    prevProps.onNearBottom === nextProps.onNearBottom
+    prevProps.onNearBottom === nextProps.onNearBottom &&
+    prevProps.selectedCategory === nextProps.selectedCategory
   );
 });

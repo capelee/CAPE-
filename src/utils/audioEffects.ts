@@ -7,6 +7,42 @@ class SharedAudioContextManager {
   private ctx: AudioContext | null = null;
   private suspendTimer: any = null;
   private preventSuspendCount = 0;
+  private isUnlocked = false;
+
+  constructor() {
+    this.setupUnlockListeners();
+  }
+
+  private setupUnlockListeners() {
+    if (typeof window === "undefined") return;
+    
+    const unlock = () => {
+      if (this.isUnlocked) return;
+      const context = this.getOrCreateContext();
+      if (context && context.state === "suspended") {
+        context.resume().then(() => {
+          this.isUnlocked = true;
+          console.log("[AudioContextManager] AudioContext successfully unlocked via user gesture.");
+          removeListeners();
+        }).catch(() => {});
+      } else if (context && context.state === "running") {
+        this.isUnlocked = true;
+        removeListeners();
+      }
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("mousedown", unlock);
+    };
+
+    window.addEventListener("click", unlock, { passive: true });
+    window.addEventListener("touchstart", unlock, { passive: true });
+    window.addEventListener("keydown", unlock, { passive: true });
+    window.addEventListener("mousedown", unlock, { passive: true });
+  }
 
   getOrCreateContext(): AudioContext | null {
     if (typeof window === "undefined") return null;
@@ -300,4 +336,82 @@ export const playCanClinkSound = () => {
     // Safety fallback
   }
 };
+
+// 5. 🎴 輕盈卡片翻轉或紙張摩擦音效 (Crisp Card Flip / Paper Rustle Synthesis)
+export const playCardFlipSound = () => {
+  try {
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
+    
+    // Ensure the audio context is actively running (re-force resume if user clicked/scrolled)
+    if (ctx.state === "suspended") {
+      ctx.resume().catch(() => {});
+    }
+
+    const now = ctx.currentTime;
+
+    // --- 1. 高頻與中高頻雙重濾波白噪音 (Crisp Paper Friction & Swish) ---
+    // 紙張/卡片摩擦主要是 1500Hz - 6000Hz 之間的空氣感與摩擦感，絕不帶有低頻
+    const duration = 0.18; // 180ms duration is perfect for a quick flip
+    const bufferSize = ctx.sampleRate * duration;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+    
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = buffer;
+    
+    // 使用高通濾波器濾除所有低頻（切除 1200Hz 以下，徹底消滅打鼓/咚咚聲）
+    const hpFilter = ctx.createBiquadFilter();
+    hpFilter.type = "highpass";
+    hpFilter.frequency.setValueAtTime(1400, now);
+    
+    // 使用帶通濾波器，讓頻率在滑動時有些微動態，模擬卡片偏折時的空氣切變 (Air Whoosh)
+    const bpFilter = ctx.createBiquadFilter();
+    bpFilter.type = "bandpass";
+    bpFilter.frequency.setValueAtTime(3200, now);
+    bpFilter.frequency.exponentialRampToValueAtTime(1800, now + duration);
+    bpFilter.Q.setValueAtTime(2.0, now);
+    
+    const noiseGain = ctx.createGain();
+    // 漸進式淡入淡出，營造極致平滑的紙張滑動感
+    noiseGain.gain.setValueAtTime(0.001, now);
+    noiseGain.gain.linearRampToValueAtTime(0.05, now + 0.04); // 40ms attack
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + duration); // smooth decay
+    
+    // --- 2. 卡片邊緣釋放的高頻極速敲擊瞬態 (Crisp Fingernail / Card Edge Snap) ---
+    const snapOsc = ctx.createOscillator();
+    const snapGain = ctx.createGain();
+    
+    snapOsc.type = "sine";
+    // 極高頻率（2800Hz 到 1200Hz），模擬薄紙或卡牌邊角微弱的彈動彈開聲
+    snapOsc.frequency.setValueAtTime(2800, now);
+    snapOsc.frequency.exponentialRampToValueAtTime(1200, now + 0.03);
+    
+    snapGain.gain.setValueAtTime(0.025, now);
+    snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+    // 連接節點 (Noise: Source -> HP -> BP -> Gain -> Output)
+    noiseSource.connect(hpFilter);
+    hpFilter.connect(bpFilter);
+    bpFilter.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    
+    // 連接節點 (Snap Click: Osc -> Gain -> Output)
+    snapOsc.connect(snapGain);
+    snapGain.connect(ctx.destination);
+    
+    // 啟動與停止聲源
+    noiseSource.start(now);
+    noiseSource.stop(now + duration);
+    
+    snapOsc.start(now);
+    snapOsc.stop(now + 0.04);
+  } catch (e) {
+    // Safety fallback
+  }
+};
+
 
