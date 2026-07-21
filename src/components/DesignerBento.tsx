@@ -415,8 +415,8 @@ export function DesignerBento({
                     text="喜歡我的作品嗎？來聊聊吧！"
                     theme={theme}
                     onClick={() => { setTutorialDismissed4(true); nextTutorialStep(); setIsContactCardOpen(true); }}
-                    pointerDirection="bottom"
-                    className="bottom-full mb-3 left-1/2 -translate-x-1/2"
+                    pointerDirection="top"
+                    className="top-full mt-3 left-1/2 -translate-x-1/2"
                   />
                 )}
                 <button

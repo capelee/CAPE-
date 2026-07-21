@@ -51,7 +51,7 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
   nextTutorialStep
 }) => {
   return (
-    <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4 relative z-50">
+    <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4 mt-[4.5rem] lg:mt-0 relative z-50">
       {/* Parallax Floating Elements */}
       <motion.div style={{ y: elementsY, rotate: rotateElement1 }} className="absolute top-10 -left-6 sm:-left-12 text-3xl opacity-20 pointer-events-none z-0 select-none will-change-transform">✨</motion.div>
       <motion.div style={{ y: elementsY2, rotate: rotateElement2 }} className="absolute bottom-12 -right-4 sm:-right-8 text-4xl opacity-10 pointer-events-none z-0 select-none will-change-transform">🐾</motion.div>
