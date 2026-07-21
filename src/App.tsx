@@ -443,13 +443,21 @@ export default function App() {
   const [mounted, setMounted] = useState<boolean>(false);
   const { scrollY } = useScroll();
   
-  // Parallax transform values
-  const mascotY = useTransform(scrollY, [0, 800], [0, 80]);
-  const glowY = useTransform(scrollY, [0, 800], [0, 160]);
-  const elementsY = useTransform(scrollY, [0, 800], [0, -100]);
-  const elementsY2 = useTransform(scrollY, [0, 800], [0, -150]);
-  const rotateElement1 = useTransform(scrollY, [0, 800], [0, 90]);
-  const rotateElement2 = useTransform(scrollY, [0, 800], [0, -90]);
+  // 使用 useSpring 對原始滾動值進行平滑插值，徹底消除滑鼠滾輪一格一格的頓挫感，使 Parallax 動畫如絲般順滑
+  const smoothScrollY = useSpring(scrollY, {
+    stiffness: 85,    // 優雅的物理剛度，帶來流暢的跟隨感
+    damping: 26,      // 高阻尼防抖，保證不產生多餘的物理回彈
+    mass: 0.5,        // 較輕的質量使滾動反應極速且流滑
+    restDelta: 0.01
+  });
+  
+  // Parallax transform values (基於平滑後的 smoothScrollY)
+  const mascotY = useTransform(smoothScrollY, [0, 800], [0, 80]);
+  const glowY = useTransform(smoothScrollY, [0, 800], [0, 160]);
+  const elementsY = useTransform(smoothScrollY, [0, 800], [0, -100]);
+  const elementsY2 = useTransform(smoothScrollY, [0, 800], [0, -150]);
+  const rotateElement1 = useTransform(smoothScrollY, [0, 800], [0, 90]);
+  const rotateElement2 = useTransform(smoothScrollY, [0, 800], [0, -90]);
 
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const initialDataRef = React.useRef<PortfolioItem[]>([]);
@@ -530,6 +538,7 @@ export default function App() {
   }, []);
 
   // Theme preference: "dark" | "light" | "sepia" | "system"
+  // 預設為 "system" (依照系統設定)，若無儲存之設定，則進入 system 判斷流程
   const [themePreference, setThemePreference] = useState<"dark" | "light" | "sepia" | "system">(() => {
     try {
       const saved = localStorage.getItem("capelee_theme");
@@ -542,29 +551,50 @@ export default function App() {
     }
   });
 
+  // 系統顏色模式偵測：若無系統預設 (或不支援) 則指定白色顏色模式 ("light")
   const [systemTheme, setSystemTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined" && window.matchMedia) {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      if (isDark) return "dark";
+      if (isLight) return "light";
+      return "light"; // 無系統預設則指定白色顏色模式
     }
     return "light";
   });
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia) {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      setSystemTheme(mediaQuery.matches ? "dark" : "light");
-
-      const handler = (e: MediaQueryListEvent) => {
-        setSystemTheme(e.matches ? "dark" : "light");
+      const mediaQueryDark = window.matchMedia("(prefers-color-scheme: dark)");
+      const mediaQueryLight = window.matchMedia("(prefers-color-scheme: light)");
+      
+      const updateTheme = () => {
+        if (mediaQueryDark.matches) {
+          setSystemTheme("dark");
+        } else if (mediaQueryLight.matches) {
+          setSystemTheme("light");
+        } else {
+          setSystemTheme("light"); // 無系統預設則指定白色顏色模式
+        }
       };
-      // Modern browsers
-      if (mediaQuery.addEventListener) {
-        mediaQuery.addEventListener("change", handler);
-        return () => mediaQuery.removeEventListener("change", handler);
+
+      updateTheme();
+
+      // 監聽系統顏色變更
+      if (mediaQueryDark.addEventListener) {
+        mediaQueryDark.addEventListener("change", updateTheme);
+        mediaQueryLight.addEventListener("change", updateTheme);
+        return () => {
+          mediaQueryDark.removeEventListener("change", updateTheme);
+          mediaQueryLight.removeEventListener("change", updateTheme);
+        };
       } else {
-        // Fallback for older browsers
-        mediaQuery.addListener(handler);
-        return () => mediaQuery.removeListener(handler);
+        mediaQueryDark.addListener(updateTheme);
+        mediaQueryLight.addListener(updateTheme);
+        return () => {
+          mediaQueryDark.removeListener(updateTheme);
+          mediaQueryLight.removeListener(updateTheme);
+        };
       }
     }
   }, []);
@@ -604,6 +634,7 @@ export default function App() {
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
+  const [activeSection, setActiveSection] = useState<"portfolio" | "resume" | null>(null);
   const { tutorialStep, nextTutorialStep } = useTutorial();
 
   const handleCategoryClick = React.useCallback((cat: string) => {
@@ -856,12 +887,13 @@ export default function App() {
   // 當開啟作品細節 Lightbox Modal、我的工作流 Modal 或聯絡資訊 Modal 時，對 Body 進行滾動鎖定，確保手持裝置體驗如 Native App 般精確穩定
   React.useEffect(() => {
     if (activeModalItem || isWorkflowOpen || isContactCardOpen) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
     }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
   }, [activeModalItem, isWorkflowOpen, isContactCardOpen]);
   
   // Custom states for interactive highlights
@@ -2049,31 +2081,115 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 滾動感應：偵測目前畫面的區塊並動態切換 Active Indicator (作品/履歷)
+  React.useEffect(() => {
+    const portfolioEl = document.getElementById("portfolio-grid");
+    const bentoEl = document.getElementById("designer-bento");
+
+    const checkActiveSection = () => {
+      if (window.scrollY < 120) {
+        setActiveSection(null);
+        return;
+      }
+
+      let currentActive: "portfolio" | "resume" | null = null;
+      let maxIntersectionHeight = 0;
+
+      [portfolioEl, bentoEl].forEach(el => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        // 計算元素在目前視窗中的真實可見高度
+        const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+        if (visibleHeight > maxIntersectionHeight && visibleHeight > 100) {
+          maxIntersectionHeight = visibleHeight;
+          currentActive = el.id === "portfolio-grid" ? "portfolio" : "resume";
+        }
+      });
+
+      setActiveSection(currentActive);
+    };
+
+    // 使用 requestAnimationFrame 進行滾動節流 (Throttling)，避免頻繁觸發 getBoundingClientRect 導致 Layout Thrashing (瀏覽器卡頓)
+    let ticking = false;
+    const handleScrollCheck = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // 使用 IntersectionObserver 作為輔助，當區塊進出時主動校正
+    const observerOptions = {
+      root: null,
+      rootMargin: "-15% 0px -25% 0px",
+      threshold: [0, 0.1, 0.2]
+    };
+
+    const observer = new IntersectionObserver(() => {
+      handleScrollCheck();
+    }, observerOptions);
+
+    if (portfolioEl) observer.observe(portfolioEl);
+    if (bentoEl) observer.observe(bentoEl);
+
+    window.addEventListener("scroll", handleScrollCheck, { passive: true });
+    // 初始校正一次
+    checkActiveSection();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScrollCheck);
+    };
+  }, []);
+
   const headerBg = React.useMemo(() => {
     if (!isScrolled) {
-      if (theme === "light") {
-        return "rgba(255, 255, 255, 0.8)";
-      } else if (theme === "sepia") {
-        return "rgba(250, 244, 229, 0.8)";
-      } else {
-        return "rgba(7, 7, 7, 0.8)";
-      }
+      return "rgba(0, 0, 0, 0)";
     }
     if (theme === "light") {
-      return "rgba(255, 255, 255, 0.98)";
+      return "rgba(255, 255, 255, 0.72)";
     } else if (theme === "sepia") {
-      return "rgba(250, 244, 229, 0.98)";
+      return "rgba(250, 244, 229, 0.75)";
     } else {
-      return "rgba(7, 7, 7, 0.98)";
+      return "rgba(7, 7, 7, 0.65)";
     }
   }, [isScrolled, theme]);
 
   const headerBlur = React.useMemo(() => {
     if (!isScrolled) {
-      return "blur(8px)";
+      return "blur(0px)";
     }
-    return "blur(24px)";
+    return "blur(16px)";
   }, [isScrolled]);
+
+  const headerShadow = React.useMemo(() => {
+    if (!isScrolled) {
+      return "none";
+    }
+    if (theme === "light") {
+      return "0 8px 32px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02)";
+    } else if (theme === "sepia") {
+      return "0 8px 32px 0 rgba(67, 52, 34, 0.05), 0 1px 2px 0 rgba(67, 52, 34, 0.02)";
+    } else {
+      return "0 8px 32px 0 rgba(0, 0, 0, 0.35), 0 1px 2px 0 rgba(0, 0, 0, 0.2)";
+    }
+  }, [isScrolled, theme]);
+
+  const headerBorderColor = React.useMemo(() => {
+    if (!isScrolled) {
+      return "transparent";
+    }
+    if (theme === "light") {
+      return "rgba(0, 0, 0, 0.05)";
+    } else if (theme === "sepia") {
+      return "rgba(67, 52, 34, 0.06)";
+    } else {
+      return "rgba(255, 255, 255, 0.05)";
+    }
+  }, [isScrolled, theme]);
 
   const brandingTextClass = theme === "sepia"
     ? "text-[#433422]"
@@ -2484,15 +2600,11 @@ export default function App() {
           backgroundColor: headerBg,
           backdropFilter: headerBlur,
           WebkitBackdropFilter: headerBlur,
-          borderBottomColor: !isScrolled
-            ? "transparent"
-            : theme === "light"
-            ? "rgba(0, 0, 0, 0.06)"
-            : theme === "sepia"
-            ? "rgba(67, 52, 34, 0.08)"
-            : "rgba(255, 255, 255, 0.05)"
+          borderBottomColor: headerBorderColor,
+          boxShadow: headerShadow,
+          transition: "background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease"
         } as any}
-        className="fixed top-0 left-0 right-0 z-40 border-b py-2 md:py-2.5 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
+        className="fixed top-0 left-0 right-0 z-40 border-b py-2 md:py-2.5 px-4 sm:px-6 lg:px-8"
       >
         <div className="max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between">
           <div
@@ -2530,20 +2642,62 @@ export default function App() {
 
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
             {/* 導航文字連結：作品 & 履歷 */}
-            <div className="flex items-center gap-3.5 sm:gap-5 mr-1 sm:mr-2">
+            <div className="flex items-center gap-4 sm:gap-6 mr-1 sm:mr-2">
               <button
                 type="button"
                 onClick={() => scrollToElement("portfolio-grid")}
-                className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
+                className={`relative py-1 px-1.5 text-xs sm:text-sm font-sans transition-all duration-250 cursor-pointer hover:scale-105 active:scale-95 outline-none ${
+                  activeSection === "portfolio"
+                    ? theme === "sepia"
+                      ? "text-[#433422] font-semibold"
+                      : theme === "light"
+                      ? "text-zinc-950 font-semibold"
+                      : "text-white font-semibold"
+                    : navLinkClass
+                }`}
               >
-                作品
+                <span>作品</span>
+                {activeSection === "portfolio" && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full ${
+                      theme === "sepia"
+                        ? "bg-[#8A5A32] shadow-[0_0_6px_rgba(138,90,50,0.4)]"
+                        : theme === "light"
+                        ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]"
+                        : "bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.6)]"
+                    }`}
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
               <button
                 type="button"
                 onClick={() => scrollToElement("designer-bento")}
-                className={`text-xs sm:text-sm font-sans font-normal transition-colors duration-250 cursor-pointer hover:scale-105 active:scale-95 ${navLinkClass}`}
+                className={`relative py-1 px-1.5 text-xs sm:text-sm font-sans transition-all duration-250 cursor-pointer hover:scale-105 active:scale-95 outline-none ${
+                  activeSection === "resume"
+                    ? theme === "sepia"
+                      ? "text-[#433422] font-semibold"
+                      : theme === "light"
+                      ? "text-zinc-950 font-semibold"
+                      : "text-white font-semibold"
+                    : navLinkClass
+                }`}
               >
-                履歷
+                <span>履歷</span>
+                {activeSection === "resume" && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full ${
+                      theme === "sepia"
+                        ? "bg-[#8A5A32] shadow-[0_0_6px_rgba(138,90,50,0.4)]"
+                        : theme === "light"
+                        ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]"
+                        : "bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.6)]"
+                    }`}
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
             </div>
 
@@ -2609,7 +2763,10 @@ export default function App() {
 
               {/* 主題切換按鈕 (選單形式) - 往右移 */}
               <div className="relative" ref={themeMenuRef}>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9, rotate: isThemeMenuOpen ? -12 : 12 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   type="button"
                   id="btn_theme_toggle"
                   onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
@@ -2625,16 +2782,21 @@ export default function App() {
                   ) : (
                     <Monitor className="h-4 w-4 text-zinc-500" />
                   )}
-                </button>
+                </motion.button>
 
                 <AnimatePresence>
                   {isThemeMenuOpen && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.95, y: -8 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: -8 }}
-                      transition={{ duration: 0.15 }}
-                      className={`absolute right-0 mt-2 w-28 rounded-xl border p-1 z-50 shadow-lg ${
+                      initial={{ opacity: 0, scale: 0.82, y: -12, rotate: -2 }}
+                      animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                      exit={{ opacity: 0, scale: 0.82, y: -12, rotate: -2 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 380, 
+                        damping: 18, 
+                        mass: 0.9 
+                      }}
+                      className={`absolute right-0 mt-2 w-28 rounded-xl border p-1 z-50 shadow-lg origin-top-right ${
                         theme === "sepia"
                           ? "bg-[#F4EAD4] border-[#DFCFA0]/80 text-[#4F3C28]"
                           : theme === "light"
@@ -2642,38 +2804,14 @@ export default function App() {
                           : "bg-[#18181b] border-white/10 text-zinc-200"
                       }`}
                     >
-                      {/* 系統選項 */}
-                      <button
-                        type="button"
-                        onClick={() => changeTheme("system")}
-                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer ${
-                          themePreference === "system"
-                            ? theme === "sepia"
-                              ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
-                              : theme === "light"
-                              ? "bg-zinc-100 text-zinc-950 font-medium"
-                              : "bg-white/10 text-white font-medium"
-                            : theme === "sepia"
-                            ? "hover:bg-[#E2D5B9]/40 text-[#7A6B58]"
-                            : theme === "light"
-                            ? "hover:bg-zinc-100/50 text-zinc-650"
-                            : "hover:bg-white/5 text-zinc-400"
-                        }`}
-                      >
-                        <div className="flex items-center gap-1.5">
-                          <Monitor className="h-3.5 w-3.5 text-zinc-500" />
-                          <span>系統</span>
-                        </div>
-                        {themePreference === "system" && (
-                          <span className={`h-1.5 w-1.5 rounded-full ${theme === "sepia" ? "bg-zinc-500" : theme === "light" ? "bg-zinc-500" : "bg-zinc-400"}`} />
-                        )}
-                      </button>
-
                       {/* 淺色選項 */}
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.02, x: 2 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
                         type="button"
                         onClick={() => changeTheme("light")}
-                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer ${
                           themePreference === "light"
                             ? theme === "sepia"
                               ? "bg-[#E2D5B9] text-[#4F3C28] font-medium"
@@ -2694,10 +2832,13 @@ export default function App() {
                         {themePreference === "light" && (
                           <span className="h-1.5 w-1.5 rounded-full bg-[#D97706]" />
                         )}
-                      </button>
+                      </motion.button>
 
                       {/* 深色選項 */}
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.02, x: 2 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
                         type="button"
                         onClick={() => changeTheme("dark")}
                         className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
@@ -2721,10 +2862,13 @@ export default function App() {
                         {themePreference === "dark" && (
                           <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
                         )}
-                      </button>
+                      </motion.button>
 
                       {/* 暖沙選項 */}
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.02, x: 2 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
                         type="button"
                         onClick={() => changeTheme("sepia")}
                         className={`flex items-center justify-between w-full px-2.5 py-1.5 text-xs font-sans rounded-lg transition-all duration-200 cursor-pointer mt-0.5 ${
@@ -2748,7 +2892,7 @@ export default function App() {
                         {themePreference === "sepia" && (
                           <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
                         )}
-                      </button>
+                      </motion.button>
                     </motion.div>
                   )}
                 </AnimatePresence>

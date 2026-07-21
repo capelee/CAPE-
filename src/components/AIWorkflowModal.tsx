@@ -11,7 +11,6 @@ interface AIWorkflowModalProps {
 export function AIWorkflowModal({ isOpen, onClose, theme }: AIWorkflowModalProps) {
   React.useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("overflow-hidden");
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
           onClose();
@@ -19,7 +18,6 @@ export function AIWorkflowModal({ isOpen, onClose, theme }: AIWorkflowModalProps
       };
       window.addEventListener("keydown", handleKeyDown);
       return () => {
-        document.body.classList.remove("overflow-hidden");
         window.removeEventListener("keydown", handleKeyDown);
       };
     }

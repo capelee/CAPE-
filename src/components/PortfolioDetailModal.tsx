@@ -174,9 +174,8 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
     touchStartY.current = null;
   };
 
-  // Keyboard navigation & background scroll lock
+  // Keyboard navigation
   useEffect(() => {
-    document.body.classList.add("overflow-hidden");
     const handleKeyDown = (e: KeyboardEvent) => {
       const activeElement = document.activeElement;
       if (
@@ -201,7 +200,6 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.classList.remove("overflow-hidden");
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, onPrevItem, onNextItem]);
