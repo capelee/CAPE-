@@ -27,6 +27,8 @@ interface MumuCertModalProps {
   pdfUnlocked: boolean;
   tutorialAchUnlocked: boolean;
   windStormUnlocked: boolean;
+  rareCollectorUnlocked: boolean;
+  spawnedRareTypes: string[];
   setHeroParticles: React.Dispatch<React.SetStateAction<any[]>>;
   setTitleBounceTrigger: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -50,6 +52,8 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
     pdfUnlocked,
     tutorialAchUnlocked,
     windStormUnlocked,
+    rareCollectorUnlocked,
+    spawnedRareTypes,
     setHeroParticles,
     setTitleBounceTrigger,
   } = props;
@@ -86,7 +90,7 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
     };
   }, [isOpen]);
 
-  const totalAchievements = 15;
+  const totalAchievements = 16;
   const unlockedCount = [
     midnightUnlocked,
     visitedThemes.length >= 3,
@@ -102,7 +106,8 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
     gravityRestoreUnlocked,
     pdfUnlocked,
     tutorialAchUnlocked,
-    windStormUnlocked
+    windStormUnlocked,
+    rareCollectorUnlocked
   ].filter(Boolean).length;
 
   return (
@@ -844,6 +849,48 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
                       {windStormUnlocked
                         ? "「你在亮點卡片召喚了 6 層以上的狂風！其他卡片皆隨風飛散，風暴召喚特權永久覺醒！」"
                         : "（在亮點卡片上快速翻頁，疊加風力至 6 層即可解鎖）"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 成就 16: 奇蹟之物收集雅士 */}
+                <div className={`p-2 rounded-xl border flex gap-2.5 transition-all duration-300 ${
+                  rareCollectorUnlocked
+                    ? theme === "sepia"
+                      ? "bg-black/30 border-[#EAD09D]/30 shadow-inner"
+                      : theme === "light"
+                      ? "bg-white/60 border-pink-400/30 shadow-sm"
+                      : "bg-amber-500/5 border-amber-500/25 shadow-inner"
+                    : "opacity-40 bg-transparent border-dashed border-zinc-200/20 dark:border-zinc-800/20"
+                }`}>
+                  <div className={`p-1.5 rounded-lg flex-shrink-0 flex items-center justify-center h-8 w-8 ${
+                    rareCollectorUnlocked 
+                      ? "bg-gradient-to-br from-amber-400 via-pink-500 to-purple-600 text-white shadow-sm"
+                      : "bg-zinc-800/40 text-zinc-500"
+                  }`}>
+                    <Award className="h-4 w-4 animate-pulse" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className={`text-[10px] font-bold tracking-wide ${
+                        theme === "sepia" ? "text-white" : ""
+                      }`}>
+                        {rareCollectorUnlocked ? "「奇蹟之物收集雅士」💎" : "「奇蹟之物收集雅士」🔒"}
+                      </span>
+                      {rareCollectorUnlocked ? (
+                        <span className="text-[8px] font-bold text-pink-400 uppercase tracking-wider bg-pink-500/10 px-1 py-0.5 rounded animate-bounce">
+                          已解鎖
+                        </span>
+                      ) : (
+                        <span className="text-[8px] opacity-65 font-mono">
+                          ({spawnedRareTypes.length}/5)
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[9px] leading-relaxed mt-0.5 opacity-75">
+                      {rareCollectorUnlocked
+                        ? "「成功呼喚並見證了所有傳說級稀有寶物落入凡間，你是真正的奇蹟使者！」"
+                        : "（拉動白貓使之落物，集齊五種傳奇稀有物：御守🧧、星星🌟、蘋果🍎、調色盤🎨、相機📸）"}
                     </p>
                   </div>
                 </div>

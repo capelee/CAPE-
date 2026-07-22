@@ -29,6 +29,7 @@ interface HeroSectionProps {
   showHeroDialogue: boolean;
   displayedDialogue: string;
   handleHeroClick: () => void;
+  onMascotDrag?: () => void;
   tutorialStep: number;
   tutorialDismissed5: boolean;
   setTutorialDismissed5: (val: boolean) => void;
@@ -44,6 +45,8 @@ interface HeroSectionProps {
   handleCanDrag: (e: any, info: any) => void;
   handleCanDragEnd: (e: any, info: any) => void;
   handleCanTap: () => void;
+  onRandomProject?: () => void;
+  onMagicPaletteClick?: (clientX: number, clientY: number) => void;
 }
 
 export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
@@ -65,6 +68,7 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
   showHeroDialogue,
   displayedDialogue,
   handleHeroClick,
+  onMascotDrag,
   tutorialStep,
   tutorialDismissed5,
   setTutorialDismissed5,
@@ -79,7 +83,9 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
   handleCanDragStart,
   handleCanDrag,
   handleCanDragEnd,
-  handleCanTap
+  handleCanTap,
+  onRandomProject,
+  onMagicPaletteClick
 }, ref) => {
   const [titleBounceTrigger, setTitleBounceTrigger] = useState(0);
   const [heroParticles, setHeroParticles] = useState<any[]>([]);
@@ -119,10 +125,13 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
         setCategory={setCategory}
         displayedDialogue={displayedDialogue}
         handleHeroClick={handleHeroClick}
+        onMascotDrag={onMascotDrag}
         tutorialStep={tutorialStep}
         tutorialDismissed5={tutorialDismissed5}
         setTutorialDismissed5={setTutorialDismissed5}
         nextTutorialStep={nextTutorialStep}
+        onRandomProject={onRandomProject}
+        onMagicPaletteClick={onMagicPaletteClick}
       />
 
       {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6 && (

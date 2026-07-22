@@ -220,7 +220,7 @@ export function DesignerBento({
       `}} />
       <div className="absolute -top-32 -left-32 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
       
-      <div className={`border rounded-2xl p-6 lg:p-8 relative overflow-visible shadow-2xl transition-all duration-300 ${
+      <div className={`border rounded-2xl p-6 lg:p-8 relative overflow-visible shadow-2xl transition-all duration-300 antialiased subpixel-antialiased ${
         theme === "sepia"
           ? "bg-[#F5ECD8] border-[#DFD0B8] text-[#433422]"
           : theme === "light"
@@ -233,6 +233,7 @@ export function DesignerBento({
 
         {/* 地震與重力崩塌互動按鈕 */}
         <button
+          id="btn_mumu_bento_gravity"
           type="button"
           onClick={triggerGravityCollapse}
           className={`absolute top-4 right-4 z-40 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${
@@ -255,12 +256,12 @@ export function DesignerBento({
           )}
         </button>
 
-        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6 items-start ${
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-start ${
           shakeActive ? "earthquake-shake" : ""
         }`}>
           
           {/* 第一欄：個人身分與品牌自述 (佔 4 欄) */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-4">
             <div style={getGravityStyle(1)} className="flex items-center gap-4">
               <MinimalistLogo size={64} theme={theme} className="shrink-0" onInteract={onInteract} onBalloonFlyAway={onBalloonFlyAway} />
               <div>
@@ -293,31 +294,31 @@ export function DesignerBento({
             </div>
 
             {/* 履歷簡介 */}
-            <div style={getGravityStyle(3)} className={`border rounded-xl p-4 lg:p-5 ${
+            <div style={getGravityStyle(3)} className={`border rounded-xl p-3.5 lg:p-4 ${
               theme === "sepia"
                 ? "bg-[#FAF4E5]/80 border-[#EADECC]"
                 : theme === "light"
                 ? "bg-zinc-50 border-zinc-200"
                 : "bg-white/[0.01] border-white/5"
             }`}>
-              <div className="flex items-center gap-1.5 mb-2.5">
+              <div className="flex items-center gap-1.5 mb-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse"></div>
                 <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Biography summary / 專業特質</p>
               </div>
-              <p className={`text-xs leading-relaxed font-light ${
-                theme === "sepia" ? "text-[#433422]" : theme === "light" ? "text-zinc-700" : "text-zinc-300"
+              <p className={`text-xs leading-relaxed font-normal tracking-wide ${
+                theme === "sepia" ? "text-[#3D2C1E]" : theme === "light" ? "text-zinc-800" : "text-zinc-200"
               }`}>
                 {profile.intro}
               </p>
             </div>
 
             {/* 聯繫資訊與期望 */}
-            <div style={getGravityStyle(4)} className={`space-y-3 text-[13px] leading-relaxed font-light pt-2 pl-1 border-l-2 border-amber-500/20 ${
-              theme === "sepia" ? "text-[#433422]" : theme === "light" ? "text-zinc-700" : "text-zinc-300"
+            <div style={getGravityStyle(4)} className={`space-y-2 text-[12.5px] leading-relaxed font-normal tracking-wide pt-1.5 pl-1 border-l-2 border-amber-500/20 ${
+              theme === "sepia" ? "text-[#3D2C1E]" : theme === "light" ? "text-zinc-800" : "text-zinc-200"
             }`}>
               <div className="flex items-center gap-3">
                 <Award className="h-4 w-4 text-amber-400 shrink-0" />
-                <span>期望職缺：<span className={`transition-colors font-medium underline underline-offset-4 decoration-amber-500/40 ${
+                <span>期望職缺：<span className={`transition-colors font-semibold underline underline-offset-4 decoration-amber-500/40 ${
                   theme === "sepia" ? "text-[#2B1B0C] hover:text-amber-700" : theme === "light" ? "text-zinc-950 hover:text-amber-600" : "text-white hover:text-amber-400"
                 }`}>{profile.desireTitle}</span></span>
               </div>
@@ -329,10 +330,10 @@ export function DesignerBento({
                 )}
                 <span className={`font-mono transition-colors text-[12px] flex items-center gap-1.5 ${
                   theme === "sepia" 
-                    ? "text-[#6C5B48] group-hover/mail:text-[#2B1B0C]" 
+                    ? "text-[#5C4D3C] group-hover/mail:text-[#2B1B0C]" 
                     : theme === "light" 
-                    ? "text-zinc-500 group-hover/mail:text-zinc-900" 
-                    : "text-zinc-400 group-hover/mail:text-white"
+                    ? "text-zinc-600 group-hover/mail:text-zinc-950" 
+                    : "text-zinc-300 group-hover/mail:text-white"
                 }`}>
                   {profile.email}
                   {localCopied && <span className="text-[10px] text-green-500 font-sans font-normal">(已複製!)</span>}
@@ -459,7 +460,7 @@ export function DesignerBento({
           </div>
 
           {/* 第二欄：個人工作經歷與教育學歷 (佔 4 欄) */}
-          <div className="lg:col-span-4 space-y-3 lg:space-y-6">
+          <div className="lg:col-span-4 space-y-3 lg:space-y-4">
             
             {/* 實戰經歷 */}
             <div className={`space-y-3 transition-all duration-300 ${
@@ -477,11 +478,11 @@ export function DesignerBento({
               </div>
               
               <div>
-                <div className={`space-y-2.5 pt-1.5 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
+                <div className={`space-y-1.5 pt-1 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
                   {profile.experienceList.map((exp, i) => (
-                    <motion.div key={i} style={getGravityStyle(6 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${theme === "sepia" ? "hover:bg-[#E3D3BE]/40" : theme === "light" ? "hover:bg-zinc-100" : "hover:bg-white/[0.03]"}`}
+                    <motion.div key={i} style={getGravityStyle(6 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${theme === "sepia" ? "hover:bg-[#E3D3BE]/50 hover:shadow-sm" : theme === "light" ? "hover:bg-zinc-100/80 hover:shadow-sm" : "hover:bg-white/[0.04] hover:shadow-sm"}`}
                       initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-10px" }} transition={{ duration: 0.4, delay: i * 0.1 }} whileHover={{ x: 4, transition: { duration: 0.2 } }}>
                       <div className={`h-[18px] w-[18px] rounded-full flex items-center justify-center transition-all duration-300 z-10 shrink-0 mt-0.5 group-hover:scale-110 ${
                         theme === "sepia"
@@ -494,7 +495,7 @@ export function DesignerBento({
                       </div>
                       <div className="space-y-px min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <span className={`text-[12px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
+                          <span className={`text-[12px] font-semibold tracking-wide leading-snug transition-colors duration-200 ${
                             theme === "sepia"
                               ? "text-[#2B1B0C] group-hover:text-amber-800"
                               : theme === "light"
@@ -517,8 +518,12 @@ export function DesignerBento({
                             {exp.badge}
                           </span>
                         </div>
-                        <p className={`text-[10px] font-light truncate leading-relaxed ${
-                          theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                        <p className={`text-[10px] font-normal tracking-wide truncate leading-relaxed transition-colors duration-200 ${
+                          theme === "sepia" 
+                            ? "text-[#5C4D3C] group-hover:text-[#2B1B0C]" 
+                            : theme === "light" 
+                            ? "text-zinc-600 group-hover:text-zinc-950" 
+                            : "text-zinc-400 group-hover:text-zinc-200"
                         }`}>{exp.company}</p>
                       </div>
                     </motion.div>
@@ -543,16 +548,16 @@ export function DesignerBento({
               </div>
               
               <div>
-                <div className={`space-y-2.5 pt-1.5 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
+                <div className={`space-y-1.5 pt-1 lg:pt-0 relative before:absolute before:bottom-2 before:top-2 before:left-[9px] before:w-[1px] ${
                   theme === "sepia" ? "before:bg-[#EADECC]" : theme === "light" ? "before:bg-zinc-200" : "before:bg-white/10"
                 }`}>
                   {profile.education.map((edu, i) => (
                     <motion.div initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-10px" }} transition={{ duration: 0.4, delay: i * 0.1 }} whileHover={{ x: 4, transition: { duration: 0.2 } }} key={i} style={getGravityStyle(10 + i)} className={`flex gap-2.5 p-1.5 -mx-1.5 rounded-lg relative group transition-all duration-300 ${
                       theme === "sepia"
-                        ? "hover:bg-[#E3D3BE]/40"
+                        ? "hover:bg-[#E3D3BE]/50 hover:shadow-sm"
                         : theme === "light"
-                        ? "hover:bg-zinc-100"
-                        : "hover:bg-white/[0.03]"
+                        ? "hover:bg-zinc-100/80 hover:shadow-sm"
+                        : "hover:bg-white/[0.04] hover:shadow-sm"
                     }`}>
                       <div className={`h-[18px] w-[18px] rounded-full border flex items-center justify-center transition-all duration-300 z-10 shrink-0 mt-0.5 group-hover:scale-105 ${
                         theme === "sepia"
@@ -565,7 +570,7 @@ export function DesignerBento({
                       </div>
                       <div className="space-y-px min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <span className={`text-[12px] font-medium tracking-tight leading-tight transition-colors duration-200 ${
+                          <span className={`text-[12px] font-semibold tracking-wide leading-snug transition-colors duration-200 ${
                             theme === "sepia"
                               ? "text-[#2B1B0C] group-hover:text-indigo-600"
                               : theme === "light"
@@ -582,20 +587,24 @@ export function DesignerBento({
                             {edu.info}
                           </span>
                         </div>
-                        <p className={`text-[10px] font-light leading-relaxed ${
-                          theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                        <p className={`text-[10px] font-normal tracking-wide leading-relaxed transition-colors duration-200 ${
+                          theme === "sepia" 
+                            ? "text-[#5C4D3C] group-hover:text-[#2B1B0C]" 
+                            : theme === "light" 
+                            ? "text-zinc-600 group-hover:text-zinc-950" 
+                            : "text-zinc-400 group-hover:text-zinc-200"
                         }`}>{edu.dept}</p>
                         {edu.activities && edu.activities.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-1">
                             {edu.activities.map((act, idx) => (
                               <span 
                                 key={idx} 
-                                className={`text-[8.5px] font-sans px-1.5 py-0.5 rounded transition-all duration-300 ${
+                                className={`text-[8.5px] font-sans font-normal tracking-wide px-1.5 py-0.5 rounded transition-all duration-300 ${
                                   theme === "sepia"
                                     ? "bg-[#EADECC]/60 text-[#433422] border border-[#D5C2A5]"
                                     : theme === "light"
-                                    ? "bg-zinc-100 text-zinc-700 border border-zinc-200"
-                                    : "bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
+                                    ? "bg-zinc-100 text-zinc-750 border border-zinc-250"
+                                    : "bg-zinc-800/80 text-zinc-200 border border-zinc-700/50"
                                 }`}
                               >
                                 {act}
@@ -611,7 +620,7 @@ export function DesignerBento({
             </div>
 
             {/* 專業證照 */}
-            <div className={`space-y-3 lg:pt-3.5 lg:border-t transition-all duration-300 ${
+            <div className={`space-y-2 lg:pt-2 lg:border-t transition-all duration-300 ${
               theme === "sepia"
                 ? "border-[#EADECC]/60 max-lg:bg-[#FAF4E5]/40 max-lg:border max-lg:border-[#EADECC]/40 max-lg:p-4 max-lg:rounded-2xl"
                 : theme === "light"
@@ -638,10 +647,10 @@ export function DesignerBento({
                       whileHover={{ x: 4, transition: { duration: 0.2 } }}
                       className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
                         theme === "sepia"
-                          ? "hover:bg-[#E3D3BE]/40"
+                          ? "hover:bg-[#E3D3BE]/50 hover:shadow-sm"
                           : theme === "light"
-                          ? "hover:bg-zinc-100"
-                          : "hover:bg-white/[0.03]"
+                          ? "hover:bg-zinc-100/80 hover:shadow-sm"
+                          : "hover:bg-white/[0.04] hover:shadow-sm"
                       }`}
                     >
                       <div className={`h-4.5 w-4.5 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 mt-0.5 group-hover:scale-110 ${
@@ -654,15 +663,19 @@ export function DesignerBento({
                         <CheckCircle2 className="h-2.5 w-2.5 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
                       </div>
                       <div className="space-y-px min-w-0">
-                        <span className={`text-[12px] font-medium tracking-tight leading-snug transition-colors duration-200 block ${
+                        <span className={`text-[12px] font-semibold tracking-wide leading-snug transition-colors duration-200 block ${
                           theme === "sepia"
-                            ? "text-[#2B1B0C] group-hover:text-amber-700"
+                            ? "text-[#2B1B0C] group-hover:text-amber-750"
                             : theme === "light"
                             ? "text-zinc-950 group-hover:text-amber-700"
                             : "text-white group-hover:text-amber-400"
                         }`}>{cert.name}</span>
-                        <p className={`text-[10px] font-light leading-normal ${
-                          theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                        <p className={`text-[10px] font-normal tracking-wide leading-relaxed transition-colors duration-200 ${
+                          theme === "sepia" 
+                            ? "text-[#5C4D3C] group-hover:text-[#2B1B0C]" 
+                            : theme === "light" 
+                            ? "text-zinc-650 group-hover:text-zinc-950" 
+                            : "text-zinc-400 group-hover:text-zinc-200"
                         }`}>{cert.issuer}</p>
                       </div>
                     </motion.div>
@@ -689,45 +702,45 @@ export function DesignerBento({
             </div>
             
             <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-2 lg:pt-0">
+              <div className={`flex flex-col divide-y pt-2 lg:pt-0 ${
+                theme === "sepia"
+                  ? "divide-[#EADECC]/60"
+                  : theme === "light"
+                  ? "divide-zinc-200/80"
+                  : "divide-white/10"
+              }`}>
                 {profile.scopes.map((s, i) => {
                   let icon = <Layers className="h-3.5 w-3.5 text-amber-400" />;
-                  let colorBorder = "group-hover:border-amber-500/20 group-hover:bg-amber-500/[0.02]";
+                  let colorBorder = "hover:bg-amber-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   
                   if (s.title.includes("識別")) {
                     icon = <Briefcase className="h-3.5 w-3.5 text-blue-400" />;
-                    colorBorder = "group-hover:border-blue-500/20 group-hover:bg-blue-500/[0.02]";
+                    colorBorder = "hover:bg-blue-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   } else if (s.title.includes("攝影")) {
                     icon = <Camera className="h-3.5 w-3.5 text-purple-400" />;
-                    colorBorder = "group-hover:border-purple-500/20 group-hover:bg-purple-500/[0.02]";
+                    colorBorder = "hover:bg-purple-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   } else if (s.title.includes("影音")) {
                     icon = <Video className="h-3.5 w-3.5 text-emerald-400" />;
-                    colorBorder = "group-hover:border-emerald-500/20 group-hover:bg-emerald-500/[0.02]";
+                    colorBorder = "hover:bg-emerald-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   } else if (s.title.includes("印刷")) {
                     icon = <Printer className="h-3.5 w-3.5 text-rose-400" />;
-                    colorBorder = "group-hover:border-rose-500/20 group-hover:bg-rose-500/[0.02]";
+                    colorBorder = "hover:bg-rose-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   } else if (s.title.includes("IP")) {
                     icon = <Sparkles className="h-3.5 w-3.5 text-cyan-400" />;
-                    colorBorder = "group-hover:border-cyan-500/20 group-hover:bg-cyan-500/[0.02]";
+                    colorBorder = "hover:bg-cyan-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   } else if (s.title.includes("AI")) {
                     icon = <Zap className="h-3.5 w-3.5 text-indigo-400" />;
-                    colorBorder = "group-hover:border-indigo-500/20 group-hover:bg-indigo-500/[0.02]";
+                    colorBorder = "hover:bg-indigo-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   } else if (s.title.includes("禮贈品")) {
                     icon = <Award className="h-3.5 w-3.5 text-orange-400" />;
-                    colorBorder = "group-hover:border-orange-500/20 group-hover:bg-orange-500/[0.02]";
+                    colorBorder = "hover:bg-orange-500/[0.02] hover:shadow-sm rounded-lg -mx-2 px-2";
                   }
 
                   return (
                     <div 
                       key={s.id} 
                       style={getGravityStyle(18 + i)}
-                      className={`border rounded-xl p-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder} ${
-                        theme === "sepia"
-                          ? "bg-[#FAF4E5]/60 border-[#EADECC]/80"
-                          : theme === "light"
-                          ? "bg-zinc-50 border-zinc-200"
-                          : "bg-white/[0.015] border-white/5"
-                      }`}
+                      className={`py-3 flex items-start gap-3 transition-all duration-300 group ${colorBorder}`}
                     >
                       <div className={`p-1.5 rounded-lg shrink-0 mt-0.5 border group-hover:scale-105 transition-transform duration-200 ${
                         theme === "sepia"
@@ -740,7 +753,7 @@ export function DesignerBento({
                       </div>
                       <div className="space-y-0.5 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <span className={`text-[12.5px] font-medium group-hover:text-amber-500 transition-colors whitespace-nowrap ${
+                          <span className={`text-[12.5px] font-semibold tracking-wide group-hover:text-amber-500 transition-colors whitespace-nowrap ${
                             theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
                           }`}>{s.title}</span>
                           <span className={`text-[7.5px] font-mono px-1 rounded uppercase tracking-wider py-0.5 leading-none shrink-0 ${
@@ -751,8 +764,12 @@ export function DesignerBento({
                               : "bg-white/5 text-zinc-500"
                           }`}>{s.badge}</span>
                         </div>
-                        <p className={`text-[10px] leading-relaxed font-light line-clamp-1 group-hover:line-clamp-none transition-all duration-300 ${
-                          theme === "sepia" ? "text-[#5C4D3C]" : theme === "light" ? "text-zinc-600" : "text-[#A1A1AA]"
+                        <p className={`text-[10px] leading-relaxed font-normal tracking-wide transition-all duration-300 ${
+                          theme === "sepia" 
+                            ? "text-[#5C4D3C] group-hover:text-[#2B1B0C]" 
+                            : theme === "light" 
+                            ? "text-zinc-650 group-hover:text-zinc-950" 
+                            : "text-zinc-300 group-hover:text-zinc-100"
                         }`}>{s.desc}</p>
                       </div>
                     </div>

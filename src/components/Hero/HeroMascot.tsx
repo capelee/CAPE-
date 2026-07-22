@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion, AnimatePresence, MotionValue } from 'motion/react';
+import { motion, AnimatePresence, MotionValue, useMotionValue, useTransform } from 'motion/react';
 import { TutorialTooltip } from '../TutorialTooltip';
 import { Instagram, Sparkles, FolderOpen } from 'lucide-react';
+import { playCanClinkSound, playRareDropSound, playRareClickSound } from '../../utils/audioEffects';
 
 interface HeroMascotProps {
   theme: "dark" | "light" | "sepia";
@@ -19,12 +20,15 @@ interface HeroMascotProps {
   showHeroDialogue: boolean;
   displayedDialogue: string;
   handleHeroClick: () => void;
+  onMascotDrag?: () => void;
   scrollToElement: (id: string) => void;
   setCategory: (cat: string) => void;
   tutorialStep: number;
   tutorialDismissed5: boolean;
   setTutorialDismissed5: (val: boolean) => void;
   nextTutorialStep: () => void;
+  onRandomProject?: () => void;
+  onMagicPaletteClick?: (clientX: number, clientY: number) => void;
 }
 
 export const HeroMascot: React.FC<HeroMascotProps> = ({
@@ -43,30 +47,242 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
   showHeroDialogue,
   displayedDialogue,
   handleHeroClick,
+  onMascotDrag,
   scrollToElement,
   setCategory,
   tutorialStep,
   tutorialDismissed5,
   setTutorialDismissed5,
-  nextTutorialStep
+  nextTutorialStep,
+  onRandomProject,
+  onMagicPaletteClick
 }) => {
+  // 拖曳位移 MotionValue
+  const dragX = useMotionValue(0);
+  const dragY = useMotionValue(0);
+
+  // 拖曳狀態
+  const [isDragging, setIsDragging] = React.useState(false);
+
+  // 掉落物介面與狀態
+  interface FallingItem {
+    id: string;
+    emoji: string;
+    startX: number;
+    startY: number;
+    driftX: number;
+    targetRotate: number;
+    landY: number;
+    isRare?: boolean;
+    rareType?: 'amulet' | 'star' | 'apple' | 'palette' | 'ig';
+  }
+  const [fallingItems, setFallingItems] = React.useState<FallingItem[]>([]);
+  const lastSpawnTimeRef = React.useRef(0);
+ 
+  const handleRareItemClick = (item: FallingItem, e?: React.MouseEvent) => {
+    try {
+      playRareClickSound();
+    } catch (e) {}
+ 
+    // 移除當前點擊的稀有物品
+    setFallingItems((prev) => prev.filter((f) => f.id !== item.id));
+ 
+    if (item.rareType === 'star') {
+      // 方案 B：🌟 掉落「閃耀星星」 ➜ 觸發「隨機精選作品傳送門」
+      if (onRandomProject) {
+        onRandomProject();
+      }
+    } else if (item.rareType === 'apple') {
+      // 方案 C：🍎 掉落「重力蘋果」 ➜ 跳到履歷頁面並觸發重力測試
+      scrollToElement("designer-bento");
+ 
+      // 延遲 700ms 觸發重力測試
+      setTimeout(() => {
+        const gravityBtn = document.getElementById("btn_mumu_bento_gravity");
+        if (gravityBtn) {
+          gravityBtn.click();
+        }
+      }, 700);
+    } else if (item.rareType === 'palette') {
+      // 方案 D：🎨 掉落「幻彩調色盤」 ➜ 觸發色彩漣漪與切換主題
+      if (onMagicPaletteClick && e) {
+        onMagicPaletteClick(e.clientX, e.clientY);
+      } else if (onMagicPaletteClick) {
+        // Fallback if click event is missing
+        onMagicPaletteClick(window.innerWidth / 2, window.innerHeight / 2);
+      }
+    } else if (item.rareType === 'ig') {
+      // 方案 E：📸 掉落「IG 相機」 ➜ 點擊跳轉到 IG
+      window.open("https://www.instagram.com/mumao1_the_cat_religion/", "_blank", "noopener,noreferrer");
+    } else {
+      // 方案 A：🧧 掉落「御守」 ➜ 觸發「姆貓神社求籤」
+      // 平滑滾動到神社
+      scrollToElement("footer-fortune");
+ 
+      // 延遲 600ms 自動觸發神社求籤
+      setTimeout(() => {
+        const emaBtn = document.getElementById("btn_mumu_fortune_ema");
+        if (emaBtn) {
+          emaBtn.click();
+        }
+      }, 600);
+    }
+  };
+ 
+  const spawnFallingItem = () => {
+    // 8% 機率噴出高級稀有物品，92% 機率噴出普通隨機物品
+    const isRare = Math.random() < 0.08;
+    let emoji = '';
+    let rareType: 'amulet' | 'star' | 'apple' | 'palette' | 'ig' | undefined = undefined;
+ 
+    if (isRare) {
+      // 均分機率：御守 🧧 (20%)、閃耀星星 🌟 (20%)、重力蘋果 🍎 (20%)、幻彩調色盤 🎨 (20%)、IG 相機 📸 (20%)
+      const rand = Math.random();
+      if (rand < 0.2) {
+        emoji = '🧧';
+        rareType = 'amulet';
+      } else if (rand < 0.4) {
+        emoji = '🌟';
+        rareType = 'star';
+      } else if (rand < 0.6) {
+        emoji = '🍎';
+        rareType = 'apple';
+      } else if (rand < 0.8) {
+        emoji = '🎨';
+        rareType = 'palette';
+      } else {
+        emoji = '📸';
+        rareType = 'ig';
+      }
+    } else {
+      emoji = ['🥫', '🐟', '🪙', '✨', '🐾', '🍪', '🐠', '🍬', '🍖', '🍩'][Math.floor(Math.random() * 10)];
+    }
+    
+    // 取得當前姆貓被拖曳的即時位置，作為噴出的起點
+    const currentX = dragX.get();
+    const currentY = dragY.get();
+    
+    const randomOffset = Math.random() * 40 - 20; // 微調隨機偏移
+    const driftX = Math.random() * 180 - 90; // 水平飄移
+    const targetRotate = Math.random() * 720 - 360; // 旋轉角度
+
+    // 依據不同螢幕大小計算合適的落地 Y 座標（相對於外層正方形容器中心點）
+    const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1024;
+    const baseLandY = screenWidth < 640 ? 110 : screenWidth < 1024 ? 150 : 185;
+    // 微小的垂直堆疊波動，做出高低交錯的可愛堆積感
+    const landY = baseLandY + (Math.random() * 20 - 10);
+
+    const newItem: FallingItem = {
+      id: `${Date.now()}-${Math.random()}`,
+      emoji,
+      startX: currentX + randomOffset,
+      startY: currentY + randomOffset,
+      driftX,
+      targetRotate,
+      landY,
+      isRare,
+      rareType
+    };
+
+    if (isRare && rareType) {
+      try {
+        window.dispatchEvent(new CustomEvent("rare-item-spawned", { detail: { rareType } }));
+      } catch (e) {}
+    }
+
+    setFallingItems(prev => {
+      const nextList = [...prev, newItem];
+      // 限制畫面底部最多保留 45 個掉落物，既可愛又確保效能順暢
+      if (nextList.length > 45) {
+        return nextList.slice(nextList.length - 45);
+      }
+      return nextList;
+    });
+
+    // 非稀有物品在噴出後直接消失，1.2 秒後從狀態中移除
+    if (!isRare) {
+      setTimeout(() => {
+        setFallingItems(prev => prev.filter(f => f.id !== newItem.id));
+      }, 1200);
+    } else {
+      // 稀有物品停留畫面 10 秒後自動緩緩消失
+      setTimeout(() => {
+        setFallingItems(prev => prev.filter(f => f.id !== newItem.id));
+      }, 10000);
+    }
+    
+    // 播放可愛的落物聲/稀有聲
+    try {
+      if (isRare) {
+        playRareDropSound();
+      } else {
+        playCanClinkSound();
+      }
+    } catch (e) {
+      // 靜音容錯
+    }
+  };
+
+  // 配合拖拽位移產生 3D/2D 傾斜與拉伸
+  const rotateX = useTransform(dragY, [-120, 120], [15, -15]);
+  const rotateY = useTransform(dragX, [-120, 120], [-15, 15]);
+  const rotateZ = useTransform(dragX, [-120, 120], [-8, 8]);
+
   return (
     <div className="w-full lg:w-auto shrink-0 flex items-center justify-center overflow-visible p-4 mt-[4.5rem] lg:mt-0 relative z-50">
       {/* Parallax Floating Elements */}
       <motion.div style={{ y: elementsY, rotate: rotateElement1 }} className="absolute top-10 -left-6 sm:-left-12 text-3xl opacity-20 pointer-events-none z-0 select-none will-change-transform">✨</motion.div>
       <motion.div style={{ y: elementsY2, rotate: rotateElement2 }} className="absolute bottom-12 -right-4 sm:-right-8 text-4xl opacity-10 pointer-events-none z-0 select-none will-change-transform">🐾</motion.div>
       
+      {/* Outer container solely for parallax scroll */}
       <motion.div
         ref={mascotRef}
         style={{ y: mascotY }}
-        initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
-        animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.93, scaleY: 0.88, scaleX: 1.05 }}
-        transition={{ type: "spring", bounce: 0.15, duration: 1.2, delay: 0.1 }}
-        onClick={handleHeroClick}
-        className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none will-change-transform"
+        className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible select-none"
       >
+        {/* Inner container for absolute dragging, hover, tap, and click gestures */}
+        <motion.div
+          drag
+          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+          dragElastic={0.65}
+          dragTransition={{ bounceStiffness: 220, bounceDamping: 14 }}
+          style={{ 
+            x: dragX, 
+            y: dragY, 
+            rotateX, 
+            rotateY, 
+            rotate: rotateZ,
+            perspective: 1200
+          }}
+          initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.93, scaleY: 0.88, scaleX: 1.05 }}
+          transition={{ type: "spring", bounce: 0.15, duration: 1.2, delay: 0.1 }}
+          onClick={handleHeroClick}
+          onDragStart={() => {
+            setIsDragging(true);
+            if (onMascotDrag) {
+              onMascotDrag();
+            }
+          }}
+          onDragEnd={() => {
+            setIsDragging(false);
+          }}
+          onDrag={(event, info) => {
+            const vx = info.velocity.x;
+            const vy = info.velocity.y;
+            const speed = Math.sqrt(vx * vx + vy * vy);
+            if (speed > 1100) {
+              const now = Date.now();
+              if (now - lastSpawnTimeRef.current > 120) {
+                lastSpawnTimeRef.current = now;
+                spawnFallingItem();
+              }
+            }
+          }}
+          className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing group select-none will-change-transform"
+        >
         <motion.div style={{ y: glowY }} className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms] will-change-transform" />
         
         <AnimatePresence>
@@ -87,6 +303,8 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             </motion.span>
           ))}
         </AnimatePresence>
+
+
 
         {/* 魔法少女版裝飾：精靈之羽 & 魔法配飾 */}
         <AnimatePresence>
@@ -213,15 +431,12 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
           />
         )}
         <motion.div
-          initial={{ y: 45, scale: 0.98, opacity: 0 }}
-          animate={{ y: 0, scale: 1, opacity: 1 }}
-          transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          className={`w-full h-auto relative overflow-visible transition-all duration-500 ease-out ${
+          className={`w-full h-auto relative overflow-visible transition-[filter] duration-500 ease-out ${
             isMagicTransformed 
               ? "mumao-rainbow-glow scale-105" 
               : "filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.6)]"
           } ${
-            isHeroSpeaking 
+            isDragging || isHeroSpeaking 
               ? "mumao-speaking" 
               : "mumao-idle group-hover:mumao-playful"
           }`}
@@ -234,7 +449,7 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             alt="Cape Lee mascot closed mouth"
             referrerPolicy="no-referrer"
             className={`w-full h-auto object-contain relative z-10 select-none pointer-events-none ${
-              isHeroSpeaking ? "mumao-anim-closed" : "opacity-100"
+              isDragging ? "opacity-0" : isHeroSpeaking ? "mumao-anim-closed" : "opacity-100"
             }`}
           />
           {/* 2. 說話版1 (中開) */}
@@ -243,7 +458,7 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             alt="Cape Lee mascot speaking 1"
             referrerPolicy="no-referrer"
             className={`w-full h-auto object-contain absolute inset-0 select-none pointer-events-none ${
-              isHeroSpeaking ? "mumao-anim-medium z-20" : "opacity-0 pointer-events-none z-0"
+              isDragging ? "opacity-0 pointer-events-none z-0" : isHeroSpeaking ? "mumao-anim-medium z-20" : "opacity-0 pointer-events-none z-0"
             }`}
           />
           {/* 3. 說話版2 (大開) */}
@@ -252,11 +467,76 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             alt="Cape Lee mascot speaking 2"
             referrerPolicy="no-referrer"
             className={`w-full h-auto object-contain absolute inset-0 select-none pointer-events-none ${
-              isHeroSpeaking ? "mumao-anim-open z-20" : "opacity-0 pointer-events-none z-0"
+              isDragging ? "opacity-100 z-20" : isHeroSpeaking ? "mumao-anim-open z-20" : "opacity-0 pointer-events-none z-0"
             }`}
           />
         
         </motion.div>
+        </motion.div>
+
+        {/* 掉落物渲染（改置於外層固定容器，使其下落後靜止留在畫面底部，不隨拖曳而晃動） */}
+        <AnimatePresence>
+          {fallingItems.map((item) => (
+            <motion.div
+              key={item.id}
+              initial={{ 
+                opacity: 1, 
+                scale: 0.5, 
+                x: item.startX, 
+                y: item.startY, 
+                rotate: 0 
+              }}
+              animate={{ 
+                opacity: item.isRare ? 1 : [1, 1, 0], 
+                scale: item.isRare ? [0.5, 1.4, 1.2] : [0.5, 1.2, 0], 
+                y: [item.startY, item.startY - 60, item.landY], // 向上反彈，隨後下墜並靜止在 landY
+                x: [item.startX, item.startX + item.driftX * 0.4, item.startX + item.driftX], 
+                rotate: [0, item.targetRotate * 0.4, item.targetRotate] 
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0,
+                transition: { duration: 0.4, ease: "easeIn" }
+              }}
+              transition={{ 
+                duration: 1.2, 
+                times: [0, 0.25, 1],
+                ease: "easeOut"
+              }}
+              onClick={(e) => {
+                if (item.isRare) {
+                  handleRareItemClick(item, e);
+                }
+              }}
+              className={`absolute select-none z-45 filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)] ${
+                item.isRare 
+                  ? "pointer-events-auto cursor-pointer group active:scale-95" 
+                  : "pointer-events-none"
+              }`}
+              style={{ left: "calc(50% - 18px)", top: "calc(50% - 18px)" }}
+            >
+              <div className="relative flex flex-col items-center justify-center">
+                {/* 稀有御守金光背景與呼吸動畫 */}
+                {item.isRare && (
+                  <>
+                    {/* 呼吸感金光圈 */}
+                    <div className="absolute w-12 h-12 bg-amber-400/20 rounded-full blur-md animate-pulse pointer-events-none" />
+                    <div className="absolute w-10 h-10 border-2 border-amber-300/40 rounded-full animate-ping pointer-events-none [animation-duration:2.5s]" />
+                    
+                    {/* 點擊求籤精緻氣泡提示 */}
+                    <span className="absolute -top-7 bg-amber-500/90 text-white font-serif font-bold text-[9px] leading-none px-2 py-1 rounded-md border border-amber-300 shadow-md whitespace-nowrap scale-0 group-hover:scale-100 origin-bottom transition-transform duration-200 z-50">
+                      {item.rareType === 'star' ? "🌟 欣賞作品 🌟" : item.rareType === 'apple' ? "🌌 重力測試 🌌" : item.rareType === 'palette' ? "🎨 奇幻色盤 🎨" : item.rareType === 'ig' ? "📸 追蹤 IG 📸" : "⛩️ 點擊求籤 ⛩️"}
+                    </span>
+                  </>
+                )}
+                
+                <span className={`${item.isRare ? "text-4xl animate-bounce" : "text-3xl"}`}>
+                  {item.emoji}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </motion.div>
       
       {/* Dialogue Bubble */}

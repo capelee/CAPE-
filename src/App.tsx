@@ -60,7 +60,7 @@ import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
 import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl } from "./utils";
 import { animaleseSynth } from "./utils/animalese";
-import { playMeowSound, playCanClinkSound, catPurr, audioContextManager, playCardFlipSound } from "./utils/audioEffects";
+import { playMeowSound, playCanClinkSound, catPurr, audioContextManager, playCardFlipSound, playPawPopSound, playRareClickSound } from "./utils/audioEffects";
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
 
@@ -992,6 +992,46 @@ export default function App() {
     changeTheme(nextTheme);
   };
 
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [magicAlert, setMagicAlert] = useState<boolean>(false);
+  const [magicAlertTimeoutId, setMagicAlertTimeoutId] = useState<any>(null);
+
+  const handleMagicPaletteClick = React.useCallback((clientX: number, clientY: number) => {
+    try {
+      playRareClickSound();
+    } catch (e) {}
+
+    const newRipple = {
+      id: Date.now() + Math.random(),
+      x: clientX,
+      y: clientY
+    };
+    setRipples(prev => [...prev, newRipple]);
+
+    // 隨機選擇一個與當前不同的主題Preference (dark, light, sepia, system)
+    const availableThemes: ("dark" | "light" | "sepia" | "system")[] = ["dark", "light", "sepia", "system"];
+    const otherThemes = availableThemes.filter(t => t !== themePreference);
+    const nextTheme = otherThemes[Math.floor(Math.random() * otherThemes.length)];
+    changeTheme(nextTheme);
+
+    setMagicAlert(true);
+    if (magicAlertTimeoutId) {
+      clearTimeout(magicAlertTimeoutId);
+    }
+    const timer = setTimeout(() => {
+      setMagicAlert(false);
+    }, 4500);
+    setMagicAlertTimeoutId(timer);
+
+    const newParticles = Array.from({ length: 25 }).map((_, i) => ({
+      id: Date.now() + i + Math.random(),
+      x: clientX + (Math.random() * 200 - 100),
+      y: clientY + (Math.random() * 200 - 100),
+      emoji: ["🎨", "🔮", "🌈", "✨", "💎", "🎪", "🎭"][Math.floor(Math.random() * 7)],
+    }));
+    heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, ...newParticles].slice(-60));
+  }, [themePreference, changeTheme, magicAlertTimeoutId]);
+
   const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
   const [activeSection, setActiveSection] = useState<"portfolio" | "resume" | null>(null);
   const { tutorialStep, nextTutorialStep } = useTutorial();
@@ -1529,6 +1569,27 @@ export default function App() {
     }
   });
 
+  const [spawnedRareTypes, setSpawnedRareTypes] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_spawned_rare_types");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+      return [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [rareCollectorUnlocked, setRareCollectorUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem("mumu_ach_rare_collector") === "true";
+    } catch {
+      return false;
+    }
+  });
+
   const canX = useMotionValue(0);
   const canY = useMotionValue(0);
   const canRotate = useMotionValue(0);
@@ -1898,6 +1959,40 @@ export default function App() {
     };
   }, [windStormUnlocked]);
 
+  // 檢測集齊五種稀有物品成就
+  React.useEffect(() => {
+    const handleRareSpawned = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail && detail.rareType) {
+        const type = detail.rareType as string;
+        setSpawnedRareTypes((prev) => {
+          if (prev.includes(type)) return prev;
+          const next = [...prev, type];
+          try {
+            localStorage.setItem("mumu_spawned_rare_types", JSON.stringify(next));
+          } catch (err) {}
+          return next;
+        });
+      }
+    };
+    window.addEventListener("rare-item-spawned", handleRareSpawned);
+    return () => {
+      window.removeEventListener("rare-item-spawned", handleRareSpawned);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const required = ["amulet", "star", "apple", "palette", "ig"];
+    const hasAll = required.every((t) => spawnedRareTypes.includes(t));
+    if (hasAll && !rareCollectorUnlocked) {
+      setRareCollectorUnlocked(true);
+      try {
+        localStorage.setItem("mumu_ach_rare_collector", "true");
+      } catch (e) {}
+      triggerAchievementUnlock("奇蹟之物收集雅士 💎");
+    }
+  }, [spawnedRareTypes, rareCollectorUnlocked]);
+
   // 2. 檢測時空穿梭大師條件 (體驗完所有主題)
   React.useEffect(() => {
     if (!visitedThemes.includes(theme)) {
@@ -2249,6 +2344,45 @@ export default function App() {
     }
 
     // Always trigger subtle header and card micro-bounce feedback for responsive clicking
+    heroSectionRef.current?.setTitleBounceTrigger((prev: number) => prev + 1);
+  };
+
+  const handleMascotDrag = () => {
+    // 統計使用者在 Hero Section 的互動次數
+    incrementInteraction();
+
+    const dragDialogues = [
+      "哇！別拉我呀～本教主快被你拉走了！🐾",
+      "放開我～我要去吃罐罐！🐈",
+      "哎呀！被抓住了！不要拽著我不放嘛～🌀",
+      "好暈好暈～被你甩來甩去的！💫",
+      "喵嗚！好彈好晃！本教主身手很矯健吧！✨",
+      "放手～等一下罐罐要被打翻了啦！🥫"
+    ];
+
+    const randomDialogue = dragDialogues[Math.floor(Math.random() * dragDialogues.length)];
+    
+    // 播放可愛的波波聲音與喵喵聲
+    playPawPopSound();
+    if (Math.random() > 0.6) {
+      playMeowSound();
+    }
+
+    if (heroAutoCloseTimeoutRef.current) {
+      clearTimeout(heroAutoCloseTimeoutRef.current);
+      heroAutoCloseTimeoutRef.current = null;
+    }
+    if (heroTypingIntervalRef.current) {
+      clearInterval(heroTypingIntervalRef.current);
+      heroTypingIntervalRef.current = null;
+    }
+
+    setHeroDialogue(randomDialogue);
+    setIsHeroSpeaking(true);
+    setShowHeroDialogue(true);
+    setDisplayedDialogue(randomDialogue);
+
+    // 觸發標題微彈回饋
     heroSectionRef.current?.setTitleBounceTrigger((prev: number) => prev + 1);
   };
 
@@ -2714,7 +2848,7 @@ export default function App() {
       { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"] }
     ],
     certificates: [
-      { name: "Adobe Certified Professional in Visual Design", issuer: "Photoshop & Illustrator 專業雙認證" },
+      { name: "Adobe Certified Professional in Visual Design", issuer: "Ps & Ai 專業雙認證" },
       { name: "AutoCAD 2011、2012 Certified Professional", issuer: "Autodesk 國際認證人員" },
       { name: "TQC+ 影像處理、電腦圖像編輯製作 專業人員", issuer: "中華民國電腦技能基金會" },
       { name: "視覺傳達設計丙級技術士", issuer: "中華民國勞動部國家技術士證" }
@@ -3329,6 +3463,7 @@ export default function App() {
           showHeroDialogue={showHeroDialogue}
           displayedDialogue={displayedDialogue}
           handleHeroClick={handleHeroClick}
+          onMascotDrag={handleMascotDrag}
           tutorialStep={tutorialStep}
           tutorialDismissed5={tutorialDismissed5}
           setTutorialDismissed5={setTutorialDismissed5}
@@ -3344,6 +3479,8 @@ export default function App() {
           handleCanDrag={handleCanDrag}
           handleCanDragEnd={handleCanDragEnd}
           handleCanTap={handleCanTap}
+          onRandomProject={handleRandomProject}
+          onMagicPaletteClick={handleMagicPaletteClick}
         />
 
         {/* 特色亮點區域 (Highlights Section) - 快速展示履歷重點 */}
@@ -4403,6 +4540,8 @@ export default function App() {
         pdfUnlocked={pdfUnlocked}
         tutorialAchUnlocked={tutorialAchUnlocked}
         windStormUnlocked={windStormUnlocked}
+        rareCollectorUnlocked={rareCollectorUnlocked}
+        spawnedRareTypes={spawnedRareTypes}
         setHeroParticles={(action) => heroSectionRef.current?.setHeroParticles(action)}
         setTitleBounceTrigger={(action) => heroSectionRef.current?.setTitleBounceTrigger(action)}
       />
@@ -4445,6 +4584,96 @@ export default function App() {
             >
               <X className="h-3.5 w-3.5" />
             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 炫彩色彩漣漪 (Color Ripple) */}
+      <AnimatePresence>
+        {ripples.map((ripple) => (
+          <div
+            key={ripple.id}
+            className="fixed inset-0 pointer-events-none z-[99999]"
+            style={{ overflow: "hidden" }}
+          >
+            {/* Concentric expanding color wave 1 */}
+            <motion.div
+              initial={{ 
+                position: "absolute",
+                left: ripple.x,
+                top: ripple.y,
+                x: "-50%",
+                y: "-50%",
+                width: 0,
+                height: 0,
+                opacity: 1,
+                borderRadius: "9999px",
+                background: "radial-gradient(circle, rgba(236,72,153,0.6) 0%, rgba(139,92,246,0.4) 50%, rgba(59,130,246,0) 70%)"
+              }}
+              animate={{ 
+                width: "350vmax",
+                height: "350vmax",
+                opacity: 0
+              }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.6, ease: "easeOut" }}
+              onAnimationComplete={() => {
+                setRipples((prev) => prev.filter((r) => r.id !== ripple.id));
+              }}
+            />
+            {/* Concentric expanding color wave 2 (delayed slightly for prism shimmer) */}
+            <motion.div
+              initial={{ 
+                position: "absolute",
+                left: ripple.x,
+                top: ripple.y,
+                x: "-50%",
+                y: "-50%",
+                width: 0,
+                height: 0,
+                opacity: 0.8,
+                borderRadius: "9999px",
+                background: "radial-gradient(circle, rgba(251,191,36,0.5) 0%, rgba(236,72,153,0.3) 40%, rgba(16,185,129,0) 70%)"
+              }}
+              animate={{ 
+                width: "300vmax",
+                height: "300vmax",
+                opacity: 0
+              }}
+              transition={{ duration: 1.4, delay: 0.15, ease: "easeOut" }}
+            />
+          </div>
+        ))}
+      </AnimatePresence>
+
+      {/* 隱藏奇幻領域提示 (Magic Palette Hidden Realm Alert) */}
+      <AnimatePresence>
+        {magicAlert && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: -50, x: "-50%" }}
+            animate={{ opacity: 1, scale: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, scale: 0.8, y: -20, x: "-50%", transition: { duration: 0.25 } }}
+            className={`fixed top-8 left-1/2 -translate-x-1/2 z-[100000] px-6 py-4 rounded-2xl border shadow-2xl flex items-center gap-3.5 max-w-sm backdrop-blur-md animate-pulse [animation-duration:3s] ${
+              theme === "sepia"
+                ? "bg-[#FCF8EE]/95 border-[#A05C2C]/40 text-[#4F3C28] shadow-[#A05C2C]/20"
+                : theme === "light"
+                ? "bg-white/95 border-amber-400/40 text-zinc-800 shadow-amber-500/20"
+                : "bg-zinc-900/95 border-purple-500/40 text-zinc-100 shadow-purple-500/35"
+            }`}
+          >
+            {/* Prismatic gradient glowing border */}
+            <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-30 -z-10 blur-sm pointer-events-none" />
+            
+            <div className="p-2.5 bg-gradient-to-br from-purple-500 via-pink-500 to-yellow-500 rounded-xl text-white shadow-md flex-shrink-0">
+              <Sparkles className="h-5 w-5 animate-spin" style={{ animationDuration: "3s" }} />
+            </div>
+            <div className="flex-1 text-left">
+              <span className="block text-[10px] font-bold tracking-wider text-purple-500 dark:text-purple-400 uppercase font-sans">🔮 系統提示 🔮</span>
+              <h4 className="text-sm font-bold tracking-wide mt-1">您已暫時進入隱藏奇幻領域！</h4>
+              <p className="text-[11px] opacity-80 mt-1 leading-relaxed">
+                幻彩調色盤釋放了被封印的色彩魔法，網頁主題已隨機切換。
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

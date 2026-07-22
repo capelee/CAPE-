@@ -414,4 +414,97 @@ export const playCardFlipSound = () => {
   }
 };
 
+// 6. ✨ 稀有物品噴出之璀璨金光風鈴音效 (Shimmering Gold Glisten Chime)
+export const playRareDropSound = () => {
+  try {
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const freqs = [1800, 2400, 3100, 3800];
+    freqs.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + idx * 0.04);
+      
+      gain.gain.setValueAtTime(0, now + idx * 0.04);
+      gain.gain.linearRampToValueAtTime(0.04, now + idx * 0.04 + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.04 + 0.3);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.start(now + idx * 0.04);
+      osc.stop(now + idx * 0.04 + 0.35);
+    });
+  } catch (e) {}
+};
+
+// 7. ⛩️ 稀有物品點擊之神聖神樂鈴聲與梵音鐘響 (Sacred Shrine Suzu Bell & Bell Chime)
+export const playRareClickSound = () => {
+  try {
+    const ctx = audioContextManager.getOrCreateContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    // 1. 神樂鈴 (Suzu) - 三重清脆黃銅共振
+    const bellFreqs = [1450, 1950, 2300, 2900, 3600];
+    const delays = [0, 0.15, 0.3];
+    
+    delays.forEach((delay, shakeIdx) => {
+      const t = now + delay;
+      const vol = 0.06 * Math.pow(0.8, shakeIdx);
+      
+      const gainNode = ctx.createGain();
+      gainNode.gain.setValueAtTime(0, t);
+      gainNode.gain.linearRampToValueAtTime(vol, t + 0.015);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      
+      bellFreqs.forEach((freq) => {
+        const osc = ctx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, t);
+        osc.frequency.linearRampToValueAtTime(freq + 10, t + 0.2);
+        
+        osc.connect(gainNode);
+        osc.start(t);
+        osc.stop(t + 0.45);
+      });
+      gainNode.connect(ctx.destination);
+    });
+
+    // 2. 深遠梵鐘 (Temple Bell) - 渾厚低頻共鳴，增加莊嚴感
+    const baseFreq = 110; // A2
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const subOsc = ctx.createOscillator();
+    const templeGain = ctx.createGain();
+    
+    osc1.type = "sine";
+    osc1.frequency.setValueAtTime(baseFreq, now);
+    osc2.type = "triangle";
+    osc2.frequency.setValueAtTime(baseFreq * 1.5, now); // 五度泛音
+    subOsc.type = "sine";
+    subOsc.frequency.setValueAtTime(baseFreq * 0.5, now); // 次低音
+    
+    templeGain.gain.setValueAtTime(0.12, now);
+    templeGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+    
+    osc1.connect(templeGain);
+    osc2.connect(templeGain);
+    subOsc.connect(templeGain);
+    templeGain.connect(ctx.destination);
+    
+    osc1.start(now);
+    osc2.start(now);
+    subOsc.start(now);
+    osc1.stop(now + 1.3);
+    osc2.stop(now + 1.3);
+    subOsc.stop(now + 1.3);
+  } catch (e) {}
+};
+
+
 
