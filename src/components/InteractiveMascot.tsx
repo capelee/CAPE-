@@ -112,12 +112,15 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const currentScaleRef = React.useRef<number>(1);
   
   const dragControls = useDragControls();
-  const [isDraggable, setIsDraggable] = useState<boolean>(false);
+  const hasDraggedRef = useRef<boolean>(false);
   const holdTimerRefMascot = useRef<NodeJS.Timeout | null>(null);
+  const startPosRefMascot = useRef<{ x: number; y: number } | null>(null);
 
   const handlePointerDownMascot = (e: React.PointerEvent) => {
+    hasDraggedRef.current = false;
+    startPosRefMascot.current = { x: e.clientX, y: e.clientY };
     holdTimerRefMascot.current = setTimeout(() => {
-      setIsDraggable(true);
+      hasDraggedRef.current = true;
       dragControls.start(e);
       try {
         if (navigator.vibrate) navigator.vibrate(50);
@@ -125,14 +128,23 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
     }, 500);
   };
 
+  const handlePointerMoveMascot = (e: React.PointerEvent) => {
+    if (holdTimerRefMascot.current && startPosRefMascot.current) {
+      const dx = Math.abs(e.clientX - startPosRefMascot.current.x);
+      const dy = Math.abs(e.clientY - startPosRefMascot.current.y);
+      if (dx > 10 || dy > 10) {
+        clearTimeout(holdTimerRefMascot.current);
+        holdTimerRefMascot.current = null;
+      }
+    }
+  };
+
   const handlePointerUpMascot = () => {
     if (holdTimerRefMascot.current) {
       clearTimeout(holdTimerRefMascot.current);
       holdTimerRefMascot.current = null;
     }
-    setTimeout(() => {
-      setIsDraggable(false);
-    }, 150);
+    startPosRefMascot.current = null;
   };
 
   // 當對話框打開或更換對話時，觸發嘴巴開合動畫 (若有提供說話圖片或多幀)
@@ -560,16 +572,24 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
           
           <motion.button
             drag={true}
+            dragListener={false}
             dragControls={dragControls}
             dragConstraints={{ left: -300, right: 300, top: -400, bottom: 400 }}
             dragElastic={0.2}
             onClick={() => {
-              handleNextMascot(true);
+              if (!hasDraggedRef.current) {
+                handleNextMascot(true);
+              }
             }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
+            onPointerDown={handlePointerDownMascot}
+            onPointerMove={handlePointerMoveMascot}
+            onPointerUp={handlePointerUpMascot}
+            onPointerCancel={handlePointerUpMascot}
+            onPointerLeave={handlePointerUpMascot}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             type="button"
@@ -601,23 +621,9 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               }
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
-            title="點擊互動！"
+            title="點我互動！(長按1秒可拖曳)"
             style={{ willChange: "transform", touchAction: "pan-y", rotate: smoothRotate }}
           >
-            {/* 專屬拖曳把手 */}
-            <div
-              onPointerDown={(e) => {
-                e.stopPropagation();
-                dragControls.start(e);
-              }}
-              onTouchStart={(e) => e.stopPropagation()}
-              className="absolute -top-3 right-0 z-30 bg-amber-500/90 hover:bg-amber-600 text-white text-[10px] font-medium px-2 py-0.5 rounded-full shadow-md flex items-center gap-1 cursor-grab active:cursor-grabbing backdrop-blur-sm transition-transform active:scale-95"
-              style={{ touchAction: "none" }}
-              title="按住此把手可拖曳角色"
-            >
-              <span>🐾</span>
-              <span>拖曳</span>
-            </div>
             {/* 動態背景彩色發光暈圈 */}
             <div 
               className={`absolute inset-4 -z-10 rounded-full blur-[40px] opacity-[0.06] group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 ease-out bg-gradient-to-tr ${

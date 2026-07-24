@@ -64,12 +64,12 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
 
   // 拖曳狀態
   const [isDragging, setIsDragging] = React.useState(false);
-  const [isDraggable, setIsDraggable] = React.useState(false);
   const holdTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const startPosRef = React.useRef<{ x: number; y: number } | null>(null);
 
   const handlePointerDown = (e: React.PointerEvent) => {
+    startPosRef.current = { x: e.clientX, y: e.clientY };
     holdTimerRef.current = setTimeout(() => {
-      setIsDraggable(true);
       dragControls.start(e);
       try {
         if (navigator.vibrate) navigator.vibrate(50);
@@ -77,14 +77,23 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
     }, 500);
   };
 
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (holdTimerRef.current && startPosRef.current) {
+      const dx = Math.abs(e.clientX - startPosRef.current.x);
+      const dy = Math.abs(e.clientY - startPosRef.current.y);
+      if (dx > 10 || dy > 10) {
+        clearTimeout(holdTimerRef.current);
+        holdTimerRef.current = null;
+      }
+    }
+  };
+
   const handlePointerUpOrLeave = () => {
     if (holdTimerRef.current) {
       clearTimeout(holdTimerRef.current);
       holdTimerRef.current = null;
     }
-    setTimeout(() => {
-      setIsDraggable(false);
-    }, 150);
+    startPosRef.current = null;
   };
 
   // 掉落物介面與狀態
@@ -266,7 +275,13 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
         {/* Inner container for absolute dragging, hover, tap, and click gestures */}
         <motion.div
           drag={true}
+          dragListener={false}
           dragControls={dragControls}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUpOrLeave}
+          onPointerCancel={handlePointerUpOrLeave}
+          onPointerLeave={handlePointerUpOrLeave}
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           dragElastic={0.65}
           dragTransition={{ bounceStiffness: 220, bounceDamping: 14 }}
@@ -306,22 +321,8 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
               }
             }
           }}
-          className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none will-change-transform"
+          className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing group select-none will-change-transform"
         >
-          {/* 專屬拖曳把手 (Drag Handle) 讓手機版可順暢滑動頁面，按住此把手才可拖曳 */}
-          <div
-            onPointerDown={(e) => {
-              e.stopPropagation();
-              dragControls.start(e);
-            }}
-            onTouchStart={(e) => e.stopPropagation()}
-            className="absolute top-2 right-2 sm:top-4 sm:right-4 z-30 bg-amber-500/90 hover:bg-amber-600 text-white text-[11px] font-medium px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 cursor-grab active:cursor-grabbing backdrop-blur-sm transition-transform active:scale-95"
-            style={{ touchAction: "none" }}
-            title="按住此把手可拖曳吉祥物"
-          >
-            <span>🐾</span>
-            <span className="hidden sm:inline">拖曳</span>
-          </div>
         <motion.div style={{ y: glowY }} className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms] will-change-transform" />
         
         <AnimatePresence>
