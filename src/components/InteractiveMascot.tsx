@@ -442,7 +442,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                     ? "bg-[#FCF8EE] border-amber-600/40 shadow-[0_4px_25px_rgba(180,83,9,0.18)]"
                     : "bg-[#0b0b0c] border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.22)]"
                 } border p-3 pt-3.5 rounded-2xl mb-2.5 relative flex flex-col items-center justify-center pointer-events-auto max-w-[145px] sm:max-w-[190px] md:max-w-[240px] overflow-hidden cursor-pointer transition-colors group`}
-                style={{ touchAction: "none" }}
+                style={{ touchAction: "pan-y" }}
                 title="點擊對話，長按可自由拖曳！🐾"
               >
                 {/* 關閉對話框的 X 按鈕 */}
@@ -575,7 +575,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
             title="點我互動！(長按可拖曳)"
-            style={{ willChange: "transform", touchAction: "none", rotate: smoothRotate }}
+            style={{ willChange: "transform", touchAction: "pan-y", rotate: smoothRotate }}
           >
             {/* 動態背景彩色發光暈圈 */}
             <div 

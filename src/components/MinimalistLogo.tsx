@@ -546,13 +546,25 @@ export function MinimalistLogo({
             `} />
 
             <div className="space-y-2">
-              <p className="pr-3 leading-relaxed tracking-wide text-left text-[11px] sm:text-xs">
+              <p className={`pr-3 leading-relaxed tracking-wide text-left text-[11px] sm:text-xs ${
+                theme === "sepia"
+                  ? "text-[#382B1D]"
+                  : theme === "light"
+                  ? "text-zinc-800"
+                  : "text-zinc-100"
+              }`}>
                 {showExternalBubble && externalDialogue ? (
-                  <span className="font-bold text-amber-600 dark:text-amber-400 block">
+                  <span className={`font-bold block ${
+                    theme === "sepia"
+                      ? "text-[#382B1D]"
+                      : theme === "light"
+                      ? "text-zinc-900"
+                      : "text-zinc-100"
+                  }`}>
                     {externalDialogue}
                   </span>
                 ) : isBalloonDialogue ? (
-                  <span className="font-bold text-amber-500 animate-pulse block">
+                  <span className="font-bold text-amber-500 dark:text-amber-400 animate-pulse block">
                     哎呀！再戳本教主就要胖成貓咪氣球飛走啦！🎈 救喵啊～ 💨
                   </span>
                 ) : (
