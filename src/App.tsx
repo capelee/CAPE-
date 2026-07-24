@@ -58,7 +58,7 @@ import { categoryMascotMap } from "./utils/mascotData";
 import { FLAVOR_PHYSICS } from "./utils/flavorPhysics";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
-import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl } from "./utils";
+import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl, sanitizePortfolioItem } from "./utils";
 import { animaleseSynth } from "./utils/animalese";
 import { playMeowSound, playCanClinkSound, catPurr, audioContextManager, playCardFlipSound, playPawPopSound, playRareClickSound } from "./utils/audioEffects";
 
@@ -139,10 +139,10 @@ import { InteractiveMascot } from "./components/InteractiveMascot";
 import { PortfolioCard } from "./components/PortfolioCard";
 import { MinimalistLogo } from "./components/MinimalistLogo";
 import { DesignerBento } from "./components/DesignerBento";
-import { AIWorkflowModal } from "./components/AIWorkflowModal";
-import { ContactModal } from "./components/ContactModal";
-import { PortfolioDetailModal } from "./components/PortfolioDetailModal";
-import { CatFortuneTeller } from "./components/CatFortuneTeller";
+const AIWorkflowModal = React.lazy(() => import("./components/AIWorkflowModal").then(module => ({ default: module.AIWorkflowModal })));
+const ContactModal = React.lazy(() => import("./components/ContactModal").then(module => ({ default: module.ContactModal })));
+const PortfolioDetailModal = React.lazy(() => import("./components/PortfolioDetailModal").then(module => ({ default: module.PortfolioDetailModal })));
+const CatFortuneTeller = React.lazy(() => import("./components/CatFortuneTeller").then(module => ({ default: module.CatFortuneTeller })));
 import { CatFootprintsLayer } from "./components/CatFootprintsLayer";
 import { MumuCertModal, MumuCertModalRef } from "./components/MumuCertModal";
 
@@ -270,27 +270,27 @@ const playMagicDingSound = () => {
     if (!ctx) return;
     const now = ctx.currentTime;
 
-    // A beautiful complex bell/chime chime with sharp attack and lingering decay
+    // A beautiful, warm, and gentle bell/chime chord with soft attack and lingering decay
     const osc1 = ctx.createOscillator();
     const osc2 = ctx.createOscillator();
     const osc3 = ctx.createOscillator();
     const gainNode = ctx.createGain();
 
     osc1.type = "sine";
-    osc1.frequency.setValueAtTime(987.77, now); // B5 note
-    osc1.frequency.exponentialRampToValueAtTime(1975.53, now + 0.12); // slides upward beautifully
+    osc1.frequency.setValueAtTime(659.25, now); // E5 note
+    osc1.frequency.exponentialRampToValueAtTime(523.25, now + 0.8); // gentle slide down to C5
 
     osc2.type = "sine";
-    osc2.frequency.setValueAtTime(1318.51, now); // E6 note for a pleasant chord
-    osc2.frequency.exponentialRampToValueAtTime(2637.02, now + 0.12);
+    osc2.frequency.setValueAtTime(783.99, now); // G5 note
+    osc2.frequency.exponentialRampToValueAtTime(659.25, now + 0.6); // gentle slide down to E5
 
-    osc3.type = "triangle";
-    osc3.frequency.setValueAtTime(1567.98, now); // G6 note
-    osc3.frequency.exponentialRampToValueAtTime(3135.96, now + 0.15);
+    osc3.type = "sine"; // Change triangle to sine to avoid piercing odd harmonics
+    osc3.frequency.setValueAtTime(987.77, now); // B5 note
+    osc3.frequency.exponentialRampToValueAtTime(783.99, now + 0.7); // gentle slide down to G5
 
     gainNode.gain.setValueAtTime(0.001, now);
-    gainNode.gain.linearRampToValueAtTime(0.25, now + 0.05); // sharp magical attack
-    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.4); // lingering magical chime decay
+    gainNode.gain.linearRampToValueAtTime(0.07, now + 0.08); // softer, slightly slower attack (80ms instead of 50ms)
+    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.2); // smooth lingering decay
 
     osc1.connect(gainNode);
     osc2.connect(gainNode);
@@ -300,9 +300,9 @@ const playMagicDingSound = () => {
     osc1.start(now);
     osc2.start(now);
     osc3.start(now);
-    osc1.stop(now + 1.5);
-    osc2.stop(now + 1.5);
-    osc3.stop(now + 1.5);
+    osc1.stop(now + 1.3);
+    osc2.stop(now + 1.3);
+    osc3.stop(now + 1.3);
   } catch (e) {
     // Safety fallback
   }
@@ -869,10 +869,10 @@ export default function App() {
 
     const loadLocalData = () => {
       import("./data").then(module => {
-        const initialItems = module.initialPortfolioData;
-        initialDataRef.current = initialItems;
-        setItems(initialItems);
-        setupFolderImages(initialItems);
+        const sanitized = module.initialPortfolioData.map(sanitizePortfolioItem);
+        initialDataRef.current = sanitized;
+        setItems(sanitized);
+        setupFolderImages(sanitized);
       });
     };
 
@@ -884,9 +884,10 @@ export default function App() {
       })
       .then(res => {
         if (res.success && res.data && res.data.length > 0) {
-          initialDataRef.current = res.data;
-          setItems(res.data);
-          setupFolderImages(res.data);
+          const sanitized = res.data.map(sanitizePortfolioItem);
+          initialDataRef.current = sanitized;
+          setItems(sanitized);
+          setupFolderImages(sanitized);
         } else {
           loadLocalData();
         }
@@ -1598,6 +1599,7 @@ export default function App() {
   const canPhysicsId = React.useRef<number | null>(null);
 
   const [canFlavor, setCanFlavor] = useState<"tuna" | "chicken" | "luxury">("luxury");
+  const [mumuClickCount, setMumuClickCount] = useState<number>(0);
 
 
   const handleCanDragStart = () => {
@@ -2274,6 +2276,20 @@ export default function App() {
     // 統計使用者在 Hero Section 的互動次數
     incrementInteraction();
 
+    // 累積點擊姆貓次數，滿 5 次解鎖罐罐
+    setMumuClickCount(prev => {
+      const nextCount = prev + 1;
+      if (nextCount === 5) {
+        try {
+          playMagicDingSound();
+          playCanClinkSound();
+        } catch (err) {}
+        setHeroDialogue("喵嗚！被你發現了！罐罐奉納模式啟動！🥫✨ 拖曳罐罐到我頭上餵我吧！🐾");
+        setIsHeroSpeaking(true);
+      }
+      return nextCount;
+    });
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -2837,7 +2853,7 @@ export default function App() {
     company: "立陽鴻企業禮贈品",
     school: "環球科技大學",
     dept: "創意商品設計學系 畢業",
-    experience: "5 ~ 6 年品牌商業整合設計實戰經驗",
+    experience: "6 年以上品牌商業整合設計實戰經驗",
     desireTitle: "視覺設計師 / 平面設計師",
     email: "capelee0715@gmail.com",
     portfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
@@ -2867,7 +2883,7 @@ export default function App() {
       { id: "s4", title: "影音製作", desc: "影片腳本企劃、現場拍攝與導演、後期剪輯、特效字卡、AI配音輔助及多媒體影像後期整合。", badge: "Video" },
       { id: "s5", title: "印刷完稿", desc: "專業各式紙質印刷品版面設計、精確上色、印前拆版及輸出檔案管理，熟悉複雜印刷工藝。", badge: "Print" },
       { id: "s6", title: "IP 與周邊開發", desc: "品牌授權 IP 商品視覺造型設計、原創潮流角色開發與實體周邊公仔製作流程監測。", badge: "IP Dev" },
-      { id: "s7", title: "AI 輔助工作流", desc: "熟練掌握 Midjourney, Firefly, Stable Diffusion 等 AIGC 繪圖工具，能極速產出高品質創意底稿。", badge: "AIGC Flow" },
+      { id: "s7", title: "AI 輔助工作流", desc: "熟練掌握 GPTImage , Firefly , Nano Bananana 等 AIGC 繪圖工具，能極速產出高品質創意底稿。", badge: "AIGC Flow" },
       { id: "s8", title: "禮贈品專屬規劃", desc: "企業客製化高質感禮贈品視覺排版設計，包含金屬徽章、特殊烤漆獎牌、提袋完稿工藝。", badge: "Gifts" }
     ]
   };
@@ -3481,6 +3497,7 @@ export default function App() {
           handleCanTap={handleCanTap}
           onRandomProject={handleRandomProject}
           onMagicPaletteClick={handleMagicPaletteClick}
+          showCan={mumuClickCount >= 5}
         />
 
         {/* 特色亮點區域 (Highlights Section) - 快速展示履歷重點 */}
@@ -3502,7 +3519,7 @@ export default function App() {
                   Icon: Sparkles, 
                   color: "text-purple-500", 
                   bg: "bg-purple-500/10",
-                  content: "熟練運用 Midjourney 等生成式 AI 工具，探索當代生成藝術新邊界。將最新科技無縫整合至實體與數位設計工作流中，打破傳統創作框架。"
+                  content: "熟練運用 GPT Image & Nano Banana 等生成式 AI 工具，探索當代生成藝術新邊界。將最新科技無縫整合至實體與數位設計工作流中，打破傳統創作框架。"
                 },
                 { 
                   label: "全方位視覺整合", 
@@ -4230,7 +4247,9 @@ export default function App() {
                     className="absolute right-full mr-3 sm:mr-4 top-1/2 -translate-y-1/2"
                   />
                 )}
-                <CatFortuneTeller theme={theme} onConsult={handleFortuneConsult} />
+                <React.Suspense fallback={<div className="w-[56px] h-[94px] flex items-center justify-center"><div className="w-4 h-4 rounded-full border border-amber-500/30 border-t-amber-500 animate-spin" /></div>}>
+                  <CatFortuneTeller theme={theme} onConsult={handleFortuneConsult} />
+                </React.Suspense>
                 <span className={`text-[8px] font-serif tracking-[0.25em] uppercase opacity-35 select-none`}>
                   御神籤
                 </span>
@@ -4455,32 +4474,38 @@ export default function App() {
       {/* 全域作品亮點彈出 Lightbox (Lightbox Modal with motion) */}
       <AnimatePresence>
         {activeModalItem && (
-          <PortfolioDetailModal
-            activeModalItem={activeModalItem}
-            onClose={() => setActiveModalItem(null)}
-            filteredItems={filteredItems}
-            onPrevItem={handlePrevModalItem}
-            onNextItem={handleNextModalItem}
-          />
+          <React.Suspense fallback={null}>
+            <PortfolioDetailModal
+              activeModalItem={activeModalItem}
+              onClose={() => setActiveModalItem(null)}
+              filteredItems={filteredItems}
+              onPrevItem={handlePrevModalItem}
+              onNextItem={handleNextModalItem}
+            />
+          </React.Suspense>
         )}
       </AnimatePresence>
 
       {/* AI 設計輔助工作流彈出框 (Workflow Bottom Sheet / Modal) */}
-      <AIWorkflowModal
-        isOpen={isWorkflowOpen}
-        onClose={() => setIsWorkflowOpen(false)}
-        theme={theme}
-      />
+      <React.Suspense fallback={null}>
+        <AIWorkflowModal
+          isOpen={isWorkflowOpen}
+          onClose={() => setIsWorkflowOpen(false)}
+          theme={theme}
+        />
+      </React.Suspense>
 
       {/* 傳統 vCard 數位名片與 QR Code 彈出視窗 */}
-      <ContactModal
-        isOpen={isContactCardOpen}
-        onClose={() => setIsContactCardOpen(false)}
-        theme={theme}
-        profile={profile}
-        downloadVCard={downloadVCard}
-        vCardText={vCardText}
-      />
+      <React.Suspense fallback={null}>
+        <ContactModal
+          isOpen={isContactCardOpen}
+          onClose={() => setIsContactCardOpen(false)}
+          theme={theme}
+          profile={profile}
+          downloadVCard={downloadVCard}
+          vCardText={vCardText}
+        />
+      </React.Suspense>
 
       {/* 角色插畫類別配置：右下角生動彈出裝飾（極高解析度 GPU 隔離渲染） */}
       {(tutorialStep === 0 || tutorialStep >= 4) && (

@@ -25,6 +25,15 @@ export const DraggableCan: React.FC<DraggableCanProps> = ({
   handleCanDragEnd,
   handleCanTap
 }) => {
+  const [showEntranceEffect, setShowEntranceEffect] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowEntranceEffect(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <motion.div
       ref={canRef}
@@ -37,14 +46,56 @@ export const DraggableCan: React.FC<DraggableCanProps> = ({
       onDrag={handleCanDrag}
       onDragEnd={handleCanDragEnd}
       onTap={handleCanTap}
-      whileHover={{ scale: 1.1 }}
-      whileDrag={{ scale: 1.25, rotate: 12, cursor: "grabbing" }}
       className="absolute top-2 right-4 lg:top-0 lg:right-0 z-50 cursor-grab select-none p-1.5 active:cursor-grabbing group will-change-transform"
     >
-      <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-neutral-900/95 text-[10px] text-white font-medium px-2 py-0.5 rounded shadow-lg border border-white/10 pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        {FLAVOR_PHYSICS[canFlavor].emoji} {FLAVOR_PHYSICS[canFlavor].name}
-      </span>
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 drop-shadow-md">
+      <motion.div
+        initial={{ scale: 0, opacity: 0, rotate: -135, y: -45 }}
+        animate={{ scale: 1, opacity: 1, rotate: 0, y: 0 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 280, 
+          damping: 14,
+          delay: 0.15
+        }}
+        whileHover={{ scale: 1.12 }}
+        whileTap={{ scale: 1.25, rotate: 12 }}
+        className="relative"
+      >
+        {/* Glow / Sparkle background effect for entrance */}
+        {showEntranceEffect && (
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: [1, 1.3, 1], opacity: [0, 0.8, 0] }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute -inset-4 bg-amber-400/30 rounded-full blur-xl pointer-events-none"
+          />
+        )}
+        
+        {/* Hover subtle glow that remains interactive */}
+        <div className="absolute -inset-2 bg-amber-400/0 rounded-full blur-md pointer-events-none group-hover:bg-amber-400/15 transition-all duration-300" />
+        
+        {/* Sparkle particle effects circling the can when appearing */}
+        {showEntranceEffect && (
+          <>
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0, 1.5, 0], opacity: [0, 1, 0], x: [0, 12, 20], y: [0, -12, -24] }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+              className="absolute top-1 right-1 w-2.5 h-2.5 bg-yellow-300 rounded-full blur-[0.5px] pointer-events-none"
+            />
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0, 1.2, 0], opacity: [0, 1, 0], x: [0, -15, -25], y: [0, 10, 20] }}
+              transition={{ duration: 1.4, ease: "easeOut", delay: 0.4 }}
+              className="absolute bottom-1 left-1 w-2 h-2 bg-amber-400 rounded-full blur-[0.5px] pointer-events-none"
+            />
+          </>
+        )}
+
+        <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-neutral-900/95 text-[10px] text-white font-medium px-2 py-0.5 rounded shadow-lg border border-white/10 pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          {FLAVOR_PHYSICS[canFlavor].emoji} {FLAVOR_PHYSICS[canFlavor].name}
+        </span>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 drop-shadow-md">
         <ellipse cx="24" cy="14" rx="18" ry="6" fill={FLAVOR_PHYSICS[canFlavor].topLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1.5" />
         <ellipse cx="24" cy="14" rx="14" ry="4.5" fill={FLAVOR_PHYSICS[canFlavor].innerLidFill} stroke={FLAVOR_PHYSICS[canFlavor].topLidStroke} strokeWidth="1" />
         
@@ -99,6 +150,7 @@ export const DraggableCan: React.FC<DraggableCanProps> = ({
           </linearGradient>
         </defs>
       </svg>
+      </motion.div>
     </motion.div>
   );
 };

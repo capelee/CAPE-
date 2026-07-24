@@ -47,6 +47,7 @@ interface HeroSectionProps {
   handleCanTap: () => void;
   onRandomProject?: () => void;
   onMagicPaletteClick?: (clientX: number, clientY: number) => void;
+  showCan: boolean;
 }
 
 export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
@@ -85,7 +86,8 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
   handleCanDragEnd,
   handleCanTap,
   onRandomProject,
-  onMagicPaletteClick
+  onMagicPaletteClick,
+  showCan
 }, ref) => {
   const [titleBounceTrigger, setTitleBounceTrigger] = useState(0);
   const [heroParticles, setHeroParticles] = useState<any[]>([]);
@@ -134,7 +136,7 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
         onMagicPaletteClick={onMagicPaletteClick}
       />
 
-      {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6 && (
+      {showCan && tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6 && (
         <TutorialTooltip 
           key={`tutorial-step-6-${tutorialStep}`}
           step={6}
@@ -146,17 +148,19 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
         />
       )}
       
-      <DraggableCan
-        canRef={canRef}
-        canX={canX}
-        canY={canY}
-        canRotate={canRotate}
-        canFlavor={canFlavor}
-        handleCanDragStart={handleCanDragStart}
-        handleCanDrag={handleCanDrag}
-        handleCanDragEnd={handleCanDragEnd}
-        handleCanTap={handleCanTap}
-      />
+      {showCan && (
+        <DraggableCan
+          canRef={canRef}
+          canX={canX}
+          canY={canY}
+          canRotate={canRotate}
+          canFlavor={canFlavor}
+          handleCanDragStart={handleCanDragStart}
+          handleCanDrag={handleCanDrag}
+          handleCanDragEnd={handleCanDragEnd}
+          handleCanTap={handleCanTap}
+        />
+      )}
     </section>
   );
 });

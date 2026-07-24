@@ -308,17 +308,17 @@ export const playCanClinkSound = () => {
     const gainNode2 = ctx.createGain();
 
     osc1.type = "sine";
-    osc1.frequency.setValueAtTime(1150, now);
-    osc1.frequency.exponentialRampToValueAtTime(750, now + 0.1);
+    osc1.frequency.setValueAtTime(800, now);
+    osc1.frequency.exponentialRampToValueAtTime(500, now + 0.1);
 
-    osc2.type = "triangle";
-    osc2.frequency.setValueAtTime(1850, now);
-    osc2.frequency.exponentialRampToValueAtTime(1450, now + 0.08);
+    osc2.type = "sine"; // Change triangle to sine to make it warmer and less harsh
+    osc2.frequency.setValueAtTime(1200, now);
+    osc2.frequency.exponentialRampToValueAtTime(800, now + 0.08);
 
-    gainNode1.gain.setValueAtTime(0.05, now);
+    gainNode1.gain.setValueAtTime(0.025, now); // Softer volume (0.025 instead of 0.05)
     gainNode1.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
 
-    gainNode2.gain.setValueAtTime(0.04, now);
+    gainNode2.gain.setValueAtTime(0.02, now); // Softer volume (0.02 instead of 0.04)
     gainNode2.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
 
     osc1.connect(gainNode1);
@@ -421,7 +421,7 @@ export const playRareDropSound = () => {
     if (!ctx) return;
     const now = ctx.currentTime;
 
-    const freqs = [1800, 2400, 3100, 3800];
+    const freqs = [1200, 1600, 2000, 2400]; // Lowered from [1800, 2400, 3100, 3800] for a warmer tone
     freqs.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -430,7 +430,7 @@ export const playRareDropSound = () => {
       osc.frequency.setValueAtTime(freq, now + idx * 0.04);
       
       gain.gain.setValueAtTime(0, now + idx * 0.04);
-      gain.gain.linearRampToValueAtTime(0.04, now + idx * 0.04 + 0.01);
+      gain.gain.linearRampToValueAtTime(0.02, now + idx * 0.04 + 0.01); // Softer volume (0.02 instead of 0.04)
       gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.04 + 0.3);
       
       osc.connect(gain);
@@ -450,12 +450,12 @@ export const playRareClickSound = () => {
     const now = ctx.currentTime;
 
     // 1. 神樂鈴 (Suzu) - 三重清脆黃銅共振
-    const bellFreqs = [1450, 1950, 2300, 2900, 3600];
+    const bellFreqs = [1200, 1550, 1900, 2400, 2900]; // Slightly lowered frequency spectrum to make it warmer
     const delays = [0, 0.15, 0.3];
     
     delays.forEach((delay, shakeIdx) => {
       const t = now + delay;
-      const vol = 0.06 * Math.pow(0.8, shakeIdx);
+      const vol = 0.04 * Math.pow(0.8, shakeIdx); // Lowered peak volume (0.04 instead of 0.06)
       
       const gainNode = ctx.createGain();
       gainNode.gain.setValueAtTime(0, t);

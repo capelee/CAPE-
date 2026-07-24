@@ -899,7 +899,10 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
 
             {/* Interactive Blessing Button (Ema styled button) */}
             <div className="w-full space-y-2 relative z-10">
-              <button
+              <a
+                href="https://www.instagram.com/mumao1_the_cat_religion/"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => {
                   try {
                     playMeowSound();
@@ -925,7 +928,7 @@ export const MumuCertModal = forwardRef<MumuCertModalRef, MumuCertModalProps>((p
               >
                 <Sparkles className="h-4 w-4 fill-current animate-spin" style={{ animationDuration: "3.5s" }} />
                 召喚教主守護御守・滿願成就！🐾
-              </button>
+              </a>
 
               <p className={`text-[9px] tracking-wide font-mono opacity-60 ${
                 theme === "sepia" ? "text-[#EAD09D]" : ""

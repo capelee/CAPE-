@@ -6,7 +6,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "影音與多媒體設計",
     "title": "WILD BURGER CLUB™ 微縮世界影片",
     "titleEn": "WILD BURGER CLUB™ Miniature World Promotional Video",
-    "philosophy": "運用微縮模型攝影手法，將巨型漢堡轉化為險峻的探險荒野。透過溫暖的黃昏光影、擬真攀爬人偶與指南針道具，結合美式復古手繪字體，構築充滿故事張力的超現實視覺。",
+    "philosophy": "以微縮模型視角將巨型漢堡重塑為攀爬場景，搭配擬真人偶、指南針與木紋底座，並結合美式復古手寫字體與暖調夕陽光影，建立具備探索敘事感與空間層次的超現實視覺。",
     "tools": [
       "Premiere",
       "AE",
@@ -28,7 +28,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "影音與多媒體設計",
     "title": "GUCCI BLOOM 品牌行銷短片",
     "titleEn": "GUCCI BLOOM Brand Promotional Short Video",
-    "philosophy": "融合英式庭園與史前元素，以置中香水瓶與石柱為視覺焦點。藉由暖金逆光渲染巨型植被與暴龍，在強烈衝突的超現實構圖中導入典雅字體，形塑荒誕且優雅的奇幻美學。",
+    "philosophy": "運用置中對稱構圖確立香水主體，結合暖金色逆光與繁複花卉庭園，將古典石柱基座與史前暴龍並置。透過精細的景深層次與襯線字體排版，呈現具備超現實張力的視覺敘事。",
     "tools": [
       "Premiere",
       "AE",
@@ -50,7 +50,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "影音與多媒體設計",
     "title": "SHONE恐龍自我介紹 動態短片",
     "titleEn": "SHONE Dinosaur Character Introduction Short Video",
-    "philosophy": "以美式街頭潮流為靈感，運用高飽和藍、黃、紅對比色與粗黑幾何線條，塑造戴棒球帽、踏滑板的恐龍角色。透過閃電符號與手勢注入動感，建立具親和力的美式卡通視覺。",
+    "philosophy": "運用高飽和藍黃紅對比色調與手繪粗輪廓線，建構美式街頭風格的恐龍角色。透過棒球帽、滑板及閃電符號等街頭元素，結合活潑手勢，傳遞動感且具親和力的美式卡通視覺。",
     "isHighlight": true,
     "tools": [
       "AE",
@@ -63,8 +63,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "placeholderId": "VIDEO_SHONE_INTRO_WVvC8x8r_W8",
     "colorTheme": "from-[#0F2B1F] via-[#1C4534] to-[#0A1A14]",
     "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG",
-      "https://img.youtube.com/vi/WVvC8x8r_W8/0.jpg"
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG"
     ],
     "videoUrl": "https://www.youtube.com/watch?v=WVvC8x8r_W8"
   },
@@ -73,7 +72,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "影音與多媒體設計",
     "title": "BRONTI COFFEE HOUSE 品牌日常短片",
     "titleEn": "BRONTI COFFEE HOUSE Brand Short Film",
-    "philosophy": "以擬人化角色為視覺核心，融合大地色系與細緻的木質調空間，建構具繪本感的故事場景。排版搭配筆劃古典的襯線字體與柔和的自然逆光，收斂展現溫潤的品牌基調。",
+    "philosophy": "運用擬人化恐龍角色為視覺主體，結合暖色調木質空間與自然逆光折射，營造具故事感的繪本場景。",
     "isHighlight": true,
     "tools": [
       "Premiere",
@@ -96,7 +95,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "東行酒造 TOUKOU SHUZO CIS",
     "titleEn": "Toukou Shuzo Brewery Brand Identity System",
-    "philosophy": "將「東」字融於幾何六角家徽，搭配中軸對稱的古典明體與現代無襯線字體。色彩選用經典朱紅與低飽和金屬色，於壓紋紙質上呈顯凹凸層次，奠定酒造品牌的歷史底蘊與工藝秩序。",
+    "philosophy": "以幾何六角形框線融合「東」字家徽為核心，採中軸對稱佈局。搭配古典明體與現代無襯線字體，並以硃砂紅與香檳金雙色，在具備自然紋理的紙介質上，展現精準的排版秩序。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -161,7 +160,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "Sea Siren Festival",
     "titleEn": "Sea Siren Festival Brand Identity & CIS Design",
-    "philosophy": "以深邃海洋藍與珊瑚粉橘為基調，融合海妖神話與波浪幾何，建構具潮流感之音樂祭識別。運用流動線條與不對稱網格，展現富張力且優雅的當代前衛視覺美學。",
+    "philosophy": "運用美式復古劇場構圖，以對稱紅色帷幕、古典柱飾與燈箱牌匾建立舞台感。結合手繪卡通角色與海洋元素，搭配暖黃與紅藍復古色調，構築具經典懷舊感的音樂祭視覺識別。",
     "tools": [
       "Ai",
       "Photoshop",
@@ -230,7 +229,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "網站產品瀑布頁",
     "title": "東行酒造 TOUKOU SHUZO 瀑布圖",
     "titleEn": "Toukou Shuzo Brewery Brand Waterfall Showcase",
-    "philosophy": "以八角幾何徽章融合漢字「東」，搭配明體與無襯線雙語排版。瓶貼採用溫潤和紙質地輔以麻葉底紋，透過垂直構圖與暖調自然光影，傳遞傳統酒造的工藝底蘊。",
+    "philosophy": "運用八角幾何徽章與明體雙語排版，結合瓶標的和紙質地與微亮麻葉底紋。採用不對稱垂直構圖，藉由斜射自然光影與陶器搭配，展現低飽和度的靜謐器物美學。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -268,7 +267,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商品周邊企業禮贈品",
     "title": "新寮鎮安宮 手機繩及夾片吊飾",
     "titleEn": "Xinliao Zhenangong Lanyards & Acrylic Charms",
-    "philosophy": "以鮮明黃、紅機能編織繩搭配Q版虎爺聚寶盆插畫，將傳統宗教信仰轉化為現代潮流配件。壓克力異形切割呈現視覺層次，搭配簡約文字夾片，建構具備常民文化溫度的隨身載體。",
+    "philosophy": "提取宮廟傳統的飽和黃與朱紅色調，以雙色編織繩結合暖黃標誌夾片。配搭異形切割的Q版虎爺壓克力吊飾，透過高對比色彩與實用構造，將民俗符碼轉化為隨身物件。",
     "isHighlight": false,
     "tools": [
       "Ai",
@@ -292,7 +291,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "彰化田尾花田村品牌識別系統",
     "titleEn": "Tianwei Flower Village Brand Identity System",
-    "philosophy": "融合暖調紙質紋理與古典手繪花卉插圖，營造溫馨田園氛圍。中心對稱排版配以圓形徽章與漸層襯線體，將花草與蝴蝶等自然元素轉化為精緻視覺，呈現具鄉村優雅感的品牌識別。",
+    "philosophy": "以置中對稱網格為核心，結合暖調紙質底紋與手繪花卉插圖。中心圓形徽章整合物與蝴蝶的簡化向量符號，搭配雙色漸層襯線體與雙語排版，建立系統化的田園品牌識別。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -353,7 +352,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "山野牧人品牌視覺識別系統與手冊",
     "titleEn": "Wilderness Shepherd Brand Identity System and Manual",
-    "philosophy": "以溫潤的仿手紙感肌理為基底，結合手寫書法體與幾何半圓色塊，勾勒出森林與大地的自然意象。搭配古典襯線字體與寬廣留白，展現回歸本質的職人工藝美學。",
+    "philosophy": "運用手作紙張紋理與低飽和大地色調，結合手寫書法體與半圓幾何，構築自然山巒意象。搭配襯線體排版與大量留白，傳遞質樸、回歸本質的視覺調性。",
     "isHighlight": true,
     "tools": [
       "Ai",
@@ -411,7 +410,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "山野牧人戶外實體招牌設計",
     "titleEn": "Wilderness Shepherd Storefront Signage Design",
-    "philosophy": "以溫潤大地色調與層疊山巒為背景，搭配蒼勁手寫書法字體，傳達自然質樸的工藝精神。版面利用不對稱垂直排版與工藝實物圖，在寫意山水與商業識別中取得和諧平衡。",
+    "philosophy": "以大地色系漸層與層疊山脊線條為背景，結合手寫書法體與垂直文字排版。底部並置三幅方形工藝實物攝影，在低飽和度色調中，藉由網格佈局建構具手作質感的視覺層次。",
     "isHighlight": false,
     "tools": [
       "Ai",
@@ -432,7 +431,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "百人插畫公益鳥屋誠品展",
     "titleEn": "Eslite Hundred Illustrators Charity Birdhouse Exhibition",
-    "philosophy": "展覽現場用木架整齊擺著百人公益鳥屋誠品展的實物樣貌，牆上掛有簡單好讀的大型看板，方便看展的人一個角落一個角落參觀。",
+    "philosophy": "以五角房形木造鳥屋為載體，融合普普藝術、高飽和色彩與超現實插畫語彙。透過迷幻眼球與拼貼圖騰，將立體結構轉化為兼具藝術張力的微型裝置。",
     "tools": [
       "展覽設計",
       "手繪插畫",
@@ -458,7 +457,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "平面海報設計",
     "title": "客家電視台谷風少年電視劇宣傳插畫",
     "titleEn": "Hakka TV Drama Valley Wind Boy Editorial Illustration",
-    "philosophy": "以對稱式雙人角色插畫為核心，運用粉色調漸層與植物剪影烘托暮色氛圍。透過紅線與蝴蝶的具象意象連結兩側主角，在向量扁平風格中呈現具故事感的戲劇敘事與張力。",
+    "philosophy": "採用左右對稱人物結構，搭配低飽和粉紅與淡黃漸層，建構溫和暮色背景。中央圓形橘陽與植物剪影交織出空間深度，藉由紅線連結蝴蝶與手指，以扁平向量線條導引視覺流向。",
     "isHighlight": false,
     "tools": [
       "Ai",
@@ -960,7 +959,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "philosophy": "以簡約可愛的線條勾勒混種怪獸吉祥物 IP 與好友出遊的趣味情境，搭配高對比配色與生活化動態，塑造具高識別度與親和力的插畫風格。",
     "isHighlight": false,
     "tools": [
-      "原創手繪怪獸 IP ",
+      "原創手繪怪獸 IP",
       "向量插畫",
       "貼圖設計",
       "品牌延展"
@@ -1061,7 +1060,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "角色IP&插畫與貼圖",
     "title": "CARNO卡諾吉祥物 IP角色與貼圖",
     "titleEn": "CARNO: Retro Street DJ Style Mascot IP & Sticker Design",
-    "philosophy": "以復古街頭與音樂文化為靈感，選用飽和暖橘與深沉碳黑配色，融合手繪幾何線條。搭配個性化的街頭對話編排與動態張力，形塑具街頭潮流感與強烈個人特質的 IP 視覺美學。",
+    "philosophy": "以復古街頭與音樂文化為靈感，選用飽和暖橘與深沉碳黑配色，融合手繪幾何線條。搭配個性化的街頭對話編排與動態張力，形塑具街頭潮流感與個人特質的 IP 視覺美學。",
     "tools": [
       "Ai",
       "2D草稿",
@@ -3501,7 +3500,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1wN4e1HyWptikEwE1vPap7QAur31JOqRS.webp"
     ]
   },
-
   {
     "id": "106",
     "category": "電商產品銷售圖",
@@ -3526,7 +3524,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1ef7LvRE-1mz4_MMJzhFb9WWyp85Iw6iy.webp"
     ]
   },
-
   {
     "id": "108",
     "category": "電商產品銷售圖",
@@ -4025,7 +4022,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1bhSDvY-IgL6IasR4fFlmQIHhhwC5oqfA.webp"
     ]
   },
-
   {
     "id": "127",
     "category": "電商產品銷售圖",
@@ -5588,7 +5584,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/16mv7_pQeNZ4zNtE2KUJSBezBEGNw6Ch5.webp"
     ]
   },
-
   {
     "id": "189",
     "category": "電商產品銷售圖",
@@ -5944,7 +5939,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1nsZO2jftgrF0o9dXDJri5h4UNaNudqb7.webp"
     ]
   },
-
   {
     "id": "210",
     "category": "電商產品銷售圖",
@@ -6157,7 +6151,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1eU2kQOCDXHUU-Rh6ya_grNHY8CKu053A.webp"
     ]
   },
-
   {
     "id": "219",
     "category": "電商產品銷售圖",
@@ -6769,7 +6762,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1FIwEq9ECqkeNxKdNQPmfNslnRPf2lSs3.webp"
     ]
   },
-
   {
     "id": "247",
     "category": "電商產品銷售圖",
@@ -7167,7 +7159,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1De05RdkMcrP8o_0auFjmv1cKGLluULPS.webp"
     ]
   },
-
   {
     "id": "266",
     "category": "電商產品銷售圖",
@@ -7616,7 +7607,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1VZx4y-BZhzCW7mVTjII1dOG0KOl1v9N2.webp"
     ]
   },
-
   {
     "id": "292",
     "category": "賣場Banner橫幅廣告",
@@ -7671,7 +7661,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1sp_R7liKUPJ_nM381E7MQa2dTRJ9bCf2.webp"
     ]
   },
-
   {
     "id": "296",
     "category": "賣場Banner橫幅廣告",
@@ -7799,7 +7788,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1CA1feYAf5UBWDVOoemUawyRXk5VYh2_O.webp"
     ]
   },
-
   {
     "id": "304",
     "category": "賣場Banner橫幅廣告",
@@ -7854,7 +7842,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1IoQza8A7yzZVzOq3F-KTLrx3y3ehAQXu.webp"
     ]
   },
-
   {
     "id": "308",
     "category": "賣場Banner橫幅廣告",
@@ -8025,7 +8012,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1_E8TQbuwbDozVijXJVIOWj51gZKPb4Ur.webp"
     ]
   },
-
   {
     "id": "319",
     "category": "賣場Banner橫幅廣告",
@@ -8719,7 +8705,6 @@ export const initialPortfolioData: PortfolioItem[] = [
       "/images/optimized/1xx1raZWt3ewSlhnyLrcgKoaOP6Btd27T.webp"
     ]
   },
-
   {
     "id": "389",
     "category": "賣場Banner橫幅廣告",

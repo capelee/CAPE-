@@ -118,10 +118,10 @@ const playCanOpenSound = () => {
     const filter = ctx.createBiquadFilter();
     filter.type = "highpass";
     filter.frequency.setValueAtTime(1500, now);
-    filter.frequency.exponentialRampToValueAtTime(8000, now + 0.15);
+    filter.frequency.exponentialRampToValueAtTime(6000, now + 0.15); // Lowered ceiling to reduce sharp noise spikes
 
     const noiseGain = ctx.createGain();
-    noiseGain.gain.setValueAtTime(0.15, now);
+    noiseGain.gain.setValueAtTime(0.06, now); // Softer hiss (0.06 instead of 0.15)
     noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
 
     noiseNode.connect(filter);
@@ -142,7 +142,7 @@ const playCanOpenSound = () => {
     oscPop2.frequency.setValueAtTime(120, now + 0.04);
     oscPop2.frequency.exponentialRampToValueAtTime(50, now + 0.14);
 
-    popGain.gain.setValueAtTime(0.3, now);
+    popGain.gain.setValueAtTime(0.12, now); // Softer pop clank (0.12 instead of 0.3)
     popGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
 
     oscPop1.connect(popGain);
@@ -155,14 +155,14 @@ const playCanOpenSound = () => {
     const chimeGain = ctx.createGain();
 
     chime1.type = "sine";
-    chime1.frequency.setValueAtTime(1320, now + 0.08); // E6
-    chime1.frequency.exponentialRampToValueAtTime(1976, now + 0.25); // B6
+    chime1.frequency.setValueAtTime(1046.50, now + 0.08); // C6 instead of E6 for a sweeter pitch
+    chime1.frequency.exponentialRampToValueAtTime(1567.98, now + 0.25); // G6 instead of B6
 
     chime2.type = "sine";
-    chime2.frequency.setValueAtTime(1567, now + 0.12); // G6
+    chime2.frequency.setValueAtTime(1318.51, now + 0.12); // E6 instead of G6
 
     chimeGain.gain.setValueAtTime(0, now);
-    chimeGain.gain.linearRampToValueAtTime(0.12, now + 0.1);
+    chimeGain.gain.linearRampToValueAtTime(0.06, now + 0.1); // Softer chime envelope (0.06 instead of 0.12)
     chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
 
     chime1.connect(chimeGain);

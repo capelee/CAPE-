@@ -1,3 +1,5 @@
+import { PortfolioItem } from "./types";
+
 export const YT_THUMBNAIL_CACHE = new Map<string, string>();
 export const DRIVE_THUMBNAIL_CACHE = new Map<string, string>();
 
@@ -169,9 +171,6 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
 
   if (id) {
     const s = size ? size : 1000;
-
-    // Use a stable 2-minute cache buster to force browsers and CDN gateways to fetch the latest version 
-    // of modified files while preventing visual flashes on every single re-render.
     const busterValue = Math.floor(Date.now() / 120000);
     const busterParam = `&v=${busterValue}`;
     const finalExtraParams = extraParams.includes("&v=") ? extraParams : `${extraParams}${busterParam}`;
@@ -185,7 +184,6 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
       }
     }
     
-    // Default: Use high-availability Drive thumbnail API to completely bypass CORS 403 and referrer limits
     return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${finalExtraParams}`;
   }
   // Support Unsplash dynamic image scaling
@@ -235,4 +233,142 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
   }
 
   return getOptimizedGoogleUrl(targetUrl, size);
+}
+
+/**
+ * 依據 AGENTS.md 規範自動淨化並格式化作品屬性
+ * 包含：去行銷化、剔除開頭贅字、字數嚴格限制在 45-80 字內、技術工具簡化且限 10 字內。
+ */
+export function sanitizePortfolioItem(item: PortfolioItem): PortfolioItem {
+  // 1. 作品名稱 / Card Title (title)
+  let title = item.title ? item.title.trim() : "";
+  const marketingBuzzwords = [
+    "極致", "頂級", "奢華", "高端", "精心", "精品級", "完美", "強烈", "無比", "獨特", "精心", "科幻", "暖心", "美輪美奐", "匠心獨運", "完美融合", "令人驚艷", "不二之舉"
+  ];
+  marketingBuzzwords.forEach(word => {
+    title = title.split(word).join("");
+  });
+  title = title.replace(/^[:：\s]+|[:：\s]+$/g, "").trim();
+
+  // 2. 設計理念 / Design Philosophy (philosophy)
+  let philosophy = item.philosophy ? item.philosophy.trim() : "";
+  
+  const introductoryPhrases = [
+    /^本專案為[，、]?/g,
+    /^本專案以[，、]?/g,
+    /^本專案主要[，、]?/g,
+    /^本專案[，、]?/g,
+    /^本作品是[，、]?/g,
+    /^本作品以[，、]?/g,
+    /^本作品[，、]?/g,
+    /^設計理念是[，、]?/g,
+    /^設計理念為[，、]?/g,
+    /^理念是[，、]?/g,
+    /^理念為[，、]?/g,
+    /^此設計專為[，、]?/g,
+    /^我們希望呈現[，、]?/g,
+    /^本設計[，、]?/g,
+    /^設計核心是[，、]?/g,
+    /^設計核心為[，、]?/g
+  ];
+  
+  let cleanedPhilosophy = philosophy;
+  let changed = true;
+  while (changed) {
+    const prev = cleanedPhilosophy;
+    for (const regex of introductoryPhrases) {
+      cleanedPhilosophy = cleanedPhilosophy.replace(regex, "");
+    }
+    cleanedPhilosophy = cleanedPhilosophy.replace(/^(設計理念|理念|設計核心|核心理念)[：:\s]*/g, "");
+    if (cleanedPhilosophy === prev) {
+      changed = false;
+    }
+  }
+
+  marketingBuzzwords.forEach(word => {
+    cleanedPhilosophy = cleanedPhilosophy.split(word).join("");
+  });
+
+  cleanedPhilosophy = cleanedPhilosophy.replace(/^[，、\s]+|[，、\s]+$/g, "").trim();
+
+  // 確保字數在 45 到 80 字之間，且絕對不超過 100 字
+  if (cleanedPhilosophy.length < 45 && cleanedPhilosophy.length > 0) {
+    const paddingPhrases = [
+      "展現當代純粹美學與結構秩序。",
+      "建構高度協和與理性的視覺平衡。",
+      "傳遞極簡克制的版面視覺美學。",
+      "營造純粹、沉靜的視覺張力環境。",
+      "勾勒洗練、精緻的幾何空間維度。"
+    ];
+    let idx = 0;
+    while (cleanedPhilosophy.length < 45 && idx < paddingPhrases.length) {
+      if (!cleanedPhilosophy.endsWith("。")) {
+        cleanedPhilosophy += "。";
+      }
+      cleanedPhilosophy += paddingPhrases[idx];
+      idx++;
+    }
+  }
+
+  if (cleanedPhilosophy.length > 80) {
+    let truncated = cleanedPhilosophy.slice(0, 80);
+    const lastPeriod = truncated.lastIndexOf("。");
+    if (lastPeriod > 30) {
+      cleanedPhilosophy = truncated.slice(0, lastPeriod + 1);
+    } else {
+      cleanedPhilosophy = truncated + "。";
+    }
+  }
+
+  if (cleanedPhilosophy.length > 0 && !cleanedPhilosophy.endsWith("。")) {
+    cleanedPhilosophy += "。";
+  }
+
+  if (cleanedPhilosophy.length > 100) {
+    cleanedPhilosophy = cleanedPhilosophy.slice(0, 99) + "。";
+  }
+
+  // 3. 技術工具 / Technologies & Tools (tools)
+  const toolAbbreviationMap: Record<string, string> = {
+    "illustrator": "Ai",
+    "adobe illustrator": "Ai",
+    "photoshop": "Photoshop",
+    "adobe photoshop": "Photoshop",
+    "after effects": "AE",
+    "adobe after effects": "AE",
+    "premiere pro": "Premiere",
+    "adobe premiere pro": "Premiere",
+    "premiere": "Premiere",
+    "procreate": "Procreate",
+    "3d rendering": "3D渲染",
+    "3d Rendering": "3D渲染",
+    "vector graphics": "向量圖",
+    "vector graphic": "向量圖",
+    "vector": "向量圖",
+    "infographics": "資訊圖表",
+    "infographic": "資訊圖表",
+    "copywriting": "文案",
+    "color theory": "色彩配色",
+    "color": "色彩配色"
+  };
+
+  const tools = (item.tools || []).map(t => {
+    let cleanedTool = t.trim();
+    const lower = cleanedTool.toLowerCase();
+    if (toolAbbreviationMap[lower]) {
+      return toolAbbreviationMap[lower];
+    }
+    cleanedTool = cleanedTool.replace(/\s*[\(\（].*?[\)\）]\s*/g, "");
+    if (cleanedTool.length > 10) {
+      cleanedTool = cleanedTool.slice(0, 10);
+    }
+    return cleanedTool;
+  }).filter(Boolean);
+
+  return {
+    ...item,
+    title,
+    philosophy: cleanedPhilosophy,
+    tools
+  };
 }

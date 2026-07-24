@@ -55,7 +55,7 @@ const playBalloonLeakSound = () => {
     filter.frequency.exponentialRampToValueAtTime(120, now + 2.0);
 
     const noiseGain = ctx.createGain();
-    noiseGain.gain.setValueAtTime(0.14, now);
+    noiseGain.gain.setValueAtTime(0.06, now); // Softer hiss (0.06 instead of 0.14)
     noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 2.0);
 
     noise.connect(filter);
@@ -79,9 +79,9 @@ const playBalloonLeakSound = () => {
 
     const whistleFilter = ctx.createBiquadFilter();
     whistleFilter.type = "lowpass";
-    whistleFilter.frequency.setValueAtTime(1300, now);
+    whistleFilter.frequency.setValueAtTime(900, now); // Lower filter cutoff (900Hz instead of 1300Hz) to cut off sharp high-frequency harmonic spikes
 
-    oscGain.gain.setValueAtTime(0.09, now);
+    oscGain.gain.setValueAtTime(0.035, now); // Softer volume (0.035 instead of 0.09)
     oscGain.gain.exponentialRampToValueAtTime(0.001, now + 2.1);
 
     osc.connect(whistleFilter);

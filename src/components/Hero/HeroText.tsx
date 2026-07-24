@@ -104,7 +104,7 @@ export const HeroText: React.FC<HeroTextProps> = ({
               ? "text-zinc-650" 
               : "text-zinc-300"
           }`}>
-            5 ~ 6 年品牌商業整合設計實戰經驗，作品橫跨電商視覺、品牌識別與原創角色 IP。
+            6年以上品牌商業整合設計實戰經驗，作品橫跨電商視覺、品牌識別與原創角色 IP。
           </p>
 
           <div className="flex flex-wrap items-center gap-3.5 pt-1 pb-1">

@@ -281,9 +281,9 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
         const gain = ctx.createGain();
         osc.type = "sine";
         osc.frequency.setValueAtTime(150, now);
-        osc.frequency.exponentialRampToValueAtTime(1800, now + 0.8);
+        osc.frequency.exponentialRampToValueAtTime(1000, now + 0.8); // Warmer ceiling frequency (1000Hz instead of 1800Hz)
         
-        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.setValueAtTime(0.05, now); // Softer gain (0.05 instead of 0.12)
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
         
         osc.connect(gain);

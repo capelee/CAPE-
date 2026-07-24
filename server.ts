@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
+import { sanitizePortfolioItem } from "./src/utils";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import fetch from "node-fetch";
@@ -185,7 +186,6 @@ const responseSchema = {
   ]
 };
 
-// API Routes
 app.get("/api/portfolio", (req, res) => {
   try {
     // Explicitly disable any caching on client, CDN, and browser levels
@@ -194,7 +194,8 @@ app.get("/api/portfolio", (req, res) => {
     res.setHeader("Expires", "0");
     res.setHeader("Surrogate-Control", "no-store");
     
-    const data = getLatestPortfolioData();
+    const rawData = getLatestPortfolioData();
+    const data = rawData.map(sanitizePortfolioItem);
     res.json({ success: true, data });
   } catch (err: any) {
     res.status(500).json({ success: false, error: err.message });
@@ -273,7 +274,23 @@ app.post("/api/save-philosophy", (req, res) => {
     }
 
     const filePath = path.join(process.cwd(), "src", "data.ts");
-    const success = updatePhilosophyInFile(filePath, itemId, newPhilosophy);
+    
+    // Auto-sanitize philosophy using the rules in src/utils.ts before saving
+    const dummyItem = {
+      id: itemId,
+      category: "",
+      title: "",
+      titleEn: "",
+      philosophy: newPhilosophy,
+      tools: [],
+      imageUrl: "",
+      placeholderId: "",
+      colorTheme: ""
+    };
+    const sanitizedItem = sanitizePortfolioItem(dummyItem);
+    const sanitizedPhilosophy = sanitizedItem.philosophy;
+
+    const success = updatePhilosophyInFile(filePath, itemId, sanitizedPhilosophy);
     
     if (success) {
       res.json({ success: true, message: `Successfully updated philosophy for ${itemId}` });

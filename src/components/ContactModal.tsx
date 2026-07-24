@@ -135,7 +135,7 @@ export function ContactModal({ isOpen, onClose, theme, profile, downloadVCard, v
                         </div>
                         <div className="flex items-center gap-3">
                           <Award className="h-3.5 w-3.5 opacity-60 text-amber-500" />
-                          <span className="opacity-80">5 - 6 年品牌商業整合設計實戰經驗</span>
+                          <span className="opacity-80">6 年以上品牌商業整合設計實戰經驗</span>
                         </div>
                       </div>
                     </div>
