@@ -63,6 +63,27 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
 
   // 拖曳狀態
   const [isDragging, setIsDragging] = React.useState(false);
+  const [isDraggable, setIsDraggable] = React.useState(false);
+  const holdTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handlePointerDown = () => {
+    holdTimerRef.current = setTimeout(() => {
+      setIsDraggable(true);
+      try {
+        if (navigator.vibrate) navigator.vibrate(50);
+      } catch (e) {}
+    }, 500);
+  };
+
+  const handlePointerUpOrLeave = () => {
+    if (holdTimerRef.current) {
+      clearTimeout(holdTimerRef.current);
+      holdTimerRef.current = null;
+    }
+    setTimeout(() => {
+      setIsDraggable(false);
+    }, 150);
+  };
 
   // 掉落物介面與狀態
   interface FallingItem {
@@ -242,7 +263,11 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
       >
         {/* Inner container for absolute dragging, hover, tap, and click gestures */}
         <motion.div
-          drag
+          drag={isDraggable}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUpOrLeave}
+          onPointerCancel={handlePointerUpOrLeave}
+          onPointerLeave={handlePointerUpOrLeave}
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           dragElastic={0.65}
           dragTransition={{ bounceStiffness: 220, bounceDamping: 14 }}
@@ -253,7 +278,7 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             rotateY, 
             rotate: rotateZ,
             perspective: 1200,
-            touchAction: "pan-y"
+            touchAction: isDraggable ? "none" : "pan-y"
           }}
           initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}

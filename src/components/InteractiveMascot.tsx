@@ -112,6 +112,28 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const currentScaleRef = React.useRef<number>(1);
   
   const dragControls = useDragControls();
+  const [isDraggable, setIsDraggable] = useState<boolean>(false);
+  const holdTimerRefMascot = useRef<NodeJS.Timeout | null>(null);
+
+  const handlePointerDownMascot = (e: React.PointerEvent) => {
+    holdTimerRefMascot.current = setTimeout(() => {
+      setIsDraggable(true);
+      dragControls.start(e);
+      try {
+        if (navigator.vibrate) navigator.vibrate(50);
+      } catch (err) {}
+    }, 500);
+  };
+
+  const handlePointerUpMascot = () => {
+    if (holdTimerRefMascot.current) {
+      clearTimeout(holdTimerRefMascot.current);
+      holdTimerRefMascot.current = null;
+    }
+    setTimeout(() => {
+      setIsDraggable(false);
+    }, 150);
+  };
 
   // 當對話框打開或更換對話時，觸發嘴巴開合動畫 (若有提供說話圖片或多幀)
   useEffect(() => {
@@ -537,12 +559,19 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
           
           
           <motion.button
-            onClick={() => handleNextMascot(true)}
+            onClick={() => {
+              if (!isDraggable) {
+                handleNextMascot(true);
+              }
+            }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
-            onPointerDown={(e) => dragControls.start(e)}
+            onPointerDown={handlePointerDownMascot}
+            onPointerUp={handlePointerUpMascot}
+            onPointerCancel={handlePointerUpMascot}
+            onPointerLeave={handlePointerUpMascot}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             type="button"
@@ -575,7 +604,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
             title="點我互動！(長按可拖曳)"
-            style={{ willChange: "transform", touchAction: "pan-y", rotate: smoothRotate }}
+            style={{ willChange: "transform", touchAction: isDraggable ? "none" : "pan-y", rotate: smoothRotate }}
           >
             {/* 動態背景彩色發光暈圈 */}
             <div 
