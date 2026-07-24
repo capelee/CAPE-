@@ -267,10 +267,6 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
         <motion.div
           drag={true}
           dragControls={dragControls}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUpOrLeave}
-          onPointerCancel={handlePointerUpOrLeave}
-          onPointerLeave={handlePointerUpOrLeave}
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           dragElastic={0.65}
           dragTransition={{ bounceStiffness: 220, bounceDamping: 14 }}
@@ -281,7 +277,7 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             rotateY, 
             rotate: rotateZ,
             perspective: 1200,
-            touchAction: isDraggable ? "none" : "pan-y"
+            touchAction: "pan-y"
           }}
           initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
@@ -310,8 +306,22 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
               }
             }
           }}
-          className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing group select-none will-change-transform"
+          className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-pointer group select-none will-change-transform"
         >
+          {/* 專屬拖曳把手 (Drag Handle) 讓手機版可順暢滑動頁面，按住此把手才可拖曳 */}
+          <div
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              dragControls.start(e);
+            }}
+            onTouchStart={(e) => e.stopPropagation()}
+            className="absolute top-2 right-2 sm:top-4 sm:right-4 z-30 bg-amber-500/90 hover:bg-amber-600 text-white text-[11px] font-medium px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 cursor-grab active:cursor-grabbing backdrop-blur-sm transition-transform active:scale-95"
+            style={{ touchAction: "none" }}
+            title="按住此把手可拖曳吉祥物"
+          >
+            <span>🐾</span>
+            <span className="hidden sm:inline">拖曳</span>
+          </div>
         <motion.div style={{ y: glowY }} className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms] will-change-transform" />
         
         <AnimatePresence>

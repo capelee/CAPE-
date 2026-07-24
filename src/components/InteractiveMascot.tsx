@@ -564,18 +564,12 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             dragConstraints={{ left: -300, right: 300, top: -400, bottom: 400 }}
             dragElastic={0.2}
             onClick={() => {
-              if (!isDraggable) {
-                handleNextMascot(true);
-              }
+              handleNextMascot(true);
             }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
-            onPointerDown={handlePointerDownMascot}
-            onPointerUp={handlePointerUpMascot}
-            onPointerCancel={handlePointerUpMascot}
-            onPointerLeave={handlePointerUpMascot}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             type="button"
@@ -607,9 +601,23 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               }
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
-            title="點我互動！(長按可拖曳)"
-            style={{ willChange: "transform", touchAction: isDraggable ? "none" : "pan-y", rotate: smoothRotate }}
+            title="點擊互動！"
+            style={{ willChange: "transform", touchAction: "pan-y", rotate: smoothRotate }}
           >
+            {/* 專屬拖曳把手 */}
+            <div
+              onPointerDown={(e) => {
+                e.stopPropagation();
+                dragControls.start(e);
+              }}
+              onTouchStart={(e) => e.stopPropagation()}
+              className="absolute -top-3 right-0 z-30 bg-amber-500/90 hover:bg-amber-600 text-white text-[10px] font-medium px-2 py-0.5 rounded-full shadow-md flex items-center gap-1 cursor-grab active:cursor-grabbing backdrop-blur-sm transition-transform active:scale-95"
+              style={{ touchAction: "none" }}
+              title="按住此把手可拖曳角色"
+            >
+              <span>🐾</span>
+              <span>拖曳</span>
+            </div>
             {/* 動態背景彩色發光暈圈 */}
             <div 
               className={`absolute inset-4 -z-10 rounded-full blur-[40px] opacity-[0.06] group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 ease-out bg-gradient-to-tr ${
