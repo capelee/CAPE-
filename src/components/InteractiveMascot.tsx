@@ -559,6 +559,10 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
           
           
           <motion.button
+            drag={true}
+            dragControls={dragControls}
+            dragConstraints={{ left: -300, right: 300, top: -400, bottom: 400 }}
+            dragElastic={0.2}
             onClick={() => {
               if (!isDraggable) {
                 handleNextMascot(true);

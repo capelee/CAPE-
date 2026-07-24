@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence, MotionValue, useMotionValue, useTransform } from 'motion/react';
+import { motion, AnimatePresence, MotionValue, useMotionValue, useTransform, useDragControls } from 'motion/react';
 import { TutorialTooltip } from '../TutorialTooltip';
 import { Instagram, Sparkles, FolderOpen } from 'lucide-react';
 import { playCanClinkSound, playRareDropSound, playRareClickSound } from '../../utils/audioEffects';
@@ -60,15 +60,17 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
   // 拖曳位移 MotionValue
   const dragX = useMotionValue(0);
   const dragY = useMotionValue(0);
+  const dragControls = useDragControls();
 
   // 拖曳狀態
   const [isDragging, setIsDragging] = React.useState(false);
   const [isDraggable, setIsDraggable] = React.useState(false);
   const holdTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  const handlePointerDown = () => {
+  const handlePointerDown = (e: React.PointerEvent) => {
     holdTimerRef.current = setTimeout(() => {
       setIsDraggable(true);
+      dragControls.start(e);
       try {
         if (navigator.vibrate) navigator.vibrate(50);
       } catch (e) {}
@@ -263,7 +265,8 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
       >
         {/* Inner container for absolute dragging, hover, tap, and click gestures */}
         <motion.div
-          drag={isDraggable}
+          drag={true}
+          dragControls={dragControls}
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUpOrLeave}
           onPointerCancel={handlePointerUpOrLeave}
