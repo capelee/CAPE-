@@ -64,12 +64,17 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
 
   // 拖曳狀態
   const [isDragging, setIsDragging] = React.useState(false);
+  const [isHolding, setIsHolding] = React.useState(false);
+  const [isReadyToDrag, setIsReadyToDrag] = React.useState(false);
   const holdTimerRef = React.useRef<NodeJS.Timeout | null>(null);
   const startPosRef = React.useRef<{ x: number; y: number } | null>(null);
 
   const handlePointerDown = (e: React.PointerEvent) => {
+    setIsHolding(true);
+    setIsReadyToDrag(false);
     startPosRef.current = { x: e.clientX, y: e.clientY };
     holdTimerRef.current = setTimeout(() => {
+      setIsReadyToDrag(true);
       dragControls.start(e);
       try {
         if (navigator.vibrate) navigator.vibrate(50);
@@ -84,11 +89,15 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
       if (dx > 10 || dy > 10) {
         clearTimeout(holdTimerRef.current);
         holdTimerRef.current = null;
+        setIsHolding(false);
+        setIsReadyToDrag(false);
       }
     }
   };
 
   const handlePointerUpOrLeave = () => {
+    setIsHolding(false);
+    setIsReadyToDrag(false);
     if (holdTimerRef.current) {
       clearTimeout(holdTimerRef.current);
       holdTimerRef.current = null;
@@ -272,6 +281,22 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
         style={{ y: mascotY }}
         className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible select-none"
       >
+
+
+        {/* 拖曳就緒提示橫幅 */}
+        <AnimatePresence>
+          {isReadyToDrag && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 10 }}
+              className="absolute -bottom-14 left-1/2 -translate-x-1/2 whitespace-nowrap bg-indigo-600/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-full shadow-lg pointer-events-none z-45 flex items-center gap-1.5 backdrop-blur-sm border border-indigo-300/40 animate-pulse"
+            >
+              <span>✨ 已解鎖拖曳！快速移動掉落驚喜小物</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Inner container for absolute dragging, hover, tap, and click gestures */}
         <motion.div
           drag={true}
@@ -295,19 +320,29 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             touchAction: "pan-y"
           }}
           initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+          animate={{ 
+            opacity: 1, 
+            x: 0, 
+            rotate: 0, 
+            scale: isHolding ? 0.96 : 1,
+            scaleY: isHolding ? 0.92 : 1,
+            scaleX: isHolding ? 1.06 : 1
+          }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.93, scaleY: 0.88, scaleX: 1.05 }}
-          transition={{ type: "spring", bounce: 0.15, duration: 1.2, delay: 0.1 }}
+          transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
           onClick={handleHeroClick}
+          title="試著長按0.2秒拖曳我，看看會掉落什麼驚喜！"
           onDragStart={() => {
             setIsDragging(true);
+            setIsHolding(false);
             if (onMascotDrag) {
               onMascotDrag();
             }
           }}
           onDragEnd={() => {
             setIsDragging(false);
+            setIsReadyToDrag(false);
           }}
           onDrag={(event, info) => {
             const vx = info.velocity.x;
@@ -323,7 +358,12 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
           }}
           className="w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[420px] aspect-square relative flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing group select-none will-change-transform"
         >
-        <motion.div style={{ y: glowY }} className="absolute inset-4 bg-amber-500/8 rounded-full blur-[50px] -z-10 animate-pulse duration-[6000ms] will-change-transform" />
+        <motion.div 
+          style={{ y: glowY }} 
+          className={`absolute inset-4 rounded-full blur-[50px] -z-10 will-change-transform transition-all duration-300 ${
+            isHolding ? "bg-amber-500/25 scale-110 animate-ping" : "bg-amber-500/8 animate-pulse duration-[6000ms]"
+          }`} 
+        />
         
         <AnimatePresence>
           {heroParticles.map((p) => (

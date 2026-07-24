@@ -111,41 +111,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
   const initialDistanceRef = React.useRef<number | null>(null);
   const currentScaleRef = React.useRef<number>(1);
   
-  const dragControls = useDragControls();
   const hasDraggedRef = useRef<boolean>(false);
-  const holdTimerRefMascot = useRef<NodeJS.Timeout | null>(null);
-  const startPosRefMascot = useRef<{ x: number; y: number } | null>(null);
-
-  const handlePointerDownMascot = (e: React.PointerEvent) => {
-    hasDraggedRef.current = false;
-    startPosRefMascot.current = { x: e.clientX, y: e.clientY };
-    holdTimerRefMascot.current = setTimeout(() => {
-      hasDraggedRef.current = true;
-      dragControls.start(e);
-      try {
-        if (navigator.vibrate) navigator.vibrate(50);
-      } catch (err) {}
-    }, 200);
-  };
-
-  const handlePointerMoveMascot = (e: React.PointerEvent) => {
-    if (holdTimerRefMascot.current && startPosRefMascot.current) {
-      const dx = Math.abs(e.clientX - startPosRefMascot.current.x);
-      const dy = Math.abs(e.clientY - startPosRefMascot.current.y);
-      if (dx > 10 || dy > 10) {
-        clearTimeout(holdTimerRefMascot.current);
-        holdTimerRefMascot.current = null;
-      }
-    }
-  };
-
-  const handlePointerUpMascot = () => {
-    if (holdTimerRefMascot.current) {
-      clearTimeout(holdTimerRefMascot.current);
-      holdTimerRefMascot.current = null;
-    }
-    startPosRefMascot.current = null;
-  };
 
   // 當對話框打開或更換對話時，觸發嘴巴開合動畫 (若有提供說話圖片或多幀)
   useEffect(() => {
@@ -448,12 +414,24 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               ? { duration: 1.5, ease: "easeInOut" }
               : { type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }
           }
-          className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-none origin-bottom flex flex-col items-center w-[150px] sm:w-[200px] md:w-[250px]"
+          className="fixed bottom-0 -right-2 md:right-12 z-[45] pointer-events-auto origin-bottom flex flex-col items-center w-[150px] sm:w-[200px] md:w-[250px]"
           style={{ touchAction: "none" }}
           drag
-          dragControls={dragControls}
-          dragListener={false}
+          dragListener={true}
           dragMomentum={false}
+          onDragStart={() => {
+            hasDraggedRef.current = true;
+            setIsDragging(true);
+            if (onInteract) {
+              onInteract();
+            }
+          }}
+          onDragEnd={() => {
+            setIsDragging(false);
+            setTimeout(() => {
+              hasDraggedRef.current = false;
+            }, 100);
+          }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -468,7 +446,6 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
                 onClick={() => handleNextMascot(false)}
-                onPointerDown={(e) => dragControls.start(e)}
                 className={`${
                   theme === "light"
                     ? "bg-white border-amber-500/50 shadow-[0_4px_25px_rgba(245,158,11,0.18)]"
@@ -477,7 +454,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
                     : "bg-[#0b0b0c] border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.22)]"
                 } border p-3 pt-3.5 rounded-2xl mb-2.5 relative flex flex-col items-center justify-center pointer-events-auto max-w-[145px] sm:max-w-[190px] md:max-w-[240px] overflow-hidden cursor-pointer transition-colors group`}
                 style={{ touchAction: "pan-y" }}
-                title="點擊對話，長按可自由拖曳！🐾"
+                title="點擊對話，自由拖曳我！🐾"
               >
                 {/* 關閉對話框的 X 按鈕 */}
                 <button
@@ -570,12 +547,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
           
           
           
-          <motion.button
-            drag={true}
-            dragListener={false}
-            dragControls={dragControls}
-            dragConstraints={{ left: -300, right: 300, top: -400, bottom: 400 }}
-            dragElastic={0.2}
+            <motion.button
             onClick={() => {
               if (!hasDraggedRef.current) {
                 handleNextMascot(true);
@@ -585,11 +557,6 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
-            onPointerDown={handlePointerDownMascot}
-            onPointerMove={handlePointerMoveMascot}
-            onPointerUp={handlePointerUpMascot}
-            onPointerCancel={handlePointerUpMascot}
-            onPointerLeave={handlePointerUpMascot}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             type="button"
@@ -621,7 +588,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               }
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
-            title="點我互動！(長按0.2秒可拖曳)"
+            title="試著拖曳我，看看會掉落什麼驚喜！"
             style={{ willChange: "transform", touchAction: "pan-y", rotate: smoothRotate }}
           >
             {/* 動態背景彩色發光暈圈 */}
