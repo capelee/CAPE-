@@ -252,7 +252,8 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
             rotateX, 
             rotateY, 
             rotate: rotateZ,
-            perspective: 1200
+            perspective: 1200,
+            touchAction: "pan-y"
           }}
           initial={{ opacity: 0, x: 40, rotate: 5, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
