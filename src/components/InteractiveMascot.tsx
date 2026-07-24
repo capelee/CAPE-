@@ -125,7 +125,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
       try {
         if (navigator.vibrate) navigator.vibrate(50);
       } catch (err) {}
-    }, 500);
+    }, 200);
   };
 
   const handlePointerMoveMascot = (e: React.PointerEvent) => {
@@ -621,7 +621,7 @@ export const InteractiveMascot = React.memo(function InteractiveMascot({
               }
             }}
             className="relative w-23 md:w-28 lg:w-32 pointer-events-auto cursor-pointer group focus:outline-none"
-            title="點我互動！(長按1秒可拖曳)"
+            title="點我互動！(長按0.2秒可拖曳)"
             style={{ willChange: "transform", touchAction: "pan-y", rotate: smoothRotate }}
           >
             {/* 動態背景彩色發光暈圈 */}

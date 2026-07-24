@@ -74,7 +74,7 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
       try {
         if (navigator.vibrate) navigator.vibrate(50);
       } catch (e) {}
-    }, 500);
+    }, 200);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
