@@ -2,6 +2,29 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "koharu-33s-promo",
+    "category": "影音與多媒體設計",
+    "title": "KOHARU 33s 廣告動畫",
+    "titleEn": "KOHARU 33s Promotional Animation",
+    "philosophy": "以粉嫩色系與動態運鏡捕捉角色特質，搭配流暢的逐格動畫與字體編排，形塑清新且具節奏感的33秒宣傳短片視覺。",
+    "isHighlight": true,
+    "tools": [
+      "AE",
+      "Premiere",
+      "動態設計",
+      "角色動畫"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/fMh7Xnp9ZkE/maxresdefault.jpg",
+    "placeholderId": "VIDEO_KOHARU_fMh7Xnp9ZkE",
+    "colorTheme": "from-[#24111F] via-[#3F1C35] to-[#0F0812]",
+    "images": [
+      "https://img.youtube.com/vi/fMh7Xnp9ZkE/maxresdefault.jpg",
+      "https://img.youtube.com/vi/fMh7Xnp9ZkE/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=fMh7Xnp9ZkE",
+    "link": "https://www.youtube.com/watch?v=fMh7Xnp9ZkE"
+  },
+  {
     "id": "wild-burger-club-mini",
     "category": "影音與多媒體設計",
     "title": "WILD BURGER CLUB™ 微縮世界影片",
