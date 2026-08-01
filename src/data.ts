@@ -2,6 +2,29 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "sebamed-sports-mini-video",
+    "category": "影音與多媒體設計",
+    "title": "施巴 Sebamed 運動舒緩沐浴乳 微縮小人 8秒廣告影片",
+    "titleEn": "Sebamed Sports Body Wash Miniature 8s Commercial Video",
+    "philosophy": "以藍綠海洋色調為基底，結合微縮模型小人與產品包裝場景。透過流暢運鏡與光影切換，在8秒動態節奏中傳遞運動舒緩沐浴乳的清爽特色。",
+    "isHighlight": true,
+    "tools": [
+      "AE",
+      "Premiere",
+      "動態設計",
+      "影片剪輯"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/ViZ8fRKVIiw/maxresdefault.jpg",
+    "placeholderId": "VIDEO_SEBAMED_ViZ8fRKVIiw",
+    "colorTheme": "from-[#0a2336] via-[#16425b] to-[#081724]",
+    "images": [
+      "https://img.youtube.com/vi/ViZ8fRKVIiw/maxresdefault.jpg",
+      "https://img.youtube.com/vi/ViZ8fRKVIiw/0.jpg"
+    ],
+    "videoUrl": "https://www.youtube.com/watch?v=ViZ8fRKVIiw",
+    "link": "https://www.youtube.com/watch?v=ViZ8fRKVIiw"
+  },
+  {
     "id": "dongxing-liquor-20s",
     "category": "影音與多媒體設計",
     "title": "東行制酒 20s 廣告動畫",
@@ -137,6 +160,707 @@ export const initialPortfolioData: PortfolioItem[] = [
     "videoUrl": "https://www.youtube.com/watch?v=3QKiNoYlbbo"
   },
   {
+    "id": "koharu-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "KOHARU（こはる） 品牌識別與 CIS 視覺設計",
+    "titleEn": "KOHARU Brand Identity System",
+    "philosophy": "以柔和粉嫩色系與圓潤無襯線字體為核心，結合手繪花草圖騰與幾何網格排版。透過溫潤細緻的視覺語彙，建構兼具親和力與品牌辨識度的完整企業識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1A-2B7AxtQ_OJb9Zkl2r4HMbjtpxv3bQ3",
+    "placeholderId": "IMAGE_KOHARU_CIS",
+    "colorTheme": "from-[#2d1b2e] via-[#4a2e4b] to-[#1a0f1b]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1A-2B7AxtQ_OJb9Zkl2r4HMbjtpxv3bQ3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Qt6T56BSjeyaoy0Ok7ELajUBl1DQzki0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aZorTJStuYKP34kKXL6qxuFsMtGVOcvI",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14Ze32e512D_uDq1W4K3dzCE7JEwCPqen",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HNeQfrL1L1e3CacIeBdEMpWFqZR3wE2h",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14r7_NUKuVX5UR4h2nE21BTjf66icZbBo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PdTRve-EWkhxBooPgw3QAV-NT909HqHK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11SjwdtrdY7Ge7T3OrQaQ4ThxJYjILCsT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ctGtMwAS52z46C_2b0zftDAHEWbqg7JE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tKPmhylBmIyvoRkWO-f-Ov-Us0RsZ0r9",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14OQKw8ILV2XGsS63Ndhhm0RXOMqxOkor",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ndYetlVUXBkev2wWKSlo06F7SyIG-s8i",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Eue0yExxhqcZn2EC4hKa7DP5VxKXx_iW"
+    ],
+    "driveFolderId": "1QoDny-8y3phXST69TLLYpaDTyiSVG0FG",
+    "link": "https://drive.google.com/drive/folders/1QoDny-8y3phXST69TLLYpaDTyiSVG0FG?usp=drive_link"
+  },
+  {
+    "id": "nomnom-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "Nom Nom 美食速達外送平台 品牌識別與 CIS 視覺設計",
+    "titleEn": "NOM NOM Brand Identity System",
+    "philosophy": "以極具食慾的溫暖橘紅與流暢圓潤字體為核心，結合美味符號與結構化排版網格，建構兼具外送速度感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1_671WzAuEHghiFqgeSUTcjN7euID-RIa",
+    "placeholderId": "IMAGE_NOMNOM_CIS",
+    "colorTheme": "from-[#2b1612] via-[#4f2a22] to-[#120a08]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_671WzAuEHghiFqgeSUTcjN7euID-RIa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jvYzBTCZmd_F67NqRYrGk4i1kKKJBlb8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ve_Ww7TFMTOI-W48d3psWnVK_scA3fhu",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PYWsmIpfxbn6ah-SKiSOCxaCAldBHxwn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1u-Grc1SHCqkg08PfMy6ktJi3WjOr4vtU",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DM3Lpei6rqgA-RDtW9ebf-sn-yyaZ4mB",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hst3fYfL2-6jWFFekVKF3QHyW_1_O_-U",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YZ4VlupV5jSa8BVt0frDy6VUuF_A4g_l"
+    ],
+    "driveFolderId": "1U8uOrc4fSoKw3TkXN7pxIv1jfLeJ8nH4",
+    "link": "https://drive.google.com/drive/folders/1U8uOrc4fSoKw3TkXN7pxIv1jfLeJ8nH4?usp=drive_link"
+  },
+  {
+    "id": "lingora-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "LINGORA AI 口說英文學習 品牌識別與 CIS 視覺設計",
+    "titleEn": "LINGORA AI Brand Identity System",
+    "philosophy": "以智慧對話藍與人工智慧科技感為核心，結合流暢圓潤字體與結構化排版網格，建構兼具英語學習互動感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1pjUXx3mj2N5WX7S-J5fXoc0RCRGf39r2",
+    "placeholderId": "IMAGE_LINGORA_CIS",
+    "colorTheme": "from-[#111c2b] via-[#22354f] to-[#0a0f16]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pjUXx3mj2N5WX7S-J5fXoc0RCRGf39r2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_W_Vrr-9ehXilt5edXGvvPGSCDWFlItH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TR0gUI0taYvEgQLZvt14yZ-K7FoLUc8Z",
+      "https://drive.google.com/thumbnail?sz=w1000&id=17T3jBBFAbxS0uLrBekVu3eZ-mmw5WAMH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1g1UrAzU-GKY56OI0yfhvcwR_BSZYkWTe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TVvPhSZNzAI7MxT3CmyjN0_YLYdGwDgq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=13bVpD8F8J-IY0FzX5e8KYBYzgVSeFUzB"
+    ],
+    "driveFolderId": "15LBky-Wgm2c6wN_dxrhdDZ_OCINaxSqj",
+    "link": "https://drive.google.com/drive/folders/15LBky-Wgm2c6wN_dxrhdDZ_OCINaxSqj?usp=drive_link"
+  },
+  {
+    "id": "lumia-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "LUMIA 日拋彩色隱形眼鏡 品牌識別與 CIS 視覺設計",
+    "titleEn": "LUMIA Brand Identity System",
+    "philosophy": "以晶透瞳孔光彩與夢幻柔和色調為核心，結合流暢圓潤字體與結構化排版網格，建構兼具時尚美瞳質感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1OqlLMpS5FfOEmM_vwpEtzYqbVqHkwVaW",
+    "placeholderId": "IMAGE_LUMIA_CIS",
+    "colorTheme": "from-[#22171c5] via-[#3a2230] to-[#110a0e]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1OqlLMpS5FfOEmM_vwpEtzYqbVqHkwVaW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11gUpRiS8nS158UmLm4CMa_cKGul35vl1",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11eAKUE5uuKZhUlc3Q6fuo9VidAi6PrvD",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1XcwW3acqAh31SkDIjJKL3N8M3gKMRZBG",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14gZA6zi9YxvIBN6QQl7XyxataZYAS1mm",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gxhO1KcahROWxFL3dGYdc5b35-XNj_IV",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hJZwXUJfEuZuuN7SognFzBzkK6l6QHE4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1a7Ffi-luPxBMpodZhY3mhJmof4LOnLJX",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1c1QPFf_VXTydxyyBMvJepP8Lf3Td4d0f"
+    ],
+    "driveFolderId": "1V2DtA-Cbb0mgTyaLgko6Ezz_kjH1U-OQ",
+    "link": "https://drive.google.com/drive/folders/1V2DtA-Cbb0mgTyaLgko6Ezz_kjH1U-OQ?usp=drive_link"
+  },
+  {
+    "id": "lumo-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "lumo POP 智慧電動機車 品牌識別與 CIS 視覺設計",
+    "titleEn": "LUMO POP Brand Identity System",
+    "philosophy": "以動態螢光綠與流線車身線條為核心，結合幾何字體與結構化排版網格，建構兼具電動車科技感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1srKXEXXHWcz5H2JY1DXcYmVoMVEpwR2L",
+    "placeholderId": "IMAGE_LUMO_CIS",
+    "colorTheme": "from-[#111a14] via-[#223829] to-[#0a0f0c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1srKXEXXHWcz5H2JY1DXcYmVoMVEpwR2L",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1__ZTwA9FK2zp2TQnsG_YSqoA-iDIRQBN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1NV19Va1Oanej2zkMBX4QeDEg2PcSNs7m",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mxKnwpP83N7XP08YfCInnqTOHWBiQymb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1E1t11q4CApnTjgveaj_zUXpdQKfyg9yT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rVf3Om-bEJSfBI-xbrpaV-w8CIHCJr8Z",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1K6a8BT8MQxzh4Tl2BehQXFkr-PJIfoES",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dHt30NQvncj3twj1KKQoN7z311CCdRfv",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gyO7tH02iiSZU_kUF_Kg7fJNjTdedql-"
+    ],
+    "driveFolderId": "13k9vE57-zJl0ACBdJp8CCF8I-ZqSJe-D",
+    "link": "https://drive.google.com/drive/folders/13k9vE57-zJl0ACBdJp8CCF8I-ZqSJe-D?usp=drive_link"
+  },
+  {
+    "id": "citylight-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "城光百貨 CITYLIGHT 時尚精品百貨 品牌識別與 CIS 視覺設計",
+    "titleEn": "CITYLIGHT Brand Identity System",
+    "philosophy": "以奢華時尚金與沉穩黑灰為核心，結合幾何線條與現代無襯線字體，建構兼具時尚尊榮感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1PJHNck6sv_HUxg_VD6vxnNwbKmMiP1pq",
+    "placeholderId": "IMAGE_CITYLIGHT_CIS",
+    "colorTheme": "from-[#1c1411] via-[#3a2822] to-[#0f0a08]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PJHNck6sv_HUxg_VD6vxnNwbKmMiP1pq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=19ixfD5DLmgQRVhMuIG2ccDCOo6udGZVf",
+      "https://drive.google.com/thumbnail?sz=w1000&id=13V7CfGasKNftlVUgQWLomncD4UgmeeTD",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gUVKg3x1rTqJ9Ily4o1hTfLiJjsSj-_B",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15f9kkrzUAHV2NuTIsejiF58drJu-BAUt",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1BHG_jr-nv2VU5GMEcb7OMWwNhT1o2sDQ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WrOc5xg0TT3GIxGtmEOeVwmOGLRDPtn5"
+    ],
+    "driveFolderId": "1lmut5-lk4mCZCQGmuvAZKNmrVxTsD-mH",
+    "link": "https://drive.google.com/drive/folders/1lmut5-lk4mCZCQGmuvAZKNmrVxTsD-mH?usp=drive_link"
+  },
+  {
+    "id": "haoke-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "好課 GO 在線學習教育平台 品牌識別與 CIS 視覺設計",
+    "titleEn": "HAOKE GO Brand Identity System",
+    "philosophy": "以在線學習活力橘與現代幾何字體為核心，結合圓潤無襯線字體與結構化排版網格。透過專業教育視覺語彙，建構兼具學習互動感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1GxTQdc5vSDA03DItCewsapN0uGKsSgPP",
+    "placeholderId": "IMAGE_HAOKE_CIS",
+    "colorTheme": "from-[#2b1f13] via-[#4f3524] to-[#120d0a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GxTQdc5vSDA03DItCewsapN0uGKsSgPP",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cK2PG8REiJkRDGsDE5rRzFajTnIw9-bW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1RqjD5kP3ZyH2beTBgj0JbgUjJhi_nZaN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DmGyjslVyQfnztzFmdRX-ptg6iizKLhD",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1X1KGyQX0Bc9UoAsSwIP-Q8tZX4UhoX-q",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1n0bYmL59aI3WkcgMek6yLjrDi6PHI1Ar",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1s83y1zR8jFCBxWkx0QLj2FHxRrsCpfWN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nGJAFMKPHQg45CFyZ67uwaj_N0yqPS4q"
+    ],
+    "driveFolderId": "1ubDVZUFqDt6FQHwzCtKsO4B330HLkZzb",
+    "link": "https://drive.google.com/drive/folders/1ubDVZUFqDt6FQHwzCtKsO4B330HLkZzb?usp=drive_link"
+  },
+  {
+    "id": "yubao-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "娛爆台 Entertainment 娛樂新聞頻道 品牌識別與 CIS 視覺設計",
+    "titleEn": "YUE BAO TAI Brand Identity System",
+    "philosophy": "以動態娛樂色彩與時尚黑金風格為核心，結合強烈視覺張力與結構化排版網格，建構兼具娛樂潮流感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1nibWFXFmPKxMiBsXMTIw7QWQdUtqQhYO",
+    "placeholderId": "IMAGE_YUBAO_CIS",
+    "colorTheme": "from-[#1a1216] via-[#33222a] to-[#0f0a0d]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nibWFXFmPKxMiBsXMTIw7QWQdUtqQhYO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Ze1c3MzTz-98fnm675QeSQ5Dr-Lp589O",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wNOcbUHSSlA7gg3Iwo_cej7zWM9PNLWT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1C9ChSFsoJmzqjGc1_6HEIxMOKTAfOvar",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1k0wpcp3Cy8MnEnd4vDSJY2bQ64CrDxhY",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iIYO1zc3Zw42o946gq05mx0UOHZWLgn5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ZQqssHzq6ekeZ0aV2aNLDmVxz0DbA1RR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15ay6sz_I7VocIAodbXREPnhzzAFI7xec"
+    ],
+    "driveFolderId": "1y_TX1xZz8jHFRruE-Nb1DCCwM5xeHQEh",
+    "link": "https://drive.google.com/drive/folders/1y_TX1xZz8jHFRruE-Nb1DCCwM5xeHQEh?usp=drive_link"
+  },
+  {
+    "id": "fuse-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "富序投資 FUSE INVEST 金融資產理財 品牌識別與 CIS 視覺設計",
+    "titleEn": "FUSE INVEST Brand Identity System",
+    "philosophy": "以專業信賴與沉穩金屬藍色系為核心，結合俐落幾何線條與現代無襯線字體。透過精準結構化排版，建構兼具金融專業感與品牌識別度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1qWx6EJqS0RWdxRAmQYv1y5vHMic0sCVZ",
+    "placeholderId": "IMAGE_FUSE_CIS",
+    "colorTheme": "from-[#131d2b] via-[#24354f] to-[#0a0f16]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qWx6EJqS0RWdxRAmQYv1y5vHMic0sCVZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1isbI2rY4544iJAsMxYnI1x59IhApPADA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1bjSyyui58Oe2Uyd1iaJQqn211klB1XJn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1o9CLQ-AJMtzK1QfSCbYb5yV_Kd2FhfsC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rBYgDdFpUl3-Lm-pHFpy-mpkmjRl35AI",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Ex8AwHbKxFQLiHU7ObCqer_72cHWBNwW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UAiueOjXvRJzCG_2xUMdT38lesNumJdo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DLbmwN6BIVACFkNIbxr8vmOJbcgSG-hk"
+    ],
+    "driveFolderId": "1Y18mDtxfhLEcfibQzT8jda3w1tQTIvi_",
+    "link": "https://drive.google.com/drive/folders/1Y18mDtxfhLEcfibQzT8jda3w1tQTIvi_?usp=drive_link"
+  },
+  {
+    "id": "travelsafe-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "旅安保險 TRAVELSAFE 海外平安險 品牌識別與 CIS 視覺設計",
+    "titleEn": "TRAVELSAFE Brand Identity System",
+    "philosophy": "以信賴盾牌與沉穩海軍藍色系為核心，結合幾何線條與現代無襯線字體。透過專業安心的視覺語彙，建構兼具安全感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1-zMLCJ1gBOjLTwsGqMyRyPmzMI6t_4bF",
+    "placeholderId": "IMAGE_TRAVELSAFE_CIS",
+    "colorTheme": "from-[#131d2b] via-[#24354f] to-[#0a0f16]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-zMLCJ1gBOjLTwsGqMyRyPmzMI6t_4bF",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KAlTcWIj3IbKtf1Is5iQ0lLEEjuNGK1n",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gG7cWDAb3FF2dauIb-V-XB6hq628vLaN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1v8e31ocW6vpa_ahlSPzDS2x6nzV608lK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sYScHLS7p6d4GwZWrHHlSJ_EPLob_z8s",
+      "https://drive.google.com/thumbnail?sz=w1000&id=17XyDvy4scZS6JkN9nx5iE5ZpDlm_vl7z",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16_q6M2p1DAbS6gZkD8YcrPSW4-BizptG",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_zHxQOOx3dzPtnIuc8z4abdmUiPVWSu6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LVkl73-V8rqL1BFEA5ld_85uqljHfDIu"
+    ],
+    "driveFolderId": "1zJ3vXveAk6C9Q61yuAAGlnNODlvcu_OF",
+    "link": "https://drive.google.com/drive/folders/1zJ3vXveAk6C9Q61yuAAGlnNODlvcu_OF?usp=drive_link"
+  },
+  {
+    "id": "dailynuts-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "日日果 Daily Nuts 每日堅果健康零食 品牌識別與 CIS 視覺設計",
+    "titleEn": "DAILY NUTS Brand Identity System",
+    "philosophy": "以天然大地色系與圓潤無襯線字體為核心，結合堅果自然曲線與結構化排版網格，建構兼具健康活力與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1A_SXXYUQpDtppUBlptlSM_tX9xYk0F3N",
+    "placeholderId": "IMAGE_DAILY_NUTS_CIS",
+    "colorTheme": "from-[#221c16] via-[#3a2d22] to-[#110e0a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1A_SXXYUQpDtppUBlptlSM_tX9xYk0F3N",
+      "https://drive.google.com/thumbnail?sz=w1000&id=13d1IHiPLU2QYvxkacg3XrY7X0-gr8h8P",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CdaXLSSBJ-N3JGgU58YMTzBEvCL5JgvP",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1S3tmIkKhrvQIry9YyPYVkjuTUJV3kzoT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1w-I0Skv7fEjHeUD7xQZnsp10NAxcj0QA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1R7yM88GyuetHXV1xyWXYGx1fvuCteGoz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UAsK6d1lu11RoUb_7BsuND-KJpWzEoGt",
+      "https://drive.google.com/thumbnail?sz=w1000&id=132uZ1Ld526qQ-YmXE0dRbDD9aNRoiQn3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nw72abiEOz8i-bKOEUI7TAkHuuX2WksF",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CRCQdlhnjkXP0FagtkVfOL_YBTVJv0v8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1t2u0Hb5o4H0hVcCVvQTjfbLBnnbAawl5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1i0BzFJUWmGHgn55G2VEerYHCBNlWKdW8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1g2eL9mfx9h5byQGkhhwZpGBISmnU265K",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TLTxT8ovz5I3sgA6kkMmb1XFwLNbtDwz"
+    ],
+    "driveFolderId": "1geABZR_4eo7G5DOhnCL7YvcdfGCoUwad",
+    "link": "https://drive.google.com/drive/folders/1geABZR_4eo7G5DOhnCL7YvcdfGCoUwad?usp=drive_link"
+  },
+  {
+    "id": "qinyu-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "沁嶼 QINYU 沁涼特調茶飲 品牌識別與 CIS 視覺設計",
+    "titleEn": "QINYU Brand Identity System",
+    "philosophy": "以沁涼茶色與流暢水波線條為核心，結合圓潤無襯線字體與結構化排版網格，建構兼具清爽視覺與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1fatuKIuINvXWvAYLurdK5096MEXEGMi6",
+    "placeholderId": "IMAGE_QINYU_CIS",
+    "colorTheme": "from-[#14222b] via-[#24394f] to-[#0a1016]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fatuKIuINvXWvAYLurdK5096MEXEGMi6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1K9q6oKMUUbAPxmF-vmCZEYckHfhRqsJR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=138Lbq6-5gsNQRb0UnxLpB-bnSvpmDa0H",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KuO8gXCGhUtNCEhG7hEMCrc_jZshYR8w",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aTZ6ycETCbhZZ1qEpql2a9RAQRbmAuQi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zO3hJzGAixw34pHdiNPUIxreSHeidrT4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1SPjaDZik6GcfzLrpuO8C6Dq7coTCzYem",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1I4ss6lP5i9NsmKpG8mbv7GQjaGSb7nCA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zizSVS5VPVBcYd5dPPcA1l0_gXBJk8jA"
+    ],
+    "driveFolderId": "1dfc79r-v8D-69MhIAg61BWUkPWX50DVT",
+    "link": "https://drive.google.com/drive/folders/1dfc79r-v8D-69MhIAg61BWUkPWX50DVT?usp=drive_link"
+  },
+  {
+    "id": "haiyu-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "海御生生醫 保健食品海洋生醫 品牌識別與 CIS 視覺設計",
+    "titleEn": "HAI YU SHENG Brand Identity System",
+    "philosophy": "以海洋深層藍與純淨生醫線條為核心，結合圓潤無襯線字體與結構化排版網格，建構兼具專業信賴感與品牌識別度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1SXvGh1tEt4KwjKmbKUpil9Twm8L2Yvp3",
+    "placeholderId": "IMAGE_HAIYU_CIS",
+    "colorTheme": "from-[#141e2b] via-[#24354f] to-[#0a0f16]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1SXvGh1tEt4KwjKmbKUpil9Twm8L2Yvp3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cgfaJOs5oIWwPbQHkxJqGhdpJqdeApzB",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DSQF977EGgm6j2zNXNKQsp_nTwmlFdGb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1X5Yy9YHro--XrjKPtR2ttXzOwT5j5_Bx",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1x1ox3WmVMyzaPxtgPlZd1iJJ7fFE-GnV",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ARpzLRvC38UnJrl6MCwD4Mz0FKKarEcb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GafVndOwFerpm-Z5W7i1JAZXEfta4GQk",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1praucswS8x28Bhn068MU9xxpHRKoBWl6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UlUW8NXMOwhiqDRkNU5C5jVxmVNLckM7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Z81j-dVHCjjuvtMcAugPm_qKGGI19mtT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Q1KH9KgKZ965F9c2y-vP1luPdRQO5ZuS"
+    ],
+    "driveFolderId": "1cdkWQRHUp3-Biae5l9YZUJWWnp6U3nQ0",
+    "link": "https://drive.google.com/drive/folders/1cdkWQRHUp3-Biae5l9YZUJWWnp6U3nQ0?usp=drive_link"
+  },
+  {
+    "id": "mantour-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "漫旅 MANTOUR 旅宿預訂旅行社 品牌識別與 CIS 視覺設計",
+    "titleEn": "MANTOUR Brand Identity System",
+    "philosophy": "以旅行風景與柔和藍調為核心，結合圓潤無襯線字體與結構化排版網格。透過舒適自在的視覺語彙，建構兼具品牌親和力與辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1Lww_sZaG9y-kqg_UpxKqzLrRqMQ9LZzp",
+    "placeholderId": "IMAGE_MANTOUR_CIS",
+    "colorTheme": "from-[#16202b] via-[#283a4f] to-[#0c1016]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Lww_sZaG9y-kqg_UpxKqzLrRqMQ9LZzp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1i-XPcmeLsrOtLcY-uoVYCu7YAoOuRdM3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1llaASP0g4L8G-qdmr_3DUw1lcRoZqzu5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1I22N9thlm8MGmiBzbp2WwgmKEuR1SXUe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VQmheb9xEOFrmRDbpKKXwaH0H-brewFn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1FJEyvVgTYTQbHOE-AoE4g0awP8zLyTJM"
+    ],
+    "driveFolderId": "1a_wTJrEaaU3dPuFWAYmsl_v_xdcRb7zc",
+    "link": "https://drive.google.com/drive/folders/1a_wTJrEaaU3dPuFWAYmsl_v_xdcRb7zc?usp=drive_link"
+  },
+  {
+    "id": "chengyue-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "澄岳建設 頂級建築地產建案 品牌識別與 CIS 視覺設計",
+    "titleEn": "CHENG YUE Brand Identity System",
+    "philosophy": "以沉穩大地石材色系與俐落幾何線條為核心，結合經典字體與結構化排版網格，建構兼具專業建築質感與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1hoAQ4n1RTgvZ9SpZb3MGLoHo0DEvEUdO",
+    "placeholderId": "IMAGE_CHENGYUE_CIS",
+    "colorTheme": "from-[#221c18] via-[#3a2d26] to-[#120f0d]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hoAQ4n1RTgvZ9SpZb3MGLoHo0DEvEUdO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1OlUmsTegGhTCRqaWL0-ei06JfGVzpx2a",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1g9PtO2i9hCF8iE_OTSeFgQvy7YOmugI7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hi7oTAC4PB-ALfNvQViRbsapNvC2q3lT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xgB9UrGWHMxU3vwpKTK6V68OHJpFken2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qRgVTKdO9tg-I9g5o4ggB69wxwsi95Lb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Yn5-_lrB6rvKGx7xzWoiYKR_GApTJmUz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UGvQTuVz6RSAS3jMAbYrAwkCPYcoue9k"
+    ],
+    "driveFolderId": "10p1ReesfXGpIwJiCHjN6ZWb7jcSsWXh8",
+    "link": "https://drive.google.com/drive/folders/10p1ReesfXGpIwJiCHjN6ZWb7jcSsWXh8?usp=drive_link"
+  },
+  {
+    "id": "chayu-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "茶嶼 CHA YU 高山手搖茶飲 品牌識別與 CIS 視覺設計",
+    "titleEn": "CHA YU Brand Identity System",
+    "philosophy": "以高山茶園翠綠色系與流暢茶湯線條為核心，結合圓潤無襯線字體與結構化排版網格。透過清新自然視覺語彙，建構兼具品牌親和力與辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1lDuH8xope_Gc6ebiMLlwQ_RvE3GZhDFb",
+    "placeholderId": "IMAGE_CHAYU_CIS",
+    "colorTheme": "from-[#16261c] via-[#284232] to-[#0c140e]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lDuH8xope_Gc6ebiMLlwQ_RvE3GZhDFb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TH8TlngQXuLagfIYBbUrH2e3RqDieX-_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=12cFicg_m8eBD1tNRTizpv2iox5m7JGBY",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PYn9YeZLd3Fim6bbYFRnocIuepqPW3rI",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UQy1QnHoTh3DmQNdpNNQKa_wyFwAlM_l",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cl_vG0yIbKkFy6974cVhuX7EYXHkH-Nk"
+    ],
+    "driveFolderId": "1nLtQvNfwUQAJWTgryk3siKgOf7hFtgEo",
+    "link": "https://drive.google.com/drive/folders/1nLtQvNfwUQAJWTgryk3siKgOf7hFtgEo?usp=drive_link"
+  },
+  {
+    "id": "chalane-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "茶巷口 CHA LANE 巷弄人文茶飲 品牌識別與 CIS 視覺設計",
+    "titleEn": "CHA LANE Brand Identity System",
+    "philosophy": "以傳統茶香韻味與沉穩墨綠色系為核心，結合圓潤無襯線字體與結構化排版網格，建構兼具人文氣息與現代辨識度的完整品牌識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1o2BwrsbSsPN5UXYsN1S5cPx5Ag-fjoyw",
+    "placeholderId": "IMAGE_CHALANE_CIS",
+    "colorTheme": "from-[#14261c] via-[#244231] to-[#0a140f]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1o2BwrsbSsPN5UXYsN1S5cPx5Ag-fjoyw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10kOU0t-w2h0gBx3CRV_qrz_TaJBXbT1q",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kgiegTgcw9pxH3gm2DNJ6HZqIIBYS7w2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aUdT_SLdJp9-jZNGECw8-fZrKYVGk3Rq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WZMjKGXxccnvFaGCw-u3LlRt6h5U9ri6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1T8b_hN7vV_18oLO9xIYgOiBmivOeTDgR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1M8qarmmpkpb9xqBmunN_FaBWY8XXvsYe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15GJKOREjGYNOfvBEkvKC8_dXrLOijzVu"
+    ],
+    "driveFolderId": "1cmVwneqha0s9EgTBhHxA2r4G4Bq8_lqE",
+    "link": "https://drive.google.com/drive/folders/1cmVwneqha0s9EgTBhHxA2r4G4Bq8_lqE?usp=drive_link"
+  },
+  {
+    "id": "velora-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "薇洛菈美學 VELORA 奢華醫美美學 品牌識別與 CIS 視覺設計",
+    "titleEn": "VELORA Brand Identity System",
+    "philosophy": "以優雅精緻的流金線條與現代無襯線字體為核心，結合柔和米色調與對稱幾何網格排版。透過高雅細緻的視覺語彙，建構兼具奢華感與專業信賴度的完整企業識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1Xxav324FYw6L7wR-OW5ZwfhStuCxi4Y-",
+    "placeholderId": "IMAGE_VELORA_CIS",
+    "colorTheme": "from-[#1c1619] via-[#33252c] to-[#0d090c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Xxav324FYw6L7wR-OW5ZwfhStuCxi4Y-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=18qtIngA9xV9Vjv25jNWPCTaKJDCCcbmH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1XKOVzY0tbTKlLXfADD61IXuEgd1pRooJ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iq7c9kM2va3fEK9SR3S27u0uDK6XKtPh",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uYcOs_ICnaFG2kwH2aJual7zQezptq3O",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-7JAkjWllsou6CMhSyDcMbTtKq_g1OpQ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14iC8Yvz_DBYtmz3m8K4inZ6aDR1jLRPM"
+    ],
+    "driveFolderId": "1IvSp6ACudiZRNSxuojcu9oEy0W0PknhP",
+    "link": "https://drive.google.com/drive/folders/1IvSp6ACudiZRNSxuojcu9oEy0W0PknhP?usp=drive_link"
+  },
+  {
+    "id": "miisu-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "蜜塑 MIISU 體雕美容美塑 品牌識別與 CIS 視覺設計",
+    "titleEn": "MIISU Brand Identity System",
+    "philosophy": "以柔和曲線與優雅粉嫩色系為核心，結合圓潤無襯線字體與精緻幾何排版。透過溫潤細緻的視覺語彙，建構兼具專業感與品牌親和力的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1g9ckixJucjd4S0EIVPRux8oKhODnp5qg",
+    "placeholderId": "IMAGE_MIISU_CIS",
+    "colorTheme": "from-[#2b1d25] via-[#4d3240] to-[#140e12]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1g9ckixJucjd4S0EIVPRux8oKhODnp5qg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LuNnkEL0PPTNND6MVi4MGd_usliuRZ0X",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WXWYPKMr5x_hzMOtOP3itMsNTlUlEMwT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CLLkET0tkoyXpAtRkpTPv89z9BC5Cmxx",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JGGBcMCrwDImqRZDYAe5mOW_PRlz7dNe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QGC8rd5ZxpiQrLAXl4wgMVmYKJK3JY-v"
+    ],
+    "driveFolderId": "1aPTHIKguKFxzVZ2scAZ3DCg5c1rDq3TF",
+    "link": "https://drive.google.com/drive/folders/1aPTHIKguKFxzVZ2scAZ3DCg5c1rDq3TF?usp=drive_link"
+  },
+  {
+    "id": "sushi-hondo-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "鮨本堂 SUSHI HONDO 日式迴轉壽司 品牌識別與 CIS 視覺設計",
+    "titleEn": "SUSHI HONDO Brand Identity System",
+    "philosophy": "以日式傳統木紋與現代俐落幾何為核心，融合書法筆觸與圓潤無襯線字體。透過沉穩禪風色系與精準排版網格，建構兼具文化底蘊與現代辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1x18UXziHqvm5nTmYj1qWGrJvNFia_PuF",
+    "placeholderId": "IMAGE_SUSHI_HONDO_CIS",
+    "colorTheme": "from-[#1a120c] via-[#332219] to-[#0f0a07]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1x18UXziHqvm5nTmYj1qWGrJvNFia_PuF",
+      "https://drive.google.com/thumbnail?sz=w1000&id=19ZwHeAF9YRJwaVHBZaBPvlMw0ehY25_s",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CelriPLOi3t80DhQXUzg0KWSebLhddPJ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Eip2uoAbbJ50F2H1vDh4lfaaD63dJcYg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1NC8GUL2cC_feSPk5baZHrH4Iie90udHm",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rnDyqSpBCodGCrMKqgE_mbEeuW7Yxr2n"
+    ],
+    "driveFolderId": "15I-NyhzLOu5Bst1sFRgG5X9B1iezgdJ1",
+    "link": "https://drive.google.com/drive/folders/15I-NyhzLOu5Bst1sFRgG5X9B1iezgdJ1?usp=drive_link"
+  },
+  {
+    "id": "sunburst-foods-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "SUNBURST FOODS 美式歡樂早餐穀片 品牌識別與 CIS 視覺設計",
+    "titleEn": "SUNBURST FOODS Brand Identity System",
+    "philosophy": "以陽光活力黃與復古美式字體為核心，結合穀片元素與幾何網格排版。透過明亮歡樂的視覺語彙，建構兼具趣味性與品牌辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1fa71G8WSwPDpUKfrdyEH3b1I-D5jOk89",
+    "placeholderId": "IMAGE_SUNBURST_CIS",
+    "colorTheme": "from-[#2b1f15] via-[#4a3424] to-[#1a120c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fa71G8WSwPDpUKfrdyEH3b1I-D5jOk89",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LBOmQBm8tCRZ6kqRrTVFCqmd50cXvyP-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HZWmZ9xnkQEEa73IbjdyvLAU9_E_Cv5g",
+      "https://drive.google.com/thumbnail?sz=w1000&id=18m0nle_pETrA-xaFhblrGUTbJjCD0My6"
+    ],
+    "driveFolderId": "1UBzVo4L5ENyKpHnB2Bf8EQhiXrvTQjJJ",
+    "link": "https://drive.google.com/drive/folders/1UBzVo4L5ENyKpHnB2Bf8EQhiXrvTQjJJ?usp=drive_link"
+  },
+  {
+    "id": "bubu-soda-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "BUBU 波波汽水 品牌識別與 CIS 視覺設計",
+    "titleEn": "BUBU Soda Brand Identity System",
+    "philosophy": "以氣泡躍動感與圓潤可愛字體為核心，結合鮮明色彩與幾何網格排版。透過活潑愉悅的視覺語彙，建構兼具趣味性與品牌辨識度的完整企業識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1o-LIrY0eRCT_Od5ihmAyLMqSkP5sknvj",
+    "placeholderId": "IMAGE_BUBU_CIS",
+    "colorTheme": "from-[#1b222d] via-[#2a384f] to-[#11161f]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1o-LIrY0eRCT_Od5ihmAyLMqSkP5sknvj",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iKfxo4kH1yJilT5njIKtbRa1LmQzDFPl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CLvhBDjAHv5TGbzYJKwzmU0G6Z4OP9JG",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1y9qlqf8CodnTu9sPsRdoKzCk2z5Spywg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1SD98f8X1Vml2IKjoz6KkotZteimcZbtj"
+    ],
+    "driveFolderId": "17lrtMTrFGbxkeCxtx7dT71_8HQfP1rd3",
+    "link": "https://drive.google.com/drive/folders/17lrtMTrFGbxkeCxtx7dT71_8HQfP1rd3?usp=drive_link"
+  },
+  {
+    "id": "morinest-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "MORINEST™（モリネスト） 品牌識別與 CIS 視覺設計",
+    "titleEn": "MORINEST Brand Identity System",
+    "philosophy": "以森林木質綠意與幾何線條為核心，融合圓潤無襯線字體與溫潤大地色系。透過結構化排版網格，建構兼具自然氛圍與品牌識別度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1DxFY3TMOnJ28yydLbed3bWAA-buGIrjN",
+    "placeholderId": "IMAGE_MORINEST_CIS",
+    "colorTheme": "from-[#1a2e22] via-[#2d4a37] to-[#0f1c14]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DxFY3TMOnJ28yydLbed3bWAA-buGIrjN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vthuSyMBumWgCahRg9s8wikhkqvet1JS",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Vz7Y92H9BIRo-E4tDYWZ-U1VjLRrVHYX",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1c0VuugPTWkBXrgFSdho9R7oYSqhKkG9L",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kQUKAHT35NxwwS3ah7e6nnfcBEQ1Yid1",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vWrxJpIErR8bARtai-jxPVovI9ZWSfIt",
+      "https://drive.google.com/thumbnail?sz=w1000&id=146qYxZeRBPz3PS2TZEnog_2_9OSDEDTM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fOlb7A_pxiJGG14-Kf00zBw6yhsaCe8x",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1f6cmWflaUeFr9UBhSM20JmBDlsQrazjB",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eKx_x-k_PAzCFjA3DuVp3Wjfg6zJ1Un8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QaFf3GNmIxleoWNwTpCO1So-XhYL2QK0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ac0DibxZu0Bq28M1Iug7DtHoQRkeVAsg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nDG04qVneW3CeOBl7C5vTnjUy_cCV5DD"
+    ],
+    "driveFolderId": "1gIhC3CAoe1G-Ntew7OJbUPfrOKPpvhf8",
+    "link": "https://drive.google.com/drive/folders/1gIhC3CAoe1G-Ntew7OJbUPfrOKPpvhf8?usp=drive_link"
+  },
+  {
+    "id": "maojia-brand-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "毛呷 MAO JIA 品牌識別與 CIS 視覺設計",
+    "titleEn": "MAO JIA Brand Identity System",
+    "philosophy": "以寵物足跡與中式餐具線條融合為核心，採用沉穩大地色系與圓潤無襯線字體。搭配結構化排版網格，建構兼具品牌親和力與辨識度的完整視覺識別系統。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1a9iO1CroemsU65I1YqK_RbM2pmuhqWFs",
+    "placeholderId": "IMAGE_MAOJIA_CIS",
+    "colorTheme": "from-[#221c16] via-[#3a2e24] to-[#14100c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1a9iO1CroemsU65I1YqK_RbM2pmuhqWFs",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uju2eJiidsduIwvH9gvGYNSoL7PX9BqU",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LHrZSdfkOy5ch_NbXj4DsPnM_TP0eRHU",
+      "https://drive.google.com/thumbnail?sz=w1000&id=17Xzlzb1v1ll5ovo9ZX4vNPeKz5Fenhi7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15qdfl5rtPP19KUlt7NV9bA1QLCVscuIU",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pAJovKi8kGtqp7_GnkpaQl4UjwiYIMMm",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15lnQQDOCkAuSyzLe0qjsluO0ejAvKN9B",
+      "https://drive.google.com/thumbnail?sz=w1000&id=18yhAFdJ_2jzv1TGvCh9ZERhnSHsAOM52"
+    ],
+    "driveFolderId": "1cWgt31T8P0qWmHBBh9151NrkURYCJ8eM",
+    "link": "https://drive.google.com/drive/folders/1cWgt31T8P0qWmHBBh9151NrkURYCJ8eM?usp=drive_link"
+  },
+  {
     "id": "toukou-shuzo-cis",
     "category": "企業LOGO與CIS設計",
     "title": "東行酒造 TOUKOU SHUZO CIS",
@@ -149,10 +873,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "CIS規範",
       "品牌識別"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1_88pUYypi9qIM2kVQaAuXRvfH2sCxdnq",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1s7xgd118G0Pi8SZjtBQVYR9j7nrvOpRD",
     "placeholderId": "IMAGE_TOUKOU_SHUZO_CIS",
     "colorTheme": "from-[#0b132b] via-[#1c2541] to-[#0b132b]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1s7xgd118G0Pi8SZjtBQVYR9j7nrvOpRD",
       "https://drive.google.com/thumbnail?sz=w1000&id=1_88pUYypi9qIM2kVQaAuXRvfH2sCxdnq",
       "https://drive.google.com/thumbnail?sz=w1000&id=13e8fZ-bDWujg3jcnq0wLSugYSyq5lvr6",
       "https://drive.google.com/thumbnail?sz=w1000&id=1ZVOAuqtGB0HIn3bdDRVCEnSgjFT-Y1vU",
@@ -213,10 +938,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "品牌識別",
       "CIS規範"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1BYs2oy9rtNQ2sPDvOVWIfSg_gSLCU7Ty",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1ttukH7-mFXaufiZfPmO42JE3vsH7EJTN",
     "placeholderId": "IMAGE_SEA_SIREN_FESTIVAL",
     "colorTheme": "from-[#081C24] via-[#0E2E3B] to-[#051218]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ttukH7-mFXaufiZfPmO42JE3vsH7EJTN",
       "https://drive.google.com/thumbnail?sz=w1000&id=1BYs2oy9rtNQ2sPDvOVWIfSg_gSLCU7Ty",
       "https://drive.google.com/thumbnail?sz=w1000&id=1a2u29FkU5e5vag_KKPRWuwqDg3z2_KcG",
       "https://drive.google.com/thumbnail?sz=w1000&id=14Y1lCRdc_bfVFF9uL5xeQ25ptJrW_P18",
@@ -345,10 +1071,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "CIS規範",
       "品牌識別"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1aDP1dMgixI6kxtvzmoQYQ_GjckmNp7Lh",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1ghiZVaBhYEzzHo2lBhcj7k8J7h4IRHAk",
     "placeholderId": "IMAGE_HUATIANCUN_CIS",
     "colorTheme": "from-[#3d2f21] via-[#1f2d1a] to-[#2e1d23]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ghiZVaBhYEzzHo2lBhcj7k8J7h4IRHAk",
       "https://drive.google.com/thumbnail?sz=w1000&id=1aDP1dMgixI6kxtvzmoQYQ_GjckmNp7Lh",
       "https://drive.google.com/thumbnail?sz=w1000&id=1J_4nmaycENi2ORZAkEuz6n2Xro83CgAb",
       "https://drive.google.com/thumbnail?sz=w1000&id=1GKjzviVXZW-5sfnBxAQY3VHdKUEwEc2k",
@@ -406,10 +1133,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "CIS規範",
       "品牌識別"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1seTiaf3NFkSmusddI8PDg7exMzPQeSLe",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1YTkv_neDIhxtxuomQK9NgRS88g_PZNvm",
     "placeholderId": "IMAGE_SHANYE_MUREN_CIS",
     "colorTheme": "from-[#3e3227] via-[#2f3d32] to-[#24313d]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YTkv_neDIhxtxuomQK9NgRS88g_PZNvm",
       "https://drive.google.com/thumbnail?sz=w1000&id=1seTiaf3NFkSmusddI8PDg7exMzPQeSLe",
       "https://drive.google.com/thumbnail?sz=w1000&id=12Nb4ECUFyJpdlppUBBaDB-Rw79sKxC1P",
       "https://drive.google.com/thumbnail?sz=w1000&id=1Y2nI3dR57wP5_hWOlSatQevslUXUlIC8",
@@ -499,8 +1227,59 @@ export const initialPortfolioData: PortfolioItem[] = [
     "link": "https://www.facebook.com/storeforbird/"
   },
   {
+    "id": "sebamed-sports-poster",
+    "category": "平面海報廣告設計",
+    "title": "施巴 Sebamed 運動舒緩沐浴乳 小人物與城市系列廣告海報",
+    "titleEn": "Sebamed Sports Body Wash Poster Series",
+    "philosophy": "以清新海洋藍與活力綠色調為底，結合微縮人物情境與城市地標實景。運用合成視覺與結構化排版，突顯運動舒緩產品特性，建立具趣味感與故事性的廣告視覺。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "海報設計",
+      "廣告視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1TgfDfFlnCXzyrw9PtXP2plbTzgktxu6j",
+    "placeholderId": "IMAGE_SEBAMED_POSTER",
+    "colorTheme": "from-[#0f2b3c] via-[#1a4a5e] to-[#0a1823]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TgfDfFlnCXzyrw9PtXP2plbTzgktxu6j",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AyMoR_zsh12CjKHVWdZHdPratXT4yOaS",
+      "https://drive.google.com/thumbnail?sz=w1000&id=104GE23pMpsRL-PEuLxH2P3H74Ee5zZ-M",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1S560d9HvTna72VbXTHoE_WCIhxvCDtlT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nqUo1L6PGm9lxIAqPcyovevtJAI_mqp_"
+    ],
+    "driveFolderId": "140BQrd8NhQAg_UMLxoBzOCyhJNj8R-N4",
+    "link": "https://drive.google.com/drive/folders/140BQrd8NhQAg_UMLxoBzOCyhJNj8R-N4?usp=drive_link"
+  },
+  {
+    "id": "sebamed-sky-poster",
+    "category": "平面海報廣告設計",
+    "title": "施巴 Sebamed 運動舒緩沐浴乳 幻想與天空系列廣告海報",
+    "titleEn": "Sebamed Sports Body Wash Fantasy & Sky Poster Series",
+    "philosophy": "以湛藍星空與夢幻雲海為背景，融合無重力漂浮與鯨魚躍水意象。透過跨現實合成與結構化排版，展現清爽舒緩的視覺氛圍。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "海報設計",
+      "合成視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1kiYY30y9og6xH1y4PW5mX61o3Y23yXuM",
+    "placeholderId": "IMAGE_SEBAMED_SKY_POSTER",
+    "colorTheme": "from-[#0c1a30] via-[#1b3a5c] to-[#081220]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kiYY30y9og6xH1y4PW5mX61o3Y23yXuM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1e1T3ckAwJkT2UYhhTbkcMD5-QWl43f0t",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jlNceTERKT7o-_uiurGkJbb7CJlY8VCO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fXbKIZ5KKJOsoMOMq_7odTQp8AUKCNXQ"
+    ],
+    "driveFolderId": "17cUbVncZzvNsnolm_s4wYZ4D3yzhGYSf",
+    "link": "https://drive.google.com/drive/folders/17cUbVncZzvNsnolm_s4wYZ4D3yzhGYSf?usp=drive_link"
+  },
+  {
     "id": "gufeng-shaonian-illustration",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "客家電視台谷風少年電視劇宣傳插畫",
     "titleEn": "Hakka TV Drama Valley Wind Boy Editorial Illustration",
     "philosophy": "採用左右對稱人物結構，搭配低飽和粉紅與淡黃漸層，建構溫和暮色背景。中央圓形橘陽與植物剪影交織出空間深度，藉由紅線連結蝴蝶與手指，以扁平向量線條導引視覺流向。",
@@ -586,7 +1365,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "wugu-ai-media-gugugu",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "五股職訓局AI媒體應用古菇顧海報",
     "titleEn": "2025 Wugu Vocational Training AI Media Applications Class 02 - GuGuGu Class Poster - Sustainable Ecology & Advanced AI Generative Vision Poster Design",
     "philosophy": "以科技感藍紫漸層為基調，結合AI生成視覺符號與幾何網格排版。透過清晰的主副標題對比與結構化區塊，展現多媒體培訓課程的創新能量與專業意象。",
@@ -649,7 +1428,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "chengmei-tavi-symposium",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "成美論壇 ── TAVI 案例研討會 海報",
     "titleEn": "Chengmei Forum 2025 - TAVI Academic Valve in Valve Symposium & Lecture Poster Design",
     "philosophy": "以沉穩深藍色系搭配醫療心臟結構意象，結合高對比無襯線字體編排研討會資訊。運用幾何線條與嚴謹網格，傳達醫學論壇的權威專業與學術交流質感。",
@@ -671,7 +1450,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "myval-in-valve-symposium",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "Myval IN VALVE 中區瓣中瓣發表會與學術研討會 海報與現場導引",
     "titleEn": "Myval IN VALVE Launch Symposium In Taichung - Transcatheter Heart Valve Academic Poster Design",
     "philosophy": "採用精密心血管結構圖像與高對比色塊分割，建立學術發表會海報視覺。輔以清晰的區塊邊界與系統化文字排版，強化研討會現場導引與專業資訊傳達。",
@@ -692,7 +1471,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "myval-symposium",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "Myval SYMPOSIUM 南區心臟介入治療研討會 海報",
     "titleEn": "Myval SYMPOSIUM 2024 - South Taiwan Structural Heart TAVR/TAVI Academic Poster Design",
     "philosophy": "以極簡暗色背景襯托心臟介入治療核心圖像，透過嚴謹的學術網格階層編排講者與議程。利用高對比明亮色彩標示重點，形塑沉穩具權威感的醫療研討會海報。",
@@ -713,7 +1492,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "ni-neuro-symposium",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "NI中區研討會海報與背板",
     "titleEn": "Neuro Intervention Launch Symposium In Taichung (NI IS MY GOD) - Medical Poster & Venue Identity",
     "philosophy": "結合神經網絡線條與深藍科技底色，塑造神經醫學研討會主視覺。運用大器明快的文字層次與線條延伸，打造兼具展覽背板與宣傳海報功能的大型視覺系統。",
@@ -1917,7 +2696,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "35",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "陸軍第六軍團21砲指部 隼翼衛國・金武耀昇 新營區外牆海報",
     "titleEn": "Giant Outdoor Poster Design for ROC Army 6th Army Corps 21st Artillery Command",
     "philosophy": "以雄鷹翱翔意象結合金屬質感標題字體，建構軍事營區外牆牆面視覺。透過剛勁筆觸與高對比國軍意象構圖，展現軍隊精實守護與恢宏氣勢的形象意涵。",
@@ -1939,7 +2718,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "40",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "河岸聲現 J.E.G. 這個 爵士樂團現場直播音樂會海報",
     "titleEn": "Riverside Live Session: J.E.G. Jazz Band Live Concert Poster",
     "philosophy": "運用復古暖色調與幾何聲波圖騰，勾勒爵士樂團現場演出動態。結合非對稱文字排版與光波質感，傳遞深夜音樂會獨有的即興節奏與靈魂氛圍。",
@@ -1960,7 +2739,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "41",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "我們都該承認自己的── 乾淨的房間 X 魏品勻 聯合公演海報",
     "titleEn": "Joint Concert Poster: 'We Should All Admit...' - Clean Room x Wei Pin-yun",
     "philosophy": "採用低飽和冷色系與留白空間，營造孤獨而細膩的情感劇場氛圍。搭配手寫感字體與細微影像疊加，呈現音樂聯合公演的內省質感與文字韻味。",
@@ -2159,6 +2938,30 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
+    "id": "sebamed-sky-model-social",
+    "category": "社群行銷小編圖文",
+    "title": "施巴 Sebamed 運動舒緩沐浴乳 天空模特行銷圖文",
+    "titleEn": "Sebamed Sports Body Wash Sky Model Campaign Social Post",
+    "philosophy": "以湛藍天空與無重力模特身姿為背景，結合產品實體與簡潔排版網格。透過高飽和色彩對比與幾何圖塊，清楚呈現運動舒緩訴求，強化社群圖文視覺吸引力。",
+    "isHighlight": true,
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "品牌排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=12bTFymZA6bIgHKR3ABmZIIpOsnjr27Tp",
+    "placeholderId": "IMAGE_SEBAMED_MODEL_SOCIAL",
+    "colorTheme": "from-[#0d2238] via-[#1d4268] to-[#081524]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=12bTFymZA6bIgHKR3ABmZIIpOsnjr27Tp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oQtysci89mRH05PrLPyLNavbSO4PaXx1",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jZqkbBFtVnPqFyeD3ZFPF0Ur5TdR99yl"
+    ],
+    "driveFolderId": "16zY8nOXQ8w7PDsCF8R4ir4PN3yRANSu5",
+    "link": "https://drive.google.com/drive/folders/16zY8nOXQ8w7PDsCF8R4ir4PN3yRANSu5?usp=drive_link"
+  },
+  {
     "id": "52",
     "category": "社群行銷小編圖文",
     "isHighlight": true,
@@ -2236,7 +3039,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "55",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "2025 TREND @ Intervention 介入治療聯合研討會 官方學術大會主視覺與宣傳",
     "titleEn": "2025 TREND @ Intervention Interventional Therapy Joint Conference Academic Key Visual & Promotional Design",
     "philosophy": "採用結構化網格與精準字體階層，建立國際心血管介入治療大會視覺。以簡約灰白基調襯托關鍵資訊，結合高對比色塊導引學術研討與交流焦點。",
@@ -3001,10 +3804,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "包裝打樣",
       "IP延展"
     ],
-    "imageUrl": "/images/optimized/178CmZfhKPZmbQhrzPIU8ntmTBiUwCOGc.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=14ZQ3qoF55xQlHuMOFiJBpwf8FyldkiOt",
     "placeholderId": "wild-burger-club-cis-01",
     "colorTheme": "from-[#1A1A1A] via-[#E28514] to-[#A31D1D]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=14ZQ3qoF55xQlHuMOFiJBpwf8FyldkiOt",
       "/images/optimized/178CmZfhKPZmbQhrzPIU8ntmTBiUwCOGc.webp",
       "/images/optimized/1MDt2keguqLOtOi_lAYvjB5weLVbIsohF.webp",
       "/images/optimized/17-p2bOLThO-tCguphOYF0Jum-1RbcW8B.webp",
@@ -3049,10 +3853,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "包裝打樣",
       "撞色渲染"
     ],
-    "imageUrl": "/images/optimized/17Yi_oGMEYdsQ4T2W1iac03-UG31oiQA0.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1AZWn3wczLJpxUQCs9QlH3US6lEjkOHWT",
     "placeholderId": "blend-monster-cis-01",
     "colorTheme": "from-[#0d1f11] via-[#103a19] to-[#0d1f11]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AZWn3wczLJpxUQCs9QlH3US6lEjkOHWT",
       "/images/optimized/17Yi_oGMEYdsQ4T2W1iac03-UG31oiQA0.webp",
       "/images/optimized/1QRSUgkasEs-NaCVjv8H5woDGFT4ajILg.webp",
       "/images/optimized/1jhgGnuK3N_yPdpJKqp-Jp5H9RJWynFk0.webp",
@@ -3094,10 +3899,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Ai",
       "Photoshop"
     ],
-    "imageUrl": "/images/optimized/1dVeJomPS1DycRWgjJO4HI5KBi2456T3y.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=114nFnpH76iCQi3eg7qU5kPfAVWVI6ir7",
     "placeholderId": "IMAGE_85",
     "colorTheme": "from-[#330c0c] via-[#140404] to-[#0a0202]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=114nFnpH76iCQi3eg7qU5kPfAVWVI6ir7",
       "/images/optimized/1dVeJomPS1DycRWgjJO4HI5KBi2456T3y.webp",
       "/images/optimized/14serlsOTYOnU8PjZIFA8H3DySAZW2PmQ.webp",
       "/images/optimized/1TLIMsunyydr4FoSd2i7j8TC8rg-oYyFE.webp",
@@ -3304,7 +4110,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "94",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "isHighlight": true,
     "title": "巴迪醫療 TATCS 台灣胸腔及心臟血管外科學會年會 醫療產品海報設計",
     "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
@@ -3438,10 +4244,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Ai",
       "Photoshop"
     ],
-    "imageUrl": "/images/optimized/12UJ6Dkto8IpRedAt930vaGhQmtFeT8Ra.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1TVEkPp7bqmQdEbIxkqiRrLWxv4vRYYHT",
     "placeholderId": "IMAGE_101",
     "colorTheme": "from-[#200e0b] via-[#3d1a12] to-[#200e0b]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TVEkPp7bqmQdEbIxkqiRrLWxv4vRYYHT",
       "/images/optimized/12UJ6Dkto8IpRedAt930vaGhQmtFeT8Ra.webp",
       "/images/optimized/1OxNfn5KNZjxaZ4idMfoOW7BLkYNsd24d.webp",
       "/images/optimized/1zfMZX3hTLMR_EQr92wQt_ruMGdFWTOIe.webp",
@@ -4792,10 +5599,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "Photoshop",
       "InDesign"
     ],
-    "imageUrl": "/images/optimized/1kQW-0ybvVk9xpRiRnZGzdw0NZ8QiOsms.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1ZVYKUuFEEbwlXO6qbeoH-A8YELzRmVLR",
     "placeholderId": "1kQW-0ybvVk9xpRiRnZGzdw0NZ8QiOsms",
     "colorTheme": "#e25822",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ZVYKUuFEEbwlXO6qbeoH-A8YELzRmVLR",
       "/images/optimized/1kQW-0ybvVk9xpRiRnZGzdw0NZ8QiOsms.webp",
       "/images/optimized/1r0bMIw_pbLP6Jyw251Adigk2y795UsqU.webp",
       "/images/optimized/1VjlCRp42t4BArHFCIWDXeN7f4igxpMu9.webp",
@@ -5025,7 +5833,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "164",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "0330 Black Goodie 放客兄弟",
     "titleEn": "0330 Black Goodie & Funk Brothers Concert Poster",
     "philosophy": "運用高對比黑黃色塊與美式復古字體，展現放客樂團強烈動感的音樂風格。結合幾何拼貼與演唱會資訊排版，營造充滿律動感與視覺張力的現場公演海報。",
@@ -5044,7 +5852,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "165",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "0503 Black Goodie 貳行程",
     "titleEn": "0503 Black Goodie × Second Journey Concert Poster",
     "philosophy": "以暗色工業風格結合霓虹線條，語刻獨立樂團公演的搖滾氣質。運用不對稱網格與明亮主標題編排，為音樂現場塑造極具個人色彩與衝擊力的視覺印象。",
@@ -5063,7 +5871,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "166",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "0514 New Born 誕 裂縫說 x Control T",
     "titleEn": "New Born Live: A Collaborative Resonance",
     "philosophy": "採用光影交錯與裂縫質感影像，意象化展現「新生與共鳴」主題。搭配精緻無襯線字體與沈穩色調，打造獨立樂團跨界聯合公演之詩意海報。",
@@ -5694,10 +6502,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "InDesign",
       "Cinema 4D"
     ],
-    "imageUrl": "/images/optimized/1X7YCxtmglVS_TvLrCdQJHFQ0641nuVBJ.webp",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1fkvIWlPOgmp0TOsyXjUQVUlXyhRcfGQu",
     "placeholderId": "IMAGE_CIS_BLAST_SCOOP",
     "colorTheme": "from-[#081812] via-[#10241B] to-[#040605]",
     "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fkvIWlPOgmp0TOsyXjUQVUlXyhRcfGQu",
       "/images/optimized/1X7YCxtmglVS_TvLrCdQJHFQ0641nuVBJ.webp",
       "/images/optimized/1JNstZOzE75WKaHwnGgGXbMNQQe-vSsN_.webp",
       "/images/optimized/1kpETmA5v5VUlcL2n9qGYagjbUMMQAhlZ.webp",
@@ -9203,7 +10012,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "407",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "WILD BURGER CLUB™ 套餐宣傳",
     "titleEn": "WILD BURGER CLUB™ Direct-Mail Combo & Social Poster Design System",
     "philosophy": "以高飽和美式復古色彩與粗黑字體組合，呈獻美式漢堡套餐誘人視效。運用食材質感特寫與美式標誌排版，打造美式速食品牌的街頭流行風格。",
@@ -9266,7 +10075,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "410",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "WILD ISLAND BURGER 漢堡宣傳",
     "titleEn": "WILD ISLAND BURGER Promotion Poster Design System",
     "philosophy": "採用熱帶黃綠色彩與動態毛筆字體，突顯夏威夷風味漢堡之熱情意像。搭配豐富食材質感視覺與醒目品牌標誌，傳遞多元明快的美食海報美學。",
@@ -9321,7 +10130,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "bmw-r1200c-vector",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "BMW R1200C 向量重機插畫",
     "titleEn": "BMW R1200C Vector Cruiser Motorcycle Illustration",
     "philosophy": "以精密向量線條勾勒金屬車架與銀色排氣管細節，重現經典巡航重機工藝。結合簡約復古背景與極簡字體編排，展現機械與工業設計的美感平衡。",
@@ -9343,7 +10152,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "derbi-terra-vector",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "Derbi Terra 125 向量重機插畫",
     "titleEn": "Derbi Terra 125 Vector Adventure Motorcycle Illustration",
     "philosophy": "採用高對比明黃車身與精準向量描邊，強調越野重機車體構造與輪胎避震細節。搭配俐落幾何字體，形塑充滿探險精神與動感能量的車款海報。",
@@ -9365,7 +10174,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "peace-under-muzzle",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "槍口下的和平 台北設計獎投稿作品",
     "titleEn": "Peace Under the Muzzle - Taipei Design Award Submission",
     "philosophy": "以冷峻灰色水泥質感為底，繪製黑色槍管與槍口綻放的黃色雛菊。透過符號隱喻與強烈對比構圖，直擊反戰思潮，傳達無聲而深沉的反思力量。",
@@ -9386,7 +10195,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "charity-poster-113",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "113 公益海報反家暴與反霸凌",
     "titleEn": "113 Anti-Domestic Violence & Anti-Bullying Public Service Poster",
     "philosophy": "採用高辨識度警示色彩與粗體求助熱線字體，建構公益宣傳視覺。透過象徵性插畫與明確資訊網絡，傳達防範家暴霸凌與及時通報求助的社會關懷。",
@@ -9408,7 +10217,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "misty-eco-poster",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "淹霧瀰漫 環保海報",
     "titleEn": "Misty Fog Eco Public Service Poster",
     "philosophy": "運用低明度灰霧色調與工廠煙囪漸層，營造空氣污染沉悶氛圍。透過防護意象與高對比標語排版，喚起大眾對空污議題與環境保護的關注。",
@@ -9429,7 +10238,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "global-warming-poster",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "全球暖化 公益海報",
     "titleEn": "Global Warming Public Service Poster",
     "philosophy": "以漸融冰磚與極簡海洋背景構成畫面，突出極地生態危機。結合單色警示字體與空間留白，引發大眾對氣候變遷與環境永續的深層共鳴。",
@@ -9453,7 +10262,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "blood-donation-poster",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "捐血 公益海報",
     "titleEn": "Blood Donation Public Service Poster",
     "philosophy": "以溫暖紅色水滴與愛心結構圖騰為視覺核心，融合現代簡約線條。透過流暢的文字階層與傳遞生命的意象構圖，展現捐血救人與熱血奉獻的精神。",
@@ -9476,7 +10285,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "unique-personality-poster",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "你未必成績拔萃，但肯定與眾不同",
     "titleEn": "Unique and Outstanding Public Service Poster",
     "philosophy": "結合考卷圖騰與多彩畫筆線條，呈現多元天賦與創造力的對比。以溫暖對比色彩與手繪風 typography，傳遞肯定自我價值與鼓勵獨特性的教育公益意涵。",
@@ -9498,7 +10307,7 @@ export const initialPortfolioData: PortfolioItem[] = [
   },
   {
     "id": "pink-afternoon-jungle-date",
-    "category": "平面海報設計",
+    "category": "平面海報廣告設計",
     "title": "粉色下午-叢林約會",
     "titleEn": "Pink Afternoon: Jungle Date Character IP Illustration",
     "philosophy": "以夢幻粉色天空搭配熱帶植物與長頸鹿插畫，構建恬靜奇幻的叢林氛圍。透過柔和色彩交融與向量線條細節，展現童趣與愜意氛圍的原創IP藝術海報。",

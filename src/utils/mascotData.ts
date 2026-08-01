@@ -54,7 +54,7 @@ export const categoryMascotMap: Record<string, MascotCharacter> = {
       "多看幾個我的插畫作品，可以獲得滿滿的角色 IP 靈感爆擊與貼圖驚喜唷！💥"
     ]
   },
-  "平面海報設計": {
+  "平面海報廣告設計": {
     name: "雷龍 Bronti",
     role: "海報版面大師",
     imageDriveId: "1S3U5KeLluy942QfF7NI286vr2GP48IZ_", // BRONTI_P.png

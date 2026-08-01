@@ -840,7 +840,7 @@ export default function App() {
     // Helper to fetch folder images for Google Drive integration
     const setupFolderImages = (portfolioItems: PortfolioItem[]) => {
       portfolioItems.forEach(item => {
-        if (item.driveFolderId) {
+        if (item.driveFolderId && (!item.images || item.images.length === 0)) {
           fetchFolderImages(item.driveFolderId).then(images => {
             if (images && images.length > 0) {
               const currentImagesCount = item.images ? item.images.length : 0;
@@ -860,8 +860,8 @@ export default function App() {
                 initialDataRef.current = updateItem(initialDataRef.current);
               }
             }
-          }).catch(err => {
-            console.error(`Failed to dynamically fetch images for folder ${item.driveFolderId}:`, err);
+          }).catch(() => {
+            // Silently catch fetch failures to prevent unhandled rejections
           });
         }
       });
