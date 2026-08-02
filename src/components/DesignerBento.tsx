@@ -133,7 +133,9 @@ export function DesignerBento({
   const [collapsedActive, setCollapsedActive] = useState<boolean>(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(profile.email);
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(profile.email).catch(() => {});
+    }
     setLocalCopied(true);
     if (onCopyEmail) {
       onCopyEmail();

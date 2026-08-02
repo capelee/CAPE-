@@ -69,11 +69,15 @@ class RootErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundar
 
 // Global error logger for unhandled errors/rejections
 window.addEventListener('error', (event) => {
-  console.error('[Global Window Error]:', event.error || event.message);
+  if (event.error) {
+    console.warn('[Global Window Error]:', event.error);
+  }
 });
 
 window.addEventListener('unhandledrejection', (event) => {
-  console.error('[Global Unhandled Rejection]:', event.reason);
+  if (event.reason) {
+    console.warn('[Unhandled Rejection caught]:', event.reason);
+  }
 });
 
 const rootElement = document.getElementById('root');

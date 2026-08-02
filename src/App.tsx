@@ -873,6 +873,8 @@ export default function App() {
         initialDataRef.current = sanitized;
         setItems(sanitized);
         setupFolderImages(sanitized);
+      }).catch(err => {
+        console.warn("Local data load fallback error:", err);
       });
     };
 
@@ -1301,7 +1303,9 @@ export default function App() {
   const [copiedPromptId, setCopiedPromptId] = useState<string | null>(null);
 
   const copyPromptToClipboard = (prompt: string, id: string) => {
-    navigator.clipboard.writeText(prompt);
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(prompt).catch(() => {});
+    }
     setCopiedPromptId(id);
     setTimeout(() => {
       setCopiedPromptId(null);
@@ -2990,7 +2994,9 @@ export default function App() {
   }, [activeModalItem]);
 
   const copyEmailToClipboard = React.useCallback(() => {
-    navigator.clipboard.writeText(profile.email);
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(profile.email).catch(() => {});
+    }
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
 

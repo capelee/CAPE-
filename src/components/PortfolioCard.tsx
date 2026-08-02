@@ -174,9 +174,14 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   selectedCategory
 }: PortfolioCardProps) {
   const catColor = getCategoryColor(item.category);
+  const mainImgSrc = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '');
+  const leftImgSrc = (item.images && item.images.length > 1 ? item.images[1] : mainImgSrc) || mainImgSrc;
+  const rightImgSrc = (item.images && item.images.length > 2 ? item.images[2] : (item.images && item.images.length > 1 ? item.images[0] : mainImgSrc)) || mainImgSrc;
+
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isFanOut, setIsFanOut] = useState(false);
   const [showFirstPulse, setShowFirstPulse] = useState(isFirst);
 
   const [shuffleOffset, setShuffleOffset] = useState({ x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 });
@@ -268,6 +273,14 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   const flipSpring = useSpring(0, { stiffness: 160, damping: 14, mass: 0.9 });
   React.useEffect(() => {
     flipSpring.set(isCardFlipped ? 180 : 0);
+    if (isCardFlipped) {
+      const timer = setTimeout(() => {
+        setIsFanOut(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      setIsFanOut(false);
+    }
   }, [isCardFlipped, flipSpring]);
 
   const rotateX = useTransform(() => rawRotateX.get());
@@ -629,6 +642,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           style={{
             perspective: "1000px",
             transformStyle: "preserve-3d",
+            zIndex: isCardFlipped ? 40 : isHovered ? 20 : 1,
           }}
         >
           <motion.div
@@ -812,7 +826,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
  
           {/* Back Face of the Card */}
           <div
-            className={`absolute inset-0 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 subpixel-antialiased ${themeContainerClass}`}
+            className="absolute inset-0 w-full h-full rounded-2xl overflow-visible subpixel-antialiased"
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -821,14 +835,119 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               textRendering: "geometricPrecision",
             }}
           >
-            {/* Ambient Background Glow inside the back face */}
-            <div 
-              className="absolute inset-0 transition-opacity duration-500 pointer-events-none opacity-20"
-              style={{
-                background: `radial-gradient(circle at 50% 50%, rgba(${catColor.rgbaGlow}, 0.15) 0%, transparent 80%)`
+            {/* 撲克牌綻開 - 左翼作品照片卡牌 (動態負 z-index 管理，位於中間卡片後方) */}
+            <motion.div
+              className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none shadow-xl transition-all duration-500 ${
+                isSepia
+                  ? "bg-[#FAF2E1] border-[#E8D9BF]"
+                  : isLight
+                  ? "bg-white border-zinc-200"
+                  : "bg-zinc-900 border-white/15"
+              }`}
+              animate={{
+                x: isFanOut ? -42 : 0,
+                y: isFanOut ? -10 : 0,
+                rotate: isFanOut ? -18 : 0,
+                opacity: isFanOut ? 0.95 : 0,
+                scale: isFanOut ? 0.95 : 0.9,
               }}
-            />
- 
+              transition={{
+                type: "spring",
+                stiffness: 220,
+                damping: 18,
+                delay: isFanOut ? 0.08 : 0,
+              }}
+              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -1 : -10 }}
+            >
+              <ImageWithFallback
+                src={leftImgSrc}
+                alt={`${item.title} 綻開預覽圖 1`}
+                referrerPolicy="no-referrer"
+                fallbackTheme={item.colorTheme}
+                categoryName={item.category}
+                titleText={item.title}
+                optimizeSize={300}
+                className="w-full h-full object-cover"
+                lazy={!priority}
+                priority={priority}
+                theme={theme}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 p-3.5 flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-black/70 text-amber-300 border border-amber-400/30 backdrop-blur-md shadow-sm">
+                    ♠ Photo 01
+                  </span>
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300 drop-shadow-md" />
+                </div>
+                <div className="text-[10px] font-medium text-white/95 line-clamp-1 drop-shadow-md">
+                  {item.title}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 撲克牌綻開 - 右翼作品照片卡牌 (動態負 z-index 管理，位於中間卡片後方) */}
+            <motion.div
+              className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none shadow-xl transition-all duration-500 ${
+                isSepia
+                  ? "bg-[#FAF2E1] border-[#E8D9BF]"
+                  : isLight
+                  ? "bg-white border-zinc-200"
+                  : "bg-zinc-900 border-white/15"
+              }`}
+              animate={{
+                x: isFanOut ? 42 : 0,
+                y: isFanOut ? -10 : 0,
+                rotate: isFanOut ? 18 : 0,
+                opacity: isFanOut ? 0.95 : 0,
+                scale: isFanOut ? 0.95 : 0.9,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 220,
+                damping: 18,
+                delay: isFanOut ? 0.14 : 0,
+              }}
+              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -2 : -10 }}
+            >
+              <ImageWithFallback
+                src={rightImgSrc}
+                alt={`${item.title} 綻開預覽圖 2`}
+                referrerPolicy="no-referrer"
+                fallbackTheme={item.colorTheme}
+                categoryName={item.category}
+                titleText={item.title}
+                optimizeSize={300}
+                className="w-full h-full object-cover"
+                lazy={!priority}
+                priority={priority}
+                theme={theme}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/10 p-3.5 flex flex-col justify-between">
+                <div className="flex items-center justify-between text-right">
+                  <PawPrint className="w-3.5 h-3.5 text-amber-300 drop-shadow-md -rotate-12" />
+                  <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-black/70 text-amber-300 border border-amber-400/30 backdrop-blur-md shadow-sm">
+                    Photo 02 ♦
+                  </span>
+                </div>
+                <div className="text-[10px] font-medium text-white/95 line-clamp-1 text-right drop-shadow-md">
+                  {item.category}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 中間主卡片 (Front surface of back face, z-10 with solid theme background) */}
+            <div 
+              className={`relative z-10 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 shadow-2xl ${themeContainerClass}`}
+              style={{ zIndex: 10 }}
+            >
+              {/* Ambient Background Glow inside the main back face */}
+              <div 
+                className="absolute inset-0 transition-opacity duration-500 pointer-events-none opacity-20 rounded-2xl overflow-hidden"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, rgba(${catColor.rgbaGlow}, 0.15) 0%, transparent 80%)`,
+                }}
+              />
+
             <div className={`relative z-10 flex flex-col h-full justify-between ${showAllDetails ? "space-y-3" : "space-y-1.5"}`}>
               {/* Header: Category & ID */}
               <div className="flex items-center justify-between">
@@ -848,7 +967,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   {item.category}
                 </span>
               </div>
- 
+
               {/* Title Block */}
               <div className="space-y-0.5">
                 <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${backTitleEnClassValue}`}>
@@ -858,11 +977,24 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   {item.title}
                 </h3>
               </div>
- 
+
+              {/* 工具標籤區 */}
+              {item.tools && item.tools.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 py-1">
+                  {item.tools.slice(0, 3).map((tool) => (
+                    <span
+                      key={tool}
+                      className={`px-2 py-0.5 rounded text-[9px] font-mono font-medium border ${getToolStyle(tool, theme)}`}
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               {/* Spacer to push footer to bottom when tags are removed */}
               <div className="flex-1" />
- 
+
               {/* Footer CTA */}
               <div className={`${showAllDetails ? "pt-2.5" : "pt-1.5"} border-t flex items-center justify-end text-[10px] font-medium ${dividerClassValue}`}>
                 <span className={`px-2 py-1 rounded-lg text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm`}>
@@ -870,6 +1002,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   <ArrowUpRight className="h-2 w-2 stroke-[2.5]" />
                 </span>
               </div>
+            </div>
           </div>
         </div>
       </motion.div>
