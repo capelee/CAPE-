@@ -204,13 +204,38 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
     };
   }, [onClose, onPrevItem, onNextItem]);
 
+  // 當彈窗開啟時，對主頁內容 (main) 套用 CSS 濾鏡 backdrop-filter: blur(8px) 與 filter: blur(8px) 進行模糊處理，確保焦點完全鎖定在模態框上
+  useEffect(() => {
+    if (!activeModalItem) return;
+
+    const mainElement = document.querySelector("main");
+    if (mainElement) {
+      mainElement.style.transition = "filter 0.3s ease, backdrop-filter 0.3s ease";
+      mainElement.style.filter = "blur(8px)";
+      (mainElement.style as any).backdropFilter = "blur(8px)";
+      (mainElement.style as any).WebkitBackdropFilter = "blur(8px)";
+    }
+
+    return () => {
+      if (mainElement) {
+        mainElement.style.filter = "";
+        (mainElement.style as any).backdropFilter = "";
+        (mainElement.style as any).WebkitBackdropFilter = "";
+      }
+    };
+  }, [activeModalItem]);
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-[8px] flex items-center justify-center p-4 overflow-y-auto"
+      style={{
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+      }}
     >
       <motion.div 
         initial={{ scale: 0.95, y: 15 }}
@@ -218,7 +243,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
         exit={{ scale: 0.95, y: 15 }}
         transition={{ type: "spring", duration: 0.4 }}
         onClick={(e) => e.stopPropagation()}
-        className={`bg-[#0E0E0E] border border-white/10 shadow-2xl relative my-auto transition-all duration-300 ${
+        className={`bg-[#0E0E0E] border border-white/10 shadow-2xl relative my-auto transition-all duration-300 z-[10000] ${
           activeModalItem && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計") && isMaximized
             ? "max-w-full md:max-w-6xl w-full h-[95vh] md:h-[92vh] flex flex-col rounded-2xl"
             : "max-w-4xl w-full rounded-2xl"
