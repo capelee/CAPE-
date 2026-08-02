@@ -5,31 +5,18 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(__dirname, './src'),
+        '~': path.resolve(__dirname, '.'),
       },
     },
     build: {
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
-                return 'vendor-react';
-              }
-              if (id.includes('motion')) {
-                return 'vendor-motion';
-              }
-              if (id.includes('lucide-react')) {
-                return 'vendor-icons';
-              }
-              return 'vendor-libs';
-            }
-          }
-        }
-      }
+      outDir: 'dist',
+      emptyOutDir: true,
+      sourcemap: true,
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.

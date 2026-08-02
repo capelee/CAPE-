@@ -114,6 +114,11 @@ export function getOptimizedGoogleUrl(url: string, size?: number): string {
   return url;
 }
 
+function getBaseUrl(): string {
+  // @ts-ignore
+  return (typeof import.meta !== "undefined" && import.meta && import.meta.env && import.meta.env.BASE_URL) || "/";
+}
+
 export function resolveImageUrl(url: string, size?: number, format?: "webp" | "avif" | "jpeg"): string {
   if (!url) return "";
   
@@ -122,8 +127,7 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
   const isLocalImage = (url.startsWith("/") || url.startsWith("./")) && url.includes("/images/") && !url.includes("/images/optimized/");
   if (isLocalImage) {
     const relativePart = url.startsWith("/") ? url.slice(1) : url.startsWith("./") ? url.slice(2) : url;
-    // @ts-ignore
-    const baseUrl = import.meta.env.BASE_URL || "/";
+    const baseUrl = getBaseUrl();
     const formattedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
     return `${formattedBase}${relativePart}`;
   }
@@ -131,8 +135,7 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
   // Support subdirectory hosting (e.g. GitHub Pages) by resolving local domain-relative paths relative to Vite base URL
   let targetUrl = url;
   if (url.startsWith("/") && !url.startsWith("/images/optimized/") && !url.startsWith("//")) {
-    // @ts-ignore
-    const baseUrl = import.meta.env.BASE_URL || "/";
+    const baseUrl = getBaseUrl();
     const formattedBase = baseUrl.startsWith("/") 
       ? (baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`) 
       : `/${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}`;

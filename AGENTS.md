@@ -42,5 +42,15 @@ Whenever you create or modify portfolio card items inside `src/data.ts` (or any 
 
 ---
 
-## 4. 新增卡片預防機制 / Hook Restrictions (If any input fields exist in UI)
+## 4. 外部連結 / External Links (`link`)
+- **非必要不放置**：未來新增的作品卡片，若無使用者特別指定或要求，預設「不要放置圖文連結（`link` 欄位）」。
+
+---
+
+## 5. 精選/亮點標籤 / Highlight Tag (`isHighlight`)
+- **非必要不設定**：未來新增的作品卡片，若無使用者特別指定或要求，預設「不要放置亮點卡片標籤（預設設為 false 或不設置 `isHighlight: true`）」。
+
+---
+
+## 6. 新增卡片預防機制 / Hook Restrictions (If any input fields exist in UI)
 - For any code in the portfolio visual interface (`App.tsx`) where user or developer can dynamically input cards, make sure content gets passed through trimming/cleaning helper functions matching the rules above.

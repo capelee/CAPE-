@@ -30,7 +30,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "東行制酒 20s 廣告動畫",
     "titleEn": "Dongxing Liquor 20s Promotional Video",
     "philosophy": "以沉穩暗色調為基底，結合高對比東方字體編排與流暢光影切換。透過明快的運鏡節奏與場景過渡，展現酒類品牌核心視覺特質。",
-    "isHighlight": true,
     "tools": [
       "AE",
       "Premiere",
@@ -142,7 +141,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "BRONTI COFFEE HOUSE 品牌日常短片",
     "titleEn": "BRONTI COFFEE HOUSE Brand Short Film",
     "philosophy": "以擬人化恐龍角色作為核心視覺，結合暖色木質紋理空間與逆光折射效果。運用柔和過渡剪輯與沉穩色調，構建宛如繪本風格的動態影像敘事。",
-    "isHighlight": true,
     "tools": [
       "Premiere",
       "AE",
@@ -165,7 +163,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "KOHARU（こはる） 品牌識別與 CIS 視覺設計",
     "titleEn": "KOHARU Brand Identity System",
     "philosophy": "以柔和粉嫩色系與圓潤無襯線字體為核心，結合手繪花草圖騰與幾何網格排版。透過溫潤細緻的視覺語彙，建構兼具親和力與品牌辨識度的完整企業識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -190,8 +187,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1ndYetlVUXBkev2wWKSlo06F7SyIG-s8i",
       "https://drive.google.com/thumbnail?sz=w1000&id=1Eue0yExxhqcZn2EC4hKa7DP5VxKXx_iW"
     ],
-    "driveFolderId": "1QoDny-8y3phXST69TLLYpaDTyiSVG0FG",
-    "link": "https://drive.google.com/drive/folders/1QoDny-8y3phXST69TLLYpaDTyiSVG0FG?usp=drive_link"
+    "driveFolderId": "1QoDny-8y3phXST69TLLYpaDTyiSVG0FG"
   },
   {
     "id": "nomnom-brand-cis",
@@ -199,7 +195,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Nom Nom 美食速達外送平台 品牌識別與 CIS 視覺設計",
     "titleEn": "NOM NOM Brand Identity System",
     "philosophy": "以極具食慾的溫暖橘紅與流暢圓潤字體為核心，結合美味符號與結構化排版網格，建構兼具外送速度感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -219,8 +214,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1hst3fYfL2-6jWFFekVKF3QHyW_1_O_-U",
       "https://drive.google.com/thumbnail?sz=w1000&id=1YZ4VlupV5jSa8BVt0frDy6VUuF_A4g_l"
     ],
-    "driveFolderId": "1U8uOrc4fSoKw3TkXN7pxIv1jfLeJ8nH4",
-    "link": "https://drive.google.com/drive/folders/1U8uOrc4fSoKw3TkXN7pxIv1jfLeJ8nH4?usp=drive_link"
+    "driveFolderId": "1U8uOrc4fSoKw3TkXN7pxIv1jfLeJ8nH4"
   },
   {
     "id": "lingora-brand-cis",
@@ -228,7 +222,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "LINGORA AI 口說英文學習 品牌識別與 CIS 視覺設計",
     "titleEn": "LINGORA AI Brand Identity System",
     "philosophy": "以智慧對話藍與人工智慧科技感為核心，結合流暢圓潤字體與結構化排版網格，建構兼具英語學習互動感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -247,8 +240,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1TVvPhSZNzAI7MxT3CmyjN0_YLYdGwDgq",
       "https://drive.google.com/thumbnail?sz=w1000&id=13bVpD8F8J-IY0FzX5e8KYBYzgVSeFUzB"
     ],
-    "driveFolderId": "15LBky-Wgm2c6wN_dxrhdDZ_OCINaxSqj",
-    "link": "https://drive.google.com/drive/folders/15LBky-Wgm2c6wN_dxrhdDZ_OCINaxSqj?usp=drive_link"
+    "driveFolderId": "15LBky-Wgm2c6wN_dxrhdDZ_OCINaxSqj"
   },
   {
     "id": "lumia-brand-cis",
@@ -256,7 +248,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "LUMIA 日拋彩色隱形眼鏡 品牌識別與 CIS 視覺設計",
     "titleEn": "LUMIA Brand Identity System",
     "philosophy": "以晶透瞳孔光彩與夢幻柔和色調為核心，結合流暢圓潤字體與結構化排版網格，建構兼具時尚美瞳質感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -277,8 +268,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1a7Ffi-luPxBMpodZhY3mhJmof4LOnLJX",
       "https://drive.google.com/thumbnail?sz=w1000&id=1c1QPFf_VXTydxyyBMvJepP8Lf3Td4d0f"
     ],
-    "driveFolderId": "1V2DtA-Cbb0mgTyaLgko6Ezz_kjH1U-OQ",
-    "link": "https://drive.google.com/drive/folders/1V2DtA-Cbb0mgTyaLgko6Ezz_kjH1U-OQ?usp=drive_link"
+    "driveFolderId": "1V2DtA-Cbb0mgTyaLgko6Ezz_kjH1U-OQ"
   },
   {
     "id": "lumo-brand-cis",
@@ -286,7 +276,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "lumo POP 智慧電動機車 品牌識別與 CIS 視覺設計",
     "titleEn": "LUMO POP Brand Identity System",
     "philosophy": "以動態螢光綠與流線車身線條為核心，結合幾何字體與結構化排版網格，建構兼具電動車科技感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -307,8 +296,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1dHt30NQvncj3twj1KKQoN7z311CCdRfv",
       "https://drive.google.com/thumbnail?sz=w1000&id=1gyO7tH02iiSZU_kUF_Kg7fJNjTdedql-"
     ],
-    "driveFolderId": "13k9vE57-zJl0ACBdJp8CCF8I-ZqSJe-D",
-    "link": "https://drive.google.com/drive/folders/13k9vE57-zJl0ACBdJp8CCF8I-ZqSJe-D?usp=drive_link"
+    "driveFolderId": "13k9vE57-zJl0ACBdJp8CCF8I-ZqSJe-D"
   },
   {
     "id": "citylight-brand-cis",
@@ -316,7 +304,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "城光百貨 CITYLIGHT 時尚精品百貨 品牌識別與 CIS 視覺設計",
     "titleEn": "CITYLIGHT Brand Identity System",
     "philosophy": "以奢華時尚金與沉穩黑灰為核心，結合幾何線條與現代無襯線字體，建構兼具時尚尊榮感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -335,8 +322,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1BHG_jr-nv2VU5GMEcb7OMWwNhT1o2sDQ",
       "https://drive.google.com/thumbnail?sz=w1000&id=1WrOc5xg0TT3GIxGtmEOeVwmOGLRDPtn5"
     ],
-    "driveFolderId": "1lmut5-lk4mCZCQGmuvAZKNmrVxTsD-mH",
-    "link": "https://drive.google.com/drive/folders/1lmut5-lk4mCZCQGmuvAZKNmrVxTsD-mH?usp=drive_link"
+    "driveFolderId": "1lmut5-lk4mCZCQGmuvAZKNmrVxTsD-mH"
   },
   {
     "id": "haoke-brand-cis",
@@ -344,7 +330,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "好課 GO 在線學習教育平台 品牌識別與 CIS 視覺設計",
     "titleEn": "HAOKE GO Brand Identity System",
     "philosophy": "以在線學習活力橘與現代幾何字體為核心，結合圓潤無襯線字體與結構化排版網格。透過專業教育視覺語彙，建構兼具學習互動感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -364,8 +349,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1s83y1zR8jFCBxWkx0QLj2FHxRrsCpfWN",
       "https://drive.google.com/thumbnail?sz=w1000&id=1nGJAFMKPHQg45CFyZ67uwaj_N0yqPS4q"
     ],
-    "driveFolderId": "1ubDVZUFqDt6FQHwzCtKsO4B330HLkZzb",
-    "link": "https://drive.google.com/drive/folders/1ubDVZUFqDt6FQHwzCtKsO4B330HLkZzb?usp=drive_link"
+    "driveFolderId": "1ubDVZUFqDt6FQHwzCtKsO4B330HLkZzb"
   },
   {
     "id": "yubao-brand-cis",
@@ -373,7 +357,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "娛爆台 Entertainment 娛樂新聞頻道 品牌識別與 CIS 視覺設計",
     "titleEn": "YUE BAO TAI Brand Identity System",
     "philosophy": "以動態娛樂色彩與時尚黑金風格為核心，結合強烈視覺張力與結構化排版網格，建構兼具娛樂潮流感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -393,8 +376,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1ZQqssHzq6ekeZ0aV2aNLDmVxz0DbA1RR",
       "https://drive.google.com/thumbnail?sz=w1000&id=15ay6sz_I7VocIAodbXREPnhzzAFI7xec"
     ],
-    "driveFolderId": "1y_TX1xZz8jHFRruE-Nb1DCCwM5xeHQEh",
-    "link": "https://drive.google.com/drive/folders/1y_TX1xZz8jHFRruE-Nb1DCCwM5xeHQEh?usp=drive_link"
+    "driveFolderId": "1y_TX1xZz8jHFRruE-Nb1DCCwM5xeHQEh"
   },
   {
     "id": "fuse-brand-cis",
@@ -402,7 +384,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "富序投資 FUSE INVEST 金融資產理財 品牌識別與 CIS 視覺設計",
     "titleEn": "FUSE INVEST Brand Identity System",
     "philosophy": "以專業信賴與沉穩金屬藍色系為核心，結合俐落幾何線條與現代無襯線字體。透過精準結構化排版，建構兼具金融專業感與品牌識別度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -422,8 +403,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1UAiueOjXvRJzCG_2xUMdT38lesNumJdo",
       "https://drive.google.com/thumbnail?sz=w1000&id=1DLbmwN6BIVACFkNIbxr8vmOJbcgSG-hk"
     ],
-    "driveFolderId": "1Y18mDtxfhLEcfibQzT8jda3w1tQTIvi_",
-    "link": "https://drive.google.com/drive/folders/1Y18mDtxfhLEcfibQzT8jda3w1tQTIvi_?usp=drive_link"
+    "driveFolderId": "1Y18mDtxfhLEcfibQzT8jda3w1tQTIvi_"
   },
   {
     "id": "travelsafe-brand-cis",
@@ -431,7 +411,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "旅安保險 TRAVELSAFE 海外平安險 品牌識別與 CIS 視覺設計",
     "titleEn": "TRAVELSAFE Brand Identity System",
     "philosophy": "以信賴盾牌與沉穩海軍藍色系為核心，結合幾何線條與現代無襯線字體。透過專業安心的視覺語彙，建構兼具安全感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -452,8 +431,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1_zHxQOOx3dzPtnIuc8z4abdmUiPVWSu6",
       "https://drive.google.com/thumbnail?sz=w1000&id=1LVkl73-V8rqL1BFEA5ld_85uqljHfDIu"
     ],
-    "driveFolderId": "1zJ3vXveAk6C9Q61yuAAGlnNODlvcu_OF",
-    "link": "https://drive.google.com/drive/folders/1zJ3vXveAk6C9Q61yuAAGlnNODlvcu_OF?usp=drive_link"
+    "driveFolderId": "1zJ3vXveAk6C9Q61yuAAGlnNODlvcu_OF"
   },
   {
     "id": "dailynuts-brand-cis",
@@ -461,7 +439,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "日日果 Daily Nuts 每日堅果健康零食 品牌識別與 CIS 視覺設計",
     "titleEn": "DAILY NUTS Brand Identity System",
     "philosophy": "以天然大地色系與圓潤無襯線字體為核心，結合堅果自然曲線與結構化排版網格，建構兼具健康活力與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -487,8 +464,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1g2eL9mfx9h5byQGkhhwZpGBISmnU265K",
       "https://drive.google.com/thumbnail?sz=w1000&id=1TLTxT8ovz5I3sgA6kkMmb1XFwLNbtDwz"
     ],
-    "driveFolderId": "1geABZR_4eo7G5DOhnCL7YvcdfGCoUwad",
-    "link": "https://drive.google.com/drive/folders/1geABZR_4eo7G5DOhnCL7YvcdfGCoUwad?usp=drive_link"
+    "driveFolderId": "1geABZR_4eo7G5DOhnCL7YvcdfGCoUwad"
   },
   {
     "id": "qinyu-brand-cis",
@@ -496,7 +472,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "沁嶼 QINYU 沁涼特調茶飲 品牌識別與 CIS 視覺設計",
     "titleEn": "QINYU Brand Identity System",
     "philosophy": "以沁涼茶色與流暢水波線條為核心，結合圓潤無襯線字體與結構化排版網格，建構兼具清爽視覺與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -517,8 +492,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1I4ss6lP5i9NsmKpG8mbv7GQjaGSb7nCA",
       "https://drive.google.com/thumbnail?sz=w1000&id=1zizSVS5VPVBcYd5dPPcA1l0_gXBJk8jA"
     ],
-    "driveFolderId": "1dfc79r-v8D-69MhIAg61BWUkPWX50DVT",
-    "link": "https://drive.google.com/drive/folders/1dfc79r-v8D-69MhIAg61BWUkPWX50DVT?usp=drive_link"
+    "driveFolderId": "1dfc79r-v8D-69MhIAg61BWUkPWX50DVT"
   },
   {
     "id": "haiyu-brand-cis",
@@ -526,7 +500,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "海御生生醫 保健食品海洋生醫 品牌識別與 CIS 視覺設計",
     "titleEn": "HAI YU SHENG Brand Identity System",
     "philosophy": "以海洋深層藍與純淨生醫線條為核心，結合圓潤無襯線字體與結構化排版網格，建構兼具專業信賴感與品牌識別度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -549,8 +522,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1Z81j-dVHCjjuvtMcAugPm_qKGGI19mtT",
       "https://drive.google.com/thumbnail?sz=w1000&id=1Q1KH9KgKZ965F9c2y-vP1luPdRQO5ZuS"
     ],
-    "driveFolderId": "1cdkWQRHUp3-Biae5l9YZUJWWnp6U3nQ0",
-    "link": "https://drive.google.com/drive/folders/1cdkWQRHUp3-Biae5l9YZUJWWnp6U3nQ0?usp=drive_link"
+    "driveFolderId": "1cdkWQRHUp3-Biae5l9YZUJWWnp6U3nQ0"
   },
   {
     "id": "mantour-brand-cis",
@@ -558,7 +530,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "漫旅 MANTOUR 旅宿預訂旅行社 品牌識別與 CIS 視覺設計",
     "titleEn": "MANTOUR Brand Identity System",
     "philosophy": "以旅行風景與柔和藍調為核心，結合圓潤無襯線字體與結構化排版網格。透過舒適自在的視覺語彙，建構兼具品牌親和力與辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -576,8 +547,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1VQmheb9xEOFrmRDbpKKXwaH0H-brewFn",
       "https://drive.google.com/thumbnail?sz=w1000&id=1FJEyvVgTYTQbHOE-AoE4g0awP8zLyTJM"
     ],
-    "driveFolderId": "1a_wTJrEaaU3dPuFWAYmsl_v_xdcRb7zc",
-    "link": "https://drive.google.com/drive/folders/1a_wTJrEaaU3dPuFWAYmsl_v_xdcRb7zc?usp=drive_link"
+    "driveFolderId": "1a_wTJrEaaU3dPuFWAYmsl_v_xdcRb7zc"
   },
   {
     "id": "chengyue-brand-cis",
@@ -585,7 +555,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "澄岳建設 頂級建築地產建案 品牌識別與 CIS 視覺設計",
     "titleEn": "CHENG YUE Brand Identity System",
     "philosophy": "以沉穩大地石材色系與俐落幾何線條為核心，結合經典字體與結構化排版網格，建構兼具專業建築質感與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -605,8 +574,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1Yn5-_lrB6rvKGx7xzWoiYKR_GApTJmUz",
       "https://drive.google.com/thumbnail?sz=w1000&id=1UGvQTuVz6RSAS3jMAbYrAwkCPYcoue9k"
     ],
-    "driveFolderId": "10p1ReesfXGpIwJiCHjN6ZWb7jcSsWXh8",
-    "link": "https://drive.google.com/drive/folders/10p1ReesfXGpIwJiCHjN6ZWb7jcSsWXh8?usp=drive_link"
+    "driveFolderId": "10p1ReesfXGpIwJiCHjN6ZWb7jcSsWXh8"
   },
   {
     "id": "chayu-brand-cis",
@@ -614,7 +582,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "茶嶼 CHA YU 高山手搖茶飲 品牌識別與 CIS 視覺設計",
     "titleEn": "CHA YU Brand Identity System",
     "philosophy": "以高山茶園翠綠色系與流暢茶湯線條為核心，結合圓潤無襯線字體與結構化排版網格。透過清新自然視覺語彙，建構兼具品牌親和力與辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -632,8 +599,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1UQy1QnHoTh3DmQNdpNNQKa_wyFwAlM_l",
       "https://drive.google.com/thumbnail?sz=w1000&id=1cl_vG0yIbKkFy6974cVhuX7EYXHkH-Nk"
     ],
-    "driveFolderId": "1nLtQvNfwUQAJWTgryk3siKgOf7hFtgEo",
-    "link": "https://drive.google.com/drive/folders/1nLtQvNfwUQAJWTgryk3siKgOf7hFtgEo?usp=drive_link"
+    "driveFolderId": "1nLtQvNfwUQAJWTgryk3siKgOf7hFtgEo"
   },
   {
     "id": "chalane-brand-cis",
@@ -641,7 +607,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "茶巷口 CHA LANE 巷弄人文茶飲 品牌識別與 CIS 視覺設計",
     "titleEn": "CHA LANE Brand Identity System",
     "philosophy": "以傳統茶香韻味與沉穩墨綠色系為核心，結合圓潤無襯線字體與結構化排版網格，建構兼具人文氣息與現代辨識度的完整品牌識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -661,8 +626,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1M8qarmmpkpb9xqBmunN_FaBWY8XXvsYe",
       "https://drive.google.com/thumbnail?sz=w1000&id=15GJKOREjGYNOfvBEkvKC8_dXrLOijzVu"
     ],
-    "driveFolderId": "1cmVwneqha0s9EgTBhHxA2r4G4Bq8_lqE",
-    "link": "https://drive.google.com/drive/folders/1cmVwneqha0s9EgTBhHxA2r4G4Bq8_lqE?usp=drive_link"
+    "driveFolderId": "1cmVwneqha0s9EgTBhHxA2r4G4Bq8_lqE"
   },
   {
     "id": "velora-brand-cis",
@@ -670,7 +634,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "薇洛菈美學 VELORA 奢華醫美美學 品牌識別與 CIS 視覺設計",
     "titleEn": "VELORA Brand Identity System",
     "philosophy": "以優雅精緻的流金線條與現代無襯線字體為核心，結合柔和米色調與對稱幾何網格排版。透過高雅細緻的視覺語彙，建構兼具奢華感與專業信賴度的完整企業識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -689,8 +652,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1-7JAkjWllsou6CMhSyDcMbTtKq_g1OpQ",
       "https://drive.google.com/thumbnail?sz=w1000&id=14iC8Yvz_DBYtmz3m8K4inZ6aDR1jLRPM"
     ],
-    "driveFolderId": "1IvSp6ACudiZRNSxuojcu9oEy0W0PknhP",
-    "link": "https://drive.google.com/drive/folders/1IvSp6ACudiZRNSxuojcu9oEy0W0PknhP?usp=drive_link"
+    "driveFolderId": "1IvSp6ACudiZRNSxuojcu9oEy0W0PknhP"
   },
   {
     "id": "miisu-brand-cis",
@@ -698,7 +660,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "蜜塑 MIISU 體雕美容美塑 品牌識別與 CIS 視覺設計",
     "titleEn": "MIISU Brand Identity System",
     "philosophy": "以柔和曲線與優雅粉嫩色系為核心，結合圓潤無襯線字體與精緻幾何排版。透過溫潤細緻的視覺語彙，建構兼具專業感與品牌親和力的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -716,8 +677,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1JGGBcMCrwDImqRZDYAe5mOW_PRlz7dNe",
       "https://drive.google.com/thumbnail?sz=w1000&id=1QGC8rd5ZxpiQrLAXl4wgMVmYKJK3JY-v"
     ],
-    "driveFolderId": "1aPTHIKguKFxzVZ2scAZ3DCg5c1rDq3TF",
-    "link": "https://drive.google.com/drive/folders/1aPTHIKguKFxzVZ2scAZ3DCg5c1rDq3TF?usp=drive_link"
+    "driveFolderId": "1aPTHIKguKFxzVZ2scAZ3DCg5c1rDq3TF"
   },
   {
     "id": "sushi-hondo-cis",
@@ -725,7 +685,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "鮨本堂 SUSHI HONDO 日式迴轉壽司 品牌識別與 CIS 視覺設計",
     "titleEn": "SUSHI HONDO Brand Identity System",
     "philosophy": "以日式傳統木紋與現代俐落幾何為核心，融合書法筆觸與圓潤無襯線字體。透過沉穩禪風色系與精準排版網格，建構兼具文化底蘊與現代辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -743,8 +702,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1NC8GUL2cC_feSPk5baZHrH4Iie90udHm",
       "https://drive.google.com/thumbnail?sz=w1000&id=1rnDyqSpBCodGCrMKqgE_mbEeuW7Yxr2n"
     ],
-    "driveFolderId": "15I-NyhzLOu5Bst1sFRgG5X9B1iezgdJ1",
-    "link": "https://drive.google.com/drive/folders/15I-NyhzLOu5Bst1sFRgG5X9B1iezgdJ1?usp=drive_link"
+    "driveFolderId": "15I-NyhzLOu5Bst1sFRgG5X9B1iezgdJ1"
   },
   {
     "id": "sunburst-foods-cis",
@@ -752,7 +710,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "SUNBURST FOODS 美式歡樂早餐穀片 品牌識別與 CIS 視覺設計",
     "titleEn": "SUNBURST FOODS Brand Identity System",
     "philosophy": "以陽光活力黃與復古美式字體為核心，結合穀片元素與幾何網格排版。透過明亮歡樂的視覺語彙，建構兼具趣味性與品牌辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -768,8 +725,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1HZWmZ9xnkQEEa73IbjdyvLAU9_E_Cv5g",
       "https://drive.google.com/thumbnail?sz=w1000&id=18m0nle_pETrA-xaFhblrGUTbJjCD0My6"
     ],
-    "driveFolderId": "1UBzVo4L5ENyKpHnB2Bf8EQhiXrvTQjJJ",
-    "link": "https://drive.google.com/drive/folders/1UBzVo4L5ENyKpHnB2Bf8EQhiXrvTQjJJ?usp=drive_link"
+    "driveFolderId": "1UBzVo4L5ENyKpHnB2Bf8EQhiXrvTQjJJ"
   },
   {
     "id": "bubu-soda-cis",
@@ -777,7 +733,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "BUBU 波波汽水 品牌識別與 CIS 視覺設計",
     "titleEn": "BUBU Soda Brand Identity System",
     "philosophy": "以氣泡躍動感與圓潤可愛字體為核心，結合鮮明色彩與幾何網格排版。透過活潑愉悅的視覺語彙，建構兼具趣味性與品牌辨識度的完整企業識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -794,8 +749,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1y9qlqf8CodnTu9sPsRdoKzCk2z5Spywg",
       "https://drive.google.com/thumbnail?sz=w1000&id=1SD98f8X1Vml2IKjoz6KkotZteimcZbtj"
     ],
-    "driveFolderId": "17lrtMTrFGbxkeCxtx7dT71_8HQfP1rd3",
-    "link": "https://drive.google.com/drive/folders/17lrtMTrFGbxkeCxtx7dT71_8HQfP1rd3?usp=drive_link"
+    "driveFolderId": "17lrtMTrFGbxkeCxtx7dT71_8HQfP1rd3"
   },
   {
     "id": "morinest-brand-cis",
@@ -803,7 +757,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "MORINEST™（モリネスト） 品牌識別與 CIS 視覺設計",
     "titleEn": "MORINEST Brand Identity System",
     "philosophy": "以森林木質綠意與幾何線條為核心，融合圓潤無襯線字體與溫潤大地色系。透過結構化排版網格，建構兼具自然氛圍與品牌識別度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -828,8 +781,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1ac0DibxZu0Bq28M1Iug7DtHoQRkeVAsg",
       "https://drive.google.com/thumbnail?sz=w1000&id=1nDG04qVneW3CeOBl7C5vTnjUy_cCV5DD"
     ],
-    "driveFolderId": "1gIhC3CAoe1G-Ntew7OJbUPfrOKPpvhf8",
-    "link": "https://drive.google.com/drive/folders/1gIhC3CAoe1G-Ntew7OJbUPfrOKPpvhf8?usp=drive_link"
+    "driveFolderId": "1gIhC3CAoe1G-Ntew7OJbUPfrOKPpvhf8"
   },
   {
     "id": "maojia-brand-cis",
@@ -837,7 +789,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "毛呷 MAO JIA 品牌識別與 CIS 視覺設計",
     "titleEn": "MAO JIA Brand Identity System",
     "philosophy": "以寵物足跡與中式餐具線條融合為核心，採用沉穩大地色系與圓潤無襯線字體。搭配結構化排版網格，建構兼具品牌親和力與辨識度的完整視覺識別系統。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -857,8 +808,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=15lnQQDOCkAuSyzLe0qjsluO0ejAvKN9B",
       "https://drive.google.com/thumbnail?sz=w1000&id=18yhAFdJ_2jzv1TGvCh9ZERhnSHsAOM52"
     ],
-    "driveFolderId": "1cWgt31T8P0qWmHBBh9151NrkURYCJ8eM",
-    "link": "https://drive.google.com/drive/folders/1cWgt31T8P0qWmHBBh9151NrkURYCJ8eM?usp=drive_link"
+    "driveFolderId": "1cWgt31T8P0qWmHBBh9151NrkURYCJ8eM"
   },
   {
     "id": "toukou-shuzo-cis",
@@ -866,7 +816,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "東行酒造 TOUKOU SHUZO CIS",
     "titleEn": "Toukou Shuzo Brewery Brand Identity System",
     "philosophy": "以幾何六角形框線融合「東」字家徽為核心，採中軸對稱佈局。搭配古典明體與現代無襯線字體，並以硃砂紅與香檳金雙色，在具備自然紋理的紙介質上，展現精準的排版秩序。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1002,7 +951,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "東行酒造 TOUKOU SHUZO 瀑布圖",
     "titleEn": "Toukou Shuzo Brewery Brand Waterfall Showcase",
     "philosophy": "運用八角幾何徽章與明體雙語排版，結合瓶標的和紙質地與微亮麻葉底紋。採用不對稱垂直構圖，藉由斜射自然光影與陶器搭配，展現低飽和度的靜謐器物美學。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1040,7 +988,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "新寮鎮安宮 手機繩及夾片吊飾",
     "titleEn": "Xinliao Zhenangong Lanyards & Acrylic Charms",
     "philosophy": "以宮廟符記與刺繡工藝為核心，採用紅色編織繩搭配精密夾片印刷。將傳統宗教信仰符號轉化為攜帶型手機配件，兼具實用功能與祈福文化意涵。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1064,7 +1011,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "彰化田尾花田村品牌識別系統",
     "titleEn": "Tianwei Flower Village Brand Identity System",
     "philosophy": "以置中對稱網格為核心，結合暖調紙質底紋與手繪花卉插圖。中心圓形徽章整合物與蝴蝶的簡化向量符號，搭配雙色漸層襯線體與雙語排版，建立系統化的田園品牌識別。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1126,7 +1072,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "山野牧人品牌視覺識別系統與手冊",
     "titleEn": "Wilderness Shepherd Brand Identity System and Manual",
     "philosophy": "運用手作紙張紋理與低飽和大地色調，結合手寫書法體與半圓幾何，構築自然山巒意象。搭配襯線體排版與大量留白，傳遞質樸、回歸本質的視覺調性。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "InDesign",
@@ -1185,7 +1130,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "山野牧人戶外實體招牌設計",
     "titleEn": "Wilderness Shepherd Storefront Signage Design",
     "philosophy": "以大地色系漸層與層疊山脊線條為背景，結合手寫書法體與垂直文字排版。底部並置三幅方形工藝實物攝影，在低飽和度色調中，藉由網格佈局建構具手作質感的視覺層次。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1232,7 +1176,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "施巴 Sebamed 運動舒緩沐浴乳 小人物與城市系列廣告海報",
     "titleEn": "Sebamed Sports Body Wash Poster Series",
     "philosophy": "以清新海洋藍與活力綠色調為底，結合微縮人物情境與城市地標實景。運用合成視覺與結構化排版，突顯運動舒緩產品特性，建立具趣味感與故事性的廣告視覺。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1249,8 +1192,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1S560d9HvTna72VbXTHoE_WCIhxvCDtlT",
       "https://drive.google.com/thumbnail?sz=w1000&id=1nqUo1L6PGm9lxIAqPcyovevtJAI_mqp_"
     ],
-    "driveFolderId": "140BQrd8NhQAg_UMLxoBzOCyhJNj8R-N4",
-    "link": "https://drive.google.com/drive/folders/140BQrd8NhQAg_UMLxoBzOCyhJNj8R-N4?usp=drive_link"
+    "driveFolderId": "140BQrd8NhQAg_UMLxoBzOCyhJNj8R-N4"
   },
   {
     "id": "sebamed-sky-poster",
@@ -1258,7 +1200,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "施巴 Sebamed 運動舒緩沐浴乳 幻想與天空系列廣告海報",
     "titleEn": "Sebamed Sports Body Wash Fantasy & Sky Poster Series",
     "philosophy": "以湛藍星空與夢幻雲海為背景，融合無重力漂浮與鯨魚躍水意象。透過跨現實合成與結構化排版，展現清爽舒緩的視覺氛圍。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1274,8 +1215,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1jlNceTERKT7o-_uiurGkJbb7CJlY8VCO",
       "https://drive.google.com/thumbnail?sz=w1000&id=1fXbKIZ5KKJOsoMOMq_7odTQp8AUKCNXQ"
     ],
-    "driveFolderId": "17cUbVncZzvNsnolm_s4wYZ4D3yzhGYSf",
-    "link": "https://drive.google.com/drive/folders/17cUbVncZzvNsnolm_s4wYZ4D3yzhGYSf?usp=drive_link"
+    "driveFolderId": "17cUbVncZzvNsnolm_s4wYZ4D3yzhGYSf"
   },
   {
     "id": "gufeng-shaonian-illustration",
@@ -1283,7 +1223,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "客家電視台谷風少年電視劇宣傳插畫",
     "titleEn": "Hakka TV Drama Valley Wind Boy Editorial Illustration",
     "philosophy": "採用左右對稱人物結構，搭配低飽和粉紅與淡黃漸層，建構溫和暮色背景。中央圓形橘陽與植物剪影交織出空間深度，藉由紅線連結蝴蝶與手指，以扁平向量線條導引視覺流向。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1305,7 +1244,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "巴迪醫療好年紅包袋",
     "titleEn": "Buddy Medical Lucky Red Envelope - New Year High-End Hot Stamping Gift Design",
     "philosophy": "以幾何吉祥紋樣結合企業標準色，採用高磅數赤紅特種紙搭配局部擊凸與金箔燙印工藝。於傳統年節禮俗中融合品牌意象，呈現具質感與厚重手感的企業新春紅包袋。",
-    "isHighlight": false,
     "tools": [
       "燙金工藝",
       "書法字體",
@@ -1326,7 +1264,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "2025 TTT年會巴迪醫療識別證廣告",
     "titleEn": "2025 TTT Buddy Medical Sponsor Badge AD - Bare Metal Stent (AVANTGARDE BMS) Creative & Venue Identity",
     "philosophy": "採用高對比雙語階層編排與雙面滿版印刷，將研討會時程與巴迪醫療標誌整合於識別證卡面。搭配高密度織帶與防眩光霧面卡套，為展會與會者提供清晰直覺的身份識別。",
-    "isHighlight": false,
     "tools": [
       "背景渲染",
       "3D模型",
@@ -1348,7 +1285,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "成美論壇 ── TAVI 案例研討會 宣傳傳單",
     "titleEn": "Chengmei Forum 2025 - TAVI Academic Symposium Promotional Flyer & Editorial Brochure",
     "philosophy": "以嚴謹的印刷網格奠定學術研討會的專業秩序，融入寫意的水墨書法與意境插畫，在理性的醫學版面中注入人文溫度的東方美學，透過紙張材質規劃呈現文宣整體的視覺層次。",
-    "isHighlight": false,
     "tools": [
       "水墨書法",
       "印刷網格",
@@ -1369,7 +1305,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "五股職訓局AI媒體應用古菇顧海報",
     "titleEn": "2025 Wugu Vocational Training AI Media Applications Class 02 - GuGuGu Class Poster - Sustainable Ecology & Advanced AI Generative Vision Poster Design",
     "philosophy": "以科技感藍紫漸層為基調，結合AI生成視覺符號與幾何網格排版。透過清晰的主副標題對比與結構化區塊，展現多媒體培訓課程的創新能量與專業意象。",
-    "isHighlight": false,
     "tools": [
       "AI渲染",
       "不對稱網格",
@@ -1389,7 +1324,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "台中市觀光旅遊局 高美濕地與珍珠奶茶紀念徽章與海報",
     "titleEn": "Taichung Tourism Bureau Gaomei Wetlands & Pearl Milk Tea Memorial Badge - Cultural & Creative Aesthetic Badge & Poster Visual Design",
     "philosophy": "結合高美濕地風車木棧道與珍珠奶茶視覺符號，運用高飽和金屬烤漆工藝。將在地觀光特色凝練於幾何金屬徽章中，展現明快活潑的城市意象與紀念價值。",
-    "isHighlight": false,
     "tools": [
       "向量插畫",
       "填色工藝",
@@ -1410,7 +1344,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "青年政連線共創新藍圖海報",
     "titleEn": "Youth Coalition - Cohere and Co-create a New Blueprint - Modern Geometric Grid & Vibrant Bi-color Contrast Identity & Poster Campaign Design",
     "philosophy": "以幾何藍圖線條與跨領域符號交織，採用高對比藍白雙色階層編排。透過極簡網格與動態箭頭結構，傳達青年思潮對話與公共議題共創的象徵意涵。",
-    "isHighlight": false,
     "tools": [
       "色彩搭配",
       "不對稱網格",
@@ -1432,7 +1365,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "成美論壇 ── TAVI 案例研討會 海報",
     "titleEn": "Chengmei Forum 2025 - TAVI Academic Valve in Valve Symposium & Lecture Poster Design",
     "philosophy": "以沉穩深藍色系搭配醫療心臟結構意象，結合高對比無襯線字體編排研討會資訊。運用幾何線條與嚴謹網格，傳達醫學論壇的權威專業與學術交流質感。",
-    "isHighlight": false,
     "tools": [
       "水墨書法",
       "醫學插圖",
@@ -1454,7 +1386,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Myval IN VALVE 中區瓣中瓣發表會與學術研討會 海報與現場導引",
     "titleEn": "Myval IN VALVE Launch Symposium In Taichung - Transcatheter Heart Valve Academic Poster Design",
     "philosophy": "採用精密心血管結構圖像與高對比色塊分割，建立學術發表會海報視覺。輔以清晰的區塊邊界與系統化文字排版，強化研討會現場導引與專業資訊傳達。",
-    "isHighlight": false,
     "tools": [
       "3D渲染",
       "雙語排版",
@@ -1475,7 +1406,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Myval SYMPOSIUM 南區心臟介入治療研討會 海報",
     "titleEn": "Myval SYMPOSIUM 2024 - South Taiwan Structural Heart TAVR/TAVI Academic Poster Design",
     "philosophy": "以極簡暗色背景襯托心臟介入治療核心圖像，透過嚴謹的學術網格階層編排講者與議程。利用高對比明亮色彩標示重點，形塑沉穩具權威感的醫療研討會海報。",
-    "isHighlight": false,
     "tools": [
       "3D渲染",
       "雙語網格",
@@ -1496,7 +1426,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "NI中區研討會海報與背板",
     "titleEn": "Neuro Intervention Launch Symposium In Taichung (NI IS MY GOD) - Medical Poster & Venue Identity",
     "philosophy": "結合神經網絡線條與深藍科技底色，塑造神經醫學研討會主視覺。運用大器明快的文字層次與線條延伸，打造兼具展覽背板與宣傳海報功能的大型視覺系統。",
-    "isHighlight": false,
     "tools": [
       "展會設計",
       "雙語編排",
@@ -1517,7 +1446,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "2012 勤美誠品聖誕村 麋鹿迷路了 火柴邦 聯名公共藝術彩繪麋鹿",
     "titleEn": "2012 CMP Block Museum Christmas Village 'Elk Got Lost' - MATCH BOND Collaborative Public Art",
     "philosophy": "以幾何切面麋鹿雕塑為立體彩繪載體，融合火柴邦原創角色圖像與鮮明撞色。結合低檯面展架與清晰視覺導引，在勤美誠品空間中建立具互動性的公共藝術動線。",
-    "isHighlight": true,
     "tools": [
       "雕塑彩繪",
       "火柴邦",
@@ -1605,7 +1533,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Sea Siren Festival 海妖介紹",
     "titleEn": "Sea Siren Festival Character Design Showcase",
     "philosophy": "以深邃海洋藍與流動波紋為核心，融合海洋神話與當代潮流插畫語彙。運用極簡幾何線條與流線切分勾勒海妖角色特徵，展現具張力與層次感的角色 IP 視覺企劃。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Photoshop",
@@ -1633,7 +1560,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "WILD BURGER CLUB™ 品牌吉祥物 IP 全家族設定",
     "titleEn": "WILD BURGER CLUB: Whole Mascot Family IP & Stickers Visual Design",
     "philosophy": "以美式復古插畫為基底，結合高飽和色彩與幽默角色表情。透過粗獷線條與簡約幾何結構，塑造漢堡家族成員特徵，呈現具品牌識別度與延伸性的 IP 家族視覺規範。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "貼圖設計",
@@ -1658,7 +1584,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "WILD BURGER CLUB 品牌吉祥物 CAPTAIN WILD 角色設計",
     "titleEn": "WILD BURGER CLUB Brand Mascot: CAPTAIN WILD IP Character Design",
     "philosophy": "以粗黑幾何線條與高飽和黃紅撞色，描繪品牌吉祥物 CAPTAIN WILD 漢堡船長角色形態。結合三檢視角色設定圖與表情符號集，建立具親和力的餐飲 IP 視覺。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Procreate",
@@ -1683,7 +1608,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "WILD BURGER CLUB 品牌吉祥物 CAPY WILD 角色設計",
     "titleEn": "CAPY WILD Mascot: Wild Burger Club IP Character Illustration",
     "philosophy": "以水豚幾何造型結合美式復古紅黃配色，呈現吉祥物 CAPY WILD 眨眼與大笑等姿態。搭配對話字體編排與向量框線，建立具社群溝通實用度的 IP 角色貼圖。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Procreate",
@@ -1708,7 +1632,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "WILD BURGER CLUB 吉祥物 LUNA 角色設計",
     "titleEn": "LUNA Mascot: Wild Burger Club IP Design",
     "philosophy": "以貓咪幾何型態結合高飽和粉黑對比配色，塑造吉祥物 LUNA 擬人化動態與表情。搭配極簡無襯線手寫字體與多視角設定圖，建立俐落且具張力的 IP 角色視覺。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Procreate",
@@ -1733,7 +1656,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "RANGER RAY 吉祥物 IP 角色設計",
     "titleEn": "RANGER RAY Mascot: Wild Burger Club IP Character Illustration",
     "philosophy": "以復古飛機頭與墨鏡造型為核心，運用幾何線條塑造巡警 RANGER RAY 角色動態。結合鮮明撞色與街頭對話字體排版，呈現具美式幽默與強烈識別度的 IP 貼圖。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Procreate",
@@ -1757,7 +1679,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "WILD BURGER CLUB 吉祥物 SLOWMO 角色設計",
     "titleEn": "WILD BURGER CLUB Mascot SLOWMO IP Design",
     "philosophy": "以樹懶極簡幾何輪廓結合沉穩大地配色，呈現吉祥物 SLOWMO 慢速反應與誇張表情。搭配大字級對話文字與粗黑邊框，建立具幽默對比感的社群聊天 IP 貼圖。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Procreate",
@@ -1782,7 +1703,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "BLEND MONSTER 混種怪獸研究所 飲料店 吉祥物 IP 視覺、插畫與貼圖",
     "titleEn": "BLEND MONSTER - Mascot Monster Characters & Fantasy IP Character Illustration Settings",
     "philosophy": "將原創混種怪獸 IP 幾何造型與飲料元素結合，採用高飽和色彩與粗黑撞色線條。透過生活化肢體動態與日常對話字體，打造具潮流張力與高識別度的品牌吉祥物。",
-    "isHighlight": false,
     "tools": [
       "原創手繪怪獸 IP",
       "向量插畫",
@@ -1818,7 +1738,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "SHONE CITY CREW 恐龍家族 IP 吉祥物與品牌貼圖",
     "titleEn": "SHONE CITY CREW: Street-Chic, Music & Cozy Lifestyle Mascot Family & Sticker IP Design",
     "philosophy": "以美式街頭潮流與音樂生活為核心，融合高飽和對比色彩與手繪幾何線條。透過多角色的團體互動與日常對話排版，形塑具社群凝聚力與識別度的恐龍家族 IP 貼圖。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "包裝設計",
@@ -2938,12 +2857,941 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
+    "id": "mao-jia-product-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "毛呷 MAO JIA 商品社群廣告",
+    "titleEn": "MAO JIA Product Social Campaign",
+    "philosophy": "以大地黃棕與亮眼明黃為主調，結合寵物用品實體攝影與簡約幾何網格。透過對比無襯線字級與資訊圖卡，標示商品細節與社群促銷優惠。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "寵物用品"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1KNPmypHW2_jn-e_XAdK9IGYCNWwR_9T5",
+    "placeholderId": "IMAGE_MAO_JIA_PRODUCT_SOCIAL_AD",
+    "colorTheme": "from-[#301d0e] via-[#472a15] to-[#1e1108]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KNPmypHW2_jn-e_XAdK9IGYCNWwR_9T5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cZnB06e5UJd-6QH9xk-vxxZEaEtYflAs"
+    ],
+    "driveFolderId": "1KJe9UoRiNrw_0eZyIh-4ovblG8ioAkFR"
+  },
+  {
+    "id": "mao-jia-dog-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "毛呷 MAO JIA 狗狗社群廣告",
+    "titleEn": "MAO JIA Dog Food Social Campaign",
+    "philosophy": "以溫暖大地棕與活力明黃為主調，結合活潑狗狗插畫與實體產品包裝。透過清晰對比字級與幾何區塊，標示狗狗罐頭營養成分與促銷活動。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "寵物用品"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1ihqrbmCbr1jaa0_ujNX8g_fdWwEI5Uz-",
+    "placeholderId": "IMAGE_MAO_JIA_DOG_SOCIAL_AD",
+    "colorTheme": "from-[#382211] via-[#52331b] to-[#24150b]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ihqrbmCbr1jaa0_ujNX8g_fdWwEI5Uz-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Pyrw-q66jjHbcrVgX6_Rfsa8JdE1Qljb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1yY2CQYGAxr8lsEdFjU9sqRZ90NAw3-8-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1R_Mqr1625Bg6PCU49Cd6Wtvb3P0wxfYt"
+    ],
+    "driveFolderId": "1nIFzqm9amSXPqvQyqKeFIyeJcETIDyFs"
+  },
+  {
+    "id": "mao-jia-cat-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "毛呷 MAO JIA 貓咪社群廣告",
+    "titleEn": "MAO JIA Cat Food Social Campaign",
+    "philosophy": "以暖橘與亮黃為主色調，結合可愛貓咪插畫與鮮明產品包裝。透過清晰對比字級與幾何框線，呈現寵物罐頭特色與社群促銷優惠。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "寵物用品"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1j_X5i1KFa4PfSEjg_FhCLvSbBnNrYl_o",
+    "placeholderId": "IMAGE_MAO_JIA_CAT_SOCIAL_AD",
+    "colorTheme": "from-[#331d0d] via-[#4d2c14] to-[#211207]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1j_X5i1KFa4PfSEjg_FhCLvSbBnNrYl_o",
+      "https://drive.google.com/thumbnail?sz=w1000&id=19YLf9l30NneHXF65KgHJfZLaHUGqnxak",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nAZu9O4G3KxlN83YPPhi7Ecw_Zcd18iG"
+    ],
+    "driveFolderId": "19me3Ac1X7siBC0fDlC1rvIf3t6CDYTTt"
+  },
+  {
+    "id": "noxroom-model-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "NOXROOM™模特社群廣告",
+    "titleEn": "NOXROOM Model Social Campaign",
+    "philosophy": "以深灰靛藍與潮酷冷銀為基調，結合模特兒人像穿搭情境與俐落幾何版態。透過雙色無襯線字級與資訊區塊，傳遞服飾質感與社群宣傳活動。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "模特穿搭"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1APAgM7tSDFIO52KrCMDw3mEBLKQ-k8sz",
+    "placeholderId": "IMAGE_NOXROOM_MODEL_SOCIAL_AD",
+    "colorTheme": "from-[#101520] via-[#1c2438] to-[#0a0e18]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1APAgM7tSDFIO52KrCMDw3mEBLKQ-k8sz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tHjSeHHpwL1npqldJ2sQKHzhdTDiXUM7"
+    ],
+    "driveFolderId": "1HopZv24QwsIe3G7SMoexGwF8bH_fO7BG"
+  },
+  {
+    "id": "noxroom-scene-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "NOXROOM™情境社群廣告",
+    "titleEn": "NOXROOM Scene Social Campaign",
+    "philosophy": "以暗夜霓虹藍與質感霧黑為基調，結合潮流空間居家情境與俐落幾何版態。透過雙色無襯線字級與資訊區塊，傳遞空間氛圍與社群推廣動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "空間情境"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1OfRwGtvWegzIrOdUXJsMRFqcMd0sFTrE",
+    "placeholderId": "IMAGE_NOXROOM_SCENE_SOCIAL_AD",
+    "colorTheme": "from-[#111622] via-[#1d2538] to-[#0a0e17]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1OfRwGtvWegzIrOdUXJsMRFqcMd0sFTrE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zeLsYTKrC402p8aPAgLLI3JzRx4rMfOC"
+    ],
+    "driveFolderId": "1HpNBlGeymhfVomVIbExGMg7xxx_WODG_"
+  },
+  {
+    "id": "noxroom-product-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "NOXROOM™商品社群廣告",
+    "titleEn": "NOXROOM Product Social Campaign",
+    "philosophy": "以深邃夜空黑與科技銀紫為基調，結合潮流居家商品特寫與俐落網格。透過雙色無襯線字級與幾何圖卡，呈現產品細節與社群優惠資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "潮流居家"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1v7506sUQhBBF3ju6JvBAVV3534KiupUK",
+    "placeholderId": "IMAGE_NOXROOM_PRODUCT_SOCIAL_AD",
+    "colorTheme": "from-[#15121e] via-[#231d30] to-[#0e0b14]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1v7506sUQhBBF3ju6JvBAVV3534KiupUK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cy7wltC-hc7aNH1fzJs-_P3lVklGjxNB"
+    ],
+    "driveFolderId": "1jzu2UtHabwmhL5_VSS8X_NdFgeoExxYi"
+  },
+  {
+    "id": "morinest-product-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "MORINEST™（モリネスト）商品社群廣告",
+    "titleEn": "MORINEST Product Social Campaign",
+    "philosophy": "以深邃森林綠與自然木質調為基底，結合商品細節攝影與幾何圖卡網格。透過雙色無襯線字級與俐落標籤，呈現商品規格與社群優惠資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "日系品牌"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1VnAf-ti1c1_LkU3W7J_JDbx4b6Qvq9eR",
+    "placeholderId": "IMAGE_MORINEST_PRODUCT_SOCIAL_AD",
+    "colorTheme": "from-[#14281c] via-[#223d2d] to-[#0e1c13]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VnAf-ti1c1_LkU3W7J_JDbx4b6Qvq9eR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=17nw4VuzPvHiNuTF8AIXIGqG8oHJX-FgA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QelGNQ_k-HncuM8tBEvQnzYN3SsoL3BT"
+    ],
+    "driveFolderId": "1YYr6nIwYfDgrX4WQcTxk3febeYQmVurW"
+  },
+  {
+    "id": "morinest-family-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "MORINEST™（モリネスト）家庭社群廣告",
+    "titleEn": "MORINEST Family Social Campaign",
+    "philosophy": "以大地木質綠與溫馨米白為基調，結合日系家庭生活情境與極簡幾何網格。透過雙色無襯線字級與俐落圖卡標示，傳遞居家品牌美學與社群優惠活動。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "日系品牌"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1xgxaEaLuSP3GdtvV0wAPGl7vqAGPkPlt",
+    "placeholderId": "IMAGE_MORINEST_SOCIAL_AD",
+    "colorTheme": "from-[#1a2d21] via-[#2a4533] to-[#121f17]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xgxaEaLuSP3GdtvV0wAPGl7vqAGPkPlt",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DrpkAjZGi1kTskrcVF_-bvXVhXSXGd81",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1og50C4SAJ6nKaJkql2KtzAV0I91ixYR6"
+    ],
+    "driveFolderId": "1bwm80t6pXb80I7u-JvC7c_NsrCDJDrJk"
+  },
+  {
+    "id": "koharu-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "KOHARU（こはる） 社群廣告",
+    "titleEn": "KOHARU Social Ad Campaign",
+    "philosophy": "以柔和暖櫻粉與清透米白為基調，結合日系人像情境與幾何圖卡網格。透過雙色無襯線字級與俐落標籤，標示品牌推廣動態與社群優惠資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "日式廣告"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1JUTdLa8wZVjm4TdJLyKXtcYjQqza8STB",
+    "placeholderId": "IMAGE_KOHARU_SOCIAL_AD",
+    "colorTheme": "from-[#331c26] via-[#4d2838] to-[#211119]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JUTdLa8wZVjm4TdJLyKXtcYjQqza8STB",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1P14RRFMRZXymEezBCKdf24Mbpa8VclEE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vlnAK0mymWT1RyTSCQV6gcdPlr__cR55",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10xXjzGJx1JmBeKCXqrLtjcbklHA3laDL",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1G67OTA5v7RuvGLpB_8HNUVeLNQLTIVIg"
+    ],
+    "driveFolderId": "1-SVF2_fcWp_cQlT8PXyhVYDzOlgUX-tF"
+  },
+  {
+    "id": "bubu-soda-social-endorsement",
+    "category": "社群行銷小編圖文",
+    "title": "BUBU 波波汽水 社群代言人廣告",
+    "titleEn": "BUBU Soda Social Endorsement Campaign",
+    "philosophy": "以清亮湛藍與活潑果香色調為基底，結合代言人享用氣泡飲情境與日系簡約排版。透過對比無襯線字級與圖卡網格，傳遞新品體驗價與限定促銷活動。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "代言人海報"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1bH8azUmQ-LN-cKNKBejrDbgGyQ3ya1Q_",
+    "placeholderId": "IMAGE_BUBU_SODA_ENDORSEMENT",
+    "colorTheme": "from-[#0a2033] via-[#143452] to-[#061524]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1bH8azUmQ-LN-cKNKBejrDbgGyQ3ya1Q_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WsxSKc1xHkRvceJ0wg1RKy1Btv7_1_L5",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1n_u4TxhR-X8feeqZ1Znd55On3A9FuMCm",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jJrDtyKKHXxrzdIRMVQE73cmkvkr-122",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cjunZNsVDFRZyOmXXsvpYjBrDKgu5t-_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=12EByJNZcgKNiZydp2O25xSSM8buwwFUd",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ia5fmJBYVlO0fygEIQVS_tNzVAwIpJgo"
+    ],
+    "driveFolderId": "1iq-2kfCvqke7gx_WkSu6G8y4LtD3sYXH"
+  },
+  {
+    "id": "bubu-soda-social-promotion",
+    "category": "社群行銷小編圖文",
+    "title": "BUBU 波波汽水 社群商品優惠",
+    "titleEn": "BUBU Soda Social Product Promotion Campaign",
+    "philosophy": "以清爽天藍與鮮明果香色彩為基調，結合氣泡水花特寫與繽紛產品罐身。透過對比無襯線字級與俐落圖卡網格，標示折扣優惠與限時促銷資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "飲品視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1Q0zLQjg9W6VaLQbbqtfIcooaje0MeKhV",
+    "placeholderId": "IMAGE_BUBU_SODA_PROMOTION",
+    "colorTheme": "from-[#0b2238] via-[#163859] to-[#071626]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Q0zLQjg9W6VaLQbbqtfIcooaje0MeKhV",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Q2xzB5lyg3crJm-abg_5XEiRZWYBm0xC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nvh3S3GTUD5kp9nqg3ebWGzLyA_0aYto",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11wdAoZJgGr-wmTiGhAoTTcqN-w4F5PhY",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oN7GQpiBwWZZn7UqGVfB785_gugiOnVU",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-l_PMp-hGl1JTvjcBPAKENt13IaXg9b7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1taiWRoliHZgtbpAIuDEMAW-Ac8QFVN5K",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GSK85Eb_dbg-ojvHCKDnjyIi4Wxui27W"
+    ],
+    "driveFolderId": "18KohVWy8L9Ng4uBXA_mVu0UM4VOfB_Dr"
+  },
+  {
+    "id": "sunburst-foods-social-promotion",
+    "category": "社群行銷小編圖文",
+    "title": "SUNBURST FOODS 社群促銷",
+    "titleEn": "SUNBURST FOODS Social Promotion Campaign",
+    "philosophy": "以明亮晨光黃與暖心紅為基調，結合食品美饌情境與幾何圖卡網格。透過對比字級與促銷章標，標示第二件優惠與加量促銷動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "食品促銷"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=14QT6keLwVJLii3JUY8wnmoVi634kx98J",
+    "placeholderId": "IMAGE_SUNBURST_FOODS_PROMOTION",
+    "colorTheme": "from-[#3a1d0f] via-[#522c17] to-[#241108]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=14QT6keLwVJLii3JUY8wnmoVi634kx98J",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zf7nQooX4Jont7uC1en2bpsbLx7FArxX",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1R0nVPIZ_GivDA_WgGHk2KrCHfUqFdHF2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sZFYv5djOeoHz-sQ-e-TRei_wo3qeePW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_N4zfKYzwn6ckLDIPzIdGLO0eA19PAk2"
+    ],
+    "driveFolderId": "1jcuvy0ikFYZO21ZrzvbRT56s4OhQRjvw"
+  },
+  {
+    "id": "sushihontang-product-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "鮨本堂 社群商品壽司廣告",
+    "titleEn": "Sushi Hontang Product Social Campaign",
+    "philosophy": "以深沉日式墨黑與新鮮鮭魚橙紅為基調，結合頂級握壽司特寫與乾淨幾何版塊。透過高對比字級階層與價格圓章，標示每日限量特惠與盤數折扣活動。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "日式餐飲"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1i6JqWi-c2px1URdvIBW1rTBN-XKfnKuo",
+    "placeholderId": "IMAGE_SUSHIHONTANG_PRODUCT_SOCIAL_AD",
+    "colorTheme": "from-[#1c130d] via-[#2f1f16] to-[#120b08]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1i6JqWi-c2px1URdvIBW1rTBN-XKfnKuo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Ju1EULFD-TjXThY0HF86Qm80R20H3thn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1j803ErJB0C1ILCsPcorqbNxBX6Unj_4Y"
+    ],
+    "driveFolderId": "1uOZvqNl3s1VpWUV0y7RZjt18Zk6W_tgd"
+  },
+  {
+    "id": "sushihontang-endorsement-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "鮨本堂 社群沐晴代言廣告",
+    "titleEn": "Sushi Hontang Social Endorsement Campaign",
+    "philosophy": "以日式墨黑與刺身緋紅為基調，結合代言人手持壽司情境與極簡卡片網格。透過對比字級與價格標籤，清晰傳遞促銷折扣與限定套餐資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "日式餐飲"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1KKMf5laPv98XHXTlvRa71zaMBlfF0eHK",
+    "placeholderId": "IMAGE_SUSHIHONTANG_SOCIAL_AD",
+    "colorTheme": "from-[#1a120e] via-[#2d1e18] to-[#120c09]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KKMf5laPv98XHXTlvRa71zaMBlfF0eHK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1EwQvMjLG1qp6ATBNd4S55mkAT5YujOqB",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kajlRgrInbWdFudaD8o2rwoTPu-ik8tb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vZvDy-_2v9KDo6gUhQp3nj4yIMrvinFO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Gy1nQtjx3Y_so3uCkbadISFjHqEYgdSb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1t2RMwuq9TJUR-WfHblnTPjj_JU3iQo62"
+    ],
+    "driveFolderId": "1sHZbpE2HedO3KBW-CJftBfhRJnuKnBek"
+  },
+  {
+    "id": "miisu-body-sculpting-social-visual",
+    "category": "社群行銷小編圖文",
+    "title": "蜜塑 MIISU 社群情境視覺",
+    "titleEn": "Miisu Body Sculpting Social Campaign",
+    "philosophy": "以蜜桃粉與溫柔裸膚色為基調，結合美體纖體情境與幾何圖卡網格。透過雙色無襯線字級與俐落圖示標示，呈現專業體雕療程細節與社群優惠資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "美體視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1HKN-FioPVoqXzhRILGyH4wh-Qkl2kRiW",
+    "placeholderId": "IMAGE_MIISU_SOCIAL_VISUAL",
+    "colorTheme": "from-[#2d181e] via-[#40232b] to-[#1a0d11]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HKN-FioPVoqXzhRILGyH4wh-Qkl2kRiW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ON7jKkAHWhvJ4EwmUJAz2N5AieorHCMQ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1h3JJLz8bbakXKBgO2GEhrK4jYwQz84-V",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Zdw8ku8ThnWuJt8hdW7vR5fNVFW35DTM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1R7Cc7E7kSqy5eZUVz6QkF3T1VQqeAml4"
+    ],
+    "driveFolderId": "1MOHfedFHv_xPhpKyAVHSNXujvkno-UWY"
+  },
+  {
+    "id": "velora-aesthetics-social-visual",
+    "category": "社群行銷小編圖文",
+    "title": "薇洛菈美學 VELORA 社群醫美美學情境視覺",
+    "titleEn": "Velora Aesthetics Social Campaign",
+    "philosophy": "以柔和玫瑰粉與高雅米白為基調，結合肌膚保養特寫與簡潔圓角網格。透過雙色襯線字級與俐落圖卡排版，標示美學療程細節與社群諮詢活動。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "醫美視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1_FokVYCBQ8bVxZm142WqliehkEDJ2JX-",
+    "placeholderId": "IMAGE_VELORA_SOCIAL_VISUAL",
+    "colorTheme": "from-[#2d1820] via-[#40232e] to-[#1a0e13]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_FokVYCBQ8bVxZm142WqliehkEDJ2JX-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_1qARa5KUM5dfNlS7FumvF8VgYLbpSwo",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AVRCSdJgs8BWRRutqFYJLeqk9qQxiacq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1h5A3T1B_0TS4iS62p11apn94v98b_sVf",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1llCxnQ5WH4fz9rqtycdXa1jEjYsF3PMS"
+    ],
+    "driveFolderId": "1qzJN-MLtHWLYZFMR7QH-urs8lWSP69R6"
+  },
+  {
+    "id": "cha-lane-tea-social-student",
+    "category": "社群行銷小編圖文",
+    "title": "茶巷口 CHA LANE 社群學生情境視覺",
+    "titleEn": "Cha Lane Tea Social Student Campaign",
+    "philosophy": "以活潑青綠與暖米白切分版面，結合學生放學享用手搖茶飲情境。透過無襯線字級階層與乾淨圖卡網格，傳遞青春校園氛圍與學生專屬折扣優惠。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "學生情境"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1F3h8m_XzmyHgKwxU-y4lXu29Lccq1AN8",
+    "placeholderId": "IMAGE_CHALANE_SOCIAL_STUDENT",
+    "colorTheme": "from-[#1d271f] via-[#2d3a2e] to-[#121a13]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1F3h8m_XzmyHgKwxU-y4lXu29Lccq1AN8"
+    ],
+    "driveFolderId": "1mQbv6WZyQDif-hpMWAOvUZBLgcoB89pA"
+  },
+  {
+    "id": "cha-lane-tea-social-endorsement",
+    "category": "社群行銷小編圖文",
+    "title": "茶巷口 CHA LANE 社群代言情境視覺",
+    "titleEn": "Cha Lane Tea Social Endorsement Campaign",
+    "philosophy": "以暖米白與深茶棕色調切分版面，結合代言人手持手搖茶飲情境與日系簡約構圖。透過雙色無襯線字級與俐落圖卡網格，傳遞新品聯名與社群促銷動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "代言人海報"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1jh4e7xCvqfuLOjsSST0oiaa8lD7vKw6E",
+    "placeholderId": "IMAGE_CHALANE_SOCIAL_ENDORSEMENT",
+    "colorTheme": "from-[#22160d] via-[#382618] to-[#140c07]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jh4e7xCvqfuLOjsSST0oiaa8lD7vKw6E",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YG4htNy2QSmwLtRsYgKRvTtdK1z0VUd0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wMiX02nokQDOcPgaW2w_b5yfdJwuD-QB"
+    ],
+    "driveFolderId": "1vSOPcWNRtvovEqk9nzARJxCsOj9C43YN"
+  },
+  {
+    "id": "cha-lane-tea-social-visual",
+    "category": "社群行銷小編圖文",
+    "title": "茶巷口 CHA LANE 社群巷弄茶飲情境視覺",
+    "titleEn": "Cha Lane Tea Social Visual Campaign",
+    "philosophy": "以古樸木質棕與人文暖茶色調為基調，結合巷弄人文手搖茶飲特寫。透過對比無襯線字級與俐落圖卡網格，傳遞經典茶香與日常陪伴氛圍。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "人文視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1nGvhGtFDIMNuaFoluD43BRR2Ecb78Y06",
+    "placeholderId": "IMAGE_CHALANE_SOCIAL_VISUAL",
+    "colorTheme": "from-[#23180e] via-[#382717] to-[#150e08]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nGvhGtFDIMNuaFoluD43BRR2Ecb78Y06"
+    ],
+    "driveFolderId": "1MamQuuLmiDULBYI4HMFTkxLmSH5A6Awi"
+  },
+  {
+    "id": "chayu-tea-social-product-visual",
+    "category": "社群行銷小編圖文",
+    "title": "茶嶼 CHA YU 社群商品茶飲情境視覺",
+    "titleEn": "Cha Yu Tea Social Product Campaign",
+    "philosophy": "以深翠綠與微甜果香色彩為基調，結合特調手搖杯飲俯角特寫與質感光飾。透過對比無襯線字級與俐落圖卡網格，呈現精緻茶飲特寫與優惠動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "商品攝影"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=166jiD8dztUCOQ0vKzqTZjD_eu7X874IL",
+    "placeholderId": "IMAGE_CHAYU_SOCIAL_PRODUCT_VISUAL",
+    "colorTheme": "from-[#0e2118] via-[#1a382a] to-[#091710]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=166jiD8dztUCOQ0vKzqTZjD_eu7X874IL",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vfdhperWiSllBgZziKoR-hy0PwtDjPy5"
+    ],
+    "driveFolderId": "1aqpOoAQBx_L6VTJSWo1mttlcMBiPIOeX"
+  },
+  {
+    "id": "chayu-tea-social-endorsement",
+    "category": "社群行銷小編圖文",
+    "title": "茶嶼 CHA YU 社群代言人茶飲情境視覺",
+    "titleEn": "Cha Yu Tea Social Endorsement Campaign",
+    "philosophy": "以墨綠茶韻與溫潤木質色彩為基調，結合代言人手持特調手搖茶飲情境。透過對比無襯線字級與簡潔圖卡網格，清晰標示季節新品推薦與社群優惠動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "代言人海報"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1-C5UnoFm2xiIXN2Tgv7N-0Y17KZ3SuZd",
+    "placeholderId": "IMAGE_CHAYU_SOCIAL_ENDORSEMENT",
+    "colorTheme": "from-[#11241a] via-[#1d382a] to-[#0a1710]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-C5UnoFm2xiIXN2Tgv7N-0Y17KZ3SuZd",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lxuQIFqy2DxgAbBmvat8wgk8cGGFZOpQ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WUjFK-zTb6L2iMQNwouJheQcmUR_LlOE"
+    ],
+    "driveFolderId": "1JzAgozZwFI8hVbmQFHz4T-qvOnNY8d2-"
+  },
+  {
+    "id": "chengyue-construction-social-visual",
+    "category": "社群行銷小編圖文",
+    "title": "澄岳建設 社群建案情境視覺",
+    "titleEn": "ChengYue Construction Social Architecture Campaign",
+    "philosophy": "以沉穩岩灰與大地色調為基底，結合建築外觀光影與俐落幾何網格，透過雙色字級層次標示地段優勢與建案細節，營造簡約質感的居所視覺。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "建案海報",
+      "建築視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=14QQfibG2Zg1JkY1LUdeDTBhkG7HnfirV",
+    "placeholderId": "IMAGE_CHENGYUE_SOCIAL_VISUAL",
+    "colorTheme": "from-[#1c2326] via-[#2a3438] to-[#121719]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=14QQfibG2Zg1JkY1LUdeDTBhkG7HnfirV",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PkZKPl_x2elWp7UqyXiEK-hNdrjfBrd-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gXtcbChspDNgcj_ahMd4NYLXvXbl0RN6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hHyWl0D50ZupOwHTS85ore2J3sfAXAkF"
+    ],
+    "driveFolderId": "1rznBIlKHKHbGAZJgMhPLPwWr3-WGWVLI"
+  },
+  {
+    "id": "mantour-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "漫旅 MANTOUR 旅宿預訂社群廣告",
+    "titleEn": "MANTOUR Travel & Hotel Social Ad Campaign",
+    "philosophy": "以暖陽橙與蔚藍渡假調性為基調，結合異國旅宿景色與乾淨卡片式網格。透過對比字級與留白版面，清晰傳遞早鳥預訂優惠與漫旅生活美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "旅遊攝影"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1fzlAnbTW7WTuOrCdZSgVN7yOD6wy6fB_",
+    "placeholderId": "IMAGE_MANTOUR_SOCIAL_AD",
+    "colorTheme": "from-[#1d2a3a] via-[#2c3e50] to-[#121c27]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fzlAnbTW7WTuOrCdZSgVN7yOD6wy6fB_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jLrpeJ-fPCgTK7zjsMx9CF2oV_G7Y36d",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hZXvKIO2u7DY644bLMheqwTiV_QxwXUp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1HBiTr1ISUKZEdODdMhr7PwhnvZUZ5US_"
+    ],
+    "driveFolderId": "1ZhzTTDGht2687nmtSbt2CVR_MzGlkcYO"
+  },
+  {
+    "id": "haiyu-biomed-human-emotion-ad",
+    "category": "社群行銷小編圖文",
+    "title": "海御生生醫 人情形象廣告",
+    "titleEn": "HaiYu Biomed Human Emotion Campaign",
+    "philosophy": "以藍綠海洋漸層與溫暖人物寫真為視覺核心，結合跨世代家庭情境與柔和光影構圖。透過雙色字級與留白幾何區塊，傳遞關懷陪伴與健康防護理念。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "人物攝影"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1r1XK11x3-gRlTE7ZPBqrd9HbKVKk-sb3",
+    "placeholderId": "IMAGE_HAIYU_HUMAN_EMOTION_AD",
+    "colorTheme": "from-[#0a2332] via-[#143b52] to-[#051621]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1r1XK11x3-gRlTE7ZPBqrd9HbKVKk-sb3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_7tIC7Yp_YmBf82Qh4ax2rf6FKT2rcpa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1r9qQ77vc5XFZ-zYM7f9x_FyQEHsJ4Dhs"
+    ],
+    "driveFolderId": "13rLSjkKskn3d__y_HYgfpjmZ8TMEQejz"
+  },
+  {
+    "id": "haiyu-biomed-social-ad",
+    "category": "社群行銷小編圖文",
+    "title": "海御生生醫 社群產品專業形象廣告",
+    "titleEn": "HaiYu Biomed Social Product Campaign",
+    "philosophy": "以深海藍與淨白幾何為視覺主軸，結合海洋萃取保健產品特寫與結構化卡片網格。透過雙色字級階層與專利圖解標示，傳遞專業嚴謹與安心品質形象。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "生醫排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1lheicpYjQxV6IB2UnPe5gK_hGsMIqF0s",
+    "placeholderId": "IMAGE_HAIYU_SOCIAL_AD",
+    "colorTheme": "from-[#081f2d] via-[#103348] to-[#04121c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lheicpYjQxV6IB2UnPe5gK_hGsMIqF0s",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1q0wlnOT7464RfHwnkvhZZBwSb4G3ANYp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QlByaUXXJzkjMmh9MlksaZMIdy2ij1kT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Co1LovrR6oJ812QcwwryDsjJOHbxqUej"
+    ],
+    "driveFolderId": "1QNrOOpKrADUhwwH-75ah959xVhOpcjm7"
+  },
+  {
+    "id": "qinyu-tea-social-endorsement",
+    "category": "社群行銷小編圖文",
+    "title": "沁嶼 QINYU 代言人社群廣告",
+    "titleEn": "Qinyu Tea Social Endorsement Campaign",
+    "philosophy": "以清爽湖水綠與淡雅米白為基調，結合代言人手持特調茶飲情境。透過簡潔字級階層與圓角卡片網格，清晰標示新品上市與社群折扣資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "代言人海報"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1ff-uEy0y1-1qjbShNT8-iNjMgqus4VXz",
+    "placeholderId": "IMAGE_QINYU_SOCIAL_ENDORSEMENT",
+    "colorTheme": "from-[#0e2a2a] via-[#1a3d3d] to-[#081b1b]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ff-uEy0y1-1qjbShNT8-iNjMgqus4VXz",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1K4zaOa30OguMR8kOW8uRAVjAowAioX1x",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pAcnZtk6eepxMKIlcnGEp99zVdLXxRuA"
+    ],
+    "driveFolderId": "1ptHsAuHC8GzSRUMMfLTAzXgqHf6EuSAx"
+  },
+  {
+    "id": "daily-nuts-social-product-ad",
+    "category": "社群行銷小編圖文",
+    "title": "日日果 Daily Nuts 社群商品廣告",
+    "titleEn": "Daily Nuts Social Product Ad Campaign",
+    "philosophy": "以溫潤暖木色彩為底，結合堅果袋裝商品俯視特寫與對角線構圖。透過無襯線字體層次與透明圖塊編排，傳遞健康天然與便利點心情境。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "商品攝影"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1S4J-LK-8GWLqBNGw9WpJcE33pdZFeLJ6",
+    "placeholderId": "IMAGE_DAILY_NUTS_PRODUCT_AD",
+    "colorTheme": "from-[#362719] via-[#4d3723] to-[#21170e]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1S4J-LK-8GWLqBNGw9WpJcE33pdZFeLJ6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1_u5zt6rY8NP5e5XQGSr5qvimXBdoTTnZ"
+    ],
+    "driveFolderId": "17jpRMdPATpKdFJS5elhii5y6LmBVS9rN"
+  },
+  {
+    "id": "daily-nuts-social-endorsement",
+    "category": "社群行銷小編圖文",
+    "title": "日日果 Daily Nuts 社群代言廣告",
+    "titleEn": "Daily Nuts Social Endorsement Campaign",
+    "philosophy": "以大地棕與自然綠為基調，結合代言人人物構圖與實體堅果產品包裝。透過對比字級階層與乾淨切分網格，清晰標示每日營養補充與團購優惠資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "包裝排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1A3MsX0-WkzHdM60FEhGA1fGQZthYNj7I",
+    "placeholderId": "IMAGE_DAILY_NUTS_SOCIAL",
+    "colorTheme": "from-[#2b1f14] via-[#3d2b1c] to-[#17100a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1A3MsX0-WkzHdM60FEhGA1fGQZthYNj7I",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1siNXaJZec7PiveGnno9CzvmpQKGSWmeq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dtb0m9mVyqtHKSHZknYqzAF7tSawMZF_"
+    ],
+    "driveFolderId": "1jHNfyxaHCSd3VftUHNmpQFnCgBul3F7D"
+  },
+  {
+    "id": "travelsafe-insurance-social-promo",
+    "category": "社群行銷小編圖文",
+    "title": "旅安保險 海外平安險 社群優惠",
+    "titleEn": "TravelSafe Overseas Insurance Social Campaign",
+    "philosophy": "以晴空藍與深藍為基調，結合機場旅遊情境與簡潔卡片式網格。透過對比字級階層與幾何圖示，清晰標示 LINE 免費試算與海外投保優惠，傳遞安心守護視覺。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "品牌排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=168KajS-38ObDdA13W5V1sqWunDuL_Ppf",
+    "placeholderId": "IMAGE_TRAVELSAFE_SOCIAL_PROMO",
+    "colorTheme": "from-[#0d1d2d] via-[#1a324b] to-[#08121d]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=168KajS-38ObDdA13W5V1sqWunDuL_Ppf",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KLLbAw3c1ZmIjN3Psct7JQEfEfgJO4sH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GU_WQUfpR1eFVN4LUqJymqk6p6ZN91Kc",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xsP0w4VlB06AUpzmXkKHOqsns2cBdqu6"
+    ],
+    "driveFolderId": "1CskgAFoUlyq6wHMwjtDnC9lwXlvjASkr"
+  },
+  {
+    "id": "fuse-invest-social",
+    "category": "社群行銷小編圖文",
+    "title": "富序投資 金融理財社群貼文",
+    "titleEn": "Fuse Invest Financial Social Post Campaign",
+    "philosophy": "以深藍與金色對比配色為基調，結合幾何圖塊與數據圖表。透過結構化網格排版與清晰字級階層，呈現資產配置、App功能與論壇資訊，傳遞專業可靠的金融理財視覺。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群貼文",
+      "資訊圖表"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1eoAbiY1yJHXBhNjA724BGQD1Z0zG-XDN",
+    "placeholderId": "IMAGE_FUXU_SOCIAL",
+    "colorTheme": "from-[#0d1b2a] via-[#1b263b] to-[#080e18]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eoAbiY1yJHXBhNjA724BGQD1Z0zG-XDN",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1g6GTjm_PhDwDt8Qy1-vr7itsxSa2W0me",
+      "https://drive.google.com/thumbnail?sz=w1000&id=18jx0tedMGC7ghIQaI7Vt5ziV1lLozPl3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dGYCVzaDj2lNjHzlPk9u9z0KG8EjVRdy"
+    ],
+    "driveFolderId": "1Fmri3qes0cjUZvahyM-jXJtUaDJtGpjE"
+  },
+  {
+    "id": "yubao-entertainment-ad",
+    "category": "社群行銷小編圖文",
+    "title": "娛爆台 娛樂新聞頻道 社群廣告",
+    "titleEn": "Entertainment News Channel Social Ad Campaign",
+    "philosophy": "以高明度黃色與深黑對比色系切分版面，結合星光榜單與大事記圖塊。透過報紙風粗體字級與對比框線編排，直觀傳遞娛樂焦點話題與開箱贈獎動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "資訊圖表"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1wGw4qGgXeIxeUx6tCuocteNBRSnMAWAG",
+    "placeholderId": "IMAGE_YUBAO_AD_SOCIAL",
+    "colorTheme": "from-[#262205] via-[#3a340a] to-[#141203]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wGw4qGgXeIxeUx6tCuocteNBRSnMAWAG",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1I0vTpo1qKtRLijQXoMa2DwHbusmzmFx2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rbVGzlktPmePMfcybhPWgwcgG6CC7OVE"
+    ],
+    "driveFolderId": "1IULR2O2kvet2T073sPDSEqYOBNmvYvUY"
+  },
+  {
+    "id": "yubao-entertainment-social",
+    "category": "社群行銷小編圖文",
+    "title": "娛爆台 娛樂新聞頻道 社群圖文",
+    "titleEn": "Entertainment News Channel Social Campaign",
+    "philosophy": "以螢光黃與深黑高對比配色為基調，結合娛樂新聞專訪與紅毯現場構圖。透過雜誌風標題排版與卡片式網格，清晰呈現明星獨家話題與直播動態。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "排版網格"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=14CqXp6Ad76utvPavT8resxwuh0ZBjvy_",
+    "placeholderId": "IMAGE_YUBAO_SOCIAL",
+    "colorTheme": "from-[#1a1805] via-[#2b270a] to-[#0f0e03]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=14CqXp6Ad76utvPavT8resxwuh0ZBjvy_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1IUNWaQf_gROWqNF-hTiq36Smv_ApJvYL",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MxepShl3Q6_4IyANFkYcn5_QDjIxOE5c"
+    ],
+    "driveFolderId": "1OnCJ-Ka6W2CsoKuRXR6HFU-PQPZnlf6A"
+  },
+  {
+    "id": "haoke-go-social-illustration",
+    "category": "社群行銷小編圖文",
+    "title": "好課 GO 社群插畫海報",
+    "titleEn": "Hao Ke GO Social Illustration Campaign Poster",
+    "philosophy": "以活潑向量插畫與對比色彩為基底，結合扁平幾何視覺與卡片式網格。透過雙色字級編排與情境圖塊，清晰標示線上課程隨選即學與學習獎勵優惠。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "向量插畫",
+      "社群廣告"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1p1VhoFQOwgDnTNw_qeoPUomtffWjbNYC",
+    "placeholderId": "IMAGE_HAOKE_GO_ILLUSTRATION",
+    "colorTheme": "from-[#17223b] via-[#263859] to-[#0f172a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1p1VhoFQOwgDnTNw_qeoPUomtffWjbNYC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CcDQv-IHoNqM1PG1L7dbkMEj9V72RRQn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16ne8XyuHlmWLh0BZDTWBAUP83WcKB1ZR",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Y-el_vP6Hy-oWVy-rigchj3gmpwS4Fyn"
+    ],
+    "driveFolderId": "17KM74wTVPnxf4J9Fr4O-v6-r0MsmNgt2"
+  },
+  {
+    "id": "haoke-go-social-poster",
+    "category": "社群行銷小編圖文",
+    "title": "好課 GO 社群代言人海報",
+    "titleEn": "Hao Ke GO Social Endorsement Campaign Poster",
+    "philosophy": "以亮橘與深藍對比色彩為基底，結合代言人人物特寫與卡片式結構。透過字級層次與幾何標註，明確標示免費試聽與課程優惠資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "代言人海報"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1V3Ld456DAnDbEH5oCFdn8cKT5kquLlzv",
+    "placeholderId": "IMAGE_HAOKE_GO_SOCIAL",
+    "colorTheme": "from-[#2b170d] via-[#3d2212] to-[#170c06]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1V3Ld456DAnDbEH5oCFdn8cKT5kquLlzv",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AQogVYfGldtRyhl_l4ndEPhT08FYZYLW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1YCkHVpGZTgKRqqz1w_jcaJVXJ39GxURq",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1AowQ9k9QGijhQOZAzpRrVBAzLwEgHM9M"
+    ],
+    "driveFolderId": "1nUgMTo40_HRzkyqSLkMnh3rUiyLuvQ7L"
+  },
+  {
+    "id": "chengguang-dept-social-model",
+    "category": "社群行銷小編圖文",
+    "title": "城光百貨 社群折扣 模特封面",
+    "titleEn": "Cheng Guang Department Store Model Cover Social Campaign",
+    "philosophy": "以時尚模特形象為視覺焦點，結合簡潔俐落的幾何圖塊與明亮色彩配色。透過結構化網格切分與促銷字級編排，清晰標示百貨美妝與節慶折扣資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "模特封面"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1tFtuiDiDUfZu-xHkzuSp3ogDcMAcmWeU",
+    "placeholderId": "IMAGE_CHENGGUANG_MODEL_SOCIAL",
+    "colorTheme": "from-[#2e1d24] via-[#422933] to-[#1a1015]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tFtuiDiDUfZu-xHkzuSp3ogDcMAcmWeU",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1q3BULGvlwnG6dNae-B0sZ4V3tvxHlkto",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xqs0_sq2HbH4maoZWHEereMo5NaX9ojT",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1yjeN9UqxrRYXkGYX3yMp4k9lHPkcMkIv",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TASot8ZrFrEuARsz0rGI0LMhCsHLuTgL"
+    ],
+    "driveFolderId": "1NEg6QI7BH3_-iCasKIFsBJ9EoB5jRU-m"
+  },
+  {
+    "id": "chengguang-dept-social-fantasy",
+    "category": "社群行銷小編圖文",
+    "title": "城光百貨 社群折扣 幻想系列",
+    "titleEn": "Cheng Guang Department Store Fantasy Social Discount Campaign",
+    "philosophy": "運用高飽和夢幻色彩與透光幾何語彙，結合百貨專櫃、精緻珠寶與異國美食影像。透過結構化網格切分與促銷標語編排，形塑具視覺吸引力與幻想意象的社群行銷視覺。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "視覺合成"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1JRHngBrrz-n-WRUdEsbjVpWeuNtHk3_O",
+    "placeholderId": "IMAGE_CHENGGUANG_FANTASY_SOCIAL",
+    "colorTheme": "from-[#2b162a] via-[#3d1f3b] to-[#1c0c1b]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JRHngBrrz-n-WRUdEsbjVpWeuNtHk3_O",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10iaIwXdrkDKjO00IJ2goZq4AH5D8KUUi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1j-s1Yfk1AK6FRCVjPcGredsw7pxmXcsQ"
+    ],
+    "driveFolderId": "1gMFp-BnpK5oUIZgjrZ3UoUPF-KPVtghH"
+  },
+  {
+    "id": "lumo-lighting-social",
+    "category": "社群行銷小編圖文",
+    "title": "LUMO 智慧照明品牌社群圖文",
+    "titleEn": "LUMO Smart Lighting Brand Social Media Campaign",
+    "philosophy": "以深邃暗夜黑與暖黃光暈為基調，結合產品實境與簡潔網格排版。透過漸層光影與對比字級編排，呈現智慧照明機能與情境氣氛，建立簡約現代的社群視覺。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群圖文",
+      "品牌排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1nlAeIVQlpBxQ5IT1eL-thsM-lpLbdcsA",
+    "placeholderId": "IMAGE_LUMO_SOCIAL",
+    "colorTheme": "from-[#121212] via-[#1f1f1f] to-[#0a0a0a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1nlAeIVQlpBxQ5IT1eL-thsM-lpLbdcsA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=115jF4SdMES8_kwBufKSlq-RBy1bvpVkM",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KjYAwYqCGgK0oEDPSAB5WWbHXSiWs30N",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1odqQ0Buk0maMuMIGdR0D3FrC3PrACXLW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DgEhZoUiUyyfdQfnFBnspzcHKTV2jCvB"
+    ],
+    "driveFolderId": "1HLu1gBnkB6LVQfZrkZffF4wjo9hhOKaI"
+  },
+  {
+    "id": "nom-nom-delivery-social",
+    "category": "社群行銷小編圖文",
+    "title": "Nom Nom 美食速達外送平台 優惠貼文",
+    "titleEn": "Nom Nom Food Delivery Platform Promotional Social Campaign",
+    "philosophy": "以明亮鮮黃與活力橘紅為基調，結合美式手繪插畫與美味餐點構圖。運用清晰卡片式網格與對比字級，直觀標示外送折扣優惠與 LINE 綁定好禮資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群貼文",
+      "向量插畫"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1hNlgENmQga0fyYyNysCYXwtDl8_qlmD7",
+    "placeholderId": "IMAGE_NOMNOM_SOCIAL",
+    "colorTheme": "from-[#2b1f0d] via-[#3d2a10] to-[#1a1207]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hNlgENmQga0fyYyNysCYXwtDl8_qlmD7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ni4IJ8Td6bobIHJPei7o4bIB2pVwZMgy",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1x81JLbLsZBp_aAr2MbjnN7SnrTEnju4P"
+    ],
+    "driveFolderId": "1zAy-6bsyyzYV-g0feMihvRzpaMVKHgur"
+  },
+  {
+    "id": "lumia-endorsement-social",
+    "category": "社群行銷小編圖文",
+    "title": "LUMIA 日拋彩色隱形眼鏡 代言銷售廣告",
+    "titleEn": "LUMIA Color Contact Lenses Endorsement Campaign Social Post",
+    "philosophy": "以品牌代言人實照為視覺核心，結合簡潔俐落的幾何圖塊與排版網格。搭配柔和明亮光影與產品盒構圖，清楚標示優惠活動與銷售資訊，強化品牌信任感。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "代言視覺"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=16MlA2vyJM3a8XkHf4ctN9E2gGImr6eBZ",
+    "placeholderId": "IMAGE_LUMIA_ENDORSEMENT_SOCIAL",
+    "colorTheme": "from-[#241c2b] via-[#33283d] to-[#18121f]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=16MlA2vyJM3a8XkHf4ctN9E2gGImr6eBZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1M6zGwVXFI3eAzwo7YAh35xwX-Vft870Z",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MP9HGJCZJm2VaKFO4t1_AWr9kMBZLTaE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eYsDRwtdqtyjE8jvrfCJB5dZPdWFjftD",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uw4wTxdMqMweTGGY6MILmSKoAxbrJmiL"
+    ],
+    "driveFolderId": "1_Y3gX50v-8OHkJkbdO5PCBMh8CGhWRWS"
+  },
+  {
+    "id": "lumia-contact-lenses-social",
+    "category": "社群行銷小編圖文",
+    "title": "LUMIA 日拋彩色隱形眼鏡 人物特寫銷售廣告",
+    "titleEn": "LUMIA Color Contact Lenses Close-Up Campaign Social Post",
+    "philosophy": "運用人物眼神特寫與產品包裝合成，搭配簡潔網格排版與細緻字體層次。以低飽和粉裸色與大地色調烘託眼神光澤，傳遞清透舒適的商品特色。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "人物特寫"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1TXnnryWkQrg1XXDjV04BAd_dGXAnRRv4",
+    "placeholderId": "IMAGE_LUMIA_SOCIAL",
+    "colorTheme": "from-[#2b1e22] via-[#3a282e] to-[#1c1316]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TXnnryWkQrg1XXDjV04BAd_dGXAnRRv4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Z_Ay6P-9FKsM3g2MT-FNfELGqqAt4XtA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1F1PACaDGi5dGbDlc8Mr4BEgv4VNGY6Pc",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1yZ7jljKzFRVqwcJiYUWbZPhgFra21Hik",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iW5MwvehqJ1HzNDPCBZjyYZYMvSABzm7"
+    ],
+    "driveFolderId": "1QPOvbgkc7qyW8rDUryvfHKb9mfmEXU_u"
+  },
+  {
+    "id": "lingora-ai-social",
+    "category": "社群行銷小編圖文",
+    "title": "LINGORA AI 語言學習 APP 社群廣告",
+    "titleEn": "LINGORA AI Language Learning App Social Campaign",
+    "philosophy": "以科技藍與幾何對話框為主題，結合高對比雙色字級編排與人物情境。透過卡片式網格切分，清晰呈現 AI 語言學習特色與促銷資訊。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "社群廣告",
+      "品牌排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1MIsqFQCjCFS3vGu03gwwkRXWO0q4YEFe",
+    "placeholderId": "IMAGE_LINGORA_AI_SOCIAL",
+    "colorTheme": "from-[#0d1b2a] via-[#1b263b] to-[#0a1128]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MIsqFQCjCFS3vGu03gwwkRXWO0q4YEFe",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LS_tGr3m0gzsBul-WFYTlXu--4K85lwd",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sHSegp76p1s_T-AS6rkZG8DswY1i9X7Y",
+      "https://drive.google.com/thumbnail?sz=w1000&id=197vYhZWUajuWbTiI9jsh4qLbbMIt3rsp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1P6nFpkI5plbHDb111aLWZidroLCSplnY"
+    ],
+    "driveFolderId": "1ItvDVQpdAvX005yCga1PIXdQy2xHksNl"
+  },
+  {
     "id": "sebamed-sky-model-social",
     "category": "社群行銷小編圖文",
     "title": "施巴 Sebamed 運動舒緩沐浴乳 天空模特行銷圖文",
     "titleEn": "Sebamed Sports Body Wash Sky Model Campaign Social Post",
     "philosophy": "以湛藍天空與無重力模特身姿為背景，結合產品實體與簡潔排版網格。透過高飽和色彩對比與幾何圖塊，清楚呈現運動舒緩訴求，強化社群圖文視覺吸引力。",
-    "isHighlight": true,
     "tools": [
       "Ai",
       "Photoshop",
@@ -2958,13 +3806,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1oQtysci89mRH05PrLPyLNavbSO4PaXx1",
       "https://drive.google.com/thumbnail?sz=w1000&id=1jZqkbBFtVnPqFyeD3ZFPF0Ur5TdR99yl"
     ],
-    "driveFolderId": "16zY8nOXQ8w7PDsCF8R4ir4PN3yRANSu5",
-    "link": "https://drive.google.com/drive/folders/16zY8nOXQ8w7PDsCF8R4ir4PN3yRANSu5?usp=drive_link"
+    "driveFolderId": "16zY8nOXQ8w7PDsCF8R4ir4PN3yRANSu5"
   },
   {
     "id": "52",
     "category": "社群行銷小編圖文",
-    "isHighlight": true,
     "title": "心泰 PRO 泰國料理 節慶主題與異國美食社群貼文視覺",
     "titleEn": "Thai Heart Pro: Exquisite Festive Campaigns & Authentic Thai Cuisine Social Media Design",
     "philosophy": "結合泰式酸辣色彩與異國節慶氛圍，運用高對比圖文網格編排料理特寫與優惠標籤。透過社群貼文的直覺視覺層次，營造引人入勝的餐飲社群互動體驗。",
@@ -3242,7 +4088,6 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "62",
     "category": "社群行銷小編圖文",
-    "isHighlight": true,
     "title": "羅宋堂總代理官方售後 Segway-Ninebot 滑板車延長保固計劃圖文詳情與登錄系統界面",
     "titleEn": "Segway-Ninebot Authorised Local VIP Extended Warranty: Premium Post-Purchase Insurance Campaign & Verification Interface Design",
     "philosophy": "運用卡片式資訊架構與高對比橙色重點標示，條理呈現滑板車延長保固計劃與步驟。透過精緻線條圖示與清晰字級編排，引導用戶流暢掌握售後登錄流程。",
@@ -3731,7 +4576,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Meril 醫療科技 Myval 人工心臟瓣膜手術手冊與 TAVI 腰封包裝",
     "titleEn": "Meril Life Sciences: Myval Transcatheter Heart Valve Surgery Booklet & TAVI Custom Waist Band Integrated Package Design",
     "philosophy": "以結構化雙色網格版面為核心，搭配高對比步進式圖解與大字級階層。結合燙金腰封與特殊摺頁裝幀，將複雜的心臟瓣膜手術流程與規格數據轉化為直覺流暢的臨床參考手冊。",
-    "isHighlight": true,
     "tools": [
       "InDesign",
       "Ai",
@@ -3797,7 +4641,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "WILD BURGER CLUB野性漢堡俱樂部品牌識別系統",
     "titleEn": "WILD BURGER CLUB™ - American Retro Trend & Wild Dining Aesthetic - Brand LOGO & 24-part Corporate Identity System (CIS) Work",
     "philosophy": "以美式復古字體結合美式漢堡符號為核心標誌，搭配高對比黃紅配色與街頭標籤編排。延伸應用於名片、牛皮紙袋與周邊包裝，建立具張力與辨識度的美式餐飲品牌識別。",
-    "isHighlight": false,
     "tools": [
       "手繪線稿",
       "CIS規範",
@@ -3846,7 +4689,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "BLEND MONSTER 混種怪獸研究所 飲料店 怪獸 IP 視覺、標誌與 CIS 品牌識別系統規劃",
     "titleEn": "BLEND MONSTER - Next-gen Street Trend Experimental Tea Drink - Monster IP & 26-part Brand Identity System (CIS)",
     "philosophy": "將原創混種怪獸 IP 形象與標準字結合，採用高飽和對比配色與強烈色塊切分。系統化應用於門市招牌、飲料杯套與周邊包裝，建立具高度視覺衝擊感的潮牌飲料識別。",
-    "isHighlight": false,
     "tools": [
       "IP插畫",
       "CIS規範",
@@ -4111,7 +4953,6 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "94",
     "category": "平面海報廣告設計",
-    "isHighlight": true,
     "title": "巴迪醫療 TATCS 台灣胸腔及心臟血管外科學會年會 醫療產品海報設計",
     "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
     "philosophy": "以醫用高品質產品特寫為視覺核心，結合嚴謹的學術資訊網格。透過高對比文字編排與深色底紋襯托，精準展現外科年會醫療展品的創新技術與信賴質感。",
@@ -4159,7 +5000,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "NAOIT中華民國口腔植體學會北區分會徽章與徽章盒",
     "titleEn": "NAOIT Dental Implantology Society Northern Branch Badge & Box",
     "philosophy": "以深藍與金色為主色調，將口腔植體意象與學會縮寫幾何化結合，構成雙圓對稱結構。包裝盒結構搭配霧面燙金工藝與高密度海綿內襯，提升徽章收納質感與學術分會的專業識別度。",
-    "isHighlight": false,
     "tools": [
       "Ai",
       "Photoshop",
@@ -4234,7 +5074,6 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "101",
     "category": "企業LOGO與CIS設計",
-    "isHighlight": true,
     "title": "歡喜媛媛 品牌標誌與企業識別系統（CIS）",
     "titleEn": "Joy Yuan Co.: Premium Logo Branding & Corporate Identity System (CIS) Creative Showcase",
     "philosophy": "以溫暖柔和的粉紫色調結合手繪感花卉符號，搭配典雅襯線字體與圓潤線條。導入名片、包裝提袋與禮盒貼紙等載體，營造親和且具典雅質感的品牌視覺體驗。",
@@ -4819,7 +5658,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "素顏之本 手工皂",
     "titleEn": "Naturals Kin Artisan Soap Collection: A Minimalist Visual Narrative of Botanical Purity and Sensory Elegance",
     "philosophy": "宣傳圖放上素顏之本 手工皂的主打產品照片，文字排列在最醒目的位置，用簡單直接的方法把特價好康傳達給上網的大眾。",
-    "isHighlight": true,
     "tools": [
       "Photoshop",
       "Ai",
@@ -5665,7 +6503,6 @@ export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "157",
     "category": "影音與多媒體設計",
-    "isHighlight": true,
     "title": "DH Fruit 動態",
     "titleEn": "DH Fruit Dynamic Advertisement",
     "philosophy": "以近距離平移視角拍攝新鮮水果的高飽和色彩，運用高格率慢動作突顯汁液飛濺細節。搭配簡約白底與置中商標字卡，建構清新俐落的食品動態視覺。",
@@ -7336,7 +8173,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "Orion好麗友 烏龜脆片",
     "titleEn": "Orion好麗友 烏龜脆片 E-commerce Detail Page Design",
     "philosophy": "撕開大包裝袋，拿出一片有四層結構的綠色餅乾。放進嘴裡咬碎，層次感讓嘴裡充滿濃郁的濃湯香氣，酥脆的聲音很大，跟朋友一邊聊天一邊分著吃，非常過癮。",
-    "isHighlight": true,
     "tools": [
       "Photoshop",
       "Ai"
@@ -7623,7 +8459,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "台東初鹿 保久乳",
     "titleEn": "台東初鹿 保久乳 E-commerce Detail Page Design",
     "philosophy": "用吸管戳進小巧的白色鋁箔包，猛吸一口，乳白色牛奶流進喉嚨。嘴唇上方留下一圈奶泡，塞在小孩的便當袋裡，是課間隨時能喝到香濃乳汁的點心。",
-    "isHighlight": true,
     "tools": [
       "Photoshop",
       "Ai"
@@ -8486,7 +9321,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "浪漫香調香水精選 品牌週促銷橫幅設計",
     "titleEn": "Yahoo Mall Romantic Fragrance & Perfume Promo Banner",
     "philosophy": "以柔和粉紫漸層與精緻花卉幾何邊框為背景，襯托透光香水瓶身光影質感。透過優雅字體階層與品牌週折扣標章，營造典雅氛圍與高品質美妝購物視覺。",
-    "isHighlight": true,
     "tools": [
       "Photoshop",
       "Ai"
@@ -8504,7 +9338,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "瓜瓜園冰烤番薯 官方網站推播廣告設計",
     "titleEn": "KuaKuaYuan Roasted Sweet Potato Web Banner Design",
     "philosophy": "以大地暖黃與自然橙色系為基底，突顯冰烤番薯金黃斷面與結霜質感。搭配鄉土幾何貼紙標章與免運優惠文字，呈現在地農特產真實風味與官網導購視覺。",
-    "isHighlight": false,
     "tools": [
       "Photoshop",
       "Ai"
@@ -9345,7 +10178,6 @@ export const initialPortfolioData: PortfolioItem[] = [
     "title": "冬日進補火鍋湯底樂天生鮮禦寒專場廣告",
     "titleEn": "Rakuten Winter Warm Hotpot Soup Bases Campaign Banner",
     "philosophy": "以滾燙麻辣火鍋與優質牛肉片實照為視覺主角，運用深紅暖色調傳達禦寒氣息。搭配生鮮專場折扣標章與免運優惠，建立誘發冬日圍爐渴望的促銷橫幅。",
-    "isHighlight": false,
     "tools": [
       "Photoshop",
       "Ai"
