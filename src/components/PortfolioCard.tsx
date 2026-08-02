@@ -272,18 +272,37 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
   const flipSpring = useSpring(0, { stiffness: 160, damping: 14, mass: 0.9 });
   React.useEffect(() => {
-    flipSpring.set(isCardFlipped ? 180 : 0);
-    if (isCardFlipped) {
-      const timer = setTimeout(() => {
-        setIsFanOut(true);
-      }, 100);
-      return () => clearTimeout(timer);
-    } else {
-      setIsFanOut(false);
-    }
-  }, [isCardFlipped, flipSpring]);
+    let rafId: number;
+    let timerId: ReturnType<typeof setTimeout>;
 
-  const rotateX = useTransform(() => rawRotateX.get());
+    flipSpring.set(isCardFlipped ? 180 : 0);
+
+    if (isCardFlipped) {
+      // 依據是否為懸停 (hover) 設定 1 秒 (1000ms) 的展開延遲時間，如果是點擊 (isFlipped) 則維持 100ms 快速展開
+      const fanOutDelay = isFlipped ? 100 : 1000;
+      timerId = setTimeout(() => {
+        rafId = requestAnimationFrame(() => {
+          setIsFanOut(true);
+        });
+      }, fanOutDelay);
+    } else {
+      rafId = requestAnimationFrame(() => {
+        setIsFanOut(false);
+      });
+    }
+
+    return () => {
+      if (timerId) clearTimeout(timerId);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isCardFlipped, isFlipped, flipSpring]);
+
+  const rotateX = useTransform(() => {
+    const flip = flipSpring.get();
+    const isFlippedNow = flip > 90;
+    const rx = rawRotateX.get();
+    return isFlippedNow ? -rx : rx;
+  });
   const rotateY = useTransform(() => {
     const flip = flipSpring.get();
     const isFlippedNow = flip > 90;
@@ -837,7 +856,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           >
             {/* 撲克牌綻開 - 左翼作品照片卡牌 (動態負 z-index 管理，位於中間卡片後方) */}
             <motion.div
-              className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none shadow-xl transition-all duration-500 ${
+              layoutId={`fan-card-left-${item.id}`}
+              className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none transition-colors duration-500 ${
                 isSepia
                   ? "bg-[#FAF2E1] border-[#E8D9BF]"
                   : isLight
@@ -845,19 +865,23 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   : "bg-zinc-900 border-white/15"
               }`}
               animate={{
-                x: isFanOut ? -42 : 0,
-                y: isFanOut ? -10 : 0,
-                rotate: isFanOut ? -18 : 0,
+                x: isFanOut ? 34 : 0,
+                y: isFanOut ? -6 : 0,
+                rotate: isFanOut ? 9 : 0,
                 opacity: isFanOut ? 0.95 : 0,
-                scale: isFanOut ? 0.95 : 0.9,
+                scale: isFanOut ? 0.96 : 0.9,
+                boxShadow: isFanOut
+                  ? "-10px 14px 24px -4px rgba(0, 0, 0, 0.35)"
+                  : "0px 0px 0px 0px rgba(0, 0, 0, 0)",
               }}
               transition={{
                 type: "spring",
-                stiffness: 220,
+                stiffness: 240,
                 damping: 18,
-                delay: isFanOut ? 0.08 : 0,
+                mass: 0.8,
+                delay: isFanOut ? 0.06 : 0,
               }}
-              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -1 : -10 }}
+              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -1 : -10, willChange: "transform, opacity" }}
             >
               <ImageWithFallback
                 src={leftImgSrc}
@@ -887,7 +911,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
             {/* 撲克牌綻開 - 右翼作品照片卡牌 (動態負 z-index 管理，位於中間卡片後方) */}
             <motion.div
-              className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none shadow-xl transition-all duration-500 ${
+              layoutId={`fan-card-right-${item.id}`}
+              className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none transition-colors duration-500 ${
                 isSepia
                   ? "bg-[#FAF2E1] border-[#E8D9BF]"
                   : isLight
@@ -895,19 +920,23 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                   : "bg-zinc-900 border-white/15"
               }`}
               animate={{
-                x: isFanOut ? 42 : 0,
-                y: isFanOut ? -10 : 0,
-                rotate: isFanOut ? 18 : 0,
+                x: isFanOut ? -34 : 0,
+                y: isFanOut ? -6 : 0,
+                rotate: isFanOut ? -9 : 0,
                 opacity: isFanOut ? 0.95 : 0,
-                scale: isFanOut ? 0.95 : 0.9,
+                scale: isFanOut ? 0.96 : 0.9,
+                boxShadow: isFanOut
+                  ? "10px 14px 24px -4px rgba(0, 0, 0, 0.35)"
+                  : "0px 0px 0px 0px rgba(0, 0, 0, 0)",
               }}
               transition={{
                 type: "spring",
-                stiffness: 220,
+                stiffness: 240,
                 damping: 18,
-                delay: isFanOut ? 0.14 : 0,
+                mass: 0.8,
+                delay: isFanOut ? 0.12 : 0,
               }}
-              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -2 : -10 }}
+              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -2 : -10, willChange: "transform, opacity" }}
             >
               <ImageWithFallback
                 src={rightImgSrc}
