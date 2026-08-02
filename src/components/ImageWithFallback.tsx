@@ -719,11 +719,11 @@ export function ImageWithFallback({
           cursor: "zoom-in",
         }
       : {}),
-    // 透過極致優雅的雙重實時投影 (Drop Shadow)，將前景圖片從環境光背景中「浮空提拉」，並形成極其柔和的過渡邊界，完美消除銳利邊緣與切割感
+    // 透過極緻高雅、經硬體加速優化的盒陰影 (Box Shadow)，為前景圖片建立精緻的微亮與微暗發光層次，完美解決濾鏡重繪帶來的卡頓問題
     ...(enableFocusBackdrop && isLoaded ? {
-      filter: isLight 
-        ? "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.04)) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.09))" 
-        : "drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15)) drop-shadow(0 16px 36px rgba(0, 0, 0, 0.38))",
+      boxShadow: isLight 
+        ? "0 4px 18px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.01)" 
+        : "0 10px 30px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2)",
     } : {}),
   };
 
@@ -768,36 +768,6 @@ export function ImageWithFallback({
     >
       {/* 注入極致高質感環境光與微米雜訊之 CSS 動畫樣式，針對 GPU 做極限硬體加速優化 */}
       <style>{`
-        @keyframes mesh-drift-1 {
-          0% { transform: translate3d(10%, -10%, 0) rotate(0deg) scale(1.2); }
-          50% { transform: translate3d(-5%, 8%, 0) rotate(180deg) scale(0.95); }
-          100% { transform: translate3d(10%, -10%, 0) rotate(360deg) scale(1.2); }
-        }
-        @keyframes mesh-drift-2 {
-          0% { transform: translate3d(-12%, 12%, 0) rotate(360deg) scale(0.9); }
-          50% { transform: translate3d(8%, -6%, 0) rotate(180deg) scale(1.3); }
-          100% { transform: translate3d(-12%, 12%, 0) rotate(0deg) scale(0.9); }
-        }
-        @keyframes mesh-drift-3 {
-          0% { transform: translate3d(5%, 15%, 0) rotate(0deg) scale(1); }
-          50% { transform: translate3d(-8%, -12%, 0) rotate(270deg) scale(1.25); }
-          100% { transform: translate3d(5%, 15%, 0) rotate(360deg) scale(1); }
-        }
-        .mesh-animate-1 { 
-          animation: mesh-drift-1 28s infinite ease-in-out; 
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-        .mesh-animate-2 { 
-          animation: mesh-drift-2 34s infinite ease-in-out; 
-          will-change: transform;
-          backface-visibility: hidden;
-        }
-        .mesh-animate-3 { 
-          animation: mesh-drift-3 30s infinite ease-in-out; 
-          will-change: transform;
-          backface-visibility: hidden;
-        }
         .mesh-fine-noise {
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.055'/%3E%3C/svg%3E");
           mix-blend-mode: overlay;
@@ -815,49 +785,6 @@ export function ImageWithFallback({
             referrerPolicy={referrerPolicy}
             className="w-full h-full object-cover blur-[12px] scale-[1.45] opacity-75 dark:opacity-80 brightness-[1.02] saturate-[1.4] transition-all duration-700 ease-out transform-gpu"
           />
-
-          {/* Layer 2: 獨立流體動態漸層網格 (Fluid Dynamic Gradient Mesh) - 擴展至 -inset-10 避免高斯模糊在邊緣收縮時產生灰色混濁 */}
-          <div className="absolute -inset-10 mix-blend-color-dodge dark:mix-blend-overlay opacity-[0.55] dark:opacity-[0.65] blur-[10px] transform-gpu">
-            {/* 炫彩球體 1: 自適應色點 1 */}
-            <div 
-              className="absolute -top-1/4 -left-1/4 w-full h-full rounded-full mesh-animate-1 opacity-70 transform-gpu"
-              style={{
-                background: `radial-gradient(circle, ${dynColor1} 0%, ${dynColor1Transparent} 70%)`
-              }}
-            />
-            {/* 炫彩球體 2: 自適應色點 2 */}
-            <div 
-              className="absolute -bottom-1/4 -right-1/4 w-full h-full rounded-full mesh-animate-2 opacity-65 transform-gpu"
-              style={{
-                background: `radial-gradient(circle, ${dynColor2} 0%, ${dynColor2Transparent} 70%)`
-              }}
-            />
-            {/* 炫彩球體 3: 自適應色點 3 */}
-            <div 
-              className="absolute top-1/4 left-1/3 w-3/4 h-3/4 rounded-full mesh-animate-3 opacity-60 transform-gpu"
-              style={{
-                background: `radial-gradient(circle, ${dynColor3} 0%, ${dynColor3Transparent} 75%)`
-              }}
-            />
-          </div>
-
-          {/* Layer 3: 多層次深度暈翳與柔光覆蓋 (Vignette & Soft Light) - 營造中間亮、四周亮/暗的立體焦點，自適應白邊/暗邊切換 */}
-          <div className="absolute -inset-10 opacity-50 dark:opacity-60 transition-all duration-700 ease-out transform-gpu" 
-               style={{
-                 backgroundImage: isLight 
-                   ? "radial-gradient(circle, transparent 30%, rgba(255, 255, 255, 0.95) 100%)" 
-                   : "radial-gradient(circle, transparent 35%, rgba(0, 0, 0, 0.55) 100%)",
-                 mixBlendMode: isLight ? "normal" : "multiply"
-               }}
-          />
-          <div className={`absolute -inset-10 opacity-80 transition-all duration-700 ease-out transform-gpu ${
-            isLight 
-              ? "bg-gradient-to-t from-white/35 via-transparent to-white/35" 
-              : "bg-gradient-to-t from-black/25 via-transparent to-black/25"
-          }`} />
-
-          {/* Layer 4: 頂級微米雜訊物理質感層 (Analog Film Grain / Noise Overlay) - 消除色帶，拉滿奢華細節 */}
-          <div className="absolute -inset-10 mesh-fine-noise pointer-events-none opacity-85 transform-gpu" />
         </div>
       )}
 
@@ -908,6 +835,8 @@ export function ImageWithFallback({
           />
         </picture>
       )}
+
+
     </div>
   );
 }
