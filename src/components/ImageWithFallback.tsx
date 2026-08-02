@@ -117,14 +117,19 @@ export function ImageWithFallback({
 
   React.useEffect(() => {
     if (!containerRef.current) return;
+    
+    let rafId: number;
     const updateWidth = () => {
-      const rect = containerRef.current?.getBoundingClientRect();
-      if (rect && rect.width > 0) {
-        // Snap width to nearest multiple of 120px to maximize CDN/browser caching
-        const measuredWidth = Math.ceil(rect.width);
-        const snappedWidth = Math.max(360, Math.min(1200, Math.ceil(measuredWidth / 120) * 120));
-        setContainerWidth(snappedWidth);
-      }
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const rect = containerRef.current?.getBoundingClientRect();
+        if (rect && rect.width > 0) {
+          // Snap width to nearest multiple of 120px to maximize CDN/browser caching
+          const measuredWidth = Math.ceil(rect.width);
+          const snappedWidth = Math.max(360, Math.min(1200, Math.ceil(measuredWidth / 120) * 120));
+          setContainerWidth((prev) => (prev === snappedWidth ? prev : snappedWidth));
+        }
+      });
     };
     
     updateWidth();
@@ -134,7 +139,10 @@ export function ImageWithFallback({
         updateWidth();
       });
       observer.observe(containerRef.current);
-      return () => observer.disconnect();
+      return () => {
+        observer.disconnect();
+        cancelAnimationFrame(rafId);
+      };
     }
   }, []);
 
@@ -171,18 +179,30 @@ export function ImageWithFallback({
     setZoomPosition({ x: 50, y: 50 });
   }, [src]);
 
+  const mouseRafIdRef = React.useRef<number>(0);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!zoomable || !isZoomed) return;
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-    setZoomPosition({ x, y });
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    const currentTarget = e.currentTarget;
+    
+    cancelAnimationFrame(mouseRafIdRef.current);
+    mouseRafIdRef.current = requestAnimationFrame(() => {
+      const rect = currentTarget.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        const x = ((clientX - rect.left) / rect.width) * 100;
+        const y = ((clientY - rect.top) / rect.height) * 100;
+        setZoomPosition((prev) => (prev.x === x && prev.y === y ? prev : { x, y }));
+      }
+    });
   };
 
   const handleZoomClick = (e: React.MouseEvent) => {
     if (!zoomable) return;
     e.stopPropagation();
     if (isZoomed) {
+      cancelAnimationFrame(mouseRafIdRef.current);
       setIsZoomed(false);
     } else {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -194,10 +214,18 @@ export function ImageWithFallback({
   };
 
   const handleMouseLeave = () => {
+    cancelAnimationFrame(mouseRafIdRef.current);
     if (zoomable && isZoomed) {
       setIsZoomed(false);
     }
   };
+
+  // 確保在元件卸載時清除任何待執行的 rAF
+  React.useEffect(() => {
+    return () => {
+      cancelAnimationFrame(mouseRafIdRef.current);
+    };
+  }, []);
 
   React.useEffect(() => {
     if (priority || !lazy) {

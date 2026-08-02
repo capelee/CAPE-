@@ -139,12 +139,13 @@ import { InteractiveMascot } from "./components/InteractiveMascot";
 import { PortfolioCard } from "./components/PortfolioCard";
 import { MinimalistLogo } from "./components/MinimalistLogo";
 import { DesignerBento } from "./components/DesignerBento";
-import { AIWorkflowModal } from "./components/AIWorkflowModal";
-import { ContactModal } from "./components/ContactModal";
-import { PortfolioDetailModal } from "./components/PortfolioDetailModal";
-import { CatFortuneTeller } from "./components/CatFortuneTeller";
 import { CatFootprintsLayer } from "./components/CatFootprintsLayer";
 import { MumuCertModal, MumuCertModalRef } from "./components/MumuCertModal";
+
+const AIWorkflowModal = React.lazy(() => import("./components/AIWorkflowModal").then(module => ({ default: module.AIWorkflowModal })));
+const ContactModal = React.lazy(() => import("./components/ContactModal").then(module => ({ default: module.ContactModal })));
+const PortfolioDetailModal = React.lazy(() => import("./components/PortfolioDetailModal").then(module => ({ default: module.PortfolioDetailModal })));
+const CatFortuneTeller = React.lazy(() => import("./components/CatFortuneTeller").then(module => ({ default: module.CatFortuneTeller })));
 
 // Extract YouTube ID from robust URLs
 function getYouTubeEmbedUrl(url?: string): string | null {
