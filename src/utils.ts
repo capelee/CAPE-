@@ -1,5 +1,4 @@
 import { PortfolioItem } from "./types";
-import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
 export const YT_THUMBNAIL_CACHE = new Map<string, string>();
 export const DRIVE_THUMBNAIL_CACHE = new Map<string, string>();
@@ -100,18 +99,9 @@ export function getOptimizedGoogleUrl(url: string, size?: number): string {
 
   if (id) {
     const s = size ? size : 600;
-    // Increase cache buster to 12 hours to maximize browser disk & HTTP caching
-    const busterValue = Math.floor(Date.now() / 43200000);
+    const busterValue = Math.floor(Date.now() / 120000);
     const busterParam = `&v=${busterValue}`;
     const finalExtraParams = extraParams.includes("&v=") ? extraParams : `${extraParams}${busterParam}`;
-
-    // Automatically route to high-speed CDN if marked optimized or cached
-    if (EXISTING_OPTIMIZED_IMAGES.has(id) || DRIVE_THUMBNAIL_CACHE.get(id) === "lh3") {
-      return `https://lh3.googleusercontent.com/d/${id}=w${s}${finalExtraParams}`;
-    }
-    if (DRIVE_THUMBNAIL_CACHE.get(id) === "view") {
-      return `https://drive.google.com/uc?export=view&id=${id}${finalExtraParams}`;
-    }
     return `https://drive.google.com/thumbnail?sz=w${s}&id=${id}${finalExtraParams}`;
   }
   if (url.includes("lh3.googleusercontent.com")) {
@@ -184,20 +174,16 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
 
   if (id) {
     const s = size ? size : 1000;
-    // Increase cache buster to 12 hours to maximize browser disk & HTTP caching
-    const busterValue = Math.floor(Date.now() / 43200000);
+    const busterValue = Math.floor(Date.now() / 120000);
     const busterParam = `&v=${busterValue}`;
     const finalExtraParams = extraParams.includes("&v=") ? extraParams : `${extraParams}${busterParam}`;
-
-    // Automatically route to high-speed CDN if marked optimized or cached
-    if (EXISTING_OPTIMIZED_IMAGES.has(id) || DRIVE_THUMBNAIL_CACHE.get(id) === "lh3") {
-      return `https://lh3.googleusercontent.com/d/${id}=w${s}${finalExtraParams}`;
-    }
 
     if (DRIVE_THUMBNAIL_CACHE.has(id)) {
       const cachedUrlType = DRIVE_THUMBNAIL_CACHE.get(id);
       if (cachedUrlType === 'view') {
         return `https://drive.google.com/uc?export=view&id=${id}${finalExtraParams}`;
+      } else if (cachedUrlType === 'lh3') {
+        return `https://lh3.googleusercontent.com/d/${id}=w${s}${finalExtraParams}`;
       }
     }
     

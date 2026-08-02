@@ -13,8 +13,6 @@ interface ImageWithFallbackProps {
   theme?: "dark" | "light" | "sepia";
   heightAuto?: boolean;
   onLoad?: () => void;
-  enableFocusBackdrop?: boolean;
-  fitMode?: "cover" | "contain" | "auto";
 }
 
 import React, { useState } from "react";
@@ -22,76 +20,6 @@ import { Image as ImageIcon, Sparkles, ZoomIn, ZoomOut } from "lucide-react";
 import { motion } from "motion/react";
 import { getCategoryColor } from "../categoryColors";
 import { resolveImageUrl, YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, extractDriveId, extractYoutubeId, saveDriveCacheToStorage, saveYtCacheToStorage } from "../utils";
-
-// 記憶體快取以防止重複圖片萃取，減少 CPU 與 GPU 負載
-const COLOR_CACHE = new Map<string, string[]>();
-
-// 共享的 canvas 與 context 實例，避免垃圾回收 (Garbage Collection) 頻繁觸發
-let sharedCanvas: HTMLCanvasElement | null = null;
-let sharedCtx: CanvasRenderingContext2D | null = null;
-
-// 實時原圖色彩高強度高斯模糊提取，用以產生完美的自適應漸層
-const extractColors = (imgUrl: string): Promise<string[] | null> => {
-  return new Promise<string[] | null>((resolve) => {
-    try {
-      if (!imgUrl || imgUrl.startsWith("data:") || imgUrl.length < 5) {
-        resolve(null);
-        return;
-      }
-      
-      // 若已有快取，直接返回，避免任何 DOM 負載與圖像解碼
-      if (COLOR_CACHE.has(imgUrl)) {
-        resolve(COLOR_CACHE.get(imgUrl) || null);
-        return;
-      }
-
-      const tempImg = new Image();
-      tempImg.crossOrigin = "anonymous";
-      tempImg.onload = () => {
-        try {
-          if (!sharedCanvas) {
-            sharedCanvas = document.createElement("canvas");
-            sharedCanvas.width = 5;
-            sharedCanvas.height = 5;
-          }
-          if (!sharedCtx) {
-            sharedCtx = sharedCanvas.getContext("2d", { willReadFrequently: true });
-          }
-          if (!sharedCtx) {
-            resolve(null);
-            return;
-          }
-          
-          sharedCtx.drawImage(tempImg, 0, 0, 5, 5);
-          const imageData = sharedCtx.getImageData(0, 0, 5, 5).data;
-          
-          const getRgba = (idx: number) => {
-            const r = imageData[idx * 4];
-            const g = imageData[idx * 4 + 1];
-            const b = imageData[idx * 4 + 2];
-            // 適度調升底噪彩度，避免暗色顯得混濁
-            const r_val = Math.max(r, 45);
-            const g_val = Math.max(g, 45);
-            const b_val = Math.max(b, 45);
-            return `rgba(${r_val}, ${g_val}, ${b_val}, 0.55)`;
-          };
-          
-          const colors = [getRgba(0), getRgba(12), getRgba(24)];
-          COLOR_CACHE.set(imgUrl, colors); // 寫入快取
-          resolve(colors);
-        } catch (e) {
-          resolve(null);
-        }
-      };
-      tempImg.onerror = () => {
-        resolve(null);
-      };
-      tempImg.src = imgUrl;
-    } catch (err) {
-      resolve(null);
-    }
-  });
-};
 
 export function ImageWithFallback({ 
   src, 
@@ -107,9 +35,7 @@ export function ImageWithFallback({
   priority = false,
   theme = "dark",
   heightAuto = false,
-  onLoad,
-  enableFocusBackdrop = true,
-  fitMode = "auto"
+  onLoad
 }: ImageWithFallbackProps) {
   const [isInView, setIsInView] = useState<boolean>(priority || !lazy);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -117,19 +43,14 @@ export function ImageWithFallback({
 
   React.useEffect(() => {
     if (!containerRef.current) return;
-    
-    let rafId: number;
     const updateWidth = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const rect = containerRef.current?.getBoundingClientRect();
-        if (rect && rect.width > 0) {
-          // Snap width to nearest multiple of 120px to maximize CDN/browser caching
-          const measuredWidth = Math.ceil(rect.width);
-          const snappedWidth = Math.max(360, Math.min(1200, Math.ceil(measuredWidth / 120) * 120));
-          setContainerWidth((prev) => (prev === snappedWidth ? prev : snappedWidth));
-        }
-      });
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (rect && rect.width > 0) {
+        // Snap width to nearest multiple of 120px to maximize CDN/browser caching
+        const measuredWidth = Math.ceil(rect.width);
+        const snappedWidth = Math.max(360, Math.min(1200, Math.ceil(measuredWidth / 120) * 120));
+        setContainerWidth(snappedWidth);
+      }
     };
     
     updateWidth();
@@ -139,10 +60,7 @@ export function ImageWithFallback({
         updateWidth();
       });
       observer.observe(containerRef.current);
-      return () => {
-        observer.disconnect();
-        cancelAnimationFrame(rafId);
-      };
+      return () => observer.disconnect();
     }
   }, []);
 
@@ -152,7 +70,6 @@ export function ImageWithFallback({
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
   const [failedCount, setFailedCount] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [extractedColors, setExtractedColors] = useState<string[] | null>(null);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   const [lastSuccessfulSrc, setLastSuccessfulSrc] = useState<string>("");
@@ -179,30 +96,18 @@ export function ImageWithFallback({
     setZoomPosition({ x: 50, y: 50 });
   }, [src]);
 
-  const mouseRafIdRef = React.useRef<number>(0);
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!zoomable || !isZoomed) return;
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-    const currentTarget = e.currentTarget;
-    
-    cancelAnimationFrame(mouseRafIdRef.current);
-    mouseRafIdRef.current = requestAnimationFrame(() => {
-      const rect = currentTarget.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0) {
-        const x = ((clientX - rect.left) / rect.width) * 100;
-        const y = ((clientY - rect.top) / rect.height) * 100;
-        setZoomPosition((prev) => (prev.x === x && prev.y === y ? prev : { x, y }));
-      }
-    });
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomPosition({ x, y });
   };
 
   const handleZoomClick = (e: React.MouseEvent) => {
     if (!zoomable) return;
     e.stopPropagation();
     if (isZoomed) {
-      cancelAnimationFrame(mouseRafIdRef.current);
       setIsZoomed(false);
     } else {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -214,18 +119,10 @@ export function ImageWithFallback({
   };
 
   const handleMouseLeave = () => {
-    cancelAnimationFrame(mouseRafIdRef.current);
     if (zoomable && isZoomed) {
       setIsZoomed(false);
     }
   };
-
-  // 確保在元件卸載時清除任何待執行的 rAF
-  React.useEffect(() => {
-    return () => {
-      cancelAnimationFrame(mouseRafIdRef.current);
-    };
-  }, []);
 
   React.useEffect(() => {
     if (priority || !lazy) {
@@ -272,7 +169,6 @@ export function ImageWithFallback({
       setFallbackAttempt(0);
       setFailedCount(0);
       setIsLoaded(false);
-      setExtractedColors(null);
       loadStartTimeRef.current = performance.now();
       
       console.log(`%c[ImageWithFallback:INIT]%c Loading image for [%c${titleText || alt}%c] (size: ${targetSize}px)\nSource: ${resolved}`, 
@@ -352,15 +248,6 @@ export function ImageWithFallback({
     setIsLoaded(true);
     if (onLoad) {
       onLoad();
-    }
-    
-    // 實時萃取原圖色彩以產生與圖片完美融合的 Adaptive Gradient Mesh
-    if (img.src) {
-      extractColors(img.src).then((colors) => {
-        if (colors) {
-          setExtractedColors(colors);
-        }
-      });
     }
     
     // Performance metrics
@@ -641,16 +528,6 @@ export function ImageWithFallback({
   const isSepia = theme === "sepia";
   const isLight = theme === "light";
 
-  // 自適應動態調和色 (Adaptive Harmonized Colors)
-  const dynColor1 = extractedColors?.[0] || "rgba(139, 92, 246, 0.45)";
-  const dynColor1Transparent = dynColor1.includes("0.55)") ? dynColor1.replace("0.55)", "0)") : "rgba(139, 92, 246, 0)";
-
-  const dynColor2 = extractedColors?.[1] || "rgba(236, 72, 153, 0.4)";
-  const dynColor2Transparent = dynColor2.includes("0.55)") ? dynColor2.replace("0.55)", "0)") : "rgba(236, 72, 153, 0)";
-
-  const dynColor3 = extractedColors?.[2] || "rgba(59, 130, 246, 0.4)";
-  const dynColor3Transparent = dynColor3.includes("0.55)") ? dynColor3.replace("0.55)", "0)") : "rgba(59, 130, 246, 0)";
-
   const skeletonBg = isSepia 
     ? "bg-[#FAF4E5]" 
     : isLight 
@@ -702,7 +579,7 @@ export function ImageWithFallback({
     : "bg-zinc-900/60";
 
   // Filter out transition definitions to avoid conflicts, but keep state utilities like scale-100/105
-  let baseImgClass = className
+  const baseImgClass = className
     ? className
         .split(" ")
         .filter(c => 
@@ -714,14 +591,6 @@ export function ImageWithFallback({
         )
         .join(" ")
     : "w-full h-full object-cover";
-
-  // 當開啟 enableFocusBackdrop 且 fitMode 為 auto/contain 時，將前景改為 object-contain 以確保焦點清晰不裁切
-  const targetFit = fitMode === "contain" || (fitMode === "auto" && enableFocusBackdrop) ? "object-contain" : "object-cover";
-  if (baseImgClass.includes("object-cover")) {
-    baseImgClass = baseImgClass.replace("object-cover", targetFit);
-  } else if (!baseImgClass.includes("object-contain") && !baseImgClass.includes("object-cover")) {
-    baseImgClass += ` ${targetFit}`;
-  }
 
   const getTransition = () => {
     if (!isLoaded) return "none";
@@ -747,12 +616,6 @@ export function ImageWithFallback({
           cursor: "zoom-in",
         }
       : {}),
-    // 透過極緻高雅、經硬體加速優化的盒陰影 (Box Shadow)，為前景圖片建立精緻的微亮與微暗發光層次，完美解決濾鏡重繪帶來的卡頓問題
-    ...(enableFocusBackdrop && isLoaded ? {
-      boxShadow: isLight 
-        ? "0 4px 18px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.01)" 
-        : "0 10px 30px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2)",
-    } : {}),
   };
 
   const getSrcSet = (format?: "webp" | "jpeg") => {
@@ -794,28 +657,6 @@ export function ImageWithFallback({
           }`
       }
     >
-      {/* 注入極致高質感環境光與微米雜訊之 CSS 動畫樣式，針對 GPU 做極限硬體加速優化 */}
-      <style>{`
-        .mesh-fine-noise {
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.055'/%3E%3C/svg%3E");
-          mix-blend-mode: overlay;
-        }
-      `}</style>
-
-      {/* 「漸層暈染與調和色」背景 (Adaptive Gradient Mesh / Dynamic Ambient Glow) */}
-      {enableFocusBackdrop && isLoaded && currentSrc && (
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none transform-gpu">
-          {/* Layer 1: 微度高斯模糊背景板，當作基礎色彩融合層。放大至 scale-[1.45] 徹底將邊緣半透明模糊裁切在容器外，消除灰色邊框 */}
-          <img
-            src={currentSrc}
-            alt=""
-            aria-hidden="true"
-            referrerPolicy={referrerPolicy}
-            className="w-full h-full object-cover blur-[12px] scale-[1.45] opacity-75 dark:opacity-80 brightness-[1.02] saturate-[1.4] transition-all duration-700 ease-out transform-gpu"
-          />
-        </div>
-      )}
-
       {/* 簡單、高性能的純色佔位塊，此處在沒有上一張圖作快取時展示 */}
       {!isLoaded && fallbackAttempt < 4 && !lastSuccessfulSrc && (
         <div className={`absolute inset-0 z-10 ${skeletonBg}`} />
@@ -841,7 +682,7 @@ export function ImageWithFallback({
       {/* Zoom overlay has been removed per user request */}
 
       {currentSrc && (
-        <picture className={heightAuto ? "w-full h-auto block relative z-10" : "w-full h-full block absolute inset-0 z-10"}>
+        <picture className={heightAuto ? "w-full h-auto block relative" : "w-full h-full block absolute inset-0"}>
           {fallbackAttempt === 0 && (src.includes('images.unsplash.com') || src.includes('res.cloudinary.com') || src.includes('.imgix.net') || src.includes('imgix=')) && (
             <>
               <source type="image/webp" srcSet={getSrcSet("webp")} />
@@ -863,8 +704,6 @@ export function ImageWithFallback({
           />
         </picture>
       )}
-
-
     </div>
   );
 }
