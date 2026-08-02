@@ -278,8 +278,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     flipSpring.set(isCardFlipped ? 180 : 0);
 
     if (isCardFlipped) {
-      // 依據是否為懸停 (hover) 設定 1 秒 (1000ms) 的展開延遲時間，如果是點擊 (isFlipped) 則維持 100ms 快速展開
-      const fanOutDelay = isFlipped ? 100 : 1000;
+      // 依據是否為懸停 (hover) 設定 0.5 秒 (500ms) 的展開延遲時間，如果是點擊 (isFlipped) 則維持 100ms 快速展開
+      const fanOutDelay = isFlipped ? 100 : 500;
       timerId = setTimeout(() => {
         rafId = requestAnimationFrame(() => {
           setIsFanOut(true);
