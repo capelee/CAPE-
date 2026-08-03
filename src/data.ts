@@ -2857,6 +2857,261 @@ export const initialPortfolioData: PortfolioItem[] = [
     ]
   },
   {
+    "id": "blast-scoop-ice-cream-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 商品社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream Social Campaign",
+    "philosophy": "以實驗室量杯與低溫乾冰煙霧為視覺元素，搭配高飽和度的冰淇淋色彩與俐落的微粗黑體字，在不對稱的三欄網格架構中呈現科學與美味碰撞的現代社群視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "社群圖文",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1OyM8vNqGKEvCq5aa8f2CgvMmPQaIPGVc",
+    "placeholderId": "IMAGE_BLAST_SCOOP_ICE_CREAM_SOCIAL",
+    "colorTheme": "from-[#0b1f2b] via-[#1a384f] to-[#070f14]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1OyM8vNqGKEvCq5aa8f2CgvMmPQaIPGVc",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1fJkAiiGrcEWPSewyxH903rW248h-cowZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QbCGHinjJrRAvBxZWqXZphwdO_wz0j6q",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hePF3g2cSgfkGpCkpfgBJp9zox8pbMnm",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KigzD9Y5FM8_ilhraGmMb1b3npr9q7e-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ZMYEInjDUpk6Nvf8NgXzm3cPUONa6ETI",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KhfoMMmKBYsC0Yleq3D_7gnvQecK6XLS"
+    ],
+    "driveFolderId": "1ThB-I5Y3fvLIz1dKmdMPfNq2fvwWqH-d"
+  },
+  {
+    "id": "blast-scoop-mascot-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 吉祥物社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream Mascot Campaign",
+    "philosophy": "以活潑的手繪吉祥物結合實驗室錐形瓶圖樣，透過粉嫩明亮的高對比色調與手寫感標準字，並採用不對稱靈活網格編排，呈現趣味與科學感兼具的社群行銷圖文視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Procreate",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1L0zaVUXnmCpznYOmCE_IeOnhhA9MRjSb",
+    "placeholderId": "IMAGE_BLAST_SCOOP_MASCOT_SOCIAL",
+    "colorTheme": "from-[#1b2530] via-[#2d3a4b] to-[#121820]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1L0zaVUXnmCpznYOmCE_IeOnhhA9MRjSb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Ti4u__D17e6_4xsRhT43sOaaw8mQ_UuH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cOWq00we_VFILlpU1ghEcjhEqd6PSyOu"
+    ],
+    "driveFolderId": "1z4RgeA7zno-kR0fs1vzNjimGkE7-B_JW"
+  },
+  {
+    "id": "blast-scoop-children-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 兒童社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream Children Campaign",
+    "philosophy": "採用馬卡龍色系配搭，以繽紛紙吹雪與童趣燒杯插圖結合，在輕快對稱的網格線條中點綴冰淇淋元素，傳遞歡樂探索與科學美味融合的活潑社群視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Procreate",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1eatTkGK_TREnKpckZsrX7Siq1KL7Nhlh",
+    "placeholderId": "IMAGE_BLAST_SCOOP_CHILDREN_SOCIAL",
+    "colorTheme": "from-[#1d1f2b] via-[#2a2d3d] to-[#14151c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eatTkGK_TREnKpckZsrX7Siq1KL7Nhlh",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Pfjv3FwIEAid2tFAJklI0PY3TfAkoD1a",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VT3-GkRnR1z3dCNhRJApFVtwyfoIzJge",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1dmwecppVLsDYxTkgVAiO-Y3GNt-aQPpp",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1njorE5JMoGoZwTMPo9Dcqzl-tjoESN3v"
+    ],
+    "driveFolderId": "1LM1a55vrQkyslFm4OodZb8-gZPYRN7Zf"
+  },
+  {
+    "id": "blast-scoop-spokesperson-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 代言社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream Ambassador Campaign",
+    "philosophy": "以極簡低飽和色調為底，結合代言人生活感寫真與現代感無襯線排版，在嚴謹的雙欄對比網格中融入實驗室量杯線條，呈現高質感與科學趣味並存的社群形象。",
+    "isHighlight": false,
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "雙語排版",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1skzbizJ_P07rdJL172Nb0s4g_OjlkNH_",
+    "placeholderId": "IMAGE_BLAST_SCOOP_SPOKESPERSON_SOCIAL",
+    "colorTheme": "from-[#141923] via-[#232c3d] to-[#0d1117]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1skzbizJ_P07rdJL172Nb0s4g_OjlkNH_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pwRdo1-sWJpmhgtbv3AcZGW3QP8JZznW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MzYMnkBD7Naas5mNh99-m3w2EgIhy6FO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1deMvdh1U0V7Jo0eCWgzWSRgbtAGZban4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sm1uPK3fkyKHaRh_MEzwUbide9YragWf",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1u0QslUtbkr_JF1-1uDd6QpSR6-ktF8hy"
+    ],
+    "driveFolderId": "10PGsrR6Z-JiwAzLkP450W_dWpa77AtOQ"
+  },
+  {
+    "id": "blast-scoop-high-school-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 高中社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream High School Campaign",
+    "philosophy": "以明朗輕快的粉藍雙色為底，結合幾何冰淇淋插圖與簡約排版，在嚴謹對稱的網格框架中點綴亮色元素，展現青春探索與科學美味融合的活潑社群形象。",
+    "isHighlight": false,
+    "tools": [
+      "Procreate",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1pgym6YpcBY1_ELo73z5v7hapTk5JMo4X",
+    "placeholderId": "IMAGE_BLAST_SCOOP_HIGH_SCHOOL_SOCIAL",
+    "colorTheme": "from-[#111c24] via-[#1f313e] to-[#0b1218]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pgym6YpcBY1_ELo73z5v7hapTk5JMo4X",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1XbC5OGBjQxrGDmTD7X8i4Mqj_2U7yxj0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WU7bRrA-1LRSsgDe4GvB8TV2iOS3mkpX"
+    ],
+    "driveFolderId": "1sWO4YjCSVcJmwEW_w0eA8iqdotP4fQbg"
+  },
+  {
+    "id": "blast-scoop-youth-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 年輕社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream Youth Campaign",
+    "philosophy": "以高彩度螢光色調為底，結合動態流線線條與幾何波點插圖，在不對稱的三欄網格架構中點綴霓虹冰淇淋元素，突顯潮流趣味與探索精神，展現符合年輕世代審美的社群行銷視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Procreate",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1LorrrxB5savPWFQC9evOIIh9na-4_k21",
+    "placeholderId": "IMAGE_BLAST_SCOOP_YOUTH_SOCIAL",
+    "colorTheme": "from-[#141b25] via-[#243144] to-[#0e141c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LorrrxB5savPWFQC9evOIIh9na-4_k21",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PWOxRwfv8TzrZJc_5a4bJXdWD8VREwoA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1xF0BiAykBgMmrJpsHrR7BNh9ZRu7ls8u",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1iCUvOQyyEIUiLDi6OlQ5tTY7PWIfz0O3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=15LIRG0K3aYXMVJWJzjxBhozYrF8Awyt0"
+    ],
+    "driveFolderId": "1vu_qGQOEkZ7oWlJ9S81WDMOAYPD16hhJ"
+  },
+  {
+    "id": "beda-feedback-social",
+    "category": "社群行銷小編圖文",
+    "title": "嗶搭 BeDa 回饋社群文",
+    "titleEn": "BeDa Feedback Social Campaign",
+    "philosophy": "以高對比亮黃與冷灰配色為底，結合簡約的手繪角色插圖與流暢線條，在清晰的三欄不對稱網格中配置直觀的數據指標，展現具親和力與現代感的品牌回饋社群視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1tn_e28GEVW7suWHTnGF0hTVfmga6y8ld",
+    "placeholderId": "IMAGE_BEDA_FEEDBACK_SOCIAL",
+    "colorTheme": "from-[#1a1f2c] via-[#2d3345] to-[#121620]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1tn_e28GEVW7suWHTnGF0hTVfmga6y8ld",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Hy1AMWsaAOIxYM3BHnbg41F8xVXMGN6K"
+    ],
+    "driveFolderId": "1DsyGuxJBIqCfZAXn93950Ybk2x7CJP-X"
+  },
+  {
+    "id": "beda-mobile-social",
+    "category": "社群行銷小編圖文",
+    "title": "嗶搭 BeDa 手機社群文",
+    "titleEn": "BeDa Mobile Social Campaign",
+    "philosophy": "以明亮黃與冷灰配色為底，結合手機介面框線與手繪角色插圖，在簡約的三欄不對稱網格中配置清晰指標，突顯產品特色，展現現代且具親和力的品牌社群行銷視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1GP81h7MJh2dvvB0Yomu2qeRw5r2mnEN6",
+    "placeholderId": "IMAGE_BEDA_MOBILE_SOCIAL",
+    "colorTheme": "from-[#1e2530] via-[#2f3b4c] to-[#141a22]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GP81h7MJh2dvvB0Yomu2qeRw5r2mnEN6",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1OTO4VROMagYNPjnsGkJBUFiQvtJqexxa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14jsGEbztblb993f-8O-lbvQIYHqwM2ht",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1W55DBa01VfbDD0tFo5Ww4Tysyc6NbFbJ"
+    ],
+    "driveFolderId": "1WWwpGKhU_USDGxG3SxdbnRDphBb6V84M"
+  },
+  {
+    "id": "blast-scoop-monster-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLAST SCOOP 風味實驗室 × 科學冰淇淋 商品怪獸社群圖",
+    "titleEn": "BLAST SCOOP Flavor Lab × Science Ice Cream Monster Campaign",
+    "philosophy": "以活潑粉嫩配色為底，將擬人化商品怪獸結合趣味化學插圖，在簡約三欄網格中點綴動態對話框與鮮明排版，展現充滿驚奇與童趣想像的科學冰淇淋社群行銷視覺。",
+    "isHighlight": false,
+    "tools": [
+      "Procreate",
+      "Ai",
+      "插畫設計",
+      "色彩配色",
+      "網格排版"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1of0APckN86Mn9E6k5rlC0JVlofACB4VA",
+    "placeholderId": "IMAGE_BLAST_SCOOP_MONSTER_SOCIAL",
+    "colorTheme": "from-[#161f26] via-[#25333f] to-[#0f151b]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1of0APckN86Mn9E6k5rlC0JVlofACB4VA",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1NiUH7t-2oaGrNBSEWeqAMSxEoF67aZKC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16oUq7iKpJgz8PsaRsCvCIGDQE-u2p-As",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oFI9yGs8iJ3U1odJyconwXx8C_o311Lx",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Xp7sjgHetdamQIkFk6GoVGlPEeiHPhQv"
+    ],
+    "driveFolderId": "1tm3gc-yFZ6SAImvnArh0LlEb42KNVxSt"
+  },
+  {
+    "id": "blend-monster-spokesperson-social",
+    "category": "社群行銷小編圖文",
+    "title": "BLEND MONSTER 代言人社群廣告",
+    "titleEn": "BLEND MONSTER Brand Ambassador Social Campaign",
+    "philosophy": "以強烈對比配色與品牌怪獸圖騰為核心，結合代言人生活感寫真及俐落排版，在嚴謹且具動態張力的不對稱網格中點綴線條符號，展現前衛潮流與社群行銷的視覺平衡。",
+    "isHighlight": false,
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "色彩配色",
+      "網格排版",
+      "社群圖文"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1VenHp4O__X_0RQapk1-zxALspxKFogrO",
+    "placeholderId": "IMAGE_BLEND_MONSTER_SPOKESPERSON_SOCIAL",
+    "colorTheme": "from-[#1b2530] via-[#2d3a4b] to-[#121820]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1VenHp4O__X_0RQapk1-zxALspxKFogrO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PmU3qvma1AdpWFfSWhDuBrRLe4fs4Cgs",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1b-Ius1S7Sto36bdabu3DygXrFV5Bg9WZ",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1oPmRNKM02jn-NWYAX1ITEdWS_T73AxAa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1QiRPyvTluut1jByWMY_Xb011iK7WAfzh"
+    ],
+    "driveFolderId": "13agD-9X1YnBc8_0m0qwtDLNgyvY5pXk7"
+  },
+  {
     "id": "mao-jia-product-social-ad",
     "category": "社群行銷小編圖文",
     "title": "毛呷 MAO JIA 商品社群廣告",
