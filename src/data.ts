@@ -11216,6 +11216,46 @@ export const initialPortfolioData: PortfolioItem[] = [
     "driveFolderId": "1XTL9zF5puGTfQpYqYeg1nU6Z3xbxFa4U"
   },
   {
+    "id": "ocean-jade-fish-oil-waterfall",
+    "category": "網站產品瀑布頁",
+    "title": "海御生生醫 御海魚油官方瀑布頁與圖文編排",
+    "titleEn": "Ocean Jade Bio-Med: Ocean Fish Oil Official Waterfall Page & Visual Layout Engineering",
+    "philosophy": "以深藍與金黃配色呼應海洋主題，採用垂直結構排版魚油製程與成分資訊，結合數據圖卡與產品特寫渲染圖，並於不對稱的三欄網格中配置關鍵指標，引導觀者順暢瀏覽細節。",
+    "isHighlight": false,
+    "tools": [
+      "Photoshop",
+      "Ai",
+      "3D渲染",
+      "資訊圖表",
+      "排版工程"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=19-mMrr4kHBuHJn-XeYoaK_KBM66UMIte",
+    "placeholderId": "IMAGE_OCEAN_JADE_FISH_OIL_WATERFALL",
+    "colorTheme": "from-[#0a192f] via-[#112d4e] to-[#0d1b2a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=19-mMrr4kHBuHJn-XeYoaK_KBM66UMIte",
+      "https://drive.google.com/thumbnail?sz=w1000&id=14LkhaELuEpy1-vhpX_2AavYJuVbUE317",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vf9Pq7kyqpp5TOqVcTRjyvFpd4jFwqQh",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uD_PRItvclKp-Xl0NX7jzD17oCBQH3Uu",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1JE5_uUn0jSG7Ju6KC8DTG0o8P6DTq7il",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1ybo32JSeSrSueWsibbe-VTZoEIa8k42-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1gn9JhnlwvIRDc_bYCuvcexODEOuk_3oC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1KSdq5RgOUWnlGa7nFjUQRwaBe6eEsoz7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1PD0oBxX3xswh9je2QGj3LF6F--PlGON2",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1X5ZFTOBxGDVWcKYak9UXoGYl6lEI27H4",
+      "https://drive.google.com/thumbnail?sz=w1000&id=19aPdjLUbmWCwF_4Cl5AmUBxlLkBBZ9pi",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1yZ4wG1oEtjtoXn2IwljZHekwozE2Etnv",
+      "https://drive.google.com/thumbnail?sz=w1000&id=16imXzWeT6HraDNu0Zd-YspQ28xeuhGfg",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11PV8wc21df9AHNH8CUvFRpViMIGfnPsn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MPtxa6oCtWsANW4aKKrJdMH8KBT2FfBw",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lEwmP7ZbjonQL1mYfF8Ttuzrd8cRy093",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1DW-ePR-ELFnYzKy4ylbTFRYtyC--lg67",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Mltc1uj7ElLygTwf3lgmDKSgqfAvNGhW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1k_SBsftd6C1Qkl930eJuxMR4MctwjozO"
+    ],
+    "driveFolderId": "17r74qbVO5BWoNo8YgGjXpxtqg2H-NTyY"
+  },
+  {
     "id": "bmw-r1200c-vector",
     "category": "平面海報廣告設計",
     "title": "BMW R1200C 向量重機插畫",

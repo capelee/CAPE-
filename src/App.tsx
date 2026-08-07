@@ -3467,6 +3467,7 @@ export default function App() {
         <HeroSection
           ref={heroSectionRef}
           theme={theme}
+          selectedCategory={selectedCategory}
           profile={profile}
           incrementInteraction={incrementInteraction}
           handlePdfClick={handlePdfClick}

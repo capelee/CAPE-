@@ -3,6 +3,7 @@ import { MotionValue } from 'motion/react';
 import { HeroText } from './HeroText';
 import { HeroMascot } from './HeroMascot';
 import { DraggableCan } from './DraggableCan';
+import { HeroCategoryDecor } from './HeroCategoryDecor';
 import { TutorialTooltip } from '../TutorialTooltip';
 
 export interface HeroSectionRef {
@@ -12,6 +13,7 @@ export interface HeroSectionRef {
 
 interface HeroSectionProps {
   theme: "dark" | "light" | "sepia";
+  selectedCategory?: string;
   profile: any;
   incrementInteraction: () => void;
   handlePdfClick: () => void;
@@ -52,6 +54,7 @@ interface HeroSectionProps {
 
 export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
   theme,
+  selectedCategory,
   profile,
   incrementInteraction,
   handlePdfClick,
@@ -99,6 +102,9 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
 
   return (
     <section id="hero-minimalist" className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]">
+      {/* Category Dynamic Vector Decor */}
+      <HeroCategoryDecor selectedCategory={selectedCategory || ""} theme={theme} />
+
       <HeroText
         theme={theme}
         titleBounceTrigger={titleBounceTrigger}
