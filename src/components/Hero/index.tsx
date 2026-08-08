@@ -110,7 +110,7 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
       },
       {
         root: null,
-        rootMargin: "150px", // Pre-load 150px before entering viewport
+        rootMargin: "250px", // Pre-load 250px before entering viewport (including an extra 100px pre-render buffer space)
         threshold: 0.01,
       }
     );

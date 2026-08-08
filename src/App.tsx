@@ -1,7 +1,7 @@
 import { useTutorial } from './context/TutorialContext';
 import { TutorialTooltip } from './components/TutorialTooltip';
 import { ScrambleText } from './components/ScrambleText';
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { 
   Plus, 
@@ -1628,13 +1628,22 @@ export default function App() {
         return saved === "true";
       }
       
-      // Automatic hardware and system preference detection
+      // Automatic hardware, mobile, and system preference detection
       if (typeof window !== "undefined" && typeof navigator !== "undefined") {
         // 1. Check if user enabled "Reduced Motion" at the OS/System level
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (prefersReducedMotion) return true;
 
-        // 2. Check hardware indicators
+        // 2. Check if mobile device (UserAgent or Touch support indicators)
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+          (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && ('ontouchstart' in window || typeof window.orientation !== 'undefined'));
+        
+        if (isMobileDevice) {
+          console.log("[Eco Mode] Mobile device detected. Auto-activating eco-mode for optimal performance.");
+          return true;
+        }
+
+        // 3. Check hardware indicators
         // Low CPU Core count (e.g. Dual-core or lower devices/mobile devices)
         const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
         
@@ -1668,6 +1677,113 @@ export default function App() {
     }
     setShowNavDialogue(true);
   };
+
+  const [performanceToast, setPerformanceToast] = useState<{ show: boolean; msg: string } | null>(null);
+  const perfToastTimeoutRef = React.useRef<any>(null);
+
+  // Dynamic system rendering rate (FPS) and scroll responsiveness load detector
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.requestAnimationFrame) return;
+
+    let frameCount = 0;
+    let lastTime = performance.now();
+    let slowFrames = 0;
+    let consecutiveStutter = 0;
+    const maxSamples = 60; // 1 second sliding window at 60fps
+    let rafId: number;
+
+    const hasAutoOptimized = { current: false };
+
+    // Set a flag to check if the user is actively interacting (scrolling, clicking, etc.)
+    let lastInteractionTime = performance.now();
+    
+    const handleUserInteraction = () => {
+      lastInteractionTime = performance.now();
+    };
+
+    window.addEventListener("scroll", handleUserInteraction, { passive: true });
+    window.addEventListener("touchstart", handleUserInteraction, { passive: true });
+    window.addEventListener("click", handleUserInteraction, { passive: true });
+    window.addEventListener("mousemove", handleUserInteraction, { passive: true });
+
+    const checkPerformanceLoop = (now: number) => {
+      const delta = now - lastTime;
+      lastTime = now;
+
+      // Ensure the browser tab is actually active and visible, and the user has interacted recently (within the last 8 seconds)
+      const isTabVisible = document.visibilityState === "visible";
+      const isRecentlyActive = now - lastInteractionTime < 8000;
+
+      if (isTabVisible && isRecentlyActive && !isEcoMode && !hasAutoOptimized.current) {
+        frameCount++;
+
+        // A single frame taking longer than 28.5ms indicates low rendering rates (< 35fps) or CPU throttling
+        if (delta > 28.5) {
+          slowFrames++;
+        }
+
+        // Severe stutter: a single frame taking longer than 60ms
+        if (delta > 60.0) {
+          consecutiveStutter++;
+        } else {
+          consecutiveStutter = Math.max(0, consecutiveStutter - 1);
+        }
+
+        // Once we hit maxSamples, analyze the window
+        if (frameCount >= maxSamples) {
+          const slowFrameRatio = slowFrames / maxSamples;
+          
+          // Trigger optimization if more than 35% of frames were slow, or if we had severe consecutive stuttering
+          if (slowFrameRatio > 0.35 || consecutiveStutter >= 3) {
+            console.warn(`[System Performance Alert] High rendering/scroll load detected. Slow frame ratio: ${(slowFrameRatio * 100).toFixed(1)}%, consecutive stutters: ${consecutiveStutter}. Auto-activating Adaptive Eco Mode.`);
+            
+            hasAutoOptimized.current = true;
+            setIsEcoMode(true);
+            try {
+              localStorage.setItem("mumu_eco_mode", "true");
+            } catch {}
+
+            // Set mascot dialogue to explain nicely
+            setNavDialogue("喵嗚！本教主偵測到網頁有些卡頓（系統負荷較大），已自動啟動極致節能模式（關閉背景向量與粒子效果）來拯救流暢度喵！🐾");
+            setShowNavDialogue(true);
+
+            // Trigger floating notification toast
+            setPerformanceToast({
+              show: true,
+              msg: "偵測到系統負載偏高，已為您自動啟動「極致節能模式」（關閉背景 SVG 向量動畫與炫彩粒子效果）以確保操作流暢！🍃"
+            });
+
+            if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
+            perfToastTimeoutRef.current = setTimeout(() => {
+              setPerformanceToast(null);
+            }, 7000);
+          }
+
+          // Reset sample counters
+          frameCount = 0;
+          slowFrames = 0;
+        }
+      } else {
+        // Reset counters if user is idle to avoid false triggers
+        frameCount = 0;
+        slowFrames = 0;
+        consecutiveStutter = 0;
+      }
+
+      rafId = requestAnimationFrame(checkPerformanceLoop);
+    };
+
+    rafId = requestAnimationFrame(checkPerformanceLoop);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleUserInteraction);
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("mousemove", handleUserInteraction);
+      if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
+    };
+  }, [isEcoMode]);
 
   const canX = useMotionValue(0);
   const canY = useMotionValue(0);
@@ -4841,6 +4957,41 @@ export default function App() {
                 setUnlockedAchToast(null);
               }}
               className="text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer self-start p-1"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 系統效能智慧最佳化通知 (Dynamic System Performance Alert Toast) */}
+      <AnimatePresence>
+        {performanceToast?.show && (
+          <motion.div
+            initial={{ opacity: 0, x: -100, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -50, scale: 0.95, transition: { duration: 0.25 } }}
+            className={`fixed bottom-6 left-6 z-[999999] p-4 rounded-xl border shadow-2xl flex items-start gap-3 max-w-sm ${
+              theme === "sepia"
+                ? "bg-[#FCF8EE] border-[#A05C2C]/30 text-[#4F3C28]"
+                : theme === "light"
+                ? "bg-white border-emerald-500/35 text-zinc-800 shadow-emerald-500/15"
+                : "bg-[#121212]/95 border-emerald-500/40 text-zinc-100 shadow-emerald-500/30 backdrop-blur-md"
+            }`}
+          >
+            <div className="p-2 bg-emerald-500/15 text-emerald-500 rounded-lg flex-shrink-0 mt-0.5">
+              <Cpu className="h-5 w-5 animate-pulse" />
+            </div>
+            <div className="flex-1 text-left">
+              <span className="block text-[9px] font-bold tracking-wider text-emerald-500 uppercase font-mono">ADAPTIVE PERFORMANCE ENGINE</span>
+              <h4 className="text-xs font-bold tracking-wide mt-0.5 text-emerald-500">系統效能智慧最佳化</h4>
+              <p className="text-[10.5px] opacity-85 mt-1 leading-relaxed">
+                {performanceToast.msg}
+              </p>
+            </div>
+            <button
+              onClick={() => setPerformanceToast(null)}
+              className="text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer p-0.5 mt-0.5"
             >
               <X className="h-3.5 w-3.5" />
             </button>
