@@ -1627,8 +1627,25 @@ export default function App() {
       if (saved !== null) {
         return saved === "true";
       }
-      if (typeof window !== "undefined") {
-        return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      
+      // Automatic hardware and system preference detection
+      if (typeof window !== "undefined" && typeof navigator !== "undefined") {
+        // 1. Check if user enabled "Reduced Motion" at the OS/System level
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReducedMotion) return true;
+
+        // 2. Check hardware indicators
+        // Low CPU Core count (e.g. Dual-core or lower devices/mobile devices)
+        const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+        
+        // Low RAM Memory count (typically 4GB or less, supported in Chrome/Edge/Opera/Android WebViews)
+        const anyNav = navigator as any;
+        const lowMemory = anyNav.deviceMemory && anyNav.deviceMemory < 4;
+
+        if (lowCpu || lowMemory) {
+          console.log(`[Eco Mode] Low-end hardware detected (Cores: ${navigator.hardwareConcurrency}, RAM: ${anyNav.deviceMemory}GB). Auto-activating eco-mode.`);
+          return true;
+        }
       }
       return false;
     } catch {
