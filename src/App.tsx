@@ -49,7 +49,7 @@ import {
   QrCode,
   Download,
   SlidersHorizontal,
-  FileText, RotateCcw
+  FileText, RotateCcw, Leaf, Cpu
 } from "lucide-react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring, animate, useScroll, useTransform } from "motion/react";
 import { PortfolioItem, MascotCharacter } from "./types";
@@ -167,51 +167,58 @@ function getYouTubeEmbedUrl(url?: string): string | null {
 function extractDriveIdsFromHtml(html: string, folderId: string): string[] {
   if (!html) return [];
 
-  // Unescape standard HTML characters in Google Drive's embedded JSON payload
+  // Unescape standard HTML characters and JSON structures in Google Drive's embedded payload
   const cleanHtml = html
     .replace(/\\x22/g, '"')
     .replace(/\\x27/g, "'")
     .replace(/\\x5b/g, '[')
     .replace(/\\x5d/g, ']')
-    .replace(/\\x2c/g, ',');
+    .replace(/\\x2c/g, ',')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&');
 
-  // Find file arrays of the shape: ["FILE_ID", ["FOLDER_ID"], "FILENAME", "MIME_TYPE"
-  const fileArrayRegex = /"([a-zA-Z0-9_-]{28,45})"\s*,\s*\[\s*"([a-zA-Z0-9_-]{28,45})"\s*\]\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"/g;
   const results: Array<{ id: string; name: string }> = [];
   const seenIds = new Set<string>();
 
+  // 1. Match standard file array pattern with robust parent array and quotation handling (both double and single quotes)
+  // Format: "FILE_ID", ["PARENT_ID_1", "PARENT_ID_2"], "FILENAME", "MIME_TYPE"
+  const fileArrayRegex = /["']([a-zA-Z0-9_-]{28,45})["']\s*,\s*\[\s*([^\]]*)\s*\]\s*,\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']/g;
+  
   let match;
   while ((match = fileArrayRegex.exec(cleanHtml)) !== null) {
-    const [_, fileId, parentFolderId, fileName] = match;
-    if (parentFolderId === folderId && !seenIds.has(fileId)) {
-      seenIds.add(fileId);
-      results.push({ id: fileId, name: fileName });
-    }
-  }
-
-  // Fallback 1: Match single-quoted JSON format if double-quoted didn't find anything
-  if (results.length === 0) {
-    const singleQuoteRegex = /'([a-zA-Z0-9_-]{28,45})'\s*,\s*\[\s*'([a-zA-Z0-9_-]{28,45})'\s*\]\s*,\s*'([^']+)'\s*,\s*'([^']+)'/g;
-    let matchSingle;
-    while ((matchSingle = singleQuoteRegex.exec(cleanHtml)) !== null) {
-      const [_, fileId, parentFolderId, fileName] = matchSingle;
-      if (parentFolderId === folderId && !seenIds.has(fileId)) {
+    const [_, fileId, parentsStr, fileName, mimeType] = match;
+    // Ensure it is a valid file, not the folder itself, and represents an image/asset
+    const isImage = mimeType.toLowerCase().includes('image') || 
+                    /\.(jpe?g|png|gif|webp|bmp|heic)$/i.test(fileName) ||
+                    mimeType.includes('octet-stream');
+                    
+    if (fileId && fileId !== folderId && !seenIds.has(fileId)) {
+      // If folderId is specified, check if it resides in parents, or default to true if parents is empty/not listed
+      const isParentMatch = !folderId || parentsStr.includes(folderId) || parentsStr.length === 0;
+      if (isParentMatch && isImage) {
         seenIds.add(fileId);
         results.push({ id: fileId, name: fileName });
       }
     }
   }
 
-  // Fallback 2: Legacy fallback matching /file/d/ links
+  // 2. Fallback: match any file/d/ links, direct thumbnail IDs, or view links in the html
   if (results.length === 0) {
-    const fileIdRegex = /\/file\/d\/([a-zA-Z0-9_-]{28,45})/g;
-    let matchLegacy;
-    while ((matchLegacy = fileIdRegex.exec(cleanHtml)) !== null) {
-      const fileId = matchLegacy[1];
-      if (fileId && !seenIds.has(fileId)) {
-        if (fileId !== folderId && fileId.length >= 28) {
+    const fileIdRegexes = [
+      /\/file\/d\/([a-zA-Z0-9_-]{28,45})/g,
+      /id=([a-zA-Z0-9_-]{28,45})/g,
+      /\/thumbnail\?id=([a-zA-Z0-9_-]{28,45})/g,
+      /drive-viewer\/([a-zA-Z0-9_-]{28,45})/g
+    ];
+
+    for (const regex of fileIdRegexes) {
+      let matchId;
+      while ((matchId = regex.exec(cleanHtml)) !== null) {
+        const fileId = matchId[1];
+        if (fileId && fileId !== folderId && fileId.length >= 28 && !seenIds.has(fileId)) {
           seenIds.add(fileId);
-          results.push({ id: fileId, name: `file_${fileId}` });
+          results.push({ id: fileId, name: `file_${fileId}.png` });
         }
       }
     }
@@ -228,37 +235,56 @@ function extractDriveIdsFromHtml(html: string, folderId: string): string[] {
 async function fetchFolderImages(folderId: string): Promise<string[]> {
   const targetUrl = `https://drive.google.com/drive/folders/${folderId}`;
   
-  // Try Proxy 1: AllOrigins
-  try {
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
-    const response = await fetch(proxyUrl);
-    if (response.ok) {
-      const data = await response.json();
-      const html = data.contents;
-      if (html) {
-        const images = extractDriveIdsFromHtml(html, folderId);
-        if (images.length > 0) return images;
+  // List of high-reliability public CORS proxies with modern configurations
+  const proxies = [
+    (url: string) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}&_t=${Date.now()}`,
+    (url: string) => `https://corsproxy.io/?${encodeURIComponent(url + (url.includes('?') ? '&' : '?') + '_t=' + Date.now())}`,
+    (url: string) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+  ];
+
+  const maxRetries = 3;
+  const delayMs = (retryCount: number) => Math.pow(2, retryCount) * 1000; // Exponential backoff: 2s, 4s, 8s
+
+  for (let retry = 0; retry < maxRetries; retry++) {
+    for (let i = 0; i < proxies.length; i++) {
+      const getProxyUrl = proxies[i];
+      const proxyUrl = getProxyUrl(targetUrl);
+      
+      try {
+        const response = await fetch(proxyUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+
+        let html = "";
+        if (i === 0) { // AllOrigins returns JSON with a "contents" field
+          const data = await response.json();
+          html = data.contents || "";
+        } else { // Others return raw text/html
+          html = await response.text();
+        }
+
+        if (html) {
+          const images = extractDriveIdsFromHtml(html, folderId);
+          if (images.length > 0) {
+            console.log(`Successfully fetched folder ${folderId} images via proxy ${i + 1} on attempt ${retry + 1}`);
+            return images;
+          }
+        }
+      } catch (err) {
+        console.warn(`Proxy ${i + 1} failed on attempt ${retry + 1}:`, err);
       }
     }
-  } catch (err) {
-    console.warn("AllOrigins proxy error, attempting fallback...", err);
-  }
-
-  // Try Proxy 2: CorsProxy.io
-  try {
-    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
-    const response = await fetch(proxyUrl);
-    if (response.ok) {
-      const html = await response.text();
-      if (html) {
-        const images = extractDriveIdsFromHtml(html, folderId);
-        if (images.length > 0) return images;
-      }
+    
+    // Wait before next retry attempt
+    if (retry < maxRetries - 1) {
+      const wait = delayMs(retry);
+      console.log(`Retrying folder ${folderId} fetch in ${wait}ms...`);
+      await new Promise(resolve => setTimeout(resolve, wait));
     }
-  } catch (err) {
-    console.warn("CorsProxy backup error:", err);
   }
 
+  console.error(`All proxies failed to fetch folder ${folderId} images after ${maxRetries} retries.`);
   return [];
 }
 
@@ -307,7 +333,7 @@ const playMagicDingSound = () => {
   }
 };
 
-const HighlightItem: React.FC<{ highlight: any, index: number, theme: string }> = ({ highlight, index, theme }) => {
+const HighlightItem: React.FC<{ highlight: any, index: number, theme: string, isEcoMode?: boolean }> = ({ highlight, index, theme, isEcoMode = false }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardRef = React.useRef<HTMLDivElement>(null);
   const hasDemonstrated = React.useRef(false);
@@ -656,6 +682,7 @@ const HighlightItem: React.FC<{ highlight: any, index: number, theme: string }> 
         dragTransition={{ bounceStiffness: 220, bounceDamping: 11 }}
         onTap={handleCardClick}
         onDrag={(event, info) => {
+          if (isEcoMode) return; // 節能模式下不產生拖動粒子
           const x = dragX.get();
           const y = dragY.get();
           const last = lastSpawnRef.current;
@@ -1593,6 +1620,37 @@ export default function App() {
       return false;
     }
   });
+
+  const [isEcoMode, setIsEcoMode] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_eco_mode");
+      if (saved !== null) {
+        return saved === "true";
+      }
+      if (typeof window !== "undefined") {
+        return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  });
+
+  const toggleEcoMode = () => {
+    const nextVal = !isEcoMode;
+    setIsEcoMode(nextVal);
+    try {
+      localStorage.setItem("mumu_eco_mode", String(nextVal));
+    } catch {}
+    
+    // Trigger mascot speech to notify user
+    if (nextVal) {
+      setNavDialogue("已開啟極致節能效能優化模式！🍃 關閉繁重 3D 與粒子效果，在低階裝置跑動將更加順暢！🐾");
+    } else {
+      setNavDialogue("已關閉節能模式，恢復完整 3D 慣性傾斜與絢麗粒子物理效果！✨");
+    }
+    setShowNavDialogue(true);
+  };
 
   const canX = useMotionValue(0);
   const canY = useMotionValue(0);
@@ -2953,6 +3011,123 @@ export default function App() {
     setVisibleCount(prev => Math.min(prev + 50, filteredItems.length));
   }, [filteredItems.length]);
 
+  // 1. Get current column count based on viewport width to virtualize responsive grid columns accurately
+  const [columnCount, setColumnCount] = useState<number>(2);
+  React.useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      if (w >= 1536) setColumnCount(5);
+      else if (w >= 1280) setColumnCount(4);
+      else if (w >= 1024) setColumnCount(3);
+      else setColumnCount(2);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // 2. Track window scroll and height for responsive on-screen calculations
+  const [windowScrollY, setWindowScrollY] = useState<number>(0);
+  const [windowHeight, setWindowHeight] = useState<number>(800);
+  React.useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setWindowScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+    handleResize();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // 3. Calculate responsive row height
+  const rowHeight = useMemo(() => {
+    if (columnCount === 2) return 260; // mobile / tablet
+    if (columnCount === 3) return 330; // lg
+    if (columnCount === 4) return 360; // xl
+    return 380; // 2xl
+  }, [columnCount]);
+
+  // 4. Chunk visibleItems into rows
+  const rows = useMemo(() => {
+    const r: PortfolioItem[][] = [];
+    for (let i = 0; i < visibleItems.length; i += columnCount) {
+      r.push(visibleItems.slice(i, i + columnCount));
+    }
+    return r;
+  }, [visibleItems, columnCount]);
+
+  // 5. Track grid element offset relative to document
+  const gridRef = React.useRef<HTMLDivElement>(null);
+  const [gridOffsetTop, setGridOffsetTop] = useState<number>(0);
+  React.useEffect(() => {
+    const updateOffset = () => {
+      if (gridRef.current) {
+        setGridOffsetTop(gridRef.current.getBoundingClientRect().top + window.scrollY);
+      }
+    };
+    updateOffset();
+    window.addEventListener("resize", updateOffset, { passive: true });
+    const timer = setTimeout(updateOffset, 150);
+    return () => {
+      window.removeEventListener("resize", updateOffset);
+      clearTimeout(timer);
+    };
+  }, [selectedCategory, searchQuery, visibleItems.length]);
+
+  // 6. Compute visible start and end row indices
+  const { startIndex, endIndex } = useMemo(() => {
+    if (rows.length === 0) {
+      return { startIndex: 0, endIndex: -1 };
+    }
+
+    // Get the actual real-time offset directly from the DOM to avoid race conditions and stale measurements during layout shifts
+    let currentGridOffset = gridOffsetTop;
+    if (gridRef.current) {
+      const rect = gridRef.current.getBoundingClientRect();
+      currentGridOffset = rect.top + windowScrollY;
+    }
+
+    const relativeScrollTop = Math.max(0, windowScrollY - currentGridOffset);
+    // Buffer 1 row above and below for smooth visual transition
+    let start = Math.max(0, Math.floor(relativeScrollTop / rowHeight) - 1);
+    const end = Math.min(rows.length - 1, Math.ceil((relativeScrollTop + windowHeight) / rowHeight) + 1);
+
+    // Safety guard: if start > end, align start to end - 1 or end to prevent an empty display (self-healing loop)
+    if (start > end) {
+      start = Math.max(0, end - 1);
+    }
+
+    return { startIndex: start, endIndex: end };
+  }, [windowScrollY, gridOffsetTop, windowHeight, rowHeight, rows.length]);
+
+  // 7. Get visible items to render with their original indices
+  const visibleRowItems = useMemo(() => {
+    const itemsWithIndex: { item: PortfolioItem; index: number }[] = [];
+    for (let r = startIndex; r <= endIndex; r++) {
+      const row = rows[r];
+      if (row) {
+        row.forEach((item, colIndex) => {
+          const originalIndex = r * columnCount + colIndex;
+          itemsWithIndex.push({ item, index: originalIndex });
+        });
+      }
+    }
+    return itemsWithIndex;
+  }, [rows, startIndex, endIndex, columnCount]);
+
   // Performance Optimization: Preload the cover images (360px-600px width) of the active category and upcoming predictive batch dynamically.
   // This avoids overwhelming the browser and Google Drive API, resolving rate limits, lag, and black screen failures.
   React.useEffect(() => {
@@ -3437,6 +3612,34 @@ export default function App() {
                 </AnimatePresence>
               </div>
 
+              {/* ECO 節能模式開關 */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                type="button"
+                id="btn_eco_toggle"
+                onClick={toggleEcoMode}
+                className={`${themeToggleClass} flex items-center justify-center relative`}
+                title={isEcoMode ? "已開啟極致節能模式 (點擊關閉，恢復炫彩動態)" : "開啟極致節能模式 (適合低階裝置 / 省電)"}
+              >
+                <Leaf className={`h-4 w-4 transition-colors ${
+                  isEcoMode 
+                    ? "text-emerald-500 animate-pulse duration-1000" 
+                    : theme === "sepia" 
+                      ? "text-[#4F3C28] hover:text-emerald-600" 
+                      : theme === "light" 
+                        ? "text-zinc-550 hover:text-emerald-500" 
+                        : "text-zinc-400 hover:text-emerald-400"
+                }`} />
+                {isEcoMode && (
+                  <span className="absolute -top-0.5 -right-0.5 flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                  </span>
+                )}
+              </motion.button>
+
               {/* Instagram 按鈕 */}
               <a
                 href="https://www.instagram.com/mumao1_the_cat_religion/"
@@ -3467,6 +3670,7 @@ export default function App() {
         <HeroSection
           ref={heroSectionRef}
           theme={theme}
+          isEcoMode={isEcoMode}
           selectedCategory={selectedCategory}
           profile={profile}
           incrementInteraction={incrementInteraction}
@@ -3544,7 +3748,7 @@ export default function App() {
                   content: "不僅打造過月銷破萬的爆款商業視覺，亦能從零到一開發具有靈魂的原創角色 IP (如 MuMㄠ)。完美平衡商業需求轉換與感性原創藝術性。"
                 }
               ].map((highlight, index) => (
-                <HighlightItem key={index} highlight={highlight} index={index} theme={theme} />
+                <HighlightItem key={index} highlight={highlight} index={index} theme={theme} isEcoMode={isEcoMode} />
               ))}
             </div>
           </div>
@@ -3841,16 +4045,23 @@ export default function App() {
 
 
           {/* 作品卡片 RWD 呈現 */}
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]">
+          <div 
+            ref={gridRef}
+            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]"
+            style={{
+              paddingTop: `${startIndex * rowHeight}px`,
+              paddingBottom: `${Math.max(0, rows.length - 1 - endIndex) * rowHeight}px`,
+            }}
+          >
             <AnimatePresence>
-              {visibleItems.map((item, index) => {
+              {visibleRowItems.map(({ item, index }) => {
                 return (
                   
                   <motion.div 
-                    layout="position" 
+                    layout={isEcoMode ? false : "position"} 
                     className="relative" 
                     key={item.id}
-                    transition={{
+                    transition={isEcoMode ? { duration: 0.1 } : {
                       type: "spring",
                       stiffness: 180,
                       damping: 18,
@@ -3889,6 +4100,7 @@ export default function App() {
                       showAllDetails={false}
                       isFirst={index === 0}
                       selectedCategory={selectedCategory}
+                      isEcoMode={isEcoMode}
                     />
                   </motion.div>
 

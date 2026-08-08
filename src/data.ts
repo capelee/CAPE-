@@ -1006,6 +1006,105 @@ export const initialPortfolioData: PortfolioItem[] = [
     "driveFolderId": "1E5brOVdupokOURrquHzC3raR2lV65ohh"
   },
   {
+    "id": "sanyu-elementary-school-choir-medals",
+    "category": "商品周邊企業禮贈品",
+    "title": "台北市三玉國小合唱團 2026 瑞典世界合唱大賽獎牌",
+    "titleEn": "Taipei Sanyu Elementary School Choir 2026 Sweden World Choir Games Medals",
+    "philosophy": "以金黃與深沉原木配色為基調，結合合唱團躍動音符與世界地圖幾何線條。透過精密金屬壓鑄工藝與細緻磨砂質感，將榮譽象徵具象化，展現簡約且具典雅質感的紀念美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "獎牌設計",
+      "金屬工藝"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1jUkqwo2dTDulF8NSbUY6P3YN9WJ9vQBk",
+    "placeholderId": "IMAGE_SANYU_MEDALS",
+    "colorTheme": "from-[#2e261d] via-[#4d3d2c] to-[#1a1510]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1jUkqwo2dTDulF8NSbUY6P3YN9vQBk",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1FGlaQftMA6fyF03XkHoPOXu8k3qMNfgX",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CGPbDr9-T-XOgLgkhwrstOwgWECeD9E3",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CPt6dBnxymVrb3vRusEg34YK2ySgzgqc",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1J_ic_fjsq3g4AgjfstZsBZWlRjZZQvxy"
+    ],
+    "driveFolderId": "1LWmgTxS3ySwx5i6WsJGJP2cogeToIv-w",
+    "link": "https://drive.google.com/drive/folders/1LWmgTxS3ySwx5i6WsJGJP2cogeToIv-w?usp=drive_link"
+  },
+  {
+    "id": "dental-implant-stainless-steel-ice-cubes",
+    "category": "商品周邊企業禮贈品",
+    "title": "中華民國口腔植體學會北區分會 不鏽鋼冰塊",
+    "titleEn": "Chinese Academy of Oral Implantology North District Branch Stainless Steel Ice Cubes",
+    "philosophy": "以不鏽鋼冷冽的金屬光澤為核心，雷射雕刻學會標誌。搭配深黑色高密度泡棉內襯與黑色硬質紙盒，以無彩度的對比層次，展現現代醫療專業與精緻沉穩的質感美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "雷雕工藝",
+      "產品包裝"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1kul9m5MVDmMhDYKSNo9PQ_9eOKNYnzKb",
+    "placeholderId": "IMAGE_DENTAL_IMPLANT_ICE_CUBES",
+    "colorTheme": "from-[#1c1c1e] via-[#2c2c2e] to-[#0a0a0a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1kul9m5MVDmMhDYKSNo9PQ_9eOKNYnzKb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1hl0jAKJjpI8FcfgxuJ3Eyt01GzK5lwOY",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lO81t2XiDcozBV_jyC8dzFIYhlaGiIy-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aPdDoajrAt3q6sVTgnAbUU92edv9c4kl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1pl5hpUVwb7kkCbW8YOrNZaw8fJiA-14-",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1u82qABALCw9tYWi6My2jXfR7dHcMlm5c"
+    ],
+    "driveFolderId": "1EkEznSvb7m5iDs_rRAClrtbbXIYRlosY"
+  },
+  {
+    "id": "ciyun-road-pedestrian-bridge-crystal-usb",
+    "category": "商品周邊企業禮贈品",
+    "title": "新竹市慈雲路空中行人步道橋工程水晶 USB 紀念品",
+    "titleEn": "Hsinchu Ciyun Road Pedestrian Footbridge Crystal USB Souvenir",
+    "philosophy": "以晶透水晶結合金屬材質，將步道橋的現代鋼構線條以3D內雕技術封存於晶體中。透過光影折射展現工程力學特徵，呈現兼具科技感與工程語彙的紀念禮贈。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "3D內雕",
+      "產品設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1vY_xfszxjsRQxSKczU5J25oP5RcOVWOC",
+    "placeholderId": "IMAGE_CIYUN_ROAD_CRYSTAL_USB",
+    "colorTheme": "from-[#141d26] via-[#2c3e50] to-[#0d131a]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1vY_xfszxjsRQxSKczU5J25oP5RcOVWOC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1glllRJmWtJRMwSoJ3nm3tkgOTAgI67Ox",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1MPfQ7HkKSeboc6ZJz7l29FG5cxEBVNcl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=154twHf1kCCHE0kWJimPwTjqL073GnG8k",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1OTInjvmBbLB5dK5gS-yjoxBqgsKYc7hC"
+    ],
+    "driveFolderId": "12vLQZwACFsufmrksmnFdaWAF5c3WS4rf"
+  },
+  {
+    "id": "hsinchu-chess-association-medals",
+    "category": "商品周邊企業禮贈品",
+    "title": "新竹市體育會西洋棋委員會獎牌",
+    "titleEn": "Hsinchu Chess Association Medals",
+    "philosophy": "以雙棋盤格紋與西洋棋棋子造型為核心，結合古銅金屬壓鑄工藝。透過立體浮雕與磨砂質感對比，強化視覺層次，展現賽事榮譽與古典學院風格的紀念美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "獎牌設計",
+      "金屬工藝"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1sKlTNhS1wcUDAJYZmKKfeMC0kfSbCQow",
+    "placeholderId": "IMAGE_HSINCHU_CHESS_MEDALS",
+    "colorTheme": "from-[#2c2015] via-[#4d3b2c] to-[#1a120b]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1sKlTNhS1wcUDAJYZmKKfeMC0kfSbCQow",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1b_2i8Z8SKAmPKsu8nm7ra5Gz9k0fFVrH",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1aZT7rxl2boE8y8Gx7OyyIpV5RJOLIXOO",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1-qtxuCXksc_NRwSwwvq0Mq90xQwJ6wKu",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1uxoTrZLVqS-tYElBs7DN1hMlxZB4YHg0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LZ15eAW9ousG0l1RTRY7fdekdLEwcamF"
+    ],
+    "driveFolderId": "1r0fWuDP7ulNDdMS8tLQeWSuLJzy_tUUH"
+  },
+  {
     "id": "huatiancun-cis",
     "category": "企業LOGO與CIS設計",
     "title": "彰化田尾花田村品牌識別系統",

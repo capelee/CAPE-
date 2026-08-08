@@ -10,11 +10,12 @@ interface PortfolioCardProps {
   onNearBottom?: () => void;
   isFirst?: boolean;
   selectedCategory?: string;
+  isEcoMode?: boolean;
 }
 
 import React, { useState } from "react";
 import { X, MousePointerClick, Sparkles, ArrowUpRight, ArrowUp, Image as ImageIcon, QrCode, Download, Eye, ExternalLink, PawPrint } from "lucide-react";
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionTemplate } from "motion/react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionTemplate, useReducedMotion } from "motion/react";
 import { PortfolioItem } from "../types";
 import { ImageWithFallback } from "./ImageWithFallback";
 import { getCategoryColor } from "../categoryColors";
@@ -161,6 +162,8 @@ const CatFootprintsSkeleton = ({ theme }: { theme: "dark" | "light" | "sepia" })
   );
 };
 
+const isTouchDevice = typeof window !== "undefined" && window.matchMedia("(pointer: coarse) and (hover: none)").matches;
+
 export const PortfolioCard = React.memo(function PortfolioCard({ 
   item, 
   onClick, 
@@ -171,17 +174,20 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   showAllDetails,
   onNearBottom,
   isFirst = false,
-  selectedCategory
+  selectedCategory,
+  isEcoMode = false
 }: PortfolioCardProps) {
-  const catColor = getCategoryColor(item.category);
-  const mainImgSrc = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '');
-  const leftImgSrc = (item.images && item.images.length > 1 ? item.images[1] : mainImgSrc) || mainImgSrc;
-  const rightImgSrc = (item.images && item.images.length > 2 ? item.images[2] : (item.images && item.images.length > 1 ? item.images[0] : mainImgSrc)) || mainImgSrc;
+  const catColor = React.useMemo(() => getCategoryColor(item.category), [item.category]);
+  const { mainImgSrc, leftImgSrc, rightImgSrc } = React.useMemo(() => {
+    const main = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '');
+    const left = (item.images && item.images.length > 1 ? item.images[1] : main) || main;
+    const right = (item.images && item.images.length > 2 ? item.images[2] : (item.images && item.images.length > 1 ? item.images[0] : main)) || main;
+    return { mainImgSrc: main, leftImgSrc: left, rightImgSrc: right };
+  }, [item.imageUrl, item.images]);
 
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isFanOut, setIsFanOut] = useState(false);
   const [showFirstPulse, setShowFirstPulse] = useState(isFirst);
 
   const [shuffleOffset, setShuffleOffset] = useState({ x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 });
@@ -226,6 +232,16 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
   React.useEffect(() => {
     // 模擬從牌堆中飛出：定義隨機且富有秩序感的初始散落/收集座標與傾斜角度
+    if (isEcoMode) {
+      setShuffleOffset({
+        x: 0,
+        y: 0,
+        rotate: 0,
+        scale: 1,
+        opacity: 1
+      });
+      return;
+    }
 
     const originX = (index % 2 === 0 ? -60 : 60) + (index % 3) * 20;
     const originY = 100 + (index % 4) * 15;
@@ -256,151 +272,171 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   }, [selectedCategory, index]);
   
   
+  const shouldReduceMotion = useReducedMotion();
+
   const isTouchDeviceRef = React.useRef(false);
   const hasMovedRef = React.useRef(false);
 
-  const isCardFlipped = isTouchDeviceRef.current ? isFlipped : (isHovered || isFlipped);
+  const isCardFlipped = isTouchDeviceRef.current || isTouchDevice ? isFlipped : (isHovered || isFlipped);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
 
-  const springConfig = { stiffness: 150, damping: 15, mass: 0.8 };
+  const dragX = useMotionValue(0);
+  const dragY = useMotionValue(0);
+
+  const springConfig = { stiffness: 220, damping: 18, mass: 0.6 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
-  const rawRotateX = useTransform(springY, [0, 1], [6, -6]);
-  const rawRotateY = useTransform(springX, [0, 1], [-6, 6]);
+  const tiltX = useTransform(springY, [0, 1], [18, -18]);
+  const tiltY = useTransform(springX, [0, 1], [-18, 18]);
+
+  const dragRotateX = useTransform(dragY, [-80, 80], [12, -12]);
+  const dragRotateY = useTransform(dragX, [-80, 80], [-12, 12]);
 
   const flipSpring = useSpring(0, { stiffness: 160, damping: 14, mass: 0.9 });
   React.useEffect(() => {
-    let rafId: number;
-    let timerId: ReturnType<typeof setTimeout>;
-
     flipSpring.set(isCardFlipped ? 180 : 0);
+  }, [isCardFlipped, flipSpring]);
 
-    if (isCardFlipped) {
-      // 依據是否為懸停 (hover) 設定 0.5 秒 (500ms) 的展開延遲時間，如果是點擊 (isFlipped) 則維持 100ms 快速展開
-      const fanOutDelay = isFlipped ? 100 : 500;
-      timerId = setTimeout(() => {
-        rafId = requestAnimationFrame(() => {
-          setIsFanOut(true);
-        });
-      }, fanOutDelay);
-    } else {
-      rafId = requestAnimationFrame(() => {
-        setIsFanOut(false);
-      });
+  React.useEffect(() => {
+    if (cardRef.current && cardRef.current.parentElement) {
+      const parent = cardRef.current.parentElement;
+      if (isCardFlipped) {
+        parent.style.zIndex = "50";
+      } else if (isHovered) {
+        parent.style.zIndex = "30";
+      } else {
+        parent.style.zIndex = "1";
+      }
     }
+  }, [isCardFlipped, isHovered]);
 
-    return () => {
-      if (timerId) clearTimeout(timerId);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, [isCardFlipped, isFlipped, flipSpring]);
-
-  const rotateX = useTransform(() => {
-    const flip = flipSpring.get();
-    const isFlippedNow = flip > 90;
-    const rx = rawRotateX.get();
-    return isFlippedNow ? -rx : rx;
+  const rotateX = useTransform([tiltX, dragRotateX, flipSpring], ([rx, drx, flip]) => {
+    if (isEcoMode) return 0;
+    const isFlippedNow = ((flip as number) || 0) > 90;
+    const rxVal = (rx as number) || 0;
+    const drxVal = (drx as number) || 0;
+    const totalRx = rxVal + drxVal;
+    return isFlippedNow ? -totalRx : totalRx;
   });
-  const rotateY = useTransform(() => {
-    const flip = flipSpring.get();
-    const isFlippedNow = flip > 90;
-    const ry = rawRotateY.get();
-    return flip + (isFlippedNow ? -ry : ry);
+
+  const rotateY = useTransform([tiltY, dragRotateY, flipSpring], ([ry, dry, flip]) => {
+    const flipVal = (flip as number) || 0;
+    if (isEcoMode) return flipVal;
+    const ryVal = (ry as number) || 0;
+    const dryVal = (dry as number) || 0;
+    const totalRy = ryVal + dryVal;
+    const isFlippedNow = flipVal > 90;
+    return flipVal + (isFlippedNow ? -totalRy : totalRy);
   });
 
   const glareX = useTransform(springX, [0, 1], [0, 100]);
   const glareY = useTransform(springY, [0, 1], [0, 100]);
   
-  const glareOpacity = useSpring(isHovered ? 1 : 0, { stiffness: 200, damping: 20 });
+  const glareOpacity = useSpring((isHovered && !isTouchDevice && !isEcoMode) ? 1 : 0, { stiffness: 200, damping: 20 });
   
   const glareBackground = useTransform(
     [glareX, glareY],
     ([x, y]) => `radial-gradient(circle 250px at ${x}% ${y}%, rgba(${catColor.rgbaGlow}, 0.35) 0%, rgba(${catColor.rgbaGlow}, 0.08) 40%, transparent 100%)`
   );
 
+  const themeStyles = React.useMemo(() => {
+    const isSepia = theme === "sepia";
+    const isLight = theme === "light";
 
-  const isSepia = theme === "sepia";
-  const isLight = theme === "light";
+    const defaultShadow = item.isHighlight 
+      ? (isSepia ? "0 10px 20px -8px rgba(115, 76, 34, 0.22)" : isLight ? "0 10px 20px -8px rgba(217, 119, 6, 0.15)" : catColor.highlightShadowDark)
+      : (isSepia ? catColor.normalShadowSepia : isLight ? catColor.normalShadowLight : catColor.normalShadowDark);
 
-  const defaultShadow = item.isHighlight 
-    ? (isSepia ? "0 10px 20px -8px rgba(115, 76, 34, 0.22)" : isLight ? "0 10px 20px -8px rgba(217, 119, 6, 0.15)" : catColor.highlightShadowDark)
-    : (isSepia ? catColor.normalShadowSepia : isLight ? catColor.normalShadowLight : catColor.normalShadowDark);
+    const themeContainerClass = isSepia
+      ? item.isHighlight
+        ? `bg-[#FCF5E3] bg-gradient-to-b from-[#FCF5E3] to-[#EDE2CA] border ${catColor.highlightBorderSepia}`
+        : `${catColor.normalBgSepia} ${catColor.normalBorderSepia}`
+      : isLight
+      ? item.isHighlight
+        ? `bg-[#FCF8EE] bg-gradient-to-b from-[#FCF8EE] via-[#FCF8EE] to-[#FAF4E5] border ${catColor.highlightBorderLight}`
+        : `${catColor.normalBgLight} ${catColor.normalBorderLight}`
+      : item.isHighlight
+      ? `${catColor.highlightBgDark} ${catColor.highlightBorderDark}`
+      : `${catColor.normalBgDark} ${catColor.normalBorderDark}`;
 
-  const themeContainerClass = isSepia
-    ? item.isHighlight
-      ? `bg-[#FCF5E3] bg-gradient-to-b from-[#FCF5E3] to-[#EDE2CA] border ${catColor.highlightBorderSepia}`
-      : `${catColor.normalBgSepia} ${catColor.normalBorderSepia}`
-    : isLight
-    ? item.isHighlight
-      ? `bg-[#FCF8EE] bg-gradient-to-b from-[#FCF8EE] via-[#FCF8EE] to-[#FAF4E5] border ${catColor.highlightBorderLight}`
-      : `${catColor.normalBgLight} ${catColor.normalBorderLight}`
-    : item.isHighlight
-    ? `${catColor.highlightBgDark} ${catColor.highlightBorderDark}`
-    : `${catColor.normalBgDark} ${catColor.normalBorderDark}`;
+    const titleEnClassValue = isSepia
+      ? item.isHighlight
+        ? "text-amber-900 font-extrabold tracking-wider"
+        : "text-amber-800/80 font-semibold"
+      : isLight
+      ? item.isHighlight
+        ? "text-amber-800 font-extrabold tracking-wider"
+        : "text-zinc-500 font-semibold"
+      : `${catColor.textClass}`;
 
-  const titleEnClassValue = isSepia
-    ? item.isHighlight
-      ? "text-amber-900 font-extrabold tracking-wider"
-      : "text-amber-800/80 font-semibold"
-    : isLight
-    ? item.isHighlight
-      ? "text-amber-800 font-extrabold tracking-wider"
-      : "text-zinc-500 font-semibold"
-    : `${catColor.textClass}`;
+    const titleClassValue = isSepia
+      ? item.isHighlight
+        ? `text-[#2B1B0C] font-bold ${isHovered ? "text-amber-700" : ""}`
+        : `text-[#382B1D] ${isHovered ? "text-amber-800" : ""}`
+      : isLight
+      ? item.isHighlight
+        ? `text-[#2B1B0C] font-bold ${isHovered ? "text-amber-600" : ""}`
+        : `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
+      : `text-white/90 ${isHovered ? "text-white" : ""}`;
 
-  const titleClassValue = isSepia
-    ? item.isHighlight
-      ? `text-[#2B1B0C] font-bold ${isHovered ? "text-amber-700" : ""}`
-      : `text-[#382B1D] ${isHovered ? "text-amber-800" : ""}`
-    : isLight
-    ? item.isHighlight
-      ? `text-[#2B1B0C] font-bold ${isHovered ? "text-amber-600" : ""}`
-      : `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
-    : `text-white/90 ${isHovered ? "text-white" : ""}`;
+    const backTitleEnClassValue = isSepia
+      ? "text-amber-800/80 font-semibold"
+      : isLight
+      ? "text-zinc-500 font-semibold"
+      : `${catColor.textClass}`;
 
-  const backTitleEnClassValue = isSepia
-    ? "text-amber-800/80 font-semibold"
-    : isLight
-    ? "text-zinc-500 font-semibold"
-    : `${catColor.textClass}`;
+    const backTitleClassValue = isSepia
+      ? `text-[#382B1D] ${isHovered ? "text-amber-800" : ""}`
+      : isLight
+      ? `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
+      : `text-white/90 ${isHovered ? "text-white" : ""}`;
 
-  const backTitleClassValue = isSepia
-    ? `text-[#382B1D] ${isHovered ? "text-amber-800" : ""}`
-    : isLight
-    ? `text-zinc-900 ${isHovered ? "text-amber-600" : ""}`
-    : `text-white/90 ${isHovered ? "text-white" : ""}`;
+    const descriptionClassValue = isSepia
+      ? item.isHighlight
+        ? `text-[#4F3C28] ${isHovered ? "text-[#2B1B0C]" : ""}`
+        : `text-[#5C4D3C] ${isHovered ? "text-[#382B1D]" : ""}`
+      : isLight
+      ? item.isHighlight
+        ? `text-[#4F3C28] ${isHovered ? "text-[#18181B]" : ""}`
+        : `text-zinc-600 ${isHovered ? "text-[#18181B]" : ""}`
+      : `text-zinc-400 ${isHovered ? "text-zinc-200" : ""}`;
 
-  const descriptionClassValue = isSepia
-    ? item.isHighlight
-      ? `text-[#4F3C28] ${isHovered ? "text-[#2B1B0C]" : ""}`
-      : `text-[#5C4D3C] ${isHovered ? "text-[#382B1D]" : ""}`
-    : isLight
-    ? item.isHighlight
-      ? `text-[#4F3C28] ${isHovered ? "text-[#18181B]" : ""}`
-      : `text-zinc-600 ${isHovered ? "text-[#18181B]" : ""}`
-    : `text-zinc-400 ${isHovered ? "text-zinc-200" : ""}`;
+    const dividerClassValue = isSepia
+      ? item.isHighlight
+        ? `border-amber-500/20 ${isHovered ? "border-amber-500/35" : ""}`
+        : `border-[#EADECC]/70 ${isHovered ? "border-[#EADECC]" : ""}`
+      : isLight
+      ? item.isHighlight
+        ? `border-amber-500/20 ${isHovered ? "border-amber-500/35" : ""}`
+        : `border-zinc-200 ${isHovered ? "border-zinc-300" : ""}`
+      : `border-white/5 ${isHovered ? "border-white/10" : ""}`;
 
-  const dividerClassValue = isSepia
-    ? item.isHighlight
-      ? `border-amber-500/20 ${isHovered ? "border-amber-500/35" : ""}`
-      : `border-[#EADECC]/70 ${isHovered ? "border-[#EADECC]" : ""}`
-    : isLight
-    ? item.isHighlight
-      ? `border-amber-500/20 ${isHovered ? "border-amber-500/35" : ""}`
-      : `border-zinc-200 ${isHovered ? "border-zinc-300" : ""}`
-    : `border-white/5 ${isHovered ? "border-white/10" : ""}`;
+    const hoverOverlayClass = isSepia
+      ? item.isHighlight
+        ? "bg-amber-500/[0.02]"
+        : "bg-[#433422]/[0.01]"
+      : isLight
+      ? item.isHighlight
+        ? "bg-amber-500/[0.02]"
+        : "bg-black/[0.01]"
+      : "bg-white/[0.01]";
 
-  const hoverOverlayClass = isSepia
-    ? item.isHighlight
-      ? "bg-amber-500/[0.02]"
-      : "bg-[#433422]/[0.01]"
-    : isLight
-    ? item.isHighlight
-      ? "bg-amber-500/[0.02]"
-      : "bg-black/[0.01]"
-    : "bg-white/[0.01]";
+    return {
+      isSepia,
+      isLight,
+      defaultShadow,
+      themeContainerClass,
+      titleEnClassValue,
+      titleClassValue,
+      backTitleEnClassValue,
+      backTitleClassValue,
+      descriptionClassValue,
+      dividerClassValue,
+      hoverOverlayClass
+    };
+  }, [theme, item.isHighlight, catColor, isHovered]);
 
   const touchStartRef = React.useRef<{ x: number; y: number } | null>(null);
 
@@ -490,13 +526,18 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     isTouchDeviceRef.current = true;
     hasMovedRef.current = false;
 
-    // Initial physical interaction center
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = (touch.clientX - rect.left) / rect.width;
-    const y = (touch.clientY - rect.top) / rect.height;
-    mouseX.set(x);
-    mouseY.set(y);
+    if (!isTouchDevice) {
+      // Initial physical interaction center
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width;
+      const y = (touch.clientY - rect.top) / rect.height;
+      mouseX.set(x);
+      mouseY.set(y);
+    } else {
+      mouseX.set(0.5);
+      mouseY.set(0.5);
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -505,13 +546,15 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     const diffX = Math.abs(touch.clientX - touchStartRef.current.x);
     const diffY = Math.abs(touch.clientY - touchStartRef.current.y);
     
-    // Apply physical damping before scroll threshold
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = (touch.clientX - rect.left) / rect.width;
-    const y = (touch.clientY - rect.top) / rect.height;
-    mouseX.set(x);
-    mouseY.set(y);
+    if (!isTouchDevice) {
+      // Apply physical damping before scroll threshold
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width;
+      const y = (touch.clientY - rect.top) / rect.height;
+      mouseX.set(x);
+      mouseY.set(y);
+    }
 
     if (diffX > 10 || diffY > 10) {
       hasMovedRef.current = true;
@@ -527,6 +570,17 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     setIsPressed(false);
     mouseX.set(0.5);
     mouseY.set(0.5);
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (showFirstPulse) setShowFirstPulse(false);
+    setIsHovered(true);
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -578,13 +632,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   return (
     <motion.div
       ref={cardRef}
-      layout="position"
+      layout={isEcoMode ? undefined : "position"}
       animate={{ 
         opacity: shuffleOffset.opacity, 
-        scale: shuffleOffset.scale * rippleOffset.scale, 
-        x: shuffleOffset.x,
-        y: shuffleOffset.y + rippleOffset.y,
-        rotate: shuffleOffset.rotate + rippleOffset.rotate
+        scale: isEcoMode ? 1 : shuffleOffset.scale * rippleOffset.scale, 
+        x: isEcoMode ? 0 : shuffleOffset.x,
+        y: isEcoMode ? 0 : shuffleOffset.y + rippleOffset.y,
+        rotate: isEcoMode ? 0 : shuffleOffset.rotate + rippleOffset.rotate
       }}
       transition={{ 
         type: "spring",
@@ -594,6 +648,9 @@ export const PortfolioCard = React.memo(function PortfolioCard({
         layout: { type: "spring", stiffness: 180, damping: 18 } // 平滑、有機的佈局移動軌跡
       }}
       className="h-full scroll-mt-16 md:scroll-mt-20 relative"
+      style={{
+        zIndex: isCardFlipped ? 50 : isHovered ? 30 : 1,
+      }}
     >
       {!isVisible ? (
         <div
@@ -645,6 +702,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
         <div
           id={`portfolio_item_card_${item.id}`}
           onClick={handleCardClick}
+          onMouseEnter={handleMouseEnter}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onMouseDown={() => {
@@ -657,30 +715,49 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchEnd}
-          className="group relative w-full h-full cursor-pointer will-change-transform transform-gpu"
+          className="group relative w-full h-full cursor-pointer"
           style={{
-            perspective: "1000px",
+            perspective: "1200px",
             transformStyle: "preserve-3d",
             zIndex: isCardFlipped ? 40 : isHovered ? 20 : 1,
           }}
         >
           <motion.div
             style={{
+              x: dragX,
+              y: dragY,
               transformStyle: "preserve-3d",
               rotateX,
               rotateY,
+            }}
+            drag={!isTouchDevice}
+            dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+            dragElastic={0.25}
+            dragSnapToOrigin={true}
+            dragTransition={{ bounceStiffness: 220, bounceDamping: 15 }}
+            onDragStart={() => {
+              setIsPressed(true);
+              if (showFirstPulse) setShowFirstPulse(false);
+            }}
+            onDrag={(_, info) => {
+              if (Math.hypot(info.offset.x, info.offset.y) > 5) {
+                hasMovedRef.current = true;
+              }
+            }}
+            onDragEnd={() => {
+              setIsPressed(false);
             }}
             animate={{
               scale: isPressed ? 0.955 : isHovered ? 1.025 : 1,
               boxShadow: isHovered 
                 ? `0 25px 50px -12px rgba(0,0,0,0.85), 0 0 25px 3px rgba(${catColor.rgbaGlow}, 0.22)`
-                : defaultShadow,
+                : themeStyles.defaultShadow,
             }}
             transition={{
               scale: { type: "spring", stiffness: 250, damping: 20 },
               boxShadow: { duration: 0.3 }
             }}
-            className="relative flex flex-col rounded-2xl w-full h-full will-change-transform transform-gpu"
+            className="relative flex flex-col rounded-2xl w-full h-full"
           >
           {showFirstPulse && (
             <div className={`absolute -inset-[3px] rounded-[1.2rem] z-[-1] animate-[pulse_2s_ease-in-out_infinite] ${
@@ -689,7 +766,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           )}
           {/* Front Face of the Card */}
           <div
-            className={`w-full h-full flex flex-col rounded-2xl overflow-hidden transition-[background-color,border-color,color] duration-500 subpixel-antialiased ${themeContainerClass}`}
+            className={`w-full h-full flex flex-col rounded-2xl overflow-hidden transition-[background-color,border-color,color] duration-500 subpixel-antialiased ${themeStyles.themeContainerClass}`}
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
@@ -698,7 +775,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             }}
           >
             {/* 3D Border Glow Reflection Halo (Glow Overlay) */}
-            {!isSepia && !isLight && (
+            {!themeStyles.isSepia && !themeStyles.isLight && (
               <motion.div 
                 className="absolute inset-0 pointer-events-none rounded-2xl"
                 style={{
@@ -715,7 +792,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             <div className="shimmer-line pointer-events-none absolute inset-0 z-20 rounded-2xl" />
 
             {/* 卡片封面圖 */}
-            <div className={`relative ${showAllDetails ? "aspect-[4/3]" : "aspect-square"} overflow-hidden ${isSepia ? catColor.highlightBgSepia : isLight ? catColor.highlightBgLight : catColor.highlightBgDark}`} style={{ transform: "translateZ(8px)" }}>
+            <div className={`relative ${showAllDetails ? "aspect-[4/3] rounded-t-2xl" : "aspect-square rounded-2xl"} overflow-hidden ${themeStyles.isSepia ? catColor.highlightBgSepia : themeStyles.isLight ? catColor.highlightBgLight : catColor.highlightBgDark}`} style={{ transform: "translateZ(8px)" }}>
               <ImageWithFallback
                 src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
                 alt={item.title}
@@ -738,22 +815,22 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 <div className="absolute top-4 left-4" style={{ transform: "translateZ(12px)" }}>
                   <span 
                     className={`px-3 py-0.5 md:px-3.5 md:py-1 text-[11px] font-medium tracking-wide rounded-full shadow-md flex items-center justify-center text-center whitespace-nowrap shrink-0 border transition-all duration-400 ease-in-out ${
-                      isSepia
+                      themeStyles.isSepia
                         ? "bg-[#FAF4E5] border-[#E2D2B3]"
-                        : isLight
+                        : themeStyles.isLight
                         ? "bg-white border-zinc-150"
                         : "bg-zinc-950/95 border-white/5"
                     }`}
                     style={{
                       borderColor: isHovered
-                        ? `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.75' : '0.85'})`
-                        : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.35' : '0.25'})`,
+                        ? `rgba(${catColor.rgbaGlow}, ${themeStyles.isSepia || themeStyles.isLight ? '0.75' : '0.85'})`
+                        : `rgba(${catColor.rgbaGlow}, ${themeStyles.isSepia || themeStyles.isLight ? '0.35' : '0.25'})`,
                       color: isHovered
                         ? `rgb(${catColor.rgbaGlow})`
-                        : `rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.9' : '0.85'})`,
+                        : `rgba(${catColor.rgbaGlow}, ${themeStyles.isSepia || themeStyles.isLight ? '0.9' : '0.85'})`,
                       boxShadow: isHovered
-                        ? `0 0 12px 2px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.25' : '0.45'})`
-                        : `0 2px 4px rgba(${catColor.rgbaGlow}, ${isSepia || isLight ? '0.04' : '0.08'})`,
+                        ? `0 0 12px 2px rgba(${catColor.rgbaGlow}, ${themeStyles.isSepia || themeStyles.isLight ? '0.25' : '0.45'})`
+                        : `0 2px 4px rgba(${catColor.rgbaGlow}, ${themeStyles.isSepia || themeStyles.isLight ? '0.04' : '0.08'})`,
                       boxSizing: "border-box"
                     }}
                   >
@@ -783,9 +860,9 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 <div className="absolute bottom-4 right-4 z-20" style={{ transform: "translateZ(12px)" }}>
                   <span 
                     className={`h-7 w-7 rounded-full flex items-center justify-center border backdrop-blur-md shadow-lg transition-all duration-300 ${
-                      isSepia
+                      themeStyles.isSepia
                         ? "bg-[#FCF5E3]/85 text-amber-900 border-[#EADECC]/80 hover:bg-[#FCF5E3] hover:scale-110"
-                        : isLight
+                        : themeStyles.isLight
                         ? "bg-white/85 text-zinc-800 border-zinc-200/50 hover:bg-white hover:scale-110"
                         : "bg-black/60 text-zinc-100 border-white/10 hover:bg-black/80 hover:scale-110"
                     }`}
@@ -800,7 +877,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             {/* 內容描述區 (可透過上方按鈕開關) */}
             {showAllDetails && (
               <div 
-                className={`flex-1 flex flex-col p-5 md:p-6 space-y-4 relative overflow-hidden transition-all duration-500 ease-out z-10 ${isHovered ? hoverOverlayClass : ""}`} 
+                className={`flex-1 flex flex-col p-5 md:p-6 space-y-4 relative overflow-hidden transition-all duration-500 ease-out z-10 ${isHovered ? themeStyles.hoverOverlayClass : ""}`} 
                 style={{ transform: "translateZ(4px)" }}
               >
                 {/* 微焦點放大焦點背景遮罩 (含微妙發光) */}
@@ -817,8 +894,8 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 <div className={`space-y-1 transform transition-all duration-300 ease-out ${
                   isHovered ? "translate-y-[-2px] scale-[1.005]" : "translate-y-0 scale-100"
                 }`}>
-                  <p className={`text-[10px] font-mono tracking-widest uppercase opacity-90 transition-all duration-400 ${isHovered ? "opacity-100" : "opacity-90"} ${titleEnClassValue}`}>{item.titleEn}</p>
-                  <h3 className={`text-base font-display font-semibold transition-colors duration-400 line-clamp-1 flex items-center gap-1 ${titleClassValue}`}>
+                  <p className={`text-[10px] font-mono tracking-widest uppercase opacity-90 transition-all duration-400 ${isHovered ? "opacity-100" : "opacity-90"} ${themeStyles.titleEnClassValue}`}>{item.titleEn}</p>
+                  <h3 className={`text-base font-display font-semibold transition-colors duration-400 line-clamp-1 flex items-center gap-1 ${themeStyles.titleClassValue}`}>
                     <span className="truncate">{item.title}</span>
                     <span className={`transition-all duration-400 text-sm font-semibold shrink-0 ${
                       isHovered ? "opacity-100 translate-x-1" : "opacity-0 translate-x-0"
@@ -829,7 +906,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 {/* 工具 Tags */}
                 <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-400 ease-out ${
                   isHovered ? "translate-y-[-1.2px]" : "translate-y-0"
-                } ${dividerClassValue}`}>
+                } ${themeStyles.dividerClassValue}`}>
                   {item.tools.map((tech) => (
                     <span 
                       key={tech} 
@@ -856,21 +933,20 @@ export const PortfolioCard = React.memo(function PortfolioCard({
           >
             {/* 撲克牌綻開 - 左翼作品照片卡牌 (動態負 z-index 管理，位於中間卡片後方) */}
             <motion.div
-              layoutId={`fan-card-left-${item.id}`}
               className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none transition-colors duration-500 ${
-                isSepia
+                themeStyles.isSepia
                   ? "bg-[#FAF2E1] border-[#E8D9BF]"
-                  : isLight
+                  : themeStyles.isLight
                   ? "bg-white border-zinc-200"
                   : "bg-zinc-900 border-white/15"
               }`}
               animate={{
-                x: isFanOut ? 34 : 0,
-                y: isFanOut ? -6 : 0,
-                rotate: isFanOut ? 9 : 0,
-                opacity: isFanOut ? 0.95 : 0,
-                scale: isFanOut ? 0.96 : 0.9,
-                boxShadow: isFanOut
+                x: isCardFlipped ? 34 : 0,
+                y: isCardFlipped ? -6 : 0,
+                rotate: isCardFlipped ? 9 : 0,
+                opacity: isCardFlipped ? 0.95 : 0,
+                scale: isCardFlipped ? 0.96 : 0.9,
+                boxShadow: isCardFlipped
                   ? "-10px 14px 24px -4px rgba(0, 0, 0, 0.35)"
                   : "0px 0px 0px 0px rgba(0, 0, 0, 0)",
               }}
@@ -879,9 +955,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 stiffness: 240,
                 damping: 18,
                 mass: 0.8,
-                delay: isFanOut ? 0.06 : 0,
+                delay: isCardFlipped ? (isFlipped ? 0.05 : 0.3) : 0,
               }}
-              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -1 : -10, willChange: "transform, opacity" }}
+              style={{
+                transformOrigin: "bottom center",
+                zIndex: isCardFlipped ? -1 : -10,
+                willChange: "transform, opacity",
+              }}
             >
               <ImageWithFallback
                 src={leftImgSrc}
@@ -911,21 +991,20 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
             {/* 撲克牌綻開 - 右翼作品照片卡牌 (動態負 z-index 管理，位於中間卡片後方) */}
             <motion.div
-              layoutId={`fan-card-right-${item.id}`}
               className={`absolute inset-0 rounded-2xl overflow-hidden border pointer-events-none transition-colors duration-500 ${
-                isSepia
+                themeStyles.isSepia
                   ? "bg-[#FAF2E1] border-[#E8D9BF]"
-                  : isLight
+                  : themeStyles.isLight
                   ? "bg-white border-zinc-200"
                   : "bg-zinc-900 border-white/15"
               }`}
               animate={{
-                x: isFanOut ? -34 : 0,
-                y: isFanOut ? -6 : 0,
-                rotate: isFanOut ? -9 : 0,
-                opacity: isFanOut ? 0.95 : 0,
-                scale: isFanOut ? 0.96 : 0.9,
-                boxShadow: isFanOut
+                x: isCardFlipped ? -34 : 0,
+                y: isCardFlipped ? -6 : 0,
+                rotate: isCardFlipped ? -9 : 0,
+                opacity: isCardFlipped ? 0.95 : 0,
+                scale: isCardFlipped ? 0.96 : 0.9,
+                boxShadow: isCardFlipped
                   ? "10px 14px 24px -4px rgba(0, 0, 0, 0.35)"
                   : "0px 0px 0px 0px rgba(0, 0, 0, 0)",
               }}
@@ -934,9 +1013,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 stiffness: 240,
                 damping: 18,
                 mass: 0.8,
-                delay: isFanOut ? 0.12 : 0,
+                delay: isCardFlipped ? (isFlipped ? 0.1 : 0.38) : 0,
               }}
-              style={{ transformOrigin: "bottom center", zIndex: isFanOut ? -2 : -10, willChange: "transform, opacity" }}
+              style={{
+                transformOrigin: "bottom center",
+                zIndex: isCardFlipped ? -2 : -10,
+                willChange: "transform, opacity",
+              }}
             >
               <ImageWithFallback
                 src={rightImgSrc}
@@ -966,7 +1049,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
             {/* 中間主卡片 (Front surface of back face, z-10 with solid theme background) */}
             <div 
-              className={`relative z-10 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 shadow-2xl ${themeContainerClass}`}
+              className={`relative z-10 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 shadow-2xl ${themeStyles.themeContainerClass}`}
               style={{ zIndex: 10 }}
             >
               {/* Ambient Background Glow inside the main back face */}
@@ -982,9 +1065,9 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               <div className="flex items-center justify-between">
                 <span 
                   className={`px-2.5 py-0.5 text-[9px] font-medium tracking-wide rounded-full border shadow-sm transition-all duration-300 ${
-                    isSepia
+                    themeStyles.isSepia
                       ? "bg-[#FAF4E5] border-[#E2D2B3]"
-                      : isLight
+                      : themeStyles.isLight
                       ? "bg-white border-zinc-150"
                       : "bg-zinc-950/95 border-white/5"
                   }`}
@@ -999,10 +1082,10 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
               {/* Title Block */}
               <div className="space-y-0.5">
-                <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${backTitleEnClassValue}`}>
+                <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${themeStyles.backTitleEnClassValue}`}>
                   {item.titleEn}
                 </p>
-                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 md:line-clamp-3 ${backTitleClassValue}`}>
+                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 md:line-clamp-3 ${themeStyles.backTitleClassValue}`}>
                   {item.title}
                 </h3>
               </div>
@@ -1025,7 +1108,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               <div className="flex-1" />
 
               {/* Footer CTA */}
-              <div className={`${showAllDetails ? "pt-2.5" : "pt-1.5"} border-t flex items-center justify-end text-[10px] font-medium ${dividerClassValue}`}>
+              <div className={`${showAllDetails ? "pt-2.5" : "pt-1.5"} border-t flex items-center justify-end text-[10px] font-medium ${themeStyles.dividerClassValue}`}>
                 <span className={`px-2 py-1 rounded-lg text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm`}>
                   <span>展開</span>
                   <ArrowUpRight className="h-2 w-2 stroke-[2.5]" />

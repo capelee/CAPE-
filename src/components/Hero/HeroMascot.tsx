@@ -6,6 +6,7 @@ import { playCanClinkSound, playRareDropSound, playRareClickSound } from '../../
 
 interface HeroMascotProps {
   theme: "dark" | "light" | "sepia";
+  isEcoMode?: boolean;
   mascotRef: React.RefObject<HTMLDivElement>;
   mascotY: MotionValue<number>;
   glowY: MotionValue<number>;
@@ -33,6 +34,7 @@ interface HeroMascotProps {
 
 export const HeroMascot: React.FC<HeroMascotProps> = ({
   theme,
+  isEcoMode = false,
   mascotRef,
   mascotY,
   glowY,
@@ -171,6 +173,9 @@ export const HeroMascot: React.FC<HeroMascotProps> = ({
   };
  
   const spawnFallingItem = () => {
+    // If eco mode is active, skip spawning falling items entirely to save CPU/GPU overhead
+    if (isEcoMode) return;
+
     // 8% 機率噴出高級稀有物品，92% 機率噴出普通隨機物品
     const isRare = Math.random() < 0.08;
     let emoji = '';

@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { MotionValue } from 'motion/react';
 import { HeroText } from './HeroText';
 import { HeroMascot } from './HeroMascot';
@@ -13,6 +13,7 @@ export interface HeroSectionRef {
 
 interface HeroSectionProps {
   theme: "dark" | "light" | "sepia";
+  isEcoMode?: boolean;
   selectedCategory?: string;
   profile: any;
   incrementInteraction: () => void;
@@ -54,6 +55,7 @@ interface HeroSectionProps {
 
 export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
   theme,
+  isEcoMode = false,
   selectedCategory,
   profile,
   incrementInteraction,
@@ -94,6 +96,33 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
 }, ref) => {
   const [titleBounceTrigger, setTitleBounceTrigger] = useState(0);
   const [heroParticles, setHeroParticles] = useState<any[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isHeroIntersecting, setIsHeroIntersecting] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroIntersecting(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: "150px", // Pre-load 150px before entering viewport
+        threshold: 0.01,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useImperativeHandle(ref, () => ({
     setHeroParticles,
@@ -101,9 +130,15 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
   }));
 
   return (
-    <section id="hero-minimalist" className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]">
+    <section 
+      ref={sectionRef}
+      id="hero-minimalist" 
+      className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]"
+    >
       {/* Category Dynamic Vector Decor */}
-      <HeroCategoryDecor selectedCategory={selectedCategory || ""} theme={theme} />
+      {isHeroIntersecting ? (
+        <HeroCategoryDecor selectedCategory={selectedCategory || ""} theme={theme} isEcoMode={isEcoMode} />
+      ) : null}
 
       <HeroText
         theme={theme}
@@ -117,6 +152,7 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
       
       <HeroMascot
         theme={theme}
+        isEcoMode={isEcoMode}
         mascotRef={mascotRef}
         mascotY={mascotY}
         glowY={glowY}
