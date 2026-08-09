@@ -21,6 +21,9 @@ import { motion } from "motion/react";
 import { getCategoryColor } from "../categoryColors";
 import { resolveImageUrl, YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, extractDriveId, extractYoutubeId, saveDriveCacheToStorage, saveYtCacheToStorage } from "../utils";
 
+// Global memory cache for successfully loaded image URLs to prevent reload flashes during virtualization
+const LOADED_IMAGES_CACHE = new Set<string>();
+
 export function ImageWithFallback({ 
   src, 
   alt, 
@@ -37,7 +40,9 @@ export function ImageWithFallback({
   heightAuto = false,
   onLoad
 }: ImageWithFallbackProps) {
-  const [isInView, setIsInView] = useState<boolean>(priority || !lazy);
+  const isPreLoaded = src ? LOADED_IMAGES_CACHE.has(src) : false;
+
+  const [isInView, setIsInView] = useState<boolean>(priority || !lazy || isPreLoaded);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(optimizeSize || 600);
 
@@ -65,11 +70,11 @@ export function ImageWithFallback({
   }, []);
 
   const [currentSrc, setCurrentSrc] = useState<string>(() => {
-    return (priority || !lazy) ? resolveImageUrl(src, optimizeSize || containerWidth) : "";
+    return (priority || !lazy || isPreLoaded) ? resolveImageUrl(src, optimizeSize || containerWidth) : "";
   });
   const [fallbackAttempt, setFallbackAttempt] = useState<number>(0);
   const [failedCount, setFailedCount] = useState<number>(0);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(isPreLoaded);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   const [lastSuccessfulSrc, setLastSuccessfulSrc] = useState<string>("");
@@ -165,10 +170,11 @@ export function ImageWithFallback({
       if (currentSrc === resolved) {
         return;
       }
+      const isAlreadyCached = src ? LOADED_IMAGES_CACHE.has(src) : false;
       setCurrentSrc(resolved);
       setFallbackAttempt(0);
       setFailedCount(0);
-      setIsLoaded(false);
+      setIsLoaded(isAlreadyCached);
       loadStartTimeRef.current = performance.now();
       
       console.log(`%c[ImageWithFallback:INIT]%c Loading image for [%c${titleText || alt}%c] (size: ${targetSize}px)\nSource: ${resolved}`, 
@@ -246,6 +252,9 @@ export function ImageWithFallback({
 
   const onFinalSuccess = (img: HTMLImageElement) => {
     setIsLoaded(true);
+    if (src) {
+      LOADED_IMAGES_CACHE.add(src);
+    }
     if (onLoad) {
       onLoad();
     }

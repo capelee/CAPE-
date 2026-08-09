@@ -158,6 +158,33 @@ export const initialPortfolioData: PortfolioItem[] = [
     "videoUrl": "https://www.youtube.com/watch?v=3QKiNoYlbbo"
   },
   {
+    "id": "xionghuaxuan-retro-canteen-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "熊華軒昭和町中華食堂品牌識別與 CIS 視覺設計",
+    "titleEn": "Xiong Hua Xuan Brand Identity System",
+    "philosophy": "以復古朱紅與暖米色為底，結合昭和時期手繪招牌字型與日式暖簾線條。透過幾何網格排版與木質紋理，傳遞樸實純粹的職人精神，展現融合懷舊情懷與現代感的中華餐飲美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1RV2v0vThIohxNk3i2uVDl6XecCKfEhfP",
+    "placeholderId": "IMAGE_XIONGHUAXUAN_CIS",
+    "colorTheme": "from-[#3e1411] via-[#5c2420] to-[#1c0705]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1RV2v0vThIohxNk3i2uVDl6XecCKfEhfP",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mLjbDn48OwZ-5QIuHHRQd5vbFvsk5YnK",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1rJbi0NMYHVSbx-ruK_0zJhaP5Ls40xxn",
+      "https://drive.google.com/thumbnail?sz=w1000&id=11JTbpi_AZdrOKquiummlVaLpy9M2wPxW",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qg0cAXr3PChB3nNoEGRKOXc-dL_3AUxb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1wzAwmarwpyP69P3yx1DsqD47opxVsM2K",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1Yn3bytRE1Yn9kYbHpbZ5VKhEuf8wUdkb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1EG6wPKux6mos6A31DWS7QMEap_rhXbrs"
+    ],
+    "driveFolderId": "19EJRqCoQcfTsJxNQQyO24YCL_0-Ul62o"
+  },
+  {
     "id": "koharu-brand-cis",
     "category": "企業LOGO與CIS設計",
     "title": "KOHARU（こはる） 品牌識別與 CIS 視覺設計",
@@ -1028,7 +1055,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1J_ic_fjsq3g4AgjfstZsBZWlRjZZQvxy"
     ],
     "driveFolderId": "1LWmgTxS3ySwx5i6WsJGJP2cogeToIv-w",
-    "link": "https://drive.google.com/drive/folders/1LWmgTxS3ySwx5i6WsJGJP2cogeToIv-w?usp=drive_link"
+    "link": "https://www.interkultur.com/events/world-choir-games/helsingborg-2026"
   },
   {
     "id": "dental-implant-stainless-steel-ice-cubes",
@@ -1077,7 +1104,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=154twHf1kCCHE0kWJimPwTjqL073GnG8k",
       "https://drive.google.com/thumbnail?sz=w1000&id=1OTInjvmBbLB5dK5gS-yjoxBqgsKYc7hC"
     ],
-    "driveFolderId": "12vLQZwACFsufmrksmnFdaWAF5c3WS4rf"
+    "driveFolderId": "12vLQZwACFsufmrksmnFdaWAF5c3WS4rf",
+    "link": "https://www.cna.com.tw/postwrite/chi/374796"
   },
   {
     "id": "hsinchu-chess-association-medals",
@@ -1102,7 +1130,8 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1uxoTrZLVqS-tYElBs7DN1hMlxZB4YHg0",
       "https://drive.google.com/thumbnail?sz=w1000&id=1LZ15eAW9ousG0l1RTRY7fdekdLEwcamF"
     ],
-    "driveFolderId": "1r0fWuDP7ulNDdMS8tLQeWSuLJzy_tUUH"
+    "driveFolderId": "1r0fWuDP7ulNDdMS8tLQeWSuLJzy_tUUH",
+    "link": "https://www.facebook.com/share/p/1C1vb9RL5D/"
   },
   {
     "id": "huatiancun-cis",

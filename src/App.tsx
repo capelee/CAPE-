@@ -1662,7 +1662,18 @@ export default function App() {
     }
   });
 
+  // Track whether the user explicitly toggled Eco Mode so auto-detector respects user choice
+  const userExplicitEcoChoiceRef = React.useRef<boolean>(() => {
+    try {
+      const saved = localStorage.getItem("mumu_eco_mode");
+      return saved !== null; // If explicitly stored in localStorage, user has made a choice
+    } catch {
+      return false;
+    }
+  });
+
   const toggleEcoMode = () => {
+    userExplicitEcoChoiceRef.current = true;
     const nextVal = !isEcoMode;
     setIsEcoMode(nextVal);
     try {
@@ -1680,6 +1691,20 @@ export default function App() {
 
   const [performanceToast, setPerformanceToast] = useState<{ show: boolean; msg: string } | null>(null);
   const perfToastTimeoutRef = React.useRef<any>(null);
+  const navAutoCloseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Auto-close floating performance alert toast 4.5s after appearing
+  React.useEffect(() => {
+    if (performanceToast?.show) {
+      if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
+      perfToastTimeoutRef.current = setTimeout(() => {
+        setPerformanceToast(null);
+      }, 4500);
+    }
+    return () => {
+      if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
+    };
+  }, [performanceToast]);
 
   // Dynamic system rendering rate (FPS) and scroll responsiveness load detector
   useEffect(() => {
@@ -1689,19 +1714,26 @@ export default function App() {
     let lastTime = performance.now();
     let slowFrames = 0;
     let consecutiveStutter = 0;
-    const maxSamples = 60; // 1 second sliding window at 60fps
+    let failingWindows = 0;
+    const maxSamples = 120; // 2 seconds sliding window at 60fps
     let rafId: number;
 
     const hasAutoOptimized = { current: false };
 
-    // Set a flag to check if the user is actively interacting (scrolling, clicking, etc.)
+    // Set a flag to check if the user is actively interacting or scrolling
     let lastInteractionTime = performance.now();
+    let lastScrollTime = 0;
     
     const handleUserInteraction = () => {
       lastInteractionTime = performance.now();
     };
 
-    window.addEventListener("scroll", handleUserInteraction, { passive: true });
+    const handleScrollEvent = () => {
+      lastInteractionTime = performance.now();
+      lastScrollTime = performance.now();
+    };
+
+    window.addEventListener("scroll", handleScrollEvent, { passive: true });
     window.addEventListener("touchstart", handleUserInteraction, { passive: true });
     window.addEventListener("click", handleUserInteraction, { passive: true });
     window.addEventListener("mousemove", handleUserInteraction, { passive: true });
@@ -1710,64 +1742,83 @@ export default function App() {
       const delta = now - lastTime;
       lastTime = now;
 
-      // Ensure the browser tab is actually active and visible, and the user has interacted recently (within the last 8 seconds)
+      // Do NOT auto-trigger if user has explicitly toggled eco mode preference or already optimized
+      const userHasChoice = userExplicitEcoChoiceRef.current || (typeof localStorage !== "undefined" && localStorage.getItem("mumu_eco_mode") !== null);
       const isTabVisible = document.visibilityState === "visible";
       const isRecentlyActive = now - lastInteractionTime < 8000;
+      // Is currently in middle of rapid scrolling or within 800ms after scrolling?
+      const isScrolling = now - lastScrollTime < 800;
 
-      if (isTabVisible && isRecentlyActive && !isEcoMode && !hasAutoOptimized.current) {
-        frameCount++;
+      if (isTabVisible && isRecentlyActive && !isEcoMode && !hasAutoOptimized.current && !userHasChoice) {
+        // Only evaluate frames when NOT actively fast-scrolling to prevent normal scroll event queueing from false-triggering
+        if (!isScrolling) {
+          frameCount++;
 
-        // A single frame taking longer than 28.5ms indicates low rendering rates (< 35fps) or CPU throttling
-        if (delta > 28.5) {
-          slowFrames++;
-        }
-
-        // Severe stutter: a single frame taking longer than 60ms
-        if (delta > 60.0) {
-          consecutiveStutter++;
-        } else {
-          consecutiveStutter = Math.max(0, consecutiveStutter - 1);
-        }
-
-        // Once we hit maxSamples, analyze the window
-        if (frameCount >= maxSamples) {
-          const slowFrameRatio = slowFrames / maxSamples;
-          
-          // Trigger optimization if more than 35% of frames were slow, or if we had severe consecutive stuttering
-          if (slowFrameRatio > 0.35 || consecutiveStutter >= 3) {
-            console.warn(`[System Performance Alert] High rendering/scroll load detected. Slow frame ratio: ${(slowFrameRatio * 100).toFixed(1)}%, consecutive stutters: ${consecutiveStutter}. Auto-activating Adaptive Eco Mode.`);
-            
-            hasAutoOptimized.current = true;
-            setIsEcoMode(true);
-            try {
-              localStorage.setItem("mumu_eco_mode", "true");
-            } catch {}
-
-            // Set mascot dialogue to explain nicely
-            setNavDialogue("喵嗚！本教主偵測到網頁有些卡頓（系統負荷較大），已自動啟動極致節能模式（關閉背景向量與粒子效果）來拯救流暢度喵！🐾");
-            setShowNavDialogue(true);
-
-            // Trigger floating notification toast
-            setPerformanceToast({
-              show: true,
-              msg: "偵測到系統負載偏高，已為您自動啟動「極致節能模式」（關閉背景 SVG 向量動畫與炫彩粒子效果）以確保操作流暢！🍃"
-            });
-
-            if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
-            perfToastTimeoutRef.current = setTimeout(() => {
-              setPerformanceToast(null);
-            }, 7000);
+          // A single frame taking longer than 55ms indicates severe low rendering rates (< 18fps)
+          if (delta > 55.0) {
+            slowFrames++;
           }
 
-          // Reset sample counters
+          // Extreme stutter: a single frame taking longer than 120ms
+          if (delta > 120.0) {
+            consecutiveStutter++;
+          } else {
+            consecutiveStutter = Math.max(0, consecutiveStutter - 1);
+          }
+
+          // Once we hit maxSamples (2 seconds), analyze the window
+          if (frameCount >= maxSamples) {
+            const slowFrameRatio = slowFrames / maxSamples;
+            
+            // Require sustained lag over multiple windows
+            if (slowFrameRatio > 0.60 || consecutiveStutter >= 5) {
+              failingWindows++;
+            } else {
+              failingWindows = Math.max(0, failingWindows - 1);
+            }
+
+            // Only trigger after 2 consecutive 2-second windows of severe lag (4 continuous seconds of genuine low FPS)
+            if (failingWindows >= 2) {
+              console.warn(`[System Performance Alert] Sustained high rendering load detected. Slow frame ratio: ${(slowFrameRatio * 100).toFixed(1)}%. Auto-activating Adaptive Eco Mode.`);
+              
+              hasAutoOptimized.current = true;
+              setIsEcoMode(true);
+              try {
+                localStorage.setItem("mumu_eco_mode", "true");
+              } catch {}
+
+              // Set mascot dialogue to explain nicely
+              setNavDialogue("喵嗚！本教主偵測到網頁有些卡頓（系統負荷較大），已自動啟動極致節能模式（關閉背景向量與粒子效果）來拯救流暢度喵！🐾");
+              setShowNavDialogue(true);
+
+              // Trigger floating notification toast
+              setPerformanceToast({
+                show: true,
+                msg: "偵測到系統負載偏高，已為您自動啟動「極致節能模式」（關閉背景 SVG 向量動畫與炫彩粒子效果）以確保操作流暢！🍃"
+              });
+
+              if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
+              perfToastTimeoutRef.current = setTimeout(() => {
+                setPerformanceToast(null);
+              }, 4500);
+            }
+
+            // Reset sample counters
+            frameCount = 0;
+            slowFrames = 0;
+          }
+        } else {
+          // Reset during scrolling so scroll events never accumulate false lag counts
           frameCount = 0;
           slowFrames = 0;
+          consecutiveStutter = 0;
         }
       } else {
-        // Reset counters if user is idle to avoid false triggers
+        // Reset counters if user is idle or has explicit preference
         frameCount = 0;
         slowFrames = 0;
         consecutiveStutter = 0;
+        failingWindows = 0;
       }
 
       rafId = requestAnimationFrame(checkPerformanceLoop);
@@ -2358,6 +2409,19 @@ export default function App() {
       clearInterval(interval);
     };
   }, [showNavDialogue, navDialogue]);
+
+  // Auto-close NAV bar mascot dialogue popup 4.5s after text finishes typing
+  React.useEffect(() => {
+    if (showNavDialogue && displayedNavDialogue && navDialogue && displayedNavDialogue === navDialogue) {
+      if (navAutoCloseTimeoutRef.current) clearTimeout(navAutoCloseTimeoutRef.current);
+      navAutoCloseTimeoutRef.current = setTimeout(() => {
+        setShowNavDialogue(false);
+      }, 4500);
+    }
+    return () => {
+      if (navAutoCloseTimeoutRef.current) clearTimeout(navAutoCloseTimeoutRef.current);
+    };
+  }, [showNavDialogue, displayedNavDialogue, navDialogue]);
 
   const heroDialogues = useMemo(() => [
     "哈囉！我是 Cape Lee 👋 歡迎來到我的視覺與品牌整合設計宇宙！",
@@ -3144,6 +3208,11 @@ export default function App() {
     setVisibleCount(prev => Math.min(prev + 50, filteredItems.length));
   }, [filteredItems.length]);
 
+  // Grid refs
+  const gridContainerRef = React.useRef<HTMLDivElement>(null);
+  const gridRef = React.useRef<HTMLDivElement>(null);
+  const gridOffsetTopRef = React.useRef<number>(0);
+
   // 1. Get current column count based on viewport width to virtualize responsive grid columns accurately
   const [columnCount, setColumnCount] = useState<number>(2);
   React.useEffect(() => {
@@ -3157,6 +3226,21 @@ export default function App() {
     handleResize();
     window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Track real measured width of grid container for pixel-exact virtual row height calculation
+  const [gridContainerWidth, setGridContainerWidth] = useState<number>(0);
+  React.useEffect(() => {
+    if (!gridContainerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect && entry.contentRect.width > 0) {
+          setGridContainerWidth(entry.contentRect.width);
+        }
+      }
+    });
+    observer.observe(gridContainerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // 2. Track window scroll and height for responsive on-screen calculations
@@ -3185,13 +3269,25 @@ export default function App() {
     };
   }, []);
 
-  // 3. Calculate responsive row height
+  // 3. Calculate exact responsive row gap and pixel-perfect row height
+  const currentGap = useMemo(() => {
+    if (typeof window === "undefined") return 24;
+    const w = window.innerWidth;
+    if (w >= 1024) return 32; // lg:gap-8
+    if (w >= 640) return 24;  // sm:gap-6
+    return 14;                // gap-3.5
+  }, [windowHeight]);
+
   const rowHeight = useMemo(() => {
-    if (columnCount === 2) return 260; // mobile / tablet
-    if (columnCount === 3) return 330; // lg
-    if (columnCount === 4) return 360; // xl
-    return 380; // 2xl
-  }, [columnCount]);
+    if (gridContainerWidth > 0) {
+      return Math.round((gridContainerWidth + currentGap) / columnCount);
+    }
+    // Fallback estimates before measurement
+    if (columnCount === 2) return 200;
+    if (columnCount === 3) return 300;
+    if (columnCount === 4) return 300;
+    return 320;
+  }, [gridContainerWidth, currentGap, columnCount]);
 
   // 4. Chunk visibleItems into rows
   const rows = useMemo(() => {
@@ -3202,49 +3298,67 @@ export default function App() {
     return r;
   }, [visibleItems, columnCount]);
 
-  // 5. Track grid element offset relative to document
-  const gridRef = React.useRef<HTMLDivElement>(null);
+  // 5. Track grid outer container offset relative to document with caching
   const [gridOffsetTop, setGridOffsetTop] = useState<number>(0);
-  React.useEffect(() => {
-    const updateOffset = () => {
-      if (gridRef.current) {
-        setGridOffsetTop(gridRef.current.getBoundingClientRect().top + window.scrollY);
-      }
-    };
-    updateOffset();
-    window.addEventListener("resize", updateOffset, { passive: true });
-    const timer = setTimeout(updateOffset, 150);
-    return () => {
-      window.removeEventListener("resize", updateOffset);
-      clearTimeout(timer);
-    };
-  }, [selectedCategory, searchQuery, visibleItems.length]);
 
-  // 6. Compute visible start and end row indices
+  const updateGridOffset = React.useCallback(() => {
+    if (gridContainerRef.current) {
+      const rect = gridContainerRef.current.getBoundingClientRect();
+      const calculatedOffset = rect.top + window.scrollY;
+      gridOffsetTopRef.current = calculatedOffset;
+      setGridOffsetTop(calculatedOffset);
+    } else if (gridRef.current) {
+      const rect = gridRef.current.getBoundingClientRect();
+      const calculatedOffset = rect.top + window.scrollY;
+      gridOffsetTopRef.current = calculatedOffset;
+      setGridOffsetTop(calculatedOffset);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    updateGridOffset();
+    window.addEventListener("resize", updateGridOffset, { passive: true });
+    window.addEventListener("orientationchange", updateGridOffset, { passive: true });
+    
+    const timer1 = setTimeout(updateGridOffset, 100);
+    const timer2 = setTimeout(updateGridOffset, 400);
+    return () => {
+      window.removeEventListener("resize", updateGridOffset);
+      window.removeEventListener("orientationchange", updateGridOffset);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [selectedCategory, searchQuery, visibleItems.length, updateGridOffset]);
+
+  // 6. Compute visible start and end row indices with caching and dynamic performance-based buffer
   const { startIndex, endIndex } = useMemo(() => {
     if (rows.length === 0) {
       return { startIndex: 0, endIndex: -1 };
     }
 
-    // Get the actual real-time offset directly from the DOM to avoid race conditions and stale measurements during layout shifts
-    let currentGridOffset = gridOffsetTop;
-    if (gridRef.current) {
-      const rect = gridRef.current.getBoundingClientRect();
-      currentGridOffset = rect.top + windowScrollY;
-    }
-
+    // Use cached offset to prevent layout thrashing and DOM reading loops during scroll
+    const currentGridOffset = gridOffsetTopRef.current || gridOffsetTop;
     const relativeScrollTop = Math.max(0, windowScrollY - currentGridOffset);
-    // Buffer 1 row above and below for smooth visual transition
-    let start = Math.max(0, Math.floor(relativeScrollTop / rowHeight) - 1);
-    const end = Math.min(rows.length - 1, Math.ceil((relativeScrollTop + windowHeight) / rowHeight) + 1);
+    
+    // Dynamic buffer rows: in eco mode (low-spec/mobile), use 1 row buffer to minimize DOM node overhead and avoid scroll stutter.
+    // In standard desktop mode, use 3 rows buffer for smooth visual transition without pop-in.
+    const bufferRows = isEcoMode ? 1 : 3;
+    let start = Math.max(0, Math.floor(relativeScrollTop / rowHeight) - bufferRows);
+    let end = Math.min(rows.length - 1, Math.ceil((relativeScrollTop + windowHeight) / rowHeight) + bufferRows);
 
-    // Safety guard: if start > end, align start to end - 1 or end to prevent an empty display (self-healing loop)
     if (start > end) {
       start = Math.max(0, end - 1);
     }
 
     return { startIndex: start, endIndex: end };
-  }, [windowScrollY, gridOffsetTop, windowHeight, rowHeight, rows.length]);
+  }, [windowScrollY, gridOffsetTop, windowHeight, rowHeight, rows.length, isEcoMode]);
+
+  // Infinite Scroll: Auto-load more items when scrolling near the bottom of currently loaded rows
+  React.useEffect(() => {
+    if (endIndex >= rows.length - 4 && visibleCount < filteredItems.length) {
+      setVisibleCount(prev => Math.min(prev + 40, filteredItems.length));
+    }
+  }, [endIndex, rows.length, visibleCount, filteredItems.length]);
 
   // 7. Get visible items to render with their original indices
   const visibleRowItems = useMemo(() => {
@@ -3375,7 +3489,9 @@ export default function App() {
   }, [filteredItems, activeModalItem]);
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans relative overflow-x-hidden transition-colors duration-500 ${
+    <div 
+      style={{ touchAction: "pan-y" }}
+      className={`min-h-screen flex flex-col font-sans relative overflow-x-hidden transition-colors duration-500 ${
       theme === "light" 
         ? "light-theme text-[#1F2937] selection:bg-amber-500/20 selection:text-amber-800" 
         : theme === "sepia"
@@ -4178,28 +4294,21 @@ export default function App() {
 
 
           {/* 作品卡片 RWD 呈現 */}
-          <div 
-            ref={gridRef}
-            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]"
-            style={{
-              paddingTop: `${startIndex * rowHeight}px`,
-              paddingBottom: `${Math.max(0, rows.length - 1 - endIndex) * rowHeight}px`,
-            }}
-          >
-            <AnimatePresence>
+          <div ref={gridContainerRef} className="relative w-full">
+            <div 
+              ref={gridRef}
+              className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]"
+              style={{
+                paddingTop: `${startIndex * rowHeight}px`,
+                paddingBottom: `${Math.max(0, rows.length - 1 - endIndex) * rowHeight}px`,
+              }}
+            >
               {visibleRowItems.map(({ item, index }) => {
                 return (
-                  
                   <motion.div 
-                    layout={isEcoMode ? false : "position"} 
+                    layout={false} 
                     className="relative" 
                     key={item.id}
-                    transition={isEcoMode ? { duration: 0.1 } : {
-                      type: "spring",
-                      stiffness: 180,
-                      damping: 18,
-                      mass: 0.8
-                    }}
                   >
                     {index === 0 && (tutorialStep === 1 || tutorialStep === 2) && (
                       <TutorialTooltip 
@@ -4236,10 +4345,9 @@ export default function App() {
                       isEcoMode={isEcoMode}
                     />
                   </motion.div>
-
                 );
               })}
-            </AnimatePresence>
+            </div>
           </div>
 
           {/* 手動載入更多按鈕與狀態顯示 */}

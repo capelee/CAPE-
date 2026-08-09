@@ -164,6 +164,10 @@ const CatFootprintsSkeleton = ({ theme }: { theme: "dark" | "light" | "sepia" })
 
 const isTouchDevice = typeof window !== "undefined" && window.matchMedia("(pointer: coarse) and (hover: none)").matches;
 
+// Global timestamp tracking when the selected category was last updated
+let lastCategoryChangeTime = Date.now();
+let lastSelectedCategory = "";
+
 export const PortfolioCard = React.memo(function PortfolioCard({ 
   item, 
   onClick, 
@@ -231,8 +235,18 @@ export const PortfolioCard = React.memo(function PortfolioCard({
   }, [index]);
 
   React.useEffect(() => {
+    if (selectedCategory !== lastSelectedCategory) {
+      lastSelectedCategory = selectedCategory || "";
+      lastCategoryChangeTime = Date.now();
+    }
+  }, [selectedCategory]);
+
+  React.useEffect(() => {
     // 模擬從牌堆中飛出：定義隨機且富有秩序感的初始散落/收集座標與傾斜角度
-    if (isEcoMode) {
+    // 只在類別剛切換的 1.5 秒內才發揮排卡 Stagger 動畫，常規滾動時不應有延遲與空白感
+    const isRecentCategoryChange = Date.now() - lastCategoryChangeTime < 1500;
+
+    if (isEcoMode || !isRecentCategoryChange) {
       setShuffleOffset({
         x: 0,
         y: 0,
@@ -269,7 +283,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
     }, dealDelay);
 
     return () => clearTimeout(dealTimer);
-  }, [selectedCategory, index]);
+  }, [selectedCategory, index, isEcoMode]);
   
   
   const shouldReduceMotion = useReducedMotion();
