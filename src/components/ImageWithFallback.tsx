@@ -24,7 +24,7 @@ import { resolveImageUrl, YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, extractDriv
 // Global memory cache for successfully loaded image URLs to prevent reload flashes during virtualization
 const LOADED_IMAGES_CACHE = new Set<string>();
 
-export function ImageWithFallback({ 
+export const ImageWithFallback = React.memo(function ImageWithFallback({ 
   src, 
   alt, 
   className, 
@@ -715,4 +715,4 @@ export function ImageWithFallback({
       )}
     </div>
   );
-}
+});

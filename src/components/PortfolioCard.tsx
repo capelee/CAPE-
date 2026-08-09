@@ -1139,12 +1139,15 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 }, (prevProps, nextProps) => {
   return (
     prevProps.item.id === nextProps.item.id &&
+    prevProps.item === nextProps.item &&
     prevProps.priority === nextProps.priority &&
     prevProps.index === nextProps.index &&
     prevProps.prevVisibleCount === nextProps.prevVisibleCount &&
     prevProps.theme === nextProps.theme &&
     prevProps.showAllDetails === nextProps.showAllDetails &&
     prevProps.onNearBottom === nextProps.onNearBottom &&
-    prevProps.selectedCategory === nextProps.selectedCategory
+    prevProps.selectedCategory === nextProps.selectedCategory &&
+    prevProps.isEcoMode === nextProps.isEcoMode &&
+    prevProps.isFirst === nextProps.isFirst
   );
 });

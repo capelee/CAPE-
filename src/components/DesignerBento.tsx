@@ -115,7 +115,7 @@ interface DesignerBentoProps {
   onGravityRestore?: () => void;
 }
 
-export function DesignerBento({ 
+export const DesignerBento = React.memo(function DesignerBento({ 
   theme, 
   profile, 
   setIsContactCardOpen, 
@@ -785,4 +785,4 @@ export function DesignerBento({
       </div>
     </section>
   );
-}
+});

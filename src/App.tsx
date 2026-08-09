@@ -1309,6 +1309,18 @@ export default function App() {
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [isWorkflowOpen, setIsWorkflowOpen] = useState<boolean>(false);
   const [isContactCardOpen, setIsContactCardOpen] = useState<boolean>(false);
+
+  const handleCardClick = React.useCallback((item: PortfolioItem, index: number) => {
+    if (index === 0) {
+      if (tutorialStep === 1) {
+        nextTutorialStep();
+        nextTutorialStep();
+      } else if (tutorialStep === 2) {
+        nextTutorialStep();
+      }
+    }
+    setActiveModalItem(item);
+  }, [tutorialStep, nextTutorialStep, setActiveModalItem]);
   
   const isJumpingToBentoRef = React.useRef<boolean>(false);
 
@@ -4304,11 +4316,16 @@ export default function App() {
               }}
             >
               {visibleRowItems.map(({ item, index }) => {
+                const handlePortfolioCardClick = () => handleCardClick(item, index);
                 return (
                   <motion.div 
                     layout={false} 
                     className="relative" 
                     key={item.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "60px" }}
+                    transition={{ duration: 0.35, ease: "easeOut", delay: isEcoMode ? 0 : Math.min(index % 6, 6) * 0.03 }}
                   >
                     {index === 0 && (tutorialStep === 1 || tutorialStep === 2) && (
                       <TutorialTooltip 
@@ -4316,7 +4333,7 @@ export default function App() {
                         step={2}
                         text="點開看詳情"
                         theme={deferredTheme}
-                        onClick={() => { if (tutorialStep === 1) { nextTutorialStep(); nextTutorialStep(); } else { nextTutorialStep(); } setActiveModalItem(item); }}
+                        onClick={handlePortfolioCardClick}
                         pointerDirection="top"
                         className="-bottom-14 md:-bottom-16 left-1/2 -translate-x-1/2 z-[100]"
                       />
@@ -4324,17 +4341,7 @@ export default function App() {
                     <PortfolioCard
                       key={item.id}
                       item={item}
-                      onClick={() => {
-                        if (index === 0) {
-                          if (tutorialStep === 1) {
-                            nextTutorialStep();
-                            nextTutorialStep();
-                          } else if (tutorialStep === 2) {
-                            nextTutorialStep();
-                          }
-                        }
-                        setActiveModalItem(item);
-                      }}
+                      onClick={handlePortfolioCardClick}
                       priority={index < 6}
                       index={index}
                       prevVisibleCount={prevVisibleCount}
