@@ -210,8 +210,40 @@ function generateSeoHtml(baseHtml: string, req: express.Request): string {
       imageUrl = selectedItem.imageUrl || imageUrl;
       pageUrl = `${baseUrl}/?item=${encodeURIComponent(selectedItem.id)}`;
     } else if (categoryParam && categoryParam !== "All") {
-      title = `${categoryParam} 系列作品 | Cape Lee 視覺設計作品集`;
-      description = `探索 Cape Lee 的 ${categoryParam} 商業作品與設計提案，展現高質感與視覺原創美學。`;
+      switch (categoryParam) {
+        case "Logo/CIS":
+          title = "Logo/CIS 商業作品集 | Cape Lee 視覺設計";
+          description = "收錄 Cape Lee 專屬標誌設計、CIS 企業識別系統與品牌標誌規劃案例。";
+          break;
+        case "展場 / 擺攤視覺":
+          title = "展場與擺攤視覺設計 | Cape Lee 作品集";
+          description = "收錄 Cape Lee 展場視覺企劃、擺攤主視覺與實體活動場域視覺設計案例。";
+          break;
+        case "包裝 / 平面設計":
+          title = "包裝與平面視覺設計 | Cape Lee 作品集";
+          description = "收錄 Cape Lee 品牌包裝設計、印刷物排版與質感平面設計專案。";
+          break;
+        case "電商 / 廣告視覺":
+          title = "電商與廣告視覺行銷 | Cape Lee 作品集";
+          description = "精選 Cape Lee 電商 Banner、廣告主視覺與高轉換率視覺行銷設計。";
+          break;
+        case "IP / 角色插畫":
+          title = "原創 IP 與角色插畫 | Cape Lee 作品集";
+          description = "探索 Cape Lee 原創角色 IP 創作、吉祥物插畫與視覺角色設計專案。";
+          break;
+        case "影音 / 動畫":
+          title = "影音與動態視覺設計 | Cape Lee 作品集";
+          description = "展示 Cape Lee 影音後製、動態視覺 (Motion Design) 與動畫剪輯案例。";
+          break;
+        case "亮點設計":
+          title = "精選亮點設計作品 | Cape Lee 作品集";
+          description = "精選 Cape Lee 歷年具代表性的商業品牌識別與創作者亮點作品。";
+          break;
+        default:
+          title = `${categoryParam} 系列作品 | Cape Lee 視覺設計作品集`;
+          description = `探索 Cape Lee 的 ${categoryParam} 商業作品與設計提案，展現高質感與視覺原創美學。`;
+          break;
+      }
       pageUrl = `${baseUrl}/?category=${encodeURIComponent(categoryParam)}`;
     }
 
@@ -235,11 +267,78 @@ function generateSeoHtml(baseHtml: string, req: express.Request): string {
     html = html.replace(/<meta\s+property="og:image"\s+content=".*?"\s*\/?>/gi, `<meta property="og:image" content="${imageUrl}" />`);
     html = html.replace(/<meta\s+property="og:url"\s+content=".*?"\s*\/?>/gi, `<meta property="og:url" content="${pageUrl}" />`);
 
+    // Ensure or inject og:image:secure_url, width, height, alt
+    if (html.includes('property="og:image:secure_url"')) {
+      html = html.replace(/<meta\s+property="og:image:secure_url"\s+content=".*?"\s*\/?>/gi, `<meta property="og:image:secure_url" content="${imageUrl}" />`);
+    } else {
+      html = html.replace('</head>', `  <meta property="og:image:secure_url" content="${imageUrl}" />\n</head>`);
+    }
+    if (html.includes('property="og:image:width"')) {
+      html = html.replace(/<meta\s+property="og:image:width"\s+content=".*?"\s*\/?>/gi, `<meta property="og:image:width" content="1200" />`);
+    } else {
+      html = html.replace('</head>', `  <meta property="og:image:width" content="1200" />\n</head>`);
+    }
+    if (html.includes('property="og:image:height"')) {
+      html = html.replace(/<meta\s+property="og:image:height"\s+content=".*?"\s*\/?>/gi, `<meta property="og:image:height" content="630" />`);
+    } else {
+      html = html.replace('</head>', `  <meta property="og:image:height" content="630" />\n</head>`);
+    }
+    if (html.includes('property="og:image:alt"')) {
+      html = html.replace(/<meta\s+property="og:image:alt"\s+content=".*?"\s*\/?>/gi, `<meta property="og:image:alt" content="${esc(title)}" />`);
+    } else {
+      html = html.replace('</head>', `  <meta property="og:image:alt" content="${esc(title)}" />\n</head>`);
+    }
+
     // 5. Replace Twitter
     html = html.replace(/<meta\s+property="twitter:title"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:title" content="${esc(title)}" />`);
     html = html.replace(/<meta\s+property="twitter:description"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${esc(description)}" />`);
     html = html.replace(/<meta\s+property="twitter:image"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${imageUrl}" />`);
     html = html.replace(/<meta\s+property="twitter:url"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:url" content="${pageUrl}" />`);
+
+    // 5.5. Inject SSR BreadcrumbList JSON-LD
+    const breadcrumbItems: any[] = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Cape Lee 作品集",
+        item: `${baseUrl}/`
+      }
+    ];
+
+    if (selectedItem) {
+      const catName = selectedItem.category || "作品分類";
+      breadcrumbItems.push({
+        "@type": "ListItem",
+        position: 2,
+        name: catName,
+        item: `${baseUrl}/?category=${encodeURIComponent(catName)}`
+      });
+      breadcrumbItems.push({
+        "@type": "ListItem",
+        position: 3,
+        name: selectedItem.title,
+        item: pageUrl
+      });
+    } else if (categoryParam && categoryParam !== "All") {
+      breadcrumbItems.push({
+        "@type": "ListItem",
+        position: 2,
+        name: categoryParam,
+        item: pageUrl
+      });
+    }
+
+    const breadcrumbJsonLd = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbItems
+    });
+
+    if (html.includes('id="json-ld-breadcrumb"')) {
+      html = html.replace(/<script\s+id="json-ld-breadcrumb"\s+type="application\/ld\+json">.*?<\/script>/gis, `<script id="json-ld-breadcrumb" type="application/ld+json">${breadcrumbJsonLd}</script>`);
+    } else {
+      html = html.replace('</head>', `  <script id="json-ld-breadcrumb" type="application/ld+json">${breadcrumbJsonLd}</script>\n</head>`);
+    }
 
     // 6. Inject pre-rendered semantic HTML inside <div id="root"></div> for crawlers
     let prerenderContent = "";

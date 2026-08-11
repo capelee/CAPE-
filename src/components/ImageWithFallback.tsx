@@ -20,6 +20,8 @@ import { Image as ImageIcon, Sparkles, ZoomIn, ZoomOut } from "lucide-react";
 import { motion } from "motion/react";
 import { getCategoryColor } from "../categoryColors";
 import { resolveImageUrl, YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, extractDriveId, extractYoutubeId, saveDriveCacheToStorage, saveYtCacheToStorage } from "../utils";
+import { useAdaptivePerformance } from "../hooks/useAdaptivePerformance";
+import { recordImageLoadLatency } from "../utils/adaptivePerformance";
 
 // Global memory cache for successfully loaded image URLs to prevent reload flashes during virtualization
 const LOADED_IMAGES_CACHE = new Set<string>();
@@ -42,9 +44,13 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
 }: ImageWithFallbackProps) {
   const isPreLoaded = src ? LOADED_IMAGES_CACHE.has(src) : false;
 
+  const perfState = useAdaptivePerformance();
+
   const [isInView, setIsInView] = useState<boolean>(priority || !lazy || isPreLoaded);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState<number>(optimizeSize || 600);
+  const [containerWidth, setContainerWidth] = useState<number>(() => {
+    return optimizeSize || Math.min(600, perfState.imageOptimizeMax);
+  });
 
   React.useEffect(() => {
     if (!containerRef.current) return;
@@ -134,8 +140,8 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
       setIsInView(true);
       return;
     }
-    // High-performance offscreen pre-fetching system:
-    // Triggers image loading when scrolling within 600px of viewport to maximize cached delivery
+    // Dynamic Adaptive Performance offscreen pre-fetching system:
+    // Uses perfState.lazyRootMargin (e.g. 180px under low-end/slow connection to conserve RAM, 650px under high performance)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -146,7 +152,7 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
         });
       },
       {
-        rootMargin: "650px", // Early fetch margin to avoid layout flashes
+        rootMargin: perfState.lazyRootMargin,
         threshold: 0.001,
       }
     );
@@ -158,14 +164,14 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
     return () => {
       observer.disconnect();
     };
-  }, [lazy, priority, src]);
+  }, [lazy, priority, src, perfState.lazyRootMargin]);
 
   // Track load start time to measure performance
   const loadStartTimeRef = React.useRef<number>(0);
 
   React.useEffect(() => {
     if (isInView) {
-      const targetSize = optimizeSize || containerWidth;
+      const targetSize = optimizeSize || Math.min(containerWidth, perfState.imageOptimizeMax);
       const resolved = resolveImageUrl(src, targetSize);
       if (currentSrc === resolved) {
         return;
@@ -177,14 +183,14 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
       setIsLoaded(isAlreadyCached);
       loadStartTimeRef.current = performance.now();
       
-      console.log(`%c[ImageWithFallback:INIT]%c Loading image for [%c${titleText || alt}%c] (size: ${targetSize}px)\nSource: ${resolved}`, 
+      console.log(`%c[ImageWithFallback:INIT]%c Loading image for [%c${titleText || alt}%c] (size: ${targetSize}px, rootMargin: ${perfState.lazyRootMargin})\nSource: ${resolved}`, 
         "color: #10B981; font-weight: bold;", 
         "color: inherit;", 
         "color: #F59E0B; font-weight: bold;", 
         "color: inherit;"
       );
     }
-  }, [src, optimizeSize, containerWidth, isInView, titleText, alt, currentSrc]);
+  }, [src, optimizeSize, containerWidth, isInView, titleText, alt, currentSrc, perfState.imageOptimizeMax, perfState.lazyRootMargin]);
 
   const handleYoutubeFallback = (img: HTMLImageElement) => {
     const isYoutube = img.src.includes("youtube.com") || img.src.includes("img.youtube.com") || img.src.includes("ytimg.com");
@@ -259,8 +265,10 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
       onLoad();
     }
     
-    // Performance metrics
+    // Performance metrics & feed into Adaptive Performance Engine
     const loadTime = performance.now() - loadStartTimeRef.current;
+    recordImageLoadLatency(loadTime);
+
     if (loadTime > 1000 || img.naturalWidth > 1920) {
       console.warn(`%c[ImageWithFallback:PERF_WARN]%c Image [%c${titleText || alt}%c] may impact performance.\nLoad Time: ${loadTime.toFixed(1)}ms | Dimensions: ${img.naturalWidth}x${img.naturalHeight}px`,
         "color: #EF4444; font-weight: bold;",

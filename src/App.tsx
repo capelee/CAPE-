@@ -1,6 +1,7 @@
 import { useTutorial } from './context/TutorialContext';
 import { TutorialTooltip } from './components/TutorialTooltip';
 import { ScrambleText } from './components/ScrambleText';
+import { useAdaptivePerformance } from './hooks/useAdaptivePerformance';
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { 
@@ -1073,13 +1074,14 @@ export default function App() {
     }
   }, [tutorialStep, nextTutorialStep]);
 
+  const perfState = useAdaptivePerformance();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [tutorialDismissed5, setTutorialDismissed5] = useState(false);
   const [tutorialDismissed6, setTutorialDismissed6] = useState(false);
   const [tutorialDismissed7, setTutorialDismissed7] = useState(false);
   const [tutorialDismissed8, setTutorialDismissed8] = useState(false);
   const [searchInputVal, setSearchInputVal] = useState<string>("");
-  const [visibleCount, setVisibleCount] = useState<number>(50);
+  const [visibleCount, setVisibleCount] = useState<number>(() => perfState.visibleBatchSize);
   const [prevVisibleCount, setPrevVisibleCount] = useState<number>(0);
 
   // Keep searchInputVal in sync with searchQuery if changed externally (e.g., cleared)
@@ -1099,9 +1101,9 @@ export default function App() {
 
   // Automatically reset visibleCount when category or search query is changed to improve rendering load
   React.useEffect(() => {
-    setVisibleCount(50);
+    setVisibleCount(perfState.visibleBatchSize);
     setPrevVisibleCount(0);
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, perfState.visibleBatchSize]);
 
   // Dynamically inject Schema.org JSON-LD structured data (CreativeWork) for SEO
   React.useEffect(() => {
@@ -1113,21 +1115,30 @@ export default function App() {
           "@type": "CreativeWork",
           "@id": `${origin}/#project-${item.id}`,
           "name": item.title,
-          "alternateName": item.titleEn,
+          "alternateName": item.titleEn || item.title,
           "description": item.philosophy,
           "image": item.imageUrl,
           "genre": item.category,
+          "inLanguage": "zh-TW",
           "creator": {
             "@type": "Person",
             "name": "李凱博 (Cape Lee)",
             "alternateName": "Cape Lee",
             "email": "capelee0715@gmail.com",
-            "jobTitle": "Designer & Creative Specialist"
+            "jobTitle": "Designer & Creative Specialist",
+            "url": origin,
+            "sameAs": [
+              "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
+            ]
           },
           "publisher": {
-            "@type": "ProfilePage",
-            "name": "李凱博 (Cape Lee) - Creative Showcase",
-            "url": origin
+            "@type": "Organization",
+            "name": "Cape Lee Visual Design Studio",
+            "url": origin,
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
+            }
           },
           "keywords": item.tools.join(", "),
           "thumbnailUrl": item.imageUrl
@@ -1355,6 +1366,42 @@ export default function App() {
       // ignore
     }
   }, [activeModalItem, selectedCategory]);
+
+  const [isCategoryLinkCopied, setIsCategoryLinkCopied] = React.useState(false);
+
+  const handleShareCategoryLink = React.useCallback(async (catParam?: string) => {
+    const targetCat = catParam || selectedCategory;
+    if (!targetCat || targetCat === "All") return;
+
+    const shareUrl = `https://cape-eight.vercel.app/?category=${encodeURIComponent(targetCat)}`;
+    const shareTitle = `${targetCat} 設計作品 | Cape Lee 作品集`;
+    const shareText = `探索 Cape Lee 的 ${targetCat} 專屬視覺設計作品案例`;
+
+    if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+      try {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText,
+          url: shareUrl,
+        });
+        return;
+      } catch (err) {
+        if ((err as Error)?.name === "AbortError") {
+          return;
+        }
+      }
+    }
+
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setIsCategoryLinkCopied(true);
+        setTimeout(() => setIsCategoryLinkCopied(false), 2500);
+      } catch (err) {
+        // ignore
+      }
+    }
+  }, [selectedCategory]);
 
   const handleCardClick = React.useCallback((item: PortfolioItem, index: number) => {
     if (index === 0) {
@@ -4075,13 +4122,48 @@ export default function App() {
               </h2>
               <div className="flex flex-col items-center gap-3 pt-1">
                 <div className="h-[2px] w-12 bg-amber-500 rounded-full"></div>
-                <div className={`text-[12px] sm:text-[13px] font-medium tracking-wider flex items-center justify-center gap-2 sm:gap-3 ${
+                <div className={`text-[12px] sm:text-[13px] font-medium tracking-wider flex items-center justify-center gap-2 sm:gap-3 flex-wrap ${
                   theme === "sepia" ? "text-[#8A5A32]/90" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
                 }`}>
                   <span className="flex items-center gap-1.5"><SlidersHorizontal className="w-3.5 h-3.5" /> 切換分類</span>
                   <span className="opacity-30">|</span>
                   <span className="flex items-center gap-1.5"><MousePointerClick className="w-3.5 h-3.5" /> 點擊卡片查看詳細資訊</span>
                 </div>
+
+                {selectedCategory && selectedCategory !== "All" && (
+                  <div className="relative inline-flex items-center mt-0.5">
+                    <AnimatePresence>
+                      {isCategoryLinkCopied && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 6, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2 z-50 pointer-events-none whitespace-nowrap bg-zinc-800/95 text-emerald-400 font-medium text-xs px-2.5 py-1 rounded-md shadow-xl flex items-center gap-1.5 border border-emerald-500/30 backdrop-blur-sm"
+                        >
+                          <Check className="h-3.5 w-3.5 text-emerald-400" />
+                          <span>已複製「{selectedCategory}」分類鏈結</span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <button
+                      type="button"
+                      onClick={() => handleShareCategoryLink()}
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 border flex items-center gap-1.5 cursor-pointer active:scale-95 ${
+                        theme === "sepia"
+                          ? "bg-[#FAF4E5] hover:bg-[#F3DFBD] text-[#8A5A32] border-[#EADECC]"
+                          : theme === "light"
+                          ? "bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200/80"
+                          : "bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border-amber-500/20"
+                      }`}
+                      title={`分享「${selectedCategory}」分類作品網址`}
+                    >
+                      <Share2 className="w-3.5 h-3.5" />
+                      <span>分享「{selectedCategory}」分類網址</span>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 

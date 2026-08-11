@@ -71,14 +71,36 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
   const [isLinkCopied, setIsLinkCopied] = useState<boolean>(false);
 
-  const handleCopyShareLink = () => {
+  const handleCopyShareLink = async () => {
     if (!activeModalItem) return;
     const shareUrl = `https://cape-eight.vercel.app/?item=${encodeURIComponent(activeModalItem.id)}`;
+
+    // 1. 優先觸發 Web Share API (原生手機/平板分享選單：轉發至 LINE、Messenger、AirDrop 等)
+    if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+      try {
+        await navigator.share({
+          title: `${activeModalItem.title} | Cape Lee 作品集`,
+          text: activeModalItem.philosophy ? activeModalItem.philosophy.slice(0, 100) : "Cape Lee 商業視覺設計作品",
+          url: shareUrl,
+        });
+        return; // 使用者調用原生分享成功，直接返回
+      } catch (err) {
+        // 若使用者在原生分享面板點擊「取消」(AbortError)，則安靜退出不強制跳複製提示
+        if ((err as Error)?.name === "AbortError") {
+          return;
+        }
+      }
+    }
+
+    // 2. 電腦版不支援或原生分享降級：自動複製網址至剪貼簿，並顯示浮動「已複製鏈結」
     if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(shareUrl).then(() => {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
         setIsLinkCopied(true);
         setTimeout(() => setIsLinkCopied(false), 2500);
-      }).catch(() => {});
+      } catch (err) {
+        // ignore fallback errors
+      }
     }
   };
 

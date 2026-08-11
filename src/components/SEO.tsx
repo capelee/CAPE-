@@ -25,8 +25,40 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
       imageUrl = activeItem.imageUrl || DEFAULT_IMAGE;
       pageUrl = `${BASE_URL}/?item=${encodeURIComponent(activeItem.id)}`;
     } else if (activeCategory && activeCategory !== "All") {
-      title = `${activeCategory} 設計作品 | Cape Lee 作品集`;
-      description = `探索 Cape Lee 的 ${activeCategory} 系列商業設計作品，涵蓋精選品牌視覺與視覺企劃。`;
+      switch (activeCategory) {
+        case "Logo/CIS":
+          title = "Logo/CIS 商業作品集 | Cape Lee 視覺設計";
+          description = "收錄 Cape Lee 專屬標誌設計、CIS 企業識別系統與品牌標誌規劃案例。";
+          break;
+        case "展場 / 擺攤視覺":
+          title = "展場與擺攤視覺設計 | Cape Lee 作品集";
+          description = "收錄 Cape Lee 展場視覺企劃、擺攤主視覺與實體活動場域視覺設計案例。";
+          break;
+        case "包裝 / 平面設計":
+          title = "包裝與平面視覺設計 | Cape Lee 作品集";
+          description = "收錄 Cape Lee 品牌包裝設計、印刷物排版與質感平面設計專案。";
+          break;
+        case "電商 / 廣告視覺":
+          title = "電商與廣告視覺行銷 | Cape Lee 作品集";
+          description = "精選 Cape Lee 電商 Banner、廣告主視覺與高轉換率視覺行銷設計。";
+          break;
+        case "IP / 角色插畫":
+          title = "原創 IP 與角色插畫 | Cape Lee 作品集";
+          description = "探索 Cape Lee 原創角色 IP 創作、吉祥物插畫與視覺角色設計專案。";
+          break;
+        case "影音 / 動畫":
+          title = "影音與動態視覺設計 | Cape Lee 作品集";
+          description = "展示 Cape Lee 影音後製、動態視覺 (Motion Design) 與動畫剪輯案例。";
+          break;
+        case "亮點設計":
+          title = "精選亮點設計作品 | Cape Lee 作品集";
+          description = "精選 Cape Lee 歷年具代表性的商業品牌識別與創作者亮點作品。";
+          break;
+        default:
+          title = `${activeCategory} 設計作品 | Cape Lee 作品集`;
+          description = `探索 Cape Lee 的 ${activeCategory} 系列商業設計作品，涵蓋精選品牌視覺與視覺企劃。`;
+          break;
+      }
       pageUrl = `${BASE_URL}/?category=${encodeURIComponent(activeCategory)}`;
     } else if (searchQuery && searchQuery.trim()) {
       title = `搜尋：「${searchQuery.trim()}」| Cape Lee 作品集`;
@@ -67,15 +99,21 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
     setMeta('meta[property="og:title"]', 'property', 'og:title', title);
     setMeta('meta[property="og:description"]', 'property', 'og:description', description);
     setMeta('meta[property="og:image"]', 'property', 'og:image', imageUrl);
+    setMeta('meta[property="og:image:secure_url"]', 'property', 'og:image:secure_url', imageUrl);
+    setMeta('meta[property="og:image:width"]', 'property', 'og:image:width', '1200');
+    setMeta('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
+    setMeta('meta[property="og:image:alt"]', 'property', 'og:image:alt', title);
     setMeta('meta[property="og:url"]', 'property', 'og:url', pageUrl);
 
     // 4. Twitter Cards
+    setMeta('meta[property="twitter:card"]', 'property', 'twitter:card', 'summary_large_image');
     setMeta('meta[property="twitter:title"]', 'property', 'twitter:title', title);
     setMeta('meta[property="twitter:description"]', 'property', 'twitter:description', description);
     setMeta('meta[property="twitter:image"]', 'property', 'twitter:image', imageUrl);
+    setMeta('meta[property="twitter:image:alt"]', 'property', 'twitter:image:alt', title);
     setMeta('meta[property="twitter:url"]', 'property', 'twitter:url', pageUrl);
 
-    // 5. JSON-LD Structured Data
+    // 5. JSON-LD Main Structured Data
     let jsonLdScript = document.getElementById("json-ld-seo") as HTMLScriptElement | null;
     if (!jsonLdScript) {
       jsonLdScript = document.createElement("script");
@@ -93,11 +131,29 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
         "description": activeItem.philosophy || DEFAULT_DESC,
         "image": activeItem.imageUrl,
         "url": pageUrl,
+        "mainEntityOfPage": pageUrl,
+        "inLanguage": "zh-TW",
         "creator": {
           "@type": "Person",
-          "name": "Cape Lee",
-          "jobTitle": "Brand & Visual Designer"
+          "name": "李凱博 (Cape Lee)",
+          "alternateName": "Cape Lee",
+          "jobTitle": "Brand & Visual Designer",
+          "email": "capelee0715@gmail.com",
+          "url": BASE_URL,
+          "sameAs": [
+            "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
+          ]
         },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Cape Lee Visual Design Studio",
+          "url": BASE_URL,
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
+          }
+        },
+        "artForm": "Graphic Design",
         "artMedium": activeItem.tools ? activeItem.tools.join(", ") : "Digital Design",
         "category": activeItem.category,
         "aggregateRating": {
@@ -127,9 +183,10 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
       jsonLdScript.text = JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Cape Lee",
-        "alternateName": "Cape Lee Portfolio",
+        "name": "李凱博 (Cape Lee)",
+        "alternateName": "Cape Lee",
         "jobTitle": "Senior Brand & Visual Designer",
+        "email": "capelee0715@gmail.com",
         "url": BASE_URL,
         "image": DEFAULT_IMAGE,
         "sameAs": [
@@ -152,10 +209,63 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
         },
         "workExample": {
           "@type": "CreativeWork",
-          "name": "Cape Lee Visual Design Portfolio"
+          "name": "Cape Lee Visual Design Portfolio",
+          "url": BASE_URL
         }
       });
     }
+
+    // 6. JSON-LD BreadcrumbList Structured Data
+    let breadcrumbScript = document.getElementById("json-ld-breadcrumb") as HTMLScriptElement | null;
+    if (!breadcrumbScript) {
+      breadcrumbScript = document.createElement("script");
+      breadcrumbScript.id = "json-ld-breadcrumb";
+      breadcrumbScript.type = "application/ld+json";
+      document.head.appendChild(breadcrumbScript);
+    }
+
+    const breadcrumbListItems: Array<{
+      "@type": string;
+      position: number;
+      name: string;
+      item: string;
+    }> = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Cape Lee 作品集",
+        item: `${BASE_URL}/`
+      }
+    ];
+
+    if (activeItem) {
+      const catName = activeItem.category || "作品分類";
+      breadcrumbListItems.push({
+        "@type": "ListItem",
+        position: 2,
+        name: catName,
+        item: `${BASE_URL}/?category=${encodeURIComponent(catName)}`
+      });
+      breadcrumbListItems.push({
+        "@type": "ListItem",
+        position: 3,
+        name: activeItem.title,
+        item: pageUrl
+      });
+    } else if (activeCategory && activeCategory !== "All") {
+      breadcrumbListItems.push({
+        "@type": "ListItem",
+        position: 2,
+        name: activeCategory,
+        item: pageUrl
+      });
+    }
+
+    breadcrumbScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbListItems
+    });
 
   }, [activeItem, activeCategory, searchQuery]);
 
