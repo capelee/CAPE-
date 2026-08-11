@@ -186,6 +186,165 @@ const responseSchema = {
   ]
 };
 
+// Helper to generate dynamic HTML with custom OpenGraph / SEO tags & pre-rendered fallback HTML
+function generateSeoHtml(baseHtml: string, req: express.Request): string {
+  try {
+    const items = getLatestPortfolioData();
+    const itemId = (req.query.item || req.query.id || "") as string;
+    const categoryParam = (req.query.category || "") as string;
+
+    const baseUrl = "https://cape-eight.vercel.app";
+    let title = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
+    let description = "Cape Lee 5~6 年商業實戰經驗，專注於品牌識別 (CIS)、視覺設計、電商視覺與原創角色 IP 插畫。";
+    let imageUrl = "https://drive.google.com/thumbnail?sz=w1200&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri";
+    let pageUrl = `${baseUrl}${req.originalUrl || "/"}`;
+
+    let selectedItem: any = null;
+    if (itemId) {
+      selectedItem = items.find((i: any) => i.id === itemId);
+    }
+
+    if (selectedItem) {
+      title = `${selectedItem.title} | Cape Lee 品牌視覺與角色 IP 設計作品集`;
+      description = selectedItem.philosophy || description;
+      imageUrl = selectedItem.imageUrl || imageUrl;
+      pageUrl = `${baseUrl}/?item=${encodeURIComponent(selectedItem.id)}`;
+    } else if (categoryParam && categoryParam !== "All") {
+      title = `${categoryParam} 系列作品 | Cape Lee 視覺設計作品集`;
+      description = `探索 Cape Lee 的 ${categoryParam} 商業作品與設計提案，展現高質感與視覺原創美學。`;
+      pageUrl = `${baseUrl}/?category=${encodeURIComponent(categoryParam)}`;
+    }
+
+    // Escape helper for safe attribute injection
+    const esc = (str: string) => (str || "").replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    let html = baseHtml;
+    // 1. Replace Title
+    html = html.replace(/<title>.*?<\/title>/gi, `<title>${esc(title)}</title>`);
+    html = html.replace(/<meta\s+name="title"\s+content=".*?"\s*\/?>/gi, `<meta name="title" content="${esc(title)}" />`);
+
+    // 2. Replace Description
+    html = html.replace(/<meta\s+name="description"\s+content=".*?"\s*\/?>/gi, `<meta name="description" content="${esc(description)}" />`);
+
+    // 3. Replace Canonical
+    html = html.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/gi, `<link rel="canonical" href="${pageUrl}" />`);
+
+    // 4. Replace OpenGraph
+    html = html.replace(/<meta\s+property="og:title"\s+content=".*?"\s*\/?>/gi, `<meta property="og:title" content="${esc(title)}" />`);
+    html = html.replace(/<meta\s+property="og:description"\s+content=".*?"\s*\/?>/gi, `<meta property="og:description" content="${esc(description)}" />`);
+    html = html.replace(/<meta\s+property="og:image"\s+content=".*?"\s*\/?>/gi, `<meta property="og:image" content="${imageUrl}" />`);
+    html = html.replace(/<meta\s+property="og:url"\s+content=".*?"\s*\/?>/gi, `<meta property="og:url" content="${pageUrl}" />`);
+
+    // 5. Replace Twitter
+    html = html.replace(/<meta\s+property="twitter:title"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:title" content="${esc(title)}" />`);
+    html = html.replace(/<meta\s+property="twitter:description"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${esc(description)}" />`);
+    html = html.replace(/<meta\s+property="twitter:image"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${imageUrl}" />`);
+    html = html.replace(/<meta\s+property="twitter:url"\s+content=".*?"\s*\/?>/gi, `<meta property="twitter:url" content="${pageUrl}" />`);
+
+    // 6. Inject pre-rendered semantic HTML inside <div id="root"></div> for crawlers
+    let prerenderContent = "";
+    if (selectedItem) {
+      prerenderContent = `
+        <div style="padding: 24px; font-family: sans-serif; max-width: 900px; margin: 0 auto; color: #1e293b; background: #ffffff;">
+          <nav style="margin-bottom: 20px;"><a href="${baseUrl}" style="color: #2563eb; text-decoration: none;">← 返回 Cape Lee 作品集首頁</a></nav>
+          <article>
+            <span style="font-size: 14px; color: #64748b; font-weight: bold;">${esc(selectedItem.category)}</span>
+            <h1 style="font-size: 28px; margin: 10px 0;">${esc(selectedItem.title)}</h1>
+            ${selectedItem.titleEn ? `<h2 style="font-size: 18px; color: #64748b; margin-bottom: 15px;">${esc(selectedItem.titleEn)}</h2>` : ""}
+            <div style="margin: 20px 0;">
+              <img src="${selectedItem.imageUrl}" alt="${esc(selectedItem.title)}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            </div>
+            <section style="margin-top: 20px;">
+              <h3 style="font-size: 20px; color: #0f172a;">設計理念</h3>
+              <p style="font-size: 16px; line-height: 1.7; color: #334155;">${esc(selectedItem.philosophy)}</p>
+            </section>
+            ${selectedItem.tools && selectedItem.tools.length ? `<p style="margin-top: 15px; font-size: 14px; color: #475569;"><strong>使用工具 / 技術手法：</strong> ${selectedItem.tools.map(esc).join(", ")}</p>` : ""}
+            ${selectedItem.link ? `<p style="margin-top: 15px;"><a href="${selectedItem.link}" target="_blank" rel="noopener noreferrer" style="color: #2563eb;">外部專案連結</a></p>` : ""}
+          </article>
+        </div>
+      `;
+    } else {
+      const topItems = items.slice(0, 30);
+      prerenderContent = `
+        <div style="padding: 24px; font-family: sans-serif; max-width: 1000px; margin: 0 auto; color: #1e293b; background: #ffffff;">
+          <header style="margin-bottom: 30px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px;">
+            <h1 style="font-size: 32px; color: #0f172a; margin-bottom: 10px;">Cape Lee 作品集 | 品牌視覺與角色 IP 設計</h1>
+            <p style="font-size: 16px; color: #475569; line-height: 1.6;">Cape Lee 5~6 年商業實戰經驗，專注於品牌識別 (CIS)、視覺設計、電商視覺與原創角色 IP 插畫。</p>
+          </header>
+          <main>
+            <section>
+              <h2 style="font-size: 22px; color: #1e293b; margin-bottom: 15px;">精選商業設計作品 (${items.length} 項專案)</h2>
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                ${topItems.map((item: any) => `
+                  <article style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background: #f8fafc;">
+                    <span style="font-size: 12px; color: #64748b; font-weight: bold;">${esc(item.category)}</span>
+                    <h3 style="font-size: 18px; margin: 8px 0;"><a href="${baseUrl}/?item=${encodeURIComponent(item.id)}" style="color: #0f172a; text-decoration: none;">${esc(item.title)}</a></h3>
+                    <p style="font-size: 14px; color: #475569; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${esc(item.philosophy)}</p>
+                  </article>
+                `).join("")}
+              </div>
+            </section>
+          </main>
+        </div>
+      `;
+    }
+
+    html = html.replace('<div id="root"></div>', `<div id="root">${prerenderContent}</div>`);
+    return html;
+  } catch (e) {
+    console.error("Error generating SEO HTML:", e);
+    return baseHtml;
+  }
+}
+
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send(`User-agent: *\nAllow: /\nSitemap: https://cape-eight.vercel.app/sitemap.xml\n`);
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  try {
+    const items = getLatestPortfolioData();
+    const baseUrl = "https://cape-eight.vercel.app";
+    const categories = Array.from(new Set(items.map((i: any) => i.category))).filter(Boolean);
+
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
+
+    // Root URL
+    xml += `  <url>\n    <loc>${baseUrl}/</loc>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+
+    // Category URLs
+    categories.forEach((cat: any) => {
+      xml += `  <url>\n    <loc>${baseUrl}/?category=${encodeURIComponent(cat)}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+    });
+
+    // Individual Item URLs with Image Sitemap tags
+    items.forEach((item: any) => {
+      xml += `  <url>\n`;
+      xml += `    <loc>${baseUrl}/?item=${encodeURIComponent(item.id)}</loc>\n`;
+      xml += `    <changefreq>monthly</changefreq>\n`;
+      xml += `    <priority>0.7</priority>\n`;
+      if (item.imageUrl) {
+        const safeImg = item.imageUrl.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeTitle = (item.title || "").replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        xml += `    <image:image>\n`;
+        xml += `      <image:loc>${safeImg}</image:loc>\n`;
+        xml += `      <image:title>${safeTitle}</image:title>\n`;
+        xml += `    </image:image>\n`;
+      }
+      xml += `  </url>\n`;
+    });
+
+    xml += `</urlset>`;
+
+    res.header("Content-Type", "application/xml");
+    res.send(xml);
+  } catch (err: any) {
+    res.status(500).send("Error generating sitemap");
+  }
+});
+
 app.get("/api/portfolio", (req, res) => {
   try {
     // Explicitly disable any caching on client, CDN, and browser levels
@@ -309,12 +468,38 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: "spa",
     });
+
+    app.use(async (req, res, next) => {
+      // Intercept root/HTML requests to serve dynamically transformed SEO HTML
+      if (req.method === "GET" && (req.headers.accept || "").includes("text/html") && !req.path.startsWith("/api") && !req.path.includes(".")) {
+        try {
+          const rawHtml = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
+          const transformedHtml = await vite.transformIndexHtml(req.originalUrl, rawHtml);
+          const seoHtml = generateSeoHtml(transformedHtml, req);
+          res.status(200).set({ "Content-Type": "text/html" }).end(seoHtml);
+          return;
+        } catch (e) {
+          vite.ssrFixStacktrace(e as Error);
+          next(e);
+          return;
+        }
+      }
+      next();
+    });
+
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+    app.use(express.static(distPath, { index: false }));
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      const indexPath = path.join(distPath, "index.html");
+      if (fs.existsSync(indexPath)) {
+        const rawHtml = fs.readFileSync(indexPath, "utf8");
+        const seoHtml = generateSeoHtml(rawHtml, req);
+        res.status(200).set({ "Content-Type": "text/html" }).end(seoHtml);
+      } else {
+        res.status(404).send("index.html not found");
+      }
     });
   }
 

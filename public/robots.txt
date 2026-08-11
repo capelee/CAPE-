@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cape-eight.vercel.app/sitemap.xml

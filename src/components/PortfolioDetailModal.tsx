@@ -9,7 +9,9 @@ import {
   Video, 
   Maximize2, 
   Minimize2, 
-  ExternalLink 
+  ExternalLink,
+  Share2,
+  Check
 } from "lucide-react";
 import { PortfolioItem } from "../types";
 import { ImageWithFallback } from "./ImageWithFallback";
@@ -67,10 +69,24 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
 
+  const [isLinkCopied, setIsLinkCopied] = useState<boolean>(false);
+
+  const handleCopyShareLink = () => {
+    if (!activeModalItem) return;
+    const shareUrl = `https://cape-eight.vercel.app/?item=${encodeURIComponent(activeModalItem.id)}`;
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        setIsLinkCopied(true);
+        setTimeout(() => setIsLinkCopied(false), 2500);
+      }).catch(() => {});
+    }
+  };
+
   // Reset states when item changes
   useEffect(() => {
     setActiveImageUrl(null);
     setIsVideoActive(false);
+    setIsLinkCopied(false);
     setWaterfallMode(
       activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計"
         ? "stitch"
@@ -569,27 +585,50 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
               </div>
 
               {/* 底部行動 (靜態不滾動) */}
-              <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-end gap-3 shrink-0">
-                <div className="flex items-center gap-2">
-                  {activeModalItem.link && (
-                    <a
-                      href={activeModalItem.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-1.5 text-xs font-semibold text-black bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 rounded-lg transition duration-200 flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>前往作品</span>
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  )}
+              <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between gap-3 shrink-0">
+                <div className="relative">
+                  <AnimatePresence>
+                    {isLinkCopied && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute bottom-full mb-2 left-0 z-50 pointer-events-none whitespace-nowrap bg-zinc-800/95 text-emerald-400 font-medium text-xs px-2.5 py-1 rounded-md shadow-xl flex items-center gap-1.5 border border-emerald-500/30 backdrop-blur-sm"
+                      >
+                        <Check className="h-3.5 w-3.5 text-emerald-400" />
+                        <span>已複製鏈結</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   <button
                     type="button"
-                    onClick={onClose}
-                    className="px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/5 cursor-pointer"
+                    onClick={handleCopyShareLink}
+                    className="p-2.5 text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 active:scale-95 rounded-lg transition border border-white/10 flex items-center justify-center cursor-pointer shrink-0"
+                    title={isLinkCopied ? "已複製作品連結！" : "分享作品卡片"}
+                    aria-label={isLinkCopied ? "已複製作品連結" : "分享作品卡片"}
                   >
-                    關閉回列表
+                    {isLinkCopied ? (
+                      <Check className="h-4 w-4 text-emerald-400" />
+                    ) : (
+                      <Share2 className="h-4 w-4 text-amber-400" />
+                    )}
                   </button>
                 </div>
+
+                {activeModalItem.link && (
+                  <a
+                    href={activeModalItem.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 text-black bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 active:scale-95 rounded-lg transition duration-200 flex items-center justify-center cursor-pointer shrink-0"
+                    title="前往作品外部連結"
+                    aria-label="前往作品外部連結"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
               </div>
 
             </div>

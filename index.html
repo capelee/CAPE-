@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,9 @@
     <meta name="title" content="Cape Lee 作品集 | 品牌視覺與角色 IP 設計" />
     <meta name="description" content="Cape Lee 5~6 年商業實戰經驗，專注於品牌識別 (CIS)、視覺設計、電商視覺與原創角色 IP 插畫。" />
     <meta name="author" content="Cape Lee" />
+    <meta name="keywords" content="Cape Lee, 視覺設計, 品牌識別, CIS設計, 原創IP, 角色插畫, 包裝設計, 電商視覺, 設計師作品集" />
+    <meta name="prerender-status-code" content="200" />
+    <link rel="canonical" href="https://cape-eight.vercel.app/" />
 
     <!-- Open Graph / Facebook / LINE -->
     <meta property="og:type" content="website" />
@@ -35,6 +38,26 @@
     <meta property="twitter:title" content="Cape Lee 作品集 | 品牌視覺與角色 IP 設計" />
     <meta property="twitter:description" content="5~6 年商業實戰經驗，專注於品牌識別 (CIS)、視覺設計、電商視覺與原創角色 IP 插畫。" />
     <meta property="twitter:image" content="https://drive.google.com/thumbnail?sz=w1200&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri" />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" id="json-ld-seo">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Cape Lee",
+      "jobTitle": "Senior Brand & Visual Designer",
+      "url": "https://cape-eight.vercel.app/",
+      "image": "https://drive.google.com/thumbnail?sz=w1200&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri",
+      "knowsAbout": [
+        "企業LOGO與CIS設計",
+        "包裝視覺與平面設計",
+        "電商與社群視覺行銷",
+        "原創角色 IP 與插畫",
+        "影音與多媒體設計",
+        "網站產品瀑布頁"
+      ]
+    }
+    </script>
 
     <!-- Theme Color for Mobile Safari/Chrome -->
     <meta name="theme-color" content="#0f172a" />
@@ -64,7 +87,32 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- SEO & Static Fallback Prerender Content -->
+      <header>
+        <h1>Cape Lee 作品集 | 品牌視覺與角色 IP 設計</h1>
+        <p>5~6 年商業實戰經驗，專注於品牌識別 (CIS)、視覺設計、電商視覺與原創角色 IP 插畫。</p>
+        <nav aria-label="作品分類選單">
+          <ul>
+            <li><a href="/?category=亮點設計">亮點設計</a></li>
+            <li><a href="/?category=Logo%2FCIS">Logo/CIS</a></li>
+            <li><a href="/?category=插畫繪圖">插畫繪圖</a></li>
+            <li><a href="/?category=包裝設計">包裝設計</a></li>
+            <li><a href="/?category=電商視覺">電商視覺</a></li>
+            <li><a href="/?category=角色IP">角色IP</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section id="portfolio-grid" aria-label="作品集展示">
+          <h2>精選商業視覺作品</h2>
+          <article>
+            <h3>Cape Lee 品牌視覺與視覺企劃區塊</h3>
+            <p>包含多項 CIS 企業識別、包裝設計、電商視覺與原創 IP 角色概念。</p>
+          </article>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

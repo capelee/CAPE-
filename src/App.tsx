@@ -63,6 +63,7 @@ import { animaleseSynth } from "./utils/animalese";
 import { playMeowSound, playCanClinkSound, catPurr, audioContextManager, playCardFlipSound, playPawPopSound, playRareClickSound } from "./utils/audioEffects";
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
+import { SEO } from './components/SEO';
 
 interface CategoryButtonProps {
   cat: string;
@@ -1309,6 +1310,51 @@ export default function App() {
   const [activeModalItem, setActiveModalItem] = useState<PortfolioItem | null>(null);
   const [isWorkflowOpen, setIsWorkflowOpen] = useState<boolean>(false);
   const [isContactCardOpen, setIsContactCardOpen] = useState<boolean>(false);
+
+  // Deep-linking & URL sync for SEO / Social sharing
+  const isInitialUrlCheckRef = React.useRef<boolean>(false);
+  React.useEffect(() => {
+    if (items.length > 0 && !isInitialUrlCheckRef.current) {
+      isInitialUrlCheckRef.current = true;
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const itemParam = params.get("item") || params.get("id");
+        const categoryParam = params.get("category");
+
+        if (itemParam) {
+          const found = items.find(i => i.id === itemParam);
+          if (found) {
+            setActiveModalItem(found);
+          }
+        } else if (categoryParam) {
+          setSelectedCategory(categoryParam);
+        }
+      } catch (e) {
+        console.error("Error parsing URL search params:", e);
+      }
+    }
+  }, [items]);
+
+  // Sync current modal item or selected category into URL search parameters
+  React.useEffect(() => {
+    if (!isInitialUrlCheckRef.current) return;
+    try {
+      const url = new URL(window.location.href);
+      if (activeModalItem) {
+        url.searchParams.set("item", activeModalItem.id);
+        url.searchParams.delete("category");
+      } else if (selectedCategory && selectedCategory !== "All") {
+        url.searchParams.set("category", selectedCategory);
+        url.searchParams.delete("item");
+      } else {
+        url.searchParams.delete("item");
+        url.searchParams.delete("category");
+      }
+      window.history.replaceState(null, "", url.toString());
+    } catch (e) {
+      // ignore
+    }
+  }, [activeModalItem, selectedCategory]);
 
   const handleCardClick = React.useCallback((item: PortfolioItem, index: number) => {
     if (index === 0) {
@@ -3510,6 +3556,8 @@ export default function App() {
         ? "sepia-theme text-[#433422] selection:bg-amber-500/20 selection:text-amber-900"
         : "bg-[#070707] text-[#E5E7EB] selection:bg-amber-500/20 selection:text-amber-300"
     }`}>
+      {/* 動態 SEO 與 Meta Tag 同步 */}
+      <SEO activeItem={activeModalItem} activeCategory={selectedCategory} searchQuery={searchQuery} />
       
       {/* 拖曳罐罐時產生的淡雅貓掌印軌跡 */}
       <AnimatePresence>
