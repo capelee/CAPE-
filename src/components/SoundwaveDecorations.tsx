@@ -15,7 +15,7 @@ interface SoundwaveWhiskerProps {
  * 獨立音波鬍鬚 SVG 符號 (Soundwave Whisker Super Graphic)
  * 結合貓鬚與音樂祭音浪振幅特徵
  */
-export function SoundwaveWhisker({
+export const SoundwaveWhisker = React.memo(function SoundwaveWhisker({
   className = "",
   color = "#437596",
   isAnimated = false,
@@ -24,8 +24,8 @@ export function SoundwaveWhisker({
   width = 64,
   height = 18,
 }: SoundwaveWhiskerProps) {
-  const leftPath = "M 38 9 L 32 3 L 26 15 L 20 3 L 14 15 L 8 3 L 2 11";
-  const rightPath = "M 2 9 L 8 3 L 14 15 L 20 3 L 26 15 L 32 3 L 38 11";
+  const leftPath = "M 38 9 C 35 9, 35 3, 32 3 C 29 3, 29 15, 26 15 C 23 15, 23 3, 20 3 C 17 3, 17 15, 14 15 C 11 15, 11 3, 8 3 C 5 3, 5 9, 2 9";
+  const rightPath = "M 2 9 C 5 9, 5 3, 8 3 C 11 3, 11 15, 14 15 C 17 15, 17 3, 20 3 C 23 3, 23 15, 26 15 C 29 15, 29 3, 32 3 C 35 3, 35 9, 38 9";
 
   if (direction === "left") {
     return (
@@ -45,17 +45,12 @@ export function SoundwaveWhisker({
           animate={
             isAnimated
               ? {
-                  d: [
-                    "M 38 9 L 32 3 L 26 15 L 20 3 L 14 15 L 8 3 L 2 11",
-                    "M 38 9 L 32 1 L 26 17 L 20 1 L 14 17 L 8 1 L 2 11",
-                    "M 38 9 L 32 5 L 26 13 L 20 5 L 14 13 L 8 5 L 2 11",
-                    "M 38 9 L 32 3 L 26 15 L 20 3 L 14 15 L 8 3 L 2 11",
-                  ],
+                  scaleY: [1, 1.25, 0.8, 1],
                   stroke: ["#437596", "#E8829C", "#437596"],
                 }
               : undefined
           }
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+          transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
         />
       </svg>
     );
@@ -79,17 +74,12 @@ export function SoundwaveWhisker({
           animate={
             isAnimated
               ? {
-                  d: [
-                    "M 2 9 L 8 3 L 14 15 L 20 3 L 26 15 L 32 3 L 38 11",
-                    "M 2 9 L 8 1 L 14 17 L 20 1 L 26 17 L 32 1 L 38 11",
-                    "M 2 9 L 8 5 L 14 13 L 20 5 L 26 13 L 32 5 L 38 11",
-                    "M 2 9 L 8 3 L 14 15 L 20 3 L 26 15 L 32 3 L 38 11",
-                  ],
+                  scaleY: [1, 1.25, 0.8, 1],
                   stroke: ["#437596", "#E8829C", "#437596"],
                 }
               : undefined
           }
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+          transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
         />
       </svg>
     );
@@ -104,7 +94,7 @@ export function SoundwaveWhisker({
       style={{ width, height }}
     >
       <motion.path
-        d="M 40 12 L 34 5 L 28 19 L 22 5 L 16 19 L 10 5 L 3 14"
+        d="M 40 12 C 37 12, 37 5, 34 5 C 31 5, 31 19, 28 19 C 25 19, 25 5, 22 5 C 19 5, 19 19, 16 19 C 13 19, 13 5, 10 5 C 6 5, 6 12, 2 12"
         stroke={color}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
@@ -117,11 +107,11 @@ export function SoundwaveWhisker({
               }
             : undefined
         }
-        transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
       />
       <circle cx="50" cy="12" r="2.5" fill={color} />
       <motion.path
-        d="M 60 12 L 66 5 L 72 19 L 78 5 L 84 19 L 90 5 L 97 14"
+        d="M 60 12 C 63 12, 63 5, 66 5 C 69 5, 69 19, 72 19 C 75 19, 75 5, 78 5 C 81 5, 81 19, 84 19 C 87 19, 87 5, 90 5 C 94 5, 94 12, 98 12"
         stroke={color}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
@@ -134,11 +124,11 @@ export function SoundwaveWhisker({
               }
             : undefined
         }
-        transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
       />
     </svg>
   );
-}
+});
 
 interface SoundwaveDividerProps {
   className?: string;
@@ -150,34 +140,67 @@ interface SoundwaveDividerProps {
  * 章節聲波分割線 (Waveform Section Divider)
  * 俐落的音浪波形線條，取代生硬的直線
  */
-export function SoundwaveDivider({
+export const SoundwaveDivider = React.memo(function SoundwaveDivider({
   className = "",
   color = "#437596",
   isDark = false,
 }: SoundwaveDividerProps) {
+  const hoverColor = isDark ? "#F49BB2" : "#E8829C";
+
   return (
-    <div className={`w-full flex items-center gap-3 overflow-hidden py-1 select-none pointer-events-none ${className}`}>
-      <div className={`h-[1px] flex-1 ${isDark ? "bg-[#6CA4C8]/20" : "bg-[#C8DCE8]"}`} />
-      <div className="flex items-center gap-1 opacity-70">
+    <motion.div
+      className={`w-full flex items-center gap-3 overflow-hidden py-2 select-none cursor-pointer group ${className}`}
+      initial="initial"
+      whileHover="hover"
+    >
+      <div className={`h-[1px] flex-1 transition-all duration-300 ${isDark ? "bg-[#6CA4C8]/20 group-hover:bg-[#F49BB2]/40" : "bg-[#C8DCE8] group-hover:bg-[#E8829C]/50"}`} />
+      <motion.div
+        className="flex items-center gap-1"
+        animate={{
+          y: [-2.5, 2.5, -2.5],
+          scaleY: [1, 1.12, 0.9, 1],
+          opacity: [0.8, 1, 0.8],
+        }}
+        variants={{
+          hover: {
+            scale: 1.18,
+            opacity: 1,
+          },
+        }}
+        transition={{
+          duration: 3.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
         <svg
           viewBox="0 0 120 16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-3 w-28 shrink-0"
+          className="h-3.5 w-28 shrink-0 overflow-visible"
         >
-          <path
-            d="M 0 8 L 15 8 L 22 2 L 30 14 L 38 2 L 46 14 L 54 2 L 62 14 L 70 2 L 78 14 L 85 8 L 120 8"
+          <motion.path
+            d="M 0 8 L 20 8 C 25 8, 25 14, 30 14 C 35 14, 35 2, 40 2 C 45 2, 45 14, 50 14 C 55 14, 55 2, 60 2 C 65 2, 65 14, 70 14 C 75 14, 75 2, 80 2 C 85 2, 85 14, 90 14 C 95 14, 95 8, 100 8 L 120 8"
             stroke={color}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+            variants={{
+              hover: {
+                stroke: hoverColor,
+                strokeWidth: 3.2,
+              },
+            }}
+            transition={{
+              duration: 0.3,
+            }}
           />
         </svg>
-      </div>
-      <div className={`h-[1px] flex-1 ${isDark ? "bg-[#6CA4C8]/20" : "bg-[#C8DCE8]"}`} />
-    </div>
+      </motion.div>
+      <div className={`h-[1px] flex-1 transition-all duration-300 ${isDark ? "bg-[#6CA4C8]/20 group-hover:bg-[#F49BB2]/40" : "bg-[#C8DCE8] group-hover:bg-[#E8829C]/50"}`} />
+    </motion.div>
   );
-}
+});
 
 interface SoundwavePillBadgeProps {
   label: string;
@@ -191,7 +214,7 @@ interface SoundwavePillBadgeProps {
 /**
  * 帶有音波鬍鬚特徵的品牌標籤徽章 (Soundwave Whisker Pill Badge)
  */
-export function SoundwavePillBadge({
+export const SoundwavePillBadge = React.memo(function SoundwavePillBadge({
   label,
   code,
   isDark = false,
@@ -230,4 +253,4 @@ export function SoundwavePillBadge({
       />
     </div>
   );
-}
+});

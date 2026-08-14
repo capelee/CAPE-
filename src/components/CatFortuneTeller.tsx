@@ -940,7 +940,7 @@ export function CatFortuneTeller({ theme, onConsult }: CatFortuneTellerProps) {
                   <span>姆貓神社 · 御神籤</span>
                 </h3>
                 <p className="text-[9px] font-mono tracking-[0.25em] text-[#8E7E6A] uppercase mt-0.5 select-none">
-                  MUMIAO SHRINE • OMIKUJI
+                  MUMㄠ SHRINE • OMIKUJI
                 </p>
               </div>
 

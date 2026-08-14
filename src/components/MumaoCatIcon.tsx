@@ -7,14 +7,16 @@ interface MumaoCatIconProps {
   showPinkEars?: boolean;
   isPurring?: boolean;
   whiskerColor?: string;
+  continuousWave?: boolean;
 }
 
-export function MumaoCatIcon({ 
+export const MumaoCatIcon = React.memo(function MumaoCatIcon({ 
   className = "w-6 h-6", 
   size, 
   showPinkEars = true,
   isPurring = false,
-  whiskerColor = "#437596"
+  whiskerColor = "#437596",
+  continuousWave = true
 }: MumaoCatIconProps) {
   const sizeStyle = size ? { width: size, height: size } : undefined;
 
@@ -114,53 +116,80 @@ export function MumaoCatIcon({
       />
 
       {/* 6. Signature Soundwave Whiskers (湛藍波浪/音波鬍子) */}
-      {/* Left Soundwave Whisker */}
-      <motion.path
-        d="M 38 68 L 32 62 L 26 72 L 20 62 L 14 72 L 8 62 L 2 70"
-        stroke={whiskerColor}
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        animate={
-          isPurring
-            ? {
-                d: [
-                  "M 38 68 L 32 62 L 26 72 L 20 62 L 14 72 L 8 62 L 2 70",
-                  "M 38 68 L 32 59 L 26 75 L 20 59 L 14 75 L 8 59 L 2 70",
-                  "M 38 68 L 32 64 L 26 70 L 20 64 L 14 70 L 8 64 L 2 70",
-                  "M 38 68 L 32 62 L 26 72 L 20 62 L 14 72 L 8 62 L 2 70",
-                ],
-                stroke: ["#437596", "#E8829C", "#437596"],
-              }
-            : undefined
-        }
-        transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
-      />
+      {continuousWave ? (
+        <motion.path
+          d="M 2 68 L 10 60 L 18 74 L 26 60 L 34 74 L 42 60 L 50 74 L 58 60 L 66 74 L 74 60 L 82 74 L 90 60 L 98 68"
+          stroke={whiskerColor}
+          strokeWidth="3.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          animate={
+            isPurring
+              ? {
+                  d: [
+                    "M 2 68 L 10 60 L 18 74 L 26 60 L 34 74 L 42 60 L 50 74 L 58 60 L 66 74 L 74 60 L 82 74 L 90 60 L 98 68",
+                    "M 2 68 L 10 57 L 18 77 L 26 57 L 34 77 L 42 57 L 50 77 L 58 57 L 66 77 L 74 57 L 82 77 L 90 57 L 98 68",
+                    "M 2 68 L 10 62 L 18 72 L 26 62 L 34 72 L 42 62 L 50 72 L 58 62 L 66 72 L 74 62 L 82 72 L 90 62 L 98 68",
+                    "M 2 68 L 10 60 L 18 74 L 26 60 L 34 74 L 42 60 L 50 74 L 58 60 L 66 74 L 74 60 L 82 74 L 90 60 L 98 68",
+                  ],
+                  stroke: ["#437596", "#E8829C", "#437596"],
+                }
+              : undefined
+          }
+          transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+        />
+      ) : (
+        <>
+          {/* Left Soundwave Whisker */}
+          <motion.path
+            d="M 38 68 L 32 62 L 26 72 L 20 62 L 14 72 L 8 62 L 2 70"
+            stroke={whiskerColor}
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            animate={
+              isPurring
+                ? {
+                    d: [
+                      "M 38 68 L 32 62 L 26 72 L 20 62 L 14 72 L 8 62 L 2 70",
+                      "M 38 68 L 32 59 L 26 75 L 20 59 L 14 75 L 8 59 L 2 70",
+                      "M 38 68 L 32 64 L 26 70 L 20 64 L 14 70 L 8 64 L 2 70",
+                      "M 38 68 L 32 62 L 26 72 L 20 62 L 14 72 L 8 62 L 2 70",
+                    ],
+                    stroke: ["#437596", "#E8829C", "#437596"],
+                  }
+                : undefined
+            }
+            transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+          />
 
-      {/* Right Soundwave Whisker */}
-      <motion.path
-        d="M 62 68 L 68 62 L 74 72 L 80 62 L 86 72 L 92 62 L 98 70"
-        stroke={whiskerColor}
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        animate={
-          isPurring
-            ? {
-                d: [
-                  "M 62 68 L 68 62 L 74 72 L 80 62 L 86 72 L 92 62 L 98 70",
-                  "M 62 68 L 68 59 L 74 75 L 80 59 L 86 75 L 92 59 L 98 70",
-                  "M 62 68 L 68 64 L 74 70 L 80 64 L 86 70 L 92 64 L 98 70",
-                  "M 62 68 L 68 62 L 74 72 L 80 62 L 86 72 L 92 62 L 98 70",
-                ],
-                stroke: ["#437596", "#E8829C", "#437596"],
-              }
-            : undefined
-        }
-        transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
-      />
+          {/* Right Soundwave Whisker */}
+          <motion.path
+            d="M 62 68 L 68 62 L 74 72 L 80 62 L 86 72 L 92 62 L 98 70"
+            stroke={whiskerColor}
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            animate={
+              isPurring
+                ? {
+                    d: [
+                      "M 62 68 L 68 62 L 74 72 L 80 62 L 86 72 L 92 62 L 98 70",
+                      "M 62 68 L 68 59 L 74 75 L 80 59 L 86 75 L 92 59 L 98 70",
+                      "M 62 68 L 68 64 L 74 70 L 80 64 L 86 70 L 92 64 L 98 70",
+                      "M 62 68 L 68 62 L 74 72 L 80 62 L 86 72 L 92 62 L 98 70",
+                    ],
+                    stroke: ["#437596", "#E8829C", "#437596"],
+                  }
+                : undefined
+            }
+            transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+          />
+        </>
+      )}
     </svg>
   );
-}
+});

@@ -6,6 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://cape-eight.vercel.app/?category=%E6%8F%92%E7%95%AB%E8%88%87%E5%8E%9F%E5%89%B5%E7%B9%AA%E6%9C%AC</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%BD%B1%E9%9F%B3%E8%88%87%E5%A4%9A%E5%AA%92%E9%AB%94%E8%A8%AD%E8%A8%88</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -64,6 +69,15 @@
     <loc>https://cape-eight.vercel.app/?category=%E9%9B%BB%E5%95%86%E7%94%A2%E5%93%81%E9%8A%B7%E5%94%AE%E5%9C%96</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cape-eight.vercel.app/?item=mumao-cat-religion-ip</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://drive.google.com/thumbnail?sz=w1000&amp;id=18ega279ty4XVeShySlEkSzJXUz2pOcep</image:loc>
+      <image:title>MuMㄠ 姆貓原創 IP 視覺與品牌設計</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sebamed-sports-mini-video</loc>

@@ -4,22 +4,24 @@ export const YT_THUMBNAIL_CACHE = new Map<string, string>();
 export const DRIVE_THUMBNAIL_CACHE = new Map<string, string>();
 
 try {
-  const storedYt = localStorage.getItem("yt_thumbnail_cache");
-  if (storedYt) {
-    const parsed = JSON.parse(storedYt);
-    Object.entries(parsed).forEach(([key, value]) => {
-      YT_THUMBNAIL_CACHE.set(key, value as string);
-    });
-    console.log(`[YT Cache Init] Loaded ${YT_THUMBNAIL_CACHE.size} entries from local persistence.`);
-  }
+  if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+    const storedYt = localStorage.getItem("yt_thumbnail_cache");
+    if (storedYt) {
+      const parsed = JSON.parse(storedYt);
+      Object.entries(parsed).forEach(([key, value]) => {
+        YT_THUMBNAIL_CACHE.set(key, value as string);
+      });
+      console.log(`[YT Cache Init] Loaded ${YT_THUMBNAIL_CACHE.size} entries from local persistence.`);
+    }
 
-  const storedDrive = localStorage.getItem("drive_thumbnail_cache");
-  if (storedDrive) {
-    const parsed = JSON.parse(storedDrive);
-    Object.entries(parsed).forEach(([key, value]) => {
-      DRIVE_THUMBNAIL_CACHE.set(key, value as string);
-    });
-    console.log(`[Drive Cache Init] Loaded ${DRIVE_THUMBNAIL_CACHE.size} entries from local persistence.`);
+    const storedDrive = localStorage.getItem("drive_thumbnail_cache");
+    if (storedDrive) {
+      const parsed = JSON.parse(storedDrive);
+      Object.entries(parsed).forEach(([key, value]) => {
+        DRIVE_THUMBNAIL_CACHE.set(key, value as string);
+      });
+      console.log(`[Drive Cache Init] Loaded ${DRIVE_THUMBNAIL_CACHE.size} entries from local persistence.`);
+    }
   }
 } catch (e) {
   console.log("[Media Cache Init Error]", e);
@@ -27,8 +29,10 @@ try {
 
 export function saveYtCacheToStorage() {
   try {
-    const obj = Object.fromEntries(YT_THUMBNAIL_CACHE.entries());
-    localStorage.setItem("yt_thumbnail_cache", JSON.stringify(obj));
+    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+      const obj = Object.fromEntries(YT_THUMBNAIL_CACHE.entries());
+      localStorage.setItem("yt_thumbnail_cache", JSON.stringify(obj));
+    }
   } catch (e) {
     console.log("[YT Cache Save Error]", e);
   }
@@ -36,8 +40,10 @@ export function saveYtCacheToStorage() {
 
 export function saveDriveCacheToStorage() {
   try {
-    const obj = Object.fromEntries(DRIVE_THUMBNAIL_CACHE.entries());
-    localStorage.setItem("drive_thumbnail_cache", JSON.stringify(obj));
+    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+      const obj = Object.fromEntries(DRIVE_THUMBNAIL_CACHE.entries());
+      localStorage.setItem("drive_thumbnail_cache", JSON.stringify(obj));
+    }
   } catch (e) {
     console.log("[Drive Cache Save Error]", e);
   }

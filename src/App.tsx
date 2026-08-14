@@ -91,31 +91,31 @@ function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) 
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="px-2.5 sm:px-4.5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden flex items-center justify-center whitespace-nowrap shrink-0"
+      className="px-2.5 sm:px-4.5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden flex items-center justify-center whitespace-nowrap shrink-0"
       style={{
         backgroundColor: isActive 
-          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.8 : isLight ? 0.9 : 1})` 
+          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.85 : isLight ? 0.92 : 1})` 
           : isHovered 
-            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.15 : isLight ? 0.12 : 0.1})` 
+            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.15 : isLight ? 0.12 : 0.12})` 
             : isSepia 
-              ? "rgba(67, 52, 34, 0.04)" 
+              ? "rgba(67, 52, 34, 0.05)" 
               : isLight 
-                ? "rgba(0, 0, 0, 0.03)" 
-                : "rgba(255, 255, 255, 0.02)",
+                ? "rgba(0, 0, 0, 0.04)" 
+                : "rgba(255, 255, 255, 0.04)",
         borderColor: isActive 
-          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.6 : isLight ? 0.7 : 0.8})` 
+          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.7 : isLight ? 0.8 : 0.9})` 
           : isHovered 
-            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.4 : isLight ? 0.35 : 0.35})` 
+            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.45 : isLight ? 0.4 : 0.4})` 
             : isSepia 
-              ? "rgba(67, 52, 34, 0.1)" 
+              ? "rgba(67, 52, 34, 0.15)" 
               : isLight 
-                ? "rgba(0, 0, 0, 0.08)" 
-                : "rgba(255, 255, 255, 0.05)",
+                ? "rgba(0, 0, 0, 0.12)" 
+                : "rgba(255, 255, 255, 0.1)",
         color: isActive 
           ? (isSepia ? "#2B1B0C" : isLight ? "#ffffff" : "#000000") 
           : isHovered 
-            ? (isSepia ? "#433422" : isLight ? "#18181B" : "#ffffff") 
-            : (isSepia ? "#8C7B69" : isLight ? "#52525B" : "#a1a1aa"),
+            ? (isSepia ? "#2B1B0C" : isLight ? "#09090B" : "#ffffff") 
+            : (isSepia ? "#5C4B3A" : isLight ? "#3F3F46" : "#E4E4E7"),
         boxShadow: isActive 
           ? `0 10px 20px -5px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.25 : isLight ? 0.3 : 0.4}), 0 0 15px 1px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.1 : isLight ? 0.15 : 0.15})` 
           : isHovered 
@@ -3906,19 +3906,19 @@ export default function App() {
           {/* 標題與分類選單緊湊排版包裝器 */}
           <div className="space-y-1 md:space-y-1.5 flex flex-col items-center w-full">
             <div className="max-w-3xl mx-auto text-center space-y-2 md:space-y-3">
-              <h2 className={`text-3xl md:text-4xl font-display font-medium tracking-tight ${
+              <h2 id="portfolio_grid_heading" className={`text-3xl md:text-4xl font-display font-medium tracking-tight ${
                 theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
               }`}>
                 探索設計作品
               </h2>
               <div className="flex flex-col items-center gap-3 pt-1">
-                <div className="h-[2px] w-12 bg-amber-500 rounded-full"></div>
+                <div className="h-[2px] w-12 bg-amber-500 dark:bg-amber-400 rounded-full"></div>
                 <div className={`text-[12px] sm:text-[13px] font-medium tracking-wider flex items-center justify-center gap-2 sm:gap-3 flex-wrap ${
-                  theme === "sepia" ? "text-[#8A5A32]/90" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
+                  theme === "sepia" ? "text-[#5C3A1E]" : theme === "light" ? "text-zinc-700" : "text-zinc-300"
                 }`}>
-                  <span className="flex items-center gap-1.5"><SlidersHorizontal className="w-3.5 h-3.5" /> 切換分類</span>
-                  <span className="opacity-30">|</span>
-                  <span className="flex items-center gap-1.5"><MousePointerClick className="w-3.5 h-3.5" /> 點擊卡片查看詳細資訊</span>
+                  <span className="flex items-center gap-1.5"><SlidersHorizontal className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> 切換分類</span>
+                  <span className="text-zinc-400 dark:text-zinc-600">|</span>
+                  <span className="flex items-center gap-1.5"><MousePointerClick className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> 點擊卡片查看詳細資訊</span>
                 </div>
 
                 {selectedCategory && selectedCategory !== "All" && (
@@ -3930,7 +3930,7 @@ export default function App() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 4, scale: 0.95 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2 z-50 pointer-events-none whitespace-nowrap bg-zinc-800/95 text-emerald-400 font-medium text-xs px-2.5 py-1 rounded-md shadow-xl flex items-center gap-1.5 border border-emerald-500/30 backdrop-blur-sm"
+                          className="absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2 z-50 pointer-events-none whitespace-nowrap bg-zinc-900 text-emerald-400 font-bold text-xs px-2.5 py-1 rounded-md shadow-xl flex items-center gap-1.5 border border-emerald-500/40 backdrop-blur-sm"
                         >
                           <Check className="h-3.5 w-3.5 text-emerald-400" />
                           <span>已複製「{selectedCategory}」分類鏈結</span>
@@ -3941,12 +3941,12 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => handleShareCategoryLink()}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 border flex items-center gap-1.5 cursor-pointer active:scale-95 ${
+                      className={`px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 border flex items-center gap-1.5 cursor-pointer active:scale-95 shadow-xs ${
                         theme === "sepia"
-                          ? "bg-[#FAF4E5] hover:bg-[#F3DFBD] text-[#8A5A32] border-[#EADECC]"
+                          ? "bg-[#FAF4E5] hover:bg-[#F3DFBD] text-[#5C3A1E] border-[#EADECC]"
                           : theme === "light"
-                          ? "bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200/80"
-                          : "bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border-amber-500/20"
+                          ? "bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-300"
+                          : "bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border-amber-500/30"
                       }`}
                       title={`複製「${selectedCategory}」分類專屬網址`}
                     >
@@ -3957,8 +3957,6 @@ export default function App() {
                 )}
               </div>
             </div>
-
-
 
             {/* 各類作品過濾選項 (電腦版精緻呈現，手機版優化為橫向滑動選單與二列極簡格狀面板) */}
             <div className={`w-full flex flex-col items-center gap-4 sticky top-[56px] md:top-[64px] z-30 py-2 sm:py-3 backdrop-blur-md transition-colors duration-300 ${
@@ -3977,170 +3975,170 @@ export default function App() {
                   />
                 )}
               </AnimatePresence>
-            {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
-            <div className="hidden md:flex w-full max-w-5xl flex-col items-center gap-2.5 sm:gap-3 px-4">
-              {/* 第一行 */}
-              <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
-                {row1.map((cat) => (
-                  <CategoryButton
-                    key={cat}
-                    cat={cat}
-                    theme={theme}
-                    isActive={selectedCategory === cat}
-                    onClick={() => handleCategoryClick(cat)}
-                  />
-                ))}
-              </div>
-              
-              {/* 第二行 */}
-              <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
-                {row2.map((cat) => (
-                  <CategoryButton
-                    key={cat}
-                    cat={cat}
-                    theme={theme}
-                    isActive={selectedCategory === cat}
-                    onClick={() => handleCategoryClick(cat)}
-                  />
-                ))}
-              </div>
-            </div>
 
-            {/* 手機版：整合式橫向滑軌 + 摺疊網格快速選單 (md 尺寸以下顯示) */}
-            <div className="w-full px-4 flex flex-col gap-3 md:hidden relative">
-              <div className="flex items-center gap-2 w-full">
-                {/* 左右微淡出遮罩 + 左右滑動選單軌道 */}
-                <div className="relative flex-grow overflow-hidden rounded-full">
-                  {/* 左側漸變淡出 */}
-                  <div 
-                    className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r ${
-                      theme === "sepia" 
-                        ? "from-[#FAF4E5]" 
-                        : theme === "light" 
-                        ? "from-[#FAFAFA]" 
-                        : "from-[#0A0A0A]"
-                    } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
-                      showCategoriesLeftMask ? "opacity-100" : "opacity-0"
-                    }`} 
-                  />
-                  
-                  {/* 滑動軌道本體 */}
-                  <div 
-                    ref={categoriesRef}
-                    onScroll={handleCategoriesScroll}
-                    className="flex gap-2 overflow-x-auto scrollbar-none py-1.5 px-4 w-full flex-nowrap whitespace-nowrap scroll-smooth relative"
-                  >
-                    {categories.map((cat) => (
-                      <CategoryButton
-                        key={cat}
-                        cat={cat}
-                        theme={theme}
-                        isActive={selectedCategory === cat}
-                        onClick={() => handleCategoryClick(cat)}
-                      />
-                    ))}
+              {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
+              <div className="hidden md:flex w-full max-w-5xl flex-col items-center gap-2.5 sm:gap-3 px-4">
+                {/* 第一行 */}
+                <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
+                  {row1.map((cat) => (
+                    <CategoryButton
+                      key={cat}
+                      cat={cat}
+                      theme={theme}
+                      isActive={selectedCategory === cat}
+                      onClick={() => handleCategoryClick(cat)}
+                    />
+                  ))}
+                </div>
+                
+                {/* 第二行 */}
+                <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
+                  {row2.map((cat) => (
+                    <CategoryButton
+                      key={cat}
+                      cat={cat}
+                      theme={theme}
+                      isActive={selectedCategory === cat}
+                      onClick={() => handleCategoryClick(cat)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* 手機版：整合式橫向滑軌 + 摺疊網格快速選單 (md 尺寸以下顯示) */}
+              <div className="w-full px-4 flex flex-col gap-3 md:hidden relative">
+                <div className="flex items-center gap-2 w-full">
+                  {/* 左右微淡出遮罩 + 左右滑動選單軌道 */}
+                  <div className="relative flex-grow overflow-hidden rounded-full">
+                    {/* 左側漸變淡出 */}
+                    <div 
+                      className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r ${
+                        theme === "sepia" 
+                          ? "from-[#FAF4E5]" 
+                          : theme === "light" 
+                          ? "from-[#FAFAFA]" 
+                          : "from-[#0A0A0A]"
+                      } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+                        showCategoriesLeftMask ? "opacity-100" : "opacity-0"
+                      }`} 
+                    />
+                    
+                    {/* 滑動軌道本體 */}
+                    <div 
+                      ref={categoriesRef}
+                      onScroll={handleCategoriesScroll}
+                      className="flex gap-2 overflow-x-auto scrollbar-none py-1.5 px-4 w-full flex-nowrap whitespace-nowrap scroll-smooth relative"
+                    >
+                      {categories.map((cat) => (
+                        <CategoryButton
+                          key={cat}
+                          cat={cat}
+                          theme={theme}
+                          isActive={selectedCategory === cat}
+                          onClick={() => handleCategoryClick(cat)}
+                        />
+                      ))}
+                    </div>
+
+                    {/* 右側漸變淡出 & 橫向滑動暗示 */}
+                    <div 
+                      className={`absolute right-0 top-0 bottom-0 w-12 flex items-center justify-end pr-1.5 bg-gradient-to-l ${
+                        theme === "sepia" 
+                          ? "from-[#FAF4E5] via-[#FAF4E5]/80" 
+                          : theme === "light" 
+                          ? "from-[#FAFAFA] via-[#FAFAFA]/80" 
+                          : "from-[#0A0A0A] via-[#0A0A0A]/80"
+                      } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+                        showCategoriesRightMask ? "opacity-100" : "opacity-0"
+                      }`} 
+                    >
+                      <ChevronRight className={`w-4 h-4 animate-pulse ${
+                        theme === "sepia" ? "text-[#A05C2C]" : theme === "light" ? "text-zinc-600" : "text-zinc-400"
+                      }`} />
+                    </div>
                   </div>
 
-                  {/* 右側漸變淡出 & 橫向滑動暗示 */}
-                  <div 
-                    className={`absolute right-0 top-0 bottom-0 w-12 flex items-center justify-end pr-1.5 bg-gradient-to-l ${
-                      theme === "sepia" 
-                        ? "from-[#FAF4E5] via-[#FAF4E5]/80" 
-                        : theme === "light" 
-                        ? "from-[#FAFAFA] via-[#FAFAFA]/80" 
-                        : "from-[#0A0A0A] via-[#0A0A0A]/80"
-                    } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
-                      showCategoriesRightMask ? "opacity-100" : "opacity-0"
-                    }`} 
+                  {/* 網格展開 & 下拉清單按鈕 */}
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileExpanded(!isMobileExpanded)}
+                    className={`p-2.5 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-105 active:scale-95 ${
+                      isMobileExpanded 
+                        ? theme === "sepia"
+                          ? "bg-[#C8A97A]/20 border-[#C8A97A] text-[#433422]"
+                          : theme === "light"
+                          ? "bg-amber-100 border-amber-300 text-amber-900"
+                          : "bg-amber-500/20 border-amber-500/40 text-amber-300"
+                        : theme === "sepia"
+                          ? "bg-[#FAF4E5] border-[#EADECC] text-[#5C4B3A] hover:bg-[#F3DFBD]"
+                          : theme === "light"
+                          ? "bg-white border-zinc-300 text-zinc-700 hover:bg-zinc-100"
+                          : "bg-white/5 border-white/10 text-zinc-300 hover:bg-white/10"
+                    }`}
+                    title={isMobileExpanded ? "摺疊分類目錄" : "展開網格目錄"}
                   >
-                    <ChevronRight className={`w-4 h-4 animate-pulse ${
-                      theme === "sepia" ? "text-[#A05C2C]" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
-                    }`} />
-                  </div>
+                    <SlidersHorizontal className={`w-4 h-4 transition-transform duration-300 ${isMobileExpanded ? "rotate-90" : "rotate-0"}`} />
+                  </button>
                 </div>
 
-                {/* 網格展開 & 下拉清單按鈕 */}
-                <button
-                  type="button"
-                  onClick={() => setIsMobileExpanded(!isMobileExpanded)}
-                  className={`p-2.5 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-105 active:scale-95 ${
-                    isMobileExpanded 
-                      ? theme === "sepia"
-                        ? "bg-[#C8A97A]/20 border-[#C8A97A] text-[#433422]"
-                        : theme === "light"
-                        ? "bg-amber-100 border-amber-300 text-amber-700"
-                        : "bg-amber-500/20 border-amber-500/40 text-amber-400"
-                      : theme === "sepia"
-                        ? "bg-[#FAF4E5] border-[#EADECC] text-[#8C7B69] hover:bg-[#F3DFBD]"
-                        : theme === "light"
-                        ? "bg-white border-zinc-200 text-zinc-500 hover:bg-zinc-50"
-                        : "bg-white/5 border-white/10 text-zinc-400 hover:bg-white/10"
-                  }`}
-                  title={isMobileExpanded ? "摺疊分類目錄" : "展開網格目錄"}
-                >
-                  <SlidersHorizontal className={`w-4 h-4 transition-transform duration-300 ${isMobileExpanded ? "rotate-90" : "rotate-0"}`} />
-                </button>
+                {/* 手機版：展開的二列極簡格狀面板 */}
+                <AnimatePresence>
+                  {isMobileExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, y: -8 }}
+                      animate={{ opacity: 1, height: "auto", y: 0 }}
+                      exit={{ opacity: 0, height: 0, y: -8 }}
+                      className="overflow-hidden w-full z-10"
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                    >
+                      <div className={`p-4 rounded-2xl border grid grid-cols-2 gap-2 shadow-2xl ${
+                        theme === "sepia"
+                          ? "bg-[#FAF4E5]/95 border-[#EADECC] text-[#433422]"
+                          : theme === "light"
+                          ? "bg-white border-zinc-200 text-zinc-900 shadow-zinc-200/50"
+                          : "bg-zinc-900 backdrop-blur-md border-white/10 text-white"
+                      }`}>
+                        <div className="col-span-2 flex items-center justify-between px-1 mb-1 border-b border-black/5 dark:border-white/5 pb-1.5">
+                          <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-zinc-700 dark:text-zinc-300">
+                            🔍 快速篩選分類
+                          </span>
+                          <span className="text-[10px] font-sans font-medium text-zinc-600 dark:text-zinc-400">共 {categories.length} 個維度</span>
+                        </div>
+                        {categories.map((cat) => {
+                          const isActive = selectedCategory === cat;
+                          return (
+                            <button
+                              key={cat}
+                              type="button"
+                              onClick={() => {
+                                handleCategoryClick(cat);
+                                setIsMobileExpanded(false); // 點選後自動摺疊
+                              }}
+                              className={`w-full text-left py-2.5 px-3 rounded-xl text-xs font-semibold border transition-all duration-200 flex items-center justify-between ${
+                                isActive
+                                  ? theme === "sepia"
+                                    ? "bg-[#F3DFBD] border-[#C8A97A] text-[#2B1B0C]"
+                                    : theme === "light"
+                                    ? "bg-amber-100 border-amber-300 text-amber-900"
+                                    : "bg-amber-500/25 border-amber-500/40 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.15)]"
+                                  : theme === "sepia"
+                                    ? "bg-transparent border-[#EADECC]/60 text-[#5C4B3A] hover:bg-[#FAF4E5]"
+                                    : theme === "light"
+                                    ? "bg-transparent border-zinc-200 text-zinc-700 hover:bg-zinc-100"
+                                    : "bg-white/[0.04] border-white/10 text-zinc-300 hover:bg-white/[0.08]"
+                              }`}
+                            >
+                              <span className="truncate">{cat === "All" ? "全部精選展示" : cat}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              {/* 手機版：展開的二列極簡格狀面板 */}
-              <AnimatePresence>
-                {isMobileExpanded && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0, y: -8 }}
-                    animate={{ opacity: 1, height: "auto", y: 0 }}
-                    exit={{ opacity: 0, height: 0, y: -8 }}
-                    className="overflow-hidden w-full z-10"
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  >
-                    <div className={`p-4 rounded-2xl border grid grid-cols-2 gap-2 shadow-2xl ${
-                      theme === "sepia"
-                        ? "bg-[#FAF4E5]/95 border-[#EADECC]/60 text-[#433422]"
-                        : theme === "light"
-                        ? "bg-white/95 border-zinc-200/60 text-zinc-800 shadow-zinc-200/50"
-                        : "bg-zinc-900/90 backdrop-blur-md border-white/5 text-white"
-                    }`}>
-                      <div className="col-span-2 flex items-center justify-between px-1 mb-1 border-b border-white/5 pb-1.5 opacity-60">
-                        <span className="text-[10px] uppercase tracking-wider font-mono">
-                          🔍 快速篩選分類
-                        </span>
-                        <span className="text-[10px] font-sans">共 {categories.length} 個維度</span>
-                      </div>
-                      {categories.map((cat) => {
-                        const isActive = selectedCategory === cat;
-                        const catColor = getCategoryColor(cat);
-                        return (
-                          <button
-                            key={cat}
-                            type="button"
-                            onClick={() => {
-                              handleCategoryClick(cat);
-                              setIsMobileExpanded(false); // 點選後自動摺疊
-                            }}
-                            className={`w-full text-left py-2.5 px-3 rounded-xl text-xs font-medium border transition-all duration-200 flex items-center justify-between ${
-                              isActive
-                                ? theme === "sepia"
-                                  ? "bg-[#F3DFBD] border-[#C8A97A] text-[#433422] font-semibold"
-                                  : theme === "light"
-                                  ? "bg-amber-100 border-amber-300 text-amber-800 font-semibold"
-                                  : "bg-amber-500/25 border-amber-500/40 text-amber-400 font-semibold shadow-[0_0_12px_rgba(245,158,11,0.15)]"
-                                : theme === "sepia"
-                                  ? "bg-transparent border-[#EADECC]/45 text-[#8C7B69] hover:bg-[#FAF4E5]"
-                                  : theme === "light"
-                                  ? "bg-transparent border-zinc-200/50 text-zinc-600 hover:bg-zinc-100"
-                                  : "bg-white/[0.02] border-white/5 text-zinc-400 hover:bg-white/[0.05]"
-                            }`}
-                          >
-                            <span className="truncate">{cat === "All" ? "全部精選展示" : cat}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
-
-          </div>
           </div>
 
           {/* 即時文字搜尋框 (完美支援黑/白/暖沙主題) */}
@@ -4164,10 +4162,10 @@ export default function App() {
               <div className="relative flex items-center">
                 <Search className={`absolute left-3.5 h-4 w-4 transition-colors duration-300 ${
                   theme === "sepia" 
-                    ? "text-[#8C7B69] group-focus-within:text-amber-700"
+                    ? "text-[#5C4B3A] group-focus-within:text-amber-800"
                     : theme === "light" 
-                    ? "text-zinc-400 group-focus-within:text-amber-500"
-                    : "text-zinc-500 group-focus-within:text-amber-400"
+                    ? "text-zinc-500 group-focus-within:text-amber-600"
+                    : "text-zinc-400 group-focus-within:text-amber-400"
                 }`} />
                 
                 <input
@@ -4177,10 +4175,10 @@ export default function App() {
                   placeholder="輸入名稱、工具或關鍵字進行模糊搜尋..."
                   className={`w-full pl-10 pr-24 py-2.5 rounded-xl border-2 text-xs font-sans tracking-wide transition-all duration-300 focus:outline-none focus:ring-0 ${
                     theme === "sepia"
-                      ? "bg-[#FCF8EE] border-[#FAF4E5]/50 focus:border-amber-700/30 text-[#433422] placeholder-[#8C7B69]"
+                      ? "bg-[#FCF8EE] border-[#FAF4E5] focus:border-amber-700/40 text-[#2B1B0C] placeholder-[#8C7B69]"
                       : theme === "light"
-                      ? "bg-zinc-50 border-zinc-200/80 focus:border-amber-500/30 text-zinc-800 placeholder-zinc-400"
-                      : "bg-zinc-900/80 border-white/5 focus:border-amber-500/20 text-zinc-100 placeholder-zinc-500"
+                      ? "bg-zinc-50 border-zinc-200 focus:border-amber-500/40 text-zinc-900 placeholder-zinc-500"
+                      : "bg-zinc-900/90 border-white/10 focus:border-amber-500/30 text-zinc-100 placeholder-zinc-400"
                   }`}
                 />
 
@@ -4195,10 +4193,10 @@ export default function App() {
                       }}
                       className={`p-1 rounded-full transition-colors duration-200 cursor-pointer ${
                         theme === "sepia"
-                          ? "hover:bg-[#FAF4E5] text-[#8C7B69] hover:text-amber-800"
+                          ? "hover:bg-[#FAF4E5] text-[#5C4B3A] hover:text-amber-800"
                           : theme === "light"
-                          ? "hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700"
-                          : "hover:bg-white/5 text-zinc-500 hover:text-white"
+                          ? "hover:bg-zinc-200 text-zinc-600 hover:text-zinc-900"
+                          : "hover:bg-white/10 text-zinc-400 hover:text-white"
                       }`}
                       title="清除搜尋"
                     >
@@ -4207,19 +4205,18 @@ export default function App() {
                   )}
                   
                   {searchQuery.trim() && (
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold transition-all duration-300 ${
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all duration-300 ${
                       theme === "sepia"
-                        ? "bg-amber-500/10 text-amber-900"
+                        ? "bg-amber-500/15 text-amber-900 border border-amber-600/30"
                         : theme === "light"
-                        ? "bg-amber-500/10 text-amber-800"
-                        : "bg-amber-500/15 text-amber-400"
+                        ? "bg-amber-50 text-amber-900 border border-amber-300"
+                        : "bg-amber-500/20 text-amber-300 border border-amber-500/40"
                     }`}>
                       {filteredItems.length}
                     </span>
                   )}
                 </div>
               </div>
-
 
           </div>
           </div>

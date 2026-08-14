@@ -15,7 +15,7 @@ interface InteractiveHeroWhiskersProps {
  * 互動式音波鬍鬚區域 (Interactive Hero Soundwave Whiskers)
  * 當滑鼠接近 Hero 標題區時，動態展示類似姆貓鬍鬚的細微擺動與波動路徑
  */
-export function InteractiveHeroWhiskers({
+export const InteractiveHeroWhiskers = React.memo(function InteractiveHeroWhiskers({
   children,
   isDark = false,
   isSepia = false,
@@ -24,6 +24,7 @@ export function InteractiveHeroWhiskers({
   className = "",
 }: InteractiveHeroWhiskersProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isTickled, setIsTickled] = useState(false);
   const [mouseDist, setMouseDist] = useState({ x: 0, y: 0, dist: 999 });
@@ -37,33 +38,47 @@ export function InteractiveHeroWhiskers({
   const primaryColor = isDark ? "#6CA4C8" : isSepia ? "#2B5573" : "#437596";
   const pinkAccent = "#E8829C";
 
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const dx = e.clientX - centerX;
-      const dy = e.clientY - centerY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      const clientX = e.clientX;
+      const clientY = e.clientY;
 
-      setMouseDist({ x: dx, y: dy, dist });
-      springX.set(dx / 8);
-      springY.set(dy / 8);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
-      // Random micro-sparkle when moving close
-      if (dist < 180 && Math.random() < 0.25) {
-        const id = ++sparkleIdRef.current;
-        const newSparkle = {
-          id,
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        };
-        setSparkles((prev) => [...prev.slice(-6), newSparkle]);
-        setTimeout(() => {
-          setSparkles((prev) => prev.filter((s) => s.id !== id));
-        }, 800);
-      }
+      rafRef.current = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dx = clientX - centerX;
+        const dy = clientY - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        setMouseDist({ x: dx, y: dy, dist });
+        springX.set(dx / 8);
+        springY.set(dy / 8);
+
+        // Random micro-sparkle when moving close (throttled frequency)
+        if (dist < 180 && Math.random() < 0.12) {
+          const id = ++sparkleIdRef.current;
+          const newSparkle = {
+            id,
+            x: clientX - rect.left,
+            y: clientY - rect.top,
+          };
+          setSparkles((prev) => [...prev.slice(-4), newSparkle]);
+          setTimeout(() => {
+            setSparkles((prev) => prev.filter((s) => s.id !== id));
+          }, 800);
+        }
+      });
     },
     [springX, springY]
   );
@@ -92,23 +107,23 @@ export function InteractiveHeroWhiskers({
     const xOffset = ((isLeft ? -mouseDist.x : mouseDist.x) / 25) * influence;
 
     if (isLeft) {
-      // Base: M 50 15 L 42 7 L 34 23 L 26 7 L 18 23 L 10 7 L 2 18
-      const p1y = 7 + yOffset;
-      const p2y = 23 - yOffset;
-      const p3y = 7 + yOffset * 1.2;
-      const p4y = 23 - yOffset * 0.8;
-      const p5y = 7 + yOffset * 1.5;
-      const p6y = 18 + yOffset;
-      return `M 50 15 L ${42 + xOffset} ${p1y} L ${34 + xOffset * 0.8} ${p2y} L ${26 + xOffset * 0.6} ${p3y} L ${18 + xOffset * 0.4} ${p4y} L ${10 + xOffset * 0.2} ${p5y} L 2 ${p6y}`;
+      // Left whisker: starts at X=50, Y=15 near title, extends left to X=2, Y=15
+      const x1 = 42 + xOffset, y1 = 6 + yOffset;
+      const x2 = 34 + xOffset * 0.8, y2 = 24 - yOffset;
+      const x3 = 26 + xOffset * 0.6, y3 = 6 + yOffset * 1.2;
+      const x4 = 18 + xOffset * 0.4, y4 = 24 - yOffset * 0.8;
+      const x5 = 10 + xOffset * 0.2, y5 = 6 + yOffset * 1.5;
+
+      return `M 50 15 C 46 15, 46 ${y1}, ${x1} ${y1} C 38 ${y1}, 38 ${y2}, ${x2} ${y2} C 30 ${y2}, 30 ${y3}, ${x3} ${y3} C 22 ${y3}, 22 ${y4}, ${x4} ${y4} C 14 ${y4}, 14 ${y5}, ${x5} ${y5} C 6 ${y5}, 6 15, 2 15`;
     } else {
-      // Base: M 2 15 L 10 7 L 18 23 L 26 7 L 34 23 L 42 7 L 50 18
-      const p1y = 7 + yOffset;
-      const p2y = 23 - yOffset;
-      const p3y = 7 + yOffset * 1.2;
-      const p4y = 23 - yOffset * 0.8;
-      const p5y = 7 + yOffset * 1.5;
-      const p6y = 18 + yOffset;
-      return `M 2 15 L ${10 + xOffset} ${p1y} L ${18 + xOffset * 0.8} ${p2y} L ${26 + xOffset * 0.6} ${p3y} L ${34 + xOffset * 0.4} ${p4y} L ${42 + xOffset * 0.2} ${p5y} L 50 ${p6y}`;
+      // Right whisker: starts at X=2, Y=15 near title, extends right to X=50, Y=15
+      const x1 = 10 + xOffset * 0.2, y1 = 6 + yOffset * 1.5;
+      const x2 = 18 + xOffset * 0.4, y2 = 24 - yOffset * 0.8;
+      const x3 = 26 + xOffset * 0.6, y3 = 6 + yOffset * 1.2;
+      const x4 = 34 + xOffset * 0.8, y4 = 24 - yOffset;
+      const x5 = 42 + xOffset, y5 = 6 + yOffset;
+
+      return `M 2 15 C 6 15, 6 ${y1}, ${x1} ${y1} C 14 ${y1}, 14 ${y2}, ${x2} ${y2} C 22 ${y2}, 22 ${y3}, ${x3} ${y3} C 30 ${y3}, 30 ${y4}, ${x4} ${y4} C 38 ${y4}, 38 ${y5}, ${x5} ${y5} C 46 ${y5}, 46 15, 50 15`;
     }
   };
 
@@ -201,7 +216,7 @@ export function InteractiveHeroWhiskers({
               className="w-8 h-4 overflow-visible"
             >
               <path
-                d="M 2 9 L 8 3 L 14 15 L 20 3 L 26 15 L 32 3 L 38 11"
+                d="M 2 9 C 5 9, 5 3, 8 3 C 11 3, 11 15, 14 15 C 17 15, 17 3, 20 3 C 23 3, 23 15, 26 15 C 29 15, 29 3, 32 3 C 35 3, 35 9, 38 9"
                 stroke={isTickled || isPurring ? pinkAccent : primaryColor}
                 strokeWidth="2.5"
                 strokeLinecap="round"
@@ -268,4 +283,4 @@ export function InteractiveHeroWhiskers({
       </div>
     </div>
   );
-}
+});
