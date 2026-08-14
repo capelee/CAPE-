@@ -1124,7 +1124,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               {/* Footer CTA */}
               <div className={`${showAllDetails ? "pt-2.5" : "pt-1.5"} border-t flex items-center justify-end text-[10px] font-medium ${themeStyles.dividerClassValue}`}>
                 <span className={`px-2 py-1 rounded-lg text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm`}>
-                  <span>展開</span>
+                  <span>{(item.id === "mumao-cat-religion-ip" || item.title.includes("MuMㄠ")) ? "開啟 IP 專題 Case Study" : "展開"}</span>
                   <ArrowUpRight className="h-2 w-2 stroke-[2.5]" />
                 </span>
               </div>

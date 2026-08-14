@@ -17,7 +17,8 @@ import {
   Mail, 
   QrCode,
   Check,
-  FileText
+  FileText,
+  Cat
 } from "lucide-react";
 import { MinimalistLogo } from "./MinimalistLogo";
 
@@ -107,6 +108,7 @@ interface DesignerBentoProps {
     }>;
   };
   setIsContactCardOpen: (open: boolean) => void;
+  setIsMumaoProjectOpen?: (open: boolean) => void;
   onCopyEmail?: () => void;
   setIsWorkflowOpen?: (open: boolean) => void;
   triggerMascotSpeech?: (dialogue: string) => void;
@@ -119,6 +121,7 @@ export const DesignerBento = React.memo(function DesignerBento({
   theme, 
   profile, 
   setIsContactCardOpen, 
+  setIsMumaoProjectOpen,
   onCopyEmail, 
   setIsWorkflowOpen,
   triggerMascotSpeech,
@@ -409,6 +412,22 @@ export const DesignerBento = React.memo(function DesignerBento({
                   <span>傳統雲端 PDF 作品集 ↗</span>
                 </a>
               )}
+
+              {/* 白貓 MuMㄠ 品牌專題按鈕 */}
+              <button
+                type="button"
+                onClick={() => setIsMumaoProjectOpen?.(true)}
+                className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl border transition-all duration-300 shadow-md active:scale-98 text-center uppercase tracking-wide font-sans cursor-pointer ${
+                  theme === "dark"
+                    ? "border-sky-500/25 bg-sky-500/10 hover:bg-sky-500 hover:text-black hover:border-sky-450 text-sky-400 shadow-sky-500/5"
+                    : theme === "sepia"
+                    ? "border-[#387da3]/30 bg-[#387da3]/10 hover:bg-[#387da3] hover:text-white hover:border-[#387da3] text-[#2c617f]"
+                    : "border-[#387da3]/20 bg-sky-50/60 hover:bg-[#387da3] hover:text-white hover:border-[#387da3] text-[#387da3]"
+                }`}
+              >
+                <Cat className="h-3.5 w-3.5 shrink-0" />
+                <span>MUMㄠ 品牌專題</span>
+              </button>
 
               <div className="relative w-full">
                 {tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed4 && (

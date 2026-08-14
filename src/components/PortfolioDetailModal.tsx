@@ -11,7 +11,8 @@ import {
   Minimize2, 
   ExternalLink,
   Share2,
-  Check
+  Check,
+  Sparkles
 } from "lucide-react";
 import { PortfolioItem } from "../types";
 import { ImageWithFallback } from "./ImageWithFallback";
@@ -23,6 +24,7 @@ interface PortfolioDetailModalProps {
   filteredItems: PortfolioItem[];
   onPrevItem: () => void;
   onNextItem: () => void;
+  onOpenMumaoProject?: () => void;
 }
 
 // Extract YouTube ID from robust URLs
@@ -50,6 +52,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
   filteredItems,
   onPrevItem,
   onNextItem,
+  onOpenMumaoProject,
 }) => {
   const { tutorialStep, nextTutorialStep } = useTutorial();
 
@@ -605,6 +608,24 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
                   </div>
                 </div>
               </div>
+
+              {/* 專屬 Case Study 頁面快捷按鈕 (若適用) */}
+              {(activeModalItem.id === "mumao-cat-religion-ip" || activeModalItem.title.includes("MuMㄠ")) && onOpenMumaoProject && (
+                <div className="pt-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onClose();
+                      onOpenMumaoProject();
+                    }}
+                    className="w-full py-2.5 px-3 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:from-purple-500 hover:to-amber-400 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer border border-white/20"
+                  >
+                    <Sparkles className="h-4 w-4 animate-pulse" />
+                    <span>開啟 MuMㄠ 完整 IP 專題 Case Study 頁面</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              )}
 
               {/* 底部行動 (靜態不滾動) */}
               <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between gap-3 shrink-0">

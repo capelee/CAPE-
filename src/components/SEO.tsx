@@ -93,6 +93,8 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
     // 2. Standard Meta
     setMeta('meta[name="description"]', 'name', 'description', description);
     setMeta('meta[name="title"]', 'name', 'title', title);
+    setMeta('meta[name="author"]', 'name', 'author', "Cape Lee");
+    setMeta('meta[name="robots"]', 'name', 'robots', "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
     setCanonical(pageUrl);
 
     // 3. Open Graph (FB / LINE / Slack)
@@ -104,14 +106,17 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
     setMeta('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
     setMeta('meta[property="og:image:alt"]', 'property', 'og:image:alt', title);
     setMeta('meta[property="og:url"]', 'property', 'og:url', pageUrl);
+    setMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
+    setMeta('meta[property="og:locale"]', 'property', 'og:locale', 'zh_TW');
+    setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'Cape Lee Portfolio | 品牌視覺與角色 IP 設計');
 
     // 4. Twitter Cards
-    setMeta('meta[property="twitter:card"]', 'property', 'twitter:card', 'summary_large_image');
-    setMeta('meta[property="twitter:title"]', 'property', 'twitter:title', title);
-    setMeta('meta[property="twitter:description"]', 'property', 'twitter:description', description);
-    setMeta('meta[property="twitter:image"]', 'property', 'twitter:image', imageUrl);
-    setMeta('meta[property="twitter:image:alt"]', 'property', 'twitter:image:alt', title);
-    setMeta('meta[property="twitter:url"]', 'property', 'twitter:url', pageUrl);
+    setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+    setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title);
+    setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
+    setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', imageUrl);
+    setMeta('meta[name="twitter:image:alt"]', 'name', 'twitter:image:alt', title);
+    setMeta('meta[name="twitter:url"]', 'name', 'twitter:url', pageUrl);
 
     // 5. JSON-LD Main Structured Data
     let jsonLdScript = document.getElementById("json-ld-seo") as HTMLScriptElement | null;
@@ -135,12 +140,27 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
         "inLanguage": "zh-TW",
         "creator": {
           "@type": "Person",
-          "name": "李凱博 (Cape Lee)",
+          "name": "Cape Lee",
           "alternateName": "Cape Lee",
           "jobTitle": "Brand & Visual Designer",
           "email": "capelee0715@gmail.com",
           "url": BASE_URL,
           "sameAs": [
+            "https://www.instagram.com/mumao1",
+            "https://www.instagram.com/capelee",
+            "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
+          ]
+        },
+        "artist": {
+          "@type": "Person",
+          "name": "Cape Lee",
+          "alternateName": "Cape Lee",
+          "jobTitle": "Brand & Visual Designer",
+          "email": "capelee0715@gmail.com",
+          "url": BASE_URL,
+          "sameAs": [
+            "https://www.instagram.com/mumao1",
+            "https://www.instagram.com/capelee",
             "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
           ]
         },
@@ -153,7 +173,7 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
             "url": "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
           }
         },
-        "artForm": "Graphic Design",
+        "artform": "Graphic Design",
         "artMedium": activeItem.tools ? activeItem.tools.join(", ") : "Digital Design",
         "category": activeItem.category,
         "aggregateRating": {
@@ -175,43 +195,75 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
               "ratingValue": "5",
               "bestRating": "5"
             },
-            "reviewBody": "展現極高層次的商業品牌視覺力與原創設計構思，整體構成與配色極具特色。"
+            "reviewBody": "呈現品牌視覺規劃與原創角色設計，版面結構與配色具備專業度與商業價值。"
           }
         ]
       });
     } else {
       jsonLdScript.text = JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "李凱博 (Cape Lee)",
-        "alternateName": "Cape Lee",
-        "jobTitle": "Senior Brand & Visual Designer",
-        "email": "capelee0715@gmail.com",
-        "url": BASE_URL,
-        "image": DEFAULT_IMAGE,
-        "sameAs": [
-          "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
-        ],
-        "knowsAbout": [
-          "企業LOGO與CIS設計",
-          "包裝視覺與平面設計",
-          "電商與社群視覺行銷",
-          "原創角色 IP 與插畫",
-          "影音與多媒體設計",
-          "網站產品瀑布頁"
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "128",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "workExample": {
-          "@type": "CreativeWork",
-          "name": "Cape Lee Visual Design Portfolio",
-          "url": BASE_URL
-        }
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": `${BASE_URL}/#person`,
+            "name": "Cape Lee",
+            "alternateName": "Cape Lee",
+            "jobTitle": "Senior Brand & Visual Designer",
+            "email": "capelee0715@gmail.com",
+            "url": BASE_URL,
+            "image": DEFAULT_IMAGE,
+            "sameAs": [
+              "https://www.instagram.com/mumao1",
+              "https://www.instagram.com/capelee",
+              "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
+            ],
+            "knowsLanguage": ["zh-TW", "en"],
+            "knowsAbout": [
+              "企業LOGO與CIS設計",
+              "包裝視覺與平面設計",
+              "電商與社群視覺行銷",
+              "原創角色 IP 與插畫",
+              "影音與多媒體設計",
+              "網站產品瀑布頁"
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": `${BASE_URL}/#service`,
+            "name": "Cape Lee Visual Design Studio",
+            "url": BASE_URL,
+            "logo": DEFAULT_IMAGE,
+            "image": DEFAULT_IMAGE,
+            "description": "提供專業品牌識別設計 (CIS)、展場與擺攤主視覺、包裝視覺、電商視覺與原創角色 IP 插畫開發服務。",
+            "provider": {
+              "@id": `${BASE_URL}/#person`
+            },
+            "areaServed": "TW",
+            "priceRange": "$$",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "128",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "review": [
+              {
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": "Brand Design Client"
+                },
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": "5",
+                  "bestRating": "5"
+                },
+                "reviewBody": "專業、細緻且溝通順暢，品牌視覺包裝精準貼合市場定位與使用者需求。"
+              }
+            ]
+          }
+        ]
       });
     }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Instagram, X } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
 import { playMeowSound, catPurr, audioContextManager } from "../utils/audioEffects";
 import { useTutorial } from "../context/TutorialContext";
 import { TutorialTooltip } from "./TutorialTooltip";
@@ -109,6 +109,7 @@ interface MinimalistLogoProps {
   onCloseExternalBubble?: () => void;
   onInteract?: () => void;
   onBalloonFlyAway?: () => void;
+  onOpenProject?: () => void;
 }
 
 export function MinimalistLogo({ 
@@ -121,7 +122,8 @@ export function MinimalistLogo({
   showExternalBubble,
   onCloseExternalBubble,
   onInteract,
-  onBalloonFlyAway
+  onBalloonFlyAway,
+  onOpenProject
 }: MinimalistLogoProps) {
   const normalImageUrl = "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep";
   const winkImageUrl = "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX";
@@ -568,24 +570,25 @@ export function MinimalistLogo({
                     哎呀！再戳本教主就要胖成貓咪氣球飛走啦！🎈 救喵啊～ 💨
                   </span>
                 ) : (
-                  <span>喵～🐾 歡迎追蹤 MuMㄠ（姆貓教）的原創 IP 插畫音樂祭粉專喔！🎸✨</span>
+                  <span>喵～🐾 歡迎探索 MuMㄠ（姆貓）原創 IP 視覺與品牌專案喔！🎸✨</span>
                 )}
               </p>
               
               {!isBalloonDialogue && !showExternalBubble && (
-                <a
-                  href="https://www.instagram.com/mumao1_the_cat_religion?igsh=MXF2a3N1bm45ajhkaw=="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 w-full py-1.5 px-2.5 rounded-lg text-[10px] font-bold text-white bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 hover:brightness-110 active:scale-95 transition-all shadow-md cursor-pointer"
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-1.5 w-full py-1.5 px-2.5 rounded-lg text-[10px] font-bold text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:brightness-110 active:scale-95 transition-all shadow-md cursor-pointer border border-amber-400/30"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowBubble(false);
+                    if (onOpenProject) {
+                      onOpenProject();
+                    }
                   }}
                 >
-                  <Instagram className="h-3 w-3 shrink-0" />
-                  <span>追蹤 姆貓教主 IG 🐾</span>
-                </a>
+                  <Sparkles className="h-3 w-3 shrink-0 text-amber-200 animate-pulse" />
+                  <span>開啟 MuMㄠ（姆貓）專案頁面 🐾</span>
+                </button>
               )}
             </div>
           </motion.div>

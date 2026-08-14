@@ -1,5 +1,5 @@
 import React from "react";
-import { X, Mail, Globe, ExternalLink, Award, Download } from "lucide-react";
+import { X, Mail, Globe, ExternalLink, Award, Download, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface ContactModalProps {
@@ -123,18 +123,30 @@ export function ContactModal({ isOpen, onClose, theme, profile, downloadVCard, v
                         theme === "dark" ? "border-white/5" : "border-black/5"
                       }`}>
                         <div className="flex items-center gap-3">
-                          <Mail className="h-3.5 w-3.5 opacity-60 text-amber-500" />
+                          <Mail className="h-3.5 w-3.5 opacity-60 text-amber-500 shrink-0" />
                           <span className="font-mono opacity-80 select-all">{profile.email}</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <Globe className="h-3.5 w-3.5 opacity-60 text-amber-500" />
+                          <Instagram className="h-3.5 w-3.5 opacity-60 text-amber-500 shrink-0" />
+                          <a 
+                            href={profile.instagramUrl || "https://www.instagram.com/mumao1_the_cat_religion/"} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="opacity-80 hover:text-amber-500 hover:underline inline-flex items-center gap-1 transition-colors font-mono"
+                          >
+                            <span>Instagram ({profile.instagramHandle || "@mumao1_the_cat_religion"})</span>
+                            <ExternalLink className="h-2.5 w-2.5" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Globe className="h-3.5 w-3.5 opacity-60 text-amber-500 shrink-0" />
                           <a href={profile.portfolioUrl} target="_blank" rel="noopener noreferrer" className="opacity-80 hover:text-amber-500 hover:underline inline-flex items-center gap-1 transition-colors">
                             <span>PDF 作品集</span>
                             <ExternalLink className="h-2.5 w-2.5" />
                           </a>
                         </div>
                         <div className="flex items-center gap-3">
-                          <Award className="h-3.5 w-3.5 opacity-60 text-amber-500" />
+                          <Award className="h-3.5 w-3.5 opacity-60 text-amber-500 shrink-0" />
                           <span className="opacity-80">6 年以上品牌商業整合設計實戰經驗</span>
                         </div>
                       </div>
@@ -152,6 +164,23 @@ export function ContactModal({ isOpen, onClose, theme, profile, downloadVCard, v
                         <Download className="h-3.5 w-3.5" />
                         <span>一鍵下載並匯入通訊錄 (.vcf)</span>
                       </button>
+
+                      <a
+                        href={profile.instagramUrl || "https://www.instagram.com/mumao1_the_cat_religion/"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg border transition-all cursor-pointer ${
+                          theme === "dark"
+                            ? "border-pink-500/30 bg-pink-500/10 hover:bg-pink-500/20 text-pink-300"
+                            : theme === "sepia"
+                            ? "border-pink-700/30 bg-pink-700/10 hover:bg-pink-700/20 text-pink-900"
+                            : "border-pink-500/30 bg-pink-50 hover:bg-pink-100 text-pink-700"
+                        }`}
+                      >
+                        <Instagram className="h-3.5 w-3.5" />
+                        <span>前往 Instagram 粉專 ({profile.instagramHandle || "@mumao1_the_cat_religion"})</span>
+                        <ExternalLink className="h-2.5 w-2.5" />
+                      </a>
                     </div>
                   </div>
                 </div>

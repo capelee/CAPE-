@@ -50,7 +50,7 @@ import {
   QrCode,
   Download,
   SlidersHorizontal,
-  FileText, RotateCcw, Leaf, Cpu
+  FileText, RotateCcw, Leaf, Cpu, Cat
 } from "lucide-react";
 import { motion, AnimatePresence, useDragControls, useMotionValue, useSpring, animate, useScroll, useTransform } from "motion/react";
 import { PortfolioItem, MascotCharacter } from "./types";
@@ -65,6 +65,7 @@ import { playMeowSound, playCanClinkSound, catPurr, audioContextManager, playCar
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
 import { SEO } from './components/SEO';
+import { MumaoProjectPage } from './components/MumaoProjectPage';
 
 interface CategoryButtonProps {
   cat: string;
@@ -1065,6 +1066,7 @@ export default function App() {
 
   const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
   const [activeSection, setActiveSection] = useState<"portfolio" | "resume" | null>(null);
+  const [isMumaoProjectOpen, setIsMumaoProjectOpen] = useState(false);
   const { tutorialStep, nextTutorialStep } = useTutorial();
 
   const handleCategoryClick = React.useCallback((cat: string) => {
@@ -1122,7 +1124,7 @@ export default function App() {
           "inLanguage": "zh-TW",
           "creator": {
             "@type": "Person",
-            "name": "李凱博 (Cape Lee)",
+            "name": "Cape Lee",
             "alternateName": "Cape Lee",
             "email": "capelee0715@gmail.com",
             "jobTitle": "Designer & Creative Specialist",
@@ -1412,8 +1414,16 @@ export default function App() {
         nextTutorialStep();
       }
     }
+    if (item.id === "mumao-cat-religion-ip" || item.title.includes("MuMㄠ") || item.title.includes("姆貓")) {
+      setIsMumaoProjectOpen(true);
+      return;
+    }
     setActiveModalItem(item);
   }, [tutorialStep, nextTutorialStep, setActiveModalItem]);
+
+  const handleOpenMumaoProject = React.useCallback(() => {
+    setIsMumaoProjectOpen(true);
+  }, []);
   
   const isJumpingToBentoRef = React.useRef<boolean>(false);
 
@@ -1728,218 +1738,20 @@ export default function App() {
 
   const [isEcoMode, setIsEcoMode] = useState<boolean>(() => {
     try {
-      const saved = localStorage.getItem("mumu_eco_mode");
-      if (saved !== null) {
-        return saved === "true";
-      }
-      
-      // Automatic hardware, mobile, and system preference detection
       if (typeof window !== "undefined" && typeof navigator !== "undefined") {
-        // 1. Check if user enabled "Reduced Motion" at the OS/System level
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (prefersReducedMotion) return true;
-
-        // 2. Check if mobile device (UserAgent or Touch support indicators)
+        // Detect if mobile device (UserAgent or Touch support indicators)
         const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
           (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && ('ontouchstart' in window || typeof window.orientation !== 'undefined'));
-        
-        if (isMobileDevice) {
-          console.log("[Eco Mode] Mobile device detected. Auto-activating eco-mode for optimal performance.");
-          return true;
-        }
-
-        // 3. Check hardware indicators
-        // Low CPU Core count (e.g. Dual-core or lower devices/mobile devices)
-        const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-        
-        // Low RAM Memory count (typically 4GB or less, supported in Chrome/Edge/Opera/Android WebViews)
-        const anyNav = navigator as any;
-        const lowMemory = anyNav.deviceMemory && anyNav.deviceMemory < 4;
-
-        if (lowCpu || lowMemory) {
-          console.log(`[Eco Mode] Low-end hardware detected (Cores: ${navigator.hardwareConcurrency}, RAM: ${anyNav.deviceMemory}GB). Auto-activating eco-mode.`);
-          return true;
-        }
+        return !!isMobileDevice;
       }
       return false;
     } catch {
       return false;
     }
   });
-
-  // Track whether the user explicitly toggled Eco Mode so auto-detector respects user choice
-  const userExplicitEcoChoiceRef = React.useRef<boolean>(() => {
-    try {
-      const saved = localStorage.getItem("mumu_eco_mode");
-      return saved !== null; // If explicitly stored in localStorage, user has made a choice
-    } catch {
-      return false;
-    }
-  });
-
-  const toggleEcoMode = () => {
-    userExplicitEcoChoiceRef.current = true;
-    const nextVal = !isEcoMode;
-    setIsEcoMode(nextVal);
-    try {
-      localStorage.setItem("mumu_eco_mode", String(nextVal));
-    } catch {}
-    
-    // Trigger mascot speech to notify user
-    if (nextVal) {
-      setNavDialogue("已開啟極致節能效能優化模式！🍃 關閉繁重 3D 與粒子效果，在低階裝置跑動將更加順暢！🐾");
-    } else {
-      setNavDialogue("已關閉節能模式，恢復完整 3D 慣性傾斜與絢麗粒子物理效果！✨");
-    }
-    setShowNavDialogue(true);
-  };
 
   const [performanceToast, setPerformanceToast] = useState<{ show: boolean; msg: string } | null>(null);
-  const perfToastTimeoutRef = React.useRef<any>(null);
   const navAutoCloseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  // Auto-close floating performance alert toast 4.5s after appearing
-  React.useEffect(() => {
-    if (performanceToast?.show) {
-      if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
-      perfToastTimeoutRef.current = setTimeout(() => {
-        setPerformanceToast(null);
-      }, 4500);
-    }
-    return () => {
-      if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
-    };
-  }, [performanceToast]);
-
-  // Dynamic system rendering rate (FPS) and scroll responsiveness load detector
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.requestAnimationFrame) return;
-
-    let frameCount = 0;
-    let lastTime = performance.now();
-    let slowFrames = 0;
-    let consecutiveStutter = 0;
-    let failingWindows = 0;
-    const maxSamples = 120; // 2 seconds sliding window at 60fps
-    let rafId: number;
-
-    const hasAutoOptimized = { current: false };
-
-    // Set a flag to check if the user is actively interacting or scrolling
-    let lastInteractionTime = performance.now();
-    let lastScrollTime = 0;
-    
-    const handleUserInteraction = () => {
-      lastInteractionTime = performance.now();
-    };
-
-    const handleScrollEvent = () => {
-      lastInteractionTime = performance.now();
-      lastScrollTime = performance.now();
-    };
-
-    window.addEventListener("scroll", handleScrollEvent, { passive: true });
-    window.addEventListener("touchstart", handleUserInteraction, { passive: true });
-    window.addEventListener("click", handleUserInteraction, { passive: true });
-    window.addEventListener("mousemove", handleUserInteraction, { passive: true });
-
-    const checkPerformanceLoop = (now: number) => {
-      const delta = now - lastTime;
-      lastTime = now;
-
-      // Do NOT auto-trigger if user has explicitly toggled eco mode preference or already optimized
-      const userHasChoice = userExplicitEcoChoiceRef.current || (typeof localStorage !== "undefined" && localStorage.getItem("mumu_eco_mode") !== null);
-      const isTabVisible = document.visibilityState === "visible";
-      const isRecentlyActive = now - lastInteractionTime < 8000;
-      // Is currently in middle of rapid scrolling or within 800ms after scrolling?
-      const isScrolling = now - lastScrollTime < 800;
-
-      if (isTabVisible && isRecentlyActive && !isEcoMode && !hasAutoOptimized.current && !userHasChoice) {
-        // Only evaluate frames when NOT actively fast-scrolling to prevent normal scroll event queueing from false-triggering
-        if (!isScrolling) {
-          frameCount++;
-
-          // A single frame taking longer than 55ms indicates severe low rendering rates (< 18fps)
-          if (delta > 55.0) {
-            slowFrames++;
-          }
-
-          // Extreme stutter: a single frame taking longer than 120ms
-          if (delta > 120.0) {
-            consecutiveStutter++;
-          } else {
-            consecutiveStutter = Math.max(0, consecutiveStutter - 1);
-          }
-
-          // Once we hit maxSamples (2 seconds), analyze the window
-          if (frameCount >= maxSamples) {
-            const slowFrameRatio = slowFrames / maxSamples;
-            
-            // Require sustained lag over multiple windows
-            if (slowFrameRatio > 0.60 || consecutiveStutter >= 5) {
-              failingWindows++;
-            } else {
-              failingWindows = Math.max(0, failingWindows - 1);
-            }
-
-            // Only trigger after 2 consecutive 2-second windows of severe lag (4 continuous seconds of genuine low FPS)
-            if (failingWindows >= 2) {
-              console.warn(`[System Performance Alert] Sustained high rendering load detected. Slow frame ratio: ${(slowFrameRatio * 100).toFixed(1)}%. Auto-activating Adaptive Eco Mode.`);
-              
-              hasAutoOptimized.current = true;
-              setIsEcoMode(true);
-              try {
-                localStorage.setItem("mumu_eco_mode", "true");
-              } catch {}
-
-              // Set mascot dialogue to explain nicely
-              setNavDialogue("喵嗚！本教主偵測到網頁有些卡頓（系統負荷較大），已自動啟動極致節能模式（關閉背景向量與粒子效果）來拯救流暢度喵！🐾");
-              setShowNavDialogue(true);
-
-              // Trigger floating notification toast
-              setPerformanceToast({
-                show: true,
-                msg: "偵測到系統負載偏高，已為您自動啟動「極致節能模式」（關閉背景 SVG 向量動畫與炫彩粒子效果）以確保操作流暢！🍃"
-              });
-
-              if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
-              perfToastTimeoutRef.current = setTimeout(() => {
-                setPerformanceToast(null);
-              }, 4500);
-            }
-
-            // Reset sample counters
-            frameCount = 0;
-            slowFrames = 0;
-          }
-        } else {
-          // Reset during scrolling so scroll events never accumulate false lag counts
-          frameCount = 0;
-          slowFrames = 0;
-          consecutiveStutter = 0;
-        }
-      } else {
-        // Reset counters if user is idle or has explicit preference
-        frameCount = 0;
-        slowFrames = 0;
-        consecutiveStutter = 0;
-        failingWindows = 0;
-      }
-
-      rafId = requestAnimationFrame(checkPerformanceLoop);
-    };
-
-    rafId = requestAnimationFrame(checkPerformanceLoop);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", handleUserInteraction);
-      window.removeEventListener("touchstart", handleUserInteraction);
-      window.removeEventListener("click", handleUserInteraction);
-      window.removeEventListener("mousemove", handleUserInteraction);
-      if (perfToastTimeoutRef.current) clearTimeout(perfToastTimeoutRef.current);
-    };
-  }, [isEcoMode]);
 
   const canX = useMotionValue(0);
   const canY = useMotionValue(0);
@@ -3210,7 +3022,7 @@ export default function App() {
 
   // Profile data
   const profile = {
-    name: "李凱博 (Cape Lee)",
+    name: "Cape Lee",
     engName: "capelee",
     title: "特約專案設計師",
     company: "立陽鴻企業禮贈品",
@@ -3219,6 +3031,8 @@ export default function App() {
     experience: "6 年以上品牌商業整合設計實戰經驗",
     desireTitle: "視覺設計師 / 平面設計師",
     email: "capelee0715@gmail.com",
+    instagramUrl: "https://www.instagram.com/mumao1_the_cat_religion/",
+    instagramHandle: "@mumao1_the_cat_religion",
     portfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
     pdfPortfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
     intro: "擁有 6 年以上品牌商業整合設計實戰經驗，致力於探索生成藝術與當代視覺的深度融合。我擅長以 AI 技術為核心，將生成式工作流無縫導入平面設計、影音製作與品牌識別，展現獨特觀點與豐沛的創作能量。經手超過百個品牌專案，涵蓋破萬銷量電商視覺至原創 IP 開發。在此次臺北生成藝術節，我期待透過實際運用 AI 工具，讓大眾親身體驗生成藝術如何為當代創作注入嶄新活力，推動藝術與科技的深度交融，共同邁向生成藝術共創的未來。",
@@ -3558,6 +3372,8 @@ export default function App() {
       `ORG:${profile.company}`,
       `EMAIL;TYPE=INTERNET,WORK:${profile.email}`,
       `URL:${profile.portfolioUrl}`,
+      `URL;TYPE=Instagram:${profile.instagramUrl}`,
+      `X-SOCIALPROFILE;type=instagram:${profile.instagramUrl}`,
       `NOTE:${profile.intro.substring(0, 100)}...`,
       "END:VCARD"
     ].join("\r\n");
@@ -3701,6 +3517,7 @@ export default function App() {
               }}
               onInteract={incrementInteraction}
               onBalloonFlyAway={triggerBalloonAchievement}
+              onOpenProject={handleOpenMumaoProject}
             />
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -3712,12 +3529,12 @@ export default function App() {
 
           <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
             {/* 導航文字連結：作品 & 履歷 */}
-            <div className="flex items-center gap-4 sm:gap-6 mr-1 sm:mr-2">
+            <div className="flex items-center gap-3 sm:gap-5 mr-1 sm:mr-2">
               <button
                 type="button"
                 onClick={() => scrollToElement("portfolio-grid")}
                 className={`relative py-1 px-1.5 text-xs sm:text-sm font-sans transition-all duration-250 cursor-pointer hover:scale-105 active:scale-95 outline-none ${
-                  activeSection === "portfolio"
+                  activeSection === "portfolio" && !isMumaoProjectOpen
                     ? theme === "sepia"
                       ? "text-[#433422] font-semibold"
                       : theme === "light"
@@ -3727,7 +3544,7 @@ export default function App() {
                 }`}
               >
                 <span>作品</span>
-                {activeSection === "portfolio" && (
+                {activeSection === "portfolio" && !isMumaoProjectOpen && (
                   <motion.div
                     layoutId="activeNavIndicator"
                     className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full ${
@@ -3745,7 +3562,7 @@ export default function App() {
                 type="button"
                 onClick={() => scrollToElement("designer-bento")}
                 className={`relative py-1 px-1.5 text-xs sm:text-sm font-sans transition-all duration-250 cursor-pointer hover:scale-105 active:scale-95 outline-none ${
-                  activeSection === "resume"
+                  activeSection === "resume" && !isMumaoProjectOpen
                     ? theme === "sepia"
                       ? "text-[#433422] font-semibold"
                       : theme === "light"
@@ -3755,7 +3572,7 @@ export default function App() {
                 }`}
               >
                 <span>履歷</span>
-                {activeSection === "resume" && (
+                {activeSection === "resume" && !isMumaoProjectOpen && (
                   <motion.div
                     layoutId="activeNavIndicator"
                     className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full ${
@@ -3968,33 +3785,7 @@ export default function App() {
                 </AnimatePresence>
               </div>
 
-              {/* ECO 節能模式開關 */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                type="button"
-                id="btn_eco_toggle"
-                onClick={toggleEcoMode}
-                className={`${themeToggleClass} flex items-center justify-center relative`}
-                title={isEcoMode ? "已開啟極致節能模式 (點擊關閉，恢復炫彩動態)" : "開啟極致節能模式 (適合低階裝置 / 省電)"}
-              >
-                <Leaf className={`h-4 w-4 transition-colors ${
-                  isEcoMode 
-                    ? "text-emerald-500 animate-pulse duration-1000" 
-                    : theme === "sepia" 
-                      ? "text-[#4F3C28] hover:text-emerald-600" 
-                      : theme === "light" 
-                        ? "text-zinc-550 hover:text-emerald-500" 
-                        : "text-zinc-400 hover:text-emerald-400"
-                }`} />
-                {isEcoMode && (
-                  <span className="absolute -top-0.5 -right-0.5 flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                  </span>
-                )}
-              </motion.button>
+
 
               {/* Instagram 按鈕 */}
               <a
@@ -4157,10 +3948,10 @@ export default function App() {
                           ? "bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200/80"
                           : "bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border-amber-500/20"
                       }`}
-                      title={`分享「${selectedCategory}」分類作品網址`}
+                      title={`複製「${selectedCategory}」分類專屬網址`}
                     >
                       <Share2 className="w-3.5 h-3.5" />
-                      <span>分享「{selectedCategory}」分類網址</span>
+                      <span>分享「{selectedCategory}」</span>
                     </button>
                   </div>
                 )}
@@ -4647,6 +4438,7 @@ export default function App() {
           theme={theme} 
           profile={profile} 
           setIsContactCardOpen={setIsContactCardOpen} 
+          setIsMumaoProjectOpen={setIsMumaoProjectOpen}
           onCopyEmail={copyEmailToClipboard} 
           setIsWorkflowOpen={setIsWorkflowOpen}
           triggerMascotSpeech={triggerMascotDialogue}
@@ -4794,20 +4586,18 @@ export default function App() {
             {/* 朱泥落款印章 (Japanese Hanko Style Stamp) */}
             <div className="flex-shrink-0 flex items-center justify-center">
               <div 
-                className="font-serif border-2 border-[#D33F33] text-[#D33F33] bg-[#D33F33]/5 font-black text-[12px] p-1 rounded-sm shadow-inner select-none flex items-center justify-center transition-transform hover:scale-105 duration-300"
+                className="font-sans border-2 border-[#D33F33] text-[#D33F33] bg-[#D33F33]/5 font-black text-[12px] p-1 rounded-sm shadow-inner select-none flex items-center justify-center transition-transform hover:scale-105 duration-300"
                 style={{ width: "42px", height: "42px" }}
               >
-                <div className="grid grid-cols-2 gap-x-1 gap-y-0.5 leading-none font-bold text-center">
-                  <span>博</span>
-                  <span>李</span>
-                  <span>印</span>
-                  <span>凱</span>
+                <div className="flex flex-col items-center justify-center leading-none font-black text-center tracking-wider font-sans">
+                  <span className="text-[9px] mb-0.5">CAPE</span>
+                  <span className="text-[9px] border-t border-[#D33F33]/40 pt-0.5 w-7">LEE</span>
                 </div>
               </div>
             </div>
             <div>
               <h5 className="font-serif font-bold text-xs tracking-[0.15em] mb-1">
-                李凱博 視覺與品牌整合手札
+                Cape Lee 視覺與品牌整合手札
               </h5>
               <p className={`font-mono text-[10px] tracking-wide ${
                 theme === "dark" ? "text-zinc-500" : theme === "sepia" ? "text-[#8C7B69]/80" : "text-zinc-400"
@@ -5077,6 +4867,7 @@ export default function App() {
               filteredItems={filteredItems}
               onPrevItem={handlePrevModalItem}
               onNextItem={handleNextModalItem}
+              onOpenMumaoProject={handleOpenMumaoProject}
             />
           </React.Suspense>
         )}
@@ -5333,6 +5124,13 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* 白貓 MuMㄠ 姆貓 專題頁面 */}
+      <MumaoProjectPage 
+        isOpen={isMumaoProjectOpen} 
+        onClose={() => setIsMumaoProjectOpen(false)} 
+        theme={theme} 
+      />
 
     </div>
   );
