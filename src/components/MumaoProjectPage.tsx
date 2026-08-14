@@ -24,7 +24,8 @@ import {
   Copy,
   Check,
   Sun,
-  Moon
+  Moon,
+  Share2
 } from "lucide-react";
 import { MumaoCatIcon } from "./MumaoCatIcon";
 import { SoundwaveWhisker, SoundwaveDivider, SoundwavePillBadge } from "./SoundwaveDecorations";
@@ -58,6 +59,51 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
   };
   const [isPurring, setIsPurring] = useState(false);
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
+  const [copiedTopShare, setCopiedTopShare] = useState(false);
+
+  const copyPlainText = async (text: string) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        if (typeof ClipboardItem !== "undefined") {
+          const blob = new Blob([text], { type: "text/plain" });
+          await navigator.clipboard.write([
+            new ClipboardItem({ "text/plain": blob })
+          ]);
+          return true;
+        }
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch {
+      // fallback if clipboard API fails or has permission restrictions
+    }
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.top = "0";
+      textArea.style.left = "-9999px";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textArea);
+      return successful;
+    } catch {
+      return false;
+    }
+  };
+
+  const handleTopShare = async () => {
+    if (typeof window !== "undefined") {
+      const shareUrl = window.location.href;
+      await copyPlainText(shareUrl);
+      setCopiedTopShare(true);
+      playMeowSound();
+      setTimeout(() => setCopiedTopShare(false), 2000);
+    }
+  };
   const [previewItem, setPreviewItem] = useState<{
     title: string;
     category?: string;
@@ -132,6 +178,9 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      if (typeof window !== "undefined") {
+        window.history.pushState(null, "", `#${id}`);
+      }
     }
   };
 
@@ -585,6 +634,18 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     };
   }, [isOpen]);
 
+  // Handle initial scroll to hash on open
+  useEffect(() => {
+    if (!isOpen) return;
+    const hash = typeof window !== "undefined" ? window.location.hash.replace("#", "") : "";
+    if (hash) {
+      const timer = setTimeout(() => {
+        scrollToSection(hash);
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   // Mobile horizontal auto-scroll centering active nav item
   useEffect(() => {
     if (!activeSection) return;
@@ -866,6 +927,40 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <Instagram className="w-3.5 h-3.5 text-[#E8829C]" />
                 <span>IG @mumao1</span>
               </a>
+
+              {/* Share Button (Only Icon) */}
+              <button
+                type="button"
+                onClick={handleTopShare}
+                title={copiedTopShare ? "" : "Share Link"}
+                className={`relative flex items-center justify-center w-[34px] h-[34px] rounded-full border transition-all cursor-pointer ${
+                  isDark 
+                    ? "border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-[#6CA4C8] hover:text-[#6CA4C8]" 
+                    : isSepia 
+                    ? "border-amber-950/15 bg-[#FAF4E5] text-[#4A3B2C] hover:border-[#437596]" 
+                    : "border-slate-200 bg-white text-slate-700 hover:border-[#437596] hover:text-[#437596]"
+                }`}
+              >
+                {copiedTopShare ? (
+                  <Check className="w-3.5 h-3.5 text-emerald-500" />
+                ) : (
+                  <Share2 className="w-3.5 h-3.5" />
+                )}
+                {/* Micro tooltip when copied */}
+                <AnimatePresence>
+                  {copiedTopShare && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.9, x: "-50%" }}
+                      animate={{ opacity: 1, y: 4, scale: 1, x: "-50%" }}
+                      exit={{ opacity: 0, y: 10, scale: 0.9, x: "-50%" }}
+                      className="absolute top-full mt-2 left-1/2 !bg-zinc-950 !text-white text-[11px] font-mono font-bold px-2.5 py-1 rounded-md shadow-2xl whitespace-nowrap z-[100] border border-white/20 pointer-events-none select-none tracking-wider"
+                      style={{ color: '#ffffff', backgroundColor: '#09090b' }}
+                    >
+                      Copied!
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
 
               <button
                 type="button"

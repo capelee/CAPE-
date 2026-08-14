@@ -1107,6 +1107,30 @@ export default function App() {
     setPrevVisibleCount(0);
   }, [selectedCategory, searchQuery, perfState.visibleBatchSize]);
 
+  // MUMㄠ 專題頁面 Hash 錨點自動開啟路由
+  React.useEffect(() => {
+    const checkHash = () => {
+      const hash = typeof window !== 'undefined' ? window.location.hash.replace("#", "") : "";
+      const mumaoSections = [
+        "hero-section",
+        "dna-section",
+        "character-section",
+        "color-section",
+        "language-section",
+        "festival-section",
+        "visuals-section",
+        "merch-section",
+        "application-section"
+      ];
+      if (mumaoSections.includes(hash)) {
+        setIsMumaoProjectOpen(true);
+      }
+    };
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, []);
+
   // Dynamically inject Schema.org JSON-LD structured data (CreativeWork) for SEO
   React.useEffect(() => {
     try {
