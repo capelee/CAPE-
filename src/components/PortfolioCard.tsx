@@ -918,13 +918,13 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 </div>
 
                 {/* 工具 Tags */}
-                <div className={`pt-3.5 border-t flex flex-wrap gap-1.5 transform transition-all duration-400 ease-out ${
+                <div className={`pt-2.5 sm:pt-3.5 border-t flex flex-wrap gap-1 sm:gap-1.5 transform transition-all duration-400 ease-out ${
                   isHovered ? "translate-y-[-1.2px]" : "translate-y-0"
                 } ${themeStyles.dividerClassValue}`}>
                   {item.tools.map((tech) => (
                     <span 
                       key={tech} 
-                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-medium transition-all duration-300 border ${getToolStyle(tech, theme)}`}
+                      className={`px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono font-medium transition-all duration-300 border ${getToolStyle(tech, theme)}`}
                     >
                       {tech}
                     </span>
@@ -1063,7 +1063,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
 
             {/* 中間主卡片 (Front surface of back face, z-10 with solid theme background) */}
             <div 
-              className={`relative z-10 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-5 md:p-6" : "p-4"} justify-between transition-[background-color,border-color,color] duration-500 shadow-2xl ${themeStyles.themeContainerClass}`}
+              className={`relative z-10 w-full h-full flex flex-col rounded-2xl overflow-hidden ${showAllDetails ? "p-4 sm:p-5 md:p-6" : "p-3 sm:p-4"} justify-between transition-[background-color,border-color,color] duration-500 shadow-2xl ${themeStyles.themeContainerClass}`}
               style={{ zIndex: 10 }}
             >
               {/* Ambient Background Glow inside the main back face */}
@@ -1074,11 +1074,11 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                 }}
               />
 
-            <div className={`relative z-10 flex flex-col h-full justify-between ${showAllDetails ? "space-y-3" : "space-y-1.5"}`}>
+            <div className={`relative z-10 flex flex-col h-full justify-between ${showAllDetails ? "space-y-2 sm:space-y-3" : "space-y-1 sm:space-y-1.5"}`}>
               {/* Header: Category & ID */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between shrink-0">
                 <span 
-                  className={`px-2.5 py-0.5 text-[9px] font-medium tracking-wide rounded-full border shadow-sm transition-all duration-300 ${
+                  className={`px-2 sm:px-2.5 py-0.5 text-[8.5px] sm:text-[9px] font-medium tracking-wide rounded-full border shadow-sm transition-all duration-300 ${
                     themeStyles.isSepia
                       ? "bg-[#FAF4E5] border-[#E2D2B3]"
                       : themeStyles.isLight
@@ -1095,22 +1095,22 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               </div>
 
               {/* Title Block */}
-              <div className="space-y-0.5">
-                <p className={`text-[10px] font-mono tracking-widest uppercase line-clamp-1 md:line-clamp-2 ${themeStyles.backTitleEnClassValue}`}>
+              <div className="space-y-0.5 shrink-0">
+                <p className={`text-[9px] sm:text-[10px] font-mono tracking-widest uppercase line-clamp-1 ${themeStyles.backTitleEnClassValue}`}>
                   {item.titleEn}
                 </p>
-                <h3 className={`text-sm md:text-base font-display font-semibold leading-snug line-clamp-2 md:line-clamp-3 ${themeStyles.backTitleClassValue}`}>
+                <h3 className={`text-xs sm:text-sm md:text-base font-display font-semibold leading-tight sm:leading-snug line-clamp-2 md:line-clamp-3 ${themeStyles.backTitleClassValue}`}>
                   {item.title}
                 </h3>
               </div>
 
               {/* 工具標籤區 */}
               {item.tools && item.tools.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 py-1">
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 py-0.5 sm:py-1 max-h-[22px] sm:max-h-none overflow-hidden shrink-0">
                   {item.tools.slice(0, 3).map((tool) => (
                     <span
                       key={tool}
-                      className={`px-2 py-0.5 rounded text-[9px] font-mono font-medium border ${getToolStyle(tool, theme)}`}
+                      className={`px-1.5 sm:px-2 py-0.5 rounded text-[8.5px] sm:text-[9px] font-mono font-medium border whitespace-nowrap ${getToolStyle(tool, theme)}`}
                     >
                       {tool}
                     </span>
@@ -1119,11 +1119,11 @@ export const PortfolioCard = React.memo(function PortfolioCard({
               )}
 
               {/* Spacer to push footer to bottom when tags are removed */}
-              <div className="flex-1" />
+              <div className="flex-1 min-h-[2px]" />
 
               {/* Footer CTA */}
-              <div className={`${showAllDetails ? "pt-2.5" : "pt-1.5"} border-t flex items-center justify-end text-[10px] font-medium ${themeStyles.dividerClassValue}`}>
-                <span className={`px-2 py-1 rounded-lg text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm`}>
+              <div className={`shrink-0 ${showAllDetails ? "pt-2 md:pt-2.5" : "pt-1 sm:pt-1.5"} border-t flex items-center justify-end text-[9px] sm:text-[10px] font-medium ${themeStyles.dividerClassValue}`}>
+                <span className={`px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md sm:rounded-lg text-[8.5px] sm:text-[9px] font-bold tracking-wider text-black bg-gradient-to-r ${catColor.gradientClass || 'from-amber-400 to-amber-500'} flex items-center gap-1 shadow-sm whitespace-nowrap`}>
                   <span>{(item.id === "mumao-cat-religion-ip" || item.title.includes("MuMㄠ")) ? "開啟 IP 專題 Case Study" : "展開"}</span>
                   <ArrowUpRight className="h-2 w-2 stroke-[2.5]" />
                 </span>
