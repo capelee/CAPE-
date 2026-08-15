@@ -86,6 +86,7 @@ function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) 
   return (
     <button
       type="button"
+      draggable={false}
       id={`cat_filter_btn_${cat}`}
       data-cat={cat}
       onClick={onClick}
@@ -1070,6 +1071,7 @@ export default function App() {
   const { tutorialStep, nextTutorialStep } = useTutorial();
 
   const handleCategoryClick = React.useCallback((cat: string) => {
+    if (hasDraggedCategoriesRef.current) return;
     setSelectedCategory(cat);
     if (tutorialStep === 1) {
       nextTutorialStep();
@@ -2654,6 +2656,19 @@ export default function App() {
   const [showCategoriesRightMask, setShowCategoriesRightMask] = useState<boolean>(false);
   const [isMobileExpanded, setIsMobileExpanded] = useState<boolean>(false);
 
+  // Drag-to-scroll & 3s auto-recenter state
+  const isDraggingCategoriesRef = React.useRef(false);
+  const categoriesStartXRef = React.useRef(0);
+  const categoriesScrollLeftRef = React.useRef(0);
+  const hasDraggedCategoriesRef = React.useRef(false);
+  const categoriesPointerIdRef = React.useRef<number | null>(null);
+  const [isCategoriesPointerDown, setIsCategoriesPointerDown] = useState(false);
+
+  const selectedCategoryRef = React.useRef(selectedCategory);
+  React.useEffect(() => {
+    selectedCategoryRef.current = selectedCategory;
+  }, [selectedCategory]);
+
   const checkCategoriesScroll = React.useCallback(() => {
     if (categoriesRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = categoriesRef.current;
@@ -2662,56 +2677,163 @@ export default function App() {
     }
   }, []);
 
-  const isProgrammaticScrollRef = React.useRef<boolean>(false);
+  const isAutoScrollingRef = React.useRef<boolean>(false);
   const categoryScrollTimeoutRef = React.useRef<number | null>(null);
 
-  const centerSelectedCategory = React.useCallback((onlyIfNotVisible = false) => {
-    if (categoriesRef.current) {
-      const container = categoriesRef.current;
-      const activeButton = container.querySelector(`button[data-cat="${selectedCategory}"]`) as HTMLElement;
-      
-      if (activeButton) {
-        const containerRect = container.getBoundingClientRect();
-        const buttonRect = activeButton.getBoundingClientRect();
-        
-        // Calculate if the button is fully visible inside the container
-        const isVisible = (buttonRect.left >= containerRect.left) && (buttonRect.right <= containerRect.right);
-        
-        if (onlyIfNotVisible && isVisible) {
-          return; // Button is already visible, no need to auto center
-        }
+  const centerSelectedCategory = React.useCallback((onlyIfOffCenter = false, smooth = true) => {
+    const container = categoriesRef.current;
+    if (!container) return;
 
-        // Calculate the relative position to center the button
-        const scrollTarget = container.scrollLeft + (buttonRect.left - containerRect.left) - (containerRect.width / 2) + (buttonRect.width / 2);
-          
-        isProgrammaticScrollRef.current = true;
-        container.scrollTo({
-          left: scrollTarget,
-          behavior: 'smooth'
-        });
-        
-        // Reset the programmatic scroll flag after a short delay for animation
-        setTimeout(() => {
-          isProgrammaticScrollRef.current = false;
-        }, 800);
+    const currentCat = selectedCategoryRef.current;
+    const activeButton = document.getElementById(`cat_filter_btn_${currentCat}`);
+
+    if (activeButton && container) {
+      const containerWidth = container.clientWidth;
+      if (containerWidth === 0) return;
+
+      const buttonLeft = activeButton.offsetLeft;
+      const buttonWidth = activeButton.clientWidth;
+
+      // Target scroll position using precise offsetLeft calculation to center button horizontally
+      const targetScrollLeft = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
+      const clampedScrollLeft = Math.max(0, targetScrollLeft);
+
+      // Check if current scroll position is off-center (> 2px tolerance)
+      const diff = Math.abs(container.scrollLeft - clampedScrollLeft);
+      if (onlyIfOffCenter && diff <= 2) {
+        return;
       }
+
+      // Mark programmatic scroll to prevent auto-scroll from re-triggering timers
+      isAutoScrollingRef.current = true;
+
+      // Clear any pending auto-recenter timer
+      if (categoryScrollTimeoutRef.current) {
+        window.clearTimeout(categoryScrollTimeoutRef.current);
+        categoryScrollTimeoutRef.current = null;
+      }
+
+      container.scrollTo({
+        left: clampedScrollLeft,
+        behavior: smooth ? 'smooth' : 'auto'
+      });
+
+      // Release auto-scrolling flag after smooth animation settles (800ms)
+      setTimeout(() => {
+        isAutoScrollingRef.current = false;
+      }, smooth ? 800 : 50);
     }
-  }, [selectedCategory]);
+  }, []);
+
+  // Automatically center selected category when selectedCategory changes, content updates, or window resizes
+  React.useEffect(() => {
+    const handleRecenter = () => {
+      centerSelectedCategory(false, true);
+    };
+
+    // Execute alignment after layout settle
+    const timer = setTimeout(() => {
+      handleRecenter();
+    }, 60);
+
+    window.addEventListener('resize', handleRecenter);
+    window.addEventListener('orientationchange', handleRecenter);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleRecenter);
+      window.removeEventListener('orientationchange', handleRecenter);
+    };
+  }, [selectedCategory, centerSelectedCategory]);
+
+  const handleCategoriesPointerDown = (e: React.PointerEvent) => {
+    const container = categoriesRef.current;
+    if (!container) return;
+
+    isAutoScrollingRef.current = false;
+    if (categoryScrollTimeoutRef.current) {
+      window.clearTimeout(categoryScrollTimeoutRef.current);
+      categoryScrollTimeoutRef.current = null;
+    }
+
+    if (e.pointerType === 'mouse') {
+      isDraggingCategoriesRef.current = true;
+      hasDraggedCategoriesRef.current = false;
+      categoriesStartXRef.current = e.clientX;
+      categoriesScrollLeftRef.current = container.scrollLeft;
+      categoriesPointerIdRef.current = e.pointerId;
+      setIsCategoriesPointerDown(true);
+    }
+  };
+
+  const handleCategoriesTouchStart = () => {
+    isAutoScrollingRef.current = false;
+    if (categoryScrollTimeoutRef.current) {
+      window.clearTimeout(categoryScrollTimeoutRef.current);
+      categoryScrollTimeoutRef.current = null;
+    }
+  };
+
+  const handleCategoriesPointerMove = (e: React.PointerEvent) => {
+    if (!isDraggingCategoriesRef.current) return;
+    const container = categoriesRef.current;
+    if (!container) return;
+    const deltaX = e.clientX - categoriesStartXRef.current;
+    
+    if (Math.abs(deltaX) > 4) {
+      if (!hasDraggedCategoriesRef.current) {
+        hasDraggedCategoriesRef.current = true;
+        // Capture pointer only when actual dragging starts, ensuring simple clicks bubble normally
+        try {
+          if (categoriesPointerIdRef.current !== null) {
+            (e.currentTarget as HTMLElement).setPointerCapture(categoriesPointerIdRef.current);
+          }
+        } catch {
+          // ignore
+        }
+      }
+      container.scrollLeft = categoriesScrollLeftRef.current - deltaX * 1.35;
+    }
+  };
+
+  const handleCategoriesPointerUp = (e: React.PointerEvent) => {
+    if (isDraggingCategoriesRef.current) {
+      isDraggingCategoriesRef.current = false;
+      setIsCategoriesPointerDown(false);
+      
+      if (categoriesPointerIdRef.current !== null) {
+        try {
+          (e.currentTarget as HTMLElement).releasePointerCapture(categoriesPointerIdRef.current);
+        } catch {
+          // ignore
+        }
+        categoriesPointerIdRef.current = null;
+      }
+
+      setTimeout(() => {
+        hasDraggedCategoriesRef.current = false;
+      }, 50);
+    }
+  };
 
   const handleCategoriesScroll = React.useCallback(() => {
     checkCategoriesScroll();
-    
-    // Ignore scroll events generated by auto centering
-    if (isProgrammaticScrollRef.current) {
+
+    // Ignore scroll events generated by our own auto-centering animation
+    if (isAutoScrollingRef.current || isDraggingCategoriesRef.current) {
       return;
     }
-    
+
     if (categoryScrollTimeoutRef.current) {
       window.clearTimeout(categoryScrollTimeoutRef.current);
     }
-    
+
+    // 3 seconds after scrolling stops (including momentum scrolling), auto recenter
     categoryScrollTimeoutRef.current = window.setTimeout(() => {
-      centerSelectedCategory(true);
+      categoryScrollTimeoutRef.current = null;
+      if (!isDraggingCategoriesRef.current) {
+        centerSelectedCategory(true, true);
+      }
     }, 3000);
   }, [checkCategoriesScroll, centerSelectedCategory]);
 
@@ -3711,7 +3833,7 @@ export default function App() {
                         theme === "sepia"
                           ? "bg-[#F4EAD4] border-[#DFCFA0]/80 text-[#4F3C28]"
                           : theme === "light"
-                          ? "bg-white border-zinc-150 text-zinc-800"
+                          ? "bg-white border-zinc-200 text-zinc-800"
                           : "bg-[#18181b] border-white/10 text-zinc-200"
                       }`}
                     >
@@ -4000,41 +4122,12 @@ export default function App() {
                 )}
               </AnimatePresence>
 
-              {/* 電腦版：雙行精緻置中選單 (md 尺寸及以上顯示) */}
-              <div className="hidden md:flex w-full max-w-5xl flex-col items-center gap-2.5 sm:gap-3 px-4">
-                {/* 第一行 */}
-                <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
-                  {row1.map((cat) => (
-                    <CategoryButton
-                      key={cat}
-                      cat={cat}
-                      theme={theme}
-                      isActive={selectedCategory === cat}
-                      onClick={() => handleCategoryClick(cat)}
-                    />
-                  ))}
-                </div>
-                
-                {/* 第二行 */}
-                <div className="w-full flex flex-wrap justify-center gap-1.5 sm:gap-2.5 py-0.5">
-                  {row2.map((cat) => (
-                    <CategoryButton
-                      key={cat}
-                      cat={cat}
-                      theme={theme}
-                      isActive={selectedCategory === cat}
-                      onClick={() => handleCategoryClick(cat)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* 手機版：整合式橫向滑軌 + 摺疊網格快速選單 (md 尺寸以下顯示) */}
-              <div className="w-full px-4 flex flex-col gap-3 md:hidden relative">
-                <div className="flex items-center gap-2 w-full">
+              {/* 整合式橫向膠囊滑軌 (電腦版一次全部列出，手機版使用橫向拖曳) */}
+              <div className="w-full max-w-5xl px-4 flex flex-col gap-3 relative">
+                <div className="flex items-center gap-2 w-full md:justify-center">
                   {/* 左右微淡出遮罩 + 左右滑動選單軌道 */}
-                  <div className="relative flex-grow overflow-hidden rounded-full">
-                    {/* 左側漸變淡出 */}
+                  <div className="relative flex-grow overflow-hidden rounded-full md:overflow-visible md:rounded-none">
+                    {/* 左側漸變淡出 (僅在手機版顯示) */}
                     <div 
                       className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r ${
                         theme === "sepia" 
@@ -4042,29 +4135,42 @@ export default function App() {
                           : theme === "light" 
                           ? "from-[#FAFAFA]" 
                           : "from-[#0A0A0A]"
-                      } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+                      } to-transparent z-10 pointer-events-none transition-opacity duration-300 md:hidden ${
                         showCategoriesLeftMask ? "opacity-100" : "opacity-0"
                       }`} 
                     />
                     
-                    {/* 滑動軌道本體 */}
+                    {/* 滑動軌道本體 (電腦版轉為 flex-wrap 以全部列出，手機版維持橫向滑動) */}
                     <div 
                       ref={categoriesRef}
                       onScroll={handleCategoriesScroll}
-                      className="flex gap-2 overflow-x-auto scrollbar-none py-1.5 px-4 w-full flex-nowrap whitespace-nowrap scroll-smooth relative"
+                      onPointerDown={handleCategoriesPointerDown}
+                      onPointerMove={handleCategoriesPointerMove}
+                      onPointerUp={handleCategoriesPointerUp}
+                      onPointerCancel={handleCategoriesPointerUp}
+                      onTouchStart={handleCategoriesTouchStart}
+                      onTouchEnd={handleCategoriesPointerUp}
+                      className={`flex gap-2 overflow-x-auto scrollbar-none py-1.5 px-4 w-full flex-nowrap whitespace-nowrap relative select-none touch-pan-x md:flex-wrap md:justify-center md:whitespace-normal md:overflow-visible md:px-0 md:py-0 ${
+                        isCategoriesPointerDown ? 'cursor-grabbing md:cursor-default' : 'cursor-grab md:cursor-default'
+                      }`}
+                      style={{
+                        WebkitOverflowScrolling: 'touch',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                      }}
                     >
                       {categories.map((cat) => (
                         <CategoryButton
-                          key={cat}
-                          cat={cat}
-                          theme={theme}
-                          isActive={selectedCategory === cat}
-                          onClick={() => handleCategoryClick(cat)}
+                           key={cat}
+                           cat={cat}
+                           theme={theme}
+                           isActive={selectedCategory === cat}
+                           onClick={() => handleCategoryClick(cat)}
                         />
                       ))}
                     </div>
 
-                    {/* 右側漸變淡出 & 橫向滑動暗示 */}
+                    {/* 右側漸變淡出 & 橫向滑動暗示 (僅在手機版顯示) */}
                     <div 
                       className={`absolute right-0 top-0 bottom-0 w-12 flex items-center justify-end pr-1.5 bg-gradient-to-l ${
                         theme === "sepia" 
@@ -4072,7 +4178,7 @@ export default function App() {
                           : theme === "light" 
                           ? "from-[#FAFAFA] via-[#FAFAFA]/80" 
                           : "from-[#0A0A0A] via-[#0A0A0A]/80"
-                      } to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+                      } to-transparent z-10 pointer-events-none transition-opacity duration-300 md:hidden ${
                         showCategoriesRightMask ? "opacity-100" : "opacity-0"
                       }`} 
                     >
@@ -4082,11 +4188,11 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* 網格展開 & 下拉清單按鈕 */}
+                  {/* 網格展開 & 下拉清單按鈕 (僅在手機版顯示) */}
                   <button
                     type="button"
                     onClick={() => setIsMobileExpanded(!isMobileExpanded)}
-                    className={`p-2.5 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    className={`p-2.5 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 hover:scale-105 active:scale-95 md:hidden ${
                       isMobileExpanded 
                         ? theme === "sepia"
                           ? "bg-[#C8A97A]/20 border-[#C8A97A] text-[#433422]"

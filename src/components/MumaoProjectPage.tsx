@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   X, 
@@ -174,13 +174,185 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     setTimeout(() => setCopiedHex(null), 2000);
   };
 
+  const modalContainerRef = useRef<HTMLDivElement>(null);
+  const mobileNavContainerRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState<string>("hero-section");
+  const [mobileNavScrollState, setMobileNavScrollState] = useState({ canScrollLeft: false, canScrollRight: true });
+
+  // Mouse / Pointer Drag to Scroll for Mobile/Tablet Capsule Navigation
+  const isDraggingNav = useRef(false);
+  const navStartX = useRef(0);
+  const navScrollLeft = useRef(0);
+  const hasDraggedNav = useRef(false);
+  const [isNavPointerDown, setIsNavPointerDown] = useState(false);
+  
+  const isAutoCenteringRef = useRef(false);
+  const navRecenterTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollEndDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Smoothly center the currently active capsule in the mobile navigation strip
+  const centerActiveNavCapsule = useCallback((smooth = true) => {
+    if (!activeSection) return;
+    const container = mobileNavContainerRef.current;
+    const targetBtn = document.getElementById(`mobile-nav-${activeSection}`);
+    if (container && targetBtn) {
+      isAutoCenteringRef.current = true;
+      const targetLeft = targetBtn.offsetLeft - (container.clientWidth / 2) + (targetBtn.clientWidth / 2);
+      container.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: smooth ? "smooth" : "auto"
+      });
+      setTimeout(() => {
+        isAutoCenteringRef.current = false;
+      }, smooth ? 600 : 50);
+    }
+  }, [activeSection]);
+
+  // Check if active capsule is currently off-center or scrolled out of view
+  const isCapsuleOffCenter = useCallback(() => {
+    if (!activeSection) return false;
+    const container = mobileNavContainerRef.current;
+    const targetBtn = document.getElementById(`mobile-nav-${activeSection}`);
+    if (!container || !targetBtn) return false;
+
+    const btnRect = targetBtn.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const btnCenter = btnRect.left + btnRect.width / 2;
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    const isOffCenter = Math.abs(btnCenter - containerCenter) > 35;
+    const isOut = btnRect.right < containerRect.left + 10 || btnRect.left > containerRect.right - 10;
+
+    return isOffCenter || isOut;
+  }, [activeSection]);
+
+  const triggerScrollEndCheck = useCallback(() => {
+    if (scrollEndDebounceTimerRef.current) clearTimeout(scrollEndDebounceTimerRef.current);
+    if (navRecenterTimerRef.current) clearTimeout(navRecenterTimerRef.current);
+
+    // Debounce scroll end (wait 150ms after scroll movement finishes)
+    scrollEndDebounceTimerRef.current = setTimeout(() => {
+      if (isCapsuleOffCenter()) {
+        // Start 3-second countdown to return to active capsule
+        navRecenterTimerRef.current = setTimeout(() => {
+          if (!isDraggingNav.current && !isNavPointerDown) {
+            centerActiveNavCapsule(true);
+          }
+        }, 3000);
+      }
+    }, 150);
+  }, [centerActiveNavCapsule, isCapsuleOffCenter, isNavPointerDown]);
+
+  const handleNavPointerDown = (e: React.PointerEvent) => {
+    const container = mobileNavContainerRef.current;
+    if (!container) return;
+    
+    isDraggingNav.current = true;
+    hasDraggedNav.current = false;
+    navStartX.current = e.clientX;
+    navScrollLeft.current = container.scrollLeft;
+    setIsNavPointerDown(true);
+
+    if (navRecenterTimerRef.current) clearTimeout(navRecenterTimerRef.current);
+    if (scrollEndDebounceTimerRef.current) clearTimeout(scrollEndDebounceTimerRef.current);
+
+    try {
+      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleNavPointerMove = (e: React.PointerEvent) => {
+    if (!isDraggingNav.current) return;
+    const container = mobileNavContainerRef.current;
+    if (!container) return;
+
+    const deltaX = e.clientX - navStartX.current;
+    if (Math.abs(deltaX) > 4) {
+      hasDraggedNav.current = true;
+    }
+
+    container.scrollLeft = navScrollLeft.current - deltaX * 1.35;
+  };
+
+  const handleNavPointerUp = (e: React.PointerEvent) => {
+    isDraggingNav.current = false;
+    setIsNavPointerDown(false);
+    try {
+      (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+    setTimeout(() => {
+      hasDraggedNav.current = false;
+    }, 50);
+
+    triggerScrollEndCheck();
+  };
+
+  const handleNavTouchStart = (e: React.TouchEvent) => {
+    const container = mobileNavContainerRef.current;
+    if (!container) return;
+    const touch = e.touches[0];
+    isDraggingNav.current = true;
+    hasDraggedNav.current = false;
+    navStartX.current = touch.clientX;
+    navScrollLeft.current = container.scrollLeft;
+
+    if (navRecenterTimerRef.current) clearTimeout(navRecenterTimerRef.current);
+    if (scrollEndDebounceTimerRef.current) clearTimeout(scrollEndDebounceTimerRef.current);
+  };
+
+  const handleNavTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingNav.current) return;
+    const container = mobileNavContainerRef.current;
+    if (!container) return;
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - navStartX.current;
+    if (Math.abs(deltaX) > 4) {
+      hasDraggedNav.current = true;
+    }
+    container.scrollLeft = navScrollLeft.current - deltaX * 1.2;
+  };
+
+  const handleNavTouchEnd = () => {
+    isDraggingNav.current = false;
+    setTimeout(() => {
+      hasDraggedNav.current = false;
+    }, 50);
+
+    triggerScrollEndCheck();
+  };
+
+  const handleMobileNavScroll = () => {
+    const el = mobileNavContainerRef.current;
+    if (!el) return;
+
+    const canScrollLeft = el.scrollLeft > 6;
+    const canScrollRight = el.scrollLeft < (el.scrollWidth - el.clientWidth - 6);
+    setMobileNavScrollState({ canScrollLeft, canScrollRight });
+
+    // Ignore scroll events caused by auto-centering or active drag
+    if (isAutoCenteringRef.current || isDraggingNav.current || isNavPointerDown) {
+      return;
+    }
+
+    triggerScrollEndCheck();
+  };
+
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    const targetElement = document.getElementById(id);
+    const container = modalContainerRef.current;
+    if (targetElement && container) {
+      const headerOffset = 110; // header + mobile nav strip height
+      const targetTop = targetElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top - headerOffset;
+      container.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
       if (typeof window !== "undefined") {
         window.history.pushState(null, "", `#${id}`);
       }
+    } else if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -208,7 +380,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       title: "STANDARD STANCE",
       zhTitle: "標準角色",
       desc: "以 MUMㄠ 的基本正面角色作為核心識別，固定頭型、耳朵、『ㄠ』、音波鬍鬚與服裝比例，建立所有角色延伸的視覺基準。",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       tag: "MASTER CHARACTER",
       principle: "CORE IDENTITY"
     },
@@ -226,7 +398,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       title: "RAISED PAWS",
       zhTitle: "舉手／動作",
       desc: "以舉手、揮舞與 Mosh Pit 等動作，建立 MUMㄠ 的現場能量，讓角色能自然進入音樂祭、舞台與活動視覺。",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       tag: "ACTION LANGUAGE",
       principle: "ACTION SYSTEM"
     }
@@ -289,51 +461,51 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
   const festivalCampaigns = [
     {
-      id: "megaport",
+      id: "emerge",
       num: "01",
-      name: "大港開唱 MEGAPORT FESTIVAL",
+      name: "浮現祭 EMERGE FESTIVAL",
       category: "MUSIC FESTIVAL",
       eventField: "MUSIC",
-      year: "2024–2026",
-      location: "高雄港區 ‧ 大港橋",
-      role: "現場主視覺角色 ／ 聽團文化識別",
-      culturalRole: "Audience Companion (陪伴聽團仔進入現場)",
-      context: "MUMㄠ 進入大型音樂祭現場，以角色、毛巾與現場視覺建立與聽團文化之間的直接連結。",
-      culturalConnection: "將現場聽團仔的狂熱記憶與地標港區融合，高舉湛藍音波毛巾成為音樂祭打卡標誌。",
-      visualOutput: "現場拍照裝置、音樂祭限定毛巾、現場標籤與指標視覺系統",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      year: "2026年2月28日-3月1日",
+      location: "台中市清水區 鰲峰山運動公園",
+      role: "現場主視覺角色／攤位文化識別",
+      culturalRole: "Audience Companion（陪伴樂團仔進入現場）",
+      context: "MUMㄠ 進入浮現祭音樂祭現場，以角色、毛巾與現場周邊構建立體品牌識別，讓 MUMㄠ 與樂迷文化產生直接連結。",
+      culturalConnection: "將現場樂迷的狂熱記憶與 MUMㄠ 角色融合，透過攤位、周邊商品與視覺布置，建立屬於音樂祭現場的品牌記憶點。",
+      visualOutput: "現場布置、音樂祭限定周邊、商品陳列與品牌視覺系統",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1tec8te6MOKjOA4zcUHh6-hs5ODFxarft",
       isPrimary: true
     },
     {
       id: "taipei-art-book",
       num: "02",
-      name: "草率季 TAIPEI ART BOOK FAIR",
+      name: "草率季十周年 Taipei Art Book Fair",
       category: "ART & ZINE",
       eventField: "ART",
-      year: "2024",
-      location: "台北 ‧ 華山1914",
+      year: "2026年3月6日-3月8日",
+      location: "臺北表演藝術中心 超級大劇院",
       role: "獨立出版 Zine 創作者 ／ 藝術語境字符",
       culturalRole: "Independent Culture Character (成為創作者與出版文化的一部分)",
       context: "MUMㄠ 從音樂現場延伸至獨立出版與藝術文化場域，透過插畫、紙品與角色視覺，建立更完整的 IP 文化語境。",
       culturalConnection: "打破單一樂團界線，在獨立出版與手繪創作生態圈中展示 IP 的文化包容力。",
       visualOutput: "繪本 Zine 特刊、手繪塗鴉卡片、藝術貼紙包與展位藝術展示",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1_FQpXov24YIwB4tCL1dlFxsf_puJze7b",
       isPrimary: false
     },
     {
-      id: "rough-mud",
+      id: "kaka-music",
       num: "03",
-      name: "爛泥發 ROUGH MUD FESTIVAL",
+      name: "2026 卡卡音樂祭 𝗞𝗔𝗞𝗔 𝗠𝗨𝗦𝗜𝗖 𝗙𝗘𝗦𝗧.",
       category: "FIELD CULTURE",
       eventField: "FIELD",
-      year: "2025",
-      location: "桃園 ‧ 泰圳路農場",
-      role: "泥地體驗參與者 ／ 現場文化符號",
-      culturalRole: "Festival Participant (和觀眾一起玩、一起髒、一起留下記憶)",
-      context: "當音樂祭從舞台延伸至泥地，MUMㄠ 也進入更直接、更狼狽、更真實的現場文化。",
-      culturalConnection: "呼應「泥巴踩下去就回不去了」的聽團信念，傳達混亂與泥濘中的現場浪漫。",
-      visualOutput: "泥地戶外防水貼紙、現場雨衣圖騰、野外紀實攝影刊物",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      year: "2026年3月14日-3月15日",
+      location: "國立中央大學戶外草坪",
+      role: "現場周邊參與者 ／ 夢境文化符號",
+      culturalRole: "Dream Weaver (在清醒與夢境之間遊走)",
+      context: "從「夢過星河」到「醒著做夢」，卡卡音樂祭始終與「夢」相繫。MUMㄠ 以角色與周邊進入現場，陪伴樂迷在清醒與夢境之間遊走。",
+      culturalConnection: "呼應 2026「裝睡有理・做夢無罪」，將年輕世代的疲憊、迷惘與自我保護，轉化為具有共感的角色語言。裝睡不是逃避，做夢也不需要道歉。",
+      visualOutput: "音樂祭限定毛巾、角色貼紙、壓克力立牌、野餐墊、角色周邊與現場攤位視覺。",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1u89BfqIon2CZILyWZ5Pwxx4eq6sX_v8y",
       isPrimary: false
     }
   ];
@@ -347,8 +519,8 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       enTitle: "CHARACTER CORE",
       purpose: "MUMㄠ 長什麼樣",
       uses: "Standard Mascot / Style Guide / Identity Spec",
-      aspect: "aspect-[4/5]",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      aspect: "aspect-square",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       desc: "以 MUMㄠ 的標準角色比例、五大固定特徵與核心色彩，建立所有延伸視覺的基礎。"
     },
     {
@@ -371,8 +543,8 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       enTitle: "STICKER / EXPRESSION",
       purpose: "MUMㄠ 怎麼互動",
       uses: "LINE / Chat / Social Reaction / Digital Communication",
-      aspect: "aspect-[16/9]",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      aspect: "aspect-square",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       desc: "透過表情、姿勢與短句，讓 MUMㄠ 成為聽團仔日常溝通的一部分。"
     },
     {
@@ -383,7 +555,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       enTitle: "FESTIVAL APPLICATION",
       purpose: "MUMㄠ 怎麼進入現場",
       uses: "Poster / Banner / Towel / Signage / Event Visual",
-      aspect: "aspect-[3/4]",
+      aspect: "aspect-square",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX",
       desc: "將 MUMㄠ 從螢幕帶入真實音樂祭，形成具有現場辨識度的角色視覺。"
     }
@@ -567,7 +739,6 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
   // Theme mappings & section state
   const themeMode = theme;
-  const [activeSection, setActiveSection] = useState<string>("hero-section");
 
   const isDark = themeMode === "dark";
   const isSepia = themeMode === "sepia";
@@ -600,6 +771,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       "final-statement",
     ];
 
+    // 1. IntersectionObserver setup
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -616,20 +788,56 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
         });
       },
       {
-        rootMargin: "-15% 0px -55% 0px",
-        threshold: 0,
+        root: modalContainerRef.current || null,
+        rootMargin: "-10% 0px -60% 0px",
+        threshold: 0.05,
       }
     );
+
+    // 2. Direct scroll listener fallback to ensure 100% reliable tracking on mobile devices
+    const handleModalScroll = () => {
+      const container = modalContainerRef.current;
+      if (!container) return;
+      const scrollTop = container.scrollTop;
+      const headerOffset = 140;
+
+      let currentActive = "hero-section";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop - headerOffset;
+          if (scrollTop >= top) {
+            if (id === "dna-section") {
+              currentActive = "hero-section";
+            } else if (id === "final-statement") {
+              currentActive = "application-section";
+            } else {
+              currentActive = id;
+            }
+          }
+        }
+      }
+      setActiveSection(currentActive);
+    };
+
+    const containerEl = modalContainerRef.current;
+    if (containerEl) {
+      containerEl.addEventListener("scroll", handleModalScroll, { passive: true });
+    }
 
     const timer = setTimeout(() => {
       sectionIds.forEach((id) => {
         const el = document.getElementById(id);
         if (el) observer.observe(el);
       });
-    }, 150);
+      handleModalScroll();
+    }, 200);
 
     return () => {
       clearTimeout(timer);
+      if (containerEl) {
+        containerEl.removeEventListener("scroll", handleModalScroll);
+      }
       observer.disconnect();
     };
   }, [isOpen]);
@@ -646,14 +854,23 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     }
   }, [isOpen]);
 
-  // Mobile horizontal auto-scroll centering active nav item
+  // Mobile horizontal auto-scroll centering active nav item & timer clear
   useEffect(() => {
     if (!activeSection) return;
-    const mobileBtn = document.getElementById(`mobile-nav-${activeSection}`);
-    if (mobileBtn) {
-      mobileBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    centerActiveNavCapsule(true);
+    if (navRecenterTimerRef.current) {
+      clearTimeout(navRecenterTimerRef.current);
     }
-  }, [activeSection]);
+  }, [activeSection, centerActiveNavCapsule]);
+
+  // Clean up 3s timer on unmount or when modal is closed
+  useEffect(() => {
+    return () => {
+      if (navRecenterTimerRef.current) {
+        clearTimeout(navRecenterTimerRef.current);
+      }
+    };
+  }, [isOpen]);
 
   // Hero Image Auto Carousel Autoplay
   useEffect(() => {
@@ -836,6 +1053,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
   return (
     <AnimatePresence>
       <motion.div
+        ref={modalContainerRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -981,29 +1199,88 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
         </header>
 
         {/* Mobile / Tablet Horizontal ScrollSpy Navigation Strip */}
-        <div className="lg:hidden sticky top-16 z-40 backdrop-blur-md border-b border-black/5 dark:border-white/5 bg-white/80 dark:bg-zinc-950/80 px-4 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.id;
-            return (
-              <button
-                key={item.id}
-                id={`mobile-nav-${item.id}`}
-                type="button"
-                onClick={() => {
-                  setActiveSection(item.id);
-                  scrollToSection(item.id);
-                }}
-                className={`whitespace-nowrap px-3 py-1 rounded-full text-xs font-mono font-medium transition-all shrink-0 cursor-pointer flex items-center gap-1.5 ${
-                  isActive
-                    ? "bg-[#437596] text-white dark:bg-[#6CA4C8] dark:text-zinc-950 font-bold shadow-xs"
-                    : `${themeClasses.bodySubText} hover:text-black dark:hover:text-white bg-black/5 dark:bg-white/5`
-                }`}
-              >
-                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C]" />}
-                {item.label}
-              </button>
-            );
-          })}
+        <div className={`lg:hidden sticky top-16 z-40 backdrop-blur-md border-b transition-colors relative overflow-hidden ${
+          isDark 
+            ? "border-zinc-900 bg-zinc-950/90" 
+            : isSepia 
+            ? "border-amber-950/10 bg-[#FAF4E5]/90" 
+            : "border-slate-200/90 bg-white/90"
+        }`}>
+          {/* Mobile Left Fade Gradient Mask */}
+          <div
+            className={`absolute left-0 top-0 bottom-0 w-10 z-10 pointer-events-none transition-opacity duration-300 ${
+              mobileNavScrollState.canScrollLeft ? "opacity-100" : "opacity-0"
+            } ${
+              isDark
+                ? "bg-gradient-to-r from-zinc-950 via-zinc-950/90 to-transparent"
+                : isSepia
+                ? "bg-gradient-to-r from-[#FAF4E5] via-[#FAF4E5]/90 to-transparent"
+                : "bg-gradient-to-r from-white via-white/90 to-transparent"
+            }`}
+          />
+
+          {/* Mobile Right Fade Gradient Mask */}
+          <div
+            className={`absolute right-0 top-0 bottom-0 w-10 z-10 pointer-events-none transition-opacity duration-300 ${
+              mobileNavScrollState.canScrollRight ? "opacity-100" : "opacity-0"
+            } ${
+              isDark
+                ? "bg-gradient-to-l from-zinc-950 via-zinc-950/90 to-transparent"
+                : isSepia
+                ? "bg-gradient-to-l from-[#FAF4E5] via-[#FAF4E5]/90 to-transparent"
+                : "bg-gradient-to-l from-white via-white/90 to-transparent"
+            }`}
+          />
+
+          <div
+            ref={mobileNavContainerRef}
+            onScroll={handleMobileNavScroll}
+            onPointerDown={handleNavPointerDown}
+            onPointerMove={handleNavPointerMove}
+            onPointerUp={handleNavPointerUp}
+            onPointerCancel={handleNavPointerUp}
+            onTouchStart={handleNavTouchStart}
+            onTouchMove={handleNavTouchMove}
+            onTouchEnd={handleNavTouchEnd}
+            className={`px-4 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar scrollbar-none select-none touch-pan-x ${
+              isNavPointerDown ? "cursor-grabbing" : "cursor-grab"
+            }`}
+            style={{
+              WebkitOverflowScrolling: "touch",
+              scrollBehavior: isNavPointerDown ? "auto" : "smooth",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  draggable={false}
+                  id={`mobile-nav-${item.id}`}
+                  type="button"
+                  onClick={() => {
+                    if (hasDraggedNav.current) return;
+                    setActiveSection(item.id);
+                    scrollToSection(item.id);
+                  }}
+                  className={`min-h-[36px] whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all shrink-0 cursor-pointer flex items-center gap-1.5 select-none active:scale-95 ${
+                    isActive
+                      ? "bg-[#437596] text-white font-bold shadow-md scale-105 ring-2 ring-[#437596]/30"
+                      : isDark
+                      ? "text-zinc-400 hover:text-zinc-200 bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800/50"
+                      : isSepia
+                      ? "text-[#4A3B2C]/75 hover:text-[#4A3B2C] bg-[#EDE2CA]/50 hover:bg-[#EDE2CA] border border-amber-950/10"
+                      : "text-slate-600 hover:text-slate-900 bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200/60"
+                  }`}
+                >
+                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse" />}
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* ===== MAIN CONTENT AREA ===== */}
@@ -3226,7 +3503,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {festivalCampaigns.map((fest) => {
                   if (fest.isPrimary) {
-                    {/* PRIMARY CASE STUDY: MEGAPORT FESTIVAL */}
+                    {/* PRIMARY CASE STUDY: EMERGE FESTIVAL */}
                     return (
                       <div
                         key={fest.id}
@@ -3406,7 +3683,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#437596] text-white">
                       01 / MUSIC
                     </span>
-                    <span className="text-[10px] font-mono font-bold text-[#437596] dark:text-[#6CA4C8]">MEGAPORT</span>
+                    <span className="text-[10px] font-mono font-bold text-[#437596] dark:text-[#6CA4C8]">EMERGE</span>
                   </div>
                   <div>
                     <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>
@@ -3448,18 +3725,18 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-amber-600 text-white">
                       03 / FIELD
                     </span>
-                    <span className="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400">ROUGH MUD FESTIVAL</span>
+                    <span className="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400">KAKA MUSIC FEST.</span>
                   </div>
                   <div>
                     <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>
                       戶外／現場 (FIELD FESTIVAL)
                     </h4>
                     <p className={`text-xs font-bold text-amber-600 dark:text-amber-400 mt-0.5`}>
-                      ROLE: Festival Participant
+                      ROLE: Dream Weaver
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    和觀眾一起玩、一起髒、一起留下記憶。走入泥地與暴雨，真實紀錄聽團仔最真摯的狂歡瞬間。
+                    以角色與周邊陪伴樂迷在清醒與夢境之間遊走，將年輕世代的疲憊與迷惘轉化為具有共感的角色語言。
                   </p>
                 </div>
               </div>

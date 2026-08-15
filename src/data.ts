@@ -3,7 +3,7 @@ import { PortfolioItem } from "./types";
 export const initialPortfolioData: PortfolioItem[] = [
   {
     "id": "mumao-cat-religion-ip",
-    "category": "插畫與原創繪本",
+    "category": "角色IP&插畫與貼圖",
     "title": "MuMㄠ 姆貓原創 IP 視覺與品牌設計",
     "titleEn": "MuMㄠ Cat Religion Original IP & Brand Visual Design",
     "philosophy": "以貓咪信仰為核心主題，結合黑白純粹線條與符號化幾何結構。運用明快動態插畫與高對比視覺語彙，建構兼具次文化氛圍與音樂祭渲染力的原創 IP 識別。",
@@ -15,11 +15,11 @@ export const initialPortfolioData: PortfolioItem[] = [
       "IP插畫",
       "符號設計"
     ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
     "placeholderId": "IMAGE_MUMAO_CAT_IP",
     "colorTheme": "from-[#1a120c] via-[#2d1b10] to-[#0d0906]",
     "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX"
     ],
     "link": "https://www.instagram.com/mumao1_the_cat_religion/"

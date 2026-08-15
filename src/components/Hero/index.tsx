@@ -133,7 +133,7 @@ export const HeroSection = forwardRef<HeroSectionRef, HeroSectionProps>(({
     <section 
       ref={sectionRef}
       id="hero-minimalist" 
-      className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-150/50 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]"
+      className="relative pt-4 pb-8 md:pt-10 md:pb-14 overflow-visible flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 border-b border-zinc-200/40 dark:border-white/5 scroll-mt-[48px] md:scroll-mt-[58px]"
     >
       {/* Category Dynamic Vector Decor */}
       {isHeroIntersecting ? (

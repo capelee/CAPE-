@@ -832,7 +832,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                       themeStyles.isSepia
                         ? "bg-[#FAF4E5] border-[#E2D2B3]"
                         : themeStyles.isLight
-                        ? "bg-white border-zinc-150"
+                        ? "bg-white border-zinc-200"
                         : "bg-zinc-950/95 border-white/5"
                     }`}
                     style={{
@@ -1082,7 +1082,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
                     themeStyles.isSepia
                       ? "bg-[#FAF4E5] border-[#E2D2B3]"
                       : themeStyles.isLight
-                      ? "bg-white border-zinc-150"
+                      ? "bg-white border-zinc-200"
                       : "bg-zinc-950/95 border-white/5"
                   }`}
                   style={{
