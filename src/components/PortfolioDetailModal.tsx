@@ -17,6 +17,7 @@ import {
 import { PortfolioItem } from "../types";
 import { ImageWithFallback } from "./ImageWithFallback";
 import { StitchImageObserver } from "./StitchImageObserver";
+import { ShareOgModal } from "./ShareOgModal";
 
 interface PortfolioDetailModalProps {
   activeModalItem: PortfolioItem | null;
@@ -73,38 +74,10 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
   const touchStartY = useRef<number | null>(null);
 
   const [isLinkCopied, setIsLinkCopied] = useState<boolean>(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
 
-  const handleCopyShareLink = async () => {
-    if (!activeModalItem) return;
-    const shareUrl = `https://cape-eight.vercel.app/?item=${encodeURIComponent(activeModalItem.id)}`;
-
-    // 1. 優先觸發 Web Share API (原生手機/平板分享選單：轉發至 LINE、Messenger、AirDrop 等)
-    if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
-      try {
-        await navigator.share({
-          title: `${activeModalItem.title} | Cape Lee 作品集`,
-          text: activeModalItem.philosophy ? activeModalItem.philosophy.slice(0, 100) : "Cape Lee 商業視覺設計作品",
-          url: shareUrl,
-        });
-        return; // 使用者調用原生分享成功，直接返回
-      } catch (err) {
-        // 若使用者在原生分享面板點擊「取消」(AbortError)，則安靜退出不強制跳複製提示
-        if ((err as Error)?.name === "AbortError") {
-          return;
-        }
-      }
-    }
-
-    // 2. 電腦版不支援或原生分享降級：自動複製網址至剪貼簿，並顯示浮動「已複製鏈結」
-    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        setIsLinkCopied(true);
-        setTimeout(() => setIsLinkCopied(false), 2500);
-      } catch (err) {
-        // ignore fallback errors
-      }
-    }
+  const handleOpenShareModal = () => {
+    setIsShareModalOpen(true);
   };
 
   // Reset states when item changes
@@ -112,6 +85,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
     setActiveImageUrl(null);
     setIsVideoActive(false);
     setIsLinkCopied(false);
+    setIsShareModalOpen(false);
     setWaterfallMode(
       activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計"
         ? "stitch"
@@ -412,7 +386,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
                       <ImageWithFallback 
                         src={activeImageUrl || activeModalItem.imageUrl || (activeModalItem.images && activeModalItem.images.length > 0 ? activeModalItem.images[0] : '')}
-                        alt={activeModalItem.title}
+                        alt={`${activeModalItem.title} - ${activeModalItem.category} 視覺設計專案詳細圖 | Cape Lee 作品集`}
                         referrerPolicy="no-referrer"
                         fallbackTheme={activeModalItem.colorTheme}
                         categoryName={activeModalItem.category}
@@ -562,7 +536,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
                     >
                       <ImageWithFallback
                         src={imgUrl}
-                        alt={`${activeModalItem.title} - ${idx + 1}`}
+                        alt={`${activeModalItem.title} (${activeModalItem.category}) - 預覽縮圖 ${idx + 1}`}
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
                         optimizeSize={120}
@@ -647,16 +621,12 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 
                   <button
                     type="button"
-                    onClick={handleCopyShareLink}
+                    onClick={handleOpenShareModal}
                     className="p-2.5 text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 active:scale-95 rounded-lg transition border border-white/10 flex items-center justify-center cursor-pointer shrink-0"
-                    title={isLinkCopied ? "已複製作品連結！" : "分享作品卡片"}
-                    aria-label={isLinkCopied ? "已複製作品連結" : "分享作品卡片"}
+                    title="開啟社群分享與 OG 圖片預覽"
+                    aria-label="開啟社群分享與 OG 圖片預覽"
                   >
-                    {isLinkCopied ? (
-                      <Check className="h-4 w-4 text-emerald-400" />
-                    ) : (
-                      <Share2 className="h-4 w-4 text-amber-400" />
-                    )}
+                    <Share2 className="h-4 w-4 text-amber-400" />
                   </button>
                 </div>
 
@@ -706,6 +676,13 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
             </button>
           </div>
         )}
+
+        {/* Open Graph Social Card Preview Modal */}
+        <ShareOgModal
+          item={activeModalItem}
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+        />
 
       </motion.div>
     </motion.div>

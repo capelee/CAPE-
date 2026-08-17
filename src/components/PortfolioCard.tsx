@@ -809,7 +809,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             <div className={`relative ${showAllDetails ? "aspect-[4/3] rounded-t-2xl" : "aspect-square rounded-2xl"} overflow-hidden ${themeStyles.isSepia ? catColor.highlightBgSepia : themeStyles.isLight ? catColor.highlightBgLight : catColor.highlightBgDark}`} style={{ transform: "translateZ(8px)" }}>
               <ImageWithFallback
                 src={item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : '')}
-                alt={item.title}
+                alt={`${item.title} - ${item.category} 視覺設計作品 | Cape Lee`}
                 referrerPolicy="no-referrer"
                 fallbackTheme={item.colorTheme}
                 categoryName={item.category}
@@ -979,7 +979,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             >
               <ImageWithFallback
                 src={leftImgSrc}
-                alt={`${item.title} 綻開預覽圖 1`}
+                alt={`${item.title} (${item.category}) - 設計細節預覽圖 01`}
                 referrerPolicy="no-referrer"
                 fallbackTheme={item.colorTheme}
                 categoryName={item.category}
@@ -1037,7 +1037,7 @@ export const PortfolioCard = React.memo(function PortfolioCard({
             >
               <ImageWithFallback
                 src={rightImgSrc}
-                alt={`${item.title} 綻開預覽圖 2`}
+                alt={`${item.title} (${item.category}) - 設計細節預覽圖 02`}
                 referrerPolicy="no-referrer"
                 fallbackTheme={item.colorTheme}
                 categoryName={item.category}

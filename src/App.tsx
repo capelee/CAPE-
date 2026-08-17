@@ -2,6 +2,8 @@ import { useTutorial } from './context/TutorialContext';
 import { TutorialTooltip } from './components/TutorialTooltip';
 import { ScrambleText } from './components/ScrambleText';
 import { useAdaptivePerformance } from './hooks/useAdaptivePerformance';
+import { useMumuAchievements } from './hooks/useMumuAchievements';
+import { useCanPhysics } from './hooks/useCanPhysics';
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { 
@@ -1374,7 +1376,7 @@ export default function App() {
     }
   }, [items]);
 
-  // Sync current modal item or selected category into URL search parameters
+  // Sync current modal item or selected category into URL search parameters and update document title for SEO
   React.useEffect(() => {
     if (!isInitialUrlCheckRef.current) return;
     try {
@@ -1382,12 +1384,15 @@ export default function App() {
       if (activeModalItem) {
         url.searchParams.set("item", activeModalItem.id);
         url.searchParams.delete("category");
+        document.title = `${activeModalItem.title} | Cape Lee 作品集`;
       } else if (selectedCategory && selectedCategory !== "All") {
         url.searchParams.set("category", selectedCategory);
         url.searchParams.delete("item");
+        document.title = `${selectedCategory} 設計作品 | Cape Lee 作品集`;
       } else {
         url.searchParams.delete("item");
         url.searchParams.delete("category");
+        document.title = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
       }
       window.history.replaceState(null, "", url.toString());
     } catch (e) {
@@ -1582,184 +1587,47 @@ export default function App() {
   const [isMagicTransformed, setIsMagicTransformed] = useState<boolean>(false);
   const [showRainbowFlash, setShowRainbowFlash] = useState<boolean>(false);
 
-  // 姆貓互動統計狀態（輕量級狀態管理與 LocalStorage 持久化）
-  const [interactionCount, setInteractionCount] = useState<number>(() => {
-    try {
-      const saved = localStorage.getItem("mumu_interaction_count");
-      return saved ? parseInt(saved, 10) : 0;
-    } catch {
-      return 0;
-    }
-  });
   const certModalRef = React.useRef<MumuCertModalRef>(null);
 
-  React.useEffect(() => {
-    try {
-      localStorage.setItem("mumu_interaction_count", interactionCount.toString());
-    } catch (e) {
-      // ignore
-    }
-  }, [interactionCount]);
-
-  // 榮譽成就解鎖狀態管理
-  const [midnightUnlocked, setMidnightUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_midnight") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [visitedThemes, setVisitedThemes] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem("mumu_visited_themes");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
-      }
-      return [theme]; // 預設加入目前主題
-    } catch {
-      return [theme];
-    }
-  });
-
-  const [fortuneCount, setFortuneCount] = useState<number>(() => {
-    try {
-      const saved = localStorage.getItem("mumu_fortune_count");
-      return saved ? parseInt(saved, 10) : 0;
-    } catch {
-      return 0;
-    }
-  });
-
-  const [viewedProjects, setViewedProjects] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem("mumu_viewed_projects");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
-      }
-      return [];
-    } catch {
-      return [];
-    }
-  });
-
-  const [zenUnlocked, setZenUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_zen") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [socialUnlocked, setSocialUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_social") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [slackerUnlocked, setSlackerUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_slacker") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [aiWizardUnlocked, setAiWizardUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_ai_wizard") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [premiumCanUnlocked, setPremiumCanUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_premium_can") === "true";
-    } catch {
-      return false;
-    }
-  });
-  const [fedFlavors, setFedFlavors] = useState<string[]>(() => {
-    try {
-      const stored = localStorage.getItem("mumu_ach_fed_flavors");
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  });
-
-  const [balloonUnlocked, setBalloonUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_balloon") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [magicMumuUnlocked, setMagicMumuUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_magic_mumu") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [gravityRestoreUnlocked, setGravityRestoreUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_gravity_restore") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [pdfUnlocked, setPdfUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_pdf") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [tutorialAchUnlocked, setTutorialAchUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_tutorial") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [windStormUnlocked, setWindStormUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_wind_storm") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  const [spawnedRareTypes, setSpawnedRareTypes] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem("mumu_spawned_rare_types");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
-      }
-      return [];
-    } catch {
-      return [];
-    }
-  });
-
-  const [rareCollectorUnlocked, setRareCollectorUnlocked] = useState<boolean>(() => {
-    try {
-      return localStorage.getItem("mumu_ach_rare_collector") === "true";
-    } catch {
-      return false;
-    }
+  // 姆貓成就與互動引擎（已提取為高內聚 Custom Hook）
+  const {
+    interactionCount,
+    incrementInteraction,
+    midnightUnlocked,
+    visitedThemes,
+    fortuneCount,
+    handleFortuneConsult,
+    viewedProjects,
+    handleProjectView,
+    zenUnlocked,
+    socialUnlocked,
+    handleSocialClick,
+    slackerUnlocked,
+    aiWizardUnlocked,
+    premiumCanUnlocked,
+    setPremiumCanUnlocked,
+    fedFlavors,
+    setFedFlavors,
+    balloonUnlocked,
+    triggerBalloonAchievement,
+    magicMumuUnlocked,
+    handleMagicMumuUnlock,
+    gravityRestoreUnlocked,
+    handleGravityRestore,
+    pdfUnlocked,
+    handlePdfClick,
+    tutorialAchUnlocked,
+    windStormUnlocked,
+    spawnedRareTypes,
+    rareCollectorUnlocked,
+    unlockedAchToast,
+    setUnlockedAchToast,
+    triggerAchievementUnlock,
+  } = useMumuAchievements({
+    theme,
+    isWorkflowOpen,
+    tutorialStep,
+    heroSectionRef,
   });
 
   const [isEcoMode, setIsEcoMode] = useState<boolean>(() => {
@@ -1779,40 +1647,12 @@ export default function App() {
   const [performanceToast, setPerformanceToast] = useState<{ show: boolean; msg: string } | null>(null);
   const navAutoCloseTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  const canX = useMotionValue(0);
-  const canY = useMotionValue(0);
-  const canRotate = useMotionValue(0);
   const mascotRef = React.useRef<HTMLDivElement>(null);
   const canRef = React.useRef<HTMLDivElement>(null);
-  const canPhysicsId = React.useRef<number | null>(null);
-
-  const [canFlavor, setCanFlavor] = useState<"tuna" | "chicken" | "luxury">("luxury");
   const [mumuClickCount, setMumuClickCount] = useState<number>(0);
 
-
-  const handleCanDragStart = () => {
-    if (tutorialStep >= 4 && tutorialStep <= 8 && !tutorialDismissed6) {
-      setTutorialDismissed6(true);
-      nextTutorialStep();
-    }
-    if (canPhysicsId.current !== null) {
-      cancelAnimationFrame(canPhysicsId.current);
-      canPhysicsId.current = null;
-    }
-  };
-
-  const handleCanTap = () => {
-    // Cycle flavor: tuna -> chicken -> luxury -> tuna
-    setCanFlavor(prev => {
-      if (prev === "tuna") return "chicken";
-      if (prev === "chicken") return "luxury";
-      return "tuna";
-    });
-  };
-
-
-
-  const triggerPremiumCanUnlock = () => {
+  const triggerPremiumCanUnlock = (flavorToFeed?: "tuna" | "chicken" | "luxury") => {
+    const currentFlavor = flavorToFeed || canFlavor;
     try {
       playMeowSound();
       setTimeout(() => {
@@ -1845,7 +1685,7 @@ export default function App() {
     }));
     heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, ...explosionParticles].slice(-100));
 
-    const newFedFlavors = [...new Set([...fedFlavors, canFlavor])];
+    const newFedFlavors = [...new Set([...fedFlavors, currentFlavor])];
     if (newFedFlavors.length > fedFlavors.length) {
       setFedFlavors(newFedFlavors);
       try {
@@ -1862,397 +1702,42 @@ export default function App() {
       setHeroDialogue("喵嗚！太美味了吧！你居然集齊了三種口味的罐罐奉納！😻🥫✨ 本教主心情大好，特許你擁有無上福報、諸願成就！🐾");
     } else if (!premiumCanUnlocked) {
       const remaining = 3 - newFedFlavors.length;
-      setHeroDialogue(`喵嗚～美味的${FLAVOR_PHYSICS[canFlavor].name}！🤤 再餵我 ${remaining} 種不同口味的罐罐，我就大發慈悲賜予你祝福！🐾`);
+      setHeroDialogue(`喵嗚～美味的${FLAVOR_PHYSICS[currentFlavor].name}！🤤 再餵我 ${remaining} 種不同口味的罐罐，我就大發慈悲賜予你祝福！🐾`);
     } else {
-      setHeroDialogue(`喵嗚！是${FLAVOR_PHYSICS[canFlavor].name}！太美味了吧！😻🥫✨ 本教主心情大好！🐾`);
+      setHeroDialogue(`喵嗚！是${FLAVOR_PHYSICS[currentFlavor].name}！太美味了吧！😻🥫✨ 本教主心情大好！🐾`);
     }
 
     setIsHeroSpeaking(true);
     setShowHeroDialogue(true);
   };
 
-  const handleCanDragEnd = (event: any, info: any) => {
-    // Reset paw track
-    lastPawPos.current = { x: 0, y: 0, isLeft: false };
-
-    if (!canRef.current) return;
-
-    // Check if it hit the mascot
-    if (mascotRef.current) {
-      const rect = mascotRef.current.getBoundingClientRect();
-      const px = info.point.x;
-      const py = info.point.y;
-      
-      const padding = 15;
-      if (
-        px >= rect.left - padding &&
-        px <= rect.right + padding &&
-        py >= rect.top - padding &&
-        py <= rect.bottom + padding
-      ) {
-        triggerPremiumCanUnlock();
-        animate(canX, 0, { type: "spring", stiffness: 200, damping: 18 });
-        animate(canY, 0, { type: "spring", stiffness: 200, damping: 18 });
-        return;
-      }
-    }
-
-    // Custom Physics Loop for bouncing off the edge of screen with angular momentum
-    const flavorConfig = FLAVOR_PHYSICS[canFlavor];
-    const elasticity = flavorConfig.elasticity;
-    const rotFactor = flavorConfig.rotationalInertia;
-
-    const rect = canRef.current.getBoundingClientRect();
-    const curX = canX.get();
-    const curY = canY.get();
-    const curRot = canRotate.get();
-    
-    // Original (0, 0) position of the can in viewport coordinates
-    const startX = rect.left - curX;
-    const startY = rect.top - curY;
-    const canWidth = rect.width || 48;
-    const canHeight = rect.height || 48;
-
-    // Get velocity from framer-motion (pixels per second)
-    const vx = info.velocity.x;
-    const vy = info.velocity.y;
-
-    // Convert from px/sec to px/frame (assuming ~60fps)
-    let velX = vx / 60;
-    let velY = vy / 60;
-
-    // Initial angular velocity (deg per frame) based on throw speed
-    let rotVel = velX * 0.55 * rotFactor;
-
-    let posX = curX;
-    let posY = curY;
-    let posRot = curRot;
-
-    // If initial velocity is extremely small, we don't start animation loop
-    if (Math.sqrt(velX * velX + velY * velY) < 1.0) {
-      return;
-    }
-
-    let lastFrameTime = performance.now();
-
-    const updatePhysics = (timestamp: number) => {
-      const dt = Math.min((timestamp - lastFrameTime) / 16.666, 3); // cap deltaTime
-      lastFrameTime = timestamp;
-
-      posX += velX * dt;
-      posY += velY * dt;
-      posRot += rotVel * dt;
-
-      // Viewport boundaries relative to start position
-      const margin = 10;
-      const minX = -startX + margin;
-      const maxX = window.innerWidth - startX - canWidth - margin;
-      const minY = -startY + margin;
-      const maxY = window.innerHeight - startY - canHeight - margin;
-
-      let bounced = false;
-
-      // When bouncing off walls, surface friction translates linear speed into rotation (angular momentum)
-      if (posX < minX) {
-        posX = minX;
-        velX = -velX * elasticity; // rebound elastic coefficient
-        rotVel += velY * 1.5 * rotFactor; // roll downward/upward based on vertical velocity
-        bounced = true;
-      } else if (posX > maxX) {
-        posX = maxX;
-        velX = -velX * elasticity;
-        rotVel -= velY * 1.5 * rotFactor; // opposite direction friction on right side
-        bounced = true;
-      }
-
-      if (posY < minY) {
-        posY = minY;
-        velY = -velY * elasticity;
-        rotVel -= velX * 1.5 * rotFactor; // roll left/right based on horizontal velocity
-        bounced = true;
-      } else if (posY > maxY) {
-        posY = maxY;
-        velY = -velY * elasticity;
-        rotVel += velX * 1.5 * rotFactor;
-        bounced = true;
-      }
-
-      if (bounced) {
-        try {
-          playCanClinkSound();
-        } catch (e) {}
-      }
-
-      canX.set(posX);
-      canY.set(posY);
-      canRotate.set(posRot);
-
-      // Apply drag friction (damping) for linear and angular speed
-      velX *= Math.pow(0.965, dt);
-      velY *= Math.pow(0.965, dt);
-      rotVel *= Math.pow(0.955, dt); // rotational decay
-
-      // Stop loop if it has slowed down significantly
-      const linearSpeed = Math.sqrt(velX * velX + velY * velY);
-      const angularSpeed = Math.abs(rotVel);
-      if (linearSpeed > 0.18 || angularSpeed > 0.18) {
-        canPhysicsId.current = requestAnimationFrame(updatePhysics);
-      } else {
-        canPhysicsId.current = null;
-      }
-    };
-
-    if (canPhysicsId.current !== null) {
-      cancelAnimationFrame(canPhysicsId.current);
-    }
-    canPhysicsId.current = requestAnimationFrame(updatePhysics);
-  };
-
-  const [unlockedAchToast, setUnlockedAchToast] = useState<string | null>(null);
-  const toastTimeoutRef = React.useRef<any>(null);
-
-  const triggerAchievementUnlock = (name: string) => {
-    setUnlockedAchToast(name);
-    try {
-      playMeowSound();
-    } catch (e) {}
-
-    // 產生華麗的慶祝粒子
-    const newParticles = Array.from({ length: 20 }).map((_, i) => ({
-      id: Date.now() + i + Math.random(),
-      x: window.innerWidth / 2 + (Math.random() * 320 - 160),
-      y: window.innerHeight / 2 + (Math.random() * 320 - 160),
-      emoji: ["✨", "🏆", "🌟", "🐾", "🎉", "👑", "💖"][Math.floor(Math.random() * 7)],
-    }));
-    heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, ...newParticles].slice(-60));
-
-    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
-    toastTimeoutRef.current = setTimeout(() => {
-      setUnlockedAchToast(null);
-    }, 4500);
-  };
-
-  const incrementInteraction = () => {
-    setInteractionCount((prev) => {
-      const next = prev + 1;
-      
-      // 1. 檢測深夜擼貓者條件
-      const hour = new Date().getHours();
-      // 深夜時間：23:00 - 04:00 (即 hour >= 23 或是 hour < 4)
-      if (hour >= 23 || hour < 4) {
-        if (!midnightUnlocked) {
-          setMidnightUnlocked(true);
-          try {
-            localStorage.setItem("mumu_ach_midnight", "true");
-          } catch (e) {}
-          triggerAchievementUnlock("深夜擼貓者 🐾");
-        }
-      }
-
-      return next;
-    });
-  };
-
-  // 檢測極意摸魚之神條件 (累計達 100 次以上)
-  React.useEffect(() => {
-    if (interactionCount >= 100 && !slackerUnlocked) {
-      setSlackerUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_slacker", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("極意摸魚之神 👑");
-    }
-  }, [interactionCount, slackerUnlocked]);
-
-  // 檢測靜心禪修者條件 (停留滿 3 分鐘)
-  React.useEffect(() => {
-    if (zenUnlocked) return;
-    const timer = setTimeout(() => {
-      setZenUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_zen", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("靜心禪修者 🧘‍♀️");
-    }, 180000); // 180,000ms = 3 minutes
-    return () => clearTimeout(timer);
-  }, [zenUnlocked]);
-
-  // 檢測 AI 協同巫師條件 (打開並詳細閱讀 AI 設計輔助工作流)
-  React.useEffect(() => {
-    if (isWorkflowOpen && !aiWizardUnlocked) {
-      setAiWizardUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_ai_wizard", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("AI 協同巫師 ✨");
-    }
-  }, [isWorkflowOpen, aiWizardUnlocked]);
-
-  // 社交宣傳使者觸發
-  const handleSocialClick = () => {
-    if (!socialUnlocked) {
-      setSocialUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_social", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("社交宣傳使者 🐾");
-    }
-  };
-
-  // 傳統派讀者觸發
-  const handlePdfClick = () => {
-    if (!pdfUnlocked) {
-      setPdfUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_pdf", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("傳統派讀者 📖");
-    }
-  };
-
-  // 飛天姆貓成就觸發
-  const triggerBalloonAchievement = () => {
-    if (!balloonUnlocked) {
-      setBalloonUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_balloon", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("飛天姆貓 🎈");
-    }
-  };
-
-  // 檢測新手上路成就條件 (完成前三個教學，tutorialStep >= 4)
-  React.useEffect(() => {
-    if (tutorialStep >= 4 && !tutorialAchUnlocked) {
-      setTutorialAchUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_tutorial", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("新手上路 🎓");
-    }
-  }, [tutorialStep, tutorialAchUnlocked]);
-
-  // 檢測御風神官成就條件 (亮點卡片風力達 6 層)
-  React.useEffect(() => {
-    const handleWindStormAch = () => {
-      if (!windStormUnlocked) {
-        setWindStormUnlocked(true);
-        try {
-          localStorage.setItem("mumu_ach_wind_storm", "true");
-        } catch (e) {}
-        triggerAchievementUnlock("御風神官 🌬️");
-      }
-    };
-    window.addEventListener("trigger-wind-storm-ach", handleWindStormAch);
-    return () => {
-      window.removeEventListener("trigger-wind-storm-ach", handleWindStormAch);
-    };
-  }, [windStormUnlocked]);
-
-  // 檢測集齊五種稀有物品成就
-  React.useEffect(() => {
-    const handleRareSpawned = (e: Event) => {
-      const detail = (e as CustomEvent).detail;
-      if (detail && detail.rareType) {
-        const type = detail.rareType as string;
-        setSpawnedRareTypes((prev) => {
-          if (prev.includes(type)) return prev;
-          const next = [...prev, type];
-          try {
-            localStorage.setItem("mumu_spawned_rare_types", JSON.stringify(next));
-          } catch (err) {}
-          return next;
-        });
-      }
-    };
-    window.addEventListener("rare-item-spawned", handleRareSpawned);
-    return () => {
-      window.removeEventListener("rare-item-spawned", handleRareSpawned);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    const required = ["amulet", "star", "apple", "palette", "ig"];
-    const hasAll = required.every((t) => spawnedRareTypes.includes(t));
-    if (hasAll && !rareCollectorUnlocked) {
-      setRareCollectorUnlocked(true);
-      try {
-        localStorage.setItem("mumu_ach_rare_collector", "true");
-      } catch (e) {}
-      triggerAchievementUnlock("奇蹟之物收集雅士 💎");
-    }
-  }, [spawnedRareTypes, rareCollectorUnlocked]);
-
-  // 2. 檢測時空穿梭大師條件 (體驗完所有主題)
-  React.useEffect(() => {
-    if (!visitedThemes.includes(theme)) {
-      const updated = [...visitedThemes, theme];
-      setVisitedThemes(updated);
-      try {
-        localStorage.setItem("mumu_visited_themes", JSON.stringify(updated));
-      } catch (e) {}
-      
-      // 如果完整體驗了 3 個主題，則解鎖成就
-      if (updated.length === 3) {
-        const alreadyThemeUnlocked = localStorage.getItem("mumu_ach_theme") === "true";
-        if (!alreadyThemeUnlocked) {
-          try {
-            localStorage.setItem("mumu_ach_theme", "true");
-          } catch (e) {}
-          triggerAchievementUnlock("時空穿梭大師 🎨");
-        }
-      }
-    }
-  }, [theme, visitedThemes]);
-
-  // 3. 檢測命運之友條件 (占卜/求籤達 3 次)
-  const handleFortuneConsult = React.useCallback(() => {
-    setFortuneCount((prev) => {
-      const next = prev + 1;
-      try {
-        localStorage.setItem("mumu_fortune_count", next.toString());
-      } catch (e) {}
-      
-      if (next === 3) {
-        const alreadyFortuneUnlocked = localStorage.getItem("mumu_ach_fortune") === "true";
-        if (!alreadyFortuneUnlocked) {
-          try {
-            localStorage.setItem("mumu_ach_fortune", "true");
-          } catch (e) {}
-          triggerAchievementUnlock("命運之友 🔮");
-        }
-      }
-      return next;
-    });
-  }, []);
-
-  // 4. 檢測作品鑑賞家條件 (點擊並深入閱讀 5 個以上作品詳細卡片)
-  const handleProjectView = (projectId: string) => {
-    if (!viewedProjects.includes(projectId)) {
-      const updated = [...viewedProjects, projectId];
-      setViewedProjects(updated);
-      try {
-        localStorage.setItem("mumu_viewed_projects", JSON.stringify(updated));
-      } catch (e) {}
-      
-      if (updated.length === 5) {
-        const alreadyPortfolioUnlocked = localStorage.getItem("mumu_ach_portfolio") === "true";
-        if (!alreadyPortfolioUnlocked) {
-          try {
-            localStorage.setItem("mumu_ach_portfolio", "true");
-          } catch (e) {}
-          triggerAchievementUnlock("作品鑑賞家 📖");
-        }
-      }
-    }
-  };
+  const {
+    canX,
+    canY,
+    canRotate,
+    canFlavor,
+    setCanFlavor,
+    handleCanTap,
+    handleCanDragStart,
+    handleCanDragEnd,
+  } = useCanPhysics({
+    mascotRef,
+    canRef,
+    onFeedMascot: (flavor) => {
+      triggerPremiumCanUnlock(flavor);
+    },
+    tutorialStep,
+    tutorialDismissed6,
+    setTutorialDismissed6,
+    nextTutorialStep,
+  });
 
   // 監聽詳細卡片開啟，自動觸發閱讀進度
   React.useEffect(() => {
     if (activeModalItem?.id) {
       handleProjectView(activeModalItem.id);
     }
-  }, [activeModalItem]);
+  }, [activeModalItem, handleProjectView]);
 
   // 控制台（F12）隱藏罐罐彩蛋 🥫
   React.useEffect(() => {
@@ -2522,13 +2007,7 @@ export default function App() {
       setMagicClickTimes([]);
       playMagicDingSound();
 
-      if (!magicMumuUnlocked) {
-        setMagicMumuUnlocked(true);
-        try {
-          localStorage.setItem("mumu_ach_magic_mumu", "true");
-        } catch (e) {}
-        triggerAchievementUnlock("魔法姆貓 🪄");
-      }
+      handleMagicMumuUnlock();
 
       // 彩虹光芒包裹 1.2 秒後淡出
       setTimeout(() => {
@@ -4571,15 +4050,7 @@ export default function App() {
           triggerMascotSpeech={triggerMascotDialogue}
           onInteract={incrementInteraction}
           onBalloonFlyAway={triggerBalloonAchievement}
-          onGravityRestore={() => {
-            if (!gravityRestoreUnlocked) {
-              setGravityRestoreUnlocked(true);
-              try {
-                localStorage.setItem("mumu_ach_gravity_restore", "true");
-              } catch (e) {}
-              triggerAchievementUnlock("重力掌控者 🌌");
-            }
-          }}
+          onGravityRestore={handleGravityRestore}
         />
 
         {/* 回到最上方與重置教學按鈕 */}

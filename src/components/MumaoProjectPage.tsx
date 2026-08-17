@@ -520,7 +520,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       purpose: "MUMㄠ 長什麼樣",
       uses: "Standard Mascot / Style Guide / Identity Spec",
       aspect: "aspect-square",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1rLxxT_LWlrC9rBVU7rlPOYAQY2xpR1FZ",
       desc: "以 MUMㄠ 的標準角色比例、五大固定特徵與核心色彩，建立所有延伸視覺的基礎。"
     },
     {
@@ -532,7 +532,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       purpose: "MUMㄠ 發什麼",
       uses: "Instagram / Comic / Post / Story / Meme",
       aspect: "aspect-square",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1tyEH6DNCyy1dI_ZCLehCVqLDOY5ugz3U",
       desc: "將角色語言與聽團日常轉化為容易被分享、閱讀與互動的社群內容。"
     },
     {
@@ -544,7 +544,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       purpose: "MUMㄠ 怎麼互動",
       uses: "LINE / Chat / Social Reaction / Digital Communication",
       aspect: "aspect-square",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1OppRUUlVjoNDgtH1q4i1WZrK6AQ9W8ni",
       desc: "透過表情、姿勢與短句，讓 MUMㄠ 成為聽團仔日常溝通的一部分。"
     },
     {
@@ -556,7 +556,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       purpose: "MUMㄠ 怎麼進入現場",
       uses: "Poster / Banner / Towel / Signage / Event Visual",
       aspect: "aspect-square",
-      image: "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX",
+      image: "https://drive.google.com/thumbnail?sz=w1000&id=1tUtt2WpBpNz10SOb2VeW-EEbSp9pxm3D",
       desc: "將 MUMㄠ 從螢幕帶入真實音樂祭，形成具有現場辨識度的角色視覺。"
     }
   ];

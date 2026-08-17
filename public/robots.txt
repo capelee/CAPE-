@@ -1,3 +1,20 @@
+# robots.txt for https://cape-eight.vercel.app/
 User-agent: *
 Allow: /
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bingbot specific rules
+User-agent: Bingbot
+Allow: /
+
+# Host specification
+Host: https://cape-eight.vercel.app
+
+# Sitemap location
 Sitemap: https://cape-eight.vercel.app/sitemap.xml

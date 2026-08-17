@@ -2,87 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://cape-eight.vercel.app/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cape-eight.vercel.app/?category=%E6%8F%92%E7%95%AB%E8%88%87%E5%8E%9F%E5%89%B5%E7%B9%AA%E6%9C%AC</loc>
+    <loc>https://cape-eight.vercel.app/?category=%E8%A7%92%E8%89%B2IP%26%E6%8F%92%E7%95%AB%E8%88%87%E8%B2%BC%E5%9C%96</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%BD%B1%E9%9F%B3%E8%88%87%E5%A4%9A%E5%AA%92%E9%AB%94%E8%A8%AD%E8%A8%88</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E4%BC%81%E6%A5%ADLOGO%E8%88%87CIS%E8%A8%AD%E8%A8%88</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E7%B6%B2%E7%AB%99%E7%94%A2%E5%93%81%E7%80%91%E5%B8%83%E9%A0%81</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%95%86%E5%93%81%E5%91%A8%E9%82%8A%E4%BC%81%E6%A5%AD%E7%A6%AE%E8%B4%88%E5%93%81</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%AF%A6%E9%AB%94%E5%BA%97%E9%9D%A2%E8%88%87%E5%B1%95%E8%A6%BD</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%B9%B3%E9%9D%A2%E6%B5%B7%E5%A0%B1%E5%BB%A3%E5%91%8A%E8%A8%AD%E8%A8%88</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%95%86%E5%8B%99%E5%8D%B0%E5%88%B7%E5%93%81%E8%A8%AD%E8%A8%88</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cape-eight.vercel.app/?category=%E8%A7%92%E8%89%B2IP%26%E6%8F%92%E7%95%AB%E8%88%87%E8%B2%BC%E5%9C%96</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E5%95%86%E6%A5%AD%E8%A6%96%E8%A6%BA%E6%94%9D%E5%BD%B1</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E8%B3%A3%E5%A0%B4Banner%E6%A9%AB%E5%B9%85%E5%BB%A3%E5%91%8A</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E7%A4%BE%E7%BE%A4%E8%A1%8C%E9%8A%B7%E5%B0%8F%E7%B7%A8%E5%9C%96%E6%96%87</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?category=%E9%9B%BB%E5%95%86%E7%94%A2%E5%93%81%E9%8A%B7%E5%94%AE%E5%9C%96</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=mumao-cat-religion-ip</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://drive.google.com/thumbnail?sz=w1000&amp;id=18ega279ty4XVeShySlEkSzJXUz2pOcep</image:loc>
+      <image:loc>https://drive.google.com/thumbnail?sz=w1000&amp;id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC</image:loc>
       <image:title>MuMㄠ 姆貓原創 IP 視覺與品牌設計</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sebamed-sports-mini-video</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://img.youtube.com/vi/ViZ8fRKVIiw/maxresdefault.jpg</image:loc>
       <image:title>施巴 Sebamed 運動舒緩沐浴乳 微縮小人 8秒廣告影片</image:title>
@@ -90,6 +100,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=dongxing-liquor-20s</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -99,8 +110,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=koharu-33s-promo</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://img.youtube.com/vi/fMh7Xnp9ZkE/maxresdefault.jpg</image:loc>
       <image:title>KOHARU 33s 廣告動畫</image:title>
@@ -108,6 +120,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-club-mini</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -117,6 +130,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=gucci-bloom-promo</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -126,8 +140,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=shone-dinosaur-intro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://drive.google.com/thumbnail?sz=w1000&amp;id=1-QtyyAfv77DU3RyvI5k6tYNpg_e040pG</image:loc>
       <image:title>SHONE恐龍自我介紹 動態短片</image:title>
@@ -135,6 +150,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=bronti-coffee-house-film</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -144,6 +160,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=haiyu-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -153,6 +170,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=mantour-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -162,6 +180,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=citylight-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -171,6 +190,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chawanmushi-podcast-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -180,6 +200,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chayu-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -189,6 +210,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=nomnom-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -198,6 +220,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=bubble-boys-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -207,6 +230,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=koharu-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -216,6 +240,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=dailynuts-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -225,6 +250,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blend-monster-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -234,6 +260,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=fuse-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -243,6 +270,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=velora-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -252,6 +280,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sushi-hondo-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -261,6 +290,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=154</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -270,6 +300,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=huatiancun-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -279,6 +310,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=qinyu-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -288,6 +320,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=haoke-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -297,6 +330,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-club-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -306,6 +340,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=shanye-muren-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -315,6 +350,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=travelsafe-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -324,6 +360,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=morinest-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -333,6 +370,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=puff-puff-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -342,6 +380,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=miisu-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -351,6 +390,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=85</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -360,6 +400,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=99</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -369,6 +410,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lumo-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -378,6 +420,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=bubu-soda-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -387,6 +430,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=oh-dough-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -396,6 +440,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=ryudo-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -405,6 +450,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=toukou-shuzo-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -414,6 +460,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=yubao-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -423,6 +470,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=beda-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -432,6 +480,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=yikou-daily-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -441,6 +490,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=195</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -450,6 +500,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=toukou-shuzo-waterfall</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -459,6 +510,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=xinliao-zhenangong-accessories</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -468,6 +520,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sanyu-elementary-school-choir-medals</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -477,6 +530,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=dental-implant-stainless-steel-ice-cubes</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -486,6 +540,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=ciyun-road-pedestrian-bridge-crystal-usb</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -495,6 +550,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=hsinchu-chess-association-medals</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -504,6 +560,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=101</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -513,6 +570,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chengyue-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -522,6 +580,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=shanye-muren-signboard</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -531,6 +590,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=charity-birdhouse</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -540,6 +600,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sebamed-sports-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -549,6 +610,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sebamed-sky-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -558,6 +620,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=gufeng-shaonian-illustration</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -567,6 +630,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=buddy-red-envelope</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -576,6 +640,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=buddy-ttt-badge</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -585,6 +650,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chengmei-tavi-flyer</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -594,6 +660,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wugu-ai-media-gugugu</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -603,6 +670,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=taichung-tourism-gaomei-badge</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -612,6 +680,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=youth-coalition-blueprint</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -621,6 +690,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chengmei-tavi-symposium</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -630,6 +700,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=myval-in-valve-symposium</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -639,6 +710,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=myval-symposium</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -648,6 +720,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=ni-neuro-symposium</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -657,6 +730,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=match-bond-elk</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -666,6 +740,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=shone-dinosaur-english-stickers</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -675,6 +750,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sea-siren-intro</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -684,6 +760,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-club-family</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -693,6 +770,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-captain-wild</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -702,6 +780,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-capy-wild</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -711,6 +790,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-luna</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -720,6 +800,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-ranger-ray</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -729,6 +810,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-slowmo</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -738,6 +820,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blend-monster-mascot</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -747,6 +830,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=new-dino-group</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -756,6 +840,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=new-dino-01</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -765,6 +850,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=new-dino-ptera</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -774,6 +860,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=new-dino-carno</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -783,6 +870,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=new-dino-triko</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -792,6 +880,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=new-dino-bronti</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -801,8 +890,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=96</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>/images/optimized/1O21Y73XU6GAHSQBZPHoWjg9dTx_wBOR6.webp</image:loc>
       <image:title>巴迪醫療 &amp; Meril Life Sciences Myval™ THV 紀念硬幣</image:title>
@@ -810,8 +900,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=97</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>/images/optimized/1GfQ6km7dMhOP-W0wAeIDKWj3X1Fl7Nc-.webp</image:loc>
       <image:title>巴迪醫療 &amp; Meril Life Sciences Myval™ THV 紀念硬幣雙面磁吸展示框</image:title>
@@ -819,8 +910,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=98</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>/images/optimized/1HhCuDoK6EcKY-oqEkJWgjjKAg1aKnpmq.webp</image:loc>
       <image:title>巴迪醫療 &amp; Meril Life Sciences Myval™ THV 紀念硬幣收藏木盒</image:title>
@@ -828,8 +920,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=7</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>/images/optimized/1GU6AvSwQzrAhFO04nacOTHOdMSIyElLg.webp</image:loc>
       <image:title>茂生百味 究極之月燕窩月餅禮盒</image:title>
@@ -837,6 +930,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=8</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -846,6 +940,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=9</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -855,6 +950,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=10</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -864,6 +960,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=11</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -873,6 +970,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=12</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -882,6 +980,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=13</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -891,6 +990,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=14</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -900,6 +1000,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=15</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -909,6 +1010,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=16</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -918,6 +1020,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=17</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -927,6 +1030,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=18</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -936,6 +1040,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=19</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -945,6 +1050,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=20</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -954,6 +1060,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=21</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -963,6 +1070,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=22</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -972,6 +1080,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=23</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -981,6 +1090,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=24</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -990,6 +1100,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=25</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -999,6 +1110,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=26</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1008,6 +1120,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=27</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1017,6 +1130,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=28</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1026,6 +1140,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=29</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1035,6 +1150,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=30</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1044,6 +1160,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=31</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1053,6 +1170,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=32</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1062,6 +1180,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=33</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1071,6 +1190,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=34</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1080,6 +1200,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=35</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1089,6 +1210,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=40</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1098,6 +1220,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=41</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1107,6 +1230,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=42</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1116,6 +1240,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=46</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1125,6 +1250,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=47</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1134,6 +1260,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=48</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1143,6 +1270,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=49</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1152,6 +1280,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=50</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1161,6 +1290,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=51</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1170,6 +1300,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-ice-cream-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1179,6 +1310,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-mascot-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1188,6 +1320,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-children-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1197,6 +1330,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-spokesperson-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1206,6 +1340,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-high-school-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1215,6 +1350,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-youth-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1224,6 +1360,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=beda-feedback-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1233,6 +1370,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=beda-mobile-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1242,6 +1380,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blast-scoop-monster-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1251,6 +1390,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blend-monster-spokesperson-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1260,6 +1400,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=mao-jia-product-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1269,6 +1410,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=mao-jia-dog-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1278,6 +1420,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=mao-jia-cat-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1287,6 +1430,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=noxroom-model-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1296,6 +1440,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=noxroom-scene-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1305,6 +1450,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=noxroom-product-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1314,6 +1460,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=morinest-product-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1323,6 +1470,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=morinest-family-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1332,6 +1480,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=koharu-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1341,6 +1490,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=bubu-soda-social-endorsement</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1350,6 +1500,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=bubu-soda-social-promotion</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1359,6 +1510,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sunburst-foods-social-promotion</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1368,6 +1520,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sushihontang-product-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1377,6 +1530,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sushihontang-endorsement-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1386,6 +1540,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=miisu-body-sculpting-social-visual</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1395,6 +1550,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=velora-aesthetics-social-visual</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1404,6 +1560,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=cha-lane-tea-social-student</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1413,6 +1570,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=cha-lane-tea-social-endorsement</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1422,6 +1580,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=cha-lane-tea-social-visual</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1431,6 +1590,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chayu-tea-social-product-visual</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1440,6 +1600,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chayu-tea-social-endorsement</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1449,6 +1610,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chengyue-construction-social-visual</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1458,6 +1620,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=mantour-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1467,6 +1630,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=haiyu-biomed-human-emotion-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1476,6 +1640,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=haiyu-biomed-social-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1485,6 +1650,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=qinyu-tea-social-endorsement</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1494,6 +1660,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=daily-nuts-social-product-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1503,6 +1670,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=daily-nuts-social-endorsement</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1512,6 +1680,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=travelsafe-insurance-social-promo</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1521,6 +1690,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=fuse-invest-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1530,6 +1700,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=yubao-entertainment-ad</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1539,6 +1710,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=yubao-entertainment-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1548,6 +1720,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=haoke-go-social-illustration</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1557,6 +1730,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=haoke-go-social-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1566,6 +1740,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chengguang-dept-social-model</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1575,6 +1750,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chengguang-dept-social-fantasy</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1584,6 +1760,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lumo-lighting-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1593,6 +1770,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=nom-nom-delivery-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1602,6 +1780,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lumia-endorsement-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1611,6 +1790,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lumia-contact-lenses-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1620,6 +1800,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lingora-ai-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1629,6 +1810,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sebamed-sky-model-social</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1638,6 +1820,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=52</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1647,6 +1830,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=53</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1656,6 +1840,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=54</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1665,6 +1850,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=55</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1674,6 +1860,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=56</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1683,6 +1870,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=57</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1692,6 +1880,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=58</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1701,6 +1890,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=59</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1710,6 +1900,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=60</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1719,6 +1910,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=61</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1728,6 +1920,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=62</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1737,6 +1930,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=63</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1746,6 +1940,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=64</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1755,6 +1950,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=65</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1764,6 +1960,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=66</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1773,6 +1970,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=67</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1782,6 +1980,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=68</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1791,6 +1990,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=69</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1800,6 +2000,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=70</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1809,6 +2010,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=71</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1818,6 +2020,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=72</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1827,6 +2030,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=73</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1836,6 +2040,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=74</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1845,6 +2050,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=75</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1854,6 +2060,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=76</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1863,6 +2070,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=77</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1872,6 +2080,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=78</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1881,6 +2090,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=79</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1890,6 +2100,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=80</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1899,6 +2110,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=81</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1908,6 +2120,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=82</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1917,6 +2130,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=83</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1926,6 +2140,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=84</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1935,6 +2150,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lumia-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1944,6 +2160,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=lingora-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1953,6 +2170,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=xionghuaxuan-retro-canteen-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1962,6 +2180,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=86</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1971,6 +2190,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=87</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1980,6 +2200,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=88</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1989,6 +2210,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=89</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1998,6 +2220,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=90</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2007,6 +2230,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=91</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2016,6 +2240,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=92</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2025,6 +2250,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=93</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2034,6 +2260,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=94</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2043,6 +2270,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=95</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2052,6 +2280,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=naoit-badge</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2061,6 +2290,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=chalane-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2070,6 +2300,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=100</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2079,6 +2310,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sea-siren-festival</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2088,6 +2320,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=102</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2097,6 +2330,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=103</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2106,6 +2340,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=104</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2115,6 +2350,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=106</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2124,6 +2360,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=108</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2133,6 +2370,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=109</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2142,6 +2380,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=110</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2151,6 +2390,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=111</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2160,6 +2400,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=112</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2169,6 +2410,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=113</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2178,6 +2420,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=114</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2187,6 +2430,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=115</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2196,6 +2440,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=116</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2205,6 +2450,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=117</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2214,6 +2460,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=118</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2223,6 +2470,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=119</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2232,6 +2480,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=120</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2241,6 +2490,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=121</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2250,6 +2500,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=122</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2259,6 +2510,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=123</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2268,6 +2520,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=124</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2277,6 +2530,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=125</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2286,6 +2540,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=127</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2295,6 +2550,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=128</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2304,6 +2560,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=129</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2313,6 +2570,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=130</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2322,6 +2580,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=131</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2331,6 +2590,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=132</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2340,6 +2600,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=133</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2349,6 +2610,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=134</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2358,6 +2620,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=135</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2367,6 +2630,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=136</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2376,6 +2640,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=137</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2385,6 +2650,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=138</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2394,15 +2660,17 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=139</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>/images/optimized/1rZIjL6Ar0Er6gjJyNXxpJ4oCipq4qbk1.webp</image:loc>
-      <image:title>tama's Lightning充電線</image:title>
+      <image:title>tama&apos;s Lightning充電線</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=140</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2412,6 +2680,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=141</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2421,6 +2690,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=142</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2430,6 +2700,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=143</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2439,6 +2710,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=144</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2448,6 +2720,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=145</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2457,6 +2730,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=146</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2466,6 +2740,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=147</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2475,6 +2750,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=148</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2484,6 +2760,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=149</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2493,6 +2770,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=150</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2502,6 +2780,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=151</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2511,6 +2790,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=152</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2520,6 +2800,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=153</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2529,6 +2810,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=sunburst-foods-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2538,6 +2820,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=155</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2547,6 +2830,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=156</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2556,6 +2840,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=157</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2565,6 +2850,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=158</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2574,6 +2860,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=159</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2583,6 +2870,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=160</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2592,6 +2880,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=161</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2601,6 +2890,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=162</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2610,6 +2900,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=163</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2619,6 +2910,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=164</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2628,6 +2920,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=165</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2637,6 +2930,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=166</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2646,6 +2940,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=167</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2655,6 +2950,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=168</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2664,6 +2960,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=169</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2673,6 +2970,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=170</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2682,6 +2980,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=171</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2691,6 +2990,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=172</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2700,6 +3000,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=173</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2709,6 +3010,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=174</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2718,6 +3020,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=175</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2727,6 +3030,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=176</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2736,6 +3040,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=177</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2745,6 +3050,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=178</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2754,6 +3060,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=179</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2763,6 +3070,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=180</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2772,6 +3080,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=181</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2781,6 +3090,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=182</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2790,6 +3100,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=183</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2799,6 +3110,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=184</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2808,6 +3120,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=185</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2817,6 +3130,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=186</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2826,6 +3140,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=187</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2835,6 +3150,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=189</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2844,6 +3160,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=190</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2853,6 +3170,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=maojia-brand-cis</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2862,6 +3180,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=196</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2871,6 +3190,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=201</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2880,6 +3200,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=202</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2889,6 +3210,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=203</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2898,6 +3220,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=204</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2907,6 +3230,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=205</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2916,6 +3240,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=206</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2925,6 +3250,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=207</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2934,6 +3260,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=208</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2943,6 +3270,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=210</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2952,6 +3280,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=211</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2961,6 +3290,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=212</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2970,6 +3300,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=213</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2979,6 +3310,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=214</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2988,6 +3320,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=215</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -2997,6 +3330,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=216</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3006,6 +3340,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=217</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3015,6 +3350,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=219</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3024,6 +3360,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=220</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3033,6 +3370,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=221</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3042,6 +3380,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=222</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3051,6 +3390,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=223</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3060,6 +3400,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=224</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3069,6 +3410,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=225</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3078,6 +3420,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=226</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3087,6 +3430,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=227</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3096,6 +3440,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=228</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3105,6 +3450,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=229</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3114,6 +3460,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=230</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3123,6 +3470,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=231</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3132,6 +3480,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=232</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3141,6 +3490,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=233</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3150,6 +3500,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=234</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3159,6 +3510,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=235</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3168,6 +3520,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=236</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3177,6 +3530,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=237</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3186,6 +3540,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=238</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3195,6 +3550,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=239</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3204,6 +3560,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=240</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3213,6 +3570,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=241</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3222,6 +3580,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=242</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3231,6 +3590,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=243</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3240,6 +3600,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=244</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3249,6 +3610,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=245</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3258,6 +3620,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=247</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3267,6 +3630,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=248</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3276,6 +3640,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=249</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3285,6 +3650,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=250</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3294,6 +3660,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=251</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3303,6 +3670,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=252</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3312,6 +3680,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=253</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3321,6 +3690,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=254</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3330,6 +3700,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=255</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3339,6 +3710,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=256</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3348,6 +3720,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=257</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3357,6 +3730,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=258</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3366,6 +3740,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=259</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3375,6 +3750,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=260</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3384,6 +3760,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=261</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3393,6 +3770,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=262</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3402,6 +3780,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=263</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3411,6 +3790,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=264</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3420,6 +3800,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=266</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3429,6 +3810,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=267</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3438,6 +3820,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=268</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3447,6 +3830,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=269</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3456,6 +3840,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=270</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3465,6 +3850,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=271</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3474,6 +3860,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=272</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3483,6 +3870,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=273</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3492,6 +3880,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=274</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3501,6 +3890,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=275</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3510,6 +3900,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=276</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3519,6 +3910,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=277</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3528,6 +3920,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=278</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3537,6 +3930,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=279</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3546,6 +3940,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=280</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3555,6 +3950,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=281</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3564,6 +3960,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=282</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3573,6 +3970,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=283</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3582,6 +3980,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=284</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3591,6 +3990,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=285</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3600,6 +4000,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=286</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3609,6 +4010,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=287</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3618,6 +4020,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=288</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3627,6 +4030,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=292</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3636,6 +4040,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=293</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3645,6 +4050,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=294</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3654,6 +4060,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=296</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3663,6 +4070,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=297</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3672,6 +4080,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=298</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3681,6 +4090,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=299</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3690,6 +4100,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=300</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3699,6 +4110,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=301</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3708,6 +4120,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=302</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3717,6 +4130,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=304</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3726,6 +4140,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=305</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3735,6 +4150,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=306</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3744,6 +4160,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=308</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3753,6 +4170,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=309</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3762,6 +4180,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=310</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3771,6 +4190,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=311</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3780,6 +4200,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=312</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3789,6 +4210,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=313</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3798,6 +4220,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=314</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3807,6 +4230,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=315</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3816,6 +4240,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=316</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3825,6 +4250,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=317</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3834,6 +4260,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=319</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3843,6 +4270,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=320</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3852,6 +4280,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=321</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3861,6 +4290,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=322</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3870,6 +4300,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=323</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3879,6 +4310,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=324</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3888,6 +4320,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=325</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3897,6 +4330,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=326</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3906,6 +4340,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=327</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3915,6 +4350,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=328</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3924,6 +4360,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=360</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3933,6 +4370,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=361</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3942,6 +4380,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=362</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3951,6 +4390,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=363</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3960,6 +4400,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=364</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3969,6 +4410,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=365</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3978,6 +4420,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=366</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3987,6 +4430,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=367</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -3996,6 +4440,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=368</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4005,6 +4450,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=369</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4014,6 +4460,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=370</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4023,6 +4470,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=371</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4032,6 +4480,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=372</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4041,6 +4490,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=373</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4050,6 +4500,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=374</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4059,6 +4510,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=375</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4068,6 +4520,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=376</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4077,6 +4530,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=377</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4086,6 +4540,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=378</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4095,6 +4550,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=379</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4104,6 +4560,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=380</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4113,6 +4570,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=381</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4122,6 +4580,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=382</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4131,6 +4590,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=383</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4140,6 +4600,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=384</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4149,6 +4610,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=385</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4158,6 +4620,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=386</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4167,6 +4630,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=387</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4176,6 +4640,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=389</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4185,6 +4650,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=390</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4194,6 +4660,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=391</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4203,6 +4670,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=392</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4212,6 +4680,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=393</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4221,6 +4690,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=394</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4230,6 +4700,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=395</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4239,6 +4710,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=396</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4248,6 +4720,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=397</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4257,6 +4730,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=398</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4266,8 +4740,9 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=399</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>/images/optimized/12Ng92RLHBWebgnCjtceS7lxFJvdaKurq.webp</image:loc>
       <image:title>bobos X9寵物多功能手推車電商長圖詳情頁設計</image:title>
@@ -4275,6 +4750,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=400</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4284,6 +4760,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=401</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4293,6 +4770,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=402</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4302,6 +4780,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=403</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4311,6 +4790,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=404</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4320,6 +4800,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=405</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4329,6 +4810,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=406</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4338,6 +4820,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=407</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4347,6 +4830,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=408</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4356,6 +4840,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=409</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4365,6 +4850,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=410</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4374,6 +4860,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=wild-burger-club-waterfall</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4383,6 +4870,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=ocean-jade-fish-oil-waterfall</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4392,6 +4880,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=bmw-r1200c-vector</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4401,6 +4890,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=derbi-terra-vector</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4410,6 +4900,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=peace-under-muzzle</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4419,6 +4910,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=charity-poster-113</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4428,6 +4920,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=misty-eco-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4437,6 +4930,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=global-warming-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4446,6 +4940,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=blood-donation-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4455,6 +4950,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=unique-personality-poster</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -4464,6 +4960,7 @@
   </url>
   <url>
     <loc>https://cape-eight.vercel.app/?item=pink-afternoon-jungle-date</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
