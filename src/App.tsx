@@ -1376,6 +1376,30 @@ export default function App() {
     }
   }, [items]);
 
+  // Development environment check for canonical link element
+  React.useEffect(() => {
+    try {
+      const isDev = (import.meta as any).env?.DEV || (typeof process !== "undefined" && process.env?.NODE_ENV !== "production") || (typeof window !== "undefined" && window.location.hostname === "localhost");
+      if (isDev) {
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (!canonicalLink) {
+          console.warn(
+            "⚠️ [SEO Warning]: Detected missing <link rel=\"canonical\"> tag in index.html! Please ensure it is present for optimal search crawling and duplicate index consolidation."
+          );
+        } else {
+          const href = canonicalLink.getAttribute("href");
+          if (!href) {
+            console.warn(
+              "⚠️ [SEO Warning]: The <link rel=\"canonical\"> tag exists in index.html but is missing its 'href' attribute!"
+            );
+          }
+        }
+      }
+    } catch (err) {
+      // Graceful degradation
+    }
+  }, []);
+
   // Sync current modal item or selected category into URL search parameters and update document title for SEO
   React.useEffect(() => {
     if (!isInitialUrlCheckRef.current) return;
