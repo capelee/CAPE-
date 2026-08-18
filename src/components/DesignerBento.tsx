@@ -426,7 +426,7 @@ export const DesignerBento = React.memo(function DesignerBento({
                 }`}
               >
                 <Cat className="h-3.5 w-3.5 shrink-0" />
-                <span>MUMㄠ 品牌專題</span>
+                <span>MuMㄠ 品牌專題</span>
               </button>
 
               <div className="relative w-full">

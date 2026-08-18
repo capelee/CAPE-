@@ -176,7 +176,7 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
       if (currentSrc === resolved) {
         return;
       }
-      const isAlreadyCached = src ? LOADED_IMAGES_CACHE.has(src) : false;
+      const isAlreadyCached = src ? (LOADED_IMAGES_CACHE.has(src) || isLoaded) : false;
       setCurrentSrc(resolved);
       setFallbackAttempt(0);
       setFailedCount(0);

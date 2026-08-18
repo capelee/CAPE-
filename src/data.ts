@@ -962,6 +962,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "巴迪醫療品牌標誌與企業識別系統",
     "titleEn": "Buddy Medical: Premium Logo Rebranding & Modern Corporate Identity System (CIS) Redesign",
+    "isHighlight": true,
     "philosophy": "以簡潔幾何線條融合醫療十字與愛心圖騰，搭配高明度藍綠配色與嚴謹無襯線字體。建立結構化 CIS 應用規範，傳達專業、可信賴與嚴謹的醫療科技品牌視覺。",
     "tools": [
       "品牌識別",
@@ -1470,6 +1471,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "企業LOGO與CIS設計",
     "title": "歡喜媛媛 品牌標誌與企業識別系統（CIS）",
     "titleEn": "Joy Yuan Co.: Premium Logo Branding & Corporate Identity System (CIS) Creative Showcase",
+    "isHighlight": true,
     "philosophy": "以溫暖柔和的粉紫色調結合手繪感花卉符號，搭配典雅襯線字體與圓潤線條。導入名片、包裝提袋與禮盒貼紙等載體，營造親和且具典雅質感的品牌視覺體驗。",
     "tools": [
       "品牌識別",
@@ -1633,6 +1635,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "平面海報廣告設計",
     "title": "客家電視台谷風少年電視劇宣傳插畫",
     "titleEn": "Hakka TV Drama Valley Wind Boy Editorial Illustration",
+    "isHighlight": true,
     "philosophy": "採用左右對稱人物結構，搭配低飽和粉紅與淡黃漸層，建構溫和暮色背景。中央圓形橘陽與植物剪影交織出空間深度，藉由紅線連結蝴蝶與手指，以扁平向量線條導引視覺流向。",
     "tools": [
       "Ai",
@@ -3700,6 +3703,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "社群行銷小編圖文",
     "title": "KOHARU（こはる） 社群廣告",
     "titleEn": "KOHARU Social Ad Campaign",
+    "isHighlight": true,
     "philosophy": "以柔和暖櫻粉與清透米白為基調，結合日系人像情境與幾何圖卡網格。透過雙色無襯線字級與俐落標籤，標示品牌推廣動態與社群優惠資訊。",
     "tools": [
       "Ai",
@@ -4135,6 +4139,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "社群行銷小編圖文",
     "title": "日日果 Daily Nuts 社群代言廣告",
     "titleEn": "Daily Nuts Social Endorsement Campaign",
+    "isHighlight": true,
     "philosophy": "以大地棕與自然綠為基調，結合代言人人物構圖與實體堅果產品包裝。透過對比字級階層與乾淨切分網格，清晰標示每日營養補充與團購優惠資訊。",
     "tools": [
       "Ai",
@@ -5241,6 +5246,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商務印刷品設計",
     "title": "Meril 醫療科技 Myval 人工心臟瓣膜手術手冊與 TAVI 腰封包裝",
     "titleEn": "Meril Life Sciences: Myval Transcatheter Heart Valve Surgery Booklet & TAVI Custom Waist Band Integrated Package Design",
+    "isHighlight": true,
     "philosophy": "以結構化雙色網格版面為核心，搭配高對比步進式圖解與大字級階層。結合燙金腰封與特殊摺頁裝幀，將複雜的心臟瓣膜手術流程與規格數據轉化為直覺流暢的臨床參考手冊。",
     "tools": [
       "InDesign",
@@ -5497,6 +5503,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "巴迪醫療 2025 TSOC 中華民國心臟學會年會 特裝展位與空間視覺設計",
     "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiology (TSOC) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
+    "isHighlight": true,
     "philosophy": "以極簡白與品牌藍高對比曲面背牆為核心，結合開放式獨立洽談島台與隱藏式燈帶。透過開放性參觀動線與結構化資訊立柱，在醫學年會中建構嚴謹且條理分明的展會空間。",
     "tools": [
       "品牌識別",
@@ -5527,6 +5534,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "實體店面與展覽",
     "title": "巴迪醫療 2025 TSCI 中華民國心血管介入學會年會 特裝展位與空間視覺設計",
     "titleEn": "Buddy Medical: 2025 Taiwan Society of Cardiovascular Interventions (TSCI) Annual Meeting Premium Exhibition Booth & Spatial Brand Design",
+    "isHighlight": true,
     "philosophy": "以幾何對比色塊分割產品展示區與多媒體簡報區，採用沉穩灰藍基調結合懸吊式發光箱體。配置體驗互動檯面與流暢環形動線，營造具科技穿透力與學術專業的特裝展位。",
     "tools": [
       "Photoshop",
@@ -5574,6 +5582,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "平面海報廣告設計",
     "title": "巴迪醫療 TATCS 台灣胸腔及心臟血管外科學會年會 醫療產品海報設計",
     "titleEn": "Buddy Medical: TATCS Annual Meeting Meril Life Sciences Dafodil Pericardial Bioprosthesis Product Poster Design",
+    "isHighlight": true,
     "philosophy": "以醫用高品質產品特寫為視覺核心，結合嚴謹的學術資訊網格。透過高對比文字編排與深色底紋襯托，精準展現外科年會醫療展品的創新技術與信賴質感。",
     "tools": [
       "醫學插畫",
@@ -5596,6 +5605,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "商務印刷品設計",
     "title": "巴迪醫療 官方雙語名片與印刷",
     "titleEn": "Buddy Medical: Official Premium Bilingual Business Card with Special Print Processes Design",
+    "isHighlight": true,
     "philosophy": "採用 350g 厚磅棉卡紙搭配雙面打凹與沉穩深藍金屬印墨，正面呈現中文姓名與職稱，背面嚴謹排版英文資訊。以俐落無襯線字體與適度留白，傳達專業嚴謹的醫療商務形象。",
     "tools": [
       "名片設計",
@@ -8123,6 +8133,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "CIAO 啾嚕管狀肉泥",
     "titleEn": "CIAO Churu Tube Purée: Exquisite Flavor Selection for Pet Indulgence and Meticulous Care E-commerce Web Page & Detail Design",
+    "isHighlight": true,
     "philosophy": "旋開橘色瓶蓋，像擠牙膏一樣把肉泥擠到乾淨的乾糧上。貓咪一邊吃一邊發出聲音，沒吃完的部分直接鎖緊蓋子，放進冰箱側門收納，下次還能繼續拿出來餵。",
     "tools": [
       "Photoshop",
@@ -8787,6 +8798,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "Orion好麗友 烏龜脆片",
     "titleEn": "Orion好麗友 烏龜脆片 E-commerce Detail Page Design",
+    "isHighlight": true,
     "philosophy": "撕開大包裝袋，拿出一片有四層結構的綠色餅乾。放進嘴裡咬碎，層次感讓嘴裡充滿濃郁的濃湯香氣，酥脆的聲音很大，跟朋友一邊聊天一邊分著吃，非常過癮。",
     "tools": [
       "Photoshop",
@@ -9073,6 +9085,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "台東初鹿 保久乳",
     "titleEn": "台東初鹿 保久乳 E-commerce Detail Page Design",
+    "isHighlight": true,
     "philosophy": "用吸管戳進小巧的白色鋁箔包，猛吸一口，乳白色牛奶流進喉嚨。嘴唇上方留下一圈奶泡，塞在小孩的便當袋裡，是課間隨時能喝到香濃乳汁的點心。",
     "tools": [
       "Photoshop",
@@ -9139,6 +9152,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "和秋 麻辣鴨血豆腐",
     "titleEn": "和秋 麻辣鴨血豆腐 E-commerce Detail Page Design",
+    "isHighlight": true,
     "philosophy": "用湯匙劃開軟嫩鴨血，紅油辣汁隨之噴出。吸飽湯汁的豆腐在嘴裡爆開，讓人一邊擦拭額頭的汗水，一邊大口吃著白米飯。",
     "tools": [
       "Photoshop",
@@ -9935,6 +9949,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "賣場Banner橫幅廣告",
     "title": "浪漫香調香水精選 品牌週促銷橫幅設計",
     "titleEn": "Yahoo Mall Romantic Fragrance & Perfume Promo Banner",
+    "isHighlight": true,
     "philosophy": "以柔和粉紫漸層與精緻花卉幾何邊框為背景，襯托透光香水瓶身光影質感。透過優雅字體階層與品牌週折扣標章，營造典雅氛圍與高品質美妝購物視覺。",
     "tools": [
       "Photoshop",
@@ -11409,6 +11424,7 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "電商產品銷售圖",
     "title": "立陽鴻 蝦皮客製化野餐墊詳情頁",
     "titleEn": "Liyanghong Shopee E-Commerce Custom Picnic Mat Detail Page Design",
+    "isHighlight": true,
     "philosophy": "詳情頁放著一家人在草地上野餐的照片，地墊上印著自家的狗狗圖案。往下翻有防水測試的影片，把水潑在墊子上立刻結成水珠流走，讓人看了就很想買去露營。",
     "tools": [
       "Photoshop",

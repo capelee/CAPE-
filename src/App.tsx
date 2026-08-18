@@ -1089,7 +1089,7 @@ export default function App() {
   const [tutorialDismissed7, setTutorialDismissed7] = useState(false);
   const [tutorialDismissed8, setTutorialDismissed8] = useState(false);
   const [searchInputVal, setSearchInputVal] = useState<string>("");
-  const [visibleCount, setVisibleCount] = useState<number>(() => perfState.visibleBatchSize);
+  const [visibleCount, setVisibleCount] = useState<number>(50);
   const [prevVisibleCount, setPrevVisibleCount] = useState<number>(0);
 
   // Keep searchInputVal in sync with searchQuery if changed externally (e.g., cleared)
@@ -1107,13 +1107,13 @@ export default function App() {
     return () => clearTimeout(handler);
   }, [searchInputVal, searchQuery]);
 
-  // Automatically reset visibleCount when category or search query is changed to improve rendering load
+  // Automatically reset visibleCount to 50 when category or search query is changed
   React.useEffect(() => {
-    setVisibleCount(perfState.visibleBatchSize);
+    setVisibleCount(50);
     setPrevVisibleCount(0);
-  }, [selectedCategory, searchQuery, perfState.visibleBatchSize]);
+  }, [selectedCategory, searchQuery]);
 
-  // MUMㄠ 專題頁面 Hash 錨點自動開啟路由
+  // MuMㄠ 專題頁面 Hash 錨點自動開啟路由
   React.useEffect(() => {
     const checkHash = () => {
       const hash = typeof window !== 'undefined' ? window.location.hash.replace("#", "") : "";
@@ -2900,51 +2900,6 @@ export default function App() {
     };
   }, [selectedCategory, searchQuery, visibleItems.length, updateGridOffset]);
 
-  // 6. Compute visible start and end row indices with caching and dynamic performance-based buffer
-  const { startIndex, endIndex } = useMemo(() => {
-    if (rows.length === 0) {
-      return { startIndex: 0, endIndex: -1 };
-    }
-
-    // Use cached offset to prevent layout thrashing and DOM reading loops during scroll
-    const currentGridOffset = gridOffsetTopRef.current || gridOffsetTop;
-    const relativeScrollTop = Math.max(0, windowScrollY - currentGridOffset);
-    
-    // Dynamic buffer rows: in eco mode (low-spec/mobile), use 1 row buffer to minimize DOM node overhead and avoid scroll stutter.
-    // In standard desktop mode, use 3 rows buffer for smooth visual transition without pop-in.
-    const bufferRows = isEcoMode ? 1 : 3;
-    let start = Math.max(0, Math.floor(relativeScrollTop / rowHeight) - bufferRows);
-    let end = Math.min(rows.length - 1, Math.ceil((relativeScrollTop + windowHeight) / rowHeight) + bufferRows);
-
-    if (start > end) {
-      start = Math.max(0, end - 1);
-    }
-
-    return { startIndex: start, endIndex: end };
-  }, [windowScrollY, gridOffsetTop, windowHeight, rowHeight, rows.length, isEcoMode]);
-
-  // Infinite Scroll: Auto-load more items when scrolling near the bottom of currently loaded rows
-  React.useEffect(() => {
-    if (endIndex >= rows.length - 4 && visibleCount < filteredItems.length) {
-      setVisibleCount(prev => Math.min(prev + 40, filteredItems.length));
-    }
-  }, [endIndex, rows.length, visibleCount, filteredItems.length]);
-
-  // 7. Get visible items to render with their original indices
-  const visibleRowItems = useMemo(() => {
-    const itemsWithIndex: { item: PortfolioItem; index: number }[] = [];
-    for (let r = startIndex; r <= endIndex; r++) {
-      const row = rows[r];
-      if (row) {
-        row.forEach((item, colIndex) => {
-          const originalIndex = r * columnCount + colIndex;
-          itemsWithIndex.push({ item, index: originalIndex });
-        });
-      }
-    }
-    return itemsWithIndex;
-  }, [rows, startIndex, endIndex, columnCount]);
-
   // Performance Optimization: Preload the cover images (360px-600px width) of the active category and upcoming predictive batch dynamically.
   // This avoids overwhelming the browser and Google Drive API, resolving rate limits, lag, and black screen failures.
   React.useEffect(() => {
@@ -3863,12 +3818,8 @@ export default function App() {
             <div 
               ref={gridRef}
               className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5 sm:gap-6 lg:gap-8 min-h-[300px]"
-              style={{
-                paddingTop: `${startIndex * rowHeight}px`,
-                paddingBottom: `${Math.max(0, rows.length - 1 - endIndex) * rowHeight}px`,
-              }}
             >
-              {visibleRowItems.map(({ item, index }) => {
+              {visibleItems.map((item, index) => {
                 const handlePortfolioCardClick = () => handleCardClick(item, index);
                 return (
                   <motion.div 
@@ -3877,7 +3828,7 @@ export default function App() {
                     key={item.id}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "60px" }}
+                    viewport={{ once: true, margin: "100px" }}
                     transition={{ duration: 0.35, ease: "easeOut", delay: isEcoMode ? 0 : Math.min(index % 6, 6) * 0.03 }}
                   >
                     {index === 0 && (tutorialStep === 1 || tutorialStep === 2) && (
@@ -3895,7 +3846,7 @@ export default function App() {
                       key={item.id}
                       item={item}
                       onClick={handlePortfolioCardClick}
-                      priority={index < 6}
+                      priority={index < 8}
                       index={index}
                       prevVisibleCount={prevVisibleCount}
                       theme={deferredTheme}
@@ -3910,8 +3861,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* 手動載入更多按鈕與狀態顯示 */}
-          <div className="w-full py-4 flex flex-col items-center justify-center gap-3 shrink-0">
+          {/* 手動載入更多按鈕與狀態顯示（預設僅呈現前50張，超過需按按鈕手動載入） */}
+          <div className="w-full py-8 flex flex-col items-center justify-center gap-3 shrink-0">
             <AnimatePresence mode="wait">
               {filteredItems.length > visibleCount ? (
                 <motion.div
@@ -3925,16 +3876,26 @@ export default function App() {
                   <div className="flex justify-center w-full py-2">
                     <button
                       onClick={handleLoadMore}
-                      className={`px-6 py-2.5 rounded-full text-xs font-medium tracking-widest transition-all duration-300 border flex items-center gap-2 active:scale-95 ${
+                      id="portfolio-load-more-btn"
+                      className={`group px-7 py-3 rounded-full text-xs font-medium tracking-widest transition-all duration-300 border flex items-center gap-2.5 active:scale-95 cursor-pointer shadow-sm hover:shadow-md ${
                         theme === "light"
-                          ? "bg-white hover:bg-zinc-50 text-zinc-600 border-zinc-200 shadow-sm"
+                          ? "bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-950 border-zinc-200/90 shadow-zinc-200/50"
                           : theme === "sepia"
-                          ? "bg-[#FAF4E5] hover:bg-[#F0E6D2] text-[#8C7B69] border-[#EADECC]"
-                          : "bg-[#1A1A1A] hover:bg-[#222] text-zinc-300 border-white/10 shadow-black/30"
+                          ? "bg-[#FAF4E5] hover:bg-[#F0E6D2] text-[#6A5844] hover:text-[#433422] border-[#E2D5C3] shadow-amber-900/5"
+                          : "bg-[#161616] hover:bg-[#202020] text-zinc-300 hover:text-white border-white/10 shadow-black/40"
                       }`}
                     >
-                      <span>載入更多作品...</span>
-                      <span className="opacity-50">({visibleCount} / {filteredItems.length})</span>
+                      <ChevronDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
+                      <span>載入更多作品</span>
+                      <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${
+                        theme === "light" 
+                          ? "bg-zinc-100 text-zinc-500" 
+                          : theme === "sepia" 
+                          ? "bg-[#EFE5D3] text-[#8C7B69]" 
+                          : "bg-white/10 text-zinc-400"
+                      }`}>
+                        {visibleCount} / {filteredItems.length}
+                      </span>
                     </button>
                   </div>
                 </motion.div>

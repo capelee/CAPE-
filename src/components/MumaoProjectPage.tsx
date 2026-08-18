@@ -361,17 +361,17 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     {
       url: resolveImageUrl("https://drive.google.com/thumbnail?sz=w1000&id=1XRb0RgB2BXTPWjA0Vtegkon_4Ban5cTD"),
       title: "KEY VISUAL 01: DANCING",
-      desc: "MUMㄠ 搖滾熱舞手稿與活力日常"
+      desc: "MuMㄠ 搖滾熱舞手稿與活力日常"
     },
     {
       url: resolveImageUrl("https://drive.google.com/thumbnail?sz=w1000&id=19lC2HqhK8-ZvGjpsT7_6GL6Spn8SDT0S"),
       title: "KEY VISUAL 02: CROSS-LEGGED SITTING",
-      desc: "MUMㄠ 悠閒盤腿坐姿與趣味表情"
+      desc: "MuMㄠ 悠閒盤腿坐姿與趣味表情"
     },
     {
       url: resolveImageUrl("https://drive.google.com/thumbnail?sz=w1000&id=1kZIv08WMwrJ5RWm0W2Lkgoc7lAkjAW5M"),
       title: "KEY VISUAL 03: MOSH & ILLUSTRATION",
-      desc: "MUMㄠ 獨立音樂聽團次文化原創插畫"
+      desc: "MuMㄠ 獨立音樂聽團次文化原創插畫"
     }
   ];
 
@@ -380,7 +380,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       role: "01 / CORE IDENTITY",
       title: "STANDARD STANCE",
       zhTitle: "標準角色",
-      desc: "以 MUMㄠ 的基本正面角色作為核心識別，固定頭型、耳朵、『ㄠ』、音波鬍鬚與服裝比例，建立所有角色延伸的視覺基準。",
+      desc: "以 MuMㄠ 的基本正面角色作為核心識別，固定頭型、耳朵、『ㄠ』、音波鬍鬚與服裝比例，建立所有角色延伸的視覺基準。",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       tag: "MASTER CHARACTER",
       principle: "CORE IDENTITY"
@@ -389,7 +389,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       role: "02 / EXPRESSION",
       title: "WINK & MOSH",
       zhTitle: "眨眼／情緒",
-      desc: "透過眨眼、表情與身體微幅變化，讓 MUMㄠ 可以進入音樂、社群與日常情境，但不改變核心角色識別。",
+      desc: "透過眨眼、表情與身體微幅變化，讓 MuMㄠ 可以進入音樂、社群與日常情境，但不改變核心角色識別。",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX",
       tag: "EXPRESSION SYSTEM",
       principle: "EXPRESSION SYSTEM"
@@ -398,7 +398,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       role: "03 / ACTION",
       title: "RAISED PAWS",
       zhTitle: "舉手／動作",
-      desc: "以舉手、揮舞與 Mosh Pit 等動作，建立 MUMㄠ 的現場能量，讓角色能自然進入音樂祭、舞台與活動視覺。",
+      desc: "以舉手、揮舞與 Mosh Pit 等動作，建立 MuMㄠ 的現場能量，讓角色能自然進入音樂祭、舞台與活動視覺。",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
       tag: "ACTION LANGUAGE",
       principle: "ACTION SYSTEM"
@@ -419,7 +419,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       enTitle: "NEVER MISS THE SHOW.",
       category: "ATTITUDE",
       principle: "PUNCTUALITY",
-      tag: "MUMㄠ ATTITUDE",
+      tag: "MuMㄠ ATTITUDE",
       desc: "第一拍就要開衝，因為好音樂不等人。"
     },
     {
@@ -428,7 +428,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       enTitle: "CHEER LOUDER.",
       category: "EMOTION",
       principle: "VOCAL ENTHUSIASM",
-      tag: "MUMㄠ EMOTION",
+      tag: "MuMㄠ EMOTION",
       desc: "聽見喜歡的歌，就不要把情緒留在心裡。"
     },
     {
@@ -472,13 +472,13 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       role: "AUDIENCE COMPANION",
       roleZh: "現場陪伴角色／獨立音樂文化的陪伴者",
       roleShort: "陪伴",
-      focusPoint: "MUMㄠ 以觀眾身邊的角色進入音樂祭，透過攤位、周邊與現場視覺建立第一層文化連結。",
+      focusPoint: "MuMㄠ 以觀眾身邊的角色進入音樂祭，透過攤位、周邊與現場視覺建立第一層文化連結。",
       coreConcept: {
         role: "陪伴",
         context: "MUSIC FESTIVAL",
         func: "建立現場親近感"
       },
-      culturalConnection: "將現場樂迷的狂熱記憶與 MUMㄠ 角色融合，透過攤位、周邊商品與視覺布置，建立屬於音樂祭現場的品牌親近感與文化連結。",
+      culturalConnection: "將現場樂迷的狂熱記憶與 MuMㄠ 角色融合，透過攤位、周邊商品與視覺布置，建立屬於音樂祭現場的品牌親近感與文化連結。",
       visualOutput: "現場攤位布置、音樂祭限定毛巾周邊、商品陳列與品牌現場識別",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1tec8te6MOKjOA4zcUHh6-hs5ODFxarft",
       isPrimary: true
@@ -494,7 +494,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       role: "INDEPENDENT CULTURE CHARACTER",
       roleZh: "獨立文化角色／Zine 與藝術出版符號",
       roleShort: "參與",
-      focusPoint: "MUMㄠ 從音樂現場延伸至獨立出版與藝術文化，透過紙品、角色圖像與手繪視覺建立 IP 的文化深度。",
+      focusPoint: "MuMㄠ 從音樂現場延伸至獨立出版與藝術文化，透過紙品、角色圖像與手繪視覺建立 IP 的文化深度。",
       coreConcept: {
         role: "參與",
         context: "ART / ZINE / PUBLISHING",
@@ -516,7 +516,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       role: "CULTURAL PRESENCE ／ DREAM WEAVER",
       roleZh: "文化現場角色／戶外音樂場景中的文化存在",
       roleShort: "融入",
-      focusPoint: "MUMㄠ 進一步融入戶外音樂祭與生活場景，不只是陪伴觀眾，而是成為現場氛圍與文化記憶的一部分。",
+      focusPoint: "MuMㄠ 進一步融入戶外音樂祭與生活場景，不只是陪伴觀眾，而是成為現場氛圍與文化記憶的一部分。",
       coreConcept: {
         role: "融入",
         context: "FIELD / OUTDOOR FESTIVAL",
@@ -536,11 +536,11 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       medium: "CHARACTER CORE",
       title: "角色核心識別",
       enTitle: "CHARACTER CORE",
-      purpose: "MUMㄠ 長什麼樣",
+      purpose: "MuMㄠ 長什麼樣",
       uses: "Standard Mascot / Style Guide / Identity Spec",
       aspect: "aspect-square",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1rLxxT_LWlrC9rBVU7rlPOYAQY2xpR1FZ",
-      desc: "以 MUMㄠ 的標準角色比例、五大固定特徵與核心色彩，建立所有延伸視覺的基礎。"
+      desc: "以 MuMㄠ 的標準角色比例、五大固定特徵與核心色彩，建立所有延伸視覺的基礎。"
     },
     {
       num: "02",
@@ -548,7 +548,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       medium: "SOCIAL CONTENT",
       title: "社群內容",
       enTitle: "SOCIAL CONTENT",
-      purpose: "MUMㄠ 發什麼",
+      purpose: "MuMㄠ 發什麼",
       uses: "Instagram / Comic / Post / Story / Meme",
       aspect: "aspect-square",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1tyEH6DNCyy1dI_ZCLehCVqLDOY5ugz3U",
@@ -560,11 +560,11 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       medium: "STICKER / EXPRESSION",
       title: "貼圖與情緒表達",
       enTitle: "STICKER / EXPRESSION",
-      purpose: "MUMㄠ 怎麼互動",
+      purpose: "MuMㄠ 怎麼互動",
       uses: "LINE / Chat / Social Reaction / Digital Communication",
       aspect: "aspect-square",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1OppRUUlVjoNDgtH1q4i1WZrK6AQ9W8ni",
-      desc: "透過表情、姿勢與短句，讓 MUMㄠ 成為聽團仔日常溝通的一部分。"
+      desc: "透過表情、姿勢與短句，讓 MuMㄠ 成為聽團仔日常溝通的一部分。"
     },
     {
       num: "04",
@@ -572,11 +572,11 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       medium: "FESTIVAL APPLICATION",
       title: "音樂祭現場",
       enTitle: "FESTIVAL APPLICATION",
-      purpose: "MUMㄠ 怎麼進入現場",
+      purpose: "MuMㄠ 怎麼進入現場",
       uses: "Poster / Banner / Towel / Signage / Event Visual",
       aspect: "aspect-square",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1tUtt2WpBpNz10SOb2VeW-EEbSp9pxm3D",
-      desc: "將 MUMㄠ 從螢幕帶入真實音樂祭，形成具有現場辨識度的角色視覺。"
+      desc: "將 MuMㄠ 從螢幕帶入真實音樂祭，形成具有現場辨識度的角色視覺。"
     }
   ];
 
@@ -599,38 +599,38 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       category: "02 STICKER（貼紙）",
       productRole: "FESTIVAL ESSENTIAL",
       roleQuote: "把音樂祭的浪花，變成一張可以貼在日常裡的小小角色。",
-      name: "MUMㄠ貼紙",
-      enName: "MUMㄠ FESTIVAL STICKER",
+      name: "MuMㄠ貼紙",
+      enName: "MuMㄠ FESTIVAL STICKER",
       tag: "EVERYDAY CULT MARK",
       spec: "防水貼紙・霧面材質・約 8×8cm",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=19cHtUo1Z8PDJzFFIqduHu943vybryNs5",
-      desc: "以 MUMㄠ 為主角，將標誌性的藍色波浪鬍子轉化為角色識別特徵。簡潔的黑白線條搭配粉色耳朵與藍色波浪元素，呈現俏皮又具有音樂祭個性的限定貼紙。",
-      application: ["Festival", "Sticker", "MUMㄠ"]
+      desc: "以 MuMㄠ 為主角，將標誌性的藍色波浪鬍子轉化為角色識別特徵。簡潔的黑白線條搭配粉色耳朵與藍色波浪元素，呈現俏皮又具有音樂祭個性的限定貼紙。",
+      application: ["Festival", "Sticker", "MuMㄠ"]
     },
     {
       num: "03",
       category: "03 COLLECT (收藏)",
       productRole: "COLLECTIBLE",
       roleQuote: "小尺寸品牌辨識，將角色特徵別在背包與外套上。",
-      name: "MUMㄠ 金屬胸章",
-      enName: "MUMㄠ METAL BADGE",
+      name: "MuMㄠ 金屬胸章",
+      enName: "MuMㄠ METAL BADGE",
       tag: "CHARACTER COLLECTIBLE",
       spec: "鋅合金金屬・硬漆／軟漆工藝・2.5×2.5cm",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=1_LcCYFe2RQV4LMCDeku9iGhLDBjmMPaC",
-      desc: "以 MUMㄠ Mark 及角色核心特徵為主的精緻金屬胸章，縮小角色線條，適合隨身別在背包、帽子與衣物，提供低調而清晰的品牌識別。",
-      application: ["Festival", "Badge", "MUMㄠ"]
+      desc: "以 MuMㄠ Mark 及角色核心特徵為主的精緻金屬胸章，縮小角色線條，適合隨身別在背包、帽子與衣物，提供低調而清晰的品牌識別。",
+      application: ["Festival", "Badge", "MuMㄠ"]
     },
     {
       num: "04",
       category: "04 LIVE (現場使用)",
       productRole: "FESTIVAL COMPANION",
-      roleQuote: "「把 MUMㄠ 延伸到音樂祭的休息、等待與社交場景。」",
+      roleQuote: "「把 MuMㄠ 延伸到音樂祭的休息、等待與社交場景。」",
       name: "音樂祭大草皮防水野餐墊",
       enName: "MEADOW FESTIVAL WATERPROOF MAT",
       tag: "ON-SITE LIFESTYLE MAT",
       spec: "600D 牛津布防水層 ‧ 140×150cm",
       image: "https://drive.google.com/thumbnail?sz=w1000&id=12em0bOkBQeoI9ouMfeNmTws-KuhKsouH",
-      desc: "專為大草皮舞台空檔休憩設計，大面積印刷 MUMㄠ 經典開衝繪圖。",
+      desc: "專為大草皮舞台空檔休憩設計，大面積印刷 MuMㄠ 經典開衝繪圖。",
       application: ["Festival", "Lifestyle", "On-Site"]
     }
   ];
@@ -645,7 +645,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
   const brandColorSystem = [
     {
       code: "01 / BASE",
-      name: "MUMㄠ WHITE",
+      name: "MuMㄠ WHITE",
       zhName: "姆貓純白",
       ratio: "70%",
       position: "CHARACTER BASE",
@@ -676,7 +676,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       bgHex: "#437596",
       isLight: false,
       meaning: "SOUND / 音樂與品牌辨識",
-      desc: "建立音樂文化與品牌辨識。取自湛藍音波鬍鬚，象徵聲音、節奏與現場文化，是 MUMㄠ 與音樂文化的核心連結。",
+      desc: "建立音樂文化與品牌辨識。取自湛藍音波鬍鬚，象徵聲音、節奏與現場文化，是 MuMㄠ 與音樂文化的核心連結。",
       characterLink: "SOUND",
       characterZh: "音樂／聲波／現場文化",
       applications: ["RISO／印刷／毛巾／音樂祭物料", "音波鬍鬚超級符號", "品牌關鍵識別標籤"]
@@ -723,7 +723,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
   const colorCraftSpecs = [
     {
-      color: "MUMㄠ WHITE",
+      color: "MuMㄠ WHITE",
       hex: "#FFFFFF",
       medium: "服飾／防水貼紙／大面積背景",
       craft: "重磅純棉原色 ‧ 霧面防水底膜",
@@ -868,6 +868,27 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     };
   }, [isOpen]);
 
+  // Lock background body scroll and listen for ESC key when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   // Handle initial scroll to hash on open
   useEffect(() => {
     if (!isOpen) return;
@@ -907,9 +928,9 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
     return () => clearInterval(interval);
   }, [isOpen]);
 
-  // Core Three-Color Brand Palette CSS Variables (MUMㄠ White × Wave Blue × Ear Pink + Charcoal Black)
+  // Core Three-Color Brand Palette CSS Variables (MuMㄠ White × Wave Blue × Ear Pink + Charcoal Black)
   const brandCssVars = {
-    // 1. MUMㄠ White (70% Base & Canvas)
+    // 1. MuMㄠ White (70% Base & Canvas)
     "--mum-white": "#FFFFFF",
     "--mum-bg": isDark ? "#09090b" : isSepia ? "#F4EFE6" : "#FAF8F5",
     "--mum-card": isDark ? "rgba(24, 24, 27, 0.55)" : isSepia ? "#FAF4E5" : "#FFFFFF",
@@ -1105,7 +1126,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       ? resolveImageUrl("https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX")
                       : resolveImageUrl("https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep")
                   } 
-                  alt="MUMㄠ Logo" 
+                  alt="MuMㄠ Logo" 
                   className="w-[85%] h-[85%] object-contain rounded-full"
                   referrerPolicy="no-referrer"
                   decoding="async"
@@ -1113,7 +1134,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               </div>
               <div className="flex flex-col shrink-0">
                 <span className={`text-sm font-black tracking-tight font-mono leading-none flex items-baseline gap-0.5 ${themeClasses.headerText}`}>
-                  <span className="font-bold tracking-tighter">MUM</span>
+                  <span className="font-bold tracking-tighter">MuM</span>
                   <span className="text-[0.85em] font-black">ㄠ</span>
                 </span>
                 <span className={`text-[9px] font-mono font-semibold tracking-widest uppercase mt-0.5 ${themeClasses.headerSubText}`}>
@@ -1401,7 +1422,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       }}
                     >
                       <h1 className={`text-6xl sm:text-7xl xl:text-8xl font-black tracking-tight leading-none flex items-baseline gap-1 select-none ${themeClasses.bodyTitle}`}>
-                        <span className="font-bold tracking-tighter">MUM</span>
+                        <span className="font-bold tracking-tighter">MuM</span>
                         <span className="text-[0.82em] font-black">ㄠ</span>
                       </h1>
                     </InteractiveHeroWhiskers>
@@ -1529,7 +1550,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] sm:text-xs font-bold text-[#437596] dark:text-[#6CA4C8]">KEY VISUAL 0{activeHeroImage + 1} ／ 主視覺 0{activeHeroImage + 1}</span>
                       <span>•</span>
-                      <span className="text-[11px] sm:text-xs">MUMㄠ — Standard Character Identity</span>
+                      <span className="text-[11px] sm:text-xs">MuMㄠ — Standard Character Identity</span>
                     </div>
                     <div className="flex items-center gap-2">
                       {heroVisuals.map((vis, idx) => (
@@ -1553,7 +1574,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             </div>
           </section>
 
-          {/* ===== 03 / WHY MUMㄠ? (CORE DESIGN DECISIONS: PROBLEM → DECISION → RESULT) ===== */}
+          {/* ===== 03 / WHY MuMㄠ? (CORE DESIGN DECISIONS: PROBLEM → DECISION → RESULT) ===== */}
           <section id="dna-section" className="space-y-8 pt-4 text-left">
             <SoundwaveDivider isDark={isDark} color={isDark ? "#6CA4C8" : "#437596"} className="mb-6" />
             
@@ -1563,7 +1584,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   03 / DESIGN DECISIONS ／ 核心設計決策
                 </span>
                 <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-black font-mono tracking-tight ${themeClasses.bodyTitle}`}>
-                  WHY MUMㄠ?
+                  WHY MuMㄠ?
                 </h2>
                 <p className={`text-xs font-mono tracking-wide ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
                   設計問題 → 設計選擇 → 設計理由
@@ -1788,13 +1809,13 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                 <div className="lg:col-span-8 space-y-5">
                   <p className={`text-base sm:text-lg leading-relaxed font-bold ${themeClasses.bodyTitle}`}>
-                    MUMㄠ 不只是「一隻貓」。
+                    MuMㄠ 不只是「一隻貓」。
                   </p>
                   <p className={`text-sm sm:text-base leading-relaxed ${themeClasses.bodyText}`}>
                     我希望它成為一個能夠承載台灣獨立音樂文化、音樂祭經驗與日常情緒的角色。
                   </p>
                   <p className={`text-sm sm:text-base leading-relaxed ${themeClasses.bodyText}`}>
-                    這三個核心元素成為 MUMㄠ 的 Visual DNA。我將台灣語言、音樂視覺與角色個性轉化為三個核心識別元素，並進一步建立 Character System、Brand Language、Festival Visual 與 Merchandise Application。
+                    這三個核心元素成為 MuMㄠ 的 Visual DNA。我將台灣語言、音樂視覺與角色個性轉化為三個核心識別元素，並進一步建立 Character System、Brand Language、Festival Visual 與 Merchandise Application。
                   </p>
 
                   {/* Clean Visual Flow Process */}
@@ -1847,7 +1868,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   PROJECT / 專案
                 </span>
                 <p className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
-                  MUMㄠ — ORIGINAL IP
+                  MuMㄠ — ORIGINAL IP
                 </p>
               </div>
 
@@ -1928,7 +1949,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
           </section>
 
 
-          {/* ===== 6. 01 / CHARACTER DESIGN (MUMㄠ 角色系統) ===== */}
+          {/* ===== 6. 01 / CHARACTER DESIGN (MuMㄠ 角色系統) ===== */}
           <section id="character-section" className="pt-6 space-y-12 text-left">
             <SoundwaveDivider isDark={isDark} color={isDark ? "#6CA4C8" : "#437596"} className="mb-8" />
             
@@ -1947,15 +1968,15 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               </div>
               <div className="sm:max-w-md space-y-2">
                 <p className={`text-xs leading-relaxed ${themeClasses.bodyText}`}>
-                  「從角色身份開始，建立一套可以持續延伸的 MUMㄠ 角色系統。」
+                  「從角色身份開始，建立一套可以持續延伸的 MuMㄠ 角色系統。」
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse"></span>
                   <span className={`text-[11px] font-mono font-bold uppercase tracking-wider ${isDark ? "text-[#F49BB2]" : "text-[#D85E7E]"}`}>
-                    ONE MUMㄠ. MULTIPLE STATES.
+                    ONE MuMㄠ. MULTIPLE STATES.
                   </span>
                   <span className={`text-[11px] font-mono ${themeClasses.bodySubText}`}>
-                    ／ 同一個 MUMㄠ，不同的情緒與動態
+                    ／ 同一個 MuMㄠ，不同的情緒與動態
                   </span>
                 </div>
               </div>
@@ -1988,11 +2009,11 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       CHARACTER IDENTITY
                     </h4>
                     <p className={`text-[11px] font-medium text-[#437596] dark:text-[#6CA4C8]`}>
-                      先定義 MUMㄠ 是誰
+                      先定義 MuMㄠ 是誰
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    「建立角色身份、文化背景與基本人格，先回答 MUMㄠ 是誰。」
+                    「建立角色身份、文化背景與基本人格，先回答 MuMㄠ 是誰。」
                   </p>
                 </div>
 
@@ -2006,11 +2027,11 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       VISUAL DNA
                     </h4>
                     <p className={`text-[11px] font-medium text-[#437596] dark:text-[#6CA4C8]`}>
-                      定義哪些視覺元素讓 MUMㄠ 被辨識
+                      定義哪些視覺元素讓 MuMㄠ 被辨識
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    「建立固定的輪廓、比例與核心視覺特徵，形成 MUMㄠ 的角色 DNA。」
+                    「建立固定的輪廓、比例與核心視覺特徵，形成 MuMㄠ 的角色 DNA。」
                   </p>
                 </div>
 
@@ -2065,7 +2086,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </h3>
                 </div>
                 <p className={`text-xs font-mono max-w-sm text-left sm:text-right ${themeClasses.bodySubText}`}>
-                  「設計 MUMㄠ 時，我遵循哪四個核心原則？」
+                  「設計 MuMㄠ 時，我遵循哪四個核心原則？」
                 </p>
               </div>
 
@@ -2089,7 +2110,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       </p>
                     </div>
                     <p className={`text-xs leading-relaxed ${themeClasses.bodyText}`}>
-                      「維持圓潤貓頭與清楚外輪廓，即使縮小至社群圖像或周邊尺寸，仍能一眼辨識 MUMㄠ。」
+                      「維持圓潤貓頭與清楚外輪廓，即使縮小至社群圖像或周邊尺寸，仍能一眼辨識 MuMㄠ。」
                     </p>
                   </div>
                   <div className="pt-2">
@@ -2173,7 +2194,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       </p>
                     </div>
                     <p className={`text-xs leading-relaxed ${themeClasses.bodyText}`}>
-                      「動作可以自由延伸，但必須符合 MUMㄠ 的角色性格、音樂文化與現場感。」
+                      「動作可以自由延伸，但必須符合 MuMㄠ 的角色性格、音樂文化與現場感。」
                     </p>
                   </div>
                   <div className="pt-2">
@@ -2376,7 +2397,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             {/* SECTION 05: CHARACTER FORMULA */}
             <div className={`p-6 sm:p-8 rounded-2xl border text-center space-y-3.5 ${themeClasses.cardBg} ${themeClasses.borderColSubtle}`}>
               <span className={`text-[10px] font-mono font-bold uppercase tracking-widest block ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                MUMㄠ CHARACTER SYSTEM FORMULA
+                MuMㄠ CHARACTER SYSTEM FORMULA
               </span>
 
               <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 font-mono font-black text-xs sm:text-sm lg:text-base">
@@ -2409,7 +2430,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <span className={`${themeClasses.bodySubText} text-base font-bold mb-4`}>=</span>
                 <div className="flex flex-col items-center">
                   <span className={`px-4 py-1.5 rounded-lg border font-extrabold ${themeClasses.bodyTitle} ${themeClasses.borderCol}`}>
-                    MUMㄠ CHARACTER SYSTEM
+                    MuMㄠ CHARACTER SYSTEM
                   </span>
                   <span className={`text-[9px] font-mono font-normal mt-1 ${themeClasses.bodySubText}`}>
                     Scalable System
@@ -2419,7 +2440,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-1 pt-1">
                 <p className={`text-xs sm:text-sm font-mono font-bold ${themeClasses.bodyTitle}`}>
-                  「固定角色 DNA，搭配可變的情緒表達與情境動作，讓 MUMㄠ 能在不同媒體中持續產生新的角色狀態。」
+                  「固定角色 DNA，搭配可變的情緒表達與情境動作，讓 MuMㄠ 能在不同媒體中持續產生新的角色狀態。」
                 </p>
                 <p className={`text-xs font-mono ${themeClasses.bodySubText}`}>
                   Fixed Identity + Variable State + Contextual Behavior
@@ -2440,10 +2461,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 </div>
                 <div className="space-y-0.5 text-left sm:text-right">
                   <p className={`text-xs font-mono font-bold ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                    FIVE FIXED VISUAL ANCHORS DEFINING MUMㄠ ACROSS ALL MEDIA.
+                    FIVE FIXED VISUAL ANCHORS DEFINING MuMㄠ ACROSS ALL MEDIA.
                   </p>
                   <p className={`text-[11px] font-mono ${themeClasses.bodySubText}`}>
-                    「五項固定視覺錨點，確保 MUMㄠ 在不同媒體中仍能被辨識。」
+                    「五項固定視覺錨點，確保 MuMㄠ 在不同媒體中仍能被辨識。」
                   </p>
                 </div>
               </div>
@@ -2571,7 +2592,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               </div>
 
               <p className={`text-xs leading-relaxed ${themeClasses.bodyText}`}>
-                「新姿勢可以改變動作與情境，但仍必須保留 MUMㄠ 的輪廓、比例與五項核心識別。」
+                「新姿勢可以改變動作與情境，但仍必須保留 MuMㄠ 的輪廓、比例與五項核心識別。」
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -2607,7 +2628,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     A CHARACTER SYSTEM BUILT TO SCALE.
                   </p>
                   <p className={`text-xs sm:text-sm leading-relaxed ${themeClasses.bodyText} max-w-2xl pt-1`}>
-                    「MUMㄠ 不只是一個固定姿勢的角色，而是一套可以在不同情境中持續生成新狀態的角色系統。」
+                    「MuMㄠ 不只是一個固定姿勢的角色，而是一套可以在不同情境中持續生成新狀態的角色系統。」
                   </p>
                 </div>
               </div>
@@ -2640,7 +2661,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </span>
                 </div>
                 <p className={`text-xs leading-relaxed pt-3 ${themeClasses.bodyText}`}>
-                  「固定 DNA 建立角色辨識度；可變的情緒、動作與情境，讓 MUMㄠ 持續生成新的角色狀態與內容。」
+                  「固定 DNA 建立角色辨識度；可變的情緒、動作與情境，讓 MuMㄠ 持續生成新的角色狀態與內容。」
                 </p>
               </div>
             </div>
@@ -2682,12 +2703,12 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </span>
                 </div>
                 <h2 className={`text-3xl font-bold font-mono mt-1 tracking-tight ${themeClasses.bodyTitle}`}>
-                  MUMㄠ 色彩計畫規範
+                  MuMㄠ 色彩計畫規範
                 </h2>
               </div>
               <div className="max-w-md">
                 <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                  MUMㄠ 的色彩不是裝飾，而是從角色 DNA、音樂語言與情緒特徵中推導出的視覺系統。
+                  MuMㄠ 的色彩不是裝飾，而是從角色 DNA、音樂語言與情緒特徵中推導出的視覺系統。
                 </p>
                 <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[10px] font-mono text-[#437596] dark:text-[#6CA4C8]">
                   <span className="font-bold">COLOR FOLLOWS CHARACTER.</span>
@@ -2711,7 +2732,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     <span className="opacity-70">｜ 從角色特徵抽取色彩，而不是從品牌色開始設計。</span>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    MUMㄠ 的色彩不是先決定品牌色再套用，而是從角色本身已存在的視覺特徵中抽取，轉化成一套可延伸的色彩語言。
+                    MuMㄠ 的色彩不是先決定品牌色再套用，而是從角色本身已存在的視覺特徵中抽取，轉化成一套可延伸的色彩語言。
                   </p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0 font-mono text-[10px] font-bold px-3 py-1.5 rounded-lg border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02]">
@@ -2735,7 +2756,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
                   <div>
                     <h4 className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
-                      MUMㄠ WHITE
+                      MuMㄠ WHITE
                     </h4>
                     <p className="text-xs font-mono font-bold text-[#437596] dark:text-[#6CA4C8] mt-0.5">
                       BODY
@@ -2745,7 +2766,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    取自 MUMㄠ 的白色毛色，形成角色本體與主要視覺空間。
+                    取自 MuMㄠ 的白色毛色，形成角色本體與主要視覺空間。
                   </p>
                 </div>
 
@@ -2851,7 +2872,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-600 shadow-xs">
-                        MUMㄠ WHITE
+                        MuMㄠ WHITE
                       </span>
                       <span className="text-xs font-mono font-black text-zinc-800 dark:text-zinc-200">
                         BODY
@@ -2954,7 +2975,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <div className="h-12 w-full rounded-xl overflow-hidden flex shadow-inner border border-black/15 dark:border-white/15">
                   {/* 70% White */}
                   <div className="w-[70%] bg-white text-zinc-900 flex items-center justify-between px-4 text-xs font-mono font-bold border-r border-zinc-200">
-                    <span className="truncate">70% CHARACTER BASE / MUMㄠ WHITE</span>
+                    <span className="truncate">70% CHARACTER BASE / MuMㄠ WHITE</span>
                     <span className="hidden sm:inline font-bold">70%</span>
                   </div>
                   {/* 20% Wave Blue */}
@@ -2971,7 +2992,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               {/* 3 Colors Proportional Roles directly matching Character DNA */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                {/* 70% MUMㄠ WHITE */}
+                {/* 70% MuMㄠ WHITE */}
                 <div className={`p-4 rounded-xl border space-y-2 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-black font-mono leading-none text-zinc-800 dark:text-zinc-100">70%</span>
@@ -2981,7 +3002,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
                   <div>
                     <h4 className={`text-xs font-bold font-mono ${themeClasses.bodyTitle}`}>
-                      MUMㄠ WHITE
+                      MuMㄠ WHITE
                     </h4>
                     <p className="text-[11px] font-mono font-bold mt-0.5 text-[#437596] dark:text-[#6CA4C8]">
                       70% CHARACTER BASE / BODY
@@ -3244,7 +3265,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
                   <div>
                     <h4 className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
-                      MUMㄠ WHITE
+                      MuMㄠ WHITE
                     </h4>
                     <p className="text-xs font-bold text-zinc-700 dark:text-zinc-300">
                       建立空間與角色本體
@@ -3547,7 +3568,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="max-w-3xl">
                 <p className={`text-xs sm:text-sm leading-relaxed ${themeClasses.bodyTitle}`}>
-                  MUMㄠ 的色彩不是獨立存在的品牌裝飾，而是從角色本體、音樂語言、情緒特徵與手繪輪廓中自然延伸出的 Character Language。
+                  MuMㄠ 的色彩不是獨立存在的品牌裝飾，而是從角色本體、音樂語言、情緒特徵與手繪輪廓中自然延伸出的 Character Language。
                 </p>
               </div>
 
@@ -3574,7 +3595,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </span>
                 </div>
                 <p className={`text-xs font-mono ${themeClasses.bodySubText} pt-1`}>
-                  角色 DNA ＋ 色彩角色 ＋ 使用規範 ＝ 可延伸的 MUMㄠ 色彩系統
+                  角色 DNA ＋ 色彩角色 ＋ 使用規範 ＝ 可延伸的 MuMㄠ 色彩系統
                 </p>
                 <div className="pt-2 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs font-mono font-bold text-[#437596] dark:text-[#6CA4C8]">
@@ -3626,7 +3647,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               </div>
               <div className="max-w-md">
                 <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                  從角色 DNA 出發，建立 MUMㄠ 可被辨識、可被延伸的品牌語言。
+                  從角色 DNA 出發，建立 MuMㄠ 可被辨識、可被延伸的品牌語言。
                 </p>
                 <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[10px] font-mono text-[#437596] dark:text-[#6CA4C8]">
                   <span className="font-bold">FROM CHARACTER DNA TO BRAND VOICE.</span>
@@ -3682,7 +3703,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </span>
                   <span className="text-[#437596] dark:text-[#6CA4C8]">→</span>
                   <span className="px-3 py-1 rounded bg-[#437596] text-white shadow-xs">
-                    MUMㄠ BRAND LANGUAGE
+                    MuMㄠ BRAND LANGUAGE
                   </span>
                 </div>
               </div>
@@ -3701,7 +3722,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 </div>
                 <div className="text-right">
                   <span className="text-xs font-mono font-bold text-[#437596] dark:text-[#6CA4C8]">
-                    WHERE DOES MUMㄠ'S LANGUAGE COME FROM?
+                    WHERE DOES MuMㄠ'S LANGUAGE COME FROM?
                   </span>
                   <p className={`text-[11px] font-mono ${themeClasses.bodySubText}`}>
                     從角色 DNA 與文化場景推導品牌語言
@@ -3728,7 +3749,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    ㄠ、注音、台灣口語與在地文化記憶，形成 MUMㄠ 的文化語感。
+                    ㄠ、注音、台灣口語與在地文化記憶，形成 MuMㄠ 的文化語感。
                   </p>
                 </div>
 
@@ -3749,7 +3770,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    音波、節奏、現場感與 Indie Music，形成 MUMㄠ 的音樂語感。
+                    音波、節奏、現場感與 Indie Music，形成 MuMㄠ 的音樂語感。
                   </p>
                 </div>
 
@@ -3791,7 +3812,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    音樂祭、舞台、社群與現場互動，讓 MUMㄠ 的角色語言進入真實文化場景。
+                    音樂祭、舞台、社群與現場互動，讓 MuMㄠ 的角色語言進入真實文化場景。
                   </p>
                 </div>
               </div>
@@ -3807,7 +3828,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <span className="text-[#437596] dark:text-[#6CA4C8]">＋</span>
                   <span className="text-zinc-800 dark:text-zinc-200">SCENE</span>
                   <span className="text-[#437596] dark:text-[#6CA4C8]">＝</span>
-                  <span className="text-[#437596] dark:text-[#6CA4C8] font-black">MUMㄠ BRAND LANGUAGE</span>
+                  <span className="text-[#437596] dark:text-[#6CA4C8] font-black">MuMㄠ BRAND LANGUAGE</span>
                 </div>
                 <span className={`text-[11px] font-mono shrink-0 ${themeClasses.bodySubText}`}>
                   角色 DNA 轉譯公式
@@ -3853,7 +3874,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     {/* Specimen Box */}
                     <div className={`p-3 rounded-lg border text-center font-mono ${themeClasses.cardBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-lg sm:text-xl font-black block tracking-tight ${themeClasses.bodyTitle}`}>
-                        MUMㄠ! HERO
+                        MuMㄠ! HERO
                       </span>
                       <span className={`text-[10px] font-bold block mt-1 text-[#437596] dark:text-[#6CA4C8]`}>
                         ALL HEART. ALL MUSIC.
@@ -3864,7 +3885,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <div>
                         <span className={`font-mono font-bold text-[10px] block ${themeClasses.bodySubText}`}>用途與角色：</span>
                         <p className={`leading-relaxed ${themeClasses.bodySubText}`}>
-                          用於 MUMㄠ 主標題、Festival Hero 與 Campaign 主視覺。建立直接、明確、帶有角色個性的視覺聲音。
+                          用於 MuMㄠ 主標題、Festival Hero 與 Campaign 主視覺。建立直接、明確、帶有角色個性的視覺聲音。
                         </p>
                       </div>
                     </div>
@@ -3926,7 +3947,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <div>
                         <span className={`font-mono font-bold text-[10px] block ${themeClasses.bodySubText}`}>用途與角色：</span>
                         <p className={`leading-relaxed ${themeClasses.bodySubText}`}>
-                          用於角色台詞、社群文字與 Festival Graphics。保留手寫感與不完美，讓 MUMㄠ 像一個真的人在說話。
+                          用於角色台詞、社群文字與 Festival Graphics。保留手寫感與不完美，讓 MuMㄠ 像一個真的人在說話。
                         </p>
                       </div>
                     </div>
@@ -3972,7 +3993,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     <div className={`p-3 rounded-lg border font-mono text-[11px] space-y-2 ${themeClasses.cardBg} ${themeClasses.borderColSubtle}`}>
                       <div>
                         <span className="text-[9px] uppercase font-bold text-zinc-400 block">CHARACTER</span>
-                        <p className={`font-medium text-xs ${themeClasses.bodyTitle}`}>MUMㄠ 的藍色波浪鬍鬚</p>
+                        <p className={`font-medium text-xs ${themeClasses.bodyTitle}`}>MuMㄠ 的藍色波浪鬍鬚</p>
                       </div>
                       <div className="text-zinc-300 dark:text-zinc-700 text-center text-xs">↓</div>
                       <div>
@@ -4063,11 +4084,11 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
                 </div>
 
-                {/* 04 MUMㄠ MARK */}
+                {/* 04 MuMㄠ MARK */}
                 <div className={`p-5 rounded-xl border space-y-3.5 flex flex-col justify-between ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                   <div className="space-y-3">
                     <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#E8829C]/15 text-[#B83B5E] dark:text-[#FFB6C7]">
-                      04 / MUMㄠ MARK
+                      04 / MuMㄠ MARK
                     </span>
                     <h4 className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
                       在地超級識別印記
@@ -4087,7 +4108,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <div className="text-zinc-300 dark:text-zinc-700 text-center text-xs">↓</div>
                       <div>
                         <span className="text-[9px] uppercase font-bold text-[#B83B5E] dark:text-[#FFB6C7] block">ASSET</span>
-                        <p className="font-bold text-[#B83B5E] dark:text-[#FFB6C7] text-xs">MUMㄠ Mark</p>
+                        <p className="font-bold text-[#B83B5E] dark:text-[#FFB6C7] text-xs">MuMㄠ Mark</p>
                       </div>
                       <div className="text-zinc-300 dark:text-zinc-700 text-center text-xs">↓</div>
                       <div>
@@ -4158,7 +4179,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     開放呼吸留白
                   </h4>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    保留足夠的空間讓角色與訊息呼吸，使 MUMㄠ 成為畫面中的視覺主角。
+                    保留足夠的空間讓角色與訊息呼吸，使 MuMㄠ 成為畫面中的視覺主角。
                   </p>
                 </div>
 
@@ -4315,10 +4336,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   FROM CHARACTER TO CULTURAL PRESENCE.
                 </span>
                 <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                  從角色 DNA 出發，讓 MUMㄠ 進入真實文化場景，並在不同情境中發展不同的角色功能。
+                  從角色 DNA 出發，讓 MuMㄠ 進入真實文化場景，並在不同情境中發展不同的角色功能。
                 </p>
                 <p className={`text-[11px] leading-relaxed font-mono text-zinc-400 dark:text-zinc-500`}>
-                  From character DNA to real-world cultural presence, MUMㄠ adapts its role across different contexts.
+                  From character DNA to real-world cultural presence, MuMㄠ adapts its role across different contexts.
                 </p>
                 <span className={`text-[10px] font-mono block pt-1 ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
                   CHARACTER → CULTURE → ROLE → APPLICATION → MEMORY
@@ -4356,12 +4377,12 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   
                   {/* Chinese enhanced explanation */}
                   <p className={`text-sm sm:text-base font-bold font-mono ${isDark ? "text-zinc-200" : "text-zinc-800"}`}>
-                    「MUMㄠ 不只是出現在活動裡，而是透過不同文化場景改變角色功能，逐步成為現場文化的一部分。」
+                    「MuMㄠ 不只是出現在活動裡，而是透過不同文化場景改變角色功能，逐步成為現場文化的一部分。」
                   </p>
 
                   {/* English enhanced explanation */}
                   <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                    MUMㄠ does not simply appear at events. The character enters different cultural contexts, adapts its role, and becomes part of the scene.
+                    MuMㄠ does not simply appear at events. The character enters different cultural contexts, adapts its role, and becomes part of the scene.
                   </p>
                 </div>
 
@@ -4391,7 +4412,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </h3>
                 </div>
                 <span className={`text-[11px] font-mono ${themeClasses.bodySubText}`}>
-                  HOW MUMㄠ CHANGES ITS ROLE ACROSS CULTURAL CONTEXTS.
+                  HOW MuMㄠ CHANGES ITS ROLE ACROSS CULTURAL CONTEXTS.
                 </span>
               </div>
 
@@ -4455,7 +4476,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                               <div className={`p-4 rounded-xl border space-y-2 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                                 <div className="flex items-center justify-between">
                                   <span className="text-[10px] font-bold font-mono uppercase px-2 py-0.5 rounded bg-[#437596] text-white">
-                                    MUMㄠ ROLE: {fest.role}
+                                    MuMㄠ ROLE: {fest.role}
                                   </span>
                                   <span className="text-[10px] font-mono text-zinc-400">ROLE 01</span>
                                 </div>
@@ -4553,7 +4574,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                           <div className={`p-3.5 rounded-xl border font-mono text-xs space-y-2 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                             <div className="flex items-center justify-between">
                               <span className="text-[10px] font-bold uppercase text-[#437596] dark:text-[#6CA4C8]">
-                                MUMㄠ ROLE: {fest.role}
+                                MuMㄠ ROLE: {fest.role}
                               </span>
                               <span className="text-[10px] text-zinc-400 font-bold">【{roleKeyword}】</span>
                             </div>
@@ -4578,7 +4599,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                             {/* Art case specific proof statement */}
                             {isArtCase && (
                               <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-bold text-amber-600 dark:text-amber-400">
-                                「文化定位延伸：證明 MUMㄠ 不被『音樂祭吉祥物』單一定位限制。」
+                                「文化定位延伸：證明 MuMㄠ 不被『音樂祭吉祥物』單一定位限制。」
                               </div>
                             )}
                           </div>
@@ -4639,7 +4660,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </p>
                   </div>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    從觀眾身邊開始，建立 MUMㄠ 與音樂現場的第一層關係。
+                    從觀眾身邊開始，建立 MuMㄠ 與音樂現場的第一層關係。
                   </p>
                 </div>
 
@@ -4830,7 +4851,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       </p>
                     </div>
                     <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                      將現場角色轉化為社群內容，讓 MUMㄠ 從現場延伸至數位文化語境。
+                      將現場角色轉化為社群內容，讓 MuMㄠ 從現場延伸至數位文化語境。
                     </p>
                   </div>
 
@@ -4975,13 +4996,13 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Conclusion Body */}
               <div className={`p-6 rounded-xl border space-y-4 font-mono text-xs sm:text-sm leading-relaxed ${themeClasses.cardBg} ${themeClasses.borderColSubtle}`}>
                 <p className={`font-bold ${isDark ? "text-zinc-100" : "text-zinc-800"}`}>
-                  MUMㄠ 從一個角色開始，透過音樂、藝術與戶外文化場景，逐步建立不同的角色功能與使用方式。
+                  MuMㄠ 從一個角色開始，透過音樂、藝術與戶外文化場景，逐步建立不同的角色功能與使用方式。
                 </p>
                 <p className={themeClasses.bodyText}>
-                  因此 MUMㄠ 不只是「一隻貓」，而是一個能夠進入真實文化場景、與人產生互動並持續延伸的 IP。
+                  因此 MuMㄠ 不只是「一隻貓」，而是一個能夠進入真實文化場景、與人產生互動並持續延伸的 IP。
                 </p>
                 <div className={`pt-3 border-t text-xs leading-relaxed ${themeClasses.bodySubText} border-black/5 dark:border-white/5`}>
-                  MUMㄠ started as a character, then entered music, art, and outdoor cultural contexts. Through each context, the role evolved without losing its core identity. The result is not simply a cat character, but a scalable IP presence built for real cultural participation.
+                  MuMㄠ started as a character, then entered music, art, and outdoor cultural contexts. Through each context, the role evolved without losing its core identity. The result is not simply a cat character, but a scalable IP presence built for real cultural participation.
                 </div>
               </div>
 
@@ -5016,7 +5037,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
           </section>
 
 
-                                                             {/* ===== 8. 05 / VISUAL SYSTEM (MUMㄠ 視覺系統規範) ===== */}
+                                                             {/* ===== 8. 05 / VISUAL SYSTEM (MuMㄠ 視覺系統規範) ===== */}
           <section id="visuals-section" className="pt-6 space-y-16 text-left">
             <SoundwaveDivider isDark={isDark} color={isDark ? "#E8829C" : "#437596"} className="mb-8" />
             
@@ -5030,7 +5051,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </span>
                 </div>
                 <h2 className={`text-3xl font-bold font-mono mt-1 tracking-tight ${themeClasses.bodyTitle}`}>
-                  05 / VISUAL SYSTEM <span className="block sm:inline font-normal text-xl sm:text-2xl mt-1 sm:mt-0">MUMㄠ 視覺系統規範</span>
+                  05 / VISUAL SYSTEM <span className="block sm:inline font-normal text-xl sm:text-2xl mt-1 sm:mt-0">MuMㄠ 視覺系統規範</span>
                 </h2>
               </div>
 
@@ -5050,7 +5071,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             {/* Pipeline Flow Banner */}
             <div className={`p-4 rounded-xl border ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle} space-y-2`}>
               <span className={`text-[10px] font-mono font-bold uppercase tracking-widest block text-[#437596] dark:text-[#6CA4C8]`}>
-                MUMㄠ SYSTEM TRANSFORMATION PIPELINE
+                MuMㄠ SYSTEM TRANSFORMATION PIPELINE
               </span>
               <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono font-bold">
                 <span className="px-2 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100">CHARACTER DNA</span>
@@ -5099,7 +5120,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </div>
                     <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>Wave Whiskers / 波浪鬍鬚</h4>
                     <p className="text-xs text-zinc-500 leading-relaxed">
-                      <strong className="text-zinc-700 dark:text-zinc-300">WAVE WHISKERS ＝ MUMㄠ 最主要的視覺辨識資產。</strong>延伸自貓咪鬍鬚特徵，具備流動感與韻律。
+                      <strong className="text-zinc-700 dark:text-zinc-300">WAVE WHISKERS ＝ MuMㄠ 最主要的視覺辨識資產。</strong>延伸自貓咪鬍鬚特徵，具備流動感與韻律。
                     </p>
                     <div className="flex flex-wrap gap-1 text-[10px] font-mono text-[#437596] font-bold">
                       <span>• 波浪</span> <span>• 水平延伸</span> <span>• 不規則</span> <span>• 可裁切</span> <span>• 可放大</span> <span>• 可重複</span> <span>• 音樂節奏感</span>
@@ -5158,7 +5179,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </div>
                     <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>Label System / 標籤系統</h4>
                     <p className="text-xs text-zinc-500 leading-relaxed">
-                      <strong className="text-zinc-700 dark:text-zinc-300">LABEL SYSTEM ＝ 資訊、分類、活動脈絡。</strong>完整的 MUMㄠ metadata 標籤結構。
+                      <strong className="text-zinc-700 dark:text-zinc-300">LABEL SYSTEM ＝ 資訊、分類、活動脈絡。</strong>完整的 MuMㄠ metadata 標籤結構。
                     </p>
                   </div>
 
@@ -5188,15 +5209,15 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <span className="text-[10px] font-mono font-bold text-[#E8829C]">04 / MARK</span>
                       <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#E8829C]/15 text-[#E8829C] font-bold">BRAND SIGNATURE</span>
                     </div>
-                    <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>MUMㄠ Mark / 識別印記</h4>
+                    <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>MuMㄠ Mark / 識別印記</h4>
                     <p className="text-xs text-zinc-500 leading-relaxed">
-                      <strong className="text-zinc-700 dark:text-zinc-300">MUMㄠ MARK ＝ 品牌識別與簽名。</strong>專屬識別印記，作為標誌認證圖章。
+                      <strong className="text-zinc-700 dark:text-zinc-300">MuMㄠ MARK ＝ 品牌識別與簽名。</strong>專屬識別印記，作為標誌認證圖章。
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-zinc-950/90 border border-[#E8829C]/40 flex flex-col items-center justify-center gap-1">
                     <div className="px-3.5 h-10 min-w-[100px] border-2 border-[#E8829C] rounded flex items-center justify-center font-mono text-xs font-black text-[#E8829C] tracking-wider bg-[#E8829C]/10 shadow-sm whitespace-nowrap">
-                      [ MUMㄠ 印 ]
+                      [ MuMㄠ 印 ]
                     </div>
                     <span className="text-[8px] font-mono text-zinc-400 mt-1">BRAND SIGNATURE STAMP</span>
                   </div>
@@ -5217,7 +5238,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     GRAPHIC ELEMENTS / 視覺圖形系統
                   </h3>
                   <p className="text-xs font-bold text-zinc-600 dark:text-zinc-400 mt-0.5">
-                    MUMㄠ GRAPHIC TOOLKIT / 建立明確視覺層級 (VISUAL HIERARCHY)
+                    MuMㄠ GRAPHIC TOOLKIT / 建立明確視覺層級 (VISUAL HIERARCHY)
                   </p>
                 </div>
                 <span className={`text-xs font-mono ${themeClasses.bodySubText}`}>
@@ -5330,10 +5351,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   {/* 03 Mark */}
                   <div className={`p-5 rounded-xl border space-y-3 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                     <div className="flex items-center justify-between border-b pb-2 border-black/5 dark:border-white/5">
-                      <span className="text-[10px] font-mono font-bold text-[#E8829C]">03 / MUMㄠ MARK</span>
+                      <span className="text-[10px] font-mono font-bold text-[#E8829C]">03 / MuMㄠ MARK</span>
                       <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#E8829C]/15 text-[#E8829C]">SECONDARY</span>
                     </div>
-                    <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>MUMㄠ 識別印記</h4>
+                    <h4 className={`text-base font-bold font-mono ${themeClasses.bodyTitle}`}>MuMㄠ 識別印記</h4>
                     <div className="flex flex-wrap gap-1 text-[10px] font-mono font-bold text-[#B83B5E] dark:text-[#FFB6C7]">
                       <span className="px-1.5 py-0.5 rounded bg-[#E8829C]/10">Compact</span>
                       <span className="px-1.5 py-0.5 rounded bg-[#E8829C]/10">Recognizable</span>
@@ -5479,7 +5500,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <div className="border border-zinc-700/40 p-1 rounded bg-zinc-900/50 text-[8px] text-zinc-400">SWISS GRID</div>
                     </div>
                     <div className="border-t-2 border-dashed border-[#E8829C] pt-1 text-center font-bold text-[#E8829C] text-[9px]">
-                      GRID + IMPERFECT ELEMENT = MUMㄠ COMPOSITION
+                      GRID + IMPERFECT ELEMENT = MuMㄠ COMPOSITION
                     </div>
                   </div>
 
@@ -5607,7 +5628,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                 <div className={`p-4 rounded-xl border space-y-2 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                   <span className="text-[10px] font-mono font-bold text-[#E8829C] block">03 / CHARACTER 角色</span>
-                  <p className={`text-xs font-bold ${themeClasses.bodyTitle}`}>MUMㄠ Character / 角色寫照</p>
+                  <p className={`text-xs font-bold ${themeClasses.bodyTitle}`}>MuMㄠ Character / 角色寫照</p>
                   <p className="text-[10px] font-mono text-zinc-500 leading-relaxed">
                     White Space / Gesture / Expression / Silhouette / Playful
                   </p>
@@ -5845,7 +5866,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Pipeline Flow representation */}
               <div className={`p-4 rounded-xl border ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle} space-y-2`}>
                 <span className={`text-[10px] font-mono font-bold uppercase tracking-widest block ${themeClasses.bodySubText}`}>
-                  MUMㄠ VISUAL SYSTEM PIPELINE
+                  MuMㄠ VISUAL SYSTEM PIPELINE
                 </span>
                 <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono font-bold">
                   <span className="px-2 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100">CHARACTER DNA</span>
@@ -5860,7 +5881,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <span className="text-[#437596] dark:text-[#6CA4C8]">→</span>
                   <span className="px-2 py-0.5 rounded bg-[#E8829C]/15 text-[#B83B5E] dark:text-[#FFB6C7]">APPLICATION</span>
                   <span className="text-[#437596] dark:text-[#6CA4C8]">→</span>
-                  <span className="px-3 py-0.5 rounded bg-[#437596] text-white">MUMㄠ VISUAL SYSTEM</span>
+                  <span className="px-3 py-0.5 rounded bg-[#437596] text-white">MuMㄠ VISUAL SYSTEM</span>
                 </div>
               </div>
 
@@ -5875,10 +5896,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Core Final Principle */}
               <div className="p-4 rounded-xl border border-[#437596]/40 bg-[#437596]/10 text-center space-y-1 font-mono">
                 <span className="text-xs font-bold text-[#437596] dark:text-[#90C2E4] uppercase tracking-widest block">
-                  NOT THE SAME EVERY TIME. BUT ALWAYS RECOGNIZABLE AS MUMㄠ.
+                  NOT THE SAME EVERY TIME. BUT ALWAYS RECOGNIZABLE AS MuMㄠ.
                 </span>
                 <p className="text-xs text-zinc-700 dark:text-zinc-300 font-bold">
-                  「不是每次都長得一樣，而是每次都看得出來是 MUMㄠ。」
+                  「不是每次都長得一樣，而是每次都看得出來是 MuMㄠ。」
                 </p>
               </div>
             </div>
@@ -5914,7 +5935,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             </div>
           </section>
 
-          {/* ===== 9. 06 / MERCHANDISE (MUMㄠ 周邊設計與商品應用系統) ===== */}
+          {/* ===== 9. 06 / MERCHANDISE (MuMㄠ 周邊設計與商品應用系統) ===== */}
           <section id="merch-section" className="pt-6 space-y-12 text-left">
             <SoundwaveDivider isDark={isDark} color={isDark ? "#6CA4C8" : "#437596"} className="mb-8" />
             
@@ -5924,7 +5945,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <div className="flex items-center gap-2">
                   <Package className={`h-4 w-4 ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`} />
                   <span className={`text-xs font-mono font-bold uppercase tracking-widest block ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                    06 / MERCHANDISE ‧ MUMㄠ MERCHANDISE SYSTEM
+                    06 / MERCHANDISE ‧ MuMㄠ MERCHANDISE SYSTEM
                   </span>
                 </div>
                 <h2 className={`text-3xl font-bold font-mono mt-1 tracking-tight ${themeClasses.bodyTitle}`}>
@@ -5934,7 +5955,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="max-w-md">
                 <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                  將 MUMㄠ 的 Visual System 轉譯為實體物件，規範識別如何被使用、攜帶、收藏與記憶。
+                  將 MuMㄠ 的 Visual System 轉譯為實體物件，規範識別如何被使用、攜帶、收藏與記憶。
                 </p>
                 <span className={`text-[10px] font-mono block mt-1 ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
                   CHARACTER ➔ VISUAL SYSTEM ➔ PRODUCT ➔ MATERIAL ➔ FUNCTION ➔ EXPERIENCE ➔ MEMORY
@@ -5952,7 +5973,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   FROM IP TO OBJECT. <span className="block text-xl sm:text-2xl mt-1 font-bold">／ 從角色 IP 到實體物件</span>
                 </h3>
                 <p className={`text-lg sm:text-xl font-bold font-mono text-zinc-900 dark:text-zinc-100`}>
-                  「讓喜歡 MUMㄠ，變成可以帶走的東西。」
+                  「讓喜歡 MuMㄠ，變成可以帶走的東西。」
                 </p>
               </div>
 
@@ -5970,10 +5991,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             {/* Core Concept Note */}
             <div className="p-4 rounded-xl border border-[#437596]/30 bg-[#437596]/10 text-center space-y-1 font-mono">
               <span className="text-xs font-bold text-[#437596] dark:text-[#90C2E4] uppercase tracking-wide block">
-                MUMㄠ MERCH IS NOT CHARACTER REPRODUCTION. IT IS CHARACTER ENTERING DAILY LIFE.
+                MuMㄠ MERCH IS NOT CHARACTER REPRODUCTION. IT IS CHARACTER ENTERING DAILY LIFE.
               </span>
               <p className="text-xs text-zinc-700 dark:text-zinc-300 font-bold">
-                「MUMㄠ 周邊不是角色的複製，而是角色進入日常生活。」
+                「MuMㄠ 周邊不是角色的複製，而是角色進入日常生活。」
               </p>
             </div>
 
@@ -6065,7 +6086,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </div>
                     <div className="space-y-1 text-[10px] pt-1 border-t border-black/5 dark:border-white/5">
                       <div><span className="text-zinc-400 font-bold">01 / ROLE:</span> <span className="text-zinc-800 dark:text-zinc-200">音樂祭現場穿戴物件</span></div>
-                      <div><span className="text-zinc-400 font-bold">02 / TRANSLATION:</span> <span className="text-[#437596] dark:text-[#6CA4C8]">WAVE + MUMㄠ MARK</span></div>
+                      <div><span className="text-zinc-400 font-bold">02 / TRANSLATION:</span> <span className="text-[#437596] dark:text-[#6CA4C8]">WAVE + MuMㄠ MARK</span></div>
                       <div><span className="text-zinc-400 font-bold">03 / FUNCTION:</span> <span className="text-zinc-700 dark:text-zinc-300">現場應援與社群大面積識別</span></div>
                       <div><span className="text-zinc-400 font-bold">04 / MATERIAL:</span> <span className="text-zinc-700 dark:text-zinc-300">100% Cotton Towel</span></div>
                       <div><span className="text-zinc-400 font-bold">05 / PRODUCTION:</span> <span className="text-zinc-700 dark:text-zinc-300">Screen Print / Textile Print</span></div>
@@ -6082,7 +6103,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <span className="text-[10px] font-bold text-[#437596] dark:text-[#6CA4C8]">STICKER PACK</span>
                     </div>
                     <div>
-                      <h4 className={`text-base font-bold ${themeClasses.bodyTitle}`}>MUMㄠ 貼紙組</h4>
+                      <h4 className={`text-base font-bold ${themeClasses.bodyTitle}`}>MuMㄠ 貼紙組</h4>
                       <span className="text-[10px] text-zinc-400 block">STICKER PACK</span>
                     </div>
                     <div className="aspect-square rounded-xl overflow-hidden bg-slate-100/5 relative border border-black/5 dark:border-white/5">
@@ -6107,7 +6128,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <span className="text-[10px] font-bold text-zinc-700 dark:text-zinc-300">METAL BADGE</span>
                     </div>
                     <div>
-                      <h4 className={`text-base font-bold ${themeClasses.bodyTitle}`}>MUMㄠ 金屬胸章</h4>
+                      <h4 className={`text-base font-bold ${themeClasses.bodyTitle}`}>MuMㄠ 金屬胸章</h4>
                       <span className="text-[10px] text-zinc-400 block">METAL BADGE</span>
                     </div>
                     <div className="aspect-square rounded-xl overflow-hidden bg-slate-100/5 relative border border-black/5 dark:border-white/5">
@@ -6115,7 +6136,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </div>
                     <div className="space-y-1 text-[10px] pt-1 border-t border-black/5 dark:border-white/5">
                       <div><span className="text-zinc-400 font-bold">01 / ROLE:</span> <span className="text-zinc-800 dark:text-zinc-200">精緻文化收藏物件</span></div>
-                      <div><span className="text-zinc-400 font-bold">02 / TRANSLATION:</span> <span className="text-zinc-700 dark:text-zinc-200">MUMㄠ MARK + CHARACTER</span></div>
+                      <div><span className="text-zinc-400 font-bold">02 / TRANSLATION:</span> <span className="text-zinc-700 dark:text-zinc-200">MuMㄠ MARK + CHARACTER</span></div>
                       <div><span className="text-zinc-400 font-bold">03 / FUNCTION:</span> <span className="text-zinc-700 dark:text-zinc-300">包款配件點綴與收藏</span></div>
                       <div><span className="text-zinc-400 font-bold">04 / MATERIAL:</span> <span className="text-zinc-700 dark:text-zinc-300">Zinc Alloy / Enamel</span></div>
                       <div><span className="text-zinc-400 font-bold">05 / PRODUCTION:</span> <span className="text-zinc-700 dark:text-zinc-300">Soft Enamel / Die-Casting</span></div>
@@ -6210,7 +6231,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <span className="text-zinc-300">COLLECT</span>
                 <span className="text-[#6CA4C8]">+</span>
                 <span className="text-zinc-300">LIVE</span>
-                <span className="text-[#6CA4C8]">= MUMㄠ MERCH</span>
+                <span className="text-[#6CA4C8]">= MuMㄠ MERCH</span>
               </div>
             </div>
 
@@ -6478,7 +6499,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <div className="space-y-3 font-mono text-xs">
                   <div className={`p-3 rounded-lg border space-y-1 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                     <span className="font-bold text-[#437596] dark:text-[#6CA4C8]">01 / RECOGNITION ／ 品牌辨識</span>
-                    <p className={themeClasses.bodySubText}>「看得出是 MUMㄠ。」</p>
+                    <p className={themeClasses.bodySubText}>「看得出是 MuMㄠ。」</p>
                   </div>
 
                   <div className={`p-3 rounded-lg border space-y-1 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
@@ -6524,7 +6545,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     MERCHANDISE FORMULA
                   </span>
                   <div className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
-                    CHARACTER + FUNCTION + CULTURE + COLLECTIBILITY = MUMㄠ MERCHANDISE
+                    CHARACTER + FUNCTION + CULTURE + COLLECTIBILITY = MuMㄠ MERCHANDISE
                   </div>
                 </div>
 
@@ -6561,20 +6582,20 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-3 font-mono text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">
                 <p className="font-bold text-zinc-800 dark:text-zinc-100 text-sm">
-                  MUMㄠ STARTS AS A CHARACTER. IT BECOMES A VISUAL SYSTEM. THEN IT BECOMES SOMETHING PEOPLE CAN USE, CARRY, COLLECT, AND REMEMBER.
+                  MuMㄠ STARTS AS A CHARACTER. IT BECOMES A VISUAL SYSTEM. THEN IT BECOMES SOMETHING PEOPLE CAN USE, CARRY, COLLECT, AND REMEMBER.
                 </p>
                 <p>
-                  MUMㄠ 從角色開始，經過視覺系統、商品功能與文化情境，成為可以被使用、攜帶、收藏與記憶的實體物件。
+                  MuMㄠ 從角色開始，經過視覺系統、商品功能與文化情境，成為可以被使用、攜帶、收藏與記憶的實體物件。
                 </p>
               </div>
 
               {/* Final Core Sentence */}
               <div className="p-4 rounded-xl border border-[#437596]/40 bg-[#437596]/10 text-center space-y-1 font-mono">
                 <span className="text-sm font-black text-[#437596] dark:text-[#90C2E4] uppercase tracking-wider block">
-                  NOT JUST MERCH. A PIECE OF MUMㄠ TO TAKE WITH YOU.
+                  NOT JUST MERCH. A PIECE OF MuMㄠ TO TAKE WITH YOU.
                 </span>
                 <p className="text-xs text-zinc-800 dark:text-zinc-200 font-bold">
-                  「不只是周邊，而是一小部分可以帶走的 MUMㄠ。」
+                  「不只是周邊，而是一小部分可以帶走的 MuMㄠ。」
                 </p>
               </div>
             </div>
@@ -6619,7 +6640,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="max-w-md">
                 <p className={`text-xs leading-relaxed font-mono ${themeClasses.bodySubText}`}>
-                  MUMㄠ 如何從一個角色 IP，進一步形成可被品牌、活動、媒體、內容、合作與商業場景採用的 IP 系統。
+                  MuMㄠ 如何從一個角色 IP，進一步形成可被品牌、活動、媒體、內容、合作與商業場景採用的 IP 系統。
                 </p>
                 <span className={`text-[10px] font-mono block mt-1 ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
                   FROM CHARACTER TO ECOSYSTEM.
@@ -6683,10 +6704,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                   <div className="space-y-3 pt-2">
                     <p className={`text-sm sm:text-base font-bold font-mono leading-relaxed ${themeClasses.bodyTitle}`}>
-                      MUMㄠ 不只是被使用的角色，而是一套可以進入品牌、活動、媒體、內容與文化場景的 IP 資產。
+                      MuMㄠ 不只是被使用的角色，而是一套可以進入品牌、活動、媒體、內容與文化場景的 IP 資產。
                     </p>
                     <p className={`text-xs font-mono leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400`}>
-                      MUMㄠ IS NOT ONLY A CHARACTER. IT IS A FLEXIBLE IP ASSET BUILT FOR CULTURAL, CREATIVE AND COMMERCIAL APPLICATION.
+                      MuMㄠ IS NOT ONLY A CHARACTER. IT IS A FLEXIBLE IP ASSET BUILT FOR CULTURAL, CREATIVE AND COMMERCIAL APPLICATION.
                     </p>
                   </div>
                 </div>
@@ -6727,7 +6748,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </h3>
                 </div>
                 <span className={`text-xs font-mono text-[#437596] dark:text-[#6CA4C8] font-bold`}>
-                  「品牌或合作方可以使用 MUMㄠ 的哪些 IP 資產？」
+                  「品牌或合作方可以使用 MuMㄠ 的哪些 IP 資產？」
                 </span>
               </div>
 
@@ -6735,7 +6756,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-xs">
                 <div className={`p-4 rounded-xl border space-y-2 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                   <span className="text-[10px] font-bold text-zinc-400 block">01 / CHARACTER</span>
-                  <div className={`font-bold text-sm ${themeClasses.bodyTitle}`}>MUMㄠ Character</div>
+                  <div className={`font-bold text-sm ${themeClasses.bodyTitle}`}>MuMㄠ Character</div>
                   <div className="text-xs text-[#437596] dark:text-[#6CA4C8] font-bold">角色本體</div>
                 </div>
 
@@ -6845,7 +6866,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 <div className="max-w-3xl mx-auto space-y-6 font-mono text-xs">
                   {/* Center Node */}
                   <div className="p-4 rounded-xl bg-[#183348] text-white text-center font-black text-base tracking-widest max-w-xs mx-auto shadow-lg border-2 border-[#437596]">
-                    MUMㄠ IP
+                    MuMㄠ IP
                   </div>
 
                   {/* Branching tree to 6 Applications */}
@@ -7042,7 +7063,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <span className="text-[10px] font-bold text-[#437596] dark:text-[#6CA4C8]">01 / KEEP IDENTITY</span>
                   <h4 className={`text-sm font-bold ${themeClasses.bodyTitle}`}>角色辨識不可消失</h4>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    合作品牌可以改變語境，但不能破壞 MUMㄠ 核心識別。
+                    合作品牌可以改變語境，但不能破壞 MuMㄠ 核心識別。
                   </p>
                 </div>
 
@@ -7050,8 +7071,8 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <span className="text-[10px] font-bold text-[#437596] dark:text-[#6CA4C8]">02 / SHARE THE LANGUAGE</span>
                   <h4 className={`text-sm font-bold ${themeClasses.bodyTitle}`}>雙方視覺語言共存</h4>
                   <div className={`text-xs leading-relaxed space-y-1 ${themeClasses.bodySubText}`}>
-                    <p className="line-through opacity-60">不是單純：MUMㄠ LOGO + PARTNER LOGO</p>
-                    <p className="font-bold text-zinc-800 dark:text-zinc-100">而是：MUMㄠ × PARTNER 共同形成新的視覺語言。</p>
+                    <p className="line-through opacity-60">不是單純：MuMㄠ LOGO + PARTNER LOGO</p>
+                    <p className="font-bold text-zinc-800 dark:text-zinc-100">而是：MuMㄠ × PARTNER 共同形成新的視覺語言。</p>
                   </div>
                 </div>
 
@@ -7232,10 +7253,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                 </span>
 
                 <div className="max-w-2xl mx-auto space-y-6 font-mono text-xs">
-                  {/* Center Core: MUMㄠ IP (Deep Navy) */}
+                  {/* Center Core: MuMㄠ IP (Deep Navy) */}
                   <div className="text-center">
                     <span className="p-4 rounded-xl bg-[#183348] text-white font-black text-base tracking-widest shadow-lg border-2 border-[#437596] inline-block px-10">
-                      MUMㄠ IP
+                      MuMㄠ IP
                     </span>
                   </div>
 
@@ -7307,7 +7328,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     </div>
                     <div className="text-zinc-400 text-xs font-bold">↓ EXPANDS TO</div>
                     <div className="p-3 rounded-xl border-2 border-[#E8829C] bg-[#E8829C]/10 text-[#E8829C] dark:text-[#F49BB2] font-black inline-block px-8 text-xs sm:text-sm">
-                      NEW APPLICATION ↺ (RECURS TO MUMㄠ IP)
+                      NEW APPLICATION ↺ (RECURS TO MuMㄠ IP)
                     </div>
                   </div>
                 </div>
@@ -7316,7 +7337,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Bottom Logic Statement */}
               <div className="p-4 rounded-xl border border-[#437596]/40 bg-[#437596]/10 text-center space-y-1 font-mono">
                 <span className="text-xs sm:text-sm font-black text-[#437596] dark:text-[#90C2E4] uppercase tracking-wider block">
-                  MUMㄠ IP → MULTIPLE APPLICATIONS → AUDIENCE PARTICIPATION → MEMORY → IP VALUE → NEW APPLICATION
+                  MuMㄠ IP → MULTIPLE APPLICATIONS → AUDIENCE PARTICIPATION → MEMORY → IP VALUE → NEW APPLICATION
                 </span>
                 <p className="text-xs text-zinc-800 dark:text-zinc-200 font-bold">
                   「一個 IP，不只產生一種應用，而是透過不同場景持續產生受眾參與與品牌記憶。」
@@ -7408,10 +7429,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-3 border-t pt-6 border-black/5 dark:border-white/5 font-mono">
                 <p className={`text-sm sm:text-base leading-relaxed ${themeClasses.bodyText}`}>
-                  MUMㄠ 從一個角色開始，透過文化、視覺、商品、內容與品牌合作，逐漸形成可以持續擴張的 IP 商業生態。
+                  MuMㄠ 從一個角色開始，透過文化、視覺、商品、內容與品牌合作，逐漸形成可以持續擴張的 IP 商業生態。
                 </p>
                 <p className={`text-xs leading-relaxed uppercase tracking-wider text-zinc-500 dark:text-zinc-400`}>
-                  MUMㄠ STARTS AS A CHARACTER. THROUGH CULTURE, VISUAL SYSTEMS, PRODUCTS, CONTENT, EXPERIENCE AND COLLABORATION, IT EVOLVES INTO A SCALABLE IP ECOSYSTEM.
+                  MuMㄠ STARTS AS A CHARACTER. THROUGH CULTURE, VISUAL SYSTEMS, PRODUCTS, CONTENT, EXPERIENCE AND COLLABORATION, IT EVOLVES INTO A SCALABLE IP ECOSYSTEM.
                 </p>
               </div>
 
@@ -7496,7 +7517,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </p>
                 </div>
                 <p className={`text-xs max-w-md leading-relaxed ${themeClasses.bodySubText}`}>
-                  MUMㄠ 不只是被看見，而是被遇見、被參與、被記住的文化體驗系統。
+                  MuMㄠ 不只是被看見，而是被遇見、被參與、被記住的文化體驗系統。
                 </p>
               </div>
             </div>
@@ -7528,15 +7549,15 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                   <div className="p-4 rounded-xl border border-[#437596]/40 bg-[#437596]/10 space-y-2">
                     <p className="text-base sm:text-lg font-bold text-zinc-800 dark:text-zinc-100 leading-snug">
-                      「MUMㄠ 不只是被看見，而是被遇見、被參與、被記住。」
+                      「MuMㄠ 不只是被看見，而是被遇見、被參與、被記住。」
                     </p>
                     <p className="text-xs text-[#437596] dark:text-[#6CA4C8] uppercase tracking-wider">
-                      MUMㄠ IS NOT JUST SEEN. IT IS ENCOUNTERED, PARTICIPATED IN, AND REMEMBERED.
+                      MuMㄠ IS NOT JUST SEEN. IT IS ENCOUNTERED, PARTICIPATED IN, AND REMEMBERED.
                     </p>
                   </div>
 
                   <p className={`text-xs sm:text-sm leading-relaxed ${themeClasses.bodyText}`}>
-                    本章將視覺識別（Visual System）、實體周邊（Merchandise）與商業應用（Brand Application）整合為完整的使用者經驗，規範人與 MUMㄠ 接觸的每一個節點與情感累積過程。
+                    本章將視覺識別（Visual System）、實體周邊（Merchandise）與商業應用（Brand Application）整合為完整的使用者經驗，規範人與 MuMㄠ 接觸的每一個節點與情感累積過程。
                   </p>
                 </div>
 
@@ -7601,7 +7622,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
                   <p className="font-bold text-zinc-800 dark:text-zinc-100">Stage / Sound / Festival</p>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    音樂舞台、音響重低音與聽團現場，為 MUMㄠ 最核心的情緒觸發與精神場域。
+                    音樂舞台、音響重低音與聽團現場，為 MuMㄠ 最核心的情緒觸發與精神場域。
                   </p>
                 </div>
 
@@ -7661,7 +7682,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
                   <p className="font-bold text-zinc-800 dark:text-zinc-100">Taiwan / Local / Everyday Life</p>
                   <p className={`text-xs leading-relaxed ${themeClasses.bodySubText}`}>
-                    台灣獨立音樂祭文化、街頭風格與日常態度，讓 MUMㄠ 深耕在地文化場景。
+                    台灣獨立音樂祭文化、街頭風格與日常態度，讓 MuMㄠ 深耕在地文化場景。
                   </p>
                 </div>
               </div>
@@ -7669,7 +7690,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* System Formula Banner */}
               <div className="p-4 rounded-xl bg-[#183348] text-white font-mono text-center space-y-1 shadow-md">
                 <span className="text-[10px] font-bold text-[#6CA4C8] uppercase tracking-widest block">
-                  MUMㄠ EXPERIENCE TOUCHPOINT SYSTEM
+                  MuMㄠ EXPERIENCE TOUCHPOINT SYSTEM
                 </span>
                 <p className="text-xs sm:text-sm font-bold tracking-wider">
                   MUSIC + SPACE + OBJECT + CONTENT + PEOPLE + CULTURE
@@ -7879,10 +7900,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Bottom Core Statement */}
               <div className="p-4 rounded-xl border border-[#437596]/40 bg-[#437596]/10 text-center font-mono space-y-1">
                 <span className="text-xs sm:text-sm font-black text-[#437596] dark:text-[#90C2E4] uppercase tracking-wider block">
-                  MUMㄠ DOES NOT ONLY EXIST ON STAGE. IT LIVES IN EVERYDAY LIFE AFTER THE SHOW.
+                  MuMㄠ DOES NOT ONLY EXIST ON STAGE. IT LIVES IN EVERYDAY LIFE AFTER THE SHOW.
                 </span>
                 <p className="text-xs text-zinc-800 dark:text-zinc-200 font-bold">
-                  「MUMㄠ 不只存在於舞台，也存在於人離開舞台之後的日常。」
+                  「MuMㄠ 不只存在於舞台，也存在於人離開舞台之後的日常。」
                 </p>
               </div>
             </div>
@@ -8040,7 +8061,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* 4-Tier Memory Diagram */}
               <div className={`p-6 sm:p-8 rounded-xl border space-y-4 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle} font-mono text-xs text-center max-w-xl mx-auto`}>
                 <div className="p-3 rounded-lg border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 font-bold text-zinc-800 dark:text-zinc-200">
-                  01 / VISUAL CUE ／ 視覺記憶 (Wave / MUMㄠ / Pink / Mark)
+                  01 / VISUAL CUE ／ 視覺記憶 (Wave / MuMㄠ / Pink / Mark)
                 </div>
                 <div className="text-zinc-400 font-bold">↓</div>
                 <div className="p-3 rounded-lg border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 font-bold text-zinc-800 dark:text-zinc-200">
@@ -8066,10 +8087,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   CORE BRAND MEMORY FOCUS / 品牌情感記憶焦點
                 </span>
                 <h4 className="text-2xl sm:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
-                  「我在那裡遇見過 MUMㄠ。」
+                  「我在那裡遇見過 MuMㄠ。」
                 </h4>
                 <p className="text-sm font-bold text-[#E8829C] dark:text-[#F49BB2] uppercase tracking-widest">
-                  "I MET MUMㄠ THERE."
+                  "I MET MuMㄠ THERE."
                 </p>
               </div>
             </div>
@@ -8093,13 +8114,13 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Formula Model Box */}
               <div className={`p-6 sm:p-10 rounded-xl border space-y-6 ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle} font-mono text-center`}>
                 <span className="text-xs font-bold text-[#437596] dark:text-[#6CA4C8] uppercase tracking-widest block">
-                  MUMㄠ EXPERIENCE SYSTEM MODEL
+                  MuMㄠ EXPERIENCE SYSTEM MODEL
                 </span>
 
                 <div className="space-y-4 max-w-2xl mx-auto text-xs sm:text-sm font-bold">
                   {/* Layer 1 */}
                   <div className="p-4 rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-zinc-800 dark:text-zinc-100">
-                    VISUAL + OBJECT + SPACE + MUSIC + PARTICIPATION = <span className="text-[#437596] dark:text-[#6CA4C8]">MUMㄠ EXPERIENCE</span>
+                    VISUAL + OBJECT + SPACE + MUSIC + PARTICIPATION = <span className="text-[#437596] dark:text-[#6CA4C8]">MuMㄠ EXPERIENCE</span>
                   </div>
 
                   <div className="text-zinc-400">+</div>
@@ -8179,7 +8200,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-6 max-w-4xl">
                 <h2 className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-mono tracking-tight leading-[1.1] ${themeClasses.bodyTitle}`}>
-                  MUMㄠ，<br />
+                  MuMㄠ，<br />
                   從一隻貓開始。
                 </h2>
                 <p className="text-2xl sm:text-4xl md:text-5xl font-bold font-mono tracking-tight text-[#437596] dark:text-[#6CA4C8] leading-tight">
@@ -8194,7 +8215,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               {/* Left Main Text */}
               <div className="lg:col-span-8 space-y-6 text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-zinc-800 dark:text-zinc-100">
                 <p className="leading-loose">
-                  「MUMㄠ 是一隻喜歡音樂、喜歡聽團，<br />
+                  「MuMㄠ 是一隻喜歡音樂、喜歡聽團，<br />
                   也喜歡陪音樂祭的白貓。
                 </p>
                 <p className="leading-loose">
@@ -8227,7 +8248,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             {/* 03｜COMMUNITY */}
             <div className="pt-8 space-y-3 border-t border-black/5 dark:border-white/5 font-mono">
               <span className={`text-xs font-bold uppercase tracking-widest block ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                MUMㄠ COMMUNITY
+                MuMㄠ COMMUNITY
               </span>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm font-bold">
                 <div className="flex items-center gap-2">
@@ -8273,7 +8294,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </span>
                   <div className="flex flex-col">
                     <span className="text-xs font-bold tracking-widest text-zinc-800 dark:text-zinc-200">
-                      MUMㄠ
+                      MuMㄠ
                     </span>
                     <span className="text-[10px] text-[#437596] dark:text-[#6CA4C8] uppercase tracking-wider font-bold">
                       WAVE WHISKERS
@@ -8314,7 +8335,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   }`}
                 >
                   <span className="underline underline-offset-4 decoration-zinc-500/40 group-hover:decoration-current font-bold">
-                    FOLLOW MUMㄠ
+                    FOLLOW MuMㄠ
                   </span>
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-[#E8829C] dark:text-[#F49BB2]" />
                 </a>
@@ -8345,7 +8366,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             ? "border-amber-950/10 bg-[#FAF4E5]/50 text-[#8C7B69]" 
             : "border-slate-200 bg-white text-slate-400"
         }`}>
-          <p>MUMㄠ IP BRAND DESIGN CASE STUDY ‧ PORTFOLIO SHOWCASE</p>
+          <p>MuMㄠ IP BRAND DESIGN CASE STUDY ‧ PORTFOLIO SHOWCASE</p>
         </footer>
 
         {/* Case Study Detail Modal */}
