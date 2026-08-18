@@ -970,6 +970,36 @@ a:active,
   scrollbar-width: none !important;  /* Firefox */
 }
 
+/* Custom Editorial Scrollbar for MUMㄠ Project Page Modal */
+.mumao-custom-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(67, 117, 150, 0.3) transparent !important;
+}
+.mumao-custom-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+.mumao-custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.mumao-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(67, 117, 150, 0.25) !important;
+  border-radius: 9999px !important;
+  transition: background-color 0.2s ease;
+}
+.mumao-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 117, 150, 0.6) !important;
+}
+.dark .mumao-custom-scrollbar {
+  scrollbar-color: rgba(108, 164, 200, 0.35) transparent !important;
+}
+.dark .mumao-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(108, 164, 200, 0.3) !important;
+}
+.dark .mumao-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 164, 200, 0.7) !important;
+}
+
 /* Beautiful, highly visible custom scrollbar for vertical stitched long images */
 .waterfall-scrollbar::-webkit-scrollbar {
   width: 10px !important; /* Slightly wider so it is easy to drag and click */
