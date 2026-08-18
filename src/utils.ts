@@ -381,3 +381,5 @@ export function sanitizePortfolioItem(item: PortfolioItem): PortfolioItem {
     tools
   };
 }
+
+export { auditPortfolioTranslations, containsChinese } from "./utils/portfolioAudit";

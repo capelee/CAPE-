@@ -61,13 +61,13 @@ import { categoryMascotMap } from "./utils/mascotData";
 import { FLAVOR_PHYSICS } from "./utils/flavorPhysics";
 import { EXISTING_OPTIMIZED_IMAGES } from "./existingImages";
 
-import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl, sanitizePortfolioItem } from "./utils";
+import { YT_THUMBNAIL_CACHE, DRIVE_THUMBNAIL_CACHE, saveYtCacheToStorage, saveDriveCacheToStorage, extractYoutubeId, extractDriveId, getOptimizedGoogleUrl, resolveImageUrl, sanitizePortfolioItem, auditPortfolioTranslations } from "./utils";
 import { animaleseSynth } from "./utils/animalese";
 import { playMeowSound, playCanClinkSound, catPurr, audioContextManager, playCardFlipSound, playPawPopSound, playRareClickSound } from "./utils/audioEffects";
 
 import { categoryColors, getCategoryColor, defaultCategoryColor } from './categoryColors';
 import { SEO } from './components/SEO';
-import { MumaoProjectPage } from './components/MumaoProjectPage';
+const MumaoProjectPage = React.lazy(() => import('./components/MumaoProjectPage').then(m => ({ default: m.MumaoProjectPage })));
 
 interface CategoryButtonProps {
   cat: string;
@@ -905,6 +905,7 @@ export default function App() {
         initialDataRef.current = sanitized;
         setItems(sanitized);
         setupFolderImages(sanitized);
+        auditPortfolioTranslations(sanitized);
       }).catch(err => {
         console.warn("Local data load fallback error:", err);
       });
@@ -922,6 +923,7 @@ export default function App() {
           initialDataRef.current = sanitized;
           setItems(sanitized);
           setupFolderImages(sanitized);
+          auditPortfolioTranslations(sanitized);
         } else {
           loadLocalData();
         }
@@ -4748,11 +4750,13 @@ export default function App() {
       </AnimatePresence>
 
       {/* 白貓 MuMㄠ 姆貓 專題頁面 */}
-      <MumaoProjectPage 
-        isOpen={isMumaoProjectOpen} 
-        onClose={() => setIsMumaoProjectOpen(false)} 
-        theme={theme} 
-      />
+      <React.Suspense fallback={null}>
+        <MumaoProjectPage 
+          isOpen={isMumaoProjectOpen} 
+          onClose={() => setIsMumaoProjectOpen(false)} 
+          theme={theme} 
+        />
+      </React.Suspense>
 
     </div>
   );

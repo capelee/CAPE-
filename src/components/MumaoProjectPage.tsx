@@ -763,15 +763,15 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
   const isSepia = themeMode === "sepia";
 
   const navItems = [
-    { label: "OVERVIEW", id: "hero-section" },
-    { label: "01 CHARACTER", id: "character-section" },
-    { label: "02 COLOR", id: "color-section" },
-    { label: "03 LANGUAGE", id: "language-section" },
-    { label: "04 FESTIVAL", id: "festival-section" },
-    { label: "05 VISUALS", id: "visuals-section" },
-    { label: "06 MERCH", id: "merch-section" },
-    { label: "07 APPLICATION", id: "application-section" },
-    { label: "08 EXPERIENCE", id: "experience-section" },
+    { en: "OVERVIEW", zh: "專案概覽", id: "hero-section" },
+    { en: "01 CHARACTER", zh: "角色設定", id: "character-section" },
+    { en: "02 COLOR", zh: "色彩系統", id: "color-section" },
+    { en: "03 LANGUAGE", zh: "品牌語言", id: "language-section" },
+    { en: "04 FESTIVAL", zh: "音樂祭", id: "festival-section" },
+    { en: "05 VISUALS", zh: "視覺系統", id: "visuals-section" },
+    { en: "06 MERCH", zh: "周邊商品", id: "merch-section" },
+    { en: "07 APPLICATION", zh: "商業生態", id: "application-section" },
+    { en: "08 EXPERIENCE", zh: "品牌體驗", id: "experience-section" },
   ];
 
   // ScrollSpy via IntersectionObserver
@@ -1096,9 +1096,9 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             <button
               type="button"
               onClick={() => scrollToSection("hero-section")}
-              className="flex items-center gap-3 cursor-pointer text-left group"
+              className="flex items-center gap-3 cursor-pointer text-left group shrink-0"
             >
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-xs transition-all group-hover:scale-105 active:scale-95 select-none relative overflow-hidden ${themeClasses.headerBtnLogoBg}`}>
+              <div className={`w-10 h-10 aspect-square rounded-full shrink-0 flex items-center justify-center shadow-xs transition-all group-hover:scale-105 active:scale-95 select-none relative overflow-hidden ${themeClasses.headerBtnLogoBg}`}>
                 <img 
                   src={
                     isPurring
@@ -1106,12 +1106,12 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       : resolveImageUrl("https://drive.google.com/thumbnail?sz=w1000&id=18ega279ty4XVeShySlEkSzJXUz2pOcep")
                   } 
                   alt="MUMㄠ Logo" 
-                  className="w-[88%] h-[88%] object-contain"
+                  className="w-[85%] h-[85%] object-contain rounded-full"
                   referrerPolicy="no-referrer"
                   decoding="async"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col shrink-0">
                 <span className={`text-sm font-black tracking-tight font-mono leading-none flex items-baseline gap-0.5 ${themeClasses.headerText}`}>
                   <span className="font-bold tracking-tighter">MUM</span>
                   <span className="text-[0.85em] font-black">ㄠ</span>
@@ -1122,8 +1122,8 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               </div>
             </button>
 
-            {/* Center: Case Study Navigation with animated pill indicator */}
-            <nav className="hidden lg:flex items-center gap-1 font-mono text-[11px] font-medium tracking-wide relative">
+            {/* Center: Case Study Navigation with animated pill indicator and vertical stacked layout */}
+            <nav className="hidden lg:flex items-center gap-1 font-mono relative">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -1134,7 +1134,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       setActiveSection(item.id);
                       scrollToSection(item.id);
                     }}
-                    className={`relative px-2.5 py-1 rounded-full transition-colors cursor-pointer select-none ${
+                    className={`relative px-2 py-1 rounded-lg transition-colors cursor-pointer select-none flex flex-col items-center justify-center text-center ${
                       isActive
                         ? "text-[#437596] dark:text-[#6CA4C8] font-bold"
                         : `${themeClasses.bodySubText} hover:text-[#437596] dark:hover:text-[#6CA4C8]`
@@ -1143,15 +1143,20 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     {isActive && (
                       <motion.span
                         layoutId="activeNavPill"
-                        className="absolute inset-0 rounded-full bg-[#437596]/15 dark:bg-[#6CA4C8]/20 border border-[#437596]/30 dark:border-[#6CA4C8]/40"
+                        className="absolute inset-0 rounded-lg bg-[#437596]/15 dark:bg-[#6CA4C8]/20 border border-[#437596]/30 dark:border-[#6CA4C8]/40"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <span className="relative z-10 flex items-center gap-1.5">
-                      {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse" />
-                      )}
-                      {item.label}
+                    <span className="relative z-10 flex flex-col items-center justify-center leading-tight whitespace-nowrap">
+                      <span className="text-[10px] xl:text-[11px] font-bold font-mono tracking-wider flex items-center gap-1">
+                        {isActive && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse" />
+                        )}
+                        {item.en}
+                      </span>
+                      <span className={`text-[9px] font-sans transition-opacity ${isActive ? "opacity-90 font-medium" : "opacity-65"}`}>
+                        {item.zh}
+                      </span>
                     </span>
                   </button>
                 );
@@ -1299,7 +1304,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                     setActiveSection(item.id);
                     scrollToSection(item.id);
                   }}
-                  className={`min-h-[36px] whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all shrink-0 cursor-pointer flex items-center gap-1.5 select-none active:scale-95 ${
+                  className={`px-3 py-1.5 rounded-lg transition-all shrink-0 cursor-pointer flex flex-col items-center justify-center text-center select-none active:scale-95 ${
                     isActive
                       ? "bg-[#437596] text-white font-bold shadow-md scale-105 ring-2 ring-[#437596]/30"
                       : isDark
@@ -1309,8 +1314,13 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       : "text-slate-600 hover:text-slate-900 bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200/60"
                   }`}
                 >
-                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse" />}
-                  {item.label}
+                  <span className="flex items-center gap-1 text-[10px] font-mono font-bold leading-tight whitespace-nowrap">
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse" />}
+                    <span>{item.en}</span>
+                  </span>
+                  <span className={`text-[9px] font-sans leading-none mt-0.5 whitespace-nowrap ${isActive ? "opacity-90 font-medium" : "opacity-75"}`}>
+                    {item.zh}
+                  </span>
                 </button>
               );
             })}
@@ -1334,26 +1344,26 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       : "bg-[#EBF3F8] text-[#2B5573] border-[#C8DCE8]"
                   }`}>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block animate-pulse"></span>
-                    01 / PROJECT CONTEXT
+                    01 / PROJECT CONTEXT ／ 專案背景
                   </span>
                   <span className={`px-2.5 py-1 rounded-sm border font-medium uppercase ${
                     isDark ? "border-zinc-800 text-zinc-400" : isSepia ? "border-amber-950/15 text-[#6C5B48]" : "border-slate-200 text-slate-600"
                   }`}>
-                    ORIGINAL IP CASE STUDY
+                    ORIGINAL IP CASE STUDY ／ 原創 IP 案例研究
                   </span>
                 </div>
 
                 <div className={`flex items-center gap-3 text-xs font-mono tracking-wide ${themeClasses.bodySubText}`}>
                   <span>2024 — 2026</span>
                   <span>•</span>
-                  <span className="font-semibold">LEAD IP DESIGNER</span>
+                  <span className="font-semibold">LEAD IP DESIGNER ／ 首席 IP 設計師</span>
                 </div>
               </div>
 
               {/* 01 / PROJECT CONTEXT Narrative Content (Creative Proposition) */}
               <div className="max-w-3xl space-y-2 pt-1">
                 <span className={`font-mono text-xs font-bold tracking-widest uppercase block ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                  FROM TAIWANESE LANGUAGE TO MUSIC CULTURE.
+                  FROM TAIWANESE LANGUAGE TO MUSIC CULTURE. ／ 從台灣語言到音樂文化
                 </span>
                 <h2 className={`text-2xl sm:text-3xl font-mono font-bold tracking-tight ${themeClasses.bodyTitle}`}>
                   Creating an original character rooted in Taiwan's independent music scene.
@@ -1374,7 +1384,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <span className={`px-2 py-0.5 rounded-sm font-semibold uppercase border ${
                         isDark ? "bg-zinc-900 border-zinc-800 text-zinc-400" : isSepia ? "bg-[#EDE2CA] border-amber-950/10 text-[#6C5B48]" : "bg-slate-100 border-slate-200 text-slate-600"
                       }`}>
-                        02 / CHARACTER INTRODUCTION
+                        02 / CHARACTER INTRODUCTION ／ 角色介紹
                       </span>
                     </div>
 
@@ -1422,7 +1432,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <div className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] inline-block"></span>
                         <span className={`text-[10px] font-mono font-bold uppercase tracking-widest ${isDark ? "text-[#F49BB2]" : "text-[#D85E7E]"}`}>
-                          ROLE IN CULTURE
+                          ROLE IN CULTURE ／ 文化角色
                         </span>
                       </div>
                       <p className={`text-xs sm:text-sm font-mono font-bold ${themeClasses.bodyTitle}`}>
@@ -1509,7 +1519,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <span className={`px-2.5 py-1 rounded-sm font-mono text-[10px] font-medium backdrop-blur-md ${
                         isDark ? "bg-zinc-900/80 text-zinc-300 border border-zinc-700/40" : "bg-slate-800/80 text-white"
                       }`}>
-                        STANDARD CHARACTER
+                        STANDARD CHARACTER ／ 標準角色
                       </span>
                     </div>
                   </div>
@@ -1517,7 +1527,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   {/* Switcher & Caption below image */}
                   <div className={`flex flex-wrap items-center justify-between gap-2 text-xs font-mono px-1 ${themeClasses.bodySubText}`}>
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] sm:text-xs font-bold text-[#437596] dark:text-[#6CA4C8]">KEY VISUAL 0{activeHeroImage + 1}</span>
+                      <span className="text-[11px] sm:text-xs font-bold text-[#437596] dark:text-[#6CA4C8]">KEY VISUAL 0{activeHeroImage + 1} ／ 主視覺 0{activeHeroImage + 1}</span>
                       <span>•</span>
                       <span className="text-[11px] sm:text-xs">MUMㄠ — Standard Character Identity</span>
                     </div>
@@ -1550,7 +1560,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             <div className={`flex flex-col sm:flex-row sm:items-end justify-between border-b pb-4 gap-4 ${themeClasses.borderCol}`}>
               <div className="space-y-1">
                 <span className={`text-xs font-mono font-bold uppercase tracking-widest block ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                  03 / DESIGN DECISIONS
+                  03 / DESIGN DECISIONS ／ 核心設計決策
                 </span>
                 <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-black font-mono tracking-tight ${themeClasses.bodyTitle}`}>
                   WHY MUMㄠ?
@@ -1561,17 +1571,17 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               </div>
               <div className="sm:max-w-md space-y-1.5">
                 <p className={`text-xs font-mono ${themeClasses.bodySubText}`}>
-                  Three visual cues define the character:
+                  Three visual cues define the character ／ 三大視覺線索定義角色：
                 </p>
                 <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold">
                   <span className={`px-2.5 py-1 rounded-sm border ${isDark ? "bg-[#417293]/20 border-[#417293]/40 text-[#6CA4C8]" : "bg-[#EBF3F8] border-[#C8DCE8] text-[#437596]"}`}>
-                    ㄠ = Taiwan
+                    ㄠ = Taiwan (台灣)
                   </span>
                   <span className={`px-2.5 py-1 rounded-sm border ${isDark ? "bg-[#417293]/20 border-[#417293]/40 text-[#6CA4C8]" : "bg-[#EBF3F8] border-[#C8DCE8] text-[#437596]"}`}>
-                    Wave Whiskers = Music
+                    Wave Whiskers = Music (音樂)
                   </span>
                   <span className={`px-2.5 py-1 rounded-sm border ${isDark ? "bg-[#E8829C]/15 border-[#E8829C]/40 text-[#F49BB2]" : "bg-[#E8829C]/10 border-[#E8829C]/30 text-[#D85E7E]"}`}>
-                    Pink Ears = Emotion
+                    Pink Ears = Emotion (情緒)
                   </span>
                 </div>
               </div>
@@ -1594,7 +1604,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                   <div>
                     <span className={`text-[10px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                      01 / TAIWANESE IDENTITY
+                      01 / TAIWANESE IDENTITY ／ 台灣在地身份
                     </span>
                     <h3 className={`text-2xl font-black font-sans mt-1 ${themeClasses.bodyTitle}`}>
                       「ㄠ」
@@ -1605,7 +1615,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <div className="space-y-3 pt-2">
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#437596] dark:text-[#6CA4C8]`}>
-                        THE PROBLEM
+                        THE PROBLEM ／ 設計問題
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         如何讓角色一眼具有台灣身份？
@@ -1614,7 +1624,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#437596] dark:text-[#6CA4C8]`}>
-                        THE DECISION
+                        THE DECISION ／ 設計決策
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         將「ㄠ」融入角色命名。
@@ -1623,7 +1633,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#437596] dark:text-[#6CA4C8]`}>
-                        THE RESULT
+                        THE RESULT ／ 最終成果
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         讓台灣語言成為角色識別的一部分。
@@ -1634,7 +1644,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                 <div className={`pt-3 border-t ${themeClasses.borderColSubtle} flex items-center gap-2 font-mono text-[11px] ${themeClasses.bodySubText}`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#437596] dark:bg-[#6CA4C8] inline-block"></span>
-                  <span>LOCAL CULTURAL ASSET</span>
+                  <span>LOCAL CULTURAL ASSET ／ 在地文化資產</span>
                 </div>
               </div>
 
@@ -1653,7 +1663,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                   <div>
                     <span className={`text-[10px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                      02 / MUSIC IDENTITY
+                      02 / MUSIC IDENTITY ／ 音樂文化識別
                     </span>
                     <h3 className={`text-2xl font-black font-sans mt-1 ${themeClasses.bodyTitle}`}>
                       音波鬍鬚
@@ -1664,7 +1674,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <div className="space-y-3 pt-2">
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#437596] dark:text-[#6CA4C8]`}>
-                        THE PROBLEM
+                        THE PROBLEM ／ 設計問題
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         如何表現音樂，而不落入音符、耳機等常見符號？
@@ -1673,7 +1683,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#437596] dark:text-[#6CA4C8]`}>
-                        THE DECISION
+                        THE DECISION ／ 設計決策
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         將音波融入貓咪鬍鬚。
@@ -1682,7 +1692,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#437596] dark:text-[#6CA4C8]`}>
-                        THE RESULT
+                        THE RESULT ／ 最終成果
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         讓「音樂」成為角色身體的一部分。
@@ -1693,7 +1703,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                 <div className={`pt-3 border-t ${themeClasses.borderColSubtle} flex items-center gap-2 font-mono text-[11px] ${themeClasses.bodySubText}`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#437596] dark:bg-[#6CA4C8] inline-block"></span>
-                  <span>ACOUSTIC BODY EMBEDDING</span>
+                  <span>ACOUSTIC BODY EMBEDDING ／ 音樂身體化</span>
                 </div>
               </div>
 
@@ -1712,7 +1722,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                   <div>
                     <span className={`text-[10px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                      03 / CHARACTER EMOTION
+                      03 / CHARACTER EMOTION ／ 角色情緒溫度
                     </span>
                     <h3 className={`text-2xl font-black font-sans mt-1 ${themeClasses.bodyTitle}`}>
                       粉紅耳朵
@@ -1723,7 +1733,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   <div className="space-y-3 pt-2">
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#E8829C] dark:text-[#F49BB2]`}>
-                        THE PROBLEM
+                        THE PROBLEM ／ 設計問題
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         如何讓角色在音樂文化之外，建立自己的情緒溫度？
@@ -1732,7 +1742,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#E8829C] dark:text-[#F49BB2]`}>
-                        THE DECISION
+                        THE DECISION ／ 設計決策
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         以粉紅耳朵加入情緒溫度。
@@ -1741,7 +1751,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                     <div className={`p-3 rounded-lg border text-left ${themeClasses.cardSubtleBg} ${themeClasses.borderColSubtle}`}>
                       <span className={`text-[10px] font-mono font-bold uppercase tracking-wider block text-[#E8829C] dark:text-[#F49BB2]`}>
-                        THE RESULT
+                        THE RESULT ／ 最終成果
                       </span>
                       <p className={`text-xs sm:text-sm font-medium mt-0.5 ${themeClasses.bodyTitle}`}>
                         建立角色的親近感與個性。
@@ -1752,7 +1762,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
                 <div className={`pt-3 border-t ${themeClasses.borderColSubtle} flex items-center gap-2 font-mono text-[11px] ${themeClasses.bodySubText}`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E8829C] dark:bg-[#F49BB2] inline-block"></span>
-                  <span>WARMTH & EMPATHY ACCENT</span>
+                  <span>WARMTH & EMPATHY ACCENT ／ 情感與同理心錨點</span>
                 </div>
               </div>
             </div>
@@ -1764,7 +1774,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <div className="lg:col-span-4 space-y-2">
                   <span className={`text-xs font-mono font-bold uppercase tracking-widest block ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                    04 / DESIGN STATEMENT
+                    04 / DESIGN STATEMENT ／ 設計宣言
                   </span>
                   <h3 className={`text-xl sm:text-2xl font-bold font-mono ${themeClasses.bodyTitle}`}>
                     FROM CULTURE TO CHARACTER.
@@ -1793,25 +1803,25 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                       <span className={`px-3 py-1.5 rounded-sm border ${
                         isDark ? "bg-zinc-900 border-zinc-700 text-zinc-200" : "bg-white border-slate-300 text-slate-800"
                       }`}>
-                        CULTURAL INSIGHT
+                        CULTURAL INSIGHT / 文化洞察
                       </span>
                       <span className={`text-xs ${themeClasses.bodySubText}`}>→</span>
                       <span className={`px-3 py-1.5 rounded-sm border ${
                         isDark ? "bg-[#417293]/20 border-[#417293]/50 text-[#6CA4C8]" : "bg-[#EBF3F8] border-[#C8DCE8] text-[#437596]"
                       }`}>
-                        CHARACTER
+                        CHARACTER / 角色本體
                       </span>
                       <span className={`text-xs ${themeClasses.bodySubText}`}>→</span>
                       <span className={`px-3 py-1.5 rounded-sm border ${
                         isDark ? "bg-[#E8829C]/20 border-[#E8829C]/50 text-[#F49BB2]" : "bg-[#E8829C]/10 border-[#E8829C]/30 text-[#D85E7E]"
                       }`}>
-                        VISUAL DNA
+                        VISUAL DNA / 視覺 DNA
                       </span>
                       <span className={`text-xs ${themeClasses.bodySubText}`}>→</span>
                       <span className={`px-3 py-1.5 rounded-sm border font-black ${
                         isDark ? "bg-[#6CA4C8] text-zinc-950 border-[#6CA4C8]" : "bg-[#437596] text-white border-[#437596]"
                       }`}>
-                        IP SYSTEM
+                        IP SYSTEM / IP 系統
                       </span>
                     </div>
                   </div>
@@ -1824,7 +1834,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
           <section id="snapshot-section" className="space-y-6 pt-2 text-left">
             <div className={`flex items-center justify-between border-b pb-3 ${themeClasses.borderCol}`}>
               <span className={`text-xs font-mono font-bold uppercase tracking-widest ${isDark ? "text-[#6CA4C8]" : "text-[#437596]"}`}>
-                05 / PROJECT AT A GLANCE
+                05 / PROJECT AT A GLANCE ／ 專案總覽
               </span>
               <span className={`text-[11px] font-mono ${themeClasses.bodySubText}`}>
                 CASE STUDY OVERVIEW
@@ -1834,7 +1844,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 pt-1">
               <div className="space-y-1">
                 <span className={`text-[11px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                  PROJECT
+                  PROJECT / 專案
                 </span>
                 <p className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
                   MUMㄠ — ORIGINAL IP
@@ -1843,7 +1853,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-1">
                 <span className={`text-[11px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                  ROLE
+                  ROLE / 職責
                 </span>
                 <p className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
                   LEAD IP DESIGNER
@@ -1852,7 +1862,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-1">
                 <span className={`text-[11px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                  PERIOD
+                  PERIOD / 時程
                 </span>
                 <p className={`text-sm font-bold font-mono ${themeClasses.bodyTitle}`}>
                   2024–2026
@@ -1861,7 +1871,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="space-y-1">
                 <span className={`text-[11px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                  CORE
+                  CORE / 核心
                 </span>
                 <p className={`text-xs font-mono font-bold ${themeClasses.bodyTitle}`}>
                   CHARACTER / MUSIC CULTURE / IP SYSTEM
@@ -1870,7 +1880,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
 
               <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-1">
                 <span className={`text-[11px] font-mono uppercase tracking-wider block ${themeClasses.bodySubText}`}>
-                  DELIVERABLES
+                  DELIVERABLES / 交付成果
                 </span>
                 <p className={`text-xs leading-snug font-mono ${themeClasses.bodyText}`}>
                   CHARACTER SYSTEM / BRAND LANGUAGE / FESTIVAL / VISUAL SYSTEM / MERCHANDISE
@@ -1891,7 +1901,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               <span className={`text-[10px] font-mono px-2.5 py-1 rounded-sm border uppercase self-start sm:self-auto ${
                 isDark ? "bg-[#417293]/20 border-[#417293]/40 text-[#6CA4C8]" : "bg-[#EBF3F8] border-[#C8DCE8] text-[#437596]"
               }`}>
-                SYSTEM EXPANSION
+                SYSTEM EXPANSION ／ 系統擴展
               </span>
             </div>
 
@@ -1904,10 +1914,10 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
               >
                 <div className="text-left">
                   <span className={`text-[10px] block font-mono uppercase tracking-widest ${themeClasses.bodySubText}`}>
-                    NEXT SECTION
+                    NEXT SECTION ／ 下一章節
                   </span>
                   <span className="text-sm font-bold tracking-tight block">
-                    01 / CHARACTER SYSTEM
+                    01 / CHARACTER SYSTEM ／ 角色系統
                   </span>
                   <span className="text-[11px] font-mono text-[#437596] dark:text-[#6CA4C8] block pt-0.5">
                     FROM CONCEPT TO CHARACTER SYSTEM →
@@ -5185,7 +5195,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-zinc-950/90 border border-[#E8829C]/40 flex flex-col items-center justify-center gap-1">
-                    <div className="w-20 h-10 border-2 border-[#E8829C] rounded flex items-center justify-center font-mono text-xs font-black text-[#E8829C] tracking-wider bg-[#E8829C]/10 shadow-sm">
+                    <div className="px-3.5 h-10 min-w-[100px] border-2 border-[#E8829C] rounded flex items-center justify-center font-mono text-xs font-black text-[#E8829C] tracking-wider bg-[#E8829C]/10 shadow-sm whitespace-nowrap">
                       [ MUMㄠ 印 ]
                     </div>
                     <span className="text-[8px] font-mono text-zinc-400 mt-1">BRAND SIGNATURE STAMP</span>
