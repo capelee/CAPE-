@@ -2,29 +2,6 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
-    "id": "mumao-cat-religion-ip",
-    "category": "角色IP&插畫與貼圖",
-    "title": "MuMㄠ 姆貓原創 IP 視覺與品牌設計",
-    "titleEn": "MuMㄠ Cat Religion Original IP & Brand Visual Design",
-    "philosophy": "以貓咪信仰為核心主題，結合黑白純粹線條與符號化幾何結構。運用明快動態插畫與高對比視覺語彙，建構兼具次文化氛圍與音樂祭渲染力的原創 IP 識別。",
-    "isHighlight": true,
-    "tools": [
-      "Procreate",
-      "Ai",
-      "Photoshop",
-      "IP插畫",
-      "符號設計"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
-    "placeholderId": "IMAGE_MUMAO_CAT_IP",
-    "colorTheme": "from-[#1a120c] via-[#2d1b10] to-[#0d0906]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX"
-    ],
-    "link": "https://www.instagram.com/mumao1_the_cat_religion/"
-  },
-  {
     "id": "sebamed-sports-mini-video",
     "category": "影音與多媒體設計",
     "title": "施巴 Sebamed 運動舒緩沐浴乳 微縮小人 8秒廣告影片",
@@ -91,6 +68,29 @@ export const initialPortfolioData: PortfolioItem[] = [
     ],
     "videoUrl": "https://www.youtube.com/watch?v=fMh7Xnp9ZkE",
     "link": "https://www.youtube.com/watch?v=fMh7Xnp9ZkE"
+  },
+  {
+    "id": "mumao-cat-religion-ip",
+    "category": "角色IP&插畫與貼圖",
+    "title": "MuMㄠ 姆貓原創 IP 視覺與品牌設計",
+    "titleEn": "MuMㄠ Cat Religion Original IP & Brand Visual Design",
+    "philosophy": "以貓咪信仰為核心主題，結合黑白純粹線條與符號化幾何結構。運用明快動態插畫與高對比視覺語彙，建構兼具次文化氛圍與音樂祭渲染力的原創 IP 識別。",
+    "isHighlight": true,
+    "tools": [
+      "Procreate",
+      "Ai",
+      "Photoshop",
+      "IP插畫",
+      "符號設計"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
+    "placeholderId": "IMAGE_MUMAO_CAT_IP",
+    "colorTheme": "from-[#1a120c] via-[#2d1b10] to-[#0d0906]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1mgzCv32PxwVezq7VsnX4fV8P203zSZpC",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eqi9X536nUrXqj-gv6kqjNMfpiC1YumX"
+    ],
+    "link": "https://www.instagram.com/mumao1_the_cat_religion/"
   },
   {
     "id": "wild-burger-club-mini",

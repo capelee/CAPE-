@@ -2,19 +2,47 @@
 User-agent: *
 Allow: /
 
-# Googlebot specific rules
+# Google Search
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /
 
-# Bingbot specific rules
+# Bing Search
 User-agent: Bingbot
+Allow: /
+
+# AI Search & Answer Engine Optimization (AEO / GEO) Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
 Allow: /
 
 # Host specification
 Host: https://cape-eight.vercel.app
 
-# Sitemap location
+# Sitemap & LLM context
 Sitemap: https://cape-eight.vercel.app/sitemap.xml

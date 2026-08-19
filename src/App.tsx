@@ -4,6 +4,7 @@ import { ScrambleText } from './components/ScrambleText';
 import { useAdaptivePerformance } from './hooks/useAdaptivePerformance';
 import { useMumuAchievements } from './hooks/useMumuAchievements';
 import { useCanPhysics } from './hooks/useCanPhysics';
+import { AuditUtils } from './utils/AuditUtils';
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { 
@@ -1137,64 +1138,103 @@ export default function App() {
     return () => window.removeEventListener("hashchange", checkHash);
   }, []);
 
-  // Dynamically inject Schema.org JSON-LD structured data (CreativeWork) for SEO
-  React.useEffect(() => {
-    try {
-      const origin = typeof window !== 'undefined' ? window.location.origin : '';
-      const schemaData = {
-        "@context": "https://schema.org",
-        "@graph": items.map((item) => ({
-          "@type": "CreativeWork",
-          "@id": `${origin}/#project-${item.id}`,
-          "name": item.title,
-          "alternateName": item.titleEn || item.title,
-          "description": item.philosophy,
-          "image": item.imageUrl,
-          "genre": item.category,
-          "inLanguage": "zh-TW",
-          "creator": {
-            "@type": "Person",
-            "name": "Cape Lee",
-            "alternateName": "Cape Lee",
-            "email": "capelee0715@gmail.com",
-            "jobTitle": "Designer & Creative Specialist",
-            "url": origin,
-            "sameAs": [
-              "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
-            ]
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Cape Lee Visual Design Studio",
-            "url": origin,
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
-            }
-          },
-          "keywords": item.tools.join(", "),
-          "thumbnailUrl": item.imageUrl
-        }))
+  // SSR-friendly Schema.org JSON-LD structured data (CreativeWork / VisualArtwork Collection with Linked BreadcrumbList)
+  const creativeWorkJsonLdString = useMemo(() => {
+    const defaultCanonicalOrigin = "https://cape-eight.vercel.app";
+    const origin = typeof window !== "undefined" && window.location.origin && window.location.origin !== "null"
+      ? window.location.origin
+      : defaultCanonicalOrigin;
+
+    // 為每個作品卡片建立 VisualArtwork 節點與一對一關聯的 BreadcrumbList 階層節點
+    const graphNodes = items.flatMap((item) => {
+      const projectUrl = `${origin}/?item=${encodeURIComponent(item.id)}`;
+      const categoryUrl = `${origin}/?category=${encodeURIComponent(item.category)}`;
+      const breadcrumbId = `${origin}/#breadcrumb-${item.id}`;
+      const artworkId = `${origin}/#project-${item.id}`;
+
+      const artworkNode = {
+        "@type": "VisualArtwork",
+        "@id": artworkId,
+        "name": item.title,
+        "alternateName": item.titleEn || item.title,
+        "headline": item.title,
+        "description": item.philosophy,
+        "image": item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : ""),
+        "artform": item.category,
+        "genre": item.category,
+        "inLanguage": "zh-TW",
+        "url": projectUrl,
+        "mainEntityOfPage": projectUrl,
+        "breadcrumb": {
+          "@id": breadcrumbId
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Cape Lee",
+          "alternateName": "Cape Lee",
+          "email": "capelee0715@gmail.com",
+          "jobTitle": "Senior Brand & Visual Designer",
+          "url": origin,
+          "sameAs": [
+            "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
+          ]
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Cape Lee Visual Design Studio",
+          "url": origin,
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
+          }
+        },
+        "keywords": item.tools.join(", "),
+        "thumbnailUrl": item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : "")
       };
 
-      let scriptTag = document.getElementById("portfolio-creative-work-jsonld") as HTMLScriptElement;
-      if (!scriptTag) {
-        scriptTag = document.createElement("script");
-        scriptTag.id = "portfolio-creative-work-jsonld";
-        scriptTag.type = "application/ld+json";
-        document.head.appendChild(scriptTag);
-      }
-      scriptTag.text = JSON.stringify(schemaData);
-    } catch (e) {
-      console.error("Failed to inject JSON-LD structured data:", e);
-    }
+      const breadcrumbNode = {
+        "@type": "BreadcrumbList",
+        "@id": breadcrumbId,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Cape Lee 作品集",
+            "item": `${origin}/`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": item.category,
+            "item": categoryUrl
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": item.title,
+            "item": projectUrl
+          }
+        ]
+      };
 
-    return () => {
-      const el = document.getElementById("portfolio-creative-work-jsonld");
-      if (el) {
-        el.remove();
-      }
+      return [artworkNode, breadcrumbNode];
+    });
+
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@graph": graphNodes
     };
+
+    // Safely serialize for SSR HTML markup injection (prevents XSS or parser breakages)
+    return JSON.stringify(schemaData).replace(/</g, "\\u003c");
+  }, [items]);
+
+  // 自動化內容完整度審計：掃描 portfolioData 結構並於開發者控制台輸出詳細報告
+  React.useEffect(() => {
+    AuditUtils.runPortfolioAudit(items, true);
+    if (typeof window !== "undefined") {
+      (window as any).auditPortfolio = () => AuditUtils.runPortfolioAudit(items, true);
+    }
   }, [items]);
 
   const currentMascot = useMemo(() => {
@@ -3025,6 +3065,13 @@ export default function App() {
         ? "sepia-theme text-[#433422] selection:bg-amber-500/20 selection:text-amber-900"
         : "bg-[#070707] text-[#E5E7EB] selection:bg-amber-500/20 selection:text-amber-300"
     }`}>
+      {/* SSR-Friendly JSON-LD Structured Data for Instant Search Engine Indexing */}
+      <script
+        type="application/ld+json"
+        id="portfolio-creative-work-jsonld"
+        dangerouslySetInnerHTML={{ __html: creativeWorkJsonLdString }}
+      />
+
       {/* 動態 SEO 與 Meta Tag 同步 */}
       <SEO activeItem={activeModalItem} activeCategory={selectedCategory} searchQuery={searchQuery} />
       
@@ -3821,25 +3868,27 @@ export default function App() {
             >
               {visibleItems.map((item, index) => {
                 const handlePortfolioCardClick = () => handleCardClick(item, index);
+                const isTutorialTarget = index === 0 && (tutorialStep === 1 || tutorialStep === 2);
                 return (
                   <motion.div 
                     layout={false} 
-                    className="relative" 
+                    className={`relative ${isTutorialTarget ? "z-[9999]" : "z-0"}`} 
+                    style={{ zIndex: isTutorialTarget ? 9999 : undefined }}
                     key={item.id}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "100px" }}
                     transition={{ duration: 0.35, ease: "easeOut", delay: isEcoMode ? 0 : Math.min(index % 6, 6) * 0.03 }}
                   >
-                    {index === 0 && (tutorialStep === 1 || tutorialStep === 2) && (
+                    {isTutorialTarget && (
                       <TutorialTooltip 
                         key={`tutorial-step-2-${tutorialStep}`}
                         step={2}
                         text="點開看詳情"
                         theme={deferredTheme}
                         onClick={handlePortfolioCardClick}
-                        pointerDirection="top"
-                        className="-bottom-14 md:-bottom-16 left-1/2 -translate-x-1/2 z-[100]"
+                        pointerDirection="bottom"
+                        className="-top-12 md:-top-14 left-1/2 -translate-x-1/2 z-[9999] pointer-events-auto filter drop-shadow-xl"
                       />
                     )}
                     <PortfolioCard

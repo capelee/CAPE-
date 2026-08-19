@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { PortfolioItem } from "../types";
+import { generateProjectSeoTags, BASE_URL, DEFAULT_IMAGE } from "../utils/seoGenerator";
 
 interface SEOProps {
   activeItem?: PortfolioItem | null;
@@ -8,61 +9,77 @@ interface SEOProps {
 }
 
 const DEFAULT_TITLE = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
-const DEFAULT_DESC = "Cape Lee 5~6 年商業實戰經驗，專注於品牌識別 (CIS)、視覺設計、電商視覺與原創角色 IP 插畫。";
-const DEFAULT_IMAGE = "https://drive.google.com/thumbnail?sz=w1200&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri";
-const BASE_URL = "https://cape-eight.vercel.app";
+const DEFAULT_DESC = "Cape Lee 5~6 年商業實戰經驗，專注於品牌識別 (CIS 設計)、Logo 商標設計、原創角色 IP 插畫與 LINE 貼圖。精通包裝視覺設計、電商一頁式網頁與產品瀑布頁、雙語排版海報與不對稱網格設計。";
+const DEFAULT_KEYWORDS = "Cape Lee, Cape Lee作品集, 品牌識別設計, CIS識別手冊, Logo商標設計, 原創 IP 角色設計, LINE貼圖設計, 吉祥物表情包, 包裝視覺設計, 文創包裝, 電商一頁式網頁設計, 產品瀑布頁設計, 向量插畫設計, 雙語排版海報, 不對稱網格構成, 台北設計師推薦";
 
 export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuery }) => {
   useEffect(() => {
     let title = DEFAULT_TITLE;
     let description = DEFAULT_DESC;
+    let keywords = DEFAULT_KEYWORDS;
     let imageUrl = DEFAULT_IMAGE;
     let pageUrl = BASE_URL;
+    let ogType = "website";
+    let activeJsonLd: any = null;
 
     if (activeItem) {
-      title = `${activeItem.title} | Cape Lee 作品集`;
-      description = activeItem.philosophy || DEFAULT_DESC;
-      imageUrl = activeItem.imageUrl || DEFAULT_IMAGE;
-      pageUrl = `${BASE_URL}/?item=${encodeURIComponent(activeItem.id)}`;
+      // 使用關鍵字導向的自動化 SEO Meta Tag 產生器
+      const seoTags = generateProjectSeoTags(activeItem);
+      title = seoTags.title;
+      description = seoTags.description;
+      keywords = seoTags.keywords;
+      imageUrl = seoTags.imageUrl;
+      pageUrl = seoTags.pageUrl;
+      ogType = "article";
+      activeJsonLd = seoTags.jsonLd;
     } else if (activeCategory && activeCategory !== "All") {
       switch (activeCategory) {
         case "Logo/CIS":
-          title = "Logo/CIS 商業作品集 | Cape Lee 視覺設計";
-          description = "收錄 Cape Lee 專屬標誌設計、CIS 企業識別系統與品牌標誌規劃案例。";
+          title = "Logo/CIS 商業品牌識別作品集 | Cape Lee 視覺設計";
+          description = "精選 Cape Lee 品牌識別系統 (CIS)、Logo 商標設計、企業標準色彩計畫與 Brand Guidelines 規範手冊案例。";
+          keywords = "Logo設計, CIS設計, 企業識別系統, 品牌設計, 商標設計, 品牌手冊, Cape Lee, 台北設計師";
           break;
         case "展場 / 擺攤視覺":
-          title = "展場與擺攤視覺設計 | Cape Lee 作品集";
-          description = "收錄 Cape Lee 展場視覺企劃、擺攤主視覺與實體活動場域視覺設計案例。";
+          title = "展場與特裝攤位視覺設計 | Cape Lee 作品集";
+          description = "收錄 Cape Lee 醫療學會年會特裝展位、文創擺攤主視覺、展覽空間背板輸出與實體活動場域視覺企劃。";
+          keywords = "展場設計, 特裝展位, 攤位視覺, 展覽主視覺, 空間視覺, 年會視覺, Cape Lee";
           break;
         case "包裝 / 平面設計":
-          title = "包裝與平面視覺設計 | Cape Lee 作品集";
-          description = "收錄 Cape Lee 品牌包裝設計、印刷物排版與質感平面設計專案。";
+          title = "包裝視覺與平面排版設計 | Cape Lee 作品集";
+          description = "精選 Cape Lee 品牌包裝設計、精裝禮盒、特殊印刷工藝、雙語排版海報與不對稱幾何網格構成專案。";
+          keywords = "包裝設計, 禮盒包裝, 印刷工藝, 燙金打凸, 平面設計, 雙語排版, 海報設計, Cape Lee";
           break;
         case "電商 / 廣告視覺":
-          title = "電商與廣告視覺行銷 | Cape Lee 作品集";
-          description = "精選 Cape Lee 電商 Banner、廣告主視覺與高轉換率視覺行銷設計。";
+          title = "電商一頁式網頁與廣告視覺行銷 | Cape Lee 作品集";
+          description = "收錄 Cape Lee 蝦皮產品詳情瀑布頁、一頁式銷售網頁、社群行銷廣告 Banner 與高轉換率電商視覺設計。";
+          keywords = "電商設計, 產品瀑布頁, 一頁式網頁, 蝦皮詳情頁, 廣告Banner, 視覺行銷, Cape Lee";
           break;
         case "IP / 角色插畫":
-          title = "原創 IP 與角色插畫 | Cape Lee 作品集";
-          description = "探索 Cape Lee 原創角色 IP 創作、吉祥物插畫與視覺角色設計專案。";
+          title = "原創角色 IP 與 LINE 貼圖插畫 | Cape Lee 作品集";
+          description = "探索 Cape Lee 原創角色 IP (MuMㄠ 聽團貓咪)、企業吉祥物插畫、LINE 行動貼圖表情包與文創周邊衍生品視覺。";
+          keywords = "角色IP, 吉祥物設計, LINE貼圖, 原創插畫, 表情包設計, MuMㄠ, 貓咪IP, Cape Lee";
           break;
         case "影音 / 動畫":
-          title = "影音與動態視覺設計 | Cape Lee 作品集";
-          description = "展示 Cape Lee 影音後製、動態視覺 (Motion Design) 與動畫剪輯案例。";
+          title = "影音剪輯與動態視覺設計 | Cape Lee 作品集";
+          description = "展示 Cape Lee 影音後製剪輯、動態視覺 (Motion Design) 與動畫短影音行銷專案。";
+          keywords = "動態視覺, Motion Design, 影音剪輯, MG動畫, 短影音行銷, Cape Lee";
           break;
         case "亮點設計":
           title = "精選亮點設計作品 | Cape Lee 作品集";
-          description = "精選 Cape Lee 歷年具代表性的商業品牌識別與創作者亮點作品。";
+          description = "精選 Cape Lee 歷年具代表性的商業品牌識別、展會空間與創作者原創角色亮點作品。";
+          keywords = "精選設計作品, 亮點作品, 品牌代表作, 視覺設計精選, Cape Lee";
           break;
         default:
           title = `${activeCategory} 設計作品 | Cape Lee 作品集`;
           description = `探索 Cape Lee 的 ${activeCategory} 系列商業設計作品，涵蓋精選品牌視覺與視覺企劃。`;
+          keywords = `${activeCategory}, 商業設計, Cape Lee, 視覺設計`;
           break;
       }
       pageUrl = `${BASE_URL}/?category=${encodeURIComponent(activeCategory)}`;
     } else if (searchQuery && searchQuery.trim()) {
-      title = `搜尋：「${searchQuery.trim()}」| Cape Lee 作品集`;
-      description = `搜尋與「${searchQuery.trim()}」相關的 Cape Lee 商業設計與品牌作品。`;
+      title = `搜尋：「${searchQuery.trim()}」| Cape Lee 設計作品集`;
+      description = `搜尋與「${searchQuery.trim()}」相關的 Cape Lee 商業品牌識別、包裝設計、角色 IP 與電商視覺作品。`;
+      keywords = `${searchQuery.trim()}, Cape Lee, 設計作品搜尋`;
     }
 
     // 1. Update Document Title
@@ -92,12 +109,13 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
 
     // 2. Standard Meta
     setMeta('meta[name="description"]', 'name', 'description', description);
+    setMeta('meta[name="keywords"]', 'name', 'keywords', keywords);
     setMeta('meta[name="title"]', 'name', 'title', title);
     setMeta('meta[name="author"]', 'name', 'author', "Cape Lee");
     setMeta('meta[name="robots"]', 'name', 'robots', "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
     setCanonical(pageUrl);
 
-    // 3. Open Graph (FB / LINE / Slack)
+    // 3. Open Graph (FB / LINE / Slack / Discord)
     setMeta('meta[property="og:title"]', 'property', 'og:title', title);
     setMeta('meta[property="og:description"]', 'property', 'og:description', description);
     setMeta('meta[property="og:image"]', 'property', 'og:image', imageUrl);
@@ -106,9 +124,14 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
     setMeta('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
     setMeta('meta[property="og:image:alt"]', 'property', 'og:image:alt', title);
     setMeta('meta[property="og:url"]', 'property', 'og:url', pageUrl);
-    setMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
+    setMeta('meta[property="og:type"]', 'property', 'og:type', ogType);
     setMeta('meta[property="og:locale"]', 'property', 'og:locale', 'zh_TW');
     setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'Cape Lee Portfolio | 品牌視覺與角色 IP 設計');
+
+    if (activeItem) {
+      setMeta('meta[property="article:section"]', 'property', 'article:section', activeItem.category);
+      setMeta('meta[property="article:author"]', 'property', 'article:author', "Cape Lee");
+    }
 
     // 4. Twitter Cards
     setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
@@ -127,78 +150,8 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
       document.head.appendChild(jsonLdScript);
     }
 
-    if (activeItem) {
-      jsonLdScript.text = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "VisualArtwork",
-        "name": activeItem.title,
-        "alternateName": activeItem.titleEn || activeItem.title,
-        "description": activeItem.philosophy || DEFAULT_DESC,
-        "image": activeItem.imageUrl,
-        "url": pageUrl,
-        "mainEntityOfPage": pageUrl,
-        "inLanguage": "zh-TW",
-        "creator": {
-          "@type": "Person",
-          "name": "Cape Lee",
-          "alternateName": "Cape Lee",
-          "jobTitle": "Brand & Visual Designer",
-          "email": "capelee0715@gmail.com",
-          "url": BASE_URL,
-          "sameAs": [
-            "https://www.instagram.com/mumao1",
-            "https://www.instagram.com/capelee",
-            "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
-          ]
-        },
-        "artist": {
-          "@type": "Person",
-          "name": "Cape Lee",
-          "alternateName": "Cape Lee",
-          "jobTitle": "Brand & Visual Designer",
-          "email": "capelee0715@gmail.com",
-          "url": BASE_URL,
-          "sameAs": [
-            "https://www.instagram.com/mumao1",
-            "https://www.instagram.com/capelee",
-            "https://open.spotify.com/show/3cDZuNyGAzCmJiKzfG3umi"
-          ]
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Cape Lee Visual Design Studio",
-          "url": BASE_URL,
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://drive.google.com/thumbnail?sz=w1000&id=1WGZs1SZI8NTKaF6M_-IpvD5EjGFll3Ri"
-          }
-        },
-        "artform": "Graphic Design",
-        "artMedium": activeItem.tools ? activeItem.tools.join(", ") : "Digital Design",
-        "category": activeItem.category,
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "32",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Design Community Reviewer"
-            },
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            },
-            "reviewBody": "呈現品牌視覺規劃與原創角色設計，版面結構與配色具備專業度與商業價值。"
-          }
-        ]
-      });
+    if (activeItem && activeJsonLd) {
+      jsonLdScript.text = JSON.stringify(activeJsonLd);
     } else {
       jsonLdScript.text = JSON.stringify({
         "@context": "https://schema.org",
@@ -246,22 +199,7 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
               "reviewCount": "128",
               "bestRating": "5",
               "worstRating": "1"
-            },
-            "review": [
-              {
-                "@type": "Review",
-                "author": {
-                  "@type": "Person",
-                  "name": "Brand Design Client"
-                },
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5",
-                  "bestRating": "5"
-                },
-                "reviewBody": "專業、細緻且溝通順暢，品牌視覺包裝精準貼合市場定位與使用者需求。"
-              }
-            ]
+            }
           }
         ]
       });
@@ -323,3 +261,4 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
 
   return null;
 };
+
