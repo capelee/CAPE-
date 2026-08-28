@@ -1114,10 +1114,14 @@ export default function App() {
     setPrevVisibleCount(0);
   }, [selectedCategory, searchQuery]);
 
-  // MuMㄠ 專題頁面 Hash 錨點自動開啟路由
+  // MuMㄠ 專題頁面 Hash / Query 錨點自動開啟與返回首頁路由同步
   React.useEffect(() => {
-    const checkHash = () => {
-      const hash = typeof window !== 'undefined' ? window.location.hash.replace("#", "") : "";
+    const checkRoute = () => {
+      if (typeof window === 'undefined') return;
+      const hash = window.location.hash.replace("#", "");
+      const searchParams = new URLSearchParams(window.location.search);
+      const itemParam = searchParams.get("item");
+
       const mumaoSections = [
         "hero-section",
         "dna-section",
@@ -1129,14 +1133,23 @@ export default function App() {
         "merch-section",
         "application-section"
       ];
-      if (mumaoSections.includes(hash)) {
+      const isMumaoRoute = mumaoSections.includes(hash) || hash === "mumao" || hash === "mumao-project" || itemParam === "mumao-cat-religion-ip";
+
+      if (isMumaoRoute) {
         setIsMumaoProjectOpen(true);
+      } else if (!isMumaoRoute && isMumaoProjectOpen) {
+        // 當使用者點擊瀏覽器「上一頁」使專題錨點消失時，自動關閉專題頁面還原首頁
+        setIsMumaoProjectOpen(false);
       }
     };
-    checkHash();
-    window.addEventListener("hashchange", checkHash);
-    return () => window.removeEventListener("hashchange", checkHash);
-  }, []);
+    checkRoute();
+    window.addEventListener("hashchange", checkRoute);
+    window.addEventListener("popstate", checkRoute);
+    return () => {
+      window.removeEventListener("hashchange", checkRoute);
+      window.removeEventListener("popstate", checkRoute);
+    };
+  }, [isMumaoProjectOpen]);
 
   // SSR-friendly Schema.org JSON-LD structured data (CreativeWork / VisualArtwork Collection with Linked BreadcrumbList)
   const creativeWorkJsonLdString = useMemo(() => {
@@ -1442,12 +1455,16 @@ export default function App() {
     }
   }, []);
 
-  // Sync current modal item or selected category into URL search parameters and update document title for SEO
+  // Sync current modal item, Mumao special project or selected category into URL search parameters and update document title for SEO
   React.useEffect(() => {
     if (!isInitialUrlCheckRef.current) return;
     try {
       const url = new URL(window.location.href);
-      if (activeModalItem) {
+      if (isMumaoProjectOpen) {
+        url.searchParams.set("item", "mumao-cat-religion-ip");
+        url.searchParams.delete("category");
+        document.title = "MuMㄠ 姆貓原創 IP 視覺與品牌設計 | Cape Lee 作品集";
+      } else if (activeModalItem) {
         url.searchParams.set("item", activeModalItem.id);
         url.searchParams.delete("category");
         document.title = `${activeModalItem.title} | Cape Lee 作品集`;
@@ -1460,11 +1477,25 @@ export default function App() {
         url.searchParams.delete("category");
         document.title = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
       }
-      window.history.replaceState(null, "", url.toString());
+
+      // 當不在 MuMㄠ 專題頁面時，清除任何殘留的專題錨點
+      if (!isMumaoProjectOpen && url.hash) {
+        const mumaoSections = [
+          "#hero-section", "#dna-section", "#character-section", "#color-section",
+          "#language-section", "#festival-section", "#visuals-section", "#merch-section", "#application-section",
+          "#mumao", "#mumao-project"
+        ];
+        if (mumaoSections.includes(url.hash)) {
+          url.hash = "";
+        }
+      }
+
+      const finalUrl = url.pathname + (url.search ? url.search : "") + (url.hash ? url.hash : "");
+      window.history.replaceState(null, "", finalUrl);
     } catch (e) {
       // ignore
     }
-  }, [activeModalItem, selectedCategory]);
+  }, [isMumaoProjectOpen, activeModalItem, selectedCategory]);
 
   const [isCategoryLinkCopied, setIsCategoryLinkCopied] = React.useState(false);
 
@@ -1502,6 +1533,36 @@ export default function App() {
     }
   }, [selectedCategory]);
 
+  const handleOpenMumaoProject = React.useCallback(() => {
+    setIsMumaoProjectOpen(true);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("item", "mumao-cat-religion-ip");
+      url.searchParams.delete("category");
+      document.title = "MuMㄠ 姆貓原創 IP 視覺與品牌設計 | Cape Lee 作品集";
+      window.history.pushState({ modal: "mumao" }, "", url.pathname + url.search);
+    }
+  }, []);
+
+  const handleCloseMumaoProject = React.useCallback(() => {
+    setIsMumaoProjectOpen(false);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.hash = "";
+      if (url.searchParams.get("item") === "mumao-cat-religion-ip") {
+        url.searchParams.delete("item");
+      }
+      if (selectedCategory && selectedCategory !== "All") {
+        url.searchParams.set("category", selectedCategory);
+        document.title = `${selectedCategory} 設計作品 | Cape Lee 作品集`;
+      } else {
+        document.title = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
+      }
+      const finalUrl = url.pathname + (url.search ? url.search : "");
+      window.history.replaceState(null, "", finalUrl);
+    }
+  }, [selectedCategory]);
+
   const handleCardClick = React.useCallback((item: PortfolioItem, index: number) => {
     if (index === 0) {
       if (tutorialStep === 1) {
@@ -1512,15 +1573,11 @@ export default function App() {
       }
     }
     if (item.id === "mumao-cat-religion-ip" || item.title.includes("MuMㄠ") || item.title.includes("姆貓")) {
-      setIsMumaoProjectOpen(true);
+      handleOpenMumaoProject();
       return;
     }
     setActiveModalItem(item);
-  }, [tutorialStep, nextTutorialStep, setActiveModalItem]);
-
-  const handleOpenMumaoProject = React.useCallback(() => {
-    setIsMumaoProjectOpen(true);
-  }, []);
+  }, [tutorialStep, nextTutorialStep, handleOpenMumaoProject, setActiveModalItem]);
   
   const isJumpingToBentoRef = React.useRef<boolean>(false);
 
@@ -4080,7 +4137,7 @@ export default function App() {
           theme={theme} 
           profile={profile} 
           setIsContactCardOpen={setIsContactCardOpen} 
-          setIsMumaoProjectOpen={setIsMumaoProjectOpen}
+          setIsMumaoProjectOpen={handleOpenMumaoProject}
           onCopyEmail={copyEmailToClipboard} 
           setIsWorkflowOpen={setIsWorkflowOpen}
           triggerMascotSpeech={triggerMascotDialogue}
@@ -4763,7 +4820,7 @@ export default function App() {
       <React.Suspense fallback={null}>
         <MumaoProjectPage 
           isOpen={isMumaoProjectOpen} 
-          onClose={() => setIsMumaoProjectOpen(false)} 
+          onClose={handleCloseMumaoProject} 
           theme={theme} 
         />
       </React.Suspense>

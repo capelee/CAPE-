@@ -350,7 +350,7 @@ export function MumaoProjectPage({ isOpen, onClose, theme = "light" }: MumaoProj
       const targetTop = targetElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top - headerOffset;
       container.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
       if (typeof window !== "undefined") {
-        window.history.pushState(null, "", `#${id}`);
+        window.history.replaceState(null, "", `#${id}`);
       }
     } else if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
