@@ -64,37 +64,62 @@ export const HeroText: React.FC<HeroTextProps> = ({
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
           className="space-y-6"
         >
-          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight leading-[1.1] transition-colors duration-350 select-none ${
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight leading-[1.1] transition-colors duration-350 select-none flex items-baseline gap-x-3 sm:gap-x-4.5 flex-wrap ${
             theme === "sepia" 
               ? "text-[#2B1B0C]" 
               : theme === "light" 
               ? "text-zinc-950" 
               : "text-white"
           }`}>
-            {"Cape Lee".split("").map((char, index) => {
-              if (char === " ") {
+            <span className="inline-flex">
+              {"Cape Lee".split("").map((char, index) => {
+                if (char === " ") {
+                  return (
+                    <span key={index} className="inline-block">
+                      &nbsp;
+                    </span>
+                  );
+                }
                 return (
-                  <span key={index} className="inline-block">
-                    &nbsp;
-                  </span>
+                  <motion.span
+                    key={`${index}-${titleBounceTrigger}`}
+                    className="inline-block origin-bottom"
+                    initial={{ y: 0 }}
+                    animate={titleBounceTrigger > 0 ? { y: [0, -20, 3, 0] } : { y: 0 }}
+                    transition={{
+                      duration: 0.55,
+                      ease: "easeOut",
+                      delay: index * 0.04,
+                    }}
+                  >
+                    {char}
+                  </motion.span>
                 );
-              }
-              return (
+              })}
+            </span>
+            <span className={`inline-flex items-baseline text-base sm:text-lg md:text-xl lg:text-2xl font-sans font-bold tracking-normal transition-colors duration-350 ${
+              theme === "sepia" 
+                ? "text-[#2B1B0C]" 
+                : theme === "light" 
+                ? "text-black font-extrabold" 
+                : "text-zinc-100 font-extrabold"
+            }`}>
+              {"李凱博".split("").map((char, index) => (
                 <motion.span
-                  key={`${index}-${titleBounceTrigger}`}
+                  key={`zh-${index}-${titleBounceTrigger}`}
                   className="inline-block origin-bottom"
                   initial={{ y: 0 }}
-                  animate={titleBounceTrigger > 0 ? { y: [0, -20, 3, 0] } : { y: 0 }}
+                  animate={titleBounceTrigger > 0 ? { y: [0, -14, 2, 0] } : { y: 0 }}
                   transition={{
                     duration: 0.55,
                     ease: "easeOut",
-                    delay: index * 0.04,
+                    delay: (8 + index) * 0.04,
                   }}
                 >
                   {char}
                 </motion.span>
-              );
-            })}
+              ))}
+            </span>
           </h1>
 
           <p className={`text-sm sm:text-md md:text-[17px] font-light leading-relaxed transition-colors duration-350 ${

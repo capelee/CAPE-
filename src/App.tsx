@@ -1183,8 +1183,8 @@ export default function App() {
         },
         "creator": {
           "@type": "Person",
-          "name": "Cape Lee",
-          "alternateName": "Cape Lee",
+          "name": "Cape Lee (李凱博)",
+          "alternateName": ["李凱博", "Cape Lee", "CAPELEE", "凱博"],
           "email": "capelee0715@gmail.com",
           "jobTitle": "Senior Brand & Visual Designer",
           "url": origin,
@@ -1212,7 +1212,7 @@ export default function App() {
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Cape Lee 作品集",
+            "name": "Cape Lee (李凱博) 作品集",
             "item": `${origin}/`
           },
           {
@@ -1463,19 +1463,19 @@ export default function App() {
       if (isMumaoProjectOpen) {
         url.searchParams.set("item", "mumao-cat-religion-ip");
         url.searchParams.delete("category");
-        document.title = "MuMㄠ 姆貓原創 IP 視覺與品牌設計 | Cape Lee 作品集";
+        document.title = "MuMㄠ 姆貓原創 IP 視覺與品牌設計 | Cape Lee (李凱博) 作品集";
       } else if (activeModalItem) {
         url.searchParams.set("item", activeModalItem.id);
         url.searchParams.delete("category");
-        document.title = `${activeModalItem.title} | Cape Lee 作品集`;
+        document.title = `${activeModalItem.title} | Cape Lee (李凱博) 作品集`;
       } else if (selectedCategory && selectedCategory !== "All") {
         url.searchParams.set("category", selectedCategory);
         url.searchParams.delete("item");
-        document.title = `${selectedCategory} 設計作品 | Cape Lee 作品集`;
+        document.title = `${selectedCategory} 設計作品 | Cape Lee (李凱博) 作品集`;
       } else {
         url.searchParams.delete("item");
         url.searchParams.delete("category");
-        document.title = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
+        document.title = "Cape Lee (李凱博) 作品集 | 品牌視覺與角色 IP 設計";
       }
 
       // 當不在 MuMㄠ 專題頁面時，清除任何殘留的專題錨點
@@ -1539,7 +1539,7 @@ export default function App() {
       const url = new URL(window.location.href);
       url.searchParams.set("item", "mumao-cat-religion-ip");
       url.searchParams.delete("category");
-      document.title = "MuMㄠ 姆貓原創 IP 視覺與品牌設計 | Cape Lee 作品集";
+      document.title = "MuMㄠ 姆貓原創 IP 視覺與品牌設計 | Cape Lee (李凱博) 作品集";
       window.history.pushState({ modal: "mumao" }, "", url.pathname + url.search);
     }
   }, []);
@@ -1554,9 +1554,9 @@ export default function App() {
       }
       if (selectedCategory && selectedCategory !== "All") {
         url.searchParams.set("category", selectedCategory);
-        document.title = `${selectedCategory} 設計作品 | Cape Lee 作品集`;
+        document.title = `${selectedCategory} 設計作品 | Cape Lee (李凱博) 作品集`;
       } else {
-        document.title = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
+        document.title = "Cape Lee (李凱博) 作品集 | 品牌視覺與角色 IP 設計";
       }
       const finalUrl = url.pathname + (url.search ? url.search : "");
       window.history.replaceState(null, "", finalUrl);
@@ -1975,7 +1975,7 @@ export default function App() {
   }, [showNavDialogue, displayedNavDialogue, navDialogue]);
 
   const heroDialogues = useMemo(() => [
-    "哈囉！我是 Cape Lee 👋 歡迎來到我的視覺與品牌整合設計宇宙！",
+    "哈囉！我是李凱博 Cape Lee 👋 歡迎來到我的視覺與品牌整合設計宇宙！",
     "點選左下角的『看作品』，就能解鎖我經手的所有精彩作品喔！✨",
     "每一像素都承載著設計的溫度與堅持。希望你今天逛得開心！💖",
     "這隻白貓是我的原創 IP 角色 MuMㄠ 喔！試試看長按我 0.2 秒再拖曳，會掉落驚喜小物喔！🐾✨",
@@ -2789,6 +2789,8 @@ export default function App() {
       { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"] }
     ],
     certificates: [
+      { name: "資策會 生成式AI能力認證", issuer: "財團法人資訊工業策進會" },
+      { name: "資策會 生成式AI辦公室應用能力認證-進階", issuer: "財團法人資訊工業策進會" },
       { name: "Adobe Certified Professional in Visual Design", issuer: "Ps & Ai 專業雙認證" },
       { name: "AutoCAD 2011、2012 Certified Professional", issuer: "Autodesk 國際認證人員" },
       { name: "TQC+ 影像處理、電腦圖像編輯製作 專業人員", issuer: "中華民國電腦技能基金會" },
@@ -3230,8 +3232,9 @@ export default function App() {
               onOpenProject={handleOpenMumaoProject}
             />
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className={`font-display font-semibold tracking-tight text-xs sm:text-sm md:text-md transition-colors duration-300 ${brandingTextClass}`}>Cape Lee</span>
+              <div className="flex items-baseline gap-1.5 sm:gap-2">
+                <span className={`font-sans font-bold tracking-normal text-xs sm:text-sm md:text-[15px] transition-colors duration-300 ${brandingTextClass}`}>李凱博</span>
+                <span className={`font-display font-semibold tracking-tight text-[11px] sm:text-xs md:text-sm opacity-90 transition-colors duration-300 ${brandingTextClass}`}>Cape Lee</span>
               </div>
               <p className="hidden sm:block text-[10px] font-mono text-zinc-500 tracking-wider">CREATIVE VISUAL PORTFOLIO</p>
             </div>
@@ -4274,26 +4277,29 @@ export default function App() {
           
           {/* 左側：和風簽名與落款印章 */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 text-center sm:text-left">
-            {/* 朱泥落款印章 (Japanese Hanko Style Stamp) */}
+            {/* 朱泥落款印章 (Traditional 2x2 Red Seal Stamp) */}
             <div className="flex-shrink-0 flex items-center justify-center">
               <div 
-                className="font-sans border-2 border-[#D33F33] text-[#D33F33] bg-[#D33F33]/5 font-black text-[12px] p-1 rounded-sm shadow-inner select-none flex items-center justify-center transition-transform hover:scale-105 duration-300"
+                className="font-serif border-2 border-[#D33F33] text-[#D33F33] bg-[#D33F33]/5 font-black p-1 rounded-sm shadow-inner select-none flex items-center justify-center transition-transform hover:scale-105 duration-300"
                 style={{ width: "42px", height: "42px" }}
+                title="李凱博印"
               >
-                <div className="flex flex-col items-center justify-center leading-none font-black text-center tracking-wider font-sans">
-                  <span className="text-[9px] mb-0.5">CAPE</span>
-                  <span className="text-[9px] border-t border-[#D33F33]/40 pt-0.5 w-7">LEE</span>
+                <div className="grid grid-cols-2 gap-x-0.5 gap-y-0.5 font-serif font-black select-none text-[11px] leading-none text-center">
+                  <span className="w-3.5 h-3.5 flex items-center justify-center">李</span>
+                  <span className="w-3.5 h-3.5 flex items-center justify-center">凱</span>
+                  <span className="w-3.5 h-3.5 flex items-center justify-center">博</span>
+                  <span className="w-3.5 h-3.5 flex items-center justify-center">印</span>
                 </div>
               </div>
             </div>
             <div>
               <h5 className="font-serif font-bold text-xs tracking-[0.15em] mb-1">
-                Cape Lee 視覺與品牌整合手札
+                李凱博 Cape Lee 視覺與品牌整合手札
               </h5>
               <p className={`font-mono text-[10px] tracking-wide ${
                 theme === "dark" ? "text-zinc-500" : theme === "sepia" ? "text-[#8C7B69]/80" : "text-zinc-400"
               }`}>
-                Cape Lee © 2026 Portfolio
+                李凱博 Cape Lee © 2026 Portfolio
               </p>
             </div>
           </div>

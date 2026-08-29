@@ -87,14 +87,17 @@ export function generateProjectSeoTags(item: PortfolioItem): ProjectSeoTags {
   const toolsText = toolList.join("、");
 
   // 1. 生成高點擊率與精準定位的 Title
-  const title = `【${item.category}】${item.title} ${item.titleEn ? `(${item.titleEn}) ` : ""}| Cape Lee 設計作品集`;
+  const title = `【${item.category}】${item.title} ${item.titleEn ? `(${item.titleEn}) ` : ""}| Cape Lee (李凱博) 設計作品集`;
 
   // 2. 自動產生關鍵字密集且通順的 Meta Description (約 120-160 字)
   const cleanPhilosophy = item.philosophy ? item.philosophy.trim().replace(/\s+/g, " ") : "";
-  const description = `【${item.category}】${item.title} 設計專案。${cleanPhilosophy} 採用技術與工藝：${toolsText}。由 5~6 年商業實戰經驗的資深視覺設計師 Cape Lee 操刀規劃。`;
+  const description = `【${item.category}】${item.title} 設計專案。${cleanPhilosophy} 採用技術與工藝：${toolsText}。由 5~6 年商業實戰經驗的資深視覺設計師 Cape Lee (李凱博) 操刀規劃。`;
 
   // 3. 自動聚合去重的 Keywords 清單
   const rawKeywords = [
+    "李凱博",
+    "李凱博設計師",
+    "李凱博作品集",
     item.title,
     item.titleEn,
     item.category,
@@ -113,7 +116,7 @@ export function generateProjectSeoTags(item: PortfolioItem): ProjectSeoTags {
   const pageUrl = `${BASE_URL}/?item=${encodeURIComponent(item.id)}`;
 
   // 5. Open Graph 與 Twitter Meta Tags
-  const ogTitle = `【${item.category}】${item.title} | Cape Lee 品牌視覺作品`;
+  const ogTitle = `【${item.category}】${item.title} | Cape Lee (李凱博) 品牌視覺作品`;
   const ogDescription = description;
   const twitterTitle = ogTitle;
   const twitterDescription = description;
@@ -136,8 +139,8 @@ export function generateProjectSeoTags(item: PortfolioItem): ProjectSeoTags {
     "keywords": keywords,
     "creator": {
       "@type": "Person",
-      "name": "Cape Lee",
-      "alternateName": "Cape Lee",
+      "name": "Cape Lee (李凱博)",
+      "alternateName": ["李凱博", "Cape Lee", "CAPELEE", "凱博"],
       "email": "capelee0715@gmail.com",
       "jobTitle": "Senior Brand & Visual Designer",
       "url": BASE_URL,

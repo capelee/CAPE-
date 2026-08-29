@@ -270,9 +270,12 @@ export const DesignerBento = React.memo(function DesignerBento({
             <div style={getGravityStyle(1)} className="flex items-center gap-4">
               <MinimalistLogo size={64} theme={theme} className="shrink-0" onInteract={onInteract} onBalloonFlyAway={onBalloonFlyAway} />
               <div>
-                <h1 className={`text-2xl md:text-3xl font-display font-bold tracking-tight ${
+                <h1 className={`text-2xl md:text-3xl tracking-tight flex items-baseline gap-2.5 flex-wrap ${
                   theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-950" : "text-white"
-                }`}>{profile.name}</h1>
+                }`}>
+                  <span className="font-sans font-bold text-2xl md:text-3xl">李凱博</span>
+                  <span className="font-display font-semibold text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 opacity-90">{profile.name}</span>
+                </h1>
               </div>
             </div>
 

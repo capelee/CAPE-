@@ -106,14 +106,15 @@ export function ContactModal({ isOpen, onClose, theme, profile, downloadVCard, v
 
                       {/* 名片中部：名字與職位 */}
                       <div className="pt-2">
-                        <h2 className={`text-xl font-display font-bold tracking-tight ${
+                        <h2 className={`text-xl tracking-tight flex items-baseline gap-2 flex-wrap ${
                           theme === "dark" 
                             ? "text-white" 
                             : theme === "sepia" 
                             ? "text-[#382B1D]" 
                             : "text-zinc-900"
                         }`}>
-                          {profile.name}
+                          <span className="font-sans font-bold text-lg sm:text-xl">李凱博</span>
+                          <span className="font-display font-semibold text-base sm:text-lg opacity-85">{profile.name}</span>
                         </h2>
                         <p className="text-xs font-sans text-amber-500/95 font-medium mt-1">{profile.title}</p>
                       </div>

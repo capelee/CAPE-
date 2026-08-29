@@ -54,10 +54,10 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
 
   const catColor = getCategoryColor(item.category);
   const shareUrl = `https://cape-eight.vercel.app/?item=${encodeURIComponent(item.id)}`;
-  const shareTitle = `${item.title} | Cape Lee 設計作品集`;
+  const shareTitle = `${item.title} | 李凱博 Cape Lee 設計作品集`;
   const shareDescription = item.philosophy 
     ? (item.philosophy.length > 80 ? item.philosophy.slice(0, 80) + "..." : item.philosophy)
-    : "Cape Lee 品牌識別、視覺設計與原創角色 IP 設計實戰作品。";
+    : "李凱博 Cape Lee 品牌識別、視覺設計與原創角色 IP 設計實戰作品。";
 
   // Primary image
   const displayImage = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : null);
@@ -413,7 +413,7 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
       ctx.fillStyle = "#fbbf24";
       ctx.font = "bold 15px sans-serif";
       ctx.textBaseline = "top";
-      ctx.fillText("Cape Lee • 設計作品集", leftX, 525);
+      ctx.fillText("李凱博 Cape Lee • 設計作品集", leftX, 525);
 
       ctx.fillStyle = "#71717a";
       ctx.font = "13px monospace";
@@ -580,7 +580,7 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
                     </div>
 
                     <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400">
-                      <span className="text-amber-400 font-bold">Cape Lee • 設計作品集</span>
+                      <span className="text-amber-400 font-bold">李凱博 Cape Lee • 設計作品集</span>
                       <span>cape-eight.vercel.app</span>
                     </div>
                   </div>
@@ -634,10 +634,10 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
                         {item.category}
                       </div>
                       <h4 className="text-xs font-bold text-zinc-900 line-clamp-1">
-                        {item.title} | Cape Lee 作品集
+                        {item.title} | 李凱博 Cape Lee 作品集
                       </h4>
                       <p className="text-[11px] text-zinc-500 line-clamp-2 leading-snug">
-                        {item.philosophy || "Cape Lee 品牌識別、視覺設計與角色 IP 設計。"}
+                        {item.philosophy || "李凱博 Cape Lee 品牌識別、視覺設計與角色 IP 設計。"}
                       </p>
                       <div className="pt-1.5 text-[9.5px] text-zinc-400 font-mono flex items-center gap-1">
                         <span>cape-eight.vercel.app</span>
@@ -661,7 +661,7 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold">
-                      <span>Cape Lee</span>
+                      <span>李凱博 Cape Lee</span>
                       <span className="text-zinc-500 font-normal">@cape_lee_design · 剛才</span>
                     </div>
                     <p className="text-xs text-zinc-300">
@@ -682,7 +682,7 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
                       cape-eight.vercel.app
                     </div>
                     <div className="text-xs font-bold text-zinc-100 line-clamp-1">
-                      {item.title} | Cape Lee 作品集
+                      {item.title} | 李凱博 Cape Lee 作品集
                     </div>
                     <div className="text-[11px] text-zinc-400 line-clamp-1">
                       {item.philosophy || "品牌識別與原創角色 IP 設計"}

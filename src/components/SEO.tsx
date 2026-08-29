@@ -8,9 +8,9 @@ interface SEOProps {
   searchQuery?: string;
 }
 
-const DEFAULT_TITLE = "Cape Lee 作品集 | 品牌視覺與角色 IP 設計";
-const DEFAULT_DESC = "Cape Lee 5~6 年商業實戰經驗，專注於品牌識別 (CIS 設計)、Logo 商標設計、原創角色 IP 插畫與 LINE 貼圖。精通包裝視覺設計、電商一頁式網頁與產品瀑布頁、雙語排版海報與不對稱網格設計。";
-const DEFAULT_KEYWORDS = "Cape Lee, Cape Lee作品集, 品牌識別設計, CIS識別手冊, Logo商標設計, 原創 IP 角色設計, LINE貼圖設計, 吉祥物表情包, 包裝視覺設計, 文創包裝, 電商一頁式網頁設計, 產品瀑布頁設計, 向量插畫設計, 雙語排版海報, 不對稱網格構成, 台北設計師推薦";
+const DEFAULT_TITLE = "Cape Lee (李凱博) 作品集 | 品牌視覺與角色 IP 設計";
+const DEFAULT_DESC = "Cape Lee (李凱博) 擁有 5~6 年商業實戰經驗，專注於品牌識別 (CIS 設計)、Logo 商標設計、原創角色 IP 插畫與 LINE 貼圖。精通包裝視覺設計、電商一頁式網頁與產品瀑布頁、雙語排版海報與不對稱網格設計。";
+const DEFAULT_KEYWORDS = "李凱博, 李凱博設計師, 李凱博作品集, Cape Lee, Cape Lee作品集, 品牌識別設計, CIS識別手冊, Logo商標設計, 原創 IP 角色設計, LINE貼圖設計, 吉祥物表情包, 包裝視覺設計, 文創包裝, 電商一頁式網頁設計, 產品瀑布頁設計, 向量插畫設計, 雙語排版海報, 不對稱網格構成, 台北設計師推薦";
 
 export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuery }) => {
   useEffect(() => {
@@ -111,7 +111,7 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
     setMeta('meta[name="description"]', 'name', 'description', description);
     setMeta('meta[name="keywords"]', 'name', 'keywords', keywords);
     setMeta('meta[name="title"]', 'name', 'title', title);
-    setMeta('meta[name="author"]', 'name', 'author', "Cape Lee");
+    setMeta('meta[name="author"]', 'name', 'author', "Cape Lee (李凱博)");
     setMeta('meta[name="robots"]', 'name', 'robots', "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
     setCanonical(pageUrl);
 
@@ -126,11 +126,11 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
     setMeta('meta[property="og:url"]', 'property', 'og:url', pageUrl);
     setMeta('meta[property="og:type"]', 'property', 'og:type', ogType);
     setMeta('meta[property="og:locale"]', 'property', 'og:locale', 'zh_TW');
-    setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'Cape Lee Portfolio | 品牌視覺與角色 IP 設計');
+    setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'Cape Lee (李凱博) Portfolio | 品牌視覺與角色 IP 設計');
 
     if (activeItem) {
       setMeta('meta[property="article:section"]', 'property', 'article:section', activeItem.category);
-      setMeta('meta[property="article:author"]', 'property', 'article:author', "Cape Lee");
+      setMeta('meta[property="article:author"]', 'property', 'article:author', "Cape Lee (李凱博)");
     }
 
     // 4. Twitter Cards
@@ -159,8 +159,8 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
           {
             "@type": "Person",
             "@id": `${BASE_URL}/#person`,
-            "name": "Cape Lee",
-            "alternateName": "Cape Lee",
+            "name": "Cape Lee (李凱博)",
+            "alternateName": ["李凱博", "Cape Lee", "CAPELEE", "凱博"],
             "jobTitle": "Senior Brand & Visual Designer",
             "email": "capelee0715@gmail.com",
             "url": BASE_URL,
