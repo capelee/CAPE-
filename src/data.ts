@@ -2,6 +2,30 @@ import { PortfolioItem } from "./types";
 
 export const initialPortfolioData: PortfolioItem[] = [
   {
+    "id": "video-art-zoo-migration-2026",
+    "category": "å½±éŸ³èˆ‡å¤šåª’é«”è¨­è¨ˆ",
+    "title": "2026 è‡ºåŒ—ç”Ÿæˆè—è¡“ç¯€ å½±ç‰‡å‰µä½œ æ³¡æ³¡è£¡çš„é·å¾™ 40å¹´çš„ç´„å®š",
+    "titleEn": "2026 Taipei Generative Art Festival: Zoo Migration, The 40-Year Promise Video Creation",
+    "philosophy": "ä»¥å‹•ç‰©åœ’é·å¾™è¨˜æ†¶ç‚ºè»¸ç·šï¼Œé‹ç”¨ç”Ÿæˆå¼å½±åƒæŠ€è¡“èˆ‡å‹•æ…‹åˆæˆæ‰‹æ³•ï¼Œé‡æ§‹å››åå¹´é–“çš„æ™‚ç©ºè¨˜æ†¶èˆ‡ç‰©ç¨®é·ç§»è»Œè·¡ï¼ŒæŽ¢è¨ŽåŸŽå¸‚ç™¼å±•èˆ‡ç”Ÿæ…‹å…±ç”Ÿä¹‹æ­·å²æ•˜äº‹ã€‚",
+    "isHighlight": false,
+    "tools": [
+      "Premiere",
+      "AE",
+      "AIç”Ÿæˆ",
+      "å‹•æ…‹è¨­è¨ˆ",
+      "å‰ªè¼¯"
+    ],
+    "imageUrl": "https://img.youtube.com/vi/5xmSuXnxXBg/maxresdefault.jpg",
+    "placeholderId": "VIDEO_ZOO_MIGRATION_5xmSuXnxXBg",
+    "colorTheme": "from-[#0d1f2d] via-[#1d2d44] to-[#0d131a]",
+    "images": [
+      "https://img.youtube.com/vi/5xmSuXnxXBg/maxresdefault.jpg",
+      "https://img.youtube.com/vi/5xmSuXnxXBg/0.jpg"
+    ],
+    "videoUrl": "https://youtu.be/5xmSuXnxXBg",
+    "link": "https://youtu.be/5xmSuXnxXBg"
+  },
+  {
     "id": "sebamed-sports-mini-video",
     "category": "å½±éŸ³èˆ‡å¤šåª’é«”è¨­è¨ˆ",
     "title": "æ–½å·´ Sebamed é‹å‹•èˆ’ç·©æ²æµ´ä¹³ å¾®ç¸®å°äºº 8ç§’å»£å‘Šå½±ç‰‡",
@@ -10369,1465 +10393,90 @@ export const initialPortfolioData: PortfolioItem[] = [
     "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
     "title": "ç´…é¾é£Ÿå“ç¶“å…¸ç¾Žå¼è‚‰æ²åœ˜è³¼å®£å‚³æ©«å¹…è¨­è¨ˆ",
     "titleEn": "Red Dragon Roasted Chicken & Beef Rolls Promo Banner",
-    "philosophy": "æŽ¡ç”¨å¾®è·ç„¦è·å‘ˆç¾ç¾Žå¼è‚‰æ²åˆ‡é¢æµæ±èµ·å¸èˆ‡é‡‘é»ƒé…¥çš®ï¼Œæ­é…ç¶“å…¸ç¾Žå¼å­—é¡ã€‚çµåˆè¾¦å…¬å®¤åœ˜è³¼å…é‹æ¨™ç« èˆ‡æ¢ç†è¦æ ¼ï¼Œå»ºç«‹å…·é£Ÿæ…¾æ¸²æŸ“åŠ›çš„åœ˜è³¼ç†±éŠ·æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1VFR0Xoqi7d-WZCewSUyR7HcSFeHw2Y-O.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_321",
-    "colorTheme": "from-amber-950 via-red-950 to-neutral-900",
-    "images": [
-      "/images/optimized/1VFR0Xoqi7d-WZCewSUyR7HcSFeHw2Y-O.webp"
-    ]
-  },
-  {
-    "id": "322",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "è²å¯¶SAMPOé«˜äº®ç¯€èƒ½äºŒä»£LEDç‡ˆæ³¡ å±…å®¶ç…¥æ–°",
-    "titleEn": "SAMPO Energy-Saving LED Light Bulb Series Layout",
-    "philosophy": "ä»¥æ¥µç°¡æ½”æ·¨ç™½èˆ‡æ˜Žäº®æš–é»ƒå…‰æšˆç‚ºè¦–è¦ºæ ¸å¿ƒï¼Œè¥¯æ‰˜ LED ç‡ˆæ³¡å¤–è§€èˆ‡ç¯€èƒ½æ¨™ç« ã€‚æ­é…å¤šå…¥è£è¶…å€¼åƒ¹æ ¼èˆ‡çœé›»è¨´æ±‚æ–‡å­—ï¼Œå‚³é”å±…å®¶ç…§æ˜Žé¡¯äº®ä¸”ç¯€èƒ½çš„å¯¦ç”¨è³ªæ„Ÿã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/15ObAbfXNkQOOW8pU8JKBW65zxoWAxHMt.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_322",
-    "colorTheme": "from-sky-950 via-slate-900 to-stone-900",
-    "images": [
-      "/images/optimized/15ObAbfXNkQOOW8pU8JKBW65zxoWAxHMt.webp"
-    ]
-  },
-  {
-    "id": "323",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é‡‘é–€é«˜å‘ç¥–å‚³ç§˜è£½ç‰›è‚‰ä¹¾ åœ˜è³¼è¾¦å…¬å®¤é›¶å˜´",
-    "titleEn": "Kinmen Kaokeng Sliced Beef Jerky Heritage Banner",
-    "philosophy": "æŽ¡ç”¨å‚³çµ±é‡‘é–€ç´…ç£šç´‹æ¨£èˆ‡åŽšåˆ‡ç‰›è‚‰ä¹¾ç´®å¯¦ç´‹ç†åŽ»èƒŒï¼Œå‘ˆç¾å¤šæ±æ²™èŒ¶é¢¨å‘³ã€‚æ­é…è¾¦å…¬å®¤åœ˜è³¼å„ªæƒ æ¨™ç±¤èˆ‡é†’ç›®çµ„åˆå­—é¡ï¼Œå»ºç«‹å…·åœ¨åœ°ç¶“å…¸åç”¢é­…åŠ›çš„å»£å‘Šæ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/18CQSN_RXiAKMhI_4MumGD7H-nXJpntZj.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_323",
-    "colorTheme": "from-red-950 via-stone-900 to-amber-950",
-    "images": [
-      "/images/optimized/18CQSN_RXiAKMhI_4MumGD7H-nXJpntZj.webp"
-    ]
-  },
-  {
-    "id": "324",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é›™å­æ˜Ÿå’–å•¡åš¼é†’é‡è²©åŒ… è¾¦å…¬å®¤ç²¾ç¥žæç¥žåˆ©å™¨",
-    "titleEn": "Gemini Coffee Awakening Mega Pack 500g Banner",
-    "philosophy": "ä»¥æ·±æ¿ƒå’–å•¡æ£•èˆ‡é†’ç›®æç¥žé»ƒé…è‰²åˆ‡åˆ†ï¼Œèšç„¦æ¿ƒç¸®å’–å•¡ç³–ç²’èˆ‡é‡è²©å¤§åŒ…è£ã€‚æ­é…è·å ´æç¥žè¨´æ±‚å­—é¡èˆ‡ç‰¹åƒ¹ä¿ƒéŠ·æ¨™ç« ï¼Œæ‰“é€ å¸å¼•ä¸Šç­æ—å›¤è²¨çš„ç¤¾ç¾¤æŽ¨æ’­è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1g9fDy1Skt2Da74AUS118ERPozXElcoyq.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_324",
-    "colorTheme": "from-stone-950 via-amber-950 to-neutral-900",
-    "images": [
-      "/images/optimized/1g9fDy1Skt2Da74AUS118ERPozXElcoyq.webp"
-    ]
-  },
-  {
-    "id": "325",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é£›åˆ©æµ¦é•·æ•ˆç¢³é‹…é›»æ± é‡è²©çµ„æŽ¨æ’­å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Philips Long Lasting Zinc Carbon Battery Banner",
-    "philosophy": "æŽ¡ç”¨é£›åˆ©æµ¦ç¶“å…¸è—é»ƒç§‘æŠ€é…è‰²ï¼Œå±•ç¾é›»æ± é‡è²©åŒ…è£é™£åˆ—èˆ‡é‡‘å±¬é›»æ¥µç´°ç¯€ã€‚æ­é…é•·æ•ˆè€ç”¨è¨´æ±‚èˆ‡è²·å¤§é€å°ä¿ƒéŠ·å‹³ç« ï¼Œå‘ˆç¾é›»å•†é‡è²©ç”¨å“çš„å¯¦ç”¨ä¿¡è³´æ„Ÿã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1UU0huGQkO2f9zJ9OpnwQg-_l5zvoJ8rK.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_325",
-    "colorTheme": "from-blue-950 via-yellow-950 to-slate-950",
-    "images": [
-      "/images/optimized/1UU0huGQkO2f9zJ9OpnwQg-_l5zvoJ8rK.webp"
-    ]
-  },
-  {
-    "id": "326",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é¥—ç ´é ­å·å‘³æ¤’éº»é†¬åœ˜è³¼åç”¢å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "XiangPoTou Gourmet Sichuan Chili Oil Paste Layout",
-    "philosophy": "ä»¥å·å‘³éº»è¾£ç´…èˆ‡æ²‰ç©©ç«¹ç´‹åº•è‰²ç‚ºè¦–è¦ºèƒŒæ™¯ï¼Œçªé¡¯æ¤’éº»é†¬ç´…æ²¹å…‰æ¾¤èˆ‡é¦™æ–™ç´°ç¯€ã€‚çµåˆåç”¢åœ˜è³¼æŠ˜æ‰£æ¨™ç±¤èˆ‡å…é‹çµ„åˆï¼Œå»ºç«‹å…·åœ¨åœ°å‚³çµ±é¦™è¾£ç‰¹è‰²çš„å°Žè³¼ Bannerã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1UC4lreOdx71IUtS6SXAy6PtQvBi0-unS.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_326",
-    "colorTheme": "from-red-950 via-amber-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1UC4lreOdx71IUtS6SXAy6PtQvBi0-unS.webp"
-    ]
-  },
-  {
-    "id": "327",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é´»åƒèŠ±æ——è”˜éˆèŠæ»‹è£œé£²ç¦®ç›’é¤Šç”Ÿä¸»é¡Œå»£å‘Š",
-    "titleEn": "HongGinseng American Ginseng Reishi Premium Tonic",
-    "philosophy": "æŽ¡ç”¨å°Šè²´é‡‘é»ƒèˆ‡æ²‰ç©©æ·±æ£•å¹¾ä½•ç·šæ¢ï¼Œè¥¯æ‰˜éˆèŠèˆ‡èŠ±æ——è”˜æ»‹è£œé£²ç¦®ç›’åŒ…è£ã€‚æ­é…å°Šè¦ªé¤Šç”Ÿæ¨™èªžèˆ‡é™æ™‚å…é‹æŠ˜æ‰£æ¨™ç« ï¼Œå‘ˆç¾æº«è£œç¦®å“å…¸é›…åŽšé‡çš„è¦–è¦ºæ°£éŸ»ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1z4KZexcHBQswSvyvEmi2iiiixl5HHObe.webp",
-    "placeholderId": "IMAGE_NEW_GOVERNMENT_327",
-    "colorTheme": "from-amber-950 via-red-950 to-stone-900",
-    "images": [
-      "/images/optimized/1z4KZexcHBQswSvyvEmi2iiiixl5HHObe.webp"
-    ]
-  },
-  {
-    "id": "328",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "Yahooå¥‡æ‘©æ‹è³£ æªé®®ç´š_åƒè²¨ä¾†äº†ï¼å¤æ—¥é›¶é£ŸéŽæš‘å‡ ä¿ƒéŠ·æŽ¨æ’­å»£å‘Š",
-    "titleEn": "Yahoo Mall Snack Feast Summer Snack Campaign Banner Layout",
-    "philosophy": "ä»¥å¤æ—¥æµ·æ´‹è—èˆ‡å†°çˆ½æ°´æ»´åœ–æ¡ˆç‚ºè¦–è¦ºèƒŒæ™¯ï¼Œçµ„åˆå¤šæ¬¾æ¶ˆæš‘é›¶é£Ÿèˆ‡é£²å“åŽ»èƒŒã€‚æ­é…åƒè²¨ç¯€å°ˆå±¬æ¨™ç« èˆ‡æ»¿é¡å…é‹æŠ˜æ‰£ï¼Œæ‰“é€ ç¹½ç´›æ´»æ½‘çš„æš‘æœŸè³¼ç‰©æŽ¨æ’­æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1cJ_FrsY5uQBWFcJCjkrdxutAPBJfYsM6.webp",
-    "placeholderId": "IMAGE_NEW_YHOOSNACK_328",
-    "colorTheme": "from-amber-950 via-orange-950 to-stone-900",
-    "images": [
-      "/images/optimized/1cJ_FrsY5uQBWFcJCjkrdxutAPBJfYsM6.webp"
-    ]
-  },
-  {
-    "id": "360",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ¸›ç³–å¹¸ç¦åƒéš¨ä½ é… å†·å‡å…é‹ä»»é¸äº”ä»¶899ä¸»é¡Œå»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Rakuten Sugar-Free Low Carb Healthy Meals Free Shipping Banner",
-    "philosophy": "æŽ¡ç”¨æ¸…æ–°å¥åº·ç¶ èˆ‡äº®é»ƒä¿ƒéŠ·å€å¡Šï¼Œæ•´åˆå¤šæ¬¾å¥èº«ä½Žå¡é¤é»žèˆ‡èŠ±æ¤°èœç±³åŽ»èƒŒã€‚æ­é…ä»»é¸äº”ä»¶çµ„åˆåƒ¹æ¨™ç« èˆ‡å†·å‡å…é‹èªªæ˜Žï¼Œå‘ˆç¾è¼•é£Ÿç„¡è² æ“”çš„ä¿ƒéŠ·è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1Ll7fV9YUviDUr1AlkJjyr2mf_VG9xKB9.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_360",
-    "colorTheme": "from-emerald-950 via-teal-900 to-neutral-900",
-    "images": [
-      "/images/optimized/1Ll7fV9YUviDUr1AlkJjyr2mf_VG9xKB9.webp",
-      "/images/optimized/15F8DQ78lF1jCm3JzkXPIlP1GlNz89gpI.webp",
-      "/images/optimized/1suAZHfApOpZqWIlhhgY5H8b9p2tiX6cp.webp",
-      "/images/optimized/1VSxtLFY3joHj_zEjY-xzT6pCHEj2-Tno.webp",
-      "/images/optimized/11RuBc-OsQovy0U7qLt-kPY1LHKEk2z5r.webp"
-    ]
-  },
-  {
-    "id": "361",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "618å¹´ä¸­å¤§ä¿ƒ ç‹‚æ­¡å›žé¥‹å…¨é¤¨æœ€é«˜23% è³¼ç‰©æŽ¨æ’­æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten 618 Mid-Year Mega Sale Highest Cashback Banner",
-    "philosophy": "ä»¥æ´»åŠ›æ¡ƒç´…èˆ‡é«˜äº®åº¦é‡‘é»ƒé…è‰²ç‡Ÿé€  618 å¤§ä¿ƒæ­¡æ…¶æ°£æ°›ï¼Œçµåˆå¹¾ä½•å…‰å¸¶èˆ‡å•†å“åŽ»èƒŒã€‚é€éŽé†’ç›®æœ€é«˜å›žé¥‹è¶´æ•¸å­—é¡èˆ‡é ˜åˆ¸æŒ‰éˆ•ï¼Œæ‰“é€ é«˜è½‰åŒ–çŽ‡çš„æŽ¨æ’­å»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1Wi-gcCwlBheuSsHhndNMVrjsRqlkJE0p.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_361",
-    "colorTheme": "from-indigo-950 via-fuchsia-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1Wi-gcCwlBheuSsHhndNMVrjsRqlkJE0p.webp",
-      "/images/optimized/1SW8dL9zY3FP0R6WZadqmU4TBkZiLleUe.webp"
-    ]
-  },
-  {
-    "id": "362",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "DAé¸å“3Cç”¢å“ç‰¹æƒ æ¨‚å¤©è³¼ç‰©å»£å‘Šèˆ‡EDMè¨­è¨ˆ",
-    "titleEn": "Rakuten DA Select Top-Tier 3C Electronics Special Campaign",
-    "philosophy": "æŽ¡ç”¨ç§‘æŠ€è³ªæ„Ÿæ·±ç°èˆ‡é«˜å°æ¯”äº®é»ƒé…è‰²ï¼Œèšç„¦ 3C é…ä»¶èˆ‡æ™ºæ…§å‘¨é‚ŠåŽ»èƒŒå…‰å½±ã€‚çµåˆé ˜åˆ¸æŠ˜æŠµé‡‘é¡æ¨™ç‰Œèˆ‡çµæ§‹åŒ–å•†å“å€å¡Šï¼Œå‘ˆç¾å°ˆæ¥­é¸å“é–€å¸‚çš„é›»å•†æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1qTvoRWj4SKWEVQL-nxwN85-5Ad-G-LSe.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_362",
-    "colorTheme": "from-zinc-950 via-slate-900 to-indigo-950",
-    "images": [
-      "/images/optimized/1qTvoRWj4SKWEVQL-nxwN85-5Ad-G-LSe.webp",
-      "/images/optimized/1VZ3__3wopvL1R-DFDCPpgLBSB86V45iD.webp",
-      "/images/optimized/1hXSRTNtuPMsVX8ZMExGJJgNeJhELe94e.webp"
-    ]
-  },
-  {
-    "id": "363",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "DAåš´é¸å…¨é¤¨é™æ™‚ç‰¹æƒ  é›™é‡å›žé¥‹12% è¡ŒéŠ·æŽ¨æ’­æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten DA Select Storewide 12% Off Campaign Banner",
-    "philosophy": "ä»¥æ²‰ç©©æš—è‰²åº•åœ–è¥¯æ‰˜é‡‘è‰²å›žé¥‹è¶´æ•¸èˆ‡ä¿ƒéŠ·æ¨™èªžï¼Œçµåˆé¸å“åŒ…è£åŽ»èƒŒç–ŠåŠ ã€‚é€éŽå¼·çƒˆæ–‡å­—å°æ¯”èˆ‡åº«å­˜å€’æ•¸æŒ‰éˆ•ï¼Œå»ºç«‹ä¿è½ä¸”å…·å¸å¼•åŠ›çš„å®˜ç¶²æŽ¨æ’­è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1MnVcOx6T0uvv57yPLrD9NlZkvLGxSuCg.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_363",
-    "colorTheme": "from-red-950 via-orange-950 to-stone-900",
-    "images": [
-      "/images/optimized/1MnVcOx6T0uvv57yPLrD9NlZkvLGxSuCg.webp",
-      "/images/optimized/1HveshkBxE89AXA5gdpyw4cYav_QWF-S_.webp",
-      "/images/optimized/1YZdIGoiAMgEC4K7l9kNj-m4IQbN0ME9B.webp",
-      "/images/optimized/1428PllfACOxFSJChodPrcvr2HfLatahB.webp"
-    ]
-  },
-  {
-    "id": "364",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "MITåœ¨åœ°å„ªè³ªå“ç‰Œè¯åˆæ…¶ å°ç£è£½é€ å°ˆå€æŽ¨æ’­å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Rakuten MIT Local Premium Brands Joint Campaign Banner",
-    "philosophy": "æŽ¡ç”¨å¤©ç„¶ç°¡ç´„ç¶ èˆ‡å°ç£æ„è±¡å¹¾ä½•æ¨™ç« ï¼Œå±•ç¤ºå¤šæ¬¾å°ç£åœ¨åœ°å„ªè³ªè£½é€ å•†å“å¯¦ç…§ã€‚æ­é…è¯åˆæ…¶ä¿ƒéŠ·æ¨™é¡Œèˆ‡çµæ§‹åŒ–å°ˆå€å­—é¡ï¼Œå‘ˆé¡¯å“è³ªä¿¡è³´èˆ‡åœ¨åœ°æº«æš–è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1KK1w7asSGuyqDg5YALzmjfuFtwrfyMS1.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_364",
-    "colorTheme": "from-emerald-950 via-teal-900 to-stone-900",
-    "images": [
-      "/images/optimized/1KK1w7asSGuyqDg5YALzmjfuFtwrfyMS1.webp",
-      "/images/optimized/1N_YTXKBJqoVz9yy0Cuqv0ms0XhH1zlW4.webp"
-    ]
-  },
-  {
-    "id": "365",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å…¨é¤¨æ»¿é¡299å…é‹èˆ‡æ»¿é¡ç¾æŠ˜200å°Žè³¼æ©«å¹…",
-    "titleEn": "Rakuten Storewide Free Shipping & Direct Discounts Banner",
-    "philosophy": "ä»¥é†’ç›®å¤§ç´…åº•è‰²çµåˆé«˜å°æ¯”é‡‘é»ƒå­—é«”ï¼Œçªå‡ºæ»¿é¡å…é‹èˆ‡ç¾æŠ˜é‡‘é¡é›™é‡å„ªæƒ ã€‚æ­é…ä¿è½æŠ˜æŠµæ¨™ç« èˆ‡å°Žè³¼æŒ‰éˆ•ï¼Œå»ºç«‹å…·æ¥µå¼·è¦–è¦ºå¼•å°Žèˆ‡ä¸‹å–®å¼µåŠ›çš„é›»å•†æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1Og-UJMCj3xjupv2NuaSE1hM_YYOBEcU8.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_365",
-    "colorTheme": "from-red-950 via-slate-900 to-zinc-950",
-    "images": [
-      "/images/optimized/1Og-UJMCj3xjupv2NuaSE1hM_YYOBEcU8.webp",
-      "/images/optimized/136JVrr96kux2RhuTpg43HyVi1ptUzNzl.webp"
-    ]
-  },
-  {
-    "id": "366",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "åœ¨åœ°å†°çƒ¤ç•ªè–¯ç”Ÿé®®ç†±è³£è¡ŒéŠ·æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten Roasted Sweet Potato 7-Pack Super Combo Banner",
-    "philosophy": "ä»¥æº«æš–é‡‘é»ƒèˆ‡å¤§åœ°æ£•è‰²ç‚ºè¦–è¦ºåŸºèª¿ï¼Œå±•ç¤ºå†°çƒ¤ç•ªè–¯çµéœœè³ªæ„Ÿèˆ‡ç¶¿å¯†æ–·é¢ã€‚æ­é…è²·äº”é€ä¸€é™æ™‚æ¨™ç« èˆ‡åœ¨åœ°ç”Ÿé®®è²¼ç´™ï¼Œå‘ˆç¾å¤æ—©å‘³ç¾Žé£Ÿçš„èª˜äººé£Ÿæ…¾å°Žè³¼æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/10KhKgW480PTCjW-g2T1-_BcQJunXW7Wb.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_366",
-    "colorTheme": "from-amber-900 via-orange-950 to-stone-900",
-    "images": [
-      "/images/optimized/10KhKgW480PTCjW-g2T1-_BcQJunXW7Wb.webp",
-      "/images/optimized/1H7SUBpJIsNCKv_s4Cn1p-w-E8KJ80JPF.webp",
-      "/images/optimized/11TLbOupBfMYdQmwO2MoljHjZ4EEFSF-5.webp"
-    ]
-  },
-  {
-    "id": "367",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å¤œæ®ºæ™‚åˆ»é™æ™‚é©šåšŽåƒ¹ æ¨‚å¤©æ·±å¤œç‰¹è³£å°ˆå ´ç„¦é»žå»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Rakuten Midnight Flash Sale Limited Offer Promo Banner",
-    "philosophy": "æŽ¡ç”¨æ·±å¤œç¥žç§˜éœ“è™¹ç´«èˆ‡å€’æ•¸è¨ˆæ™‚äº®ç´…æ•¸å­—ï¼Œç‡Ÿé€ é™æ™‚å¤œæ®ºç‰¹è³£ç·Šè¿«æ„Ÿã€‚æ­é…ç†±é–€å®¶é›»å•†å“åŽ»èƒŒèˆ‡å°æŠ˜æ¨™ç« ï¼Œæ‰“é€ å…·é«˜åº¦é»žæ“Šå¸å¼•åŠ›çš„é›»å•†æ·±å¤œå°ˆå ´ Bannerã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1LFFeC-oP11S34H0jMddglKw2WnhQREWQ.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_367",
-    "colorTheme": "from-blue-950 via-purple-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1LFFeC-oP11S34H0jMddglKw2WnhQREWQ.webp"
-    ]
-  },
-  {
-    "id": "368",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ·±å¤œå®µå¤œç¾Žé£Ÿæ¨‚å¤©å³é£Ÿç†Ÿé£Ÿå°ˆå€æŽ¨æ’­å»£å‘Š",
-    "titleEn": "Rakuten Late Night Craving Gourmet Treats Campaign Banner",
-    "philosophy": "ä»¥æ·±è‰²æš—èª¿èƒŒæ™¯èšç„¦ç†±é¨°é¨°æ»·å‘³èˆ‡çƒ¤é›žè…¿å…‰æ¾¤ï¼Œæ­é…æ€¥é€Ÿé€é”æ™‚é–“å‹³ç« ã€‚çµåˆé«˜å°æ¯”å„ªæƒ å­—é¡èˆ‡é»ƒè‰²é»žæ“ŠæŒ‰éˆ•ï¼Œæ‰“é€ å¼·çƒˆèª˜ç™¼å¤œé–“é£Ÿæ…¾çš„å³é£Ÿç†Ÿé£Ÿæ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1jHFYZR8F3CyIzp76V8f2L1XE8tzMGCf-.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_368",
-    "colorTheme": "from-stone-950 via-amber-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1jHFYZR8F3CyIzp76V8f2L1XE8tzMGCf-.webp"
-    ]
-  },
-  {
-    "id": "369",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å°ç±³ç†±éŠ·å®¶é›»ç‰¹è³£æœƒ æ™ºèƒ½å®¶å±…ä¿ƒéŠ·ç„¦é»žæŽ¨æ’­å»£å‘Š",
-    "titleEn": "Rakuten Xiaomi Smart Home Appliances Special Offer Banner",
-    "philosophy": "æŽ¡ç”¨å°ç±³ç¶“å…¸ç°¡ç´„ç™½èˆ‡æ¥µç°¡ç§‘æŠ€é»‘ï¼Œçªå‡ºæŽƒåœ°æ©Ÿå™¨äººèˆ‡æ™ºæ…§å®¶é›»é€ åž‹ã€‚æ­é…é™åƒ¹é‡‘é¡é†’ç›®å­—é¡èˆ‡ç‰¹è³£æœƒå‹³ç« ï¼Œå±•ç¾ç¾ä»£æ™ºæ…§å®¶å±…çš„ç§‘æŠ€è³ªæ„Ÿèˆ‡ä¿ƒéŠ·å¼µåŠ›ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1AzUl8vIG3uyRUExxWUaMjR1CmI5C8MOp.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_369",
-    "colorTheme": "from-slate-900 via-orange-950 to-stone-900",
-    "images": [
-      "/images/optimized/1AzUl8vIG3uyRUExxWUaMjR1CmI5C8MOp.webp",
-      "/images/optimized/1L7r2Ns_Q4OFzklFThK5G2FaBoHc55V7I.webp"
-    ]
-  },
-  {
-    "id": "370",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "ç±³å®¶ç”Ÿæ´»æ™ºèƒ½å®¶å±…å¤§è³žè³¼ç‰©ä¸»é¡Œæ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten Mi Home Intelligent Living Gadgets Promo Banner",
-    "philosophy": "ä»¥ä¿è½å±…å®¶ç”Ÿæ´»å ´æ™¯çµåˆæ™ºæ…§å®¶é›»ç”¢å“åŽ»èƒŒï¼Œå±•ç¾ç±³å®¶æ¥µç°¡ç™½è¦–è¦ºèªžè¨€ã€‚æ­é…çµæ§‹åŒ–æŠ˜æ‰£èªªæ˜Žèˆ‡ä¸»é¡Œå¤§è³žå‹³ç« ï¼Œå¼•å°Žæ¶ˆè²»è€…å‡ç´šæ™ºæ…§å®¶å±…çš„è¡ŒéŠ·æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1xhVMdUGQzu2EgflzuaiBQJoofGeon6x5.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_370",
-    "colorTheme": "from-zinc-900 via-slate-900 to-indigo-950",
-    "images": [
-      "/images/optimized/1xhVMdUGQzu2EgflzuaiBQJoofGeon6x5.webp",
-      "/images/optimized/1zDd8ahWcSOh5ijupFO80WnwEzfSLVd7H.webp",
-      "/images/optimized/1Eu3gVwtXjaUeLesQ5LFto30YjcCtf4hk.webp",
-      "/images/optimized/11n7Fckm36hbEr_2fR-tMhfqWgFiNlodv.webp",
-      "/images/optimized/1cjhHIBBV8nL-KE_P3glb-C-xlO59wAh8.webp"
-    ]
-  },
-  {
-    "id": "371",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å¹´å¾Œè¼•ç›ˆéŸè‚¥æ©Ÿèƒ½é£Ÿå“ çº–é«”é‹å‹•ç‰¹å±•è¡ŒéŠ·å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Rakuten Post-LNY Fitness & Diet Function Food Banner",
-    "philosophy": "æŽ¡ç”¨æ´»åŠ›äº®ç¶ èˆ‡å‹•æ„Ÿç²‰ç´«é…è‰²ï¼Œçµåˆæ©Ÿèƒ½ç‡•éº¥èˆ‡é‹å‹•è£å‚™åŽ»èƒŒé™£åˆ—ã€‚æ­é…å¹´å¾Œçº–é«”è²·ä¸€é€ä¸€é†’ç›®å­—é¡èˆ‡ç‰¹å±•æ¨™ç« ï¼Œå»ºç«‹å…·é‹å‹•å¥åº·æ°›åœçš„ä¿ƒéŠ·å°Žè³¼è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/15VcigKecwxLlbe9mR8XawWiC7dqeVYvQ.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_371",
-    "colorTheme": "from-emerald-950 via-teal-900 to-slate-950",
-    "images": [
-      "/images/optimized/15VcigKecwxLlbe9mR8XawWiC7dqeVYvQ.webp",
-      "/images/optimized/1LrV7QBLtF9SaQk873gsqYx5sl-l3AO86.webp"
-    ]
-  },
-  {
-    "id": "372",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ¯è¦ªç¯€æ„Ÿè¬ç»ç¦®å…¨é¤¨å„ªæƒ å®˜ç¶²æŽ¨æ’­å»£å‘Š",
-    "titleEn": "Rakuten Mother's Day Warm Gift Premium 85% Off Banner",
-    "philosophy": "ä»¥å…¸é›…åº·ä¹ƒé¦¨ç²‰èˆ‡æº«é¦¨é‡‘è‰²å…‰æšˆç‚ºèƒŒæ™¯ï¼Œè¥¯æ‰˜å°ˆæ«ƒä¿é¤Šå“èˆ‡ç¦®ç›’ç²¾ç·»è³ªæ„Ÿã€‚æ­é…æ„Ÿè¬ç»ç¦®æŠ˜æŠµæ¨™ç¤ºèˆ‡é¸è³¼å¼•å°Žï¼Œç‡Ÿé€ ç¯€æ…¶æ„Ÿæ©æ°›åœçš„å®˜ç¶²æŽ¨æ’­å»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1QdiSShVQlYgHdZD2EkMz__m5fBqOhywA.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_372",
-    "colorTheme": "from-rose-950 via-neutral-900 to-neutral-950",
-    "images": [
-      "/images/optimized/1QdiSShVQlYgHdZD2EkMz__m5fBqOhywA.webp",
-      "/images/optimized/1N2I1qZMUZ1K_WSJUaVomxAARYdZebd3V.webp",
-      "/images/optimized/1Pi8u_N11ziKeBrHYfRex5U9YBJV9jhfK.webp",
-      "/images/optimized/1K_Tf1iemE2yPw1ZoRhl3cz1r52F99HVl.webp",
-      "/images/optimized/1SbKSkcZZSr-YzTkSet3vhp7-Xmme63jM.webp"
-    ]
-  },
-  {
-    "id": "373",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å¤æ—¥æ¸…æ¶¼é¿æš‘ç¥žç‰© æ‡¶äººæŽ›è„–é›™é¢¨æ‰‡éš¨è¡Œå»£å‘Šèˆ‡EDM",
-    "titleEn": "Rakuten Summer Cooling Portable Neck Fans Promo Banner",
-    "philosophy": "æŽ¡ç”¨å†°çˆ½å¤©è—èˆ‡æ°´æ³¢æ¼¸å±¤ç‚ºèƒŒæ™¯ï¼Œçªé¡¯ç™½è‰²æŽ›è„–é¢¨æ‰‡æ¶¼æ„Ÿé€ åž‹èˆ‡å™´éœ§ç´°ç¯€ã€‚æ­é…é™æ™‚ç‰¹æƒ æ¨™ç‰Œèˆ‡é¿æš‘ç¥žç‰©æ¨™èªžï¼Œæ‰“é€ æ¸…æ¶¼æ„Ÿåè¶³çš„å¤æ—¥éš¨è¡Œå®¶é›»å»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1-nGW_XnuVZOIKNBQ8Nsd7xwj_6O1A-C1.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_373",
-    "colorTheme": "from-sky-950 via-blue-900 to-indigo-950",
-    "images": [
-      "/images/optimized/1-nGW_XnuVZOIKNBQ8Nsd7xwj_6O1A-C1.webp",
-      "/images/optimized/1eJtkpGvuPodrdsm98T3ZLzU2P1YRv-3b.webp",
-      "/images/optimized/1y5lgrlBL1vEho8iFwE7uJULdUVu8tctI.webp"
-    ]
-  },
-  {
-    "id": "374",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ–°æ˜¥è¿Žæ˜¥è³¼ç‰©ç¯€ é–‹æ˜¥é©šå–œå…¨é¤¨3æŠ˜èµ·æŽ¨æ’­æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten LNY Spring Festival Mega Sale 70% Off Banner",
-    "philosophy": "ä»¥å–œæ…¶å¤§ç´…èƒŒæ™¯èˆ‡é‡‘é»ƒé–‹æ˜¥å¤§å‰æ›¸æ³•å­—é¡ç‚ºæ ¸å¿ƒï¼Œçµåˆæ»¿æ»¿ç´…åŒ…èˆ‡å½©å¸¶å¹¾ä½•ã€‚æ­é…å…¨é¤¨ä¸‰æŠ˜èµ·é†’ç›®æ¨™ç« ï¼Œå»ºç«‹ç†±é¬§æ­¡é¨°ä¸”å…·å¼·çƒˆå°Žè³¼æ•ˆåŠ›çš„æ–°æ˜¥æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1uHh2RafH5hkru8l8s3VIKxAfKXYxPttT.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_374",
-    "colorTheme": "from-red-950 via-amber-950 to-stone-900",
-    "images": [
-      "/images/optimized/1uHh2RafH5hkru8l8s3VIKxAfKXYxPttT.webp",
-      "/images/optimized/1zoLjS8HdSRHisIIuMXyW6J-Oq7HnqYi5.webp",
-      "/images/optimized/1NQ8VsNKwAYAd0_j1iRt4sFitA3cvjYy8.webp"
-    ]
-  },
-  {
-    "id": "375",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ˜¥éŠé‡Žé¤éœ²ç‡Ÿç¾Žé£Ÿè¶£ é›¶å˜´ç”œå“å°ˆå€ä¿ƒéŠ·æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten Spring Outing Picnic Treats Campaign Banner",
-    "philosophy": "æŽ¡ç”¨é‡Žé¤æ ¼å­å¸ƒç´‹æ¨£èˆ‡æˆ¶å¤–ç¶ æ„èƒŒæ™¯ï¼Œå±•ç¤ºè±å¯Œé›¶é£ŸåŒ…è£èˆ‡æ‰‹ä½œç”œé»žåŽ»èƒŒã€‚æ­é…æ˜¥éŠéœ²ç‡Ÿå°ˆå€æ¨™ç« èˆ‡çµ„åˆæŠ˜æ‰£ï¼Œæ‰“é€ å…·ä¼‘é–’æ°›åœçš„ç¾Žé£Ÿä¿ƒéŠ· Bannerã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1vJbGVtT1HVd97Lsa3QLWTaga34bwk_P4.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_375",
-    "colorTheme": "from-emerald-950 via-amber-950 to-neutral-900",
-    "images": [
-      "/images/optimized/1vJbGVtT1HVd97Lsa3QLWTaga34bwk_P4.webp",
-      "/images/optimized/168Q5RXzthA7m0sEZwz4sX-D2-QJSp2iJ.webp",
-      "/images/optimized/1zx0E2IiZjEmbw__1GbeFnwZ9ildT9L_q.webp"
-    ]
-  },
-  {
-    "id": "376",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å†¬æ—¥é€²è£œç«é‹æ¹¯åº•æ¨‚å¤©ç”Ÿé®®ç¦¦å¯’å°ˆå ´å»£å‘Š",
-    "titleEn": "Rakuten Winter Warm Hotpot Soup Bases Campaign Banner",
-    "philosophy": "ä»¥æ»¾ç‡™éº»è¾£ç«é‹èˆ‡å„ªè³ªç‰›è‚‰ç‰‡å¯¦ç…§ç‚ºè¦–è¦ºä¸»è§’ï¼Œé‹ç”¨æ·±ç´…æš–è‰²èª¿å‚³é”ç¦¦å¯’æ°£æ¯ã€‚æ­é…ç”Ÿé®®å°ˆå ´æŠ˜æ‰£æ¨™ç« èˆ‡å…é‹å„ªæƒ ï¼Œå»ºç«‹èª˜ç™¼å†¬æ—¥åœçˆæ¸´æœ›çš„ä¿ƒéŠ·æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1nGCAh_0wbN68vKGQ6vIv7ii0k7UzkNqv.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_376",
-    "colorTheme": "from-stone-950 via-red-950 to-amber-950",
-    "images": [
-      "/images/optimized/1nGCAh_0wbN68vKGQ6vIv7ii0k7UzkNqv.webp",
-      "/images/optimized/1ctlO_J4fIJXTcnEK9c34InX2xWQ1Oz_l.webp",
-      "/images/optimized/1aaiG-pMbOnKGEgyjfSPE75yrcKEOnPW4.webp"
-    ]
-  },
-  {
-    "id": "377",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ¨‚å¤©2022æ¶¼å¤è³¼ç‰©ç¯€ å®˜æ–¹ä¸»é¡ŒEDMè¦–è¦ºèˆ‡åˆ‡ç‰ˆè¨­è¨ˆ",
-    "titleEn": "Rakuten 2022 Cool Summer Shopping Festival EDM Design",
-    "philosophy": "æŽ¡ç”¨å†°è—èˆ‡èŠ’æžœé»ƒä¸»é¡Œé…è‰²ï¼Œçµåˆæ¸…æ¶¼å†°å“èˆ‡æ¶ˆæš‘å®¶é›»çµæ§‹åŒ–ä¸‰å€å¡Šåˆ‡ç‰ˆã€‚æ­é…æ¶¼å¤è³¼ç‰©ç¯€ä¸»é¡Œå‹³ç« èˆ‡ç›´è¦ºé»žæ“Šé€£çµï¼Œå‘ˆç¾æ¸…æ–°æ¢ç†çš„é›»å­å ±è¨­è¨ˆã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1A6fAlOQefFxM3Cpnxqwhyn1rNsYs6yfN.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_377",
-    "colorTheme": "from-sky-950 via-slate-900 to-indigo-950",
-    "images": [
-      "/images/optimized/1A6fAlOQefFxM3Cpnxqwhyn1rNsYs6yfN.webp"
-    ]
-  },
-  {
-    "id": "378",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ¨‚å¤©2022ç››å¤è¿Žå¤è³¼ç‰©ç¯€ å®˜æ–¹å¹´åº¦é©šå–œEDMè¨­è¨ˆæŽ’ç‰ˆ",
-    "titleEn": "Rakuten 2022 Mid-Summer Carnival Master EDM Layout",
-    "philosophy": "ä»¥é®®è‰·è¥¿ç“œç´…èˆ‡æ°´æ³¢è—é›™è‰²äº¤ç¹”ï¼Œç·¨æŽ’é˜²æ›¬ç”¨å“ã€æ°´ä¸ŠçŽ©å…·èˆ‡æ°£æ³¡æ°´å¤šåˆ—é¸å“ã€‚æ­é…ç››å¤é©šå–œæŠ˜æ‰£æ¨™ç±¤èˆ‡ç¸±æ©«ç¶²æ ¼ï¼Œæ‰“é€ æ´»åŠ›å¼µåŠ›åè¶³çš„å¹´åº¦ EDM æŽ’ç‰ˆã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1aJZfZSlBS5M43zLqQoZkNloQ_KGwCRHq.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_378",
-    "colorTheme": "from-blue-950 via-orange-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1aJZfZSlBS5M43zLqQoZkNloQ_KGwCRHq.webp",
-      "/images/optimized/12aOJZpSPM1O2TR4RDxu_SUCksMJaXlBt.webp",
-      "/images/optimized/1PAI7zgUSRkdIUMdzCXOvrohBlGfXImFd.webp"
-    ]
-  },
-  {
-    "id": "379",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "å¹´ä¸­æ…¶éœ‡æ’¼ç‰¹è³£ æ­¡æ…¶åŠå¹´åº¦ç››å…¸è³¼ç‰©å®˜ç¶²æŽ¨æ’­å»£å‘Š",
-    "titleEn": "Rakuten Glorious Mid-Year Shopping Festival Campaign",
-    "philosophy": "æŽ¡ç”¨è¯éº—é‡‘é»ƒç´™èŠ±èˆ‡ç†±æƒ…å¤§ç´…å€å¡Šï¼Œçªé¡¯å¹´ä¸­æ…¶éœ‡æ’¼åŠåƒ¹æ¨™é¡Œèˆ‡ç†±éŠ·å®¶é›»åŽ»èƒŒã€‚æ­é…é†’ç›®ä¿ƒéŠ·æ¨™ç±¤èˆ‡åº«å­˜å€’æ•¸æŒ‰éˆ•ï¼Œç‡Ÿé€ åŠå¹´åº¦ç››å…¸çš„éœ‡æ’¼è³¼ç‰©å¼µåŠ›ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1VZEBuqo32QdX2ABC4clEBpYyy1ZEJp6V.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_379",
-    "colorTheme": "from-purple-950 via-fuchsia-950 to-slate-950",
-    "images": [
-      "/images/optimized/1VZEBuqo32QdX2ABC4clEBpYyy1ZEJp6V.webp",
-      "/images/optimized/1N-Ntq_CJ1XrUmWr-cZBM93CTpje2GwU8.webp",
-      "/images/optimized/1ggpSjhkPpwRLwueRJgCrvbPQbP4RZYOp.webp",
-      "/images/optimized/1ml42BktqwAmmdG7JNv-5_-4ksbR6bCbo.webp",
-      "/images/optimized/147AIXLKU1nbCcG8WdbgbN4XO6X3VcYzh.webp"
-    ]
-  },
-  {
-    "id": "380",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "ç››å¤æ¶¼å¤ç˜‹äº«å†°å“ç¾Žé£Ÿ æš‘å‡æ¶ˆæš‘ç†Ÿé£Ÿå®˜ç¶²å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Rakuten Summer Cool Treats & Gourmet Festival Banner",
-    "philosophy": "ä»¥å†°å•¤é…’å‡èšæ°´æ»´èˆ‡ç²¾ç·»ä¸²ç‡’å¯¦ç…§ç‚ºä¸»è§’ï¼Œæ­é…æ²æ¶¼æ·±è—èˆ‡ç†±æƒ…æ©˜é»ƒè‰²å½©ã€‚çµåˆæ¶ˆæš‘ç¾Žé£Ÿå°ˆå±¬æ¨™ç« èˆ‡é™æ™‚æŠ˜æŠµï¼Œå»ºç«‹å¸å¼•å¤æ—¥å¤œé–“æ¶ˆè²»çš„ç†Ÿé£Ÿå»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1O940tdV9ydRJLpJNyMglfmLZ9ATM-0Z0.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_380",
-    "colorTheme": "from-sky-950 via-emerald-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1O940tdV9ydRJLpJNyMglfmLZ9ATM-0Z0.webp",
-      "/images/optimized/1ZFI5ERFFZSMs1cgnVln1lijubaqIAR4G.webp"
-    ]
-  },
-  {
-    "id": "381",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "çŠ€ç‰›ç›¾è»è¦ç´šé˜²æ‘”é˜²è­· 3Cé…ä»¶å¤§è³žè¡ŒéŠ·æŽ¨æ’­å»£å‘Š",
-    "titleEn": "Rakuten RhinoShield Armor Military Grade Phone Cases",
-    "philosophy": "æŽ¡ç”¨ç§‘æŠ€æ·±ç°èƒŒæ™¯èˆ‡è€è¡æ“Šå¹¾ä½•ç·šæ¢ï¼Œçªå‡ºçŠ€ç‰›ç›¾é˜²æ‘”æ‰‹æ©Ÿæ®¼ç´°ç¯€èˆ‡è‰²å½©é¸æ“‡ã€‚æ­é…è»è¦é˜²æ‘”èªè­‰æ¨™ç« èˆ‡ç‰¹æƒ è¨Šæ¯ï¼Œå‘ˆé¡¯å …å›ºé˜²è­·èˆ‡æ½®æµè³ªæ„Ÿçš„æŽ¨æ’­è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1966QoPDVUGvqIjPpkKW1TqKIXgOrZEES.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_381",
-    "colorTheme": "from-neutral-950 via-slate-900 to-emerald-950",
-    "images": [
-      "/images/optimized/1966QoPDVUGvqIjPpkKW1TqKIXgOrZEES.webp",
-      "/images/optimized/14g4FRnipuw_GKDmvTOFPJvBpFgvwr7VN.webp"
-    ]
-  },
-  {
-    "id": "382",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "ç±³å®¶é«˜é »è²æ³¢é›»å‹•ç‰™åˆ· å“ç‰Œç‰¹è³£é™æ™‚ä¸‹æ®ºæ©«å¹…å»£å‘Š",
-    "titleEn": "Rakuten Xiaomi Sonic Electric Toothbrush Promo Banner",
-    "philosophy": "ä»¥ç´”æ·¨æ¥µç°¡ç™½èˆ‡æ°´æ³¢è—é…è‰²ç‚ºåº•ï¼Œè¥¯æ‰˜è²æ³¢é›»å‹•ç‰™åˆ·åœ“æ½¤åˆ·æŸ„èˆ‡éœ‡å‹•é »çŽ‡èªªæ˜Žã€‚æ­é…é™æ™‚ä¸‹æ®ºé‡‘é¡å‹³ç« èˆ‡ç°¡ç´„å­—é«”æŽ’ç‰ˆï¼Œå‘ˆç¾é«˜è³ªæ„Ÿå€‹äººè­·ç†å®¶é›» Bannerã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1cDrY2WKFUuNNGcmlqZw6P3GT7NXlYuBe.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_382",
-    "colorTheme": "from-sky-950 via-slate-900 to-indigo-950",
-    "images": [
-      "/images/optimized/1cDrY2WKFUuNNGcmlqZw6P3GT7NXlYuBe.webp"
-    ]
-  },
-  {
-    "id": "383",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "æ—¥æœ¬èŠ±çŽ‹KAOè’¸æ°£èˆ’ç·©çœ¼ç½© å±…å®¶è­·ç†æ¨‚å¤©ç‰¹æƒ æ©«å¹…",
-    "titleEn": "Rakuten Japan KAO Steam Warm Eye Mask Comfort Banner",
-    "philosophy": "æŽ¡ç”¨èˆ’ç·©è–°è¡£è‰ç´«èˆ‡æŸ”å’Œå…‰æšˆèƒŒæ™¯ï¼Œèšç„¦èŠ±çŽ‹è’¸æ°£çœ¼ç½©åŒ…è£èˆ‡æº«ç†±èˆ’ç·©åœ–ç¤ºã€‚æ­é…ç‰¹æƒ ç®±è³¼æŠ˜æ‰£å­—æ¨£èˆ‡å±…å®¶è­·ç†æ¨™ç« ï¼Œå»ºç«‹å…·ç™‚ç™’æ„Ÿèˆ‡ä¸‹å–®å¸å¼•åŠ›çš„æ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1N7dIKxNwRFLEexSVH5OLoR2qOzIVL1d2.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_383",
-    "colorTheme": "from-purple-950 via-rose-950 to-neutral-900",
-    "images": [
-      "/images/optimized/1N7dIKxNwRFLEexSVH5OLoR2qOzIVL1d2.webp"
-    ]
-  },
-  {
-    "id": "384",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "è²·ä¸€é€ä¸‰æ„Ÿæ©å›žé¥‹æ¨‚å¤©å®˜ç¶²ç„¦é»žä¿ƒéŠ·å»£å‘Š",
-    "titleEn": "Rakuten Buy 1 Get 3 Free Value Shock Promo Banner",
-    "philosophy": "ä»¥æ»¿è¼‰è´ˆå“ç´™ç®±å…‰å½±èˆ‡é«˜å°æ¯”é»ƒç´…æ¨™ç±¤ç‚ºè¦–è¦ºä¸­å¿ƒï¼Œçªå‡ºè²·ä¸€é€ä¸‰è¶…å€¼å›žé¥‹ã€‚æ­é…å¤§å­—ç´šä¿ƒéŠ·æ¨™é¡Œèˆ‡å¼•å°ŽæŒ‰éˆ•ï¼Œæ‰“é€ å…·éœ‡æ’¼è¦–è¦ºæ•ˆæžœçš„å®˜ç¶²ç„¦é»žå»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1RIA91P3hxwsAZx8MLqcwSTFGgWFEbq6j.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_384",
-    "colorTheme": "from-red-950 via-amber-950 to-stone-900",
-    "images": [
-      "/images/optimized/1RIA91P3hxwsAZx8MLqcwSTFGgWFEbq6j.webp"
-    ]
-  },
-  {
-    "id": "385",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "è¶…ç´šç˜‹æ¶å…¨é¤¨ä½Žè‡³5æŠ˜ é©šå¤©å†å›žé¥‹33%æŽ¨æ’­æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten Super Sale 50% Off & 33% Extra Rewards Banner",
-    "philosophy": "æŽ¡ç”¨è­¦ç¤ºé»ƒé»‘æ–œç´‹èˆ‡ç†±çƒˆç´…åº•é…è‰²ï¼Œæ”¾å¤§äº”æŠ˜èˆ‡æœ€é«˜ 33% é©šå¤©å›žé¥‹å­—é¡ã€‚çµåˆå¹¾ä½•æŠ˜åƒ¹åˆ¸åœ–ç¤ºèˆ‡é ˜åˆ¸å°Žè³¼æŒ‰éˆ•ï¼Œæ‰“é€ åˆºæ¿€ä¿ƒéŠ·æ¶è³¼çš„é›»å•†æ©«å¹…å»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1ws2LdIgtoziMHh_wt1xbje65Zd8L4oiY.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_385",
-    "colorTheme": "from-red-950 via-fuchsia-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1ws2LdIgtoziMHh_wt1xbje65Zd8L4oiY.webp",
-      "/images/optimized/1DJ83jfGcdqhPaOD1uyCf5ezxnkrMy0eV.webp"
-    ]
-  },
-  {
-    "id": "386",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é†«ç™‚ç´šé›™é‹¼å°é˜²è­·å£ç½© å“ç‰Œè¯åˆç‰¹æƒ æŽ¨æ’­å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "Rakuten Medical Protective Face Masks Multi-Packs Banner",
-    "philosophy": "ä»¥ç´”æ·¨é†«è—¥è—èˆ‡é›™è‰²å£ç½©çµæ§‹åŒ–æŽ’åˆ—ç‚ºèƒŒæ™¯ï¼Œçªå‡ºé›™é‹¼å°èªè­‰èˆ‡é˜²è­·å“è³ªã€‚æ­é…å“ç‰Œè¯åˆç‰¹æƒ æ¨™ç« èˆ‡ç®±è³¼çµ„åˆé‡‘é¡ï¼Œå»ºç«‹å®‰å¿ƒå°ˆæ¥­çš„å¥åº·ç”¨å“æŽ¨æ’­è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1ST7nL55GAsMqkeCCq13mvj5xn-nNV-Dp.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_386",
-    "colorTheme": "from-blue-950 via-slate-900 to-sky-950",
-    "images": [
-      "/images/optimized/1ST7nL55GAsMqkeCCq13mvj5xn-nNV-Dp.webp",
-      "/images/optimized/1KPcbNSdGukZ0XnqsBkYLsn8slYQeg8qi.webp"
-    ]
-  },
-  {
-    "id": "387",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é–ƒå…‰æƒ…äººè³¼ç‰©ç¯€ æµªæ¼«å¥½ç¦®é©šå–œåŠ ç¢¼è³¼ç‰©æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Rakuten Valentine Flash Loving Gift Festival Campaign",
-    "philosophy": "æŽ¡ç”¨æµªæ¼«ç²‰ç´…çµ²å¸¶èˆ‡é¦™æ°´å°æˆ’ç²¾ç·»åŽ»èƒŒï¼Œæ­é…æŸ”å’Œå…‰èŠ’èˆ‡æµªæ¼«ç¦®å“æ¨™ç« ã€‚çµåˆæƒ…äººç¯€åŠ ç¢¼æŠ˜æ‰£å­—æ¨£èˆ‡é¸è³¼é€£çµï¼Œç‡Ÿé€ ç”œèœœç¯€æ…¶æ°›åœçš„è³¼ç‰©ä¸»é¡Œæ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1OPvvlA_RIOMnm1uD2QthNJJoRvQOPsQo.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_387",
-    "colorTheme": "from-rose-950 via-purple-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1OPvvlA_RIOMnm1uD2QthNJJoRvQOPsQo.webp",
-      "/images/optimized/16WxyevE3khJpMzEN6n8dXKqLLxzkOE95.webp",
-      "/images/optimized/10BYm2Ad_LzYaxSntbnhPabe3LQ0U3ZSQ.webp",
-      "/images/optimized/1t5iEkTY1rNzUMCmp7crqvR4jJQztPar3.webp",
-      "/images/optimized/1xx1raZWt3ewSlhnyLrcgKoaOP6Btd27T.webp"
-    ]
-  },
-  {
-    "id": "389",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "é›™ååœ‹æ…¶ç‹‚æ­¡å¤©å¤©æœ‰å¥½åº· æ¨‚å¤©åæœˆé™å®šä¿ƒéŠ·æ©«å¹…",
-    "titleEn": "Rakuten Double Tenth National Day Daily Surprise Banner",
-    "philosophy": "ä»¥é›™ååœ‹æ…¶ç´…è—ç™½å¹¾ä½•æ——å¹Ÿç·šæ¢ç‚ºåŸºåº•ï¼Œçµåˆå¤©å¤©æ¶å¥½åº·é™æ™‚æŠ˜åƒ¹åˆ¸æ¨™ç‰Œã€‚æ­é…ç†±éŠ·å•†å“åŽ»èƒŒé™£åˆ—èˆ‡é™å®šæŠ˜æ‰£ï¼Œæ‰“é€ ç†±çƒˆå¥”æ”¾çš„åæœˆç¯€æ…¶ä¿ƒéŠ· Bannerã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1ZPq635m5DfSZAVuWt2vD2JD02mrVLK4S.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_389",
-    "colorTheme": "from-blue-950 via-red-950 to-neutral-950",
-    "images": [
-      "/images/optimized/1ZPq635m5DfSZAVuWt2vD2JD02mrVLK4S.webp"
-    ]
-  },
-  {
-    "id": "390",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "éš¨èº«æ”œå¸¶360åº¦æ¸¦è¼ªç„¡è‘‰é ¸æŽ›é¢¨æ‰‡ æ¸…æ¶¼ç‰¹è³£å»£å‘Š",
-    "titleEn": "Rakuten 360-Degree Portable Bladeless Neck Fans Banner",
-    "philosophy": "æŽ¡ç”¨é…·æ¶¼å†°è—èˆ‡ç„¡è‘‰é¢¨æ‰‡æµç·šå¹¾ä½•å…‰æŸï¼Œçªé¡¯ 360 åº¦æ¸¦è¼ªå‡ºé¢¨èˆ‡è¼•é‡çµæ§‹ã€‚æ­é…å¤æ—¥æ¸…æ¶¼ç‰¹è³£æ¨™ç« èˆ‡ç›´è¦ºæŠ˜æ‰£å­—æ¨£ï¼Œå‘ˆç¾é«˜åº¦æ¶ˆæš‘èª˜å› çš„éš¨èº«å®¶é›»å»£å‘Šã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1qC6HJRAw0tPsnyIz4yGaFramDzAfOwj7.webp",
-    "placeholderId": "IMAGE_NEW_RAKUTEN_390",
-    "colorTheme": "from-sky-950 via-slate-900 to-indigo-950",
-    "images": [
-      "/images/optimized/1qC6HJRAw0tPsnyIz4yGaFramDzAfOwj7.webp",
-      "/images/optimized/1V23M-YwnEigfxkXayyiodsDFwEKy9zqr.webp",
-      "/images/optimized/1ueXszhQQnLaV6dGqA9xtNcf8mQqcorcr.webp"
-    ]
-  },
-  {
-    "id": "391",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "éœ²å¤©æ‹è³£ æªé®®ç´šäººæ°£ä¸»æ‰“ç¾Žé£Ÿ æ­¡æ¨‚ç†±è³£ä¿ƒéŠ·æ©«å¹…å»£å‘Š",
-    "titleEn": "Ruten Auction Top-Selling Hot Food & Gourmet Banner Series",
-    "philosophy": "ä»¥å†°éŽ®å†°å¡Šåº•åº§è¥¯æ‰˜æ¾Žæ¹ƒé®®è¦èˆ‡å¹²è²å¯¦ç…§ï¼Œæ­é…éœ²å¤©æ‹è³£æªé®®ç´šä¸»é¡Œé»ƒè‰²æ¨™ç« ã€‚çµåˆç”Ÿé®®é™æ™‚æŠ˜æ‰£èˆ‡å…é‹è¨´æ±‚ï¼Œæ‰“é€ ä»¤äººåž‚æ¶Žä¸”å…·é«˜è½‰åŒ–çŽ‡çš„ç”Ÿé®®ç¾Žé£Ÿæ©«å¹…ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/14OQ3TxIDRe3PnBwaHof2vbM7eiq4HvYV.webp",
-    "placeholderId": "IMAGE_NEW_RUTEN_391",
-    "colorTheme": "from-amber-950 via-orange-950 to-stone-900",
-    "images": [
-      "/images/optimized/14OQ3TxIDRe3PnBwaHof2vbM7eiq4HvYV.webp",
-      "/images/optimized/16USWQmbRLnaj6sr4CByXUNtx04sckSnZ.webp"
-    ]
-  },
-  {
-    "id": "392",
-    "category": "è³£å ´Banneræ©«å¹…å»£å‘Š",
-    "title": "éœ²å¤©æ‹è³£ å¤æ®ºæŠ˜æ‰£ç¢¼å¤§é‡‹å‡º é™æ™‚ç¥žç¥•å¥½åº·æŽ¨æ’­æ©«å¹…è¨­è¨ˆ",
-    "titleEn": "Ruten Auction Summer Crazy Coupon Codes Special Offer Banner",
-    "philosophy": "æŽ¡ç”¨å¤æ—¥ç¥žç§˜é»‘é‡‘å¯¶ç®±èˆ‡ç‚«å½©æŠ˜æ‰£ç¢¼å­—é¡ï¼Œçµåˆæ»¿é¡ç¾æŠ˜é‡‘é¡æ¨™ç‰Œã€‚æ­é…éœ²å¤©æ‹è³£å¤æ®ºæ´»å‹•å‹³ç« èˆ‡å³åˆ»é ˜åˆ¸ CTA æŒ‰éˆ•ï¼Œå»ºç«‹å¼•äººå¥½å¥‡èˆ‡æ¶é ˜çš„ä¿ƒéŠ·è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai"
-    ],
-    "imageUrl": "/images/optimized/1ZrxhaRU56R3al9jkwC4JMGOVx7Wh2qui.webp",
-    "placeholderId": "IMAGE_NEW_RUTEN_392",
-    "colorTheme": "from-orange-950 via-amber-950 to-stone-900",
-    "images": [
-      "/images/optimized/1ZrxhaRU56R3al9jkwC4JMGOVx7Wh2qui.webp",
-      "/images/optimized/1tq-wQ9unG_XRBvk44BR0ZGImq6XTZdwK.webp",
-      "/images/optimized/19PrQwTOTZQZsdAZ4msGM9H4OD6t_EXBA.webp"
-    ]
-  },
-  {
-    "id": "393",
-    "category": "å½±éŸ³èˆ‡å¤šåª’é«”è¨­è¨ˆ",
-    "title": "BLAST SCOOPå†°æ·‡æ·‹è¼ªæ’­çŸ­å½±éŸ³å»£å‘Šè¨­è¨ˆ",
-    "titleEn": "BLAST SCOOP Ice Cream Premium Carousel Promo Short Video",
-    "philosophy": "åˆ©ç”¨é«˜å°æ¯”ç²‰é»ƒé…è‰²èˆ‡å‹•æ…‹æ—‹è½‰åº•åº§å±•ç¾å†°æ·‡æ·‹é‡é«”ï¼Œçµåˆé‡‘å±¬å‹ºæŒ–å–çš„æ…¢å‹•ä½œç‰¹å¯«ã€‚ç•«é¢ä¸‹æ–¹é…ç½®é†’ç›®çš„ç„¡è¥¯ç·šæ´»å‹•æ¨™èªžï¼Œå¡‘é€ é«˜è¦–è¦ºå¼·åº¦çš„ç¤¾ç¾¤è¼ªæ’­å»£å‘Šã€‚",
-    "tools": [
-      "AE",
-      "Premiere",
-      "å‹•æ…‹è¨­è¨ˆ",
-      "å½±ç‰‡å‰ªè¼¯"
-    ],
-    "imageUrl": "https://img.youtube.com/vi/jJGaCSdz5wQ/maxresdefault.jpg",
-    "placeholderId": "VIDEO_BLAST_SCOOP_393",
-    "colorTheme": "from-pink-950 via-rose-950 to-neutral-900",
-    "images": [
-      "https://img.youtube.com/vi/jJGaCSdz5wQ/maxresdefault.jpg",
-      "https://img.youtube.com/vi/jJGaCSdz5wQ/0.jpg"
-    ],
-    "videoUrl": "https://youtube.com/shorts/jJGaCSdz5wQ"
-  },
-  {
-    "id": "394",
-    "category": "å½±éŸ³èˆ‡å¤šåª’é«”è¨­è¨ˆ",
-    "title": "VIVIBABYæ–°æ¬¾å¤šåŠŸèƒ½å¬°å…’åºŠæ‹†è£æ“ä½œæ‰‹å†Š",
-    "titleEn": "VIVIBABY 2024 Multi-Functional Baby Crib Assembly & Step-by-Step Operations Video Guide",
-    "philosophy": "ä»¥ä¿¯è¦–è¦–è§’æ¸…æ™°è¨˜éŒ„åŽŸæœ¨å¬°å…’åºŠçµ„è£éŽç¨‹ï¼Œé‹ç”¨åœ“å½¢é®ç½©æ”¾å¤§å¡æ¦«æŽ¥åˆç´°ç¯€ã€‚æ­é…æ­¥é©ŸåŒ–çš„åœ–ç¤ºèˆ‡ç°¡æ½”å­—é«”ï¼Œæä¾›å…·å‚™å¯¦ç”¨å°Žå¼•èˆ‡è¦–è¦ºæµæš¢åº¦çš„æ•™å­¸çŸ­ç‰‡ã€‚",
-    "tools": [
-      "Premiere",
-      "å½±ç‰‡å‰ªè¼¯",
-      "å¾Œè£½åŒ…è£",
-      "æ‹†è£æŒ‡å¼•"
-    ],
-    "imageUrl": "https://img.youtube.com/vi/vXOdnP_Z_Tg/maxresdefault.jpg",
-    "placeholderId": "VIDEO_VIVIBABY_394",
-    "colorTheme": "from-amber-950 via-stone-900 to-orange-950",
-    "images": [
-      "https://img.youtube.com/vi/vXOdnP_Z_Tg/maxresdefault.jpg",
-      "https://img.youtube.com/vi/vXOdnP_Z_Tg/0.jpg"
-    ],
-    "videoUrl": "https://www.youtube.com/watch?v=vXOdnP_Z_Tg",
-    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
-  },
-  {
-    "id": "395",
-    "category": "å•†æ¥­è¦–è¦ºæ”å½±",
-    "title": "Capella X9 PRO é›™å‘å¬°å…’æŽ¨è»Šå°ˆæ¥­ç”¢å“æ”å½±",
-    "titleEn": "Capella X9 PRO Premium Reversible Stroller Studio Commercial Photography & Aesthetic Scene Shoot",
-    "philosophy": "æŽ¡æˆ¶å¤–è‡ªç„¶å…‰èˆ‡æ£šæ‹ç‡ˆå…‰çµåˆï¼Œç²¾æº–æ•æ‰æŽ¨è»Šé›™å‘æ›å‘çµæ§‹èˆ‡é¿éœ‡è¼ªçµ„ç´°ç¯€ã€‚æ­é…ç”Ÿæ´»æƒ…å¢ƒæ§‹åœ–èˆ‡é«˜å°æ¯”è³ªæ„Ÿå¾Œè£½ï¼Œå‘ˆç¾æ¯å¬°ç”¨å“ç‰¹æ€§çš„å°ˆæ¥­ç”¢å“æ”å½±ã€‚",
-    "tools": [
-      "æ£šå…§æ‰“å…‰",
-      "å–®çœ¼ç›¸æ©Ÿ",
-      "å¾®è·é¡é ­",
-      "åŽ»èƒŒç²¾ä¿®",
-      "å ´æ™¯å»ºæ§‹"
-    ],
-    "imageUrl": "/images/optimized/1y60Ob9wIB-zzwA34Y1JCIZjUnRMQRJhI.webp",
-    "placeholderId": "IMAGE_CAMPAIGN_KIDS_395",
-    "colorTheme": "from-amber-950 via-stone-900 to-amber-900",
-    "images": [
-      "/images/optimized/1y60Ob9wIB-zzwA34Y1JCIZjUnRMQRJhI.webp",
-      "/images/optimized/1K4c52uFOMK1DtKW17C1wMPvTPHNBAw5r.webp",
-      "/images/optimized/1MC0AdlVboo1ydXbnKWS5MSm7hkFojaRi.webp",
-      "/images/optimized/1XV4ZxfXFnEh6O0JhpOimphlRDKXgbmaY.webp",
-      "/images/optimized/1ushuMLp71wHSJinlQbdRTewG9lLo73-g.webp"
-    ],
-    "link": "https://www.stbaby.com.tw/SalePage/Index/7994984?lang=zh-TW&srsltid=AfmBOorgep1aDAuaHeIMMBRsPEHgV68-DXV5n_wv0s_8nbzRHXkPBw7h"
-  },
-  {
-    "id": "396",
-    "category": "å•†æ¥­è¦–è¦ºæ”å½±",
-    "title": "ViVibaby MF å…¨åŠŸèƒ½å¤šåŠŸèƒ½å¯æ”œå¼å¬°å…’åºŠç”¢å“æ”å½±",
-    "titleEn": "ViVibaby MFâº Portable All-in-One Baby Crib Studio Product Photography & Warm Home Lifestyle Shoot",
-    "philosophy": "ä»¥æŸ”å’Œæº«æš–æ£šå…‰èšç„¦å¯æ”œå¼å¬°å…’åºŠæŠ˜ç–Šæ©Ÿæ§‹èˆ‡é€æ°£ç¶²å¸ƒè³ªåœ°ï¼Œè¨˜éŒ„æ”¶ç´èˆ‡å±•é–‹å‹•æ…‹ã€‚æ­é…æœ¨è³ªå±…å®¶äººåƒæƒ…å¢ƒï¼Œå±•ç¾ä¾¿åˆ©æ©Ÿèƒ½èˆ‡æº«é¦¨ä¿¡ä»»æ„Ÿçš„æ¯å¬°ç”¢å“æ”å½±ã€‚",
-    "tools": [
-      "å…‰æºæŽ§åˆ¶",
-      "é“å…·é…ç½®",
-      "å°ˆæ¥­æ‹æ”",
-      "åŽ»èƒŒç²¾ä¿®",
-      "è‰²å½©èª¿æ ¡"
-    ],
-    "imageUrl": "/images/optimized/19qgppGc2G5jYvOlpEha1RN28rMaRTnI9.webp",
-    "placeholderId": "IMAGE_CAMPAIGN_KIDS_396",
-    "colorTheme": "from-orange-950 via-stone-900 to-rose-950",
-    "images": [
-      "/images/optimized/19qgppGc2G5jYvOlpEha1RN28rMaRTnI9.webp",
-      "/images/optimized/1pxW7PbL3d1fHLjhQOoKf32eNOSFH_xXZ.webp",
-      "/images/optimized/1pALIlLmL5F3eoGyKURqmGAYp35pSrfzr.webp"
-    ],
-    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
-  },
-  {
-    "id": "397",
-    "category": "é›»å•†ç”¢å“éŠ·å”®åœ–",
-    "title": "bobos X9å¯µç‰©å¤šåŠŸèƒ½æ‰‹æŽ¨è»Šé›»å•†å•†å“ä¸»åœ–èˆ‡åœ–å¡è¨­è¨ˆ",
-    "titleEn": "bobos X9 Elegant Pet Stroller Premium Square E-Commerce Product Sales Figures & Main Images",
-    "philosophy": "ä¸€éš»æŸ´çŠ¬è¶´åœ¨ç°è‰²æŽ¨è»Šè£¡æŽ¢å‡ºé ­ï¼Œæ—é‚Šç”¨åœ“åœˆæ¨™ç¤ºå‡ºé˜²é¢¨é›¨è“¬èˆ‡é¿éœ‡è¼ªèƒŽã€‚åœ–å¡ä¸Šæ”¾è‘—æŽ¨è»Šæ‘ºç–Šå¾Œå¡žé€²å°è½Žè»Šå¾Œåº§çš„ç…§ç‰‡ï¼Œè®“é¤Šç‹—çš„å®¶åº­ä¸€çœ¼çœ‹æ‡‚æ€Žéº¼ä½¿ç”¨ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "éŠ·å”®åœ–è¨­è¨ˆ",
-      "ä¸»åœ–è¦åŠƒ"
-    ],
-    "imageUrl": "/images/optimized/1TcUHIdYj6ZO5mrLbIia0R5bnho4zX_tF.webp",
-    "placeholderId": "IMAGE_SQUARE_COMMERCE_397",
-    "colorTheme": "from-emerald-950 via-zinc-900 to-teal-950",
-    "images": [
-      "/images/optimized/1TcUHIdYj6ZO5mrLbIia0R5bnho4zX_tF.webp",
-      "/images/optimized/1K94Fn33Sf8KpSNVC8u7thp9sLfaYHEOd.webp",
-      "/images/optimized/1PxS0kPEptfg7qQXoD1HI0xbGoGmEdaDU.webp",
-      "/images/optimized/1_tw0jUQZFNOTS19W4f7qIzKTY-UeYWOr.webp",
-      "/images/optimized/1tjdzmVf7y-oJcsYFTcEBMjKANN8gtK_K.webp",
-      "/images/optimized/1xOOJyCyZuO6i7yVTxZMj7USanbwJSeda.webp",
-      "/images/optimized/1UaKWpBcs7sfa3cIvm19ZhtPmY8ADex07.webp"
-    ]
-  },
-  {
-    "id": "398",
-    "category": "é›»å•†ç”¢å“éŠ·å”®åœ–",
-    "title": "ViVibaby MFå…¨åŠŸèƒ½å¯æ”œå¼å¬°å…’åºŠå®˜æ–¹é›»å•†éŠ·å”®åœ–å¡",
-    "titleEn": "ViVibaby MFâº Portable All-in-One Baby Crib Premium Square E-Commerce Product Sales Graphics & Main Cards",
-    "philosophy": "é»žé–‹æ‹è³£ç¶²ç«™ï¼Œåœ–å¡ä¸Šå±•ç¤ºè‘—åª½åª½å–®æ‰‹æèµ·æ‘ºç–ŠåºŠçš„ç•«é¢ï¼Œæ—é‚Šé™„ä¸Šé‡é‡åƒ…æœ‰å››å…¬æ–¤çš„ç™½è‰²å­—æ¨£ã€‚ä¸‹æ–¹çš„ç‰¹å¯«åœ–æ‹å‡ºå´é‚Šé€æ°£ç¶²å¸ƒï¼Œç¢ºä¿å¯¶å¯¶ç¡è¦ºä¸æ‚¶ç†±ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "é›»å•†è¨­è¨ˆ",
-      "ä¸»åœ–è¨­è¨ˆ"
-    ],
-    "imageUrl": "/images/optimized/1mmBfXFZXiHcjkjBtVz7wc87JQYU1OPKG.webp",
-    "placeholderId": "IMAGE_SQUARE_COMMERCE_398",
-    "colorTheme": "from-rose-950 via-neutral-900 to-amber-950",
-    "images": [
-      "/images/optimized/1mmBfXFZXiHcjkjBtVz7wc87JQYU1OPKG.webp",
-      "/images/optimized/1AV62M7OyTgYeq5RxvG1kK-D5mMjmv8bS.webp",
-      "/images/optimized/1TlAfrkuOBH7bEYYQHMSeGAaDBGBFh5N3.webp",
-      "/images/optimized/1MhYpdv0vu59sBE0-K4fCSX3cegCNN-6y.webp",
-      "/images/optimized/1JZQq5UGWpE73FTiObH26rOY3yY9FbA4a.webp",
-      "/images/optimized/1v7Hgu9YF6FEjLhjoszAFNo0gJsgRfCQC.webp",
-      "/images/optimized/1d6yZwvVLSYaNPAfVbfyrvqH6PBWU0ZHO.webp",
-      "/images/optimized/10WA1HOQboNO2F_BmBkhDOfd6kwRQJFAP.webp"
-    ],
-    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
-  },
-  {
-    "id": "399",
-    "category": "ç¶²ç«™ç”¢å“ç€‘å¸ƒé ",
-    "title": "bobos X9å¯µç‰©å¤šåŠŸèƒ½æ‰‹æŽ¨è»Šé›»å•†é•·åœ–è©³æƒ…é è¨­è¨ˆ",
-    "titleEn": "bobos X9 Elegant Pet Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
-    "philosophy": "æŽ¡ç”¨æ¨¡çµ„åŒ–åž‚ç›´ç€‘å¸ƒç¶²æ ¼ï¼Œçµåˆå¯µç‰©å¯¦è¼‰æƒ…å¢ƒèˆ‡æ©Ÿèƒ½ç´°ç¯€æ‹†è§£ã€‚é‹ç”¨é«˜å°æ¯”è‰²å¡Šæ¨™ç¤ºé˜²æ½‘æ°´å¸ƒæ–™èˆ‡é¿éœ‡çµæ§‹è¦æ ¼ï¼Œæ­é…çµæ§‹å°ºå¯¸åœ–è¡¨ï¼Œå»ºç«‹æ¸…æ™°æ•æ·çš„é›»å•†å°Žè³¼è¦–è¦ºæµç¨‹ã€‚",
-    "isHighlight": true,
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "è©³æƒ…é è¨­è¨ˆ",
-      "é›™èªžæŽ’ç‰ˆ",
-      "è‰²å½©ç®¡ç†"
-    ],
-    "imageUrl": "/images/optimized/12Ng92RLHBWebgnCjtceS7lxFJvdaKurq.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_399",
-    "colorTheme": "from-zinc-950 via-teal-950 to-emerald-950",
-    "images": [
-      "/images/optimized/12Ng92RLHBWebgnCjtceS7lxFJvdaKurq.webp",
-      "/images/optimized/1qulw_QIH_vKeupjAwSEpJludOjgvKz9W.webp",
-      "/images/optimized/1XMJCcEnZPGOpzYGYFeoFVuflWdUOXe81.webp",
-      "/images/optimized/1kagjtlb1FSxr8otQFNYMObvE0XWW-WIt.webp",
-      "/images/optimized/1QYM1QRLY2vl-hX1rAjfhxbdXYe9neruy.webp",
-      "/images/optimized/1z2539Cw1rq-DWVe-eFA7ZLfHWhHHpiMO.webp",
-      "/images/optimized/16qCpY7aoQOG30S4H_ubvby9yrIAAp7_T.webp",
-      "/images/optimized/1yEo2iqCfJfxMBd2FvJARSsBPNjbE0D5i.webp",
-      "/images/optimized/1D4ksmWqeLPaNpKwp1pB8TbxCQbdNbkZm.webp",
-      "/images/optimized/1jBddc5zBra1-AahLhglipG8MIScwca0t.webp",
-      "/images/optimized/1BHOBYdJks9wxQja7uhq5RRgu_fnVS95S.webp",
-      "/images/optimized/1mswbEYZbkd63APXzTKdrOTj9IHN89Wm0.webp",
-      "/images/optimized/1PIfFtFSzRc9DgRqirHanyVCMrM3wfdl6.webp",
-      "/images/optimized/1ieEDX6etCtB739NDzzKkJ_xZ5ldDw7Y6.webp",
-      "/images/optimized/1-UOYu27VEG4NwKAUgwUF4kPexKj5kt-e.webp",
-      "/images/optimized/1c8Qx-IxxoJC5QGVjaacQYG_ZvIeawVxI.webp",
-      "/images/optimized/1Oqh-wh32ZEaVwT08CbcKfSJ6dVhGZUYd.webp"
-    ],
-    "link": "https://www.stbaby.com.tw/SalePage/Index/8865579?lang=zh-TW&srsltid=AfmBOopDpKO_mOIGgOKpyEfUKZJexyoNY8HThMyZwg-ApB6aU089wh4l"
-  },
-  {
-    "id": "400",
-    "category": "ç¶²ç«™ç”¢å“ç€‘å¸ƒé ",
-    "title": "Capella X9 PRO é›™å‘å¬°å…’æŽ¨è»Šå®˜æ–¹é•·åœ–è©³æƒ…é è¨­è¨ˆ",
-    "titleEn": "Capella X9 PRO Premium Reversible Stroller Official E-Commerce Detail Page Design (Waterfall Page)",
-    "philosophy": "ä»¥è³‡è¨ŠéšŽå±¤å°Žæ§‹ï¼ŒçµåˆæŽ¨è»Šé›™å‘æ›å‘èˆ‡ç§’æ”¶æ©Ÿæ§‹åˆ†è§£ç‰¹å¯«ã€‚é€éŽå¤§åœ°è‰²ç³»åœ–å¡èˆ‡æ¸…æ™°æ¨™ç±¤ï¼Œç²¾æº–å‘ˆç¾äº”é»žå¼å®‰å…¨å¸¶èˆ‡é¿éœ‡è¼ªçµ„è¦æ ¼ï¼Œæ‰“é€ å…·ä¿¡ä»»æ„Ÿèˆ‡é †æš¢å°Žè¦½çš„æ¯å¬°é›»å•†é é¢ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "è©³æƒ…é è¨­è¨ˆ",
-      "åˆ‡ç‰‡è¼¸å‡º",
-      "ç‰ˆå¡Šç®¡ç†"
-    ],
-    "imageUrl": "/images/optimized/1tmeim_HRqdgg5ihK5mufp3eRG3g-c9V5.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_400",
-    "colorTheme": "from-slate-950 via-amber-900 to-amber-950",
-    "images": [
-      "/images/optimized/1tmeim_HRqdgg5ihK5mufp3eRG3g-c9V5.webp",
-      "/images/optimized/1dEhpABLOWbkfXQtkiTYUHoKZ8s1r0aOF.webp",
-      "/images/optimized/1pXFTh7nxfyW30XQ0jQXdUkMnb9HyFlac.webp",
-      "/images/optimized/1i50_COvaxbk9ukkEUQQA5naC7y9-Ll3N.webp",
-      "/images/optimized/1U4ez65xjZAO7Zlmj11vEbHfFIQ2eXSwf.webp",
-      "/images/optimized/1u8hD_rAUb_DW-P62A_COzBwkEyvK5UMC.webp",
-      "/images/optimized/1lxIYDmjFyFdEWwzy1_WshxDYn5zv2Vc_.webp",
-      "/images/optimized/13xaZAV19hf71tU8k8fjbHAe6t4FA8_bT.webp",
-      "/images/optimized/1o6VhhqF9trE1GZak4vWBeXsjrf_oNPGe.webp",
-      "/images/optimized/1d11P3S7Bu1X4lAsiyRrOA-ZwunZTVMO4.webp",
-      "/images/optimized/1C0wz3OyNup0hLtj9e-nvkkJbrLazVUMw.webp",
-      "/images/optimized/1Grs0oyqMIWqF1iMpxzEx79gKwl-fOFNM.webp",
-      "/images/optimized/1ot9mdABe_PcezJstUt-ppJSoZL-VX5RC.webp",
-      "/images/optimized/1s7EI_elBAxGooxv0Mx3iAmjpJMPgYLit.webp",
-      "/images/optimized/1ibsGEfkKCEMztZmXdEie-2qvzRcsna4u.webp",
-      "/images/optimized/18BBgoqew6FWnLESAL-26ffkdJHTX-hcl.webp",
-      "/images/optimized/17q0DV0fzDown2psKeokOrSpOz5cQCI_r.webp",
-      "/images/optimized/1YmmjVKMMexWitt2cbqFzVTaZIBo5OZyt.webp",
-      "/images/optimized/156w9pu944zOifPScPwE3XL-yYpgb7j6N.webp",
-      "/images/optimized/14ZtATZBGWGN2qzJeItP_FJMca4rcjDCG.webp"
-    ],
-    "link": "https://www.stbaby.com.tw/SalePage/Index/7994984?lang=zh-TW&srsltid=AfmBOorgep1aDAuaHeIMMBRsPEHgV68-DXV5n_wv0s_8nbzRHXkPBw7h"
-  },
-  {
-    "id": "401",
-    "category": "ç¶²ç«™ç”¢å“ç€‘å¸ƒé ",
-    "title": "ViVibaby MFå…¨åŠŸèƒ½å¯æ”œå¼å¬°å…’åºŠå®˜æ–¹é›»å•†é•·åœ–è©³æƒ…é ",
-    "titleEn": "ViVibaby MFâº Portable All-in-One Baby Crib Official E-Commerce Detail Page Design (Waterfall Page)",
-    "philosophy": "æŽ¡ç”¨æŸ”å’Œæ¯å¬°è‰²èª¿èˆ‡åž‚ç›´ç€‘å¸ƒç¶²æ ¼ï¼Œå‘ˆç¾å¯æ”œå¼å¬°å…’åºŠçš„å¤šåŠŸèƒ½æƒ…å¢ƒã€‚é€éŽæŠ˜ç–Šæ”¶ç´æ­¥é©Ÿåˆ†è§£åœ–èˆ‡é€æ°£ç¶²å¸ƒç´°ç¯€ç‰¹å¯«ï¼Œçµåˆæ¸…æ™°è¦æ ¼æ•¸æ“šè¡¨ï¼Œå‚³éžæº«æš–ä¸”å…·ä¿¡ä»»æ„Ÿçš„é›»å•†è¦–è¦ºã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "è©³æƒ…é è¨­è¨ˆ",
-      "é›™èªžæŽ’ç‰ˆ",
-      "è‰²å½©ç®¡ç†"
-    ],
-    "imageUrl": "/images/optimized/1PLivhLa7zKFRnA1QS8VD7QUBSOWcXOpr.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_401",
-    "colorTheme": "from-rose-950 via-zinc-900 to-amber-950",
-    "images": [
-      "/images/optimized/1PLivhLa7zKFRnA1QS8VD7QUBSOWcXOpr.webp",
-      "/images/optimized/1JmSTyiv7IGtthqkJmveDR7bCVJ0pxvtJ.webp",
-      "/images/optimized/1Eghdh3JOwj4hgg1zIlEJropgEAzdq3Tf.webp",
-      "/images/optimized/1apTRONtMJKWMsstl_QvailSAXbh6K0AH.webp",
-      "/images/optimized/1nFy-wwQmdtwOibZ5Qh3fhgF4n2u1b2Fw.webp",
-      "/images/optimized/1HQu21vWEGh9UqgTwBQ440jip-OYf3i5P.webp",
-      "/images/optimized/195SQGsTxaYLFVoZaGwCuWvr9AscIb_Ue.webp",
-      "/images/optimized/1rQao30G_ZTUNL3Dy3V-S1VP-_LN0WQ0u.webp",
-      "/images/optimized/12-u0j7PeDCht1mvu0sn0fB_nqeq4tSv-.webp",
-      "/images/optimized/1ZQmnGatKozGI_0IfkhQbkkdeXPwKdOFN.webp",
-      "/images/optimized/1noDOT2YeTIlsuOkijWdgTp_-d5NG1iF1.webp",
-      "/images/optimized/1dJ8NfoSAkcHQtFbzHcMd9rXpecm5E2b9.webp",
-      "/images/optimized/1WKMp7vKSKVpacBZwI8-LcQARET3qmPKP.webp",
-      "/images/optimized/1JJfp6pfkc6e2wjX_SlZzGsvz8TAK9b5h.webp",
-      "/images/optimized/1ChxEYOMLqzh9o8kDQ4b93mqsBZ11URbB.webp",
-      "/images/optimized/1QpRNmMJLZbt3mH6HJX74b-zYRF4bEcrw.webp"
-    ],
-    "link": "https://www.stbaby.com.tw/SalePage/Index/8765807?lang=zh-TW&srsltid=AfmBOoplwegO2U44fTVXOt-jIgukN3mc6cZiDgKUnMbnXFCXGjAxrKiO"
-  },
-  {
-    "id": "402",
-    "category": "å•†å“å‘¨é‚Šä¼æ¥­ç¦®è´ˆå“",
-    "title": "æ–°å¯®éŽ®å®‰å®® å®¢è£½æ‰‹æ©ŸæåŒ…",
-    "titleEn": "Hsinliao Zhenan Temple Custom Smartphone Pouch Visual Layout",
-    "philosophy": "æŽ¡ç”¨é«˜ç£…æ•¸ç´…è‰²å¸†å¸ƒçµåˆç²¾ç´°é‡‘å±¬ç·šåˆºç¹¡ï¼Œå‘ˆç¾å»Ÿå®‡éŽ®å®‰å®®ç¬¦ç« èˆ‡å‰ç¥¥åœ–é¨°ã€‚é…ç½®æ»‘é †æ‹‰éŠèˆ‡æ‰‹ææŽ›ç¹©ï¼Œå°‡åœ¨åœ°æ°‘é–“ä¿¡ä»°è½‰æ›ç‚ºä¾¿åˆ©çš„éš¨èº«æ‰‹æ©ŸæåŒ…ã€‚",
-    "tools": [
-      "Ai",
-      "Photoshop",
-      "å“ç‰ŒåŒ…è£",
-      "å‘é‡æ’ç•«"
-    ],
-    "imageUrl": "/images/optimized/1-aXtc9nv3hk6LdrJ5Esif8geh7Rqi9Tp.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_402",
-    "colorTheme": "from-red-950 via-zinc-900 to-red-950",
-    "images": [
-      "/images/optimized/1-aXtc9nv3hk6LdrJ5Esif8geh7Rqi9Tp.webp",
-      "/images/optimized/1ECEytGGNXppS4aL7R_X26OMMyEkin7QX.webp"
-    ],
-    "driveFolderId": "1tdwwZaU7RSgsFW4CKdsM9NCiZyu32qRe"
-  },
-  {
-    "id": "403",
-    "category": "å•†å“å‘¨é‚Šä¼æ¥­ç¦®è´ˆå“",
-    "title": "æ–°å¯®éŽ®å®‰å®® ç’°ä¿æ”¶ç´æ‘ºç–Šæè¢‹",
-    "titleEn": "Hsinliao Zhenan Temple Eco-Friendly Foldable Shopping Bag Design",
-    "philosophy": "æŽ¡ç”¨è¼•é‡æŠ—æ’•è£‚é˜²æ½‘æ°´å°¼é¾é¢æ–™ï¼Œå°è£½äº®é»ƒèˆ‡æœ±ç´…å°æ¯”å®®å»Ÿå¹³å®‰æ„è±¡ã€‚å¯å¿«é€Ÿæ”¶ç´ç‚ºæŽŒå¿ƒå¤§å°ï¼Œç‚ºä¿¡çœ¾æä¾›å…¼å…·æ°‘ä¿—ç¥ˆç¦èˆ‡ç’°ä¿è³¼ç‰©çš„æ—¥å¸¸éš¨è¡Œè¢‹ã€‚",
-    "tools": [
-      "Ai",
-      "Photoshop",
-      "å“ç‰ŒåŒ…è£",
-      "å‘é‡æ’ç•«"
-    ],
-    "imageUrl": "/images/optimized/1l7z7Csvs8Bq4TS1QvJFIZ1-y3nrCr8RI.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_403",
-    "colorTheme": "from-blue-950 via-zinc-900 to-red-950",
-    "images": [
-      "/images/optimized/1l7z7Csvs8Bq4TS1QvJFIZ1-y3nrCr8RI.webp",
-      "/images/optimized/1vo2IzvBL_9E2kExT8x9yL8-WDXbF9Ui3.webp",
-      "/images/optimized/18dG_3fbNbIAlAG9sGila90rCa86IamrV.webp"
-    ],
-    "driveFolderId": "15z6AOWAefSzRIxiMwzb_kAPw2fgctlOG"
-  },
-  {
-    "id": "404",
-    "category": "é›»å•†ç”¢å“éŠ·å”®åœ–",
-    "title": "ç«‹é™½é´» è¦çš®å®¢è£½åŒ–å¾½ç« è©³æƒ…é ",
-    "titleEn": "Liyanghong Shopee E-Commerce Custom Badge Detail Page Design",
-    "philosophy": "ç¶²é ä¸Šæ“ºè‘—åˆ¥åœ¨å¸†å¸ƒèƒŒåŒ…ä¸Šçš„åœ“å½¢å¾½ç« ï¼Œé»žé–‹å¯ä»¥çœ‹åˆ°å„ç¨®å°ºå¯¸çš„å°æ¯”åœ–ã€‚ä¸‹æ»‘èƒ½çœ‹åˆ°é¡§å®¢åˆ†äº«æŠŠè‡ªå·±è²“å’ªç…§ç‰‡å°æˆèƒ¸ç« çš„å¯¦æ‹ç…§ï¼Œè®“äººç«‹åˆ»æƒ³ä¸Šå‚³åœ–æª”è¨‚åšã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "è©³æƒ…é è¨­è¨ˆ",
-      "è‰²å½©ç®¡ç†"
-    ],
-    "imageUrl": "/images/optimized/1sdYw_ccjiC6GPzll8c9iyPObnDqrdar0.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_404",
-    "colorTheme": "from-zinc-950 via-teal-900 to-zinc-950",
-    "images": [
-      "/images/optimized/1sdYw_ccjiC6GPzll8c9iyPObnDqrdar0.webp",
-      "/images/optimized/19qYKSPxNegI7n4bGNRtxGm5kRzg_Ll02.webp",
-      "/images/optimized/1EgKa0QCjGx_tMrDLvjERL9WPTCA8zlHd.webp",
-      "/images/optimized/1P-8nEBEiAfgp6-QKsEZsgcQOPo2EWiM3.webp",
-      "/images/optimized/156BQt6mWwG-VIO2gd8hZS9DUCBAThUEM.webp"
-    ],
-    "driveFolderId": "1vRyoyUW6UCxFuLj81BS1RT2keJ23Bk0r"
-  },
-  {
-    "id": "405",
-    "category": "é›»å•†ç”¢å“éŠ·å”®åœ–",
-    "title": "ç«‹é™½é´» è¦çš®å®¢è£½åŒ–é‡Žé¤å¢Šè©³æƒ…é ",
-    "titleEn": "Liyanghong Shopee E-Commerce Custom Picnic Mat Detail Page Design",
-    "isHighlight": true,
-    "philosophy": "è©³æƒ…é æ”¾è‘—ä¸€å®¶äººåœ¨è‰åœ°ä¸Šé‡Žé¤çš„ç…§ç‰‡ï¼Œåœ°å¢Šä¸Šå°è‘—è‡ªå®¶çš„ç‹—ç‹—åœ–æ¡ˆã€‚å¾€ä¸‹ç¿»æœ‰é˜²æ°´æ¸¬è©¦çš„å½±ç‰‡ï¼ŒæŠŠæ°´æ½‘åœ¨å¢Šå­ä¸Šç«‹åˆ»çµæˆæ°´ç æµèµ°ï¼Œè®“äººçœ‹äº†å°±å¾ˆæƒ³è²·åŽ»éœ²ç‡Ÿã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "è©³æƒ…é è¨­è¨ˆ",
-      "ç‰ˆé¢ç·¨æŽ’"
-    ],
-    "imageUrl": "/images/optimized/1KPkoFMCZLfwZefYvb0z7pQKXDd4Q-iPi.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_405",
-    "colorTheme": "from-amber-950 via-zinc-900 to-amber-950",
-    "images": [
-      "/images/optimized/1KPkoFMCZLfwZefYvb0z7pQKXDd4Q-iPi.webp",
-      "/images/optimized/11qBv01a3Z7eWKNhA4QmWK68zck5IDf4c.webp",
-      "/images/optimized/1ca4kZtzfPjeJsZ9pio9y_8AuW3cK_dkM.webp",
-      "/images/optimized/1tkABTU5GJ775O1LbFFW3xUZpf2KVE9rh.webp",
-      "/images/optimized/1MQDgH8ruKqmdVPXx16ezd8OB_UVODxEh.webp",
-      "/images/optimized/1MUgOPeukW0EDIMBHOn7h1nC1vvdujI2_.webp",
-      "/images/optimized/1GRhXfjwYwv_uT53kXwRjnh-UMu-SPHCB.webp",
-      "/images/optimized/1HckmD60Ugk8u5tqOZ2PCF68RedNNK5-z.webp",
-      "/images/optimized/1Q4-0SglWtnu7xK65NYyYZE-QJuZZMgLu.webp"
-    ],
-    "driveFolderId": "1fW4ewxXgZQSUpm8gLId4VvZstpFJ7VeC"
-  },
-  {
-    "id": "406",
-    "category": "é›»å•†ç”¢å“éŠ·å”®åœ–",
-    "title": "ç«‹é™½é´» è¦çš®å®¢è£½åŒ–é‡‘éŸå­è©³æƒ…é ",
-    "titleEn": "Liyanghong Shopee E-Commerce Custom Golden Shovel Detail Page Design",
-    "philosophy": "ç•«é¢ä¸Šæ“ºè‘—ä¸€æŠŠé‡‘è‰²çš„å°éŸå­ï¼Œæ”¾åœ¨ç´…è‰²çš„ç¦®ç›’è£¡ï¼Œæ—é‚Šé™„ä¸Šä¸€å¼µå¢žç”¢å ±åœ‹çš„è³€å¡ã€‚è©³æƒ…é è£¡è©³ç´°èªªæ˜Žè¦æ”¾åœ¨åºŠåº•ä¸‹çš„å“ªå€‹ä½ç½®ï¼Œå¹«åŠ©æƒ³æ±‚å­çš„äººçœ‹æ‡‚æ“ºæ”¾æ­¥é©Ÿã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "è©³æƒ…é è¨­è¨ˆ",
-      "é›»å•†è¨­è¨ˆ"
-    ],
-    "imageUrl": "/images/optimized/17V1bFUiq5LNwvp0hsa2HOhKfL86v6OB2.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_406",
-    "colorTheme": "from-amber-950 via-red-900 to-amber-950",
-    "images": [
-      "/images/optimized/17V1bFUiq5LNwvp0hsa2HOhKfL86v6OB2.webp",
-      "/images/optimized/1VsjZH_kTI6IOWblmTgqo-KAkgAlJchZz.webp",
-      "/images/optimized/1nj0VN56ztMzi290rCe51MhoqFxAu6Tdy.webp",
-      "/images/optimized/1-Ys-HO964RCdM6eZQDbacddUmat1gxj5.webp",
-      "/images/optimized/14gVvgcsjLAgyaSiQ-cIBiXx6s801oMt9.webp",
-      "/images/optimized/18dOucJnYxOVbkQVzjSAl3ouSfVZL6z0u.webp"
-    ],
-    "driveFolderId": "1vJKJvLeBt9pxoUc6fPlGVwudbyjwWuiq"
-  },
-  {
-    "id": "407",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "WILD BURGER CLUBâ„¢ å¥—é¤å®£å‚³",
-    "titleEn": "WILD BURGER CLUBâ„¢ Direct-Mail Combo & Social Poster Design System",
-    "philosophy": "ä»¥é«˜é£½å’Œç¾Žå¼å¾©å¤è‰²å½©èˆ‡ç²—é»‘å­—é«”çµ„åˆï¼Œå‘ˆç»ç¾Žå¼æ¼¢å ¡å¥—é¤èª˜äººè¦–æ•ˆã€‚é‹ç”¨é£Ÿæè³ªæ„Ÿç‰¹å¯«èˆ‡ç¾Žå¼æ¨™èªŒæŽ’ç‰ˆï¼Œæ‰“é€ ç¾Žå¼é€Ÿé£Ÿå“ç‰Œçš„è¡—é ­æµè¡Œé¢¨æ ¼ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "ç‰ˆé¢ç·¨æŽ’"
-    ],
-    "imageUrl": "/images/optimized/1iQLRXQ6PCXlTfh5a4VA0_EevFuZ34SD_.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_407",
-    "colorTheme": "from-amber-950 via-zinc-900 to-amber-950",
-    "images": [
-      "/images/optimized/1iQLRXQ6PCXlTfh5a4VA0_EevFuZ34SD_.webp",
-      "/images/optimized/1JhPWp9RyN74-zYNZ-MUIVZ0Kvctjf1dw.webp"
-    ],
-    "driveFolderId": "1pCZ_RZ6IjI-7_mX6ZkVCYFPPXkyiAJnN"
-  },
-  {
-    "id": "408",
-    "category": "å½±éŸ³èˆ‡å¤šåª’é«”è¨­è¨ˆ",
-    "title": "WILD BURGER CLUB æ¼¢å ¡è¡ŒéŠ·å‹•æ…‹å½±ç‰‡",
-    "titleEn": "WILD BURGER CLUBâ„¢ Short-Form Dynamic Video Campaign",
-    "philosophy": "é‹ç”¨å¾®è·æ”å½±æ•æ‰è‚‰æŽ’ç…Žçƒ¤èˆ‡èµ·å¸èžåŒ–çš„ç‰©ç†å‹•æ…‹ï¼Œæ­é…é«˜é£½å’Œåº¦çš„æš–è‰²å…‰å½±ã€‚å½±åƒçµå°¾æŽ¡ç”¨ç¾Žå¼å¾©å¤å­—é«”æŽ’ç‰ˆå“ç‰Œè³‡è¨Šï¼Œæ§‹ç¯‰å…·å‚™å¼·çƒˆæ„Ÿå®˜åˆºæ¿€çš„è¡ŒéŠ·çŸ­ç‰‡ã€‚",
-    "tools": [
-      "AE",
-      "Premiere",
-      "å‹•æ…‹è¨­è¨ˆ",
-      "å½±ç‰‡å‰ªè¼¯"
-    ],
-    "imageUrl": "https://img.youtube.com/vi/slHuODzgriw/maxresdefault.jpg",
-    "placeholderId": "VIDEO_WILD_BURGER_408",
-    "colorTheme": "from-amber-950 via-zinc-900 to-red-950",
-    "images": [
-      "https://img.youtube.com/vi/slHuODzgriw/maxresdefault.jpg",
-      "https://img.youtube.com/vi/slHuODzgriw/0.jpg"
-    ],
-    "videoUrl": "https://youtube.com/shorts/slHuODzgriw"
-  },
-  {
-    "id": "409",
-    "category": "å½±éŸ³èˆ‡å¤šåª’é«”è¨­è¨ˆ",
-    "title": "BLEND MONSTER èŠ’æžœé›™æ˜Ÿ è¡ŒéŠ·å‹•æ…‹å½±ç‰‡",
-    "titleEn": "BLEND MONSTER Mango Twin Stars Short-Form Marketing Video Campaign",
-    "philosophy": "æŽ¡ç”¨é«˜æ ¼çŽ‡æ•æ‰èŠ’æžœæžœè‚‰æŽ‰è½èˆ‡æžœæ±æ”ªæ‹Œçš„å‹•æ…‹çž¬é–“ï¼Œæ­é…é®®æ˜Žé»ƒç™½å°æ¯”è‰²èª¿ã€‚çµåˆå¹¾ä½•å­—é«”èˆ‡æ»¿ç‰ˆå­—å¹•æ¨™ç¤ºå­£ç¯€è³‡è¨Šï¼Œå±•ç¾å……æ»¿å¤æ—¥æ´»åŠ›èˆ‡ç¯€å¥æ„Ÿçš„è¦–è¦ºã€‚",
-    "tools": [
-      "AE",
-      "Premiere",
-      "å‹•æ…‹è¨­è¨ˆ",
-      "å½±ç‰‡å‰ªè¼¯"
-    ],
-    "imageUrl": "https://img.youtube.com/vi/WQpqHQcZ1B8/maxresdefault.jpg",
-    "placeholderId": "VIDEO_BLEND_MONSTER_409",
-    "colorTheme": "from-amber-500 via-orange-600 to-amber-950",
-    "images": [
-      "https://img.youtube.com/vi/WQpqHQcZ1B8/maxresdefault.jpg",
-      "https://img.youtube.com/vi/WQpqHQcZ1B8/0.jpg"
-    ],
-    "videoUrl": "https://youtube.com/shorts/WQpqHQcZ1B8"
-  },
-  {
-    "id": "410",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "WILD ISLAND BURGER æ¼¢å ¡å®£å‚³",
-    "titleEn": "WILD ISLAND BURGER Promotion Poster Design System",
-    "philosophy": "æŽ¡ç”¨ç†±å¸¶é»ƒç¶ è‰²å½©èˆ‡å‹•æ…‹æ¯›ç­†å­—é«”ï¼Œçªé¡¯å¤å¨å¤·é¢¨å‘³æ¼¢å ¡ä¹‹ç†±æƒ…æ„åƒã€‚æ­é…è±å¯Œé£Ÿæè³ªæ„Ÿè¦–è¦ºèˆ‡é†’ç›®å“ç‰Œæ¨™èªŒï¼Œå‚³éžå¤šå…ƒæ˜Žå¿«çš„ç¾Žé£Ÿæµ·å ±ç¾Žå­¸ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "ç‰ˆé¢ç·¨æŽ’"
-    ],
-    "imageUrl": "/images/optimized/1uslsF-X2bfuxCf8oEu5EssiICp-YuMNi.webp",
-    "placeholderId": "IMAGE_WATERFALL_PORTFOLIO_410",
-    "colorTheme": "from-teal-950 via-zinc-900 to-amber-950",
-    "images": [
-      "/images/optimized/1uslsF-X2bfuxCf8oEu5EssiICp-YuMNi.webp"
-    ],
-    "driveFolderId": "14iDHdeopFU60DgR_ceQzSuXKieqhXhiS"
-  },
-  {
-    "id": "wild-burger-club-waterfall",
-    "category": "ç¶²ç«™ç”¢å“ç€‘å¸ƒé ",
-    "title": "WILD BURGER CLUBâ„¢ å“ç‰Œç”¢å“é•·æ¢ç€‘å¸ƒåœ–",
-    "titleEn": "WILD BURGER CLUBâ„¢ Brand Product Waterfall Landing Page",
-    "philosophy": "æŽ¡ç”¨ç¾Žå¼å¾©å¤é•·æ¢ç€‘å¸ƒç¶²æ ¼ï¼Œå‘ˆç»æ¼¢å ¡æ©«åˆ‡é¢è‚‰æ±ç´°ç¯€èˆ‡é£Ÿæç‰¹å¯«ã€‚çµåˆé«˜é£½å’Œé»ƒç´…æ’žè‰²åœ–å¡èˆ‡ç¾Žå¼ç²—é«”å­—æŽ’ç‰ˆï¼Œä¸¦æ–¼é å°¾æ•´åˆé–€å¸‚æ“šé»žï¼Œå»ºç«‹å…·é †æš¢ç¯€å¥æ„Ÿçš„é¤é£²é›»å•†é•·åœ–ã€‚",
-    "tools": [
-      "Photoshop",
-      "é›»å•†æŽ’ç‰ˆ",
-      "è‰²å½©å°æ¯”",
-      "è‡ªé©æ‡‰åˆ‡ç‰‡"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=17UKkXevuvXg6x6SNW4747rYLys455jl4",
-    "placeholderId": "IMAGE_WATERFALL_WILD_BURGER_CLUB",
-    "colorTheme": "from-[#1F2411] via-[#353F1C] to-[#0F1208]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=17UKkXevuvXg6x6SNW4747rYLys455jl4",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1VeBYtgHkGRNIXwXkNFp3NnIiV8wR7hjM",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1sZXqFg_Y98fJJ-hNYlEA8HaupHz4hscb",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1T2DCO-uPsPi6yrZYH1EIqu91tFEvcEfe",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1bsWnpVOlZQ2jaB-fxoO4vL0ulxnXI-ot",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1MFMuFav7zxuQYpX9K8E37ns8mxhzSdy5",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1xbpvIv4dNe9RtM6zEzTQS7Z9v_-KNUOa",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1z7ot6_Lm_COEUrwJsmZ2emJpcBz4dKfA",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1rtlF3Mq_dnb9N0BrD6BtxEzLWEVml1YL",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1W14vwLlYrMiLyqkyxF0IM1-2REPLQVWZ",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1L18-07Ui7FYZtgTysvpLJ9s549p6zzCD",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1YV2PPlZDBt9CdSC9NMo2iKfsEjk19o-9",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1H-T8WIPSREwbkbkXaQF7hRiYICL236uf",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1roZdhZ9K89iMMhfg5OzRwuDOb7OutnI3",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1gdp2_Dx43o16kYX5rqlrwbJwmV0F0_lK",
-      "https://drive.google.com/thumbnail?sz=w1000&id=18CjywMCQ2KOXaRCC3ixr64MMiG3EGPi5"
-    ],
-    "driveFolderId": "1XTL9zF5puGTfQpYqYeg1nU6Z3xbxFa4U"
-  },
-  {
-    "id": "ocean-jade-fish-oil-waterfall",
-    "category": "ç¶²ç«™ç”¢å“ç€‘å¸ƒé ",
-    "title": "æµ·å¾¡ç”Ÿç”Ÿé†« å¾¡æµ·é­šæ²¹å®˜æ–¹ç€‘å¸ƒé èˆ‡åœ–æ–‡ç·¨æŽ’",
-    "titleEn": "Ocean Jade Bio-Med: Ocean Fish Oil Official Waterfall Page & Visual Layout Engineering",
-    "philosophy": "ä»¥æ·±è—èˆ‡é‡‘é»ƒé…è‰²å‘¼æ‡‰æµ·æ´‹ä¸»é¡Œï¼ŒæŽ¡ç”¨åž‚ç›´çµæ§‹æŽ’ç‰ˆé­šæ²¹è£½ç¨‹èˆ‡æˆåˆ†è³‡è¨Šï¼Œçµåˆæ•¸æ“šåœ–å¡èˆ‡ç”¢å“ç‰¹å¯«æ¸²æŸ“åœ–ï¼Œä¸¦æ–¼ä¸å°ç¨±çš„ä¸‰æ¬„ç¶²æ ¼ä¸­é…ç½®é—œéµæŒ‡æ¨™ï¼Œå¼•å°Žè§€è€…é †æš¢ç€è¦½ç´°ç¯€ã€‚",
-    "isHighlight": false,
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "3Dæ¸²æŸ“",
-      "è³‡è¨Šåœ–è¡¨",
-      "æŽ’ç‰ˆå·¥ç¨‹"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=19-mMrr4kHBuHJn-XeYoaK_KBM66UMIte",
-    "placeholderId": "IMAGE_OCEAN_JADE_FISH_OIL_WATERFALL",
-    "colorTheme": "from-[#0a192f] via-[#112d4e] to-[#0d1b2a]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=19-mMrr4kHBuHJn-XeYoaK_KBM66UMIte",
-      "https://drive.google.com/thumbnail?sz=w1000&id=14LkhaELuEpy1-vhpX_2AavYJuVbUE317",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1vf9Pq7kyqpp5TOqVcTRjyvFpd4jFwqQh",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1uD_PRItvclKp-Xl0NX7jzD17oCBQH3Uu",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1JE5_uUn0jSG7Ju6KC8DTG0o8P6DTq7il",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1ybo32JSeSrSueWsibbe-VTZoEIa8k42-",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1gn9JhnlwvIRDc_bYCuvcexODEOuk_3oC",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1KSdq5RgOUWnlGa7nFjUQRwaBe6eEsoz7",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1PD0oBxX3xswh9je2QGj3LF6F--PlGON2",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1X5ZFTOBxGDVWcKYak9UXoGYl6lEI27H4",
-      "https://drive.google.com/thumbnail?sz=w1000&id=19aPdjLUbmWCwF_4Cl5AmUBxlLkBBZ9pi",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1yZ4wG1oEtjtoXn2IwljZHekwozE2Etnv",
-      "https://drive.google.com/thumbnail?sz=w1000&id=16imXzWeT6HraDNu0Zd-YspQ28xeuhGfg",
-      "https://drive.google.com/thumbnail?sz=w1000&id=11PV8wc21df9AHNH8CUvFRpViMIGfnPsn",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1MPtxa6oCtWsANW4aKKrJdMH8KBT2FfBw",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1lEwmP7ZbjonQL1mYfF8Ttuzrd8cRy093",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1DW-ePR-ELFnYzKy4ylbTFRYtyC--lg67",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1Mltc1uj7ElLygTwf3lgmDKSgqfAvNGhW",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1k_SBsftd6C1Qkl930eJuxMR4MctwjozO"
-    ],
-    "driveFolderId": "17r74qbVO5BWoNo8YgGjXpxtqg2H-NTyY"
-  },
-  {
-    "id": "bmw-r1200c-vector",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "BMW R1200C å‘é‡é‡æ©Ÿæ’ç•«",
-    "titleEn": "BMW R1200C Vector Cruiser Motorcycle Illustration",
-    "philosophy": "ä»¥ç²¾å¯†å‘é‡ç·šæ¢å‹¾å‹’é‡‘å±¬è»Šæž¶èˆ‡éŠ€è‰²æŽ’æ°£ç®¡ç´°ç¯€ï¼Œé‡ç¾ç¶“å…¸å·¡èˆªé‡æ©Ÿå·¥è—ã€‚çµåˆç°¡ç´„å¾©å¤èƒŒæ™¯èˆ‡æ¥µç°¡å­—é«”ç·¨æŽ’ï¼Œå±•ç¾æ©Ÿæ¢°èˆ‡å·¥æ¥­è¨­è¨ˆçš„ç¾Žæ„Ÿå¹³è¡¡ã€‚",
-    "tools": [
-      "Ai",
-      "å‘é‡æ’ç•«",
-      "é‡‘å±¬è³ªæ„Ÿ",
-      "å…‰å½±è¡¨ç¾",
-      "æ©Ÿæ¢°çµæ§‹"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1axhu9vi-1Nwkjq-3sJr-1hE-lpzSS74Y",
-    "placeholderId": "IMAGE_BMW_R1200C_VECTOR",
-    "colorTheme": "from-[#1a1a1a] via-[#333333] to-[#121212]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1axhu9vi-1Nwkjq-3sJr-1hE-lpzSS74Y",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1qstMzmeF-JyWv9C3vRGxcc-VupL2p7co"
-    ],
-    "driveFolderId": "1zLY_42HH1Sfze27UZktHyTBPlCweSweA"
-  },
-  {
-    "id": "derbi-terra-vector",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "Derbi Terra 125 å‘é‡é‡æ©Ÿæ’ç•«",
-    "titleEn": "Derbi Terra 125 Vector Adventure Motorcycle Illustration",
-    "philosophy": "æŽ¡ç”¨é«˜å°æ¯”æ˜Žé»ƒè»Šèº«èˆ‡ç²¾æº–å‘é‡æé‚Šï¼Œå¼·èª¿è¶Šé‡Žé‡æ©Ÿè»Šé«”æ§‹é€ èˆ‡è¼ªèƒŽé¿éœ‡ç´°ç¯€ã€‚æ­é…ä¿è½å¹¾ä½•å­—é«”ï¼Œå½¢å¡‘å……æ»¿æŽ¢éšªç²¾ç¥žèˆ‡å‹•æ„Ÿèƒ½é‡çš„è»Šæ¬¾æµ·å ±ã€‚",
-    "tools": [
-      "Ai",
-      "å‘é‡æ’ç•«",
-      "é‹¼ç­†å·¥å…·",
-      "å…‰å½±è¡¨ç¾",
-      "è‰²å½©é…è‰²"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1JIMApTx6V4-QNhB-CzKbHrXN4bn7HJsH",
-    "placeholderId": "IMAGE_DERBI_TERRA_VECTOR",
-    "colorTheme": "from-[#2b1f15] via-[#4d2d18] to-[#1a130e]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1JIMApTx6V4-QNhB-CzKbHrXN4bn7HJsH",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1uDO5wl3CZApL_Xxu-dA7dg_XOMIC-FAa"
-    ],
-    "driveFolderId": "1IRf-wKLWIROx-IkT7vK9Rbxgjshk7ov9"
-  },
-  {
-    "id": "peace-under-muzzle",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "æ§å£ä¸‹çš„å’Œå¹³ å°åŒ—è¨­è¨ˆçŽæŠ•ç¨¿ä½œå“",
-    "titleEn": "Peace Under the Muzzle - Taipei Design Award Submission",
-    "philosophy": "ä»¥å†·å³»ç°è‰²æ°´æ³¥è³ªæ„Ÿç‚ºåº•ï¼Œç¹ªè£½é»‘è‰²æ§ç®¡èˆ‡æ§å£ç¶»æ”¾çš„é»ƒè‰²é››èŠã€‚é€éŽç¬¦è™Ÿéš±å–»èˆ‡å¼·çƒˆå°æ¯”æ§‹åœ–ï¼Œç›´æ“Šåæˆ°æ€æ½®ï¼Œå‚³é”ç„¡è²è€Œæ·±æ²‰çš„åæ€åŠ›é‡ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "é»žç·šé¢æ§‹æˆ",
-      "è‰²å½©å°æ¯”"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1dyVSi_vM6kpoPWCSpCFLqh6bjmnTHLfE",
-    "placeholderId": "IMAGE_PEACE_UNDER_MUZZLE",
-    "colorTheme": "from-[#0a0a0a] via-[#1a1a1a] to-[#020202]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1dyVSi_vM6kpoPWCSpCFLqh6bjmnTHLfE"
-    ],
-    "driveFolderId": "1UBwvJUf3d-vOr-Jlg_UaV5YQAGSNK9yh"
-  },
-  {
-    "id": "charity-poster-113",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "113 å…¬ç›Šæµ·å ±åå®¶æš´èˆ‡åéœ¸å‡Œ",
-    "titleEn": "113 Anti-Domestic Violence & Anti-Bullying Public Service Poster",
-    "philosophy": "æŽ¡ç”¨é«˜è¾¨è­˜åº¦è­¦ç¤ºè‰²å½©èˆ‡ç²—é«”æ±‚åŠ©ç†±ç·šå­—é«”ï¼Œå»ºæ§‹å…¬ç›Šå®£å‚³è¦–è¦ºã€‚é€éŽè±¡å¾µæ€§æ’ç•«èˆ‡æ˜Žç¢ºè³‡è¨Šç¶²çµ¡ï¼Œå‚³é”é˜²ç¯„å®¶æš´éœ¸å‡Œèˆ‡åŠæ™‚é€šå ±æ±‚åŠ©çš„ç¤¾æœƒé—œæ‡·ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "é»žç·šé¢æ§‹æˆ",
-      "è‰²å½©å°æ¯”"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1vA_EThtPUr1vv7BxiFpqCtsEHFC4B0ky",
-    "placeholderId": "IMAGE_CHARITY_POSTER_113",
-    "colorTheme": "from-[#3c1212] via-[#182a4d] to-[#0d0d0d]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1vA_EThtPUr1vv7BxiFpqCtsEHFC4B0ky",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1uMolAliLdzuEbLe7SU6Tq5jCjC-QmyQw"
-    ],
-    "driveFolderId": "10kMRCtJ5zEtn1ItZ_lWwWSObTTqrMhjZ"
-  },
-  {
-    "id": "misty-eco-poster",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "æ·¹éœ§ç€°æ¼« ç’°ä¿æµ·å ±",
-    "titleEn": "Misty Fog Eco Public Service Poster",
-    "philosophy": "é‹ç”¨ä½Žæ˜Žåº¦ç°éœ§è‰²èª¿èˆ‡å·¥å» ç…™å›ªæ¼¸å±¤ï¼Œç‡Ÿé€ ç©ºæ°£æ±¡æŸ“æ²‰æ‚¶æ°›åœã€‚é€éŽé˜²è­·æ„è±¡èˆ‡é«˜å°æ¯”æ¨™èªžæŽ’ç‰ˆï¼Œå–šèµ·å¤§çœ¾å°ç©ºæ±¡è­°é¡Œèˆ‡ç’°å¢ƒä¿è­·çš„é—œæ³¨ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "é»žç·šé¢æ§‹æˆ",
-      "è‰²å½©å°æ¯”"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1PiYqgHiUnUIM2LNNwAY7G154j1UwNtyN",
-    "placeholderId": "IMAGE_MISTY_ECO_POSTER",
-    "colorTheme": "from-[#08203e] via-[#1c3e66] to-[#030d1a]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1PiYqgHiUnUIM2LNNwAY7G154j1UwNtyN"
-    ],
-    "driveFolderId": "1pXm-oYFXs_Ty_ZPkaI6ZC6TQLPBf7VV4"
-  },
-  {
-    "id": "global-warming-poster",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "å…¨çƒæš–åŒ– å…¬ç›Šæµ·å ±",
-    "titleEn": "Global Warming Public Service Poster",
-    "philosophy": "ä»¥æ¼¸èžå†°ç£šèˆ‡æ¥µç°¡æµ·æ´‹èƒŒæ™¯æ§‹æˆç•«é¢ï¼Œçªå‡ºæ¥µåœ°ç”Ÿæ…‹å±æ©Ÿã€‚çµåˆå–®è‰²è­¦ç¤ºå­—é«”èˆ‡ç©ºé–“ç•™ç™½ï¼Œå¼•ç™¼å¤§çœ¾å°æ°£å€™è®Šé·èˆ‡ç’°å¢ƒæ°¸çºŒçš„æ·±å±¤å…±é³´ã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "é»žç·šé¢æ§‹æˆ",
-      "è¦–è¦ºæŽ’ç‰ˆ"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1cBXJzUjXxHZz3ULl8yYMrBnDOuCRhWLi",
-    "placeholderId": "IMAGE_GLOBAL_WARMING_POSTER",
-    "colorTheme": "from-[#0b1b2d] via-[#1a2d42] to-[#040c14]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1cBXJzUjXxHZz3ULl8yYMrBnDOuCRhWLi",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1r7CLPraNS4OA2wPL8F02tKMFWmKo3uLi",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1zlgfvzjBRO3kQYzvo46QK8Lb8vUlftHh",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1fEYlE1RKMMHOcHnh0bQXWPQUSEv-7oNx"
-    ],
-    "driveFolderId": "1x3iUAs-TzPrRXnHZw8kOgBhTPKJMtnU5"
-  },
-  {
-    "id": "blood-donation-poster",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "æè¡€ å…¬ç›Šæµ·å ±",
-    "titleEn": "Blood Donation Public Service Poster",
-    "philosophy": "ä»¥æº«æš–ç´…è‰²æ°´æ»´èˆ‡æ„›å¿ƒçµæ§‹åœ–é¨°ç‚ºè¦–è¦ºæ ¸å¿ƒï¼Œèžåˆç¾ä»£ç°¡ç´„ç·šæ¢ã€‚é€éŽæµæš¢çš„æ–‡å­—éšŽå±¤èˆ‡å‚³éžç”Ÿå‘½çš„æ„è±¡æ§‹åœ–ï¼Œå±•ç¾æè¡€æ•‘äººèˆ‡ç†±è¡€å¥‰ç»çš„ç²¾ç¥žã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "é»žç·šé¢æ§‹æˆ",
-      "è¦–è¦ºæŽ’ç‰ˆ"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=13FtnF08XAIxQpi4jAYeimMACmvHyy0ne",
-    "placeholderId": "IMAGE_BLOOD_DONATION_POSTER",
-    "colorTheme": "from-[#3a0a0d] via-[#7d1c22] to-[#120304]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=13FtnF08XAIxQpi4jAYeimMACmvHyy0ne",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1roe4B2tdCadJXTEfILh_vE2lJwFBoRpR",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1YuinagJpgjH0IYlDqoaPWyoMJ3egyKqU"
-    ],
-    "driveFolderId": "1THuN0wDJTGvN98yiIWIfsAuksjiFtajW"
-  },
-  {
-    "id": "unique-personality-poster",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "ä½ æœªå¿…æˆç¸¾æ‹”èƒï¼Œä½†è‚¯å®šèˆ‡çœ¾ä¸åŒ",
-    "titleEn": "Unique and Outstanding Public Service Poster",
-    "philosophy": "çµåˆè€ƒå·åœ–é¨°èˆ‡å¤šå½©ç•«ç­†ç·šæ¢ï¼Œå‘ˆç¾å¤šå…ƒå¤©è³¦èˆ‡å‰µé€ åŠ›çš„å°æ¯”ã€‚ä»¥æº«æš–å°æ¯”è‰²å½©èˆ‡æ‰‹ç¹ªé¢¨ typographyï¼Œå‚³éžè‚¯å®šè‡ªæˆ‘åƒ¹å€¼èˆ‡é¼“å‹µç¨ç‰¹æ€§çš„æ•™è‚²å…¬ç›Šæ„æ¶µã€‚",
-    "tools": [
-      "Photoshop",
-      "Ai",
-      "æµ·å ±è¨­è¨ˆ",
-      "é»žç·šé¢æ§‹æˆ",
-      "è¦–è¦ºæŽ’ç‰ˆ"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1JoG9REOdvKZy9I2D0Y9zhdrk8teAIebT",
-    "placeholderId": "IMAGE_UNIQUE_PERSONALITY_POSTER",
-    "colorTheme": "from-[#1c1c1e] via-[#2c2c2e] to-[#0c0c0e]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1JoG9REOdvKZy9I2D0Y9zhdrk8teAIebT",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1AfaqFjy_7-6XgGVdOP191q8Z0jbu4q-H"
-    ],
-    "driveFolderId": "18OTCj414T72uyGxw8xIkkvV0FEtYhoLq"
-  },
-  {
-    "id": "pink-afternoon-jungle-date",
-    "category": "å¹³é¢æµ·å ±å»£å‘Šè¨­è¨ˆ",
-    "title": "ç²‰è‰²ä¸‹åˆ-å¢æž—ç´„æœƒ",
-    "titleEn": "Pink Afternoon: Jungle Date Character IP Illustration",
-    "philosophy": "ä»¥å¤¢å¹»ç²‰è‰²å¤©ç©ºæ­é…ç†±å¸¶æ¤ç‰©èˆ‡é•·é ¸é¹¿æ’ç•«ï¼Œæ§‹å»ºæ¬éœå¥‡å¹»çš„å¢æž—æ°›åœã€‚é€éŽæŸ”å’Œè‰²å½©äº¤èžèˆ‡å‘é‡ç·šæ¢ç´°ç¯€ï¼Œå±•ç¾ç«¥è¶£èˆ‡æ„œæ„æ°›åœçš„åŽŸå‰µIPè—è¡“æµ·å ±ã€‚",
-    "tools": [
-      "Ai",
-      "Procreate",
-      "è§’è‰²æ’ç•«",
-      "å‘é‡æ’ç•«",
-      "è‰²å½©é…è‰²"
-    ],
-    "imageUrl": "https://drive.google.com/thumbnail?sz=w1000&id=1HMNzbni4RcvDniNHx7soFZvkdJPHS0mw",
-    "placeholderId": "IMAGE_PINK_AFTERNOON_JUNGLE_DATE",
-    "colorTheme": "from-[#3a1a24] via-[#5e2b3c] to-[#1a0a10]",
-    "images": [
-      "https://drive.google.com/thumbnail?sz=w1000&id=1HMNzbni4RcvDniNHx7soFZvkdJPHS0mw",
-      "https://drive.google.com/thumbnail?sz=w1000&id=1kMGEEjjrPhEFBuSb4BpDbZRc_29PZcej"
-    ],
-    "driveFolderId": "1a6iKQ3Z8NYayYdLmb4fRNDSNEgAsUB7k"
-  }
-];
+    "philosophy": "æŽ¡ç”¨å¾®è·ç„¦è·å‘ˆç¾ç¾Žå¼è‚‰æ²åˆ‡é¢æµæ±èµ·å¸èˆ‡é‡‘é»ƒé…¥çš®ï¼Œæ­é…ç¶“å…¸ç¾Žå¼å­—é¡ã€‚çµåˆè¾¦å…¬å®¤åœ˜è³¼å…é‹æ¨™ç«xœÔ½wsÝº'úÿýª}jö©ºÚ[9œªS§”sÎ:uJÕ’ZRK-µB+NÝ*0N“l’	Æ/ÆƒMø.3î–ô×ý
+w­^mI‡–ý¾ÌÌÞ/éñzZOø=q=íÍL³Ïuo\í½\dŸ~ýÿ¾^cö÷ºoç™©þÚvê;»û}r›™{Ø}p…Y¹×ûøµ{u«?·Ã¾~Ë|™úŸ—þöÿü_"ð¿¿ÑEÖþö¯¢ÿàþ
+^ðæ(šªå¨2ÿð’Žø÷Çÿä?C±,ª’àcû'÷—Ú?©2M‰žþ§4löK¢T…P§Å‘¸oBm¿Úš
+˜qkS{þÑÄ“‡ÔÿV&±ž£È4^µ¥!A›Kg1%Ü¦HÂâ	›ün—ÉLÈeÒÃ¤(’ªsx‡ïÎT©¢+&ñªX«”ˆ&®âiîÏ4%.áuºŠ‘b­Dò·Ñ³aøÜ g~ÿ!íÿÎÓç˜Ëdƒób4ž¥ªmørïãót[•Jx}Ìþssnðe4É±Õ›üÀ¼ÿÐ¹¼žþÛ{{Ý÷½Ëßö®ì¯9MÆîôûqUÄlM1Ÿ»S/ØåÍ#4L%H…û¼È~X¶-`¢”‹œD6G‹ôu2)
+àU¯‰œX›ªÓƒï$GT*ç¸Cì¿`_|ên®²ßî°;ëÝûß ôÝ»NÅ>Xîï_f¦fÙ3ÝK{½—Ë½—{ìÓ]æÇe ’½ïÙÙ{ÜODçež/÷^M€O#nØõûÝ·O,²7Þõ§˜ç˜©½µG½ÏSÌÄWæò ÙðÍ+“ý‡û½õmvë»<Í¼»ÅýÒÇþäCþ_ãôWßƒìÞAÄ¡Ü¿Ù½³Þûø†½òä¯•x¥'©Kf¢î‚Ïã‰hÊ!Ý¡¨”Ñµ¬.ú\/;Eâk…ö@Þk$0(âPâk4UÂÇ–waç?UÞå’÷þôÍþòuæÑÍî‹eðív_Ýë­}ëÎ>ì]š=øò]„ŒXïûKfêfãyÿágæÞö12ï JE¼$r`Tâ ‰žéq<#²ãÕB[dOƒ BÇ:^æÙë«@tà1>m¡³u·§ºkºÛóìúJæúˆæáñºÛPÚ¶çIf®ï÷._ƒ2zs¦»øˆ5»5É~¸ß»ö¹ÿl¹ùq ñnsÌ•7ìå§P+¶žƒÑ¿z«ûp£ûé
+sc}uaÔÌ3+ëÌÊf÷ómfj—¹±Ð½ó¬ÿnŠ·÷Ü3þ–^cðÜ	”Ð9\9[Báª-FµU\ŠÚË%:ž?—ÜËO‘ûCÛÎÉý¡¨C¹¸€±ä^ØùO•{ÅÅäþá}æÝöÞæÖ2³´Ê<ø
+¾õþôbïÃkæÚ”h  Ýß»/³‹7ÀïÌÌkæþú1¢oÁ‹D‰¨LÇEº&4 š|žÅD^,U)%’ì©rmýÎûã2:»¶4DôÃ¹‡‚;ûH?3sZùÉÝ+/ÁGº»èSÝËÝ·à#Ï_^€]Êýäx<ˆ ²ëH¾¡±ŸýÿÁË«pþüvövâ)sc—ùºt°;×]|ÇÞ]d>ï}XâÞ}þ½ûý9{}½õy ¿Vè³ÚŒ±-h™S+t¡€Tª1ù½T'j"ST»r.¡Wœfì‘ ób?; 8Âx8Uð•üµ‡@ŽÙO/ûK;ìÒL÷ÙÇþüpóìÖS$5Àî¡¯è­¿ë­Ï#ô^ ¿D 
+‚¬FC‰¥”È€U“T	ˆ;MãÕ¶ s?8²ª½»@Ú»¯n²sHæ¡ýÝZ6}ô H¶û÷×˜™»œÌßd¶þ€o ˜i{€‘Ø#V{7 *áÄ¼¿÷a(Hb’Ù\DbÏÌDbü Å,]å
+ðI·'ÐæàÇjïãö_ŽnB!I®nñ<²Œ¶c×zÊ¥¦/+NÊNƒ²kªŽs	¼òO’õ¡¼·q’¤š‡Ïƒ1í¼0NwÕÅÄýÅÝîÓíþÓwÌÎ#€ Øç·ú{ûý«ðŽŸóßgz”ÀJY/¤ê"U¯qZ R¹:V ˆ<	¬|ÆÏBóèà ½ïk Ö@4ÿa¶ûúu÷í€`˜½% ê4 {ÿ=Æî›I ±'d?|Ðÿ;V^Þg—ï¾ûéD-ˆ/ŽGvî;»6 7P‡Éyn~…5<ðzyžpö<ùÍë€¯Ç±Äd÷¤[j©-DT¨®­òÒ¾†žˆë¥À¹$^%×oàÇ•xAœ*ñê‹Iüö>³x¹7·ÅÞ½Û»s¯ÿh¦7÷ˆÝŸï­­ô×>t_ntÞê?ŸëÞyr°»ß_½v$÷V`Ø-D©Ñ¼®À{
+Hüá~œ¨å‘·
+ O½(
+R%"u*¢ßœë}Ø†ˆ~ÿò@î!âY[b¾|?ø¶ÔÝyÀ>{4^Ñ±¡™>dä'~B6þË7ˆ/ ë½7¡nÜ¿ÁÞ¿„$~¨#&žÝ{h‚À¸ÇÓ8Â‹þôz>¤Þ\ë?Ùÿke¾£pÄñVÊª÷ÕšF»a*2ü¯E*­VO?—Ì«O‘ù³6ç‹a…ÿT‰×\HâcXŽ¢˜ÓìÍ×ìüø˜ˆ]|ÓßØèn?H07.°zðýêÁÀÌ“ÌóEöîÃö×žô'¯³n2“Ó"õŽ žcÔû)"F’¢@	bz3l¾(P/Ýà_2`Å2FdK¼­<Óp§a?í°Ûó ô@ë|u³;óÝÜf÷·™•evuæ€SÝþñý<x@ü@_û %™‹ƒ‡ªÁ=à˜Í€
+@Üÿ ÿ¨v÷Ë·îöCv{ŸývèøìÊ˜Êœ}žÒïˆqSö„¹Z‹)ë>}Äœ²ò…jºU§u^½=«¹TBõ"fõxnÁ‘´³Ô‚ª¯_L3„qpšf¨$Òv÷!ˆ	™/»Ý—‹@úÖ¾="!b®î0Óüw°¿ßŸÜ=Ø»s°ÿY£ÕŽz…1‘+Ôi¼¤?‹UÅæ*{T“Cþ"+Ž‘t®¢_Œ¬‰¸äˆrÆgÇìî»¼ÉL¾`övºŸ¡œìm §ÁCô…	fuÊéÒö@	À›{{o¾]gVûÏoô÷ó~ãùfoq¥»õñ'…e˜W¦Ë_j1úhzoÞ°÷®ÜEïëÐ³î•ÕÞ‡§ìí;@3Ð©~Gðë$Õ™°6jÆPUª#ö|»*+fa‹¶åÐk…jƒ_çMîÄ¨hýªàÏ ü¡£X÷"¡ï8œ-5kŒ>µ†4Kó†¢ÜÞ)D½6Ò+µîŽF›-ÛÎ¦P«ëâÖŒ®ì)Ç+™ËecJ«&©-Ëh"ªJ•Ï¦´h§9&ÏSÖ|¢cÊÇÄ­NPU6XMy™8X¢Î¦ õ×õ)±§æ£mIH]qÒâ‚7&uZ¦‚¬£¬
+°
+ÒY•TÃ|Ù>Ø}â_ À¢îü%öÝ*óðqÿˆÖûÏ×Ù˜–Éÿ‹èW£¦M äE."-ŽáX¥À‰‹¬D6‡‡iÀj¹$t–g¥Ã Ž{È®^F‘ªÆ0{/†Dyîôà­¸Ÿˆx|°SŸjc7r®’‹†8€	"&f÷3Tð¥«£N²?± ŸjãøFO¢÷y›]ÚäÇúOï13»ìµÙþÌÒÀO‚7÷¾Í2×–»×§¡ŸA­5ˆâlÊÐ$õ9¼¨Ys¥´Û®ækþ
+P+“¤<¾58­ÌG”ÒD–ƒL=•«ÿ^0R‡‡ã)"š´SÛ‰ÉÍ^‰_‰céJ1¤êqÂIâ!ÈSu±j¡Q	&¹†Û·'AÈÌ.1Ï_#ÍáýèÌ´Éè:SsŒ:Q 'ñâ©²8H )7ˆLð•*°j¢@O9 š§yR”@CU8iu'7‘1›ìû;È«Òk(™ç ¡ž°÷÷Ø©WÌÍõþ¥9¤-P…¾m²¼J è8÷	jåêt¢³×`6ùÓöÕ<P^ÙÝ6_™Ùœa_¼C®¿<Áì^ÊƒÒm¿XV‚ÊÉ+Žˆ)ìsŠK­¦[£+ui±Eì¸†ÊsZÅ°C”RÇ—‡j5–ÞŒsü|X\žHÈ›T¹á”úÅF³Ñà-gú€^£
++”„ñl
+¹hÀtÓu¯«Žjâ.SËb·gÝ¸=grâZ…Í»XÝÒ¨clC	âü
+ô‘ö‰úïƒq©¸°ÕkƒèN *b€¦ªx“Hã"HÊ“Éüãì¿PŠãÁ]X³Ù[ÑŸÙ˜¾	_ñ1ãÖ]zoüR”è@
+Ø]žcæžœóu§{y•æ‘VC÷¶÷–yw™¸(ÜJóü¸Ñ»ñí`÷Ì÷qE¾n¹q¯ûùÃï+ä¸Já”§¥
+Jê†RÝö:«F­›ŒNK+P7dÇW@¡¥Ë?#ªçôÇS°6ðZ® o™4Z]T§Ì¦Ëí¦"Ã	_Ä,$Î¦‹§mŠÐ¹²&ƒÂ¡&µw^\TØ|I·ÄeÒêÏ¦ i¼$™Ñ<-sÀnÈQio5Õ¨Ê¬'Fc9½ ¾XÖeò9ç+o€“â¼'pCïà'b7»“k½µo° ¹9<ˆ ªÔ¡ê "MWy˜¢Ôƒ¯>]Ù)¢DSb>sùüu÷Êçîæjwû
+
+HÑÑØ+‹½­U„-‡iÅ­¥îó=>,åÞ6Ê#Ïr‰ï_v§^TfyÆ– áG)÷†í7gú«ï@U£àÁ¸ŸÅî½e,ÿ=v8¤M5VXêíŠ1«Œéœb>S7ÓÍj¦í
+HÇ×ãÓª±§Å¤çÓäqÎ<w"Œ:ôö
+îhÛm‰¡^iHŠ5I4g•vÈˆB€]¬œËÇk\*O¦Õòi‹ÃäLqÏÝ“I$¨„ƒ(–Îx»£i›¿‹ŒDºC#QKQõ];Ëû¡x
+e zã[È§âOÆAy~{¹˜é½Ñ”$~îøZò^ëÔfr8‡†è0ƒx=êú€Çc_|ét}àmÀñîÎ3ËÌ×OÈþ>êÉŠCv—!/oåëå†Ì]Ç&iÎ•ˆÅ<zS*¤_wN+ìißÅ ‡èt,½çìÇS«ìájU«*Ô[2®,grk;LHËt¨ãîôæbuaÞ,_Ýì^~Þ]zÓ[~ß½óÖ®n<dý¬ý¦E&ŽÓ"/Ec4%R‹¹¾Ÿ@½‚8ULRgâEÎl*d°yØòµ#5aæÉ^ïÍ¡Ÿ=þ§ý•íAÕùüƒy•]Þé?z6t2vöîô'&v'd*êjãžAïÃ×îöýa´¶øœ½ûš¹ù±ûý:L>¸Ò{sï`oõ;Z–¿Vc$Žœ#Qh$Þ !geA©8¡OùìõR4¢Ž$Ç×˜Ó
+Ã|5@òçáÆqÎnTBú²ÝVsDMa(IËâ¦Ø¤qØ5»×, ÷t&=õ²>ãŠ¥}Å¦Gæ¢È¼5W˜Læ€Y¬ w«N3ÏWØ=X•ÙG"Øý€yp¹üE„ò&ìÎxl> 4èyºÝ½ò²¿ÿX(ð#Ò%®ËÚLbµJ=:ûPCAø´Ñ¾ÞÓµ‘¯D ƒ¼xÜ}u¯¿r»wÿKwû-T.´§ ‡‡âÛS(O½—äËÎ§ˆîÎ\ïÇ[Ô/„T,O0Ÿ‘Ç$$9ÿµ =ÚO=xS;ÐuîÁ'ÁÞžÞxŸÅ=°ßÒªá4›qƒ˜òJ¥¹Â*É»Òé,éhÊ"¥œÏoŠøÆWÇÓjÖG:“Êõj™Ä/šÆÀ©ºp±º5ÿ•m|‚bÆÙV¤ÌÂGhg¯>¿ÿúœ"û rÃEnNúU4upØ±¬â@m‚“;[ÀïÀäÅ›¨ðŒ„Pl×7Á/vxèh.?ï?|Ü›ú:’ ÀrÎN¼èO m˜ìOÞZ¾|µ×³‡‡Haºa¢¸¿ÙHÌJ·£|ð>Ýû_Á34‘‚)Œ‘gö;œQÞjŽÅý³ÜÐ¶uÊjUX“‘9¥Q“†î¸,†Œx|é?­4-¤uLéÆÀ©Ò¯½˜'Ø\ìn}DÃQÈ"[É®\±÷÷z—¿W™­)# P¢F	Q ˆUi‘•*â"]¹LX)…SèÈˆÿÑ9¹ÎT>€q¸Ñ¾Kuÿæ0†¹~·×O˜ûë %éPŠÏ;Sï/ ÏÇG8(diÈFOcØ–ÊµÀ‚_ûkšà	ÁVì‘\ÿ ˆ¢š¿Vt©iØ,òzÛ2µZ‘æÊû¥†¢MiÐ¸<ç(DiOÓƒAèòg²qÎ‚QWeîZÂ§ð˜;ÒÌ9”™ÓSÖ”RVÛÎV$õÅš<`ƒÃÆgØ÷¶½?ª8 ‚è}|ŒÊP¨©C`@ã"ÒØJ4N’D/Ñ B!w‚¥³8ð#gc(àDPtÎŠqÇƒÃ÷ß#û?ª¨z6œßA‚ÎñÅ«P9Ôõæqo}ØÙ=H¡&Ô¯Á…õ\÷†úÃýìç™Þ‡ýÞÄ³0ÝÝ~ð“"F~­æ´raW:dñuê2S6Cvê¡÷Ù)*cÁ©’ª¥[sFÄè¤*”äÏ«Bsüã)tŒi–‹¤žœ’È×ËfF)5MLÀN«­gS0ÕåÙp“Žæ±îÄk>¥ÓLSrI,Ÿ2ÐE®  *©Í©BQ®Ê%MÕ„,ãÓ®\¦Éš	7I¥gSHåsV›^Ö”œb‡)á•gÉ¤Ø n‘¥¶©Ëi¨ÿÅº9˜/ÛÌ÷k½¯KÝ‡3ýÅ'½K/€ïF ‚ÇÛ“¢îÞrÿíþä<3¿g|¶–ˆ§¼T;Ý1‘™ Kx­Æ¥ž4×K)š J"3E¥…S\7—P
+}~	xªî‡YRjÐ¼]àNß^êï½€p;9¬€]ºšø¶7rü#6a‚cw‚OpüâNïÃDý`j›£úÍØÍ‡ÌÊÂ ­¥6~G"]NYžj¶œd×ýš(ÖŒuº‚‡cñc)õií§&ÒÏ5æ1ÎùOð¢Õ°Ú§wÒfm ó4jy¶V‰µ”5RLÊu€VIõÅZ9Ø÷½—oºï' ‚úãQwa¶…sÙu>@)’ž‰@]Ã«ÿwMdÄÚ¢V-Š,D†Ô¢4JTK>Ãò-é{;_.÷_®uhrï-ø3_E€6£3l°x{ùàÇ£þó9X#âÏ5ÍÃiÆýÁ`6©0<L¥?ßã”oNÉp~sÞ€Ïhê3l*™|=Ð˜_ŸÎ_«1¾4äÂ>2–µ¦ãF™©àê$EeF_ñäÚMÝøsZG•ªÃ¯‘þÇ‹`ãppBñIf“Vâ®P\êHDö¦Š-ÎKÇñdZ>›‚—ÐÔn©´C8p}ÕËøñ–2¤éíam>—qœMÁ‘f¤^4ÉÚÞ¦4Nùs¤<Õ‘V•2³Vk“š¸’Ž@!ªâX'Xà´¼‘+«ÅÑbWÉó.š±V¾wŠýüµ?ùƒ}pæüf_‹ØéÏ €c¯?ì]Y†å§gëììtÿÁzoÐÍµuVOCÃ ÿ={©*%I\äÆáü V¤ù(”€meÜœ œøøŒýºËl=U4+ÑòìþàÜ©k@aQð	ÝïýíþÊ«Ÿ§$Gšh\£dÐž‚²1è‰²ÌÂdïóGhÐtzB(µùL¸d‰$¢¥z8î±9ÜzŸÆ]K«[Í|Bå‘êÄ†ñ«ÐêÓºIF@ ¤ä…`ô8‡?žn§eK£î¥ÒÕt­¨Õåqg'$óJcþ†X. ¬ÐV’Ù*©wJ¦¥!ÌM“ºn9Ó¡p]C§h!ìÅZAØåMöÞ‹Þëðw.^r)ê/Ïƒ¿ÃòÀò
+rÄràžzŸÆkå‚Ø5P®Bõ3ã5šh`äHS²Z"Ì/¯ —‡ªÙ|:”8†”Ü)aµîÆ,ûp—ý¸„ 'ÐÊÁ>Øîÿ ¿`=ülhf¾½fv?£þ‘!˜åø<ØEœò]ÉGA+L™ýñŠ}·Ú_ßä{¹¸¼(_‰[šAeôPG$[·æd~,cUæ
+Õº†ÔÔäa›£¥Ë8¢±–—¦ƒã+àim 'Nlž/4ÎáOˆc)g> ±¦~+Q³Ùê®h;¢²‹=µµT‰"a·O®¹M]L—–$òRÂO+j àÒÉS|¬-$†¼X	Ô³É¹þôu8>³ÛêQ=¢÷yM„¾tï¬ÀWà[”„é¯{ž:·ÀK¤JDj¬j¿"€;ûô+óî³{y°†j¹‚JØŽuèQu¼·uƒyÍÆ¡&JøþÙùƒo+€XQ<:Ä?Ž}¾ìrXGSB?ÉÅ;øz³¿|k ‚ÑCCç·Ôàö¤%L¥ÖpZ«vÖ0¹Ï	bYL®H6	¯b|Í;­‰äç¸ñOYˆ1ÇSPi|J´Cçtê¢¤fŠ7;ŠZTl”‰}ö@YFØhpKb’ÙˆxÞTL6	©%‰›KÍ¸– ÓA­3!`)‡ú‚Ý(Wÿ€ÀiâœFž|Û_˜g¿¼gö–P=ïLyù’yxÏŒ?#D‰À“‹<­]¦hQ€ª—PÖð1ª€ûß»Ó÷ù}Ü± ßâZÑ¦îì4êct¨ìî÷^Ý:—p5tX°ðhïÍ´<q‡t&ß3¹“ˆ½ÑYíÁÊ…¼ _äÔ¾™ìî6»òp½ùž¯d1èr	I3éVi‹OÕ°5Ô!)¨C‚»Ò_ÿNkI9Z™Û>ß¦qBî“&=	»"c³Gƒ©’É¡MÉ¶RTÖŠø¤žNB@ð‡a„E\v%=%‡Å”mç3¯I­lWS“§äÒ?©¾X?
+Ò0™D&±ˆ_†ð“Ù¸Ç.A…8¼ƒÊpùÒtwvæL¿Irß`BZùTEF¼vÆˆüPÌ×›»Å>^£°Ü™~N›rÑx3Ê÷ Áp¾ºrX$¸Mâ †žï(ë|ñ„+›@ç÷ppŽ
+òý‰5@m¸?ÖE1ùNàžŸn¡§óWUéñásË%7”K­J3×.I«îZ¬¦jgÜãëÞiý''îý;gÜ'ìô§
+þ›O‚ß}ø~û?®#þ0¹¾÷Å`ƒ	6öú- =gÉ>=Ì`Õ
+¼`§d•ü3V#À6ÄÙÞ‹ÝÛ+üª.åwC=¼ÿ`ïy÷×9¼³Ô¿÷}øZÓô?'&Á›á¾²ë¯Hã>»Æ~\/ÂU—3wÑ`ÍÐõp 1ùÓ¶œîîxŠ0³Éízå\-U×‡¹îIq¬¡çó×J?fgâRPºòŽ³â£â7IùKÓà·
+Þ…6”þÓúOŽt_-»Ÿ7ý9ÇSa{¼ðº¤YÐ¯ð[õD d(Ô\v,JêiéOMÝÉ†þBÚr¥;†¨§Q¥rzÒ’‰ÚŠæ´ %¼`7†ÍN}î¯L³·¾¢–bfæLAñœÚåÇIÇ)BXÀ÷HPõÚpûW$d´·ø¾¿w¥;ºÛ÷{s[P3®n±—§øÿÃñN”~ü‰+È·_Ÿhéøù)CéŽáB´°ê¸y6T‰øéAÄýDþYý†ö—pÜ¤¯W(¹Ì—ŽÊtzƒ"EšôåX»-›ìeUx|5<­ýe¤ïñ˜9ìó•îÆáà„ì…ØMW»4Z#Uq*®wiå†`9Ë,M!Ó Ùl9Ï¼å¦ßÙ¬ã~{ÖPm$½¾¤WáÇ„4áI…L_ +M]±˜¶¨íî†X™+
+µ¤_•4$leP¨u¶¨Ó’–’†”EI'³I·"êQEåáT¬“;Ûh.ØÆÃy!Åº÷æ€Øs`%DhU‚u|k(g/jT"³/4‡¬ÁYiPp ¥çý©[Ìô£Þä´¦ª4WV<ØýÐ¾5ˆ‘ 1?LÂjÁÎ³È|°¯ï¡vOæÛëAc(Ï#ÇöO+‹ø¡®H9,â£^h®ö€ºBQ‹LÈ õŠ­BB§ÃÚvÚow–íî¶+KfŠÎ¸Vt‰%qÉØ†`DšNG££Y™øãq8žBÜlSšüfs<àªISÙR˜,II"_Ob›Î¯°Ð ‹uÂtç&º³»¿÷öz/»Û *¼yüÞ{·#’Ðj¾/nd*üLOêÏ%*#p2-ÒU‹T¸T’ ±j[d©bi\¨„ÃÕ&à9ŸâIQ›&¿Œá°ŽÐ›¸Ñ[}›ú.ÂCí¤¦/ìì<ûú	»ñïàÇ9í–½==œôáž úHïÍBïÝì0—Éøzësìäûá éÓ)æázP/Û`?M¢>Á^“ßÑ£U©|”×Y[Þ[.8"Ò`Åa‹f=Õ¸É$xÿãPNk„Ñ•_»½K‘ÆaáW”U˜ý%¢\o&,c±ô˜½ö†¾lÎ6šUuX@l¨¹X/ê¼ì¿½×ºß›ü Â.ˆÕ`ÿØ}ffG„FµXEù`wNõœDóøîl¸Ñ„_nKEç’Õz-'¬¹´»ïDv‡Žˆh7Ð¥=foiÐó+ÌÊmöÛsðöÉè[V`Wà¸{}õ‘þTGL¢^íar„ëGc¬(îî~{i31ÁßíÀõîý-Å”±“EæPÝí¶¤Šd%ÞTyå– Ú%cuýøkN4çºáœ	a§?U	.Ö{BVþ ÁN÷ú¼CçéÝÚe7×z3·º;¯»+_»ß^ó—€ ï•ÏÔ£æ‰³Æ¬íX+‰ QQ€Æ±"JÓ›Ú8Ìà´h†ªÒŠbè4½åÍÞêZoa§±Oî0·®¡Î°a[7½ƒ˜Aœ †u±½·pô•#È¬,wŸïÓ#SÝ­Á2a îüeGžÀÏ­•Ýû—º÷oñ	hÎzdlíwäçÝê´ÍÑr7ýf§	oÂV¥ÇIùeOÇvJÓ²ñUà´ÖŸÂ³AÓØªcÂ8U.Öš1ÒQ;‹ZþÐæ~RAÐlß3{–õ××Û"©È¢9Z2ÆÈ:\5@¥
+Â,?»ÿ£÷u¶·=ýÐö} ˜h/Õèv+.S1…r#µ©w|?‡¬FYão¾áX¹çt #ÚÉÁÏü4›6µÃ'Ðâà¥öñÊ 1rt„õ¯y¿M§•zå¹V³¦‹·4.g%ÕÍ–lÄlJVT‚oŠüolÆvøSÅýb@À÷ÂoöÆg¾çÛõÞôG%0|"˜!2•ß-%—ÿ—±:‘Ð. ®íHÉ·ý]ˆˆL-`D~¼‰UÓ§/ÖàÍþ»—À>ÃÞ£ý›ìòJw{ÔÝË3hÛÆ 4ÄÞù÷"îÝíDÀÈsë¹ŸÉó‚v>rKÃåñh¥ÍÜ=æòffyƒÁÄŸ¶kðÂ?³Çþ8ì¹ñæßŽîÒø’ß¬Éœi[–¦:„ËšK4ii+™ÇUÊxZãTPDl|ÉºQãOZˆ8ÇS0Ú5ò|Æ’JWr^Ìc”ÖÛ†Œï´J…ª«-ÁÃôç‚×-\}½>ˆ¼ÞïÏe6QLÉ,®qˆidÉ•ÆZê„§	´Ò‰¢AØ@4p‘|lª‰\u’&¸µgn§AÁ8lïî”BE%tÌáPÙõ[ÌÌÝŸúkç0‡BkøqÄ%·Žiè?~åv„sh
+µ¡ˆbœ6f—B+¡ÿ@›¹ÂÖï‹ÃAuÉ©TZt5W¥€©¼ØÈ+[%qÉÇëÔœÖØp¤¼tôV5UŒ¥Fãœýx
+o*é¤-õB\-UjúBÌY+ijdÌ‡g5B€]ð‡eîn¿ËS0n”dÙOoØ¯o™ßº/7ø¶Ø¹§Ýg|¹C p/ÑD	çd8)4Ø	ÇSÆª
+¡Óp#\SÝOÐn]xÉæ6Ä`3ü°É`¨“OF'½9xQO„»€ap+!Ÿæ¸‡kë9&Š<ÐdÊ ŸL¹³Ò[YáçS›ò~€ý‹3ÁÞFƒÔ%ü6«T”Ö2sÛí”¿áóxk>j|Õ9­/áÈdÊŸ³cŽ§ Š´ÚxÃ$/äìeWÇäV•4é¨£ât¶:I+ #V¢eºtÂÙ‰a­@‰N–€CKâr§O’ÇÊh%a*cÒª»rŠeuªZiøy»¯C{±ªül
+­–´ŠÅ#´oÈ\©í¬¦²
+óxUz:-SX‹U‡áu“ÌÊ<g~G7€lÏ_³+³À ¯ :Ü2É®Ìôïß`6Œö¾bŒTÎ¡)È‰Üœäj‡ÕŒA¶V­–«Díô»a›Æè·§€/íÞÿÆÈ»w™/OP6æâžðé8d"N Êæ8væDã'G–å€ÐrdMÎðÖ/ŽëŸ¯¯à°0óâÀ¿Ünø|YøÍ¹qoE%W•ÆL ®×#´¬a”ÙY±v:çÈeŸV>âC»‰wL+ ìô§I¿öbõP8F´÷–½³<‹\%aö^²»/{_ßÀënÎöŸî²×¢á&ê}ãWF•€ ´ÄF<Sƒy,=‰¥qŽ7'³ô¤Oí –;¾¤‰†æ­>MÉ,žg=tGÀˆÜ@4ùl–q¾.õ§ôÉ@GÓø} ÉuåzÅÑÄ3¤Ï•Q{oî1ŸÂhŒ{œ¿o*«bPYí~]SB{k¥¶­£h[0s+;ºŒ§™W-ý#âô×gŸÇ9ýñÂ2¹Kk–LD6Ó*D±v› Ò5£¹ir´µJõl
+u<Zëä|¾’«Ò–ŠNÛ¢Ý©Œ¦è«¤¨jJÀ=Ú‹ÕSû+ þéJ%8¹¹ð°µ‡½	ïV'B«GÐÉºÈi¢®ŽVÀe÷¸iàP+E£•Ãîþ.%taöi½	ýë°Cau®ÛÞ{…ê>ì÷ëì—Ë°ðÑK˜»ûò¡÷ájR€ÒQF‡|¢.[®=á'hŠzÕ‡Í³kƒ.ut½äÀì?Ï‹y|‰ý|ÍjýteßÛ¶ýtªðøäÁ–ÍèÇåÞ’¾‰Y©Œ¬‘t©q¢¢°6bÂ–x¥~;üŸ±­gœÓŸ MCˆ¯˜ô;KX^U«*úv4ä¦[E-U”â”êbµÕ#JíûoÄAŒï#ž.AÄÏâ¾xÜ}±„’°Tã½:ìù©b¶È@ÕËà5•>Ï,Îñ«÷oÂ«Vß†9à‡.½e¾½²p¸ z0ó8XC<zEÄ°´:ò8ø§±K´ƒ+³ð®Šär"CP'úy±ï×%¨aà½˜†åÏà½¿õf¦xµ•Ãü!¥Ê/ÇHm¾Ð4(ì.‹'ÜRGr²JW¥N«²Ž(ÑŸ”rçô'DZqÓ§­—,‰¨_ß((z¿$n±+ªh0žn
+X" õV}Í '÷Åki]\Q¬Y\Z«ÂcTÑ	ST¯ ”ÇÖz™o[ý'¹eº˜7·à‚˜_5¾QïÔ‚¢€ÁãñÂîL³;ó œ…ë>y‡¨œ‘¢¡ ²¥p t°°{¸ïÃ€U©z'ùW ë»a"SÇk3oT³ºfwµðËs¦æÙ»óÐ‘p®-Ì I~«6Ú´ÈÝŒÌÌï±×–™ÅeX{zˆÀAÈÙ/Ìû·Ð±-½í?z[–¿ÀˆëÛjÆ….
+àÚïa Çiæ` ³z“¿‰_©½;q¯Gïl¤©3Eƒ{\x¾‚X=òÔEÜ÷
+'Ïfßô¾¾?YUs4]®ýë?¼eÿgêIü)ªøÏñÏ¼Ý‚éŽ²éûgkUñZÏ`u’þG¾œ=QUÃ6£É“à¾é÷M'Fåî˜z0Q*œ¿|Áã§ á>uä16 hþôG)Ô  ×F©üí½<¶ú,X/Ã¶°M¯ÓÇàÑßá»çàr(æMfê³7ÇÎ_í­=bo/ Qfgç™«ÇÍC"p,EÁW	×Wq=¯Ià«DR¤«Õðb’lì ñ²8ÙÃÿŠ<e¼Ê¥HjHgE–:øÏ‰HôàÇ{N#–{¯nÁÐíþfoý^ÿÚæúve}pöî§+ðúòÉëÝõùÁ¼$³r›ùö¬?¹Ñ>•+Þ1«ìË·ìõw]ØÁ¾{ÑýBÉWUºîæ*ûíÎ`¯>»xãàûC¸#àÒ}tw9³yøLq¢Bõ§IöÁ3¤¹ìÒ}æÝ.0y@»Nõ™¿êé¨F_ý~­·öõ˜_å¿´k°Ž~.ímD=é’7O³ckï¡0$FEó,è:ð¬Py‡.ø\º+äðÂ)ÔÝf³y„J£S¹oüÛ©Cf@Vøù£5:	”~òtóŸ°‚íÿÓVJã­jÔ*¥F¢þw<–ëäÄÁÈßkÕP²ô¿é2E½‡*“M<ë‘…ŠL0õÐâ¼-[/¸åÅ”*'ŒYG¨äJ–¢fCÔ’×µªÂs’19¶¶kÌ/ø¢{çÄ_Ìˆ+ƒðEµ"¯ß/ˆbnÜDŠ`uoŽ¯¶q[(¡ìÈOT}»oàÕÓHºJ‘$ŒUézš `' àÒæ`f¶Š3Ì‹¯Ñ9œ&R¢@
+/qÝ/Ô	³p €£½é7Ý+Ÿaå Üµ 2w§gÀ_‘‡ÎþÃwvo™]Xbf[ˆQvñ!øe–ÐFŸþÊ4L¤}ºò“Aáwˆ^žbž]†Ð•åÑž¾™‘Óéáèûð QyÖ8'^qÆÿü8O³&€fêˆ—3#¶cy¶¨=Üe_?µ(½GýÅÕþÓw#¯¢Ë±>|?ø±1ò*·lD	€•± }[%ñ$µM›^Üé4urELj7ØâùPÉïòùí9›@oÐ¹¼:›ÅpØŒÄ¨èŽel·Œ…éÇaà„
+¨"¥”ÕÍ—Cj¤©Ú mº¼ ×êÖëšJÙ+—A¢K“á$EIÛéh²äˆ”®@Q+˜©<æWDÃŠx+5—L9•GbÏ•=D±œ#ýFG4›,bÚ!êµ\Ýå,«¥MkÀN”H_2íâM‹–tRj¹8;Wœ×ü©µZ…V£8ÙüU³xYŠuuÌŠÛ\.½¿æ5Y³a•FlŒ†•¥D³!©%4¥dÇo¼ú¦:w’ù;¶5C€ùar r™EÌÔ:¡`jñ=L²]"“Óíà¹ÿ1¹7L¢ëHRL”Äž>‚©xKâžt=EÿdùõExCC˜Ä6yª)„½\ù]•ÂÙYÔÙú+ìÜ½îòœ•@Vob6½~þÀì^†·­lÂ®X—±w>w·¹Ë×·–úËó(ä‚¬•uø~®Ñ&./"û8XS|ðý×ÐÖÒÁzÆƒ«ûûüôo"…YCX-Ø»Á^ÅÌ|
+wò6ÌrÙˆ…ãì,ð€ìYÖ‰ôÞü`Ÿ®Ž7’QÉ–Ë–”Ì¢ÌÇ²lÊaR¿[¦©º0°dtñôÏÖð´fŸRGÌáa5–5‡ã)”[µ7é”§¥«3Ÿóy(GF.ÃÝž€ÙšhEã(èœ6ÒYt*Írœ²´!¥hÑÅÊre9PÍtª†%ú@ìØîÔï‡ä–kïl  ñ‹1JRIª0óþœÑ=´Bp®‰Ç,Ü}(\­÷`wað;ˆƒNL¾Ò„Ó$Y¬ÌNÁØ!PTêX™Ä<,ÃV	>ÈšÈLdë Ž»äÂˆ’È†dëxK´;Ñ°Ï>ÙîÎýÑû¼Í¬¬Ã.¸r²Ð[[e¯?ƒ•½§ï`vw²iŽîVfÐrUø¯÷>ôŸ­÷®÷nÿ1ŠËz—áä	bù`w„½›weöæ¼ôû5fõqâ³¹ØûvâWðÊD^pôrvš¶ÛýçsÝù»\ògfï83T+óìô%vâzïëÁ·àTã'G‡Véð[þ9AÃq/™¹Ëc›`*dµ¥cyUÜ£,VIIüÊd)G):Ñmbl¾ÎlŽÇå2ù¦Ä¨¸ž½Ôj°(˜´yLs3'€/­Â\’Ë£p‡šºšÎ•µ5g‹YMž´€Å­€¤à5•éLV]ñE)£Ôj“´’ÊR4¥1cèl
+	º)É‡|q³ÛHµEF]±uÁ˜8„Ç" Î§;ÅpFÝSöT-f¦LzWÞ¡s»5YÚ‘ny<ö¶¡¯{T„º¶â®¼:ÀJÉ¦=€§±³)„0G¤¬OÕÔµ&OÙE©6ž£½Å˜FgÄ[µ€Äò±[V„™º 4„]¿ ´hQÐªQä%ÔìY ƒw‹óvÏ »Ð7{ýýÇpÝ%W¬Co¹Kâ¿uïæ]æÍ7økyõÅpc'²[ ZÅešv±ÿ
+ølz¡?½È\ž‚½Mp™Ãìòsøfn“-êo †
+å§áë\Þühp`J™ÉmHjãÁxøÙÞÁGÌûÏ°Võh• Y`/}î^=€eó¸/êƒ‡^Çà‹zâÄ£„5•/äõt¸£n¦4j»/’z¼ËùÞi»\NÛe}¾Ebãðp<]X%s©=í`6†W”þVÃ"-8ÄFeÑ•/64I3³AR—©ê½U4Åb>«+€[t˜QoÑ›sJ·€v?W.VN7$ºR[Ó›$b‡"cDå)<kp»ÅªöÙìq_E²DÊ&µÜ$<I«LUõÄäí˜ÖœÔ)Ø«†Úš­kcf•Ù”wæòT­£3»)IÖ^Ëú3Ÿál
+iU;Þl„æöê2ád¦]mT¬*¯>’Ä­­—Ôêñ%)·GfNè‹úBÎèÉ¤U…¦ßg7ë¼ÿ‡AÕc[0‘ñBö»;qØ‹þÓÉsBÕþÒTý×A\¨œ¤z2‚KŽØi#Nc)‚Ïß'ú¯ÀE5ƒ‘èåÿvZÑž]_…×–™Ç—º·ŸƒUV|&bíýËÞ×Y×ÂÝÀÁåa²þ4½¨>1L«¼:‡°,\3ðí&ìûÞ½Ì.ß`Y>åør‘_ž5zcÏæóŽõV×¥|T,a—Ù…ÁüÐè%°«n}~Äx5+‘Í‘ðÆ;À7]­ãç´êÇ}œ¹‡ÕÎ#ÏÁtwcµ{ãêXæ^æÎje~§UÁ“Ù’!O§ð€šl™í4æ¨W­íŠè‚&¿Yçt&¼ÐìqÚ<‰Q9?éòŸ#·}(/´ã`6Ž§P©“Í„ÏfM4x½œ×5¦²¬§=ùlÃÑÑF¤]vCÊTŠ{-žr'f‰™qÊ®gÈH:ä‰â›ÓX6O“I©9Ðªj(ÚgvÇ\ždÃ$‰F"âˆMÀ1_Ì%õù1Yƒç¢Òª.ŸÉµ’éh×–ðj]€ÏèÈ”r­¡)­VÄÆHãf:îÌX#9«µL¸ØkUÅPŽ©1Êç±È%…5QO6’mm»jÓéÊê„€Öm%#*†Œ=ÓréÓ2sÃ®ójz¯;Ÿ4IŒJ©Z£¢P+F*¸Ó‹¹ËŽfYZÖk‚É–Á—L»“…xñl
+y}:RvôUL*Öa9g.Ke‹Æe¤š)L"à»Ð[=úXÚ^¨i›-_S×s Iø³õD¦h•0D±ÖØ!ž,¤Ur7Ú	:ÒUO0¯µYÝm¤(`Ž×–1Óæ@ÇŸÒ³þ
+Qµb¥vØàªºäÍLšTMÀMÆ¨
+§´^-×ºŽ£`O´âJ2mlªc(ˆCžX]¦›,
+wÓ¡e›!³¢àÅ[Ž¼²@‹ñ³)¤4¾–ØÖjQvƒÒg	ç1,å‹Yñ†Çšá–€ò§’7srYÜ„…›A‰ÆL92»*ÎYâ¡XúOÁ•R©Öž‚!Œe‡'QôØ,Y£Ü6eBŽ¸oµ)wLcæ\ (eÅº²^……$m3§ ÇŠaõe|qvé…AÄ5È?Qì¿è}œî­Ïõ\g¶žÃñ÷WóÃ.¿_ª°áÕ-öÎg”€gf Š4@­?yÝp7µ|Üç| { Àîjš¨Ô¯.ßCçYO£³‘jæiö³¦á¹ñå«°ÑÀ‰—ßYyÂ=D×¤Ÿ7(<>p‹vÁñvA:|`	 žÎè"NV%Í*‰œCY¬gÊrÜo‘gÅ)mXÐÇÁ‡Q?ñÖÍ£=‡	Çaã„0Ç”+ëôNO$YÈD}tÆBVÊ×Ô¤U	æd+GÍÁœºÔÊ´#rIÔ'Éû¢éPÁUJj­m3xrLµRbîÖJ´õBÁòùtÊfP·µb')wŸM!¤À;*e+×yÔq²˜—J¦¤5c¶ùdx4ÐÌ¨pjrÆDUJ&Œ±W%ÓuôÍ‚©Ýp(C.#Ù²ÅŒÅ¼¹mN›"ÍN[šˆÔr-c¬¤ì4dáTâl
+ò×…¥Ú\F-¥Cš‚&“OZu¸ŠV˜ušDR  ¡Tá\®bÖÒU“ÔÇ
+ŠFDGkùj&A¹½.+-•zåµ¾.*H]hû«8Þ¬—âÁ°Ë#àƒ¤Ù‘{ÚîzY’sÒy-..5
+{²êÄ:á«y6Kµ&¡Ú—-R1K	W¹Õ1µÔÚ¬£IŠ3³Û%à9ÐÚbZ§ÇÞÞ±×è-.—í*î‡£J¿€o³¦6Ù8©×µ,ÕjH\-9¡+æËv—7s`‘¬YL™‚Ã`ruèx1š6¸XVi LS+aŠúÙ4z}–ªàM•9Rrš:§X¦Êd
+i»5çR¶Â«+cX’é©fIV®9pªà©ÊžŽ2å3Ø’Ï±b1v¸\x+BÐ´,•¬˜;á ·é)¥'Þð”ª¦¶\×*‘ñRÞ¦IuŠÛ±r6©Î«h·"Në‚q½%bqË*;n£½	³Ý•ÂÕTÞh°ü è·u($ÇÎ	AçH„ÅCÍ…ÿÙÔ‰À¡t¹¬S—iAèå˜6xaÚaN‰Ë½ ß¼À5&ð]ž‚â;²FòÜ(KƒÕ‘» îo"8·&ß~À§YàõQ÷šFíSà3Ûçœ˜øí©¯“häœ˜ºã0ûK:©/ 	Õ¾>à‰¤¢žrõüXè´™¦#ÙóÑZáùÐ8Lœt.‚m¢¡¶Yh:W)Ø‹ÜèW'a»¤ÜjÐn¿1eséœÜîiæ¹lVÚ±‘&{•*gMºNº"
+@!X9è÷¸i—ÝqÕj4™ð5€jtÑdNåèÜä\2·ÅÍ¦¯˜¦›"WúròL.kV”duiRfà}­¾ºLÚˆ˜,9m¨’6õ>…B’'ÊbO,#'”^S(Ê€ÏR¶°˜Ó¦â˜¥i¨GU­®–²%!(¤êÃ(¹DÊÁÛ)7¶åaq@öŠN·$â“ð2q]’W{q£!GK‹º¤V’dô‰R¯(è@C,`¯¯X²`´ƒêXl	‰-SÈù’…Bz›Ž4€!¾Êè	ÊbxÐFÖêž‘¤³ÁrBœVº-RÂ, ±–¶kÜ* +¤¬>ÚœìXS®´¶-ã©¢Ò$K
+è¸‰8\euÃp„ËXJoÚ4bgÊ§ó›‚òJÑëðmÚí™²ªœ)¤T¸¬™&d¼c©5:š Î¡M*sa®eŠy\ÎJ'§¥4£O‘ÔÊ‹•š>.•†üI½€ô`Ùï.ºìÎx’–­*«=ªV$Å˜ß¬HšRÕæÿQ¥…äØÁG~+ÃÍõþ¥¹ƒ¯“°ï÷åZÎ÷`—7™÷pLDð"fãYoí¿Òxñsí¸•ÖQ"	ŒÅsx	+‰‚x±ü¼¡^£©¢(PÄªt™Û¾ì¥ê©œ(LÔêÀÑŸv½?½ÿö^wm
+¸G¸·8¡Ý«Ð¢ùÞß_EcSpŒf¯ûeuèÉ÷Ÿ0Ó.º¼ä'oÌv_¼ .º¿¾	=9×¬Çîß„‰‡ùÙþÂº~0Ê^ØýòÜœfVÖ™•Mvófù6ç7{ßfÙÅ‡pƒ:×Y8˜Ý}N§NT8ãc|5ÚJõóPsãfz‘]¼Õ]z;Þí«X”NiKy® r¦«v¥©Fd4Y<§öWmPÐ¦¨ãÝð©2ãÇwìð¯åƒÇáàj0µi‹Å-—
+Ì©ö'¢2•Çåj›
+DIí‹£çé*ÑÀÍ#OBJ§›Í8RûÙš9¢08Ò5—Öm âíº\Vñã'iåñ“ÐÊî­ÍƒxðÉ5nÀ&ŽgóÂuÓ”¢Äæ*—Òd[™äùàò=–pïZˆÁÎÝeo-õÖ.‹Œ›_ûßúž±Ë\ûÉÂ&°!{pR®8„Î¡%`êê—€1x=äÖ*ì«[|ÏüxÛŸx‚„×´^¿®=Ål.BïÇjwåûáèÔW€“~ü¸Û}1Ó}¹s›Ü#â7s=¸/ØÝE÷ƒõ¿r’êŽÚPkÔ4úŠ"úv³-.·å¥ª¡ªñšd8^9O›{<²Šæ¢Ú9ÇShP2[§¡w&´&YÁÔ
+jZÚ¶S#Ž£I³6DhÑ¤-	y&éNÚt¤Î¢­YÓJªL£²aÅjX~+;*'¢Ã3ŽßÖ"\ÍN2QÐy›²LÞ£g9I¿ Ö€Ö};ß¿ÿ­¿½/ê=zÙ}°ü-ìøþú¬SÂk'Ñ€øÕ,§·ø‘2Þ÷ê±tö¸8úx­ñ*øQ°¡õ6×$6óº>Îëö.C‘‡vÁAF8‰Ç"¹–3 ´pkãÊ<3³ÉÜ¸Ò]ß@Ü¬§ê+Ë|{ØþMØ»À½³¿ú
+p"çà<çæzÓo˜­Þ‡ÛÌ­7¨OØvæFïò.øYÔû—pªŠ[ÒÛ¸·Ï½töÙËa{Û¥°ßìÍÞú%fòÁ_!Ÿ;®¥cÍD*•'*‹·C’š”–h{=É’±RMcUA·¯ç§IÓV€ôüðÆRôqx8!€«ÄoËgmê’"iqûé–¥¨,ø;Ù„“”È„„ÂLâ3ä-­íª¼ÉïÔF¼AƒNÓ!­B:oÅš’Io"t™lY%ö9j¦x-›òy¼”Ì!\ŒR¥÷Ñªb¤i‡mY6­ÉÅZcÈ ×s!“K±iøÛT;Q…-sÝ™×Hõ©?(+àv™\_TO26ÇNX^ÐØ «›™gsµ7üåÑ.Œ>ÅèœØtÔÎ‚Úëv'øùž•õÞÂ,@ä\S*<øhW=xð@7ïB‹²ñ¾aþ.øÍÃ*¼÷ù>LQ÷Ç>»2qËæ6»ûGï5±FƒÒ°F97_ÿvZÁgsÌ»Ðþqö¶HÍÜ ÿÚ]|
+¯aù´94H+ó{W™Í-æû0K½;Ìõ}teõ_aº³3 h¡Ç2Ho2»qg¦Ç3±FRÒQ—}Ž¨1­ð‰	¯ (Ç$áƒ”ÏÎÃÅñ¤}C"Åäq5q¸s:…¯q¨4TAi3fªŒ)LQˆÓŒ7Ûkqm™ ´í„FWÈSŽDº  ªDtú`Hi±«ÕJÔ™4›#òV(^ÎÈa“¶* âò³VMµî¨Óao´%Uá´Æ£O„ÂcË$„B(ëñâõBDb2Ú\z«§¤ÎIKi£‘®çm2UF‹?Íä›±f#Q*å…hÓŸ/åÄ!W]ðZ²1ÖT¡hTIBÙ‚¦®¤+ž¸Ìk0«4~<ív;”âŽ€|ŽB,	dÉ]ª«[•ÒkÇâ&±Ï^Ç]Yg]iÎDx³ÍÆ}P¹¨É:miE¸¯Ñe³]Æ'™æc§?/lšoöŸ ÛsQÓl–à¿7pR8$ä—Îða`Á™`ODv‹èpü"û•u”©ööåF÷á­ÞÚêOcÐŒýÄ<{ŸÈÓ-fež[ <Á,ÀÐohæÖVÁŸ»Û›èžŸÞËID¡ö– é?ýöxoÏ7˜Ä–ÿË[fî50¹ìÖ%p$¸`Š³Æp˜êöø8*Óü5u“‘‰ƒqŒ°:,MšCDEét7eI®†É¬žœ#ãÔ¨*^Ðí'ÇáÓæ7a.ä»ˆ‡‰ã)„kù¸5QÚT6O$IƒÙ
+%vè
+YiOåâô¾”—„ÝJU‡vuüp¥Ô•£*æ–®®
+¦´yŠc5±Õ£U)ü†´K…Ç}Æ$–J§CEŒ–f[y/Šl¸‘MÕòN]¶Ÿ8eÓÑ–ª¦‘H)- §®I{ê){)Öò„“_¸“èH9UdÂq§ª#f½v‡½áÄõ´¶Ü¢B)UÆKZÂÍz:ÙÎ7#u¢r’õ:vb”ùòæq>í@]=i¿|cÄæ4Šô!¿Åäœ!ýÿ¸òLÄ¼¸aåÆÌŽ±ZÇ}ÄHTñ-vAã,X’‚›~(´Ÿƒân¦æÁ6ø[ñx£·¿½×öóÖµî÷ë°¢ûý5³øœ°†·aÞíïßDxÐ†>u¼°ÞÏ~Æi¿÷æÜñþr™]švÙ¯=aÝà¯ßãJ»,ú,Ü¾umpÓ¿ï˜û§þwÙ%ºœ˜½Õ»ý§ï ~\½—Ò>ýzã„¾£?>§?êSyQ2˜É)1EX'I˜ð†¹—+ÆÄù-Ói£ž6<‡‹ŠT9o¤¬õ·Ýj…¸sÇÅ®-—8):Ÿ‘¦+ýª’eC<á«ly›X(FUñBØ3{½ÑB›ÐÙKî“TòØÉFÁ«¹~Ö/’jt­&Ú¡€bºÉíÄ›©jQdl—°"ôÐ²­Óï"à×fqkaÐr´ §wi*ÉÔõîex‰tÈïânïñÚ–Ó¶7®¢S·Àj5¿ëÁ2Tiîj)Ó}Ûb.ÃýÌÌæwþ2Ïå½ ¿öƒk—…Ä_ÍwßÏò¸¾ît/ÏÀ-:÷Ð9œ¢ÂGvöÖ­ÿ%›òj¤µî1v²U¢9ö®-ø5'Ð×œ·q4óÌ”ñÏ.œÂù×äP9IRc}¥Ém¹<î 0‰¢ÞÜ-öñJÿá}öÞ‘ }<úy@û”(Ø$€¤±jmT5]Xµ€Ó°ˆ#D9…Và|º×§yÍäŽ~q*:Û»ÁmM¯lþ†‡¾·ûøþòí¡~nl °ov»ÿm0„Ö{óã§‹«*Bšû? 6¾»Ë|Yâ—.¼[ƒwæj&¿5sj
+¼“ß´¾½ÏÌ=„ÎöýóbõEÝõ¿D3#¾rÅêKÅ¥zÍ9vX‚/<Áá‰Qñ;I7•’#[œU‚ýæ9Náüú9Båý”;2|µœ:÷ÀíñðTôzôÜêXn¯³p¬Ê;ª«[Ìîg¨8ŸŸP*¿DöýÃî»«ƒm‘è† Ìú$ó|ÀFææGtÔƒ/óüíW#Þ4½uƒym±"}}ŠÜYänô B‹6u¨3óã-ôÇhÿ9÷$¡[}·û¿V­×ÈšY•%3õ–!£¡Lu¥©V#l†²8Vw¹ÏŸÊª_µn0¥ùç@UaLœ4„Ñ
+ªl©$Æ¬?‘Â}@=ê ðJ.š#Ç+O“ Óâd½šÇN‘õ¤¸yØd{œN	k(>6DJ…-íÀ[g¸Ïÿœ;‚êmK¶c{àeèò`>ëT=„£'8Ò	¼°ô	nr*òètƒ[“ƒëÜ‘&÷2£Î‡Ð”¿×ôÖc¨Ç‡3SèçÂ°ó-\ü:v_²Ë_ÁóƒuiÒYž`v/±·ô÷ÞÔ‹f£FMûkF›±ÇÔHþöÇc»}‘÷yuúMò5;=‹Æ¥Îv‡œlþ#KQYYr:W/&K ®ÿ÷ZçßšR‰Dòw"ýoRuÈQˆâz#šUµTwD¡V¨«1g»¦P*ó¤B°ÚŽBY(.§hîü‹Ô,SH¥ÿÉ©îü‹\)7Kÿ	u÷?þEb–Ê$šÿ<Û]þÉžƒr×Çè¬µ`ñ»mÑf´à6—åî’kš~u.ï:?åZ<Z1g1­&c·‹sîiÒi¬X½lí(rµTòü”ƒ2£Á#®{k^BÕ®ÆcV©ÉV©k¥´ÙÔH™2øù)'k‘R9ì!ã>YÓ‹3-Ê£h8%u²UŠÚÄƒ…ç ì2»êf¬¡î´ê¾X9ªuhLru©¦)¶r@º­<?åV²Ü°5i7®õÓ.UÇÔ	úê¸¶‘;Ü!v~Ê5E«ÎbÂà1…ªM{­—áE{9¥ï(ÒŽŒîü”«4i–»*‰t)©uKôU£JO·LgÄ.’Ò˜óü”#RE£é$cUálW
+í–YbsIÅ2¿Éëô…#ñóSvJ5b‰:D¨Í±8¶k²Ó®­)Ú²ªÓ1ÏO9–y½dÜ¨§µ†tÀ u»(áÈÔLù‚TK‰µç§l5›7à75“…d!ŠùÌêœŸˆÙN™\UÏ\à¤âé\ˆ±–p¹r™¬ÒÓñ7ëFORí©Ó%›üü”³é²,al)ä”TUˆE•Õ
+Ym&íÍbXb–$HÇù)kùvÓeðÉž(æ7äD«ªR¸\„En²x	åYÈ(tj;fe¹n	f|åX%†g¥¥*.o%[fL:Q)+‰óXgˆZNLäŸŽ þýðÈx·ÐÕ·"ððRÿÝöÃ4c5ø,Z­È.Oó¸øWœägÙÁEz‚»ðô¿ŠÐkfpd‘‡ ‡ÃUG§§D?Ú‹-2•²D	Ç« J˜Ygw¶øûx§o®¼`n~Ø ðÀnÏ£[™`N ]Lƒ®¸2k >{kßºëpï+;sŽN†üü|75ÄOèr‹ÝýÀ>¹þi€Ÿv ^é®oÁšßî,ûÇ„çvßñeÜ]é/|b¯Mƒ‚*îvøÞ«‰ÞÄ«&áÌùá®íã;UÀs«w{ÜˆŽ=‚¨8†Ñ~‘Èå'w^€gsa¥âuG+.ºªUEÁª¯[í%qQ˜#áÐ»TªËFãg`,Á¤s'ì:£)a¶¬	Í9Ä]§Â,	&ÕÊ2‡0K*•¥ø!ÌJK“2ìO„Y™<e…³ÃLÎº©Ü–Š¹r4!Óa˜½N†Lr©úü”­·¢.´+å²2è©„SA¾Ý0—ÓŠ¼¹YñåÎO¹nLxý6º‘"eq””¸£ê|Ç(US½Ï*ÕÏOÙnR&ê¡’$°¨íu•Ã 1-JãUƒ5AžŸr;IÉeö ¨êx¤F$“¸8ŒS&¦)(dâ¸¥’Öž+‘Í†ÍoL%’1C½‘Â[£ÉS/$ä”áü”tEéÏzB‘iÁÔ%s>äó71=®ÂM5ªsÙð%”¾•·jÍœ6Ë|–¼ÜiV™Åb/iñ¸eç§UÆÍA¾e1†#)G+hCQÊ#U¤É&S[/h1o:ï%‹CÓœPH¥®Ò·HgA¯‡Q¸¢i‘R&:OSÑ’ÌÖ$óq+^hR“ÌD—ç§¬"ŠÑNª¬UÌè®Kâiq¬VöÉ4-¼ž³dŽÉr
+¥,õ‚@,%“¦3ZÕmÕB³¿&\6K¦ä­•ÎOÙå¥[˜Š2Ð‘šÄ“˜ÃQµ§]VC”™3úæù)“¦fÑ«Ž'óTÉç”c³&H×;Õ´&åoK´€†Æˆ÷úÅ&§¹ë8ÚŠ6™šý1ºm‹É¬êšâ"é”´žW›Hg;lfäd¶ht²•Œ®á¶ä"ç§\HôµV¤¾©•Kp{½åò+\)º™§:ž³@§ºªVT’aR¡Ü”&–µä£å]ÉÊ¬bw°;t&‹MqU*“HRâž¢©êq@Spf[ïŠˆüšA„†TúÓÜ7ªrL¥iøþ0÷ÓE†j¨áU‘ œjª"q‘$ë5]¹t"Rì~øÎ¼¿Š~(ºdš™ÿÎÌßBS{pWöcn?ÐÜ·—ûœ˜ßXE ÎLÃ[	»Ÿo3S»Ì@oÐÉ8êÝ}4¼és|ä
+ßàqù{ÿ=Ä”/>×ù8ŠI÷g›Vï¼€×2pO%¸aÕ÷ËÇÞêªÐñ #S?Ã¼âË´¼—+S°Î0‚÷¸Ó tüç%Õ°V®®mb©»YÈWÄòš½*–æLb²Ü	ÔŠØ€ˆ@‰@"l2=þÓsiüÿ —ÆýyRüÿŸò2vÊ•íêq³ØÞŽ4´yÃoi¥Râp½ì”•Õ)ê,Uï8c	…Ìj•2\¦Å´µÔ{IC4qÝñª>Ÿ$Ä &«b†®!9Q’IeJa
+ÿó‡x­×¥x‰®Wññô~PPFdT†÷÷¸)´,ŒW›Åþ%®ÈûuîæøÌuósg…«ÊÞÞ*ÑŸøÿ©»Ò¦´Õ6üýü
+þ@fØ<çSØÃÖ(0óKØ‚ìðÉÖªu«ö´µUé¢­µõÔmkÝíŸ1	ü‹ó<	Äž-Tyßy;ùÄ<Kàºîû¹×BãmXq¿]±ôßý.¿,7—Ï¿v+ÃÏ7Ùû¢×˜»·ÙZÛéÂ[ÏÚ>µ;°œä¤µ;„Þ]ˆoö† Ÿ?ƒnºÃ-vê°èE»xrè­ ¼9_uxT¸ñ„Ñ×maKÞ«ÃYÅZ°ô ½ÁèÑa!pªó ý ^VÄCÔ«)%¥ÐvPO*€¤ êûÜÙµŽIÎ¡JZ¥¢9{È_-!ª¡â!¿ÓéJöB=æ‰!›}ó8«–òiÊ¶O¸O)SéŽú\üH)ÆA2¥z=½ê¹íEvée;&úÏðœŒ]Úc·eÛâ=nîÿæËåyãÛäb‘\p=2®GVL Àk’!2Iç¢tÇVÈ<%ó–ÂºPø‘àg§Ù§í~{Ÿ¸[í@ÉÛ'ì	ìÌï4_ž·Na9X=úPfÛà?Ÿr/ {KhëÝZ_o.ÍIUwøw¯›«Ï[kûìÊ)D³¬Õf¡|ý÷`Ž]ZäîîqO918ú´Â>©·>4'¸Ã}îÃ,|_à¶‰§ìÜ:€ôÀÚ­Óg@ï?âö<wwù;>¶ UõÒ¡²c8•c\czoNo²'†ÃÉLÖg±ÇŒ=ÀeDõÆ"9ˆ`Ðnü!ÈIxI¶¶ Úv”ð ôÜY˜ºJÙJÄTRvæk:"ÈÑ¡€5{qÛHí;µ"	2OkHNæ@ŠîyüýÂ</c§Þñësí›—Ù÷Ÿ¹µOð¼´Øj±3]Ð	ŸC³E10™h¡(D]2éh6í·ÂºR:]Üß¥pv,ŒæË4ì"!,¼‡œn^¼iî>aO^7w_Ãæ_ÇH¼›{ËOïÃ"’|ö‰{ãc¤ ,¦Íýöâ€›Ø¥$÷“{üæ‰hó„6òƒ	”­'ø¿ïˆ¯B|	Â™ãVÁhkàEµ× ´-æ“­ÇnæðWk}‰¢‹È+Êe®J›rãúbÁh1éÕ:yªÖ¬zêÁ|Ë)Ä‡}ýßìVUDPÄ;`Õ*I5%bá5@°ö¹³ëHk“FÓ´ª—Œa{Tã%†}ãCI}R¸35w¥ÈS¾hª‹YV†Òc•1¯3ìóç‰d°; iH aÚDp3Y}xÜjló{ÜÙ_2ÂS]€ï€ËLLVëøl‹×—ç÷`ôÖÉk ˆÁœWð€Žzú‚ŸZe×w¸³#V¬â;óf)¼=‡pnƒ{þ ÈGîögnom,JÀXmîŠ•:¾n<*v—ÂZØ•5Îýj›o\@ÏÜ¿»×ÚXKs°›“°:Ç®ÐD àùãMz\ý_àÙEÆãšÈ˜CiÇñ
+Ð˜Cê¤‚¨àÅÞÏÌÐlÔ;Ûˆþ±èÕ*åª¨„æˆ*:<ÜA³JN)éVé¹¯˜Ëù30ù!_-t¥Hl8¨ö¹í.]L3:ªîŽ¹xš	“ÐÕšÏ ¹6à±SoøåInm…]Xù—î<³0»Ðûò'¥*ôž	IÓ{üË5É%zFEó”ø”z,ñ;·Ø™pÛØƒÝ}§æÙÅ}NÈSlÇL¯¼‡Ø¤³9 ÕZyÀ?ZåWÏE&¿z&€˜Xm¾ŸkÝ:” Çíñ'0t(¿°@øÔ~ëã§ÿ!ìÄþ b´ÙÀ`Ñù­u"é¯Z‚uaOkkG^—58KzObÌN÷€ÙîÔ¡Ð›éq`¸¹/ì…a%u¥ö*)µ²ƒ=µ<¢P{}nî#ç5z»+Oâ^µUV\v­I®,Ú¦±ŒQ•n2r=•ëIÇ©J¹õ2£vÛ´ö°¶L¤cEË\š1c mTxl‡Å±dò°Û?ær^cÑ0xµUU4_Ý•÷ø³–`E›rÆu	ŸËfu³ÄÐwŒñi†¡ŠÉ
+6¯¨ ‹ËÍ‰^¤ƒóÊíy–ƒ„ú±b.6<€ŸÂ3wgý2Ùnî#”Àçñ6*_¯`	À\ËB%ÿÓ—¢a]4Ü_•½=¸Ã% ‰¬Ì@2z@¥BˆüÅÞJ÷‚t$o[Þ…sîÃtJÀJÓûà#»5³.r/˜è~u>R™ŠY“\ëG±ª;G«“h Jg¨>S¶Ôjòl¯PÝé4„NõaN¼>RÁc¸ÄGJQ*%ë;ÐÉG}nî:|ÄDÕ:e‘Ò“”Õï3Æ0{"T6*ÓÖŠIÇxržë(ÑY2nÍÅ“9HÆÒ5VcVU4^³½XÃg)áòŠÁê3—ñmÆÆ°X-¥
+IÚT$“cÝY£”¥ÇKQ$Í ‚ÓWV„1Çåù®±Ã~™‚úÃÑ7ÿ°¹Q{y>Ý¼ý7ûê@€áPËÝ,	„°*¡w–Š…b'h¾n5’æÄ$»x(rH;÷íü-PhøÝi‘.®
+q
+I$ì«·Í¯á³°ëÇÜºT–ëðÕUÛ2Á ÁÍÎóÇ;­Í7²b-×îH.e§´÷;³ÃÝ½ÏN³gð8rö€?àßð³ÇÜl¶Ë=ZmÞþÐ¦Ú;KÜçƒ_`¬ŒyÄctRe[°6‚)òÀH=AåSÚbÅ¢a_‚!pÌM@[ŸÇHÆ~eBø±‹/.éÀ¡Œ€KŠãŠ€k Æþþ6x‘Ñ9nJÖBdØ7RN—bD1®Ê“á’z±ô¢­Ó§OªjŸFYª™«mK¥Ê£r“±H0öïVÈÑÙBÆ ¤²P ’¥,X&B‘Å›ýù³ )—Gà´pa—6¹g´æ“Ýìû`	2´³„ßeVa2˜W¦Oy2“Õ0Wn}öÕ&{|*Î÷bÛ@!‡{µÈÏBø¶¶^µŽ¿ˆ6@1ÍZo½k=m°[3ph€‡KÿÆÌ Vî™àòäÐJ„â½WR€¨Yðm5?¿tœ„¹0üÞs@9˜«ùøisãÁÏ¹ù\y&’’_6·ÿ„
+Õ7ž¿îþÀÿŽÏâÀëá,­öDÊ†,[ªšc
+–S”ÕeñÊ3•èwa¸-„š Üq'P/¬n¶CÔ÷cS¿ŠçuþCQeX‘|}rR! üûÜá5FN9ÌFc2™w%Œ&]ÉVër†pÐ	)G\ÁH4Ùþä0ms«‚Z<@Ö”=VÇ<¸Á‹ãhÐiRüûÏ¿ý  ÿÿ Ms­2
