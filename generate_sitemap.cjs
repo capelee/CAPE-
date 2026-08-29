@@ -51,7 +51,13 @@ try {
     xml += `    <priority>${priority}</priority>\n`;
 
     if (item.imageUrl) {
-      const safeImg = (item.imageUrl || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+      let rawImg = (item.imageUrl || '').trim();
+      if (rawImg.startsWith('/')) {
+        rawImg = `${baseUrl}${rawImg}`;
+      } else if (!rawImg.startsWith('http://') && !rawImg.startsWith('https://')) {
+        rawImg = `${baseUrl}/${rawImg}`;
+      }
+      const safeImg = rawImg.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
       const safeTitle = (item.title || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
       xml += `    <image:image>\n`;
       xml += `      <image:loc>${safeImg}</image:loc>\n`;
