@@ -1,6 +1,22 @@
 import { MascotCharacter } from "../types";
 
 export const categoryMascotMap: Record<string, MascotCharacter> = {
+  "精選作品": {
+    name: "新手導覽 Shone",
+    role: "頁面導航專員",
+    imageDriveId: "1bHgPPa1xfQGwcfWlpWa_jiEFRvuUmxpl", // SHONE_P.png (主形象)
+    glowColor: "from-amber-400/25 to-rose-500/20 shadow-[0_0_50px_rgba(245,158,11,0.25)]",
+    dialogues: [
+      "歡迎來到作品集！你可以透過上方的分類選單，切換查看不同領域的設計作品喔！👆",
+      "看到感興趣的卡片了嗎？點擊卡片 🖱️，就可以展開詳細資訊，查看設計理念與完整大圖！",
+      "每一個分類都有專屬的吉祥物夥伴駐守 🦕，趕快切換分類看看他們吧！",
+      "你可以隨時點擊我來聽我說說話 💬，或是點擊旁邊的 🔇 喇叭圖示來開關音效！"
+    ],
+    idles: [
+      "點擊作品卡片 🖱️，就可以展開查看更多詳細資訊與大圖喔！✨",
+      "上方的分類標籤，可以幫助你快速找到想看的設計領域喔！👆"
+    ]
+  },
   "亮點設計": {
     name: "新手導覽 Shone",
     role: "頁面導航專員",

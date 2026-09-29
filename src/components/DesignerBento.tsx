@@ -1,7 +1,7 @@
 import { useTutorial } from '../context/TutorialContext';
 import { TutorialTooltip } from './TutorialTooltip';
-import React, { useState } from "react";
-import { motion } from "motion/react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { 
   Sparkles, 
   ChevronDown, 
@@ -18,7 +18,12 @@ import {
   QrCode,
   Check,
   FileText,
-  Cat
+  Cat,
+  X,
+  ShieldCheck,
+  ExternalLink,
+  FileCheck2,
+  UploadCloud
 } from "lucide-react";
 import { MinimalistLogo } from "./MinimalistLogo";
 
@@ -90,10 +95,13 @@ interface DesignerBentoProps {
       dept: string;
       info: string;
       activities?: string[];
+      imageUrl?: string;
     }>;
     certificates: Array<{
       name: string;
       issuer: string;
+      imageUrl?: string;
+      date?: string;
     }>;
     experienceList: Array<{
       title: string;
@@ -134,6 +142,25 @@ export const DesignerBento = React.memo(function DesignerBento({
   const [localCopied, setLocalCopied] = useState<boolean>(false);
   const [shakeActive, setShakeActive] = useState<boolean>(false);
   const [collapsedActive, setCollapsedActive] = useState<boolean>(false);
+  const [selectedCert, setSelectedCert] = useState<{
+    name: string;
+    issuer: string;
+    imageUrl?: string;
+    driveUrl?: string;
+    date?: string;
+  } | null>(null);
+
+  // Close preview modal on Esc
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && selectedCert) {
+        setSelectedCert(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedCert]);
+
 
   const handleCopyEmail = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
@@ -620,20 +647,38 @@ export const DesignerBento = React.memo(function DesignerBento({
                         }`}>{edu.dept}</p>
                         {edu.activities && edu.activities.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-1">
-                            {edu.activities.map((act, idx) => (
-                              <span 
-                                key={idx} 
-                                className={`text-[8.5px] font-sans font-normal tracking-wide px-1.5 py-0.5 rounded transition-all duration-300 ${
-                                  theme === "sepia"
-                                    ? "bg-[#EADECC]/60 text-[#433422] border border-[#D5C2A5]"
-                                    : theme === "light"
-                                    ? "bg-zinc-100 text-zinc-750 border border-zinc-250"
-                                    : "bg-zinc-800/80 text-zinc-200 border border-zinc-700/50"
-                                }`}
-                              >
-                                {act}
-                              </span>
-                            ))}
+                            {edu.activities.map((act, idx) => {
+                              const isAward = act.includes("全校總成績") || act.includes("畢業展");
+                              return (
+                                <button
+                                  type="button"
+                                  key={idx}
+                                  onClick={() => {
+                                    if (isAward) {
+                                      setSelectedCert({
+                                        name: `${edu.school} 畢業展美工科總成績第三名`,
+                                        issuer: "新北市私立復興高級商工職業學校",
+                                        date: "2012.05",
+                                        imageUrl: (edu as any).imageUrl,
+                                        driveUrl: (edu as any).driveUrl
+                                      });
+                                    }
+                                  }}
+                                  className={`text-[8.5px] font-sans font-normal tracking-wide px-1.5 py-0.5 rounded transition-all duration-300 text-left ${
+                                    isAward ? "cursor-pointer hover:border-amber-500/60 hover:text-amber-500 flex items-center gap-1" : ""
+                                  } ${
+                                    theme === "sepia"
+                                      ? "bg-[#EADECC]/60 text-[#433422] border border-[#D5C2A5]"
+                                      : theme === "light"
+                                      ? "bg-zinc-100 text-zinc-750 border border-zinc-250"
+                                      : "bg-zinc-800/80 text-zinc-200 border border-zinc-700/50"
+                                  }`}
+                                >
+                                  {isAward && <Award className="w-2.5 h-2.5 text-amber-500 shrink-0" />}
+                                  <span>{act}</span>
+                                </button>
+                              );
+                            })}
                           </div>
                         )}
                       </div>
@@ -659,7 +704,7 @@ export const DesignerBento = React.memo(function DesignerBento({
               </div>
               
               <div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-2 pt-1.5 lg:pt-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-2.5 pt-1.5 lg:pt-0">
                   {profile.certificates.map((cert, i) => (
                     <motion.div 
                       key={i} 
@@ -669,7 +714,16 @@ export const DesignerBento = React.memo(function DesignerBento({
                       viewport={{ once: true, margin: "-10px" }}
                       transition={{ duration: 0.4, delay: i * 0.08 }}
                       whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                      className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 ${
+                      onClick={() => {
+                        setSelectedCert({
+                          name: cert.name,
+                          issuer: cert.issuer,
+                          date: cert.date,
+                          imageUrl: (cert as any).imageUrl,
+                          driveUrl: (cert as any).driveUrl
+                        });
+                      }}
+                      className={`flex items-start gap-2 p-1.5 -mx-1 rounded-lg group transition-all duration-300 cursor-pointer ${
                         theme === "sepia"
                           ? "hover:bg-[#E3D3BE]/50 hover:shadow-sm"
                           : theme === "light"
@@ -686,8 +740,8 @@ export const DesignerBento = React.memo(function DesignerBento({
                       }`}>
                         <CheckCircle2 className="h-2.5 w-2.5 text-amber-500 transition-transform duration-300 group-hover:scale-110" />
                       </div>
-                      <div className="space-y-px min-w-0">
-                        <span className={`text-[12px] font-semibold tracking-wide leading-snug transition-colors duration-200 block ${
+                      <div className="space-y-0.5 min-w-0 flex-1">
+                        <span className={`text-[12px] font-semibold tracking-wide leading-snug transition-colors duration-200 block group-hover:underline underline-offset-2 ${
                           theme === "sepia"
                             ? "text-[#2B1B0C] group-hover:text-amber-750"
                             : theme === "light"
@@ -700,7 +754,9 @@ export const DesignerBento = React.memo(function DesignerBento({
                             : theme === "light" 
                             ? "text-zinc-650 group-hover:text-zinc-950" 
                             : "text-zinc-400 group-hover:text-zinc-200"
-                        }`}>{cert.issuer}</p>
+                        }`}>
+                          {cert.issuer} {cert.date ? `・${cert.date}` : ""}
+                        </p>
                       </div>
                     </motion.div>
                   ))}
@@ -805,6 +861,172 @@ export const DesignerBento = React.memo(function DesignerBento({
           
         </div>
       </div>
+
+      {/* 證照放大預覽 Modal */}
+      <AnimatePresence>
+        {selectedCert && (
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-6 select-none">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCert(null)}
+              className="absolute inset-0 bg-black/75 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: "spring", damping: 26, stiffness: 300 }}
+              className={`relative z-10 w-full max-w-2xl md:max-w-3xl max-h-[92vh] flex flex-col rounded-2xl shadow-2xl overflow-hidden border ${
+                theme === "sepia"
+                  ? "bg-[#FAF4E5] border-[#EADECC] text-[#2B1B0C]"
+                  : theme === "light"
+                  ? "bg-white border-zinc-200 text-zinc-900"
+                  : "bg-zinc-950 border-white/15 text-zinc-100"
+              }`}
+            >
+              {/* Header */}
+              <div className={`flex items-center justify-between px-5 py-3.5 border-b ${
+                theme === "sepia" ? "border-[#EADECC]" : theme === "light" ? "border-zinc-200" : "border-white/10"
+              }`}>
+                <div className="flex items-center gap-2 min-w-0 pr-2">
+                  <Award className="w-4 h-4 text-amber-500 shrink-0" />
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold truncate leading-tight">{selectedCert.name}</h3>
+                    <p className="text-[11px] text-zinc-500 truncate leading-tight mt-0.5">{selectedCert.issuer}</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCert(null)}
+                  className={`p-1.5 rounded-lg border transition-colors shrink-0 ${
+                    theme === "sepia"
+                      ? "hover:bg-[#EADECC]/60 border-[#EADECC]"
+                      : theme === "light"
+                      ? "hover:bg-zinc-100 border-zinc-200 text-zinc-600"
+                      : "hover:bg-white/10 border-white/10 text-zinc-400"
+                  }`}
+                  aria-label="Close"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Certificate Image Canvas or Archival Verification Card */}
+              <div className="p-4 sm:p-6 overflow-y-auto flex items-center justify-center bg-zinc-100/70 dark:bg-black/50 min-h-[360px]">
+                {Boolean(selectedCert.imageUrl && !selectedCert.imageUrl.includes("/certificates/")) ? (
+                  <div className="flex flex-col items-center gap-3 w-full">
+                    <img
+                      src={selectedCert.imageUrl}
+                      alt={selectedCert.name}
+                      className="w-auto max-w-full max-h-[72vh] object-contain rounded-lg shadow-xl border border-black/10 dark:border-white/10 bg-white"
+                    />
+                    <a
+                      href={selectedCert.imageUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 hover:underline pt-1"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      開啟高清原圖
+                    </a>
+                  </div>
+                ) : (
+                  <div className={`w-full max-w-lg p-6 rounded-xl border flex flex-col items-center text-center shadow-lg transition-all duration-300 ${
+                    theme === "sepia"
+                      ? "bg-[#FAF4E5] border-[#D5C2A5]/70 text-[#2B1B0C]"
+                      : theme === "light"
+                      ? "bg-white border-zinc-200 text-zinc-900"
+                      : "bg-zinc-900/90 border-white/10 text-zinc-100"
+                  }`}>
+                    {/* Archival Status Badge */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide mb-4 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                      <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+                      <span>實體官方正本在案存查・防偽驗證保障</span>
+                    </div>
+
+                    {/* Certificate Title & Info */}
+                    <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-3">
+                      <Award className="w-6 h-6 text-amber-500" />
+                    </div>
+
+                    <h4 className="text-base sm:text-lg font-bold tracking-tight mb-1">
+                      {selectedCert.name}
+                    </h4>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4">
+                      {selectedCert.issuer} {selectedCert.date ? `・${selectedCert.date}` : ""}
+                    </p>
+
+                    {/* Verification Notice */}
+                    <div className={`w-full p-3.5 rounded-lg border text-left text-xs leading-relaxed space-y-1.5 mb-5 ${
+                      theme === "sepia"
+                        ? "bg-[#EADECC]/40 border-[#D5C2A5]/60 text-[#5C4D3C]"
+                        : theme === "light"
+                        ? "bg-zinc-50 border-zinc-200 text-zinc-650"
+                        : "bg-white/[0.03] border-white/10 text-zinc-300"
+                    }`}>
+                      <div className="flex items-center gap-1.5 font-semibold text-[12px] text-amber-600 dark:text-amber-400">
+                        <FileCheck2 className="w-4 h-4 shrink-0" />
+                        <span>正本真實性聲明</span>
+                      </div>
+                      <p className="text-[11.5px]">
+                        為確保個人專業資歷 100% 真實可信，並保障防偽鋼印、條碼與核發流水字號之客觀性，本作品集<strong>完全不使用任何非官方繪製之模擬圖件</strong>。
+                      </p>
+                      <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                        目前紙本原件已由持有人妥善保管，雲端硬碟高解析實體掃描檔案正在建檔中；上傳後將直接在此即時投影原件供線上面試查核。
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap items-center justify-center gap-2.5 w-full">
+                      <a
+                        href={selectedCert.driveUrl || profile.portfolioUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-black transition-colors shadow-sm"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>開啟 Google 雲端總資料夾</span>
+                      </a>
+                      <a
+                        href={`mailto:${profile.email}?subject=${encodeURIComponent(`[資歷查驗] 申請調閱 ${selectedCert.name} 實體正本證明`)}`}
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium border transition-colors ${
+                          theme === "sepia"
+                            ? "border-[#D5C2A5] hover:bg-[#EADECC]/60 text-[#433422]"
+                            : theme === "light"
+                            ? "border-zinc-200 hover:bg-zinc-100 text-zinc-750"
+                            : "border-white/15 hover:bg-white/10 text-zinc-200"
+                        }`}
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>聯繫持有人調閱正本</span>
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className={`flex items-center justify-between px-5 py-2.5 text-[11px] border-t font-mono ${
+                theme === "sepia"
+                  ? "border-[#EADECC] bg-[#FAF4E5]/80 text-[#8C7B69]"
+                  : theme === "light"
+                  ? "border-zinc-200 bg-zinc-50 text-zinc-500"
+                  : "border-white/10 bg-white/[0.02] text-zinc-400"
+              }`}>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>官方實體正本備案・真實可查</span>
+                </div>
+                {selectedCert.date && (
+                  <span>授證／頒發日期：{selectedCert.date}</span>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 });

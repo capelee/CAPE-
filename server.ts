@@ -235,8 +235,9 @@ function generateSeoHtml(baseHtml: string, req: express.Request): string {
           title = "影音與動態視覺設計 | Cape Lee 作品集";
           description = "展示 Cape Lee 影音後製、動態視覺 (Motion Design) 與動畫剪輯案例。";
           break;
+        case "精選作品":
         case "亮點設計":
-          title = "精選亮點設計作品 | Cape Lee 作品集";
+          title = "精選作品 | Cape Lee 作品集";
           description = "精選 Cape Lee 歷年具代表性的商業品牌識別與創作者亮點作品。";
           break;
         default:
@@ -562,6 +563,8 @@ app.post("/api/save-philosophy", (req, res) => {
 
 // Start server async function to integrate Vite
 async function startServer() {
+  app.use(express.static(path.join(process.cwd(), "public")));
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

@@ -56,12 +56,14 @@ export const HeroCategoryDecor: React.FC<HeroCategoryDecorProps> = ({
     return null;
   }
 
-  // Disable SVG background animation for "亮點設計" and "All" (全部精選展示)
+  // Disable SVG background animation for "精選作品" and "All" (全部精選展示 / 全部作品)
   const isNoDecor = (
     !selectedCategory ||
+    selectedCategory === "精選作品" ||
     selectedCategory === "亮點設計" ||
     selectedCategory === "All" ||
     selectedCategory === "全部" ||
+    selectedCategory === "全部作品" ||
     selectedCategory === "全部精選展示"
   );
 

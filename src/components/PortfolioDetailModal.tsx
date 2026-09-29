@@ -57,8 +57,6 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
 }) => {
   const { tutorialStep, nextTutorialStep } = useTutorial();
 
-  if (!activeModalItem) return null;
-
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
   const [isVideoActive, setIsVideoActive] = useState<boolean>(false);
   const [waterfallMode, setWaterfallMode] = useState<"stitch" | "single">(
@@ -87,7 +85,7 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
     setIsLinkCopied(false);
     setIsShareModalOpen(false);
     setWaterfallMode(
-      activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計"
+      activeModalItem && (activeModalItem.category === "網站產品瀑布頁" || activeModalItem.category === "企業LOGO與CIS設計")
         ? "stitch"
         : "single"
     );
@@ -218,6 +216,8 @@ export const PortfolioDetailModal: React.FC<PortfolioDetailModalProps> = ({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose, onPrevItem, onNextItem]);
+
+  if (!activeModalItem) return null;
 
   return (
     <motion.div 

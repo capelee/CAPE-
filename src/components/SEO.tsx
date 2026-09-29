@@ -64,10 +64,11 @@ export const SEO: React.FC<SEOProps> = ({ activeItem, activeCategory, searchQuer
           description = "展示 Cape Lee 影音後製剪輯、動態視覺 (Motion Design) 與動畫短影音行銷專案。";
           keywords = "動態視覺, Motion Design, 影音剪輯, MG動畫, 短影音行銷, Cape Lee";
           break;
+        case "精選作品":
         case "亮點設計":
-          title = "精選亮點設計作品 | Cape Lee 作品集";
-          description = "精選 Cape Lee 歷年具代表性的商業品牌識別、展會空間與創作者原創角色亮點作品。";
-          keywords = "精選設計作品, 亮點作品, 品牌代表作, 視覺設計精選, Cape Lee";
+          title = "精選作品 | Cape Lee 作品集";
+          description = "精選 Cape Lee 歷年具代表性的商業品牌識別、展會空間與創作者原創角色精選作品。";
+          keywords = "精選作品, 精選設計作品, 代表作品, 品牌代表作, 視覺設計精選, Cape Lee";
           break;
         default:
           title = `${activeCategory} 設計作品 | Cape Lee 作品集`;

@@ -70,69 +70,7 @@ import { categoryColors, getCategoryColor, defaultCategoryColor } from './catego
 import { SEO } from './components/SEO';
 const MumaoProjectPage = React.lazy(() => import('./components/MumaoProjectPage').then(m => ({ default: m.MumaoProjectPage })));
 
-interface CategoryButtonProps {
-  cat: string;
-  isActive: boolean;
-  onClick: () => void;
-  key?: React.Key;
-  theme: "dark" | "light" | "sepia";
-}
-
-function CategoryButton({ cat, isActive, onClick, theme }: CategoryButtonProps) {
-  const [isHovered, setIsHovered] = React.useState(false);
-  const catColor = getCategoryColor(cat);
-  
-  const isDark = theme === "dark";
-  const isSepia = theme === "sepia";
-  const isLight = theme === "light";
-
-  return (
-    <button
-      type="button"
-      draggable={false}
-      id={`cat_filter_btn_${cat}`}
-      data-cat={cat}
-      onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="px-2.5 sm:px-4.5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-full border transition-all duration-300 font-sans cursor-pointer relative overflow-hidden flex items-center justify-center whitespace-nowrap shrink-0"
-      style={{
-        backgroundColor: isActive 
-          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.85 : isLight ? 0.92 : 1})` 
-          : isHovered 
-            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.15 : isLight ? 0.12 : 0.12})` 
-            : isSepia 
-              ? "rgba(67, 52, 34, 0.05)" 
-              : isLight 
-                ? "rgba(0, 0, 0, 0.04)" 
-                : "rgba(255, 255, 255, 0.04)",
-        borderColor: isActive 
-          ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.7 : isLight ? 0.8 : 0.9})` 
-          : isHovered 
-            ? `rgba(${catColor.rgbaGlow}, ${isSepia ? 0.45 : isLight ? 0.4 : 0.4})` 
-            : isSepia 
-              ? "rgba(67, 52, 34, 0.15)" 
-              : isLight 
-                ? "rgba(0, 0, 0, 0.12)" 
-                : "rgba(255, 255, 255, 0.1)",
-        color: isActive 
-          ? (isSepia ? "#2B1B0C" : isLight ? "#ffffff" : "#000000") 
-          : isHovered 
-            ? (isSepia ? "#2B1B0C" : isLight ? "#09090B" : "#ffffff") 
-            : (isSepia ? "#5C4B3A" : isLight ? "#3F3F46" : "#E4E4E7"),
-        boxShadow: isActive 
-          ? `0 10px 20px -5px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.25 : isLight ? 0.3 : 0.4}), 0 0 15px 1px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.1 : isLight ? 0.15 : 0.15})` 
-          : isHovered 
-            ? `0 4px 12px -2px rgba(${catColor.rgbaGlow}, ${isSepia ? 0.1 : isLight ? 0.1 : 0.15})` 
-            : "none"
-      }}
-    >
-      <span className="relative z-10">
-        {cat === "All" ? "全部精選展示" : cat}
-      </span>
-    </button>
-  );
-}
+import { CategoryButton } from "./components/CategoryButton";
 
 
 
@@ -151,685 +89,8 @@ const ContactModal = React.lazy(() => import("./components/ContactModal").then(m
 const PortfolioDetailModal = React.lazy(() => import("./components/PortfolioDetailModal").then(m => ({ default: m.PortfolioDetailModal })));
 const CatFortuneTeller = React.lazy(() => import("./components/CatFortuneTeller").then(m => ({ default: m.CatFortuneTeller })));
 import { MumuCertModal, MumuCertModalRef } from "./components/MumuCertModal";
-
-// Extract YouTube ID from robust URLs
-function getYouTubeEmbedUrl(url?: string): string | null {
-  if (!url) return null;
-  // Robust support for YouTube Shorts URLs
-  if (url.includes("/shorts/")) {
-    const parts = url.split("/shorts/");
-    const idPart = parts[1]?.split(/[?&#]/)[0];
-    if (idPart && idPart.length === 11) {
-      return `https://www.youtube.com/embed/${idPart}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
-    }
-  }
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = url.match(regExp);
-  if (match && match[2].length === 11) {
-    return `https://www.youtube.com/embed/${match[2]}?autoplay=1&rel=0&showinfo=0&modestbranding=1`;
-  }
-  return null;
-}
-
-function extractDriveIdsFromHtml(html: string, folderId: string): string[] {
-  if (!html) return [];
-
-  // Unescape standard HTML characters and JSON structures in Google Drive's embedded payload
-  const cleanHtml = html
-    .replace(/\\x22/g, '"')
-    .replace(/\\x27/g, "'")
-    .replace(/\\x5b/g, '[')
-    .replace(/\\x5d/g, ']')
-    .replace(/\\x2c/g, ',')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, '&');
-
-  const results: Array<{ id: string; name: string }> = [];
-  const seenIds = new Set<string>();
-
-  // 1. Match standard file array pattern with robust parent array and quotation handling (both double and single quotes)
-  // Format: "FILE_ID", ["PARENT_ID_1", "PARENT_ID_2"], "FILENAME", "MIME_TYPE"
-  const fileArrayRegex = /["']([a-zA-Z0-9_-]{28,45})["']\s*,\s*\[\s*([^\]]*)\s*\]\s*,\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']/g;
-  
-  let match;
-  while ((match = fileArrayRegex.exec(cleanHtml)) !== null) {
-    const [_, fileId, parentsStr, fileName, mimeType] = match;
-    // Ensure it is a valid file, not the folder itself, and represents an image/asset
-    const isImage = mimeType.toLowerCase().includes('image') || 
-                    /\.(jpe?g|png|gif|webp|bmp|heic)$/i.test(fileName) ||
-                    mimeType.includes('octet-stream');
-                    
-    if (fileId && fileId !== folderId && !seenIds.has(fileId)) {
-      // If folderId is specified, check if it resides in parents, or default to true if parents is empty/not listed
-      const isParentMatch = !folderId || parentsStr.includes(folderId) || parentsStr.length === 0;
-      if (isParentMatch && isImage) {
-        seenIds.add(fileId);
-        results.push({ id: fileId, name: fileName });
-      }
-    }
-  }
-
-  // 2. Fallback: match any file/d/ links, direct thumbnail IDs, or view links in the html
-  if (results.length === 0) {
-    const fileIdRegexes = [
-      /\/file\/d\/([a-zA-Z0-9_-]{28,45})/g,
-      /id=([a-zA-Z0-9_-]{28,45})/g,
-      /\/thumbnail\?id=([a-zA-Z0-9_-]{28,45})/g,
-      /drive-viewer\/([a-zA-Z0-9_-]{28,45})/g
-    ];
-
-    for (const regex of fileIdRegexes) {
-      let matchId;
-      while ((matchId = regex.exec(cleanHtml)) !== null) {
-        const fileId = matchId[1];
-        if (fileId && fileId !== folderId && fileId.length >= 28 && !seenIds.has(fileId)) {
-          seenIds.add(fileId);
-          results.push({ id: fileId, name: `file_${fileId}.png` });
-        }
-      }
-    }
-  }
-
-  // Sort results by filename numerically so slides are rendered in order
-  results.sort((a, b) => {
-    return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
-  });
-
-  return results.map(r => `https://drive.google.com/thumbnail?sz=w1000&id=${r.id}`);
-}
-
-async function fetchFolderImages(folderId: string): Promise<string[]> {
-  const targetUrl = `https://drive.google.com/drive/folders/${folderId}`;
-  
-  // List of high-reliability public CORS proxies with modern configurations
-  const proxies = [
-    (url: string) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}&_t=${Date.now()}`,
-    (url: string) => `https://corsproxy.io/?${encodeURIComponent(url + (url.includes('?') ? '&' : '?') + '_t=' + Date.now())}`,
-    (url: string) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
-  ];
-
-  const maxRetries = 3;
-  const delayMs = (retryCount: number) => Math.pow(2, retryCount) * 1000; // Exponential backoff: 2s, 4s, 8s
-
-  for (let retry = 0; retry < maxRetries; retry++) {
-    for (let i = 0; i < proxies.length; i++) {
-      const getProxyUrl = proxies[i];
-      const proxyUrl = getProxyUrl(targetUrl);
-      
-      try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP status ${response.status}`);
-        }
-
-        let html = "";
-        if (i === 0) { // AllOrigins returns JSON with a "contents" field
-          const data = await response.json();
-          html = data.contents || "";
-        } else { // Others return raw text/html
-          html = await response.text();
-        }
-
-        if (html) {
-          const images = extractDriveIdsFromHtml(html, folderId);
-          if (images.length > 0) {
-            console.log(`Successfully fetched folder ${folderId} images via proxy ${i + 1} on attempt ${retry + 1}`);
-            return images;
-          }
-        }
-      } catch (err) {
-        console.warn(`Proxy ${i + 1} failed on attempt ${retry + 1}:`, err);
-      }
-    }
-    
-    // Wait before next retry attempt
-    if (retry < maxRetries - 1) {
-      const wait = delayMs(retry);
-      console.log(`Retrying folder ${folderId} fetch in ${wait}ms...`);
-      await new Promise(resolve => setTimeout(resolve, wait));
-    }
-  }
-
-  console.error(`All proxies failed to fetch folder ${folderId} images after ${maxRetries} retries.`);
-  return [];
-}
-
-// 『叮！』魔法施法聲效 (Magic Ding Casting Sound)
-const playMagicDingSound = () => {
-  try {
-    const ctx = audioContextManager.getOrCreateContext();
-    if (!ctx) return;
-    const now = ctx.currentTime;
-
-    // A beautiful, warm, and gentle bell/chime chord with soft attack and lingering decay
-    const osc1 = ctx.createOscillator();
-    const osc2 = ctx.createOscillator();
-    const osc3 = ctx.createOscillator();
-    const gainNode = ctx.createGain();
-
-    osc1.type = "sine";
-    osc1.frequency.setValueAtTime(659.25, now); // E5 note
-    osc1.frequency.exponentialRampToValueAtTime(523.25, now + 0.8); // gentle slide down to C5
-
-    osc2.type = "sine";
-    osc2.frequency.setValueAtTime(783.99, now); // G5 note
-    osc2.frequency.exponentialRampToValueAtTime(659.25, now + 0.6); // gentle slide down to E5
-
-    osc3.type = "sine"; // Change triangle to sine to avoid piercing odd harmonics
-    osc3.frequency.setValueAtTime(987.77, now); // B5 note
-    osc3.frequency.exponentialRampToValueAtTime(783.99, now + 0.7); // gentle slide down to G5
-
-    gainNode.gain.setValueAtTime(0.001, now);
-    gainNode.gain.linearRampToValueAtTime(0.07, now + 0.08); // softer, slightly slower attack (80ms instead of 50ms)
-    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.2); // smooth lingering decay
-
-    osc1.connect(gainNode);
-    osc2.connect(gainNode);
-    osc3.connect(gainNode);
-    gainNode.connect(ctx.destination);
-
-    osc1.start(now);
-    osc2.start(now);
-    osc3.start(now);
-    osc1.stop(now + 1.3);
-    osc2.stop(now + 1.3);
-    osc3.stop(now + 1.3);
-  } catch (e) {
-    // Safety fallback
-  }
-};
-
-const HighlightItem: React.FC<{ highlight: any, index: number, theme: string, isEcoMode?: boolean }> = ({ highlight, index, theme, isEcoMode = false }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const cardRef = React.useRef<HTMLDivElement>(null);
-  const hasDemonstrated = React.useRef(false);
-  const timeoutsRef = React.useRef<{ toBack?: NodeJS.Timeout; toFront?: NodeJS.Timeout }>({});
-
-  React.useEffect(() => {
-    let activeScrollListener: (() => void) | null = null;
-
-    const triggerFlipDemo = () => {
-      hasDemonstrated.current = true;
-      // 滾動感應：波浪式依序翻轉示範 (Staggered auto-flip demo)
-      timeoutsRef.current.toBack = setTimeout(() => {
-        setIsFlipped(true);
-        
-        // 翻轉展示 1.4 秒後，平滑翻回正面
-        timeoutsRef.current.toFront = setTimeout(() => {
-          setIsFlipped(false);
-        }, 1400);
-      }, index * 220 + 350); // 精緻的間隔延遲，展現律動感
-    };
-
-    const observerOptions = {
-      root: null,
-      // 縮減觀測區域，上下各扣除 35% 的視窗高度，使卡片必須滾動到畫面接近中央的黃金區域（中段 30%）時才啟動自動示範
-      rootMargin: "-35% 0px -35% 0px",
-      threshold: 0.05,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasDemonstrated.current) {
-          if (window.scrollY > 40) {
-            // 已向下滾動，且當前卡片進入畫面中央，立即觸發翻轉展示
-            triggerFlipDemo();
-          } else {
-            // 如果還在網頁最頂部（scrollY <= 40），為防止一進網站就翻轉，
-            // 我們註冊監聽，等使用者確實往下滾動超過 40px 後才開始觸發示範
-            const handleScroll = () => {
-              if (window.scrollY > 40 && !hasDemonstrated.current) {
-                triggerFlipDemo();
-                window.removeEventListener("scroll", handleScroll);
-                activeScrollListener = null;
-              }
-            };
-            window.addEventListener("scroll", handleScroll, { passive: true });
-            activeScrollListener = handleScroll;
-          }
-        }
-      });
-    }, observerOptions);
-
-    // 延遲 800 毫秒後啟動監聽，確保頁面佈局載入完成
-    const mountDelayTimeout = setTimeout(() => {
-      if (cardRef.current) {
-        observer.observe(cardRef.current);
-      }
-    }, 800);
-
-    return () => {
-      clearTimeout(mountDelayTimeout);
-      observer.disconnect();
-      if (activeScrollListener) {
-        window.removeEventListener("scroll", activeScrollListener);
-      }
-      if (timeoutsRef.current.toBack) clearTimeout(timeoutsRef.current.toBack);
-      if (timeoutsRef.current.toFront) clearTimeout(timeoutsRef.current.toFront);
-    };
-  }, [index]);
-
-  const [isDraggable, setIsDraggable] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : false);
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsDraggable(window.innerWidth >= 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const dragX = useMotionValue(0);
-  const dragY = useMotionValue(0);
-
-  // 草稿紙粒子介面定義
-  interface DraftParticle {
-    id: number;
-    x: number;
-    y: number;
-    rotate: number;
-    scale: number;
-    width: number;
-    height: number;
-    type: "grid" | "sketch" | "text" | "blueprint";
-    text?: string;
-    isBlown: boolean;
-  }
-
-  const [particles, setParticles] = useState<DraftParticle[]>([]);
-  const lastSpawnRef = React.useRef({ x: 0, y: 0 });
-  const particleIdRef = React.useRef(0);
-
-  const spawnParticle = (x: number, y: number) => {
-    const types: ("grid" | "sketch" | "text" | "blueprint")[] = ["grid", "sketch", "text", "blueprint"];
-    const randomType = types[Math.floor(Math.random() * types.length)];
-    
-    const texts = ["SKETCH", "CONCEPT", "GRID", "1.618", "DRAFT", "GUIDE", "LAYOUT", "DESIGN"];
-    const randomText = texts[Math.floor(Math.random() * texts.length)];
-
-    const width = Math.floor(Math.random() * 20) + 38; // 38px to 58px
-    const height = Math.floor(Math.random() * 12) + 26; // 26px to 38px
-
-    const newId = particleIdRef.current++;
-    setParticles(prev => [
-      ...prev,
-      {
-        id: newId,
-        x,
-        y,
-        rotate: Math.random() * 40 - 20,
-        scale: Math.random() * 0.25 + 0.85,
-        width,
-        height,
-        type: randomType,
-        text: randomText,
-        isBlown: false
-      }
-    ]);
-  };
-
-  // 配合拖拽位移 (或是風吹引起的 dragX/Y 位移) 產生實體感十足的 3D 慣性傾斜
-  // 上下拖拽對應 X 軸轉角，左右拖拽對應 Y 軸與微幅 Z 軸旋轉
-  const rotateX = useTransform(dragY, [-140, 140], [15, -15]);
-  const rotateY = useTransform(dragX, [-140, 140], [-15, 15]);
-  const rotateZ = useTransform(dragX, [-140, 140], [-6, 6]);
-
-  const [windOffset, setWindOffset] = useState({ scale: 1, opacity: 1 });
-  const globalLastFlipRef = React.useRef<{ time: number; count: number }>({ time: 0, count: 0 });
-
-  React.useEffect(() => {
-    const handleGlobalFlip = (e: Event) => {
-      const customEvent = e as CustomEvent<{ clickedIndex: number; timestamp: number }>;
-      const { clickedIndex, timestamp } = customEvent.detail;
-
-      // 如果是自己被翻轉，就完全不套用「被吹走」效果，維持在原本的軸心進行旋轉
-      if (clickedIndex === index) {
-        animate(dragX, 0, { type: "spring", stiffness: 220, damping: 14 });
-        animate(dragY, 0, { type: "spring", stiffness: 220, damping: 14 });
-        setWindOffset({ scale: 1, opacity: 1 });
-        return;
-      }
-
-      // 計算連續快速點擊頻率 (Streak counter)
-      const prevTime = globalLastFlipRef.current.time;
-      let count = globalLastFlipRef.current.count;
-      
-      if (timestamp - prevTime < 450) {
-        count = Math.min(count + 1, 8); // 最高疊加 8 層風力，避免卡片飛出螢幕
-        if (count >= 6) {
-          window.dispatchEvent(new CustomEvent("trigger-wind-storm-ach"));
-        }
-      } else {
-        count = 1; // 超過時間未點擊則重置風力
-      }
-      globalLastFlipRef.current = { time: timestamp, count };
-
-      // 根據 clickedIndex 與目前 card index 的相對位置計算吹動方向與強度 (Physics-based direction & distance factor)
-      const diff = index - clickedIndex;
-      const direction = diff > 0 ? 1 : -1;
-      const distanceFactor = 1 / Math.sqrt(Math.abs(diff)); // 鄰近卡片承受更大的風浪傳導
-
-      // 計算實體偏移數值 (橫向偏移、向上升流)
-      const xOffset = direction * (18 + count * 9) * distanceFactor;
-      const yOffset = - (10 + count * 6) * distanceFactor;
-      const scaleOffset = Math.max(0.85, 1 - (count * 0.02) * distanceFactor);
-      const opacityOffset = Math.max(0.65, 1 - (count * 0.045) * distanceFactor);
-
-      // 直接硬體加速驅動 dragX 與 dragY 的 MotionValue
-      animate(dragX, xOffset, {
-        type: "spring",
-        stiffness: 180,
-        damping: 15,
-        mass: 0.6
-      });
-      animate(dragY, yOffset, {
-        type: "spring",
-        stiffness: 180,
-        damping: 15,
-        mass: 0.6
-      });
-
-      setWindOffset({
-        scale: scaleOffset,
-        opacity: opacityOffset,
-      });
-
-      // 經過 320ms 後，更迅速且有彈性地飄回原位
-      const restoreTimeout = setTimeout(() => {
-        animate(dragX, 0, {
-          type: "spring",
-          stiffness: 180,
-          damping: 15,
-          mass: 0.6
-        });
-        animate(dragY, 0, {
-          type: "spring",
-          stiffness: 180,
-          damping: 15,
-          mass: 0.6
-        });
-        setWindOffset({ scale: 1, opacity: 1 });
-      }, 320);
-
-      return () => clearTimeout(restoreTimeout);
-    };
-
-    window.addEventListener("highlight-card-flipped", handleGlobalFlip);
-    return () => {
-      window.removeEventListener("highlight-card-flipped", handleGlobalFlip);
-    };
-  }, [index, dragX, dragY]);
-
-  const isFirstRender = React.useRef(true);
-  React.useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    playCardFlipSound();
-  }, [isFlipped]);
-
-  const handleCardClick = () => {
-    // 凡是使用者主動點擊，即刻清除自動定時器，避免干擾使用者的閱讀體驗
-    if (timeoutsRef.current.toBack) clearTimeout(timeoutsRef.current.toBack);
-    if (timeoutsRef.current.toFront) clearTimeout(timeoutsRef.current.toFront);
-    setIsFlipped(prev => !prev);
-
-    // 發送翻轉事件，觸發其他卡片被風吹走的連鎖反應 (Propagate custom wind event)
-    window.dispatchEvent(new CustomEvent("highlight-card-flipped", {
-      detail: { clickedIndex: index, timestamp: Date.now() }
-    }));
-  };
-
-  return (
-    <div className="relative min-h-[200px] sm:min-h-[220px] lg:min-h-[240px] w-full h-full overflow-visible">
-      {/* 草稿紙粒子背景層 */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-visible">
-        {particles.map(p => (
-          <motion.div
-            key={p.id}
-            initial={{ 
-              x: p.x, 
-              y: p.y, 
-              rotate: p.rotate, 
-              scale: 0.1, 
-              opacity: 0 
-            }}
-            animate={p.isBlown ? {
-              x: p.x + (Math.random() * 120 - 60) + 160, // 隨機向右上方吹去
-              y: p.y - 180 - Math.random() * 120,       // 向上漂移
-              rotate: p.rotate + (Math.random() * 180 - 90),
-              scale: 0.3,
-              opacity: 0,
-            } : {
-              x: p.x,
-              y: p.y,
-              rotate: p.rotate,
-              scale: p.scale,
-              opacity: 0.8,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: p.isBlown ? 45 : 140,
-              damping: p.isBlown ? 12 : 14,
-              mass: p.isBlown ? 0.4 : 0.6
-            }}
-            onAnimationComplete={() => {
-              if (p.isBlown) {
-                // 動畫結束後移除，釋放記憶體
-                setParticles(prev => prev.filter(item => item.id !== p.id));
-              }
-            }}
-            className={`absolute pointer-events-none rounded border shadow-sm flex items-center justify-center p-1.5 font-mono text-[8px] select-none ${
-              theme === "sepia"
-                ? "bg-[#FCF8EE]/90 border-[#DFCFA0]/60 text-[#8A5A32]/60"
-                : theme === "light"
-                ? "bg-white/90 border-zinc-200 text-zinc-400"
-                : "bg-zinc-800/95 border-zinc-700/80 text-zinc-400"
-            }`}
-            style={{
-              width: p.width,
-              height: p.height,
-              transformOrigin: "center",
-              left: "50%",
-              top: "50%",
-              marginTop: -p.height / 2,
-              marginLeft: -p.width / 2,
-            }}
-          >
-            {p.type === 'text' && <span className="font-bold tracking-tight">{p.text}</span>}
-            {p.type === 'grid' && (
-              <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-15">
-                {[...Array(9)].map((_, i) => <div key={i} className="border-[0.5px] border-current" />)}
-              </div>
-            )}
-            {p.type === 'sketch' && (
-              <svg className="w-full h-full opacity-25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <circle cx="12" cy="12" r="8" strokeDasharray="1.5,1.5" />
-                <line x1="4" y1="12" x2="20" y2="12" strokeDasharray="1,1" />
-                <line x1="12" y1="4" x2="12" y2="20" strokeDasharray="1,1" />
-              </svg>
-            )}
-            {p.type === 'blueprint' && (
-              <div className="absolute inset-0 flex flex-col justify-between p-0.5 opacity-35 text-[7px] leading-none">
-                <div className="flex justify-between border-b border-current pb-0.5 opacity-50">
-                  <span>dx:{Math.round(p.x)}</span>
-                  <span>dy:{Math.round(p.y)}</span>
-                </div>
-                <div className="text-[6px] text-center font-semibold">Concept</div>
-              </div>
-            )}
-            {/* 斑駁的手繪草稿感：對角線裝飾線或撕扯感邊緣 */}
-            <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-current opacity-30" />
-            <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-current opacity-30" />
-          </motion.div>
-        ))}
-      </div>
-  
-      <motion.div 
-        ref={cardRef}
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ 
-          opacity: windOffset.opacity, 
-          scale: windOffset.scale
-        }}
-        style={{ 
-          perspective: 1000,
-          x: dragX,
-          y: dragY,
-          rotateX: rotateX,
-          rotateY: rotateY,
-          rotate: rotateZ,
-          touchAction: isDraggable ? "none" : "auto"
-        }}
-        drag={isDraggable}
-        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-        dragElastic={0.4}
-        dragTransition={{ bounceStiffness: 220, bounceDamping: 11 }}
-        onTap={handleCardClick}
-        onDrag={(event, info) => {
-          if (isEcoMode) return; // 節能模式下不產生拖動粒子
-          const x = dragX.get();
-          const y = dragY.get();
-          const last = lastSpawnRef.current;
-          const dist = Math.hypot(x - last.x, y - last.y);
-          if (dist > 10) { // 當拖動位移超過 10px 時，生成一片新草稿紙
-            spawnParticle(x, y);
-            lastSpawnRef.current = { x, y };
-          }
-        }}
-        onDragEnd={(event, info) => {
-          // 當拖拽釋放時，所有累積的草稿紙碎片隨風飄散、漸隱消失
-          setParticles(prev => prev.map(p => ({ ...p, isBlown: true })));
-        }}
-        className={`relative w-full h-full group will-change-transform transform-gpu ${isDraggable ? 'cursor-grab active:cursor-grabbing' : ''} select-none z-10`}
-      >
-        <motion.div
-          className="w-full h-full relative cursor-pointer will-change-transform transform-gpu"
-          style={{ transformStyle: "preserve-3d" }}
-          animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-        >
-          {/* Front Face */}
-          <div 
-            className={`absolute inset-0 w-full h-full p-5 lg:p-7 rounded-[1.25rem] border backdrop-blur-md flex flex-col justify-start items-start overflow-hidden transition-colors duration-500 group ${
-              theme === "sepia" 
-                ? "bg-[#FCF8EE]/80 border-[#DFCFA0]/50 hover:bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)]" 
-                : theme === "light" 
-                ? "bg-white/70 border-zinc-200/60 hover:bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)]" 
-                : "bg-zinc-900/50 border-white/5 hover:bg-zinc-800/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.2)]"
-            }`}
-            style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
-          >
-            {/* 背景光暈點綴 */}
-            <div className={`absolute -right-8 -top-8 w-32 h-32 rounded-full blur-[32px] opacity-30 transition-opacity duration-700 group-hover:opacity-60 ${highlight.bg.replace('/10', '')}`} />
-            
-            {/* Decorative Large Icon (Watermark) */}
-            <highlight.Icon 
-              strokeWidth={1}
-              className={`absolute -right-4 -bottom-4 w-32 h-32 rotate-12 transition-all duration-700 group-hover:scale-110 group-hover:-rotate-6 ${
-                theme === "sepia" ? "text-[#8A5A32] opacity-[0.04] group-hover:opacity-[0.08]" 
-                : theme === "light" ? "text-zinc-500 opacity-[0.03] group-hover:opacity-[0.06]" 
-                : "text-white opacity-[0.02] group-hover:opacity-[0.05]"
-              }`} 
-            />
-  
-            {/* Action Hint Icon */}
-            <div className={`absolute top-4 right-4 p-1.5 md:p-2 rounded-full transition-all duration-500 ${
-              theme === "sepia" ? "bg-[#DFCFA0]/60 md:bg-[#DFCFA0]/40 text-[#A05C2C]" : theme === "light" ? "bg-zinc-200/80 md:bg-zinc-100 text-zinc-600" : "bg-white/20 md:bg-white/10 text-white/90 md:text-white/80"
-            }`}>
-              <MousePointerClick className="w-3.5 h-3.5 md:w-4 md:h-4 animate-pulse md:animate-none" strokeWidth={2.5} />
-            </div>
-  
-            <div className="flex flex-col items-start gap-3 w-full h-full relative z-10">
-              {/* Premium Icon Container */}
-              <div className="relative shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
-                {/* Subtle Outer Glow */}
-                <div className={`absolute inset-0 rounded-[1rem] blur-xl opacity-40 group-hover:opacity-80 transition-opacity duration-500 ${highlight.color.replace('text-', 'bg-')}`} />
-                
-                {/* Glass/Metallic Box */}
-                <div className={`relative p-3 rounded-[1rem] flex items-center justify-center overflow-hidden border ${
-                  theme === "sepia" 
-                    ? "bg-gradient-to-br from-[#FCF8EE] to-[#F3E8D0] border-[#E8DCC0] shadow-[0_2px_10px_rgba(200,160,100,0.15),inset_0_1px_0_rgba(255,255,255,0.9)]" 
-                    : theme === "light" 
-                    ? "bg-gradient-to-br from-white to-zinc-50/80 border-zinc-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,1)]" 
-                    : "bg-gradient-to-br from-zinc-800 to-zinc-900 border-zinc-700/80 shadow-[0_4px_15px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]"
-                }`}>
-                  {/* Color tint layer */}
-                  <div className={`absolute inset-0 opacity-[0.08] ${highlight.color.replace('text-', 'bg-')}`} />
-                  
-                  <highlight.Icon 
-                    className={`w-5 h-5 md:w-6 md:h-6 relative z-10 ${highlight.color}`} 
-                    strokeWidth={2} 
-                    style={{ filter: theme === 'dark' ? 'drop-shadow(0px 2px 4px rgba(0,0,0,0.5))' : 'drop-shadow(0px 2px 4px rgba(0,0,0,0.1))' }} 
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-1.5 mt-auto w-full">
-                <h3 className={`text-[14px] lg:text-[16px] font-bold tracking-tight transition-colors duration-300 ${
-                  theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
-                }`}>{highlight.label}</h3>
-                <div className="flex items-center justify-between gap-2 w-full">
-                  <p className={`text-[10px] lg:text-[11px] font-semibold tracking-wider uppercase ${
-                    theme === "sepia" ? "text-[#A05C2C]" : theme === "light" ? "text-zinc-500" : "text-zinc-400"
-                  }`}>{highlight.sub}</p>
-                  <span className={`text-[9px] lg:text-[10px] font-mono tracking-widest uppercase opacity-0 group-hover:opacity-70 transition-all duration-300 ease-out translate-x-2 group-hover:translate-x-0 shrink-0 ${
-                    theme === "sepia" ? "text-[#8A5A32]" : theme === "light" ? "text-zinc-400" : "text-zinc-500"
-                  }`}>
-                    VIEW DETAIL →
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          {/* Back Face */}
-          <div 
-            className={`absolute inset-0 w-full h-full p-4 sm:p-5 lg:p-6 rounded-[1.25rem] border backdrop-blur-md flex flex-col justify-start items-start overflow-hidden ${
-              theme === "sepia" 
-                ? "bg-[#FCF8EE]/95 border-[#D0B87A] shadow-[0_8px_30px_-4px_rgba(200,160,100,0.15)]" 
-                : theme === "light" 
-                ? "bg-white/95 border-zinc-300 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)]" 
-                : "bg-zinc-800/95 border-white/10 shadow-[0_8px_30px_-4px_rgba(255,255,255,0.03)]"
-            }`}
-            style={{ 
-              backfaceVisibility: "hidden", 
-              WebkitBackfaceVisibility: "hidden",
-              transform: "rotateY(180deg)" 
-            }}
-          >
-            {/* Decorative Background Icon */}
-            <highlight.Icon 
-              strokeWidth={1}
-              className={`absolute -right-6 -bottom-6 w-32 h-32 rotate-12 transition-all duration-700 group-hover:scale-110 group-hover:-rotate-6 ${
-                theme === "sepia" ? "text-[#8A5A32] opacity-[0.08]" 
-                : theme === "light" ? "text-zinc-500 opacity-[0.06]" 
-                : "text-white opacity-[0.05]"
-              }`} 
-            />
-  
-            {/* Accent Indicator */}
-            <div className={`w-8 h-1 rounded-full mb-2.5 lg:mb-3 shrink-0 ${highlight.color.replace('text-', 'bg-')}`} />
-  
-            <h4 className={`text-[14px] sm:text-[15px] lg:text-[16px] font-bold tracking-tight mb-1.5 lg:mb-2 relative z-10 ${
-              theme === "sepia" ? "text-[#2B1B0C]" : theme === "light" ? "text-zinc-900" : "text-white"
-            }`}>
-              {highlight.label}
-            </h4>
-  
-            <div className={`text-[12px] sm:text-[13px] md:text-[14px] leading-[1.6] sm:leading-relaxed font-medium relative z-10 ${
-              theme === "sepia" ? "text-[#5A3A22]" : theme === "light" ? "text-zinc-600" : "text-zinc-300"
-            }`}>
-              {highlight.content}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
-};
+import { getYouTubeEmbedUrl, fetchFolderImages, playMagicDingSound } from "./utils/mediaUtils";
+import { HighlightItem } from "./components/HighlightItem";
 
 export default function App() {
   const [mounted, setMounted] = useState<boolean>(false);
@@ -1070,7 +331,7 @@ export default function App() {
     heroSectionRef.current?.setHeroParticles((prev: any[]) => [...prev, ...newParticles].slice(-60));
   }, [themePreference, changeTheme, magicAlertTimeoutId]);
 
-  const [selectedCategory, setSelectedCategory] = useState<string>("亮點設計");
+  const [selectedCategory, setSelectedCategory] = useState<string>("精選作品");
   const [activeSection, setActiveSection] = useState<"portfolio" | "resume" | null>(null);
   const [isMumaoProjectOpen, setIsMumaoProjectOpen] = useState(false);
   const { tutorialStep, nextTutorialStep } = useTutorial();
@@ -1423,7 +684,11 @@ export default function App() {
             setActiveModalItem(found);
           }
         } else if (categoryParam) {
-          setSelectedCategory(categoryParam);
+          if (categoryParam === "亮點設計") {
+            setSelectedCategory("精選作品");
+          } else {
+            setSelectedCategory(categoryParam);
+          }
         }
       } catch (e) {
         console.error("Error parsing URL search params:", e);
@@ -2024,7 +1289,7 @@ export default function App() {
 
   const openAndScrollToProject = React.useCallback((item: PortfolioItem) => {
     // If the category doesn't include the item, switch to "All"
-    if (selectedCategory !== "All" && selectedCategory !== item.category && !(selectedCategory === "亮點設計" && item.isHighlight)) {
+    if (selectedCategory !== "All" && selectedCategory !== item.category && !( (selectedCategory === "精選作品" || selectedCategory === "亮點設計") && item.isHighlight)) {
       setSelectedCategory("All");
     }
     
@@ -2062,7 +1327,7 @@ export default function App() {
   console.log("Current tutorialStep:", tutorialStep);
   const handleChangeCategory = React.useCallback(() => {
     if (tutorialStep === 1) nextTutorialStep();
-    const availableCategories = ["亮點設計", "All", ...Array.from(new Set(items.map(item => item.category)))];
+    const availableCategories = ["精選作品", "All", ...Array.from(new Set(items.map(item => item.category)))];
     const otherCategories = availableCategories.filter(c => c !== selectedCategory);
     if (otherCategories.length > 0) {
       const nextCat = otherCategories[Math.floor(Math.random() * otherCategories.length)];
@@ -2679,16 +1944,16 @@ export default function App() {
     : "text-zinc-300 hover:text-white bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/20";
 
   const themeToggleClass = theme === "sepia"
-    ? "p-1 flex items-center justify-center transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-[#7A6B58] hover:text-[#433422] cursor-pointer"
+    ? "p-2 sm:p-1.5 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] flex items-center justify-center rounded-lg transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-[#7A6B58] hover:text-[#433422] cursor-pointer touch-manipulation"
     : theme === "light"
-    ? "p-1 flex items-center justify-center transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-zinc-400 hover:text-zinc-800 cursor-pointer"
-    : "p-1 flex items-center justify-center transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-zinc-550 hover:text-zinc-200 cursor-pointer";
+    ? "p-2 sm:p-1.5 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] flex items-center justify-center rounded-lg transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-zinc-400 hover:text-zinc-800 cursor-pointer touch-manipulation"
+    : "p-2 sm:p-1.5 min-w-[38px] min-h-[38px] sm:min-w-[36px] sm:min-h-[36px] flex items-center justify-center rounded-lg transition-all duration-250 transform active:scale-95 hover:scale-110 shrink-0 text-zinc-550 hover:text-zinc-200 cursor-pointer touch-manipulation";
 
   const copyEmailClass = theme === "sepia"
-    ? "text-xs sm:text-sm font-sans font-normal text-[#7A6B58] hover:text-[#433422] transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95"
+    ? "text-xs sm:text-sm font-sans font-normal text-[#7A6B58] hover:text-[#433422] transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95 p-1.5 sm:p-1 min-h-[38px] touch-manipulation"
     : theme === "light"
-    ? "text-xs sm:text-sm font-sans font-normal text-zinc-400 hover:text-zinc-650 transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95"
-    : "text-xs sm:text-sm font-sans font-normal text-zinc-500 hover:text-zinc-300 transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95";
+    ? "text-xs sm:text-sm font-sans font-normal text-zinc-400 hover:text-zinc-650 transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95 p-1.5 sm:p-1 min-h-[38px] touch-manipulation"
+    : "text-xs sm:text-sm font-sans font-normal text-zinc-500 hover:text-zinc-300 transition-all duration-250 flex items-center gap-1.5 relative group cursor-pointer hover:scale-105 active:scale-95 p-1.5 sm:p-1 min-h-[38px] touch-manipulation";
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -2786,15 +2051,17 @@ export default function App() {
     intro: "擁有 6 年以上品牌商業整合設計實戰經驗，致力於探索生成藝術與當代視覺的深度融合。我擅長以 AI 技術為核心，將生成式工作流無縫導入平面設計、影音製作與品牌識別，展現獨特觀點與豐沛的創作能量。經手超過百個品牌專案，涵蓋破萬銷量電商視覺至原創 IP 開發。在此次臺北生成藝術節，我期待透過實際運用 AI 工具，讓大眾親身體驗生成藝術如何為當代創作注入嶄新活力，推動藝術與科技的深度交融，共同邁向生成藝術共創的未來。",
     education: [
       { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
-      { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"] }
+      { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"], date: "2012.05" }
     ],
     certificates: [
-      { name: "資策會 生成式AI能力認證", issuer: "財團法人資訊工業策進會" },
-      { name: "資策會 生成式AI辦公室應用能力認證-進階", issuer: "財團法人資訊工業策進會" },
-      { name: "Adobe Certified Professional in Visual Design", issuer: "Ps & Ai 專業雙認證" },
-      { name: "AutoCAD 2011、2012 Certified Professional", issuer: "Autodesk 國際認證人員" },
-      { name: "TQC+ 影像處理、電腦圖像編輯製作 專業人員", issuer: "中華民國電腦技能基金會" },
-      { name: "視覺傳達設計丙級技術士", issuer: "中華民國勞動部國家技術士證" }
+      { name: "資策會 生成式AI能力認證", issuer: "財團法人資訊工業策進會", date: "2026.08" },
+      { name: "資策會 生成式AI美術設計能力認證-中級", issuer: "財團法人資訊工業策進會", date: "2026.08" },
+      { name: "資策會 生成式AI辦公室應用能力認證-進階", issuer: "財團法人資訊工業策進會", date: "2026.07" },
+      { name: "Adobe Certified Professional in Visual Design", issuer: "Ps & Ai 專業雙認證", date: "專業認證" },
+      { name: "AutoCAD 2012 Certified Professional", issuer: "Autodesk 國際認證人員", date: "2011.11" },
+      { name: "AutoCAD 2011 Certified Professional", issuer: "Autodesk 國際認證人員", date: "2011.09" },
+      { name: "TQC+ 影像處理、電腦圖像編輯製作 專業人員", issuer: "中華民國電腦技能基金會", date: "專業技能" },
+      { name: "視覺傳達設計丙級技術士", issuer: "中華民國勞動部國家技術士證", date: "國家技術士" }
     ],
     experienceList: [
       { title: "特約專案設計師", company: "立陽鴻企業禮贈品", badge: "現任" },
@@ -2822,7 +2089,7 @@ export default function App() {
     if (!list.has("賣場Banner橫幅廣告")) {
       list.add("賣場Banner橫幅廣告");
     }
-    return ["亮點設計", "All", ...Array.from(list)];
+    return ["精選作品", "All", ...Array.from(list)];
   }, [items]);
 
   // Split categories evenly into 2 fixed lines/rows
@@ -2842,6 +2109,20 @@ export default function App() {
   const filteredItems = useMemo(() => {
     let list;
 
+    // Broad category mapping for SEO/Social/Prerender deep-links (e.g. Logo/CIS, 電商視覺)
+    const BROAD_CATEGORY_MAP: Record<string, string[]> = {
+      "Logo/CIS": ["企業LOGO與CIS設計"],
+      "展場 / 擺攤視覺": ["實體店面與展覽"],
+      "包裝 / 平面設計": ["商品周邊企業禮贈品", "商務印刷品設計", "平面海報廣告設計"],
+      "包裝設計": ["商品周邊企業禮贈品", "商務印刷品設計", "平面海報廣告設計"],
+      "電商 / 廣告視覺": ["電商產品銷售圖", "賣場Banner橫幅廣告", "網站產品瀑布頁", "社群行銷小編圖文", "商業視覺攝影"],
+      "電商視覺": ["電商產品銷售圖", "賣場Banner橫幅廣告", "網站產品瀑布頁", "社群行銷小編圖文", "商業視覺攝影"],
+      "插畫繪圖": ["角色IP&插畫與貼圖"],
+      "IP / 角色插畫": ["角色IP&插畫與貼圖"],
+      "角色IP": ["角色IP&插畫與貼圖"],
+      "影音 / 動畫": ["影音與多媒體設計"]
+    };
+
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
       list = items.filter(item => 
@@ -2854,8 +2135,11 @@ export default function App() {
     } else {
       if (selectedCategory === "All") {
         list = items;
-      } else if (selectedCategory === "亮點設計") {
+      } else if (selectedCategory === "精選作品" || selectedCategory === "亮點設計") {
         list = items.filter(item => item.isHighlight);
+      } else if (BROAD_CATEGORY_MAP[selectedCategory]) {
+        const subCats = BROAD_CATEGORY_MAP[selectedCategory];
+        list = items.filter(item => subCats.includes(item.category));
       } else {
         list = items.filter(item => item.category === selectedCategory);
       }
@@ -3825,7 +3109,7 @@ export default function App() {
                                     : "bg-white/[0.04] border-white/10 text-zinc-300 hover:bg-white/[0.08]"
                               }`}
                             >
-                              <span className="truncate">{cat === "All" ? "全部精選展示" : cat}</span>
+                              <span className="truncate">{cat === "All" ? "全部作品" : cat}</span>
                             </button>
                           );
                         })}
@@ -4617,7 +3901,7 @@ export default function App() {
             onClick={scrollToTop}
             type="button"
             id="btn_scroll_to_top_floating"
-            className={`fixed bottom-6 left-6 md:left-auto md:right-6 z-40 p-3 rounded-full transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer border group active:scale-90 ${
+            className={`fixed bottom-6 left-6 md:left-auto md:right-6 z-40 p-3 min-w-[44px] min-h-[44px] rounded-full transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer border group active:scale-90 touch-manipulation ${
               theme === "light"
                 ? "bg-white hover:bg-amber-500 text-zinc-650 hover:text-white border-zinc-200 hover:border-amber-400 shadow-md hover:shadow-amber-500/15"
                 : "bg-[#0E0E0E] hover:bg-amber-500 text-zinc-300 hover:text-black border-white/5 hover:border-amber-400 shadow-black/85 hover:shadow-amber-500/25"

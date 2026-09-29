@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   X, 
@@ -50,17 +50,15 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!item || !isOpen) return null;
-
-  const catColor = getCategoryColor(item.category);
-  const shareUrl = `https://cape-eight.vercel.app/?item=${encodeURIComponent(item.id)}`;
-  const shareTitle = `${item.title} | 李凱博 Cape Lee 設計作品集`;
-  const shareDescription = item.philosophy 
+  const catColor = item ? getCategoryColor(item.category) : getCategoryColor("");
+  const shareUrl = item ? `https://cape-eight.vercel.app/?item=${encodeURIComponent(item.id)}` : "";
+  const shareTitle = item ? `${item.title} | 李凱博 Cape Lee 設計作品集` : "";
+  const shareDescription = item?.philosophy 
     ? (item.philosophy.length > 80 ? item.philosophy.slice(0, 80) + "..." : item.philosophy)
     : "李凱博 Cape Lee 品牌識別、視覺設計與原創角色 IP 設計實戰作品。";
 
   // Primary image
-  const displayImage = item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : null);
+  const displayImage = item ? (item.imageUrl || (item.images && item.images.length > 0 ? item.images[0] : null)) : null;
 
   // Copy Link Handler
   const handleCopyLink = async () => {
@@ -112,7 +110,7 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
   };
 
   // Generate and Download 1200x630 High-Resolution OG Image via Canvas
-  const handleDownloadOgImage = useCallback(async () => {
+  const handleDownloadOgImage = async () => {
     if (!item) return;
     setIsGeneratingImage(true);
 
@@ -441,7 +439,9 @@ export const ShareOgModal: React.FC<ShareOgModalProps> = ({
       console.error("Failed to generate OG image:", err);
       setIsGeneratingImage(false);
     }
-  }, [item, displayImage, catColor]);
+  };
+
+  if (!isOpen || !item) return null;
 
   return (
     <AnimatePresence>
