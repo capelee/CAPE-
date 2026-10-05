@@ -205,6 +205,33 @@ export const initialPortfolioData: PortfolioItem[] = [
     "videoUrl": "https://www.youtube.com/watch?v=3QKiNoYlbbo"
   },
   {
+    "id": "aile-health-cis",
+    "category": "企業LOGO與CIS設計",
+    "title": "愛樂健康事業 品牌識別設計",
+    "titleEn": "AILE Health Business Brand Identity Design",
+    "philosophy": "以生機綠色系為底，融合幾何弧線與現代無襯線字體編排。透過結構化網格規範商標安全空間與應用場景，建立清晰且具信任感的品牌視覺系統。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "品牌識別",
+      "CIS規範",
+      "標誌設計"
+    ],
+    "link": "https://www.facebook.com/AiLeTainan/?locale=zh_TW",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1UBJ6FaAHl4VH18RyA8iaxhaoSDbWbtHt",
+    "placeholderId": "IMAGE_AILE_HEALTH_CIS",
+    "colorTheme": "from-[#0e241b] via-[#1a4030] to-[#0a1610]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1UBJ6FaAHl4VH18RyA8iaxhaoSDbWbtHt",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1GrMwZvLhsRVB2yfLtTA2HQvoJ4up8TB7",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1lrCwCLBbbeFx_OWFkPyYVAqBSGOwJ3Fl",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1TmTLtpJWuLWdWYrug29y0Uf8d5aIdvVV",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LQgtdTE4bth167D0Bis5w1eHb5J988oI",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1LhFmfzXXUkD9tZIxxyEA0ZSluLS5fVi0"
+    ],
+    "driveFolderId": "1GMTYBcXir_2bYikY2AZ7-T51tCxONKt8"
+  },
+  {
     "id": "haiyu-brand-cis",
     "category": "企業LOGO與CIS設計",
     "title": "海御生生醫 保健食品海洋生醫 品牌識別與 CIS 視覺設計",
@@ -1367,6 +1394,78 @@ export const initialPortfolioData: PortfolioItem[] = [
     "driveFolderId": "1-mPzpx9_sfWKliyKm_BXROpSouyzmLpp"
   },
   {
+    "id": "starlux-golden-shovel-packaging",
+    "category": "商品周邊企業禮贈品",
+    "title": "星宇航空 金鏟子與包裝盒設計",
+    "titleEn": "STARLUX Airlines Golden Shovel & Packaging Box Design",
+    "philosophy": "以星宇航空大地金色系為底，結合流線金屬工藝與結構化禮盒盒型。透過燙金字樣與幾何結構內襯，規範產品陳列角度與防護機能，展現洗練沉穩的企業禮品美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "包裝設計",
+      "禮品設計",
+      "燙金工藝"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1CA83-Kg2sqq1mD5VL3qdPnc_ZcHUZRR0",
+    "placeholderId": "IMAGE_STARLUX_GOLDEN_SHOVEL",
+    "colorTheme": "from-[#241a0e] via-[#3d2c16] to-[#1a1208]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1CA83-Kg2sqq1mD5VL3qdPnc_ZcHUZRR0",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1z8t4922Ibi7eqC0SuvbU1tnPe1F5qGQE",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1eCi6jxMQzB4t51p9DtHP8rggaMrHxjoR"
+    ],
+    "driveFolderId": "1McCqp6qnANfkvy6jyaCwlnekWwRETQDf"
+  },
+  {
+    "id": "jinya-performing-arts-festival-2026-medals",
+    "category": "商品周邊企業禮贈品",
+    "title": "錦雅國際表演藝術節 2026 台北總決賽 獎牌設計",
+    "titleEn": "JINYA Performing Arts Festival 2026 Final Taiwan Medals",
+    "philosophy": "以金屬鑄造浮雕與流線幾何音符為核心，結合雙色電鍍工藝與環狀文字編排。透過細緻髮絲紋肌理與立體層次對比，強化藝術賽事辨識度，展現優雅且具榮耀感的紀念美學。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "獎牌設計",
+      "金屬工藝",
+      "立體雕刻"
+    ],
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1WY4vaLgZrEWPsYWtqwTRtfB5bGXl7bj_",
+    "placeholderId": "IMAGE_JINYA_ARTS_FESTIVAL_MEDALS",
+    "colorTheme": "from-[#1a1424] via-[#2c1e3d] to-[#140e1c]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1WY4vaLgZrEWPsYWtqwTRtfB5bGXl7bj_",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qqXCsUV2YHVNc4A8BOmPctr2ldiItUqb",
+      "https://drive.google.com/thumbnail?sz=w1000&id=10_KH4jy8TQvQVWa3-wMWP8mdSfPREfW8",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1zdSMXE913pgSeUuKWYVYlBaoYGxQXSrX"
+    ],
+    "driveFolderId": "1Z7ckKI_uWJBccj2jDbxIdqXY7IAmXh33",
+    "link": "https://www.facebook.com/profile.php?id=61590231838001"
+  },
+  {
+    "id": "weider-mot-racing-team-ribbon-charms",
+    "category": "商品周邊企業禮贈品",
+    "title": "威德車隊與 MOT 車隊 布條掛飾設計",
+    "titleEn": "WEIDER & MOT Racing Team Ribbon Charms Design",
+    "philosophy": "以賽車競速紅黑雙色為底，融合斜角幾何色塊與高對比文字編排。透過織帶雙面熱昇華轉印工藝與金屬環扣結構，展現流暢速度感與運動團隊凝聚力的視覺符號。",
+    "tools": [
+      "Ai",
+      "Photoshop",
+      "周邊設計",
+      "織帶工藝",
+      "熱昇華轉印"
+    ],
+    "link": "https://www.facebook.com/TaipeiBMWMotorrad/?locale=zh_TW",
+    "imageUrl": "https://drive.google.com/thumbnail?sz=w600&id=1qwGtWY5ABUCM-pYJ6pio0dNK_dIFn97b",
+    "placeholderId": "IMAGE_WEIDER_MOT_RIBBON_CHARMS",
+    "colorTheme": "from-[#2e0909] via-[#4d1212] to-[#1a0505]",
+    "images": [
+      "https://drive.google.com/thumbnail?sz=w1000&id=1qwGtWY5ABUCM-pYJ6pio0dNK_dIFn97b",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1cDRryj1DWMRBakqd_FN3uEOrzEeOedRa",
+      "https://drive.google.com/thumbnail?sz=w1000&id=1loUNPWgqrqrnCGBkGNtf_CY9ItT5Hd34"
+    ],
+    "driveFolderId": "1a-Odp2AwGZ7edoNb6rQih8LLDpJdpIYF"
+  },
+  {
     "id": "xinliao-zhenangong-accessories",
     "category": "商品周邊企業禮贈品",
     "title": "新寮鎮安宮 手機繩及夾片吊飾",
@@ -1412,7 +1511,7 @@ export const initialPortfolioData: PortfolioItem[] = [
       "https://drive.google.com/thumbnail?sz=w1000&id=1J_ic_fjsq3g4AgjfstZsBZWlRjZZQvxy"
     ],
     "driveFolderId": "1LWmgTxS3ySwx5i6WsJGJP2cogeToIv-w",
-    "link": "https://www.interkultur.com/events/world-choir-games/helsingborg-2026"
+    "link": "https://www.gov.taipei/News_Content.aspx?n=F0DDAF49B89E9413&s=D810CDEBEAB6E53B"
   },
   {
     "id": "dental-implant-stainless-steel-ice-cubes",

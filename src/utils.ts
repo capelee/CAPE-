@@ -186,10 +186,12 @@ export function resolveImageUrl(url: string, size?: number, format?: "webp" | "a
 
     if (DRIVE_THUMBNAIL_CACHE.has(id)) {
       const cachedUrlType = DRIVE_THUMBNAIL_CACHE.get(id);
-      if (cachedUrlType === 'view') {
-        return `https://drive.google.com/uc?export=view&id=${id}${finalExtraParams}`;
+      if (cachedUrlType === 'proxy') {
+        return `/api/image-proxy?id=${id}&sz=${s}`;
       } else if (cachedUrlType === 'lh3') {
         return `https://lh3.googleusercontent.com/d/${id}=w${s}${finalExtraParams}`;
+      } else if (cachedUrlType === 'view') {
+        return `https://drive.google.com/uc?export=view&id=${id}${finalExtraParams}`;
       }
     }
     

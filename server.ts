@@ -461,6 +461,64 @@ app.get("/api/portfolio", (req, res) => {
   }
 });
 
+const driveImageCache = new Map<string, { buffer: Buffer; contentType: string; time: number }>();
+
+app.get("/api/image-proxy", async (req, res) => {
+  try {
+    const { id, sz = "800" } = req.query;
+    if (!id || typeof id !== "string") {
+      return res.status(400).send("Missing image id");
+    }
+
+    const cacheKey = `${id}_${sz}`;
+    const cached = driveImageCache.get(cacheKey);
+    if (cached && Date.now() - cached.time < 86400000) {
+      res.setHeader("Content-Type", cached.contentType);
+      res.setHeader("Cache-Control", "public, max-age=604800, stale-while-revalidate=2592000");
+      return res.send(cached.buffer);
+    }
+
+    const driveUrl = `https://drive.google.com/thumbnail?sz=w${sz}&id=${id}`;
+    let response = await fetch(driveUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      },
+    });
+
+    if (!response.ok) {
+      const lh3Url = `https://lh3.googleusercontent.com/d/${id}=w${sz}`;
+      response = await fetch(lh3Url, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        },
+      });
+    }
+
+    if (!response.ok) {
+      return res.status(response.status).send("Failed to retrieve image");
+    }
+
+    const contentType = response.headers.get("content-type") || "image/jpeg";
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    // Limit cache size to prevent memory leaks
+    if (driveImageCache.size > 200) {
+      const oldestKey = driveImageCache.keys().next().value;
+      if (oldestKey) driveImageCache.delete(oldestKey);
+    }
+
+    driveImageCache.set(cacheKey, { buffer, contentType, time: Date.now() });
+
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", "public, max-age=604800, stale-while-revalidate=2592000");
+    res.send(buffer);
+  } catch (err: any) {
+    console.error("Error in /api/image-proxy:", err);
+    res.status(500).send("Internal image proxy error");
+  }
+});
+
 app.post("/api/audit-item", async (req, res) => {
   try {
     const { item, forceOptimize } = req.body;

@@ -1,0 +1,6 @@
+{
+  "summary":  "Implementation plan for refactoring resume education and certifications into a clean on-demand modal interaction: clicking Fuxing Arts School opens an 8-award interactive gallery modal, and clicking certificate names opens high-resolution credential previews on demand without cluttering the main layout.",
+  "updatedAt":  "2026-10-05T07:49:51.581827081Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

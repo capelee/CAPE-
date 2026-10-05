@@ -2050,16 +2050,116 @@ export default function App() {
     pdfPortfolioUrl: "https://drive.google.com/file/d/1rjJsddL0kOvYSL-1T-bBxmwn5iZcX-pO/view?usp=drive_link", 
     intro: "擁有 6 年以上品牌商業整合設計實戰經驗，致力於探索生成藝術與當代視覺的深度融合。我擅長以 AI 技術為核心，將生成式工作流無縫導入平面設計、影音製作與品牌識別，展現獨特觀點與豐沛的創作能量。經手超過百個品牌專案，涵蓋破萬銷量電商視覺至原創 IP 開發。在此次臺北生成藝術節，我期待透過實際運用 AI 工具，讓大眾親身體驗生成藝術如何為當代創作注入嶄新活力，推動藝術與科技的深度交融，共同邁向生成藝術共創的未來。",
     education: [
-      { school: "環球科技大學", dept: "創意商品設計學系", info: "大學畢業", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
-      { school: "復興美工", dept: "美工科設計組", info: "經典設計本科學府", activities: ["畢業展全校總成績第三名"], date: "2012.05" }
+      { school: "環球科技大學", dept: "創意商品設計學系", activities: ["系學會會長", "系學會美宣長", "畢籌會美宣長"] },
+      { 
+        school: "復興美工", 
+        dept: "美工科設計組", 
+        date: "2012.05",
+        awards: [
+          {
+            label: "畢業展全校總成績第三名",
+            name: "101學年度 復興商工 畢業展與各項表現榮譽獎狀（美工科全校總成績第三名）",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "2012.05",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=19BVh8-JJTw17JVvMnMfLp52VVpGctecn",
+            driveUrl: "https://drive.google.com/file/d/19BVh8-JJTw17JVvMnMfLp52VVpGctecn/view?usp=sharing"
+          },
+          {
+            label: "師生美展 商業設計類 入選",
+            name: "100學年度 復興商工 師生美展 商業設計類 入選獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "100學年度",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1-lkb0rOXCezlrGbWVxqpkqnNBkifumNE",
+            driveUrl: "https://drive.google.com/file/d/1-lkb0rOXCezlrGbWVxqpkqnNBkifumNE/view?usp=sharing"
+          },
+          {
+            label: "師生美展 攝影類 佳作",
+            name: "100學年度 復興商工 師生美展 攝影類 佳作獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "100學年度",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1pYO8TipfEuTHr7lNoJ_BZLJuohP_ayar",
+            driveUrl: "https://drive.google.com/file/d/1pYO8TipfEuTHr7lNoJ_BZLJuohP_ayar/view?usp=sharing"
+          },
+          {
+            label: "元旦展 電腦繪圖類 佳作",
+            name: "101學年度 復興商工 元旦展 電腦繪圖類 佳作獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "101學年度",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1iAbML4s5243OwnfsOF_DBPWdzXMTLqbe",
+            driveUrl: "https://drive.google.com/file/d/1iAbML4s5243OwnfsOF_DBPWdzXMTLqbe/view?usp=sharing"
+          },
+          {
+            label: "作業展 電腦繪圖類 佳作",
+            name: "099學年度第1學期 復興商工 作業展 電腦繪圖類 佳作獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "2010.11",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1qQfrB4Ymko6TdsSvFdjG0ca3vJyS01gm",
+            driveUrl: "https://drive.google.com/file/d/1qQfrB4Ymko6TdsSvFdjG0ca3vJyS01gm/view?usp=sharing"
+          },
+          {
+            label: "作業展 包裝設計類 佳作",
+            name: "100學年度第1學期 復興商工 作業展 包裝設計類 佳作獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "2011.11",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=18FA0gC5ZNYr0LGzg6uasZ8cuqj_y61zf",
+            driveUrl: "https://drive.google.com/file/d/18FA0gC5ZNYr0LGzg6uasZ8cuqj_y61zf/view?usp=sharing"
+          },
+          {
+            label: "作業展 專題製作類 佳作",
+            name: "101學年度第2學期 復興商工 作業展 專題製作類 佳作獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "2012.04",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1vGrtweI4kdkrH4i6syDEYWwaE-_aWE__",
+            driveUrl: "https://drive.google.com/file/d/1vGrtweI4kdkrH4i6syDEYWwaE-_aWE__/view?usp=sharing"
+          },
+          {
+            label: "作業展 包裝設計類 佳作(二)",
+            name: "101學年度第2學期 復興商工 作業展 包裝設計類 佳作獎狀",
+            issuer: "新北市私立復興高級商工職業學校",
+            date: "2012.05",
+            imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=14VQOnDLzLiCJRk_dLnUdD-XBx9vXjYum",
+            driveUrl: "https://drive.google.com/file/d/14VQOnDLzLiCJRk_dLnUdD-XBx9vXjYum/view?usp=sharing"
+          }
+        ]
+      }
     ],
     certificates: [
-      { name: "資策會 生成式AI能力認證", issuer: "財團法人資訊工業策進會", date: "2026.08" },
-      { name: "資策會 生成式AI美術設計能力認證-中級", issuer: "財團法人資訊工業策進會", date: "2026.08" },
-      { name: "資策會 生成式AI辦公室應用能力認證-進階", issuer: "財團法人資訊工業策進會", date: "2026.07" },
+      { 
+        name: "資策會 生成式AI能力認證", 
+        issuer: "財團法人資訊工業策進會", 
+        date: "2026.08",
+        imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=15VV_8sM1n8PgHq2VlNhD8gKSNUFz0jiO",
+        driveUrl: "https://drive.google.com/file/d/15VV_8sM1n8PgHq2VlNhD8gKSNUFz0jiO/view?usp=sharing"
+      },
+      { 
+        name: "資策會 生成式AI美術設計能力認證-中級", 
+        issuer: "財團法人資訊工業策進會", 
+        date: "2026.08",
+        imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1fnIgpypJo4rNQjiUe7RJQxW6E1yWcQNN",
+        driveUrl: "https://drive.google.com/file/d/1fnIgpypJo4rNQjiUe7RJQxW6E1yWcQNN/view?usp=sharing"
+      },
+      { 
+        name: "資策會 生成式AI辦公室應用能力認證-進階", 
+        issuer: "財團法人資訊工業策進會", 
+        date: "2026.07",
+        imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1Ez5yL7JnV-uSIJqQVn5NEyvqNHKzEVe4",
+        driveUrl: "https://drive.google.com/file/d/1Ez5yL7JnV-uSIJqQVn5NEyvqNHKzEVe4/view?usp=sharing"
+      },
       { name: "Adobe Certified Professional in Visual Design", issuer: "Ps & Ai 專業雙認證", date: "專業認證" },
-      { name: "AutoCAD 2012 Certified Professional", issuer: "Autodesk 國際認證人員", date: "2011.11" },
-      { name: "AutoCAD 2011 Certified Professional", issuer: "Autodesk 國際認證人員", date: "2011.09" },
+      { 
+        name: "AutoCAD 2012 Certified Professional", 
+        issuer: "Autodesk 國際認證人員", 
+        date: "2011.11",
+        imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1J-wQgj-zt7k7jaAMMgBG2HEjJ1uQgZoL",
+        driveUrl: "https://drive.google.com/file/d/1J-wQgj-zt7k7jaAMMgBG2HEjJ1uQgZoL/view?usp=sharing"
+      },
+      { 
+        name: "AutoCAD 2011 Certified Professional", 
+        issuer: "Autodesk 國際認證人員", 
+        date: "2011.09",
+        imageUrl: "https://drive.google.com/thumbnail?sz=w1200&id=1P_TaIWH89eHLY_DUJ_nmg4_IuffMc7iz",
+        driveUrl: "https://drive.google.com/file/d/1P_TaIWH89eHLY_DUJ_nmg4_IuffMc7iz/view?usp=sharing"
+      },
       { name: "TQC+ 影像處理、電腦圖像編輯製作 專業人員", issuer: "中華民國電腦技能基金會", date: "專業技能" },
       { name: "視覺傳達設計丙級技術士", issuer: "中華民國勞動部國家技術士證", date: "國家技術士" }
     ],

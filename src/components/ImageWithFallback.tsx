@@ -286,7 +286,7 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
     const dId = extractDriveId(src);
     if (dId && fallbackAttempt > 0) {
       let typeStr = "";
-      if (img.src.includes("uc?export=view")) typeStr = "view";
+      if (img.src.includes("/api/image-proxy")) typeStr = "proxy";
       else if (img.src.includes("lh3.googleusercontent.com")) typeStr = "lh3";
       else if (img.src.includes("drive.google.com/thumbnail")) typeStr = "thumb";
 
@@ -476,8 +476,8 @@ export const ImageWithFallback = React.memo(function ImageWithFallback({
       // Standard image fallback (Drive / External)
       if (nextAttempt === 1) {
         if (id) {
-          // 1st fallback for Drive: direct view URL
-          safeSetCurrentSrc(`https://drive.google.com/uc?export=view&id=${id}`, nextAttempt);
+          // 1st fallback for Drive: reliable server-side image proxy
+          safeSetCurrentSrc(`/api/image-proxy?id=${id}&sz=${optimizeSize || containerWidth}`, nextAttempt);
         } else {
           setPlaceholderFallback(nextAttempt);
         }
